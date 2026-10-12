@@ -17,10 +17,10 @@
 - Repeat: Turn every job into the next one. Review request after every finished job; A reply to every review, in your voice; Spring and fall tune-up campaigns to past customers; Maintenance plan reminders before plans lapse; A live dashboard and a quarterly re-grade.
 
 ## Plans
-- Starter (5 pages · 1 city; best for 1 to 2 trucks): price not published yet
-- Growth (12 pages · 3 cities; best for 3 to 8 trucks): price not published yet
-- Dominate (25 pages · 10 cities; best for 8+ trucks or a wide area): price not published yet
-- Multi-location (Up to 10 locations; best for several branches or brands): price not published yet
+- Starter (5 pages · 1 city; best for 1 to 2 trucks): $499/month, or 20% less billed yearly
+- Growth (12 pages · 3 cities; best for 3 to 8 trucks): $899/month, or 20% less billed yearly
+- Dominate (25 pages · 10 cities; best for 8+ trucks or a wide area): $1,499/month, or 20% less billed yearly
+- Multi-location (Up to 10 locations; best for several branches or brands): $2,499/month, or 20% less billed yearly
 
 ## Good fit
 HVAC shops that do good work, miss calls when the crew is busy, and want to own their marketing rather than rent leads.
@@ -31,7 +31,7 @@ Shops that can't take on more work, want only Google Ads management, or want a o
 ## Pages
 - Home: https://hvacmarketinghq.com/
 - The method: https://hvacmarketinghq.com/method
-- Pricing: https://hvacmarketinghq.com/plans
+- Pricing: https://hvacmarketinghq.com/plans (Starter $499/mo; Growth $899/mo; Dominate $1,499/mo; Multi-location $2,499/mo, 20% off annual)
 - Free report card: https://hvacmarketinghq.com/report-card
 - Guides: https://hvacmarketinghq.com/guides (How Google picks the HVAC companies in the map pack; How many Google reviews does an HVAC company need?; Missed-call text-back for HVAC: how it works and how to do it legally; The HVAC website checklist: 20 things that decide if the phone rings; What HVAC marketing costs in 2026: published prices compared)
 - Locations: https://hvacmarketinghq.com/locations (Texas markets: Houston, Dallas, Fort Worth, San Antonio, Austin, El Paso, Corpus Christi, Lubbock, Amarillo, Laredo, McAllen, Brownsville, Killeen, Waco, Temple, College Station, Tyler, Beaumont, Midland, Abilene)

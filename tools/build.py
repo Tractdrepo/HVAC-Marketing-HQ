@@ -29,28 +29,27 @@ LEGAL_UPDATED = "October 12, 2026"   # "Last updated" on Privacy and Terms
 NOINDEX = True                       # stays on until forms are tested and Logan says push
 AREA = "Texas"                        # launch market; copy says "starting in Texas"
 
-# Plans: four tiers with a monthly/annual toggle (annual = 20% off). Prices are Logan's call, so they stay
-# None (shown as $X) until he picks. Draft ladder in the statewide plan: 499/899/1499/2499 monthly, builds 1995/2495/2995/4500.
+# Plans: four tiers with a monthly/annual toggle (annual = 20% off). Prices confirmed by Logan Oct 12, 2026.
 ANNUAL_DISCOUNT = 0.20
 PLAN_PRICE_FOR_CALC = 899            # break-even calculator default, editable by the visitor
 PLANS = [
     {
-        "name": "Starter", "monthly": None, "build": None, "scope": "5 pages · 1 city", "stage": "1 to 2 trucks",
+        "name": "Starter", "monthly": 499, "build": 1995, "scope": "5 pages · 1 city", "stage": "1 to 2 trucks",
         "for": "A fast site and a complete Google profile, with every missed call texted back.",
         "items": ["5-page site on our HVAC build", "Missed-call text-back in 60 seconds", "Review requests after every job", "Google profile setup", "Shared inbox app", "Live dashboard"],
     },
     {
-        "name": "Growth", "monthly": None, "build": None, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
+        "name": "Growth", "monthly": 899, "build": 2495, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
         "for": "The full Answer, Rank, Repeat system for an owner-run shop.",
         "items": ["Everything in Starter", "12 pages, including 3 city pages", "Google profile managed, weekly job photos", "Estimate follow-up until booked or lost", "Review replies and AI web chat", "1 new article a month"],
     },
     {
-        "name": "Dominate", "monthly": None, "build": None, "scope": "25 pages · 10 cities", "stage": "8+ trucks or a wide area",
+        "name": "Dominate", "monthly": 1499, "build": 2995, "scope": "25 pages · 10 cities", "stage": "8+ trucks or a wide area",
         "for": "For shops covering a wide area that want the map in every town they serve.",
         "items": ["Everything in Growth", "25 pages, including 10 city pages", "Spring and fall tune-up campaigns", "ServiceTitan, Housecall Pro or Jobber hookup", "Competitor and map spam watch", "Directory listings managed"],
     },
     {
-        "name": "Multi-location", "monthly": None, "build": None, "scope": "Up to 10 locations", "stage": "several branches or brands",
+        "name": "Multi-location", "monthly": 2499, "build": 4500, "scope": "Up to 10 locations", "stage": "several branches or brands",
         "for": "One flat price for shops with several branches or brands.",
         "items": ["Everything in Dominate", "Up to 10 locations", "A profile, pages and number for each", "Monthly AI performance report", "Priority support"],
     },
@@ -549,7 +548,7 @@ def loop():
 def calculator(ticket=350, job=9000, job_label="system replacement"):
     return f"""<div class="calc">
   <div>
-    <div class="field"><label for="c-plan">Monthly plan price</label><div class="money"><input id="c-plan" type="text" inputmode="decimal" name="plan" value="{PLAN_PRICE_FOR_CALC:,}"></div><div class="hint">Placeholder until plans are final. Change it to try any number.</div></div>
+    <div class="field"><label for="c-plan">Monthly plan price</label><div class="money"><input id="c-plan" type="text" inputmode="decimal" name="plan" value="{PLAN_PRICE_FOR_CALC:,}"></div><div class="hint">Our Growth plan. Change it to try any number.</div></div>
     <div class="field"><label for="c-ticket">Your average service call ticket</label><div class="money"><input id="c-ticket" type="text" inputmode="decimal" name="ticket" value="{ticket}"></div></div>
     <div class="field"><label for="c-job">Your average {esc(job_label)}</label><div class="money"><input id="c-job" type="text" inputmode="decimal" name="job" value="{job:,}"></div></div>
     <div class="field"><label for="c-lead">What you pay per bought lead (Angi, Thumbtack and similar)</label><div class="money"><input id="c-lead" type="text" inputmode="decimal" name="lead" value="75"></div></div>
@@ -1547,7 +1546,7 @@ def plans_page():
 <section class="section" style="padding-top:12px"><div class="wrap">
   {terms_strip()}
   {plans_cards()}
-  <p class="muted" style="margin-top:18px;font-size:.9rem">Founding rate: the first [N] shops keep the annual price on monthly billing, locked for as long as they stay. Normal texting, calling and AI use is included; large campaigns beyond your plan are billed at cost. <span class="tbd">Prices and terms TBD</span></p>
+  <p class="muted" style="margin-top:18px;font-size:.9rem">Founding rate: the first 25 shops keep the annual price on monthly billing, locked for as long as they stay. Normal texting, calling and AI use is included; large campaigns beyond your plan are billed at cost. <span class="tbd">Terms TBD</span></p>
   {addons()}
 </div></section>
 <section class="section alt"><div class="wrap">{replaces()}</div></section>
@@ -1699,7 +1698,7 @@ Shops that can't take on more work, want only Google Ads management, or want a o
 ## Pages
 - Home: https://{DOMAIN}/
 - The method: https://{DOMAIN}/method
-- Pricing: https://{DOMAIN}/plans
+- Pricing: https://{DOMAIN}/plans ({'; '.join(f"{p_['name']} ${p_['monthly']:,}/mo" for p_ in PLANS)}, 20% off annual)
 - Free report card: https://{DOMAIN}/report-card
 - Guides: https://{DOMAIN}/guides ({guide_names})
 - Locations: https://{DOMAIN}/locations (Texas markets: {city_names})
