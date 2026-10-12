@@ -24,6 +24,8 @@ TURNSTILE_SITEKEY = None               # Cloudflare Turnstile site key; widget i
 FOUNDER_NAME = "Logan"
 FOUNDER_VIDEO = None                  # e.g. "video/founder.mp4" once recorded (also add a poster: "video/founder.jpg")
 FOUNDER_POSTER = None
+DEMO_PHONE = None                     # demo line for missed-call text-back, e.g. "+12545550123"; block hidden until set
+LEGAL_UPDATED = "October 12, 2026"   # "Last updated" on Privacy and Terms
 NOINDEX = True                       # stays on until forms are tested and Logan says push
 AREA = "Texas"                        # launch market; copy says "starting in Texas"
 
@@ -230,7 +232,16 @@ def report_card(title="Get your free report card", sub=None, trade="HVAC"):
 </section>"""
 
 
+def demo_line():
+    if not DEMO_PHONE:
+        return ""
+    d = DEMO_PHONE[-10:]
+    return f'<div class="demo-line"><div><b>Try it yourself.</b> Call our demo line, let it ring out and hang up. Watch for the text.</div><a class="btn btn-ghost btn-small" href="tel:{DEMO_PHONE}">({d[:3]}) {d[3:6]}-{d[6:]}</a></div>'
+
+
 def founder_video(has_form=True):
+    if not FOUNDER_VIDEO and not PREVIEW:
+        return ""  # live site: no empty video bubble until Logan records one
     if FOUNDER_VIDEO:
         poster = f' poster="{a(FOUNDER_POSTER)}"' if FOUNDER_POSTER else ""
         media = f'<video src="{a(FOUNDER_VIDEO)}"{poster} controls playsinline preload="none"></video>'
@@ -617,7 +628,7 @@ def promise():
   <div class="card"><span class="big">[N] reviews</span><p>An agreed number of new Google reviews in your first 90 days.</p></div>
 </div>
 <div class="moneyback reveal"><span class="big">30 days</span><div><h3>Money-back guarantee</h3><p>Not happy in your first 30 days after launch? Tell us and we refund your first month. No form to fill out, no argument. <span class="tbd">Build fee terms TBD</span></p></div></div>
-<div class="demo-line"><div><b>Try it yourself.</b> Call our demo line, let it ring out and hang up. Watch for the text.</div><a class="btn btn-ghost btn-small" href="tel:+12540000000">(254) XXX-XXXX</a> <span class="tbd">Demo line TBD</span></div>
+{demo_line()}
 <div class="wont reveal"><h3>What we won't promise</h3><p class="muted">Anyone who guarantees these is guessing. We'd rather tell you now.</p><ul class="crosses">
   <li>A #1 ranking on Google</li><li>A set number of jobs or calls</li><li>That ChatGPT will recommend you</li><li>A fixed cost per lead</li></ul></div>
 <p class="promise-note">We only guarantee what we control. <span class="tbd">What happens if we miss: TBD</span></p>"""
@@ -1528,7 +1539,7 @@ def legal_page(key):
     if key == "privacy":
         title = "Privacy Policy"
         content = f"""
-<p>This policy explains what {esc(BRAND)} ("we", "us") collects through this website and our services, and how we use it. Last updated: [DATE].</p>
+<p>This policy explains what {esc(BRAND)} ("we", "us") collects through this website and our services, and how we use it. Last updated: {LEGAL_UPDATED}.</p>
 <h2>What we collect</h2>
 <ul>
 <li><b>Information you give us.</b> When you request a report card or contact us: your website, business name, the town you serve, first name, email address and phone number.</li>
@@ -1558,7 +1569,7 @@ def legal_page(key):
     else:
         title = "Terms of Service"
         content = f"""
-<p>These terms cover your use of this website and the free report card. Client services are covered by a separate signed service agreement. Last updated: [DATE].</p>
+<p>These terms cover your use of this website and the free report card. Client services are covered by a separate signed service agreement. Last updated: {LEGAL_UPDATED}.</p>
 <h2>The report card</h2>
 <p>The report card is a free assessment based only on public information about your business. It is an opinion, not a guarantee of any result, ranking or number of jobs.</p>
 <h2>Text messaging program</h2>
