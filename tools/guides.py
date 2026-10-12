@@ -324,4 +324,66 @@ GUIDES = [
         ],
         "related": ["hvac-website-checklist", "missed-call-text-back-hvac"],
     },
+    {
+        "slug": "scorpion-alternative-hvac",
+        "title": "Scorpion alternatives for HVAC companies: what to compare before you sign",
+        "short": "Scorpion alternatives",
+        "desc": "What Scorpion's own FAQ says about contracts, website ownership and leaving, what its reviews complain about, and the questions to ask any HVAC marketing agency.",
+        "read": 7,
+        "takeaways": [
+            "Scorpion's FAQ says its marketing technology (website and SEO) typically needs a 12-month contract; ads are typically month to month.",
+            "If you leave, Scorpion says you keep your domain, content and images and get your site's static files, but you'll need another vendor to rebuild the site, because the CMS is theirs.",
+            "Scorpion doesn't publish prices on its FAQ; it says the investment depends on your goals.",
+            "Whoever you pick, get the exit terms, ownership and total monthly cost in writing before you sign.",
+        ],
+        "sections": [
+            ("Who Scorpion is a good fit for", [
+                ("p", "Scorpion is one of the biggest marketing companies for home services. It builds websites on its own platform, runs SEO and ads, and sells software around them. Its Trustpilot reviews mostly praise specific account managers. For a large, multi-location company with a big ad budget and someone in-house to manage the relationship, that scale can make sense."),
+                ("p", "Most owner-run HVAC shops are in a different spot: a few trucks, the owner answering the phone, and no appetite for a year-long contract before they know it works. That's who this guide is for."),
+            ]),
+            ("What Scorpion's own FAQ says", [
+                ("p", "These points are from Scorpion's FAQ page as we read it on October 12, 2026. Check the link before you decide, since terms change."),
+                ("table", [
+                    ["Question", "Scorpion's answer"],
+                    ["Contract length", "Typically 12 months for marketing technology (website, SEO). Digital ads like Google Ads, LSAs and Meta are typically month to month."],
+                    ["Do I own my website?", "Yes, after the contract is complete. You don't own the underlying CMS; your domains, content and imagery stay yours."],
+                    ["What happens if I leave?", "You get the site's static files, design assets and content, and key accounts like analytics are transferred. You'll need another vendor to rebuild the site on a CMS of your choice."],
+                    ["Price", "Not published. \"The investment you decide to make with Scorpion depends on your business goals.\""],
+                ]),
+            ]),
+            ("What reviewers complain about", [
+                ("p", "On October 12, 2026, Scorpion had a 4.0 TrustScore on Trustpilot from 35 reviews: 71% five-star and 26% one-star. The critical reviews repeat a few themes:"),
+                ("ul", [
+                    "Long contracts and charges they didn't expect.",
+                    "Leads that weren't for their business, and credits that were slow to arrive.",
+                    "Slow offboarding, including one former client whose site showed a default server page after the contract ended.",
+                ]),
+                ("note", "35 reviews is a small sample for a company this size, and each review is one side of the story. Use them as questions to ask, not as a verdict."),
+            ]),
+            ("What to compare in any alternative", [
+                ("ol", [
+                    "<b>Exit terms.</b> If you cancel in month four, what do you walk away with: a working website, or files you have to rebuild?",
+                    "<b>Ownership.</b> Your domain, Google Business Profile, reviews and phone number should be in your name from day one.",
+                    "<b>Total monthly cost.</b> Plan price, build fee, ad management fees and ad spend, added up.",
+                    "<b>Response time.</b> How fast is a missed call answered? That's often worth more than any ranking.",
+                    "<b>Reporting.</b> Can you see calls and booked jobs whenever you want, or only in a monthly PDF?",
+                ]),
+            ]),
+            ("How we compare", [
+                ("p", "We built HVAC Marketing HQ for owner-run shops: a fast website you own, a Google profile we actually run, missed-call text-back and review requests, and the HQ Command Center dashboard so you can check the numbers yourself. Our prices and plan details are on the <a href=\"{u:plans}\">pricing page</a>. We don't run ad campaigns today, so if paid ads are most of what you need, a larger agency may suit you better."),
+                ("cta",),
+            ]),
+        ],
+        "faq": [
+            ("Is Scorpion good for HVAC companies?", "It can be, especially for larger multi-location companies with big ad budgets. Read the contract, exit and ownership terms first, and compare the total monthly cost with other options."),
+            ("Do you own your website with Scorpion?", "Scorpion's FAQ says you own your website after the contract is complete, but not the CMS it runs on. If you leave, you get static files and content and need another vendor to rebuild."),
+            ("How much does Scorpion cost?", "Scorpion doesn't publish prices on its FAQ; it says the investment depends on your business goals. Ask for the full monthly cost, including ad spend and fees, in writing."),
+            ("What should a small HVAC shop look for in an alternative?", "Published prices, a short commitment, a site you own outright and a fast response to missed calls. Our guide to what HVAC marketing costs compares published prices across companies."),
+        ],
+        "sources": [
+            ("Scorpion FAQ", "https://www.scorpion.co/faq/"),
+            ("Scorpion reviews on Trustpilot", "https://www.trustpilot.com/review/scorpion.co"),
+        ],
+        "related": ["hvac-marketing-cost", "hvac-website-checklist"],
+    },
 ]

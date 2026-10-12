@@ -47,3 +47,5 @@ Four steps (website, business name, first name and email, phone with optional SM
 ## Launch
 
 Remove `NOINDEX` in build.py and the `X-Robots-Tag` header in vercel.json, add a sitemap and Search Console, and add analytics only once the privacy page covers it.
+
+Oct 12, 2026 (Finish the website thread): switched to a light theme (white background, same cool-blue and heat-orange glows; the old dark stylesheet is in git history), named the dashboard HQ Command Center, added win-back texts to Growth, added a sourced Scorpion alternatives guide, three Who we help pages (tools/niches.py) and set prices.

@@ -36,17 +36,17 @@ PLANS = [
     {
         "name": "Starter", "monthly": 499, "build": 1995, "scope": "5 pages · 1 city", "stage": "1 to 2 trucks",
         "for": "A fast site and a complete Google profile, with every missed call texted back.",
-        "items": ["5-page site on our HVAC build", "Missed-call text-back in 60 seconds", "Review requests after every job", "Google profile setup", "Shared inbox app", "Live dashboard"],
+        "items": ["5-page site on our HVAC build", "Missed-call text-back in 60 seconds", "Review requests after every job", "Google profile setup", "Shared inbox app", "HQ Command Center dashboard"],
     },
     {
         "name": "Growth", "monthly": 899, "build": 2495, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
         "for": "The full Answer, Rank, Repeat system for an owner-run shop.",
-        "items": ["Everything in Starter", "12 pages, including 3 city pages", "Google profile managed, weekly job photos", "Estimate follow-up until booked or lost", "Review replies and AI web chat", "1 new article a month"],
+        "items": ["Everything in Starter", "12 pages, including 3 city pages", "Google profile managed, weekly job photos", "Estimate follow-up until booked or lost", "Review replies and AI web chat", "Win-back texts to past customers each season", "1 new article a month"],
     },
     {
         "name": "Dominate", "monthly": 1499, "build": 2995, "scope": "25 pages · 10 cities", "stage": "8+ trucks or a wide area",
         "for": "For shops covering a wide area that want the map in every town they serve.",
-        "items": ["Everything in Growth", "25 pages, including 10 city pages", "Spring and fall tune-up campaigns", "ServiceTitan, Housecall Pro or Jobber hookup", "Competitor and map spam watch", "Directory listings managed"],
+        "items": ["Everything in Growth", "25 pages, including 10 city pages", "Full spring and fall tune-up campaigns, text and email", "ServiceTitan, Housecall Pro or Jobber hookup", "Competitor and map spam watch", "Directory listings managed"],
     },
     {
         "name": "Multi-location", "monthly": 2499, "build": 4500, "scope": "Up to 10 locations", "stage": "several branches or brands",
@@ -173,7 +173,7 @@ def footer(has_form=True):
 def report_card(title="Get your free report card", sub=None, trade="HVAC"):
     sub = sub or (f"We grade your Google profile, reviews, website and listings against the {trade if trade.isupper() else trade.lower()} companies "
                   "people find near you. It lands in your inbox in about five minutes. Nobody will call you.")
-    turnstile = "" if PREVIEW or not TURNSTILE_SITEKEY else f'<div class="cf-turnstile" data-sitekey="{TURNSTILE_SITEKEY}" data-theme="dark"></div>'
+    turnstile = "" if PREVIEW or not TURNSTILE_SITEKEY else f'<div class="cf-turnstile" data-sitekey="{TURNSTILE_SITEKEY}" data-theme="light"></div>'
     return f"""<section class="section" id="report-card">
   <div class="wrap"><div class="rc-wrap reveal"><div class="rc">
     <div>
@@ -275,7 +275,7 @@ def page(path, title, desc, body, extra_head="", has_form=True):
 <link rel="preload" href="{a('fonts/Archivo-600-800.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{a('fonts/IBMPlexSans-400.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{a('styles.css')}">
-<meta name="theme-color" content="#070b12">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="{a('favicon.svg')}" type="image/svg+xml">
 {extra_head}
 </head>
@@ -361,7 +361,7 @@ METHOD = [
         "A reply to every review, in your voice",
         "Spring and fall tune-up campaigns to past customers",
         "Maintenance plan reminders before plans lapse",
-        "A live dashboard and a quarterly re-grade",
+        "Your HQ Command Center dashboard and a quarterly re-grade",
     ], "Reviews and repeat customers compound every month."),
 ]
 
@@ -383,7 +383,7 @@ def dashboard():
     feed = [("4:52 PM", "Missed call · texted back in 0:08", "go"), ("4:55 PM", "Reply: AC blowing warm air", ""), ("5:02 PM", "Service call booked · Tue 8 to 10 AM", "go"), ("Yesterday", "New 5-star review · replied", "")]
     items = "".join(f'<li class="{c}"><span>{t}</span>{esc(x)}</li>' for t, x, c in feed)
     return f"""<div class="dash" aria-label="Sample dashboard">
-  <div class="dash-head"><b>Your Shop Heating &amp; Air</b><span class="live">Live</span><span class="dash-sample">Sample data</span></div>
+  <div class="dash-head"><b>HQ Command Center · Your Shop Heating &amp; Air</b><span class="live">Live</span><span class="dash-sample">Sample data</span></div>
   <div class="dash-tiles">{tiles}</div>
   <div class="dash-body">
     <div class="dash-chart"><p>Booked jobs from the system, by week</p><div class="bars">{chart}</div></div>
@@ -415,7 +415,7 @@ def tech():
 
 def ownership():
     left = ["Your domain, registered in your name", "Your Google profile and every review on it", "Your site files and content", "Your customer list and every lead"]
-    right = ["A live dashboard you can open anytime", "Prices on the website, not after a sales call", "Month to month [TBD], no long contract", "Your number ported back if you leave"]
+    right = ["An HQ Command Center dashboard you can open anytime", "Prices on the website, not after a sales call", "Month to month [TBD], no long contract", "Your number ported back if you leave"]
     l = "".join(f"<li>{esc(x)}</li>" for x in left)
     r = "".join(f"<li>{esc(x)}</li>" for x in right)
     return f"""<div class="grid two">
@@ -512,7 +512,7 @@ def bento():
   <div class="tile b-2 b-tall reveal"><div><span class="tile-label">Answer</span><h3>Missed-call text-back</h3><p>Every call you miss gets a text in seconds, with your name on it.</p></div>{demo()}</div>
   <div class="tile b-2 reveal"><div><span class="tile-label">Rank</span><h3>Top of the map pack</h3><p>A complete, active Google profile and real town pages.</p></div><div class="mock">{mappack()}</div></div>
   <div class="tile b-2 reveal"><div><span class="tile-label">Answer</span><h3>AI web chat</h3><p>Answers questions and captures the lead after hours.</p></div><div class="mock chat"><div class="chat-head"><i></i>Your Shop assistant</div><div class="msg user">Do you do weekend AC repair?</div><div class="msg bot">Yes, Saturdays 8 to 4. Want me to book a time? What's your address?</div></div></div>
-  <div class="tile b-4 reveal"><div><span class="tile-label">Repeat</span><h3>Your live dashboard</h3><p>Calls, texts, booked jobs and reviews, updated as they happen. No monthly PDF.</p></div><div class="mock">{dashboard()}</div></div>
+  <div class="tile b-4 reveal"><div><span class="tile-label">Repeat</span><h3>HQ Command Center</h3><p>Calls, texts, booked jobs and reviews, updated as they happen. No monthly PDF.</p></div><div class="mock">{dashboard()}</div></div>
   <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Reviews on autopilot</h3><p>A request after every finished job, and a reply to every review.</p></div><div class="mock review"><div class="req"><span class="tag">Sent</span>Review request · job marked done 2:14 PM</div><span class="stars">★★★★★</span> Texted me back in seconds and had it fixed by 10.<div class="reply"><b>Owner reply:</b> Thank you! Glad we got you cool again.</div></div></div>
   <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Seasonal campaigns</h3><p>Spring and fall tune-up texts to past customers, and maintenance plan reminders before they lapse.</p></div><div class="mock chat"><div class="msg bot">Hi Maria, it's Your Shop Heating &amp; Air. Summer's coming. Book your AC tune-up this month? Reply YES and we'll find a time.</div><div class="msg user">YES</div></div></div>
 </div>"""
@@ -603,7 +603,7 @@ def plans_teaser():
 def compare():
     rows = [
         ("Contract", "Often 12 months", "Month to month [TBD]"),
-        ("Reporting", "A monthly PDF", "A live dashboard you can check anytime"),
+        ("Reporting", "A monthly PDF", "HQ Command Center, live anytime"),
         ("Who owns the website", "Sometimes the agency", "You, always"),
         ("Time to launch", "Varies, often months", "14 days, guaranteed"),
         ("Missed-call text-back", "Add-on, if offered", "In every plan, 60 seconds guaranteed"),
@@ -726,7 +726,7 @@ COMMON_FAQ = [
     ("Do I have to change my phone number?", "No. You forward your existing line through the system, so customers keep calling the number they already know. We walk you through it during setup."),
     ("Does it work with ServiceTitan, Housecall Pro or Jobber?", "Yes. Booking can go straight to your field-service software, or into our calendar if you don't use one. Review requests can trigger when a job is marked done."),
     ("Who owns my website, Google profile and reviews?", "You do. Your domain, Google profile and reviews always stay yours, even if you leave."),
-    ("Do I have to manage the software?", "No. You and your office use one inbox app on your phones, and you can check the live dashboard anytime. We build and run everything behind it."),
+    ("Do I have to manage the software?", "No. You and your office use one inbox app on your phones, and you can check your HQ Command Center dashboard anytime. We build and run everything behind it."),
     ("Do you run Google Ads or Local Services Ads?", "Not yet. We start with the foundation that makes ads pay off: answered calls, a site that books and a strong Google profile. Ads management is coming as an add-on."),
     ("How many Google reviews do I need?", "There's no magic number. Steady, recent reviews beat a big pile of old ones, which is why every plan asks every finished job for one."),
     ("Can you get my shop recommended by ChatGPT?", "We build what AI tools read: a complete Google profile, consistent listings, clear service pages and recent reviews. Nobody can honestly guarantee an AI answer, and we won't."),
@@ -1154,7 +1154,7 @@ def method_page():
 <section class="section" style="padding-top:0"><div class="wrap"><h2 class="sr-only">The three phases</h2>{method_block()}</div></section>
 {"".join(phases)}
 <section class="section"><div class="wrap split">
-  <div><span class="eyebrow">Every plan</span><h2>Watch it work on your live dashboard.</h2><p class="lede">Calls, texts, booked jobs and reviews, updated as they happen.</p></div>
+  <div><span class="eyebrow">Every plan</span><h2>Watch it work in your HQ Command Center.</h2><p class="lede">Calls, texts, booked jobs and reviews, updated as they happen.</p></div>
   {dashboard()}
 </div></section>
 <section class="section alt"><div class="wrap">
