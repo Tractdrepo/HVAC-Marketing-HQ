@@ -258,6 +258,16 @@ def founder_video(has_form=True):
 </div>"""
 
 
+def asset_v(name):
+    """Cache-busting query for styles.css and main.js, so a deploy shows up without a hard refresh."""
+    import hashlib
+    try:
+        with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), name), "rb") as f:
+            return a(name) + "?v=" + hashlib.sha1(f.read()).hexdigest()[:8]
+    except OSError:
+        return a(name)
+
+
 def page(path, title, desc, body, extra_head="", has_form=True):
     robots = '<meta name="robots" content="noindex, nofollow">' if NOINDEX else ""
     turnstile = "" if PREVIEW or not TURNSTILE_SITEKEY else '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>'
@@ -274,7 +284,7 @@ def page(path, title, desc, body, extra_head="", has_form=True):
 {preview_meta}
 <link rel="preload" href="{a('fonts/Archivo-600-800.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{a('fonts/IBMPlexSans-400.woff2')}" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{a('styles.css')}">
+<link rel="stylesheet" href="{asset_v('styles.css')}">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="{a('favicon.svg')}" type="image/svg+xml">
 {extra_head}
@@ -286,7 +296,7 @@ def page(path, title, desc, body, extra_head="", has_form=True):
 </main>
 {footer(has_form)}
 {founder_video(has_form)}
-<script src="{a('main.js')}" defer></script>
+<script src="{asset_v('main.js')}" defer></script>
 {turnstile}
 </body>
 </html>
