@@ -41,7 +41,7 @@ PLANS = [
     {
         "name": "Growth", "monthly": 899, "build": 2495, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
         "for": "The full Answer, Rank, Repeat system for an owner-run shop.",
-        "items": ["Everything in Starter", "12 pages, including 3 city pages", "Google profile managed, weekly job photos", "Estimate follow-up until booked or lost", "Review replies and AI web chat", "Win-back texts to past customers each season", "1 new article a month"],
+        "items": ["Everything in Starter", "12 pages, including 3 city pages", "Google profile managed, posting the job photos you text us", "Estimate follow-up until booked or lost", "Review replies and AI web chat", "Win-back texts to past customers each season", "1 new article a month"],
     },
     {
         "name": "Dominate", "monthly": 1499, "build": 2995, "scope": "25 pages · 10 cities", "stage": "8+ trucks or a wide area",
@@ -362,7 +362,7 @@ METHOD = [
     ("Rank", "Show up first when someone searches.", [
         "A fast site built around the jobs you want",
         "A page for each service and each town you really serve",
-        "Google profile complete, active and posting job photos",
+        "Google profile complete, active and posting the job photos you send",
         "Directory listings kept consistent",
         "Map spam reported on fake competitor listings",
     ], "More of the right homeowners find you, not a franchise."),

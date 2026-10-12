@@ -13,7 +13,7 @@
 
 ## Method: Answer, Rank, Repeat
 - Answer: Every call answered, even when you can't. Missed-call text-back in 60 seconds, guaranteed; One shared inbox for calls, texts, chats and forms; AI web chat that captures the lead after hours; Estimate follow-up until the job is booked or lost; Optional AI phone answering during the rush.
-- Rank: Show up first when someone searches. A fast site built around the jobs you want; A page for each service and each town you really serve; Google profile complete, active and posting job photos; Directory listings kept consistent; Map spam reported on fake competitor listings.
+- Rank: Show up first when someone searches. A fast site built around the jobs you want; A page for each service and each town you really serve; Google profile complete, active and posting the job photos you send; Directory listings kept consistent; Map spam reported on fake competitor listings.
 - Repeat: Turn every job into the next one. Review request after every finished job; A reply to every review, in your voice; Spring and fall tune-up campaigns to past customers; Maintenance plan reminders before plans lapse; Your HQ Command Center dashboard and a quarterly re-grade.
 
 ## Plans
