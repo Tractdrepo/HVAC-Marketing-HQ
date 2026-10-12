@@ -137,6 +137,7 @@ def header(has_form=True):
     <nav class="nav" aria-label="Main">
       <a class="nav-link" href="{u('method')}">The method</a>
       {menu("Services", OFFERINGS)}
+      {menu("Who we help", [(n["slug"], n["name"], n["nav"]) for n in NICHES])}
       <a class="nav-link" href="{u('plans')}">Pricing</a>
       <a class="nav-link" href="{u('guides')}">Guides</a>
       <a class="btn btn-primary btn-small" href="{rc}">Free report card</a>
@@ -147,6 +148,7 @@ def header(has_form=True):
 
 def footer(has_form=True):
     offers = "".join(f'<li><a href="{u(k)}">{n}</a></li>' for k, n, _ in OFFERINGS)
+    niches = "".join(f'<li><a href="{u(n["slug"])}">{esc(n["name"])}</a></li>' for n in NICHES)
     rc = "#report-card" if has_form else u("") + "#report-card"
     return f"""<footer class="site-foot">
   <div class="wrap">
@@ -156,7 +158,7 @@ def footer(has_form=True):
         <p style="margin-top:16px;max-width:36ch">Websites, Google profiles and lead systems for HVAC companies. Starting in {esc(AREA)}.</p>
       </div>
       <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li></ul></div>
-      <div><h2 class="foot-h">Services</h2><ul>{offers}</ul></div>
+      <div><h2 class="foot-h">Services</h2><ul>{offers}</ul><h2 class="foot-h" style="margin-top:18px">Who we help</h2><ul>{niches}</ul></div>
       <div><h2 class="foot-h">Locations</h2><ul><li><a href="{u('hvac-marketing-texas')}">Texas</a></li><li><a href="{u('hvac-marketing-houston-tx')}">Houston</a></li><li><a href="{u('hvac-marketing-dallas-tx')}">Dallas</a></li><li><a href="{u('hvac-marketing-austin-tx')}">Austin</a></li><li><a href="{u('hvac-marketing-waco-tx')}">Waco</a></li><li><a href="{u('locations')}">All locations</a></li></ul></div>
       <div><h2 class="foot-h">Company</h2><ul><li><a href="{u('report-card')}">Free report card</a></li><li><a href="{esc(call_link())}">Book a 15-minute call</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="{'llms.txt' if PREVIEW else '/llms.txt'}">Info for AI assistants</a></li></ul></div>
     </div>
@@ -895,6 +897,7 @@ def locations_band():
 # ---- Guides ---------------------------------------------------------------------
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from guides import GUIDES, UPDATED as GUIDES_UPDATED, AUTHOR as GUIDES_AUTHOR
+from niches import NICHES
 import re as _re
 
 
@@ -976,6 +979,43 @@ def guide_page(g):
               "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0]}, "publisher": {"@type": "Organization", "name": BRAND},
               "dateModified": "2026-10-12", "mainEntityOfPage": f"https://{DOMAIN}/{guide_path(g['slug'])}"})
     return page(guide_path(g["slug"]), g["title"], g["desc"], body, extra_head=art + faq_ld(g["faq"]), has_form=False)
+
+
+def niche_page(n):
+    setup = "".join(f'<div class="card reveal"><h3>{esc(h)}</h3><p>{esc(t)}</p></div>' for h, t in n["setup"])
+    others = "".join(f'<a class="card guide-card" href="{u(o["slug"])}"><span class="eyebrow">Who we help</span><h3>{esc(o["name"])}</h3><p>{esc(o["nav"])}</p></a>' for o in NICHES if o["slug"] != n["slug"])
+    ticket, job, label = n["calc"]
+    body = f"""<section class="page-head"><div class="wrap">
+  <div class="crumbs"><a href="{u('')}">Home</a> / Who we help / {esc(n['name'])}</div>
+  <span class="eyebrow">Who we help · {esc(n['name'])}</span>
+  <h1 style="max-width:22ch">{esc(n['h1'])}</h1>
+  <p class="lede">{esc(n['lede'])}</p>
+  {url_form()}
+</div></section>
+<section class="section"><div class="wrap">{deep_problem("Where shops like yours lose jobs.", n["pains"])}</div></section>
+<section class="section alt"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">What we set up</span><h2>Built for how your customers really pick a shop.</h2></div>
+  <div class="grid three">{setup}</div>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">The method</span><h2>Answer. Rank. Repeat.</h2></div>
+  {method_block()}
+</div></section>
+<section class="section alt"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Break-even</span><h2>Check the math for your shop.</h2></div>
+  {calculator(ticket, job, label)}
+</div></section>
+<section class="section"><div class="wrap g-wrap">
+  <div class="section-head"><span class="eyebrow">Questions</span><h2>Common questions</h2></div>
+  {faq(n['faq'])}
+</div></section>
+{report_card()}
+<section class="section"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">Who we help</span><h2>Other kinds of HVAC shops</h2></div>
+  <div class="grid two">{others}</div>
+</div></section>
+"""
+    return page(n["slug"], n["title"], n["desc"], body, extra_head=faq_ld(n["faq"]))
 
 
 def guides_page():
@@ -1675,6 +1715,8 @@ def build(out_dir):
     pages["guides"] = guides_page()
     for g in GUIDES:
         pages[guide_path(g["slug"])] = guide_page(g)
+    for n in NICHES:
+        pages[n["slug"]] = niche_page(n)
     pages["locations"] = locations_page()
     pages["hvac-marketing-texas"] = texas_page()
     for c in CITIES:
