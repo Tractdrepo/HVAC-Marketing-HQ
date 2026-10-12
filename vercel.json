@@ -15,7 +15,7 @@
       ]
     },
     {
-      "source": "/(styles.css|main.js|favicon.svg)",
+      "source": "/(styles.css|main.js|favicon.svg|favicon.ico)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }]
     },
     {

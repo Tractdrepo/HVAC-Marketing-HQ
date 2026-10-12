@@ -286,7 +286,9 @@ def page(path, title, desc, body, extra_head="", has_form=True):
 <link rel="preload" href="{a('fonts/IBMPlexSans-400.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{asset_v('styles.css')}">
 <meta name="theme-color" content="#ffffff">
+<link rel="icon" href="{a('favicon.ico')}" sizes="48x48">
 <link rel="icon" href="{a('favicon.svg')}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{a('apple-touch-icon-180.png')}">
 {extra_head}
 </head>
 <body>
@@ -1860,7 +1862,7 @@ if __name__ == "__main__":
         PREVIEW = True
         out = sys.argv[2]
         names = build(out)
-        for asset in ("styles.css", "main.js", "favicon.svg"):
+        for asset in ("styles.css", "main.js", "favicon.svg", "favicon.ico", "apple-touch-icon-180.png"):
             shutil.copy(os.path.join(site, asset), os.path.join(out, asset))
         shutil.copytree(os.path.join(site, "fonts"), os.path.join(out, "fonts"), dirs_exist_ok=True)
     else:
