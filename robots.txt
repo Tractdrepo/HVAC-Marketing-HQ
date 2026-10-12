@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+Sitemap: https://hvacmarketinghq.com/sitemap.xml
