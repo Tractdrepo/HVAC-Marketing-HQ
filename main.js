@@ -86,7 +86,7 @@
   }
 
   // Break-even calculator
-  var calc = document.querySelector(".calc");
+  var calc = document.querySelector(".calc:not(.mcalc)");
   if (calc) {
     var num = function (name) { var v = parseFloat(String(calc.querySelector("[name=" + name + "]").value).replace(/[^0-9.]/g, "")); return isNaN(v) ? 0 : v; };
     var fmt = function (n) { return n.toLocaleString("en-US", { maximumFractionDigits: 1 }); };
@@ -99,6 +99,21 @@
     };
     calc.addEventListener("input", update);
     update();
+  }
+
+  // Missed-call cost calculator
+  var mc = document.querySelector(".mcalc");
+  if (mc) {
+    var mnum = function (name) { var v = parseFloat(String(mc.querySelector("[name=" + name + "]").value).replace(/[^0-9.]/g, "")); return isNaN(v) ? 0 : v; };
+    var usd = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
+    var mupdate = function () {
+      var week = mnum("calls") * mnum("job") * mnum("close") / 100;
+      mc.querySelector("[data-out=week]").textContent = usd(week);
+      mc.querySelector("[data-out=month]").textContent = usd(week * 52 / 12);
+      mc.querySelector("[data-out=year]").textContent = usd(week * 52);
+    };
+    mc.addEventListener("input", mupdate);
+    mupdate();
   }
 
   // Pricing: monthly / annual toggle

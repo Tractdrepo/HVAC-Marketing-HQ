@@ -11,6 +11,24 @@ Owner: the "Finish the website" thread. Order set by Logan, Oct 12, 2026: finish
 - [ ] Founder video (Logan, whenever recorded)
 - [x] Light theme, prices, niche pages, HQ Command Center, Scorpion guide, photo wording (Oct 12)
 
+## 1b. Gaps vs competitors (from research/crawls/, Oct 12)
+Funnel
+- [ ] Report card actually delivers itself: wire grader/ to /api/lead so the report emails in minutes, as the site promises. Today the form only emails us. Needs Resend + Google Places + Anthropic keys (Logan); use a cheap model to keep token spend low
+- [ ] Self-serve sign-up: a "Start now" button per plan to a Stripe checkout plus a click-to-sign agreement, so a shop can buy without a call (Footbridge does this). Needs Stripe account and final contract terms (Logan)
+- [ ] Booking calendar on the site (Logan's link)
+- [x] Missed-call cost calculator (Hook's math: $7,500 install x 30% close = $2,250 per missed call), interactive, ungated
+- [ ] Add trucks and "biggest bottleneck" to the report card form to pre-qualify
+- [ ] Live demo: demo line for text-back (Logan's number) and the AI web chat running on our own site
+- [ ] Referral offer for clients, later a trade group partner rate (Nexstar, CertainPath members). Needs Logan's terms
+Pages and structure
+- [x] Split services into one page per product, each aimed at its own search: Missed-call text-back, Review requests, Google Business Profile, Local SEO, AI web chat, AI search (AEO), HVAC websites
+- [x] "What happens after you sign up" page: day-by-day timeline, objections answered (why cheaper than Scorpion, what if I leave, will I get more calls)
+- [x] Comparison table on home and pricing: us vs big agencies vs DIY, plus "what agencies report vs what we track"
+- [x] "7 questions to ask any HVAC marketing agency" guide, answered for ourselves (RYNO lists them and never answers)
+- [ ] "Slow season" section: tune-ups, maintenance plans, win-back texts
+- [ ] About page (Logan's story); reviews and case-study pages once we have founding clients, every quote linked to its public Google review
+Skip at our price: photo and video shoots, podcasts, books, webinars, gated courses, paid ad management
+
 ## 2. SEO (essential, right after design)
 - [ ] Turn indexing on: drop NOINDEX in build.py and the X-Robots-Tag header in vercel.json, robots.txt allows all, submit sitemap in Google Search Console (Logan verifies the domain)
 - [ ] National city pages: top 100 to 150 US metros by population, each with real local data (Census population, climate normals, licensed-contractor counts where a state publishes them). Never a city page without real local facts

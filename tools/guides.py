@@ -386,4 +386,58 @@ GUIDES = [
         ],
         "related": ["hvac-marketing-cost", "hvac-website-checklist"],
     },
+    {
+        "slug": "questions-to-ask-hvac-marketing-agency",
+        "title": "7 questions to ask any HVAC marketing agency before you sign",
+        "short": "Questions to ask an agency",
+        "desc": "The seven questions that separate a good HVAC marketing agency from a costly one: contracts, ownership, total cost, guarantees, reporting, who does the work and what happens when you leave. With our own answers.",
+        "read": 6,
+        "takeaways": [
+            "Get the exit terms in writing: contract length, notice period, buyouts and what you keep.",
+            "Your domain, website, Google profile, reviews and phone number should be in your name.",
+            "Add up the real monthly cost: plan, build fee, management fees and ad spend.",
+            "Trust guarantees on things an agency controls (response time, launch date), not on rankings.",
+        ],
+        "sections": [
+            ("Why these questions", [
+                ("p", "Most agency sales pages say the same things: more leads, more calls, page one. The differences are in the contract, and that's usually the part nobody shows you before the sales call. In our October 2026 review of seven HVAC marketing companies' own websites, most said \"you own your website\" in their sales copy, and few said it as plainly in their published terms. These seven questions get to the parts that matter."),
+            ]),
+            ("The seven questions", [
+                ("ol", [
+                    "<b>How long is the contract, and how do I get out?</b> Ask for the term, the notice period and any buyout. A 12-month term isn't always bad, but know the exit before you sign.",
+                    "<b>Who owns my website, domain and content, and when?</b> \"You own it\" can mean after the contract ends, after a buyout, or only the files and not a working site. Ask what you'd have the day after you cancel.",
+                    "<b>Who owns my Google profile, phone number and ad accounts?</b> They should be in your name, with the agency added as a manager. Tracking numbers should be ported to you if you leave.",
+                    "<b>What's the total monthly cost?</b> Plan, build fee, ad management fee and ad spend, added up. Ask if anything is billed per lead or marked up.",
+                    "<b>What exactly do you guarantee, and what happens if you miss it?</b> Guarantees on rankings or lead counts are a red flag, because nobody controls Google. Guarantees on response times, launch dates and refunds are reasonable.",
+                    "<b>How will I see results?</b> A monthly PDF of clicks is not the same as a live view of calls, missed calls, booked jobs and reviews.",
+                    "<b>Who does the work, and how many HVAC clients do they have?</b> Ask if HVAC is a real focus or one page among dozens of industries.",
+                ]),
+                ("cta",),
+            ]),
+            ("Our answers", [
+                ("table", [
+                    ["Question", "HVAC Marketing HQ"],
+                    ["Contract", "Month to month (being finalized before launch). See our <a href=\"{u:terms}\">Terms</a> page."],
+                    ["Website, domain, content", "Yours. If you leave, you keep the site and the domain."],
+                    ["Google profile, number, accounts", "In your name. Your number is ported back if you leave."],
+                    ["Total monthly cost", "$499 to $2,499 a month plus a one-time build fee, all on our <a href=\"{u:plans}\">pricing page</a>. We don't run ads, so there's no ad spend or markup."],
+                    ["Guarantees", "Missed calls texted back in 60 seconds, launch in 14 days, and your first month back if you're not happy within 30 days of launch. We don't guarantee rankings."],
+                    ["Results", "Your HQ Command Center shows calls, texts, booked jobs and reviews, anytime."],
+                    ["Who does the work", "A small team that only works with HVAC companies."],
+                ]),
+                ("note", "Some of our contract terms are still being finalized before launch. The pricing and Terms pages are the source of truth."),
+            ]),
+        ],
+        "faq": [
+            ("Is a 12-month marketing contract normal?", "It's common, especially for SEO. It isn't automatically bad, but read the exit terms, buyouts and what you keep before you sign."),
+            ("What's the biggest red flag in an HVAC marketing agency?", "Guaranteed rankings, hidden pricing and vague answers about who owns your website when you leave."),
+            ("Should my Google Business Profile be in my name?", "Yes. You should be the owner, with the agency added as a manager, so you never lose it."),
+        ],
+        "sources": [
+            ("Scorpion FAQ (contracts and website ownership)", "https://www.scorpion.co/faq/"),
+            ("Hook Agency pricing", "https://hookagency.com/pricing/"),
+            ("Google Business Profile: owners and managers", "https://support.google.com/business/answer/3403100"),
+        ],
+        "related": ["scorpion-alternative-hvac", "hvac-marketing-cost"],
+    },
 ]

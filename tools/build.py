@@ -135,7 +135,7 @@ def header(has_form=True):
     <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2"/></svg></button>
     <nav class="nav" aria-label="Main">
       <a class="nav-link" href="{u('method')}">The method</a>
-      {menu("Services", OFFERINGS)}
+      {menu("Services", OFFERINGS + [(x["slug"], x["name"], x["nav"]) for x in SERVICES])}
       {menu("Who we help", [(n["slug"], n["name"], n["nav"]) for n in NICHES])}
       <a class="nav-link" href="{u('plans')}">Pricing</a>
       <a class="nav-link" href="{u('guides')}">Guides</a>
@@ -146,7 +146,7 @@ def header(has_form=True):
 
 
 def footer(has_form=True):
-    offers = "".join(f'<li><a href="{u(k)}">{n}</a></li>' for k, n, _ in OFFERINGS)
+    offers = "".join(f'<li><a href="{u(k)}">{n}</a></li>' for k, n, _ in OFFERINGS + [(x["slug"], x["name"], x["nav"]) for x in SERVICES])
     niches = "".join(f'<li><a href="{u(n["slug"])}">{esc(n["name"])}</a></li>' for n in NICHES)
     rc = "#report-card" if has_form else u("") + "#report-card"
     return f"""<footer class="site-foot">
@@ -156,7 +156,7 @@ def footer(has_form=True):
         <a class="brand" href="{u('')}">{MARK}<span>{esc(BRAND)}<small>{esc(TAGLINE)}</small></span></a>
         <p style="margin-top:16px;max-width:36ch">Websites, Google profiles and lead systems for HVAC companies. Starting in {esc(AREA)}.</p>
       </div>
-      <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li></ul></div>
+      <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('getting-started')}">Getting started</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li></ul></div>
       <div><h2 class="foot-h">Services</h2><ul>{offers}</ul><h2 class="foot-h" style="margin-top:18px">Who we help</h2><ul>{niches}</ul></div>
       <div><h2 class="foot-h">Locations</h2><ul><li><a href="{u('hvac-marketing-texas')}">Texas</a></li><li><a href="{u('hvac-marketing-houston-tx')}">Houston</a></li><li><a href="{u('hvac-marketing-dallas-tx')}">Dallas</a></li><li><a href="{u('hvac-marketing-austin-tx')}">Austin</a></li><li><a href="{u('hvac-marketing-waco-tx')}">Waco</a></li><li><a href="{u('locations')}">All locations</a></li></ul></div>
       <div><h2 class="foot-h">Company</h2><ul><li><a href="{u('report-card')}">Free report card</a></li><li><a href="{esc(call_link())}">Book a 15-minute call</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="{'llms.txt' if PREVIEW else '/llms.txt'}">Info for AI assistants</a></li></ul></div>
@@ -612,19 +612,45 @@ def plans_teaser():
 
 def compare():
     rows = [
-        ("Contract", "Often 12 months", "Month to month [TBD]"),
-        ("Reporting", "A monthly PDF", "HQ Command Center, live anytime"),
-        ("Who owns the website", "Sometimes the agency", "You, always"),
-        ("Time to launch", "Varies, often months", "14 days, guaranteed"),
-        ("Missed-call text-back", "Add-on, if offered", "In every plan, 60 seconds guaranteed"),
-        ("Pricing", "Quoted after a sales call", "On this page, monthly or annual"),
-        ("If it's not working", "Locked in until the term ends", "First month back within 30 days"),
-        ("What they promise", "Page-one rankings, guaranteed", "Only what we control, in writing"),
-        ("Who you talk to", "An account manager with dozens of clients", "A small team that only works with HVAC"),
+        ("Price", "Often $2,500+ a month, quoted after a sales call", "Software fees plus your own evenings", "$499 to $2,499 a month, on this site"),
+        ("Contract", "Often 12 months", "Monthly software subscriptions", "Month to month [TBD]"),
+        ("Who owns the website", "Sometimes the agency, or you rebuild when you leave", "You", "You, always"),
+        ("Missed-call text-back", "Add-on, if offered", "If you set it up yourself", "In every plan, 60 seconds guaranteed"),
+        ("Reporting", "A monthly PDF", "Whatever you have time to check", "HQ Command Center, live anytime"),
+        ("Time to launch", "Varies, often months", "Whenever you get to it", "14 days, guaranteed"),
+        ("If it's not working", "Locked in until the term ends", "Cancel the tools", "First month back within 30 days"),
+        ("What they promise", "Often page-one rankings", "Nothing", "Only what we control, in writing"),
+        ("Who does the work", "An account manager with dozens of clients", "You", "A small team that only works with HVAC"),
     ]
-    body = "".join(f"<tr><th scope=\"row\">{esc(a_)}</th><td>{esc(b)}</td><td>{esc(c)}</td></tr>" for a_, b, c in rows)
-    return f'''<div class="compare"><h3>Compared with a typical agency</h3>
-  <div class="table-wrap"><table><thead><tr><th></th><th>Typical agency</th><th>{esc(BRAND_SHORT)}</th></tr></thead><tbody>{body}</tbody></table></div></div>'''
+    body = "".join(f"<tr><th scope=\"row\">{esc(a_)}</th><td>{esc(b)}</td><td>{esc(c)}</td><td>{esc(d)}</td></tr>" for a_, b, c, d in rows)
+    return f'''<div class="compare"><h3>Compared with a big agency, or doing it yourself</h3>
+  <div class="table-wrap"><table><thead><tr><th></th><th>Big agency</th><th>Do it yourself</th><th>{esc(BRAND_SHORT)}</th></tr></thead><tbody>{body}</tbody></table></div>
+  <p class="muted" style="font-size:.85rem;margin-top:10px">Agency prices and terms from their own published pages, Oct 2026. See our <a href="{u('guide-hvac-marketing-cost')}">cost guide</a> and <a href="{u('guide-scorpion-alternative-hvac')}">Scorpion guide</a>.</p></div>'''
+
+
+def report_vs_track():
+    rows = [("Impressions and clicks", "Calls answered and missed"), ("\"Leads\"", "Missed calls texted back, and how many replied"),
+            ("Website visits", "Booked jobs from calls, texts and chat"), ("Keyword reports", "Where you show up on the map for your real searches"),
+            ("A monthly PDF", "New reviews, and your replies"), ("Activity, \"we posted 4 times\"", "What's working, what isn't, and what we're changing")]
+    body = "".join(f"<tr><td>{esc(a_)}</td><td><b>{esc(b)}</b></td></tr>" for a_, b in rows)
+    return f'''<div class="compare"><h3>What most agencies report vs what we track</h3>
+  <div class="table-wrap"><table><thead><tr><th>Most agencies report</th><th>Your HQ Command Center shows</th></tr></thead><tbody>{body}</tbody></table></div></div>'''
+
+
+def missed_call_calc():
+    return """<div class="calc mcalc">
+  <div>
+    <div class="field"><label for="m-calls">Calls you miss in a week</label><input id="m-calls" type="text" inputmode="decimal" name="calls" value="5"><div class="hint">Busy season, after hours and while you're on a job. Guess if you don't know.</div></div>
+    <div class="field"><label for="m-job">Average value of a job from a new caller</label><div class="money"><input id="m-job" type="text" inputmode="decimal" name="job" value="1,200"></div><div class="hint">Mix of repairs and the odd replacement.</div></div>
+    <div class="field"><label for="m-close">Share of those callers you'd normally book</label><select id="m-close" name="close"><option value="20">20%</option><option value="30" selected>30%</option><option value="40">40%</option><option value="50">50%</option></select></div>
+  </div>
+  <div class="calc-out" aria-live="polite">
+    <div class="row"><span class="big" data-out="week">–</span><p>in jobs at risk each week from missed calls</p></div>
+    <div class="row"><span class="big" data-out="month">–</span><p>at risk each month</p></div>
+    <div class="row"><span class="big" data-out="year">–</span><p>at risk each year</p></div>
+    <p style="font-size:.85rem">Missed calls x job value x the share you'd book. Your numbers; this is math, not a promise of results.</p>
+  </div>
+</div>"""
 
 
 def addons():
@@ -907,6 +933,7 @@ def locations_band():
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from guides import GUIDES, UPDATED as GUIDES_UPDATED, AUTHOR as GUIDES_AUTHOR
 from niches import NICHES
+from services import SERVICES
 import re as _re
 
 
@@ -948,7 +975,7 @@ def guide_block(b):
     if kind == "table":
         head, *rows = b[1]
         th = "".join(f"<th>{x}</th>" for x in head)
-        tr = "".join("<tr>" + "".join(f"<td>{x}</td>" for x in r) + "</tr>" for r in rows)
+        tr = "".join("<tr>" + "".join(f"<td>{_links(x)}</td>" for x in r) + "</tr>" for r in rows)
         return f'<div class="table-wrap"><table><thead><tr>{th}</tr></thead><tbody>{tr}</tbody></table></div>'
     if kind == "note":
         return f'<p class="g-note">{_links(b[1])}</p>'
@@ -1025,6 +1052,83 @@ def niche_page(n):
 </div></section>
 """
     return page(n["slug"], n["title"], n["desc"], body, extra_head=faq_ld(n["faq"]))
+
+
+def service_page(sv):
+    pains = deep_problem("Where the calls leak.", sv["pains"])
+    steps = "".join(f'<li class="flow-step reveal"><span class="n">{n+1}</span><h3>{esc(a_)}</h3><p>{esc(b)}</p></li>' for n, (a_, b) in enumerate(sv["steps"]))
+    inc = "".join(f"<li>{esc(x)}</li>" for x in sv["includes"])
+    others = "".join(f'<a class="card guide-card" href="{u(o["slug"])}"><span class="eyebrow">Service</span><h3>{esc(o["name"])}</h3><p>{esc(o["nav"])}</p></a>' for o in SERVICES if o["slug"] != sv["slug"])
+    g = next((x for x in GUIDES if x["slug"] == sv.get("guide")), None)
+    guide = f'<p style="margin-top:18px">Read more: <a href="{u(guide_path(g["slug"]))}">{esc(g["title"])}</a></p>' if g else ""
+    calc = f"""<section class="section alt"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">The math</span><h2>What missed calls cost you.</h2><p class="lede">Put in your own numbers.</p></div>
+  {missed_call_calc()}
+</div></section>""" if sv.get("calc") else ""
+    body = f"""<section class="page-head"><div class="wrap">
+  <div class="crumbs"><a href="{u('')}">Home</a> / Services / {esc(sv['name'])}</div>
+  <span class="eyebrow">{esc(sv['name'])}</span>
+  <h1 style="max-width:22ch">{esc(sv['h1'])}</h1>
+  <p class="lede">{esc(sv['lede'])}</p>
+  {url_form()}
+</div></section>
+<section class="section"><div class="wrap">{pains}</div></section>
+<section class="section alt"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">How it works</span><h2>Set up for you. Running on day one.</h2></div>
+  <ol class="flow">{steps}</ol>
+</div></section>
+{calc}
+<section class="section"><div class="wrap split">
+  <div><span class="eyebrow">What's included</span><h2>What you get.</h2><p class="lede">{esc(sv['plan'])}</p><a class="more" href="{u('plans')}">Compare plans →</a>{guide}</div>
+  <div class="card"><ul class="ticks">{inc}</ul></div>
+</div></section>
+<section class="section alt"><div class="wrap g-wrap">
+  <div class="section-head"><span class="eyebrow">Questions</span><h2>Common questions</h2></div>
+  {faq(sv['faq'])}
+</div></section>
+{report_card()}
+<section class="section"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">Services</span><h2>The rest of the system</h2></div>
+  <div class="grid two">{others}</div>
+</div></section>
+"""
+    return page(sv["slug"], sv["title"], sv["desc"], body, extra_head=faq_ld(sv["faq"]))
+
+
+GETTING_STARTED_FAQ = [
+    ("Why do you cost less than Scorpion or the big agencies?", "We only do HVAC, we don't run ad campaigns, and we don't do photo or video shoots. Every client gets the same proven system, set up for their shop, instead of a custom project. That keeps our costs, and your price, down."),
+    ("What happens if I leave?", "Your website, domain, Google profile, reviews and phone number are yours. We hand over the site and your data, and your number is ported back to you."),
+    ("Will I actually get more calls?", "We can't promise a number, and nobody honest can. We guarantee what we control: missed calls texted back in 60 seconds, review requests after every job, and launch in 14 days. Your HQ Command Center shows what's working."),
+    ("How much of my time does it take?", "One kickoff call, sharing access, and a review of your site before launch. After that, answering the texts and booking the work, which you're doing already."),
+    ("Is there a sales call?", "Only if you want one. Prices and plans are on the site. The report card is free and nobody calls you."),
+]
+
+
+def getting_started_page():
+    body = f"""<section class="page-head"><div class="wrap">
+  <div class="crumbs"><a href="{u('')}">Home</a> / Getting started</div>
+  <span class="eyebrow">Getting started</span>
+  <h1 style="max-width:20ch">What happens after you sign up.</h1>
+  <p class="lede">No mystery and no long onboarding. Here's exactly what happens, what we do and what we need from you.</p>
+</div></section>
+<section class="section" style="padding-top:12px"><div class="wrap">
+  {terms_strip()}
+  <div class="section-head reveal" style="margin-top:32px"><span class="eyebrow">The first 90 days</span><h2>Live in 14 days. A plan for the next 90.</h2></div>
+  {first_90()}
+</div></section>
+<section class="section alt"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Who does what</span><h2>We do the work. You run the jobs.</h2></div>
+  {roles_split()}
+</div></section>
+<section class="section"><div class="wrap">{compare()}</div></section>
+<section class="section alt"><div class="wrap">{report_vs_track()}</div></section>
+<section class="section"><div class="wrap g-wrap">
+  <div class="section-head"><span class="eyebrow">Questions</span><h2>The questions owners ask first</h2></div>
+  {faq(GETTING_STARTED_FAQ)}
+</div></section>
+{report_card("Start with your free report card")}
+"""
+    return page("getting-started", "What happens after you sign up", "Exactly what happens after an HVAC shop signs up with HVAC Marketing HQ: the 14-day build, the first 90 days, who does what, and what happens if you leave.", body, extra_head=faq_ld(GETTING_STARTED_FAQ))
 
 
 def guides_page():
@@ -1562,6 +1666,8 @@ def plans_page():
 <section class="section alt"><div class="wrap">{replaces()}</div></section>
 <section class="section" style="padding-bottom:0"><div class="wrap">
   {compare()}
+  <div style="margin-top:28px">{report_vs_track()}</div>
+  <p style="margin-top:18px"><a class="more" href="{u('getting-started')}">What happens after you sign up →</a></p>
 </div></section>
 <section class="section" style="padding-top:0"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Is this for you?</span><h2>Who we work with, and who we don't.</h2></div>
@@ -1726,6 +1832,9 @@ def build(out_dir):
         pages[guide_path(g["slug"])] = guide_page(g)
     for n in NICHES:
         pages[n["slug"]] = niche_page(n)
+    for sv in SERVICES:
+        pages[sv["slug"]] = service_page(sv)
+    pages["getting-started"] = getting_started_page()
     pages["locations"] = locations_page()
     pages["hvac-marketing-texas"] = texas_page()
     for c in CITIES:
