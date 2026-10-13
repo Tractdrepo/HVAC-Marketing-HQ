@@ -52,3 +52,15 @@ No invented proof or stats. One source per number. The grading rubric never goes
 - [x] For HVAC menu (7 specialties) + /hvac-specialties hub; new pages: AC repair, Heating, Ductwork and air quality, Installs and replacement
 - [x] New service pages: Website redesign, Estimate follow-up, Tune-up and win-back campaigns, HQ Command Center
 - [ ] City pages: add Places competitor count + top-5 table, keyword volume and CPC, Census housing age (see research/crawls/skillmammoth.md). Needs Places key + a keyword source.
+
+## Oct 13: SEO structure audit
+Done: canonical tags, Open Graph + Twitter tags with share image, BreadcrumbList + Service schema, sitemap lastmod = build date, titles over 65 chars drop the brand suffix, home title "Web Design & SEO for HVAC Businesses".
+Still missing, in order:
+- [ ] Indexing is off (noindex). Nothing ranks until Logan says "index it".
+- [ ] Folder URLs before we index (/services/..., /hvac/..., /locations/texas/waco, /guides/...). Free to change now, costly after Google has the old ones.
+- [ ] Search Console + Bing Webmaster + our own Google Business Profile (Logan's accounts).
+- [ ] About page with Logan's real story, and an author page for guides (trust signals Google looks for).
+- [ ] City pages: Places competitor count + top-5 table, keyword volume + CPC, Census housing age. Then more states.
+- [ ] Cross-links: city pages to specialty and service pages and back.
+- [ ] 16 meta descriptions over 160 characters get cut off; trim.
+- [ ] Content volume: skillmammoth has 246 posts and 17 free tools; we have 7 guides and 1 calculator. Plan 2 to 4 guides a month and a few free tools (they earn links).
