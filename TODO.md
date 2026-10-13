@@ -9,7 +9,7 @@ Owner: the "Finish the website" thread. Order set by Logan, Oct 12, 2026: finish
 - [ ] Booking link (Google Calendar booking page or Calendly) and demo phone number (Logan)
 - [ ] Contract terms: month to month, review count, build fee refund, missed-guarantee remedy, add-on prices (Logan, defaults proposed)
 - [ ] Founder video (Logan, whenever recorded)
-- [x] Removed new-company wording, the Works-with strip and the duplicate Fast/Found/Booked section; added /examples with 3 example sites, sample dashboard and sample report card, all labeled (Oct 13)
+- [x] Removed new-company wording, the Works-with strip and the duplicate Fast/Found/Booked section (Oct 13)
 - [x] Light theme, prices, niche pages, HQ Command Center, Scorpion guide, photo wording (Oct 12)
 
 ## 1b. Gaps vs competitors (from research/crawls/, Oct 12)
@@ -28,7 +28,7 @@ Pages and structure
 - [x] "7 questions to ask any HVAC marketing agency" guide, answered for ourselves (RYNO lists them and never answers)
 - [ ] "Slow season" section: tune-ups, maintenance plans, win-back texts
 - [ ] About page (Logan's story); reviews and case-study pages once we have founding clients, every quote linked to its public Google review
-Rule: examples are always labeled as examples (fictional shop). Never imply years in business, clients served or results, and never style a mockup to pass as client work. Real client work goes up only after we have it, with the shop's permission.
+Rule: never imply years in business, clients served or results. Examples page and mockups removed Oct 13 at Logan's call. Real client work goes up only after we have it, with the shop's permission.
 Skip at our price: photo and video shoots, podcasts, books, webinars, gated courses, paid ad management
 
 ## 2. SEO (essential, right after design)
@@ -45,3 +45,10 @@ Skip at our price: photo and video shoots, podcasts, books, webinars, gated cour
 
 ## Rules
 No invented proof or stats. One source per number. The grading rubric never goes on the site. No photo or video shoots at our pricing: we only post photos the shop texts us.
+
+## Oct 13: menu restructure (modeled on Websites for HVAC)
+- [x] Top announce bar removed; Examples page removed (redirects to home); Google & reviews page folded into Google Business Profile (redirect)
+- [x] Services mega menu in 4 groups (Your website, Get found online, Get more calls, Keep customers coming) + /services hub
+- [x] For HVAC menu (7 specialties) + /hvac-specialties hub; new pages: AC repair, Heating, Ductwork and air quality, Installs and replacement
+- [x] New service pages: Website redesign, Estimate follow-up, Tune-up and win-back campaigns, HQ Command Center
+- [ ] City pages: add Places competitor count + top-5 table, keyword volume and CPC, Census housing age (see research/crawls/skillmammoth.md). Needs Places key + a keyword source.

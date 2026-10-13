@@ -117,29 +117,53 @@ ALL_TRADES = [("hvac", "HVAC", "Heating and air"), ("plumbing", "Plumbing", "Plu
 # Trades shown in the nav and on the home page. Roofing is built but parked (see research/trade-choice.md).
 LIVE_TRADES = []                     # HVAC-only positioning: the home page is the HVAC page
 TRADES = [t for t in ALL_TRADES if t[0] in LIVE_TRADES]
-OFFERINGS = [("website", "Website", "Fast, built to book service calls"), ("marketing", "Google & reviews", "Profile, reviews, listings"), ("app", "Lead system", "Text-back, inbox, follow-up")]
+OFFERINGS = [("website", "HVAC websites", "Fast sites built to book service calls"), ("app", "Lead system", "Text-back, inbox and follow-up in one app")]
+# Services menu, grouped the way owners think about it. Slugs point at OFFERINGS or SERVICES.
+SERVICE_GROUPS = [
+    ("Your website", "web", ["website", "hvac-website-redesign", "ai-web-chat"]),
+    ("Get found online", "pin", ["local-seo", "google-business-profile", "ai-search"]),
+    ("Get more calls", "chat", ["missed-call-text-back", "estimate-follow-up", "app"]),
+    ("Keep customers coming", "star", ["review-requests", "seasonal-campaigns", "hq-command-center"]),
+]
+# For HVAC menu order.
+NICHE_ORDER = ["hvac-marketing-residential-replacement", "hvac-marketing-light-commercial", "hvac-marketing-ac-repair", "hvac-marketing-heating",
+               "hvac-marketing-ductwork-air-quality", "hvac-marketing-installation", "hvac-marketing-new-companies"]
 
 
 # ---- Shared parts ----------------------------------------------------------------
+def svc_info(slug):
+    """(name, short line) for any service slug, offering or service page."""
+    for k, n, d in OFFERINGS:
+        if k == slug:
+            return n, d
+    x = next(x for x in SERVICES if x["slug"] == slug)
+    return x["name"], x["nav"]
+
+
+def niches_sorted():
+    return sorted(NICHES, key=lambda n: NICHE_ORDER.index(n["slug"]) if n["slug"] in NICHE_ORDER else 99)
+
+
 def header(has_form=True):
-    def menu(label, items):
-        links = "".join(f'<a href="{u(k)}">{n}<span>{d}</span></a>' for k, n, d in items)
+    def group(label, body, cls, all_slug, all_label):
         return (f'<div class="nav-group"><button type="button" aria-expanded="false">{label}{ICON["chev"]}</button>'
-                f'<div class="nav-menu">{links}</div></div>')
-    rc = "#report-card" if has_form else u("") + "#report-card"
+                f'<div class="nav-menu {cls}">{body}<a class="nav-all" href="{u(all_slug)}">{all_label} <span class="arrow">→</span></a></div></div>')
+    cols = ""
+    for g, icon, slugs in SERVICE_GROUPS:
+        links = "".join(f'<a href="{u(k)}">{esc(svc_info(k)[0])}</a>' for k in slugs)
+        cols += f'<div class="mega-col"><p class="mega-h"><i>{ICON[icon]}</i>{esc(g)}</p>{links}</div>'
+    niche_links = "".join(f'<a href="{u(n["slug"])}">{esc(n["name"])}<span>{esc(n["nav"])}</span></a>' for n in niches_sorted())
     rc = "#report-card" if has_form else u("") + "#report-card"
     return f"""<a class="skip" href="#main">Skip to content</a>
-<div class="announce"><a href="{rc}"><span class="pill">Free</span><b>See where your shop stands on Google.</b> <span class="muted">Get your report card →</span></a></div>
 <header class="site-head">
   <div class="wrap head-row">
     <a class="brand" href="{u('')}">{MARK}<span>{esc(BRAND_SHORT)}<small>{esc(TAGLINE)}</small></span></a>
     <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2"/></svg></button>
     <nav class="nav" aria-label="Main">
-      <a class="nav-link" href="{u('method')}">The method</a>
-      {menu("Services", OFFERINGS + [(x["slug"], x["name"], x["nav"]) for x in SERVICES])}
-      {menu("Who we help", [(n["slug"], n["name"], n["nav"]) for n in NICHES])}
-      <a class="nav-link" href="{u('examples')}">Examples</a>
+      {group("Services", f'<div class="mega">{cols}</div>', "nav-mega", "services", "All services")}
+      {group("For HVAC", f'<div class="nav-two">{niche_links}</div>', "nav-wide", "hvac-specialties", "See all HVAC specialties")}
       <a class="nav-link" href="{u('plans')}">Pricing</a>
+      <a class="nav-link" href="{u('method')}">The method</a>
       <a class="nav-link" href="{u('guides')}">Guides</a>
       <a class="btn btn-primary btn-small" href="{rc}">Free report card</a>
     </nav>
@@ -148,8 +172,8 @@ def header(has_form=True):
 
 
 def footer(has_form=True):
-    offers = "".join(f'<li><a href="{u(k)}">{n}</a></li>' for k, n, _ in OFFERINGS + [(x["slug"], x["name"], x["nav"]) for x in SERVICES])
-    niches = "".join(f'<li><a href="{u(n["slug"])}">{esc(n["name"])}</a></li>' for n in NICHES)
+    offers = "".join(f'<li><a href="{u(k)}">{esc(svc_info(k)[0])}</a></li>' for _, _, slugs in SERVICE_GROUPS for k in slugs)
+    niches = "".join(f'<li><a href="{u(n["slug"])}">{esc(n["name"])}</a></li>' for n in niches_sorted())
     rc = "#report-card" if has_form else u("") + "#report-card"
     return f"""<footer class="site-foot">
   <div class="wrap">
@@ -158,8 +182,8 @@ def footer(has_form=True):
         <a class="brand" href="{u('')}">{MARK}<span>{esc(BRAND)}<small>{esc(TAGLINE)}</small></span></a>
         <p style="margin-top:16px;max-width:36ch">Websites, Google profiles and lead systems for HVAC companies.</p>
       </div>
-      <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('getting-started')}">Getting started</a></li><li><a href="{u('examples')}">Examples</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li></ul></div>
-      <div><h2 class="foot-h">Services</h2><ul>{offers}</ul><h2 class="foot-h" style="margin-top:18px">Who we help</h2><ul>{niches}</ul></div>
+      <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('getting-started')}">Getting started</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li></ul></div>
+      <div><h2 class="foot-h">Services</h2><ul>{offers}</ul><h2 class="foot-h" style="margin-top:18px">For HVAC</h2><ul>{niches}</ul></div>
       <div><h2 class="foot-h">Locations</h2><ul><li><a href="{u('hvac-marketing-texas')}">Texas</a></li><li><a href="{u('hvac-marketing-houston-tx')}">Houston</a></li><li><a href="{u('hvac-marketing-dallas-tx')}">Dallas</a></li><li><a href="{u('hvac-marketing-austin-tx')}">Austin</a></li><li><a href="{u('hvac-marketing-waco-tx')}">Waco</a></li><li><a href="{u('locations')}">All locations</a></li></ul></div>
       <div><h2 class="foot-h">Company</h2><ul><li><a href="{u('report-card')}">Free report card</a></li><li><a href="{esc(call_link())}">Book a 15-minute call</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="{'llms.txt' if PREVIEW else '/llms.txt'}">Info for AI assistants</a></li></ul></div>
     </div>
@@ -933,7 +957,6 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from guides import GUIDES, UPDATED as GUIDES_UPDATED, AUTHOR as GUIDES_AUTHOR
 from niches import NICHES
 from services import SERVICES
-from examples import EXAMPLES
 import re as _re
 
 
@@ -1019,11 +1042,11 @@ def guide_page(g):
 
 def niche_page(n):
     setup = "".join(f'<div class="card reveal"><h3>{esc(h)}</h3><p>{esc(t)}</p></div>' for h, t in n["setup"])
-    others = "".join(f'<a class="card guide-card" href="{u(o["slug"])}"><span class="eyebrow">Who we help</span><h3>{esc(o["name"])}</h3><p>{esc(o["nav"])}</p></a>' for o in NICHES if o["slug"] != n["slug"])
+    others = "".join(f'<a class="card guide-card" href="{u(o["slug"])}"><span class="eyebrow">For HVAC</span><h3>{esc(o["name"])}</h3><p>{esc(o["nav"])}</p></a>' for o in niches_sorted() if o["slug"] != n["slug"])
     ticket, job, label = n["calc"]
     body = f"""<section class="page-head"><div class="wrap">
-  <div class="crumbs"><a href="{u('')}">Home</a> / Who we help / {esc(n['name'])}</div>
-  <span class="eyebrow">Who we help · {esc(n['name'])}</span>
+  <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('hvac-specialties')}">For HVAC</a> / {esc(n['name'])}</div>
+  <span class="eyebrow">For HVAC · {esc(n['name'])}</span>
   <h1 style="max-width:22ch">{esc(n['h1'])}</h1>
   <p class="lede">{esc(n['lede'])}</p>
   {url_form()}
@@ -1047,18 +1070,20 @@ def niche_page(n):
 </div></section>
 {report_card()}
 <section class="section"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Who we help</span><h2>Other kinds of HVAC shops</h2></div>
-  <div class="grid two">{others}</div>
+  <div class="section-head"><span class="eyebrow">For HVAC</span><h2>Other HVAC specialties</h2></div>
+  <div class="grid three">{others}</div>
 </div></section>
 """
     return page(n["slug"], n["title"], n["desc"], body, extra_head=faq_ld(n["faq"]))
 
 
 def service_page(sv):
-    pains = deep_problem("Where the calls leak.", sv["pains"])
+    pains = deep_problem(sv.get("pains_h", "Where the calls leak."), sv["pains"])
     steps = "".join(f'<li class="flow-step reveal"><span class="n">{n+1}</span><h3>{esc(a_)}</h3><p>{esc(b)}</p></li>' for n, (a_, b) in enumerate(sv["steps"]))
     inc = "".join(f"<li>{esc(x)}</li>" for x in sv["includes"])
-    others = "".join(f'<a class="card guide-card" href="{u(o["slug"])}"><span class="eyebrow">Service</span><h3>{esc(o["name"])}</h3><p>{esc(o["nav"])}</p></a>' for o in SERVICES if o["slug"] != sv["slug"])
+    grp = next(g for g in SERVICE_GROUPS if sv["slug"] in g[2])
+    rel = [k for k in grp[2] if k != sv["slug"]] + [k for g in SERVICE_GROUPS if g is not grp for k in g[2][:1]]
+    others = "".join(f'<a class="card guide-card" href="{u(k)}"><span class="eyebrow">Service</span><h3>{esc(svc_info(k)[0])}</h3><p>{esc(svc_info(k)[1])}</p></a>' for k in rel[:4])
     g = next((x for x in GUIDES if x["slug"] == sv.get("guide")), None)
     guide = f'<p style="margin-top:18px">Read more: <a href="{u(guide_path(g["slug"]))}">{esc(g["title"])}</a></p>' if g else ""
     calc = f"""<section class="section alt"><div class="wrap">
@@ -1066,7 +1091,7 @@ def service_page(sv):
   {missed_call_calc()}
 </div></section>""" if sv.get("calc") else ""
     body = f"""<section class="page-head"><div class="wrap">
-  <div class="crumbs"><a href="{u('')}">Home</a> / Services / {esc(sv['name'])}</div>
+  <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('services')}">Services</a> / {esc(sv['name'])}</div>
   <span class="eyebrow">{esc(sv['name'])}</span>
   <h1 style="max-width:22ch">{esc(sv['h1'])}</h1>
   <p class="lede">{esc(sv['lede'])}</p>
@@ -1131,48 +1156,50 @@ def getting_started_page():
     return page("getting-started", "What happens after you sign up", "Exactly what happens after an HVAC shop signs up with HVAC Marketing HQ: the 14-day build, the first 90 days, who does what, and what happens if you leave.", body, extra_head=faq_ld(GETTING_STARTED_FAQ))
 
 
-def site_mock(e):
-    cards = "".join(f"<span>{esc(c)}</span>" for c in e["cards"])
-    return f"""<figure class="mock" style="--m:{e['accent']}" role="img" aria-label="Example website for a fictional shop, {esc(e['shop'])}">
-  <div class="mock-bar" aria-hidden="true"><i></i><i></i><i></i><span>{esc(e['domain'])}</span></div>
-  <div class="mock-site" aria-hidden="true">
-    <div class="ms-top"><b>{esc(e['shop'])}</b><em>{esc(e['phone'])}</em></div>
-    <div class="ms-hero"><small>{esc(e['badge'])}</small><h4>{esc(e['h'])}</h4><p>{esc(e['p'])}</p><div class="ms-btns"><u>{esc(e['b1'])}</u><s>{esc(e['b2'])}</s></div></div>
-    <div class="ms-cards">{cards}</div>
-    <div class="ms-strip">{esc(e['strip'])}</div>
-  </div>
-  <figcaption><span class="mock-tag">Example · fictional shop</span><b>{esc(e['title'])}</b></figcaption>
-</figure>"""
+def services_overview():
+    cols = ""
+    for g, icon, slugs in SERVICE_GROUPS:
+        links = "".join(f'<li><a href="{u(k)}"><b>{esc(svc_info(k)[0])}</b><span>{esc(svc_info(k)[1])}</span></a></li>' for k in slugs)
+        cols += f'<div class="card svc-group reveal"><div class="icon">{ICON[icon]}</div><h3>{esc(g)}</h3><ul>{links}</ul></div>'
+    return f"""<section class="section"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">What we do</span><h2>Everything an HVAC shop needs to get found and booked.</h2><p class="lede">Twelve services, one system, run for you. No ad management and no photo shoots, so the price stays fair.</p></div>
+  <div class="grid two svc-groups">{cols}</div>
+  <p style="margin-top:24px"><a class="more" href="{u('services')}">See all services →</a></p>
+</div></section>"""
 
 
-def examples_row():
-    return '<div class="mocks">' + "".join(site_mock(e) for e in EXAMPLES) + "</div>"
-
-
-def examples_page():
-    notes = "".join(f'<div class="card reveal"><h3>{esc(e["title"])}</h3><p>{esc(e["note"])}</p></div>' for e in EXAMPLES)
+def services_hub():
     body = f"""<section class="page-head"><div class="wrap">
-  <div class="crumbs"><a href="{u('')}">Home</a> / Examples</div>
-  <span class="eyebrow">Examples</span>
-  <h1 style="max-width:20ch">See what you'd get, before you sign.</h1>
-  <p class="lede">Three example sites, a sample dashboard and a sample report card. Each is built for a fictional shop to show what we make. They're examples, not client work.</p>
+  <div class="crumbs"><a href="{u('')}">Home</a> / Services</div>
+  <span class="eyebrow">Services</span>
+  <h1 style="max-width:20ch">HVAC marketing services, run for you.</h1>
+  <p class="lede">Your website, your Google profile and your lead system, built once and run every day. Every plan includes the core of each. Higher plans add more pages, more towns and more of our time.</p>
+</div></section>
+{services_overview().replace('<section class="section">', '<section class="section" style="padding-top:12px">', 1)}
+<section class="section alt"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">How it fits together</span><h2>Answer. Rank. Repeat.</h2></div>
+  {method_block()}
+</div></section>
+{report_card()}
+"""
+    return page("services", "HVAC marketing services", "Websites, local SEO, Google Business Profile, missed-call text-back, estimate follow-up, review requests and seasonal campaigns for HVAC companies, run for you.", body)
+
+
+def specialties_hub():
+    cards = "".join(f'<a class="card guide-card reveal" href="{u(n["slug"])}"><span class="eyebrow">For HVAC</span><h3>{esc(n["name"])}</h3><p>{esc(n["desc"])}</p></a>' for n in niches_sorted())
+    body = f"""<section class="page-head"><div class="wrap">
+  <div class="crumbs"><a href="{u('')}">Home</a> / For HVAC</div>
+  <span class="eyebrow">For HVAC</span>
+  <h1 style="max-width:20ch">Marketing for every kind of HVAC work.</h1>
+  <p class="lede">We only work with HVAC companies, so every page we build speaks to the job your customer needs done. Pick the work you want more of.</p>
 </div></section>
 <section class="section" style="padding-top:12px"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">Example sites</span><h2>Built to book service calls.</h2></div>
-  {examples_row()}
-  <div class="grid three" style="margin-top:28px">{notes}</div>
+  <h2 class="sr-only">HVAC specialties</h2>
+  <div class="grid two">{cards}</div>
 </div></section>
-<section class="section alt"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">Example dashboard</span><h2>Your HQ Command Center.</h2><p class="lede">Calls, texts, booked jobs and reviews, live. Sample data for a fictional shop.</p></div>
-  {dashboard()}
-</div></section>
-<section class="section"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">Example report card</span><h2>What lands in your inbox.</h2><p class="lede">A sample report card for a fictional shop. Yours grades your real Google profile, reviews, website and listings.</p></div>
-  {rc_samples()}
-</div></section>
-{report_card("Get your own report card")}
+{report_card()}
 """
-    return page("examples", "Examples: sample HVAC websites, dashboard and report card", "Example HVAC websites, a sample HQ Command Center dashboard and a sample report card, all built for fictional shops to show what HVAC Marketing HQ makes.", body)
+    return page("hvac-specialties", "Marketing for every kind of HVAC company", "HVAC marketing by specialty: residential, commercial, AC repair, heating, ductwork and air quality, installs and replacement, and new HVAC companies.", body)
 
 
 def guides_page():
@@ -1212,11 +1239,7 @@ def home():
 </div></section>
 <div class="wrap terms-wrap">{terms_strip()}</div>
 
-<section class="section"><div class="wrap">
-  <div class="section-head center reveal"><span class="eyebrow">What we build</span><h2>A site built to book service calls.</h2><p class="lede">Three example builds for fictional shops: a repair shop, a replacement shop and a light commercial shop.</p></div>
-  {examples_row()}
-  <p class="center" style="margin-top:24px"><a class="more" href="{u('examples')}">See all the examples →</a></p>
-</div></section>
+{services_overview()}
 
 <section class="section alt"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Sounds familiar?</span><h2>The phone rings when you can't answer it.</h2></div>
@@ -1605,7 +1628,7 @@ def offer_page(key):
     cards = "".join(f'<div class="card reveal"><div class="icon">{ICON[i]}</div><h3>{esc(h)}</h3><p>{esc(p)}</p></div>' for i, h, p in o["cards"])
     ticks = "".join(f"<li>{esc(x)}</li>" for x in o["list"])
     body = f"""<section class="page-head"><div class="wrap">
-  <div class="crumbs"><a href="{u('')}">Home</a> / Offerings / {o['title']}</div>
+  <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('services')}">Services</a> / {o['title']}</div>
   <span class="eyebrow">{o['title']}</span>
   <h1 style="max-width:18ch">{esc(o['h1'])}</h1>
   <p class="lede">{esc(o['lede'])}</p>
@@ -1879,7 +1902,8 @@ def build(out_dir):
     for sv in SERVICES:
         pages[sv["slug"]] = service_page(sv)
     pages["getting-started"] = getting_started_page()
-    pages["examples"] = examples_page()
+    pages["services"] = services_hub()
+    pages["hvac-specialties"] = specialties_hub()
     pages["locations"] = locations_page()
     pages["hvac-marketing-texas"] = texas_page()
     for c in CITIES:
