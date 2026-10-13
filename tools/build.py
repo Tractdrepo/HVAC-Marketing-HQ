@@ -15,7 +15,7 @@ import sys
 # ---- Settings (placeholders until Logan decides) --------------------------------
 BRAND = "HVAC Marketing HQ"
 BRAND_SHORT = "HVAC Marketing HQ"
-TAGLINE = "Answer · Rank · Repeat"
+TAGLINE = "Rank · Book · Repeat"
 DOMAIN = "hvacmarketinghq.com"
 EMAIL = "hello@" + DOMAIN
 CALL_LINK = None                       # Calendly (later GHL) booking link; until set, "Book a call" opens an email
@@ -40,7 +40,7 @@ PLANS = [
     },
     {
         "name": "Growth", "monthly": 899, "build": 2495, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
-        "for": "The full Answer, Rank, Repeat system for an owner-run shop.",
+        "for": "The full Rank, Book, Repeat system for an owner-run shop.",
         "items": ["Everything in Starter", "12 pages, including 3 city pages", "Google profile managed, posting the job photos you text us", "Estimate follow-up until booked or lost", "Review replies and AI web chat", "Win-back texts to past customers each season", "1 new article a month"],
     },
     {
@@ -70,6 +70,7 @@ ADDONS = [
 
 # ---- Link handling ---------------------------------------------------------------
 PREVIEW = False
+BUILD_DATE = __import__("datetime").date.today().isoformat()
 
 
 def call_link():
@@ -183,7 +184,8 @@ def footer(has_form=True):
         <p style="margin-top:16px;max-width:36ch">Websites, Google profiles and lead systems for HVAC companies.</p>
       </div>
       <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('getting-started')}">Getting started</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li></ul></div>
-      <div><h2 class="foot-h">Services</h2><ul>{offers}</ul><h2 class="foot-h" style="margin-top:18px">For HVAC</h2><ul>{niches}</ul></div>
+      <div><h2 class="foot-h">Services</h2><ul>{offers}</ul></div>
+      <div><h2 class="foot-h">For HVAC</h2><ul>{niches}</ul></div>
       <div><h2 class="foot-h">Locations</h2><ul><li><a href="{u('hvac-marketing-texas')}">Texas</a></li><li><a href="{u('hvac-marketing-houston-tx')}">Houston</a></li><li><a href="{u('hvac-marketing-dallas-tx')}">Dallas</a></li><li><a href="{u('hvac-marketing-austin-tx')}">Austin</a></li><li><a href="{u('hvac-marketing-waco-tx')}">Waco</a></li><li><a href="{u('locations')}">All locations</a></li></ul></div>
       <div><h2 class="foot-h">Company</h2><ul><li><a href="{u('report-card')}">Free report card</a></li><li><a href="{esc(call_link())}">Book a 15-minute call</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="{'llms.txt' if PREVIEW else '/llms.txt'}">Info for AI assistants</a></li></ul></div>
     </div>
@@ -294,11 +296,36 @@ def asset_v(name):
         return a(name)
 
 
+def crumbs_ld(body):
+    """BreadcrumbList JSON-LD from the visible crumbs, so Google shows the trail."""
+    m = _re.search(r'<div class="crumbs">(.*?)</div>', body)
+    if not m:
+        return ""
+    parts = [x.strip() for x in m.group(1).split(" / ")]
+    items = []
+    for n, x in enumerate(parts):
+        lm = _re.match(r'<a href="([^"]*)">(.*)</a>', x)
+        name = _strip(lm.group(2) if lm else x)
+        item = {"@type": "ListItem", "position": n + 1, "name": name}
+        if lm and not PREVIEW:
+            item["item"] = f"https://{DOMAIN}{lm.group(1)}"
+        items.append(item)
+    return ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items})
+
+
 def page(path, title, desc, body, extra_head="", has_form=True):
     robots = '<meta name="robots" content="noindex, nofollow">' if NOINDEX else ""
     turnstile = "" if PREVIEW or not TURNSTILE_SITEKEY else '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>'
     full_title = title if title.endswith(BRAND) else f"{title} | {BRAND}"
+    if len(full_title) > 65 and not title.endswith(BRAND):
+        full_title = title  # keep long titles from being cut off in Google
     preview_meta = '<meta name="site-preview" content="1">' if PREVIEW else ""
+    canon = f"https://{DOMAIN}/{path}"
+    social = (f'<link rel="canonical" href="{canon}">\n<meta property="og:type" content="website">\n<meta property="og:site_name" content="{esc(BRAND)}">\n'
+              f'<meta property="og:title" content="{esc(full_title)}">\n<meta property="og:description" content="{esc(desc)}">\n'
+              f'<meta property="og:url" content="{canon}">\n<meta property="og:image" content="https://{DOMAIN}/og-image.png">\n'
+              f'<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">')
+    extra_head = social + "\n" + crumbs_ld(body) + extra_head
     return f"""<!doctype html>
 <html lang="en" class="no-js">
 <head>
@@ -380,13 +407,6 @@ def demo():
 
 
 METHOD = [
-    ("Answer", "Every call answered, even when you can't.", [
-        "Missed-call text-back in 60 seconds, guaranteed",
-        "One shared inbox for calls, texts, chats and forms",
-        "AI web chat that captures the lead after hours",
-        "Estimate follow-up until the job is booked or lost",
-        "Optional AI phone answering during the rush",
-    ], "Nobody calls the next shop because you were in an attic."),
     ("Rank", "Show up first when someone searches.", [
         "A fast site built around the jobs you want",
         "A page for each service and each town you really serve",
@@ -394,6 +414,13 @@ METHOD = [
         "Directory listings kept consistent",
         "Map spam reported on fake competitor listings",
     ], "More of the right homeowners find you, not a franchise."),
+    ("Book", "Every call answered and booked, even when you can't pick up.", [
+        "Missed-call text-back in 60 seconds, guaranteed",
+        "One shared inbox for calls, texts, chats and forms",
+        "AI web chat that captures the lead after hours",
+        "Estimate follow-up until the job is booked or lost",
+        "Optional AI phone answering during the rush",
+    ], "Nobody calls the next shop because you were in an attic."),
     ("Repeat", "Turn every job into the next one.", [
         "Review request after every finished job",
         "A reply to every review, in your voice",
@@ -519,7 +546,7 @@ def method_block():
         am = math.radians(-90 + i * 120 + 60)
         nx, ny = cx + r * math.cos(am), cy + r * math.sin(am)
         nodes.append(f'<g class="node" data-phase="{i}"><circle cx="{nx:.1f}" cy="{ny:.1f}" r="40"/><text x="{nx:.1f}" y="{ny + 5:.1f}">{METHOD[i][0]}</text></g>')
-    svg = f"""<svg viewBox="0 0 400 400" role="img" aria-label="Answer, Rank and Repeat form one loop around your schedule">
+    svg = f"""<svg viewBox="0 0 400 400" role="img" aria-label="Rank, Book and Repeat form one loop around your schedule">
   <circle class="ring" cx="200" cy="200" r="{r}"/><circle class="ring" cx="200" cy="200" r="96"/>
   {''.join(arcs)}{''.join(nodes)}
   <text class="center-t" x="200" y="190">EVERY DAY</text><text class="center-b" x="200" y="218">Full schedule</text>
@@ -542,9 +569,9 @@ def mappack():
 
 def bento():
     return f"""<div class="bento">
-  <div class="tile b-2 b-tall reveal"><div><span class="tile-label">Answer</span><h3>Missed-call text-back</h3><p>Every call you miss gets a text in seconds, with your name on it.</p></div>{demo()}</div>
+  <div class="tile b-2 b-tall reveal"><div><span class="tile-label">Book</span><h3>Missed-call text-back</h3><p>Every call you miss gets a text in seconds, with your name on it.</p></div>{demo()}</div>
   <div class="tile b-2 reveal"><div><span class="tile-label">Rank</span><h3>Top of the map pack</h3><p>A complete, active Google profile and real town pages.</p></div><div class="mock">{mappack()}</div></div>
-  <div class="tile b-2 reveal"><div><span class="tile-label">Answer</span><h3>AI web chat</h3><p>Answers questions and captures the lead after hours.</p></div><div class="mock chat"><div class="chat-head"><i></i>Your Shop assistant</div><div class="msg user">Do you do weekend AC repair?</div><div class="msg bot">Yes, Saturdays 8 to 4. Want me to book a time? What's your address?</div></div></div>
+  <div class="tile b-2 reveal"><div><span class="tile-label">Book</span><h3>AI web chat</h3><p>Answers questions and captures the lead after hours.</p></div><div class="mock chat"><div class="chat-head"><i></i>Your Shop assistant</div><div class="msg user">Do you do weekend AC repair?</div><div class="msg bot">Yes, Saturdays 8 to 4. Want me to book a time? What's your address?</div></div></div>
   <div class="tile b-4 reveal"><div><span class="tile-label">Repeat</span><h3>HQ Command Center</h3><p>Calls, texts, booked jobs and reviews, updated as they happen. No monthly PDF.</p></div><div class="mock">{dashboard()}</div></div>
   <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Reviews on autopilot</h3><p>A request after every finished job, and a reply to every review.</p></div><div class="mock review"><div class="req"><span class="tag">Sent</span>Review request · job marked done 2:14 PM</div><span class="stars">★★★★★</span> Texted me back in seconds and had it fixed by 10.<div class="reply"><b>Owner reply:</b> Thank you! Glad we got you cool again.</div></div></div>
   <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Seasonal campaigns</h3><p>Spring and fall tune-up texts to past customers, and maintenance plan reminders before they lapse.</p></div><div class="mock chat"><div class="msg bot">Hi Maria, it's Your Shop Heating &amp; Air. Summer's coming. Book your AC tune-up this month? Reply YES and we'll find a time.</div><div class="msg user">YES</div></div></div>
@@ -762,7 +789,7 @@ def fit():
 
 
 def replaces():
-    tools = [("Website builder and hosting", "Website"), ("Call tracking", "Answer"), ("Texting app", "Answer"), ("Online booking", "Answer"), ("Review software", "Repeat"), ("Reporting", "Repeat")]
+    tools = [("Website builder and hosting", "Website"), ("Call tracking", "Book"), ("Texting app", "Book"), ("Online booking", "Book"), ("Review software", "Repeat"), ("Reporting", "Repeat")]
     rows = "".join(f'<li><span>{esc(t)}</span><b>{esc(k)}</b></li>' for t, k in tools)
     return f"""<div class="replaces">
   <div><span class="eyebrow">One login instead of six</span><h2>What your plan replaces.</h2><p class="lede">Most shops pay for these separately and still can't see what's booking. Every plan runs them as one system, set up and managed for you.</p></div>
@@ -882,7 +909,7 @@ def city_page(c):
   <div class="card"><h3>Around {esc(c['name'])}</h3><ul class="ticks town-list">{towns}</ul><p class="muted" style="font-size:.9rem">We only build pages for towns you actually take calls in.</p></div>
 </div></section>
 <section class="section alt"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">The method</span><h2>Answer. Rank. Repeat.</h2><p class="lede">The same three jobs, run for {esc(c['name'])} shops every day.</p></div>
+  <div class="section-head reveal"><span class="eyebrow">The method</span><h2>Rank. Book. Repeat.</h2><p class="lede">The same three jobs, run for {esc(c['name'])} shops every day.</p></div>
   {method_block()}
 </div></section>
 {report_card(f"How does your shop stack up in {c['name']}?")}
@@ -1057,7 +1084,7 @@ def niche_page(n):
   <div class="grid three">{setup}</div>
 </div></section>
 <section class="section"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">The method</span><h2>Answer. Rank. Repeat.</h2></div>
+  <div class="section-head reveal"><span class="eyebrow">The method</span><h2>Rank. Book. Repeat.</h2></div>
   {method_block()}
 </div></section>
 <section class="section alt"><div class="wrap">
@@ -1117,7 +1144,9 @@ def service_page(sv):
   <div class="grid two">{others}</div>
 </div></section>
 """
-    return page(sv["slug"], sv["title"], sv["desc"], body, extra_head=faq_ld(sv["faq"]))
+    svc = ld({"@context": "https://schema.org", "@type": "Service", "name": sv["title"], "description": sv["desc"], "serviceType": sv["name"],
+              "provider": {"@type": "ProfessionalService", "name": BRAND, "url": f"https://{DOMAIN}/"}, "areaServed": "US", "audience": {"@type": "BusinessAudience", "name": "HVAC contractors"}})
+    return page(sv["slug"], sv["title"], sv["desc"], body, extra_head=svc + faq_ld(sv["faq"]))
 
 
 GETTING_STARTED_FAQ = [
@@ -1177,7 +1206,7 @@ def services_hub():
 </div></section>
 {services_overview().replace('<section class="section">', '<section class="section" style="padding-top:12px">', 1)}
 <section class="section alt"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">How it fits together</span><h2>Answer. Rank. Repeat.</h2></div>
+  <div class="section-head reveal"><span class="eyebrow">How it fits together</span><h2>Rank. Book. Repeat.</h2></div>
   {method_block()}
 </div></section>
 {report_card()}
@@ -1220,7 +1249,7 @@ def guides_page():
 
 
 def sitemap_xml(paths):
-    urls = "".join(f"<url><loc>https://{DOMAIN}/{p_}</loc><lastmod>2026-10-12</lastmod></url>" for p_ in paths)
+    urls = "".join(f"<url><loc>https://{DOMAIN}/{p_}</loc><lastmod>{BUILD_DATE}</lastmod></url>" for p_ in paths)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n'
 
 
@@ -1247,7 +1276,7 @@ def home():
 </div></section>
 
 <section class="section" id="method"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">The method</span><h2>Answer. Rank. Repeat.</h2><p class="lede">Three jobs, run for you every day, on every plan. Each one feeds the next.</p></div>
+  <div class="section-head reveal"><span class="eyebrow">The method</span><h2>Rank. Book. Repeat.</h2><p class="lede">Three jobs, run for you every day, on every plan. Each one feeds the next.</p></div>
   {method_block()}
   <p style="margin-top:34px"><a class="btn btn-ghost" href="{u('method')}">See the full method <span class="arrow">→</span></a></p>
 </div></section>
@@ -1312,7 +1341,7 @@ def home():
   <p class="rc-call">Rather talk? <a href="{esc(call_link())}">Book a 15-minute call</a></p>
 </div></section>
 """
-    return page("", f"HVAC websites and lead systems | {BRAND}",
+    return page("", f"Web Design & SEO for HVAC Businesses | {BRAND}",
                 "Websites, Google profiles and missed-call text-back for HVAC companies. Every missed call texted back in 60 seconds, guaranteed.", body,
                 extra_head=org_ld() + faq_ld(COMMON_FAQ))
 
@@ -1329,7 +1358,7 @@ def method_page():
     body = f"""<section class="page-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / The method</div>
   <span class="eyebrow">The method</span>
-  <h1>Answer. Rank. Repeat.</h1>
+  <h1>Rank. Book. Repeat.</h1>
   <p class="lede">Most agencies sell you a website, or ads, or software. We run the three jobs that actually fill an HVAC schedule, as one system, on every plan.</p>
 </div></section>
 <section class="section" style="padding-top:0"><div class="wrap"><h2 class="sr-only">The three phases</h2>{method_block()}</div></section>
@@ -1345,7 +1374,7 @@ def method_page():
 </div></section>
 {report_card("See where you stand on all three.")}
 """
-    return page("method", "The method: Answer, Rank, Repeat", "How we answer every call, rank you on Google and turn every job into the next one.", body)
+    return page("method", "The method: Rank, Book, Repeat", "How we rank you on Google, answer and book every call, and turn every job into the next one.", body)
 
 
 TRADE_CONTENT = {
@@ -1866,7 +1895,7 @@ def llms_txt():
 - Does not promise: #1 rankings, a set number of jobs, a fixed cost per lead, or AI assistant recommendations
 - Ownership: the client owns their domain, website content, Google profile and reviews
 
-## Method: Answer, Rank, Repeat
+## Method: Rank, Book, Repeat
 {methods}
 
 ## Plans
