@@ -56,13 +56,253 @@
   ],
   "redirects": [
     {
+      "source": "/website",
+      "destination": "/services/hvac-websites",
+      "permanent": true
+    },
+    {
+      "source": "/app",
+      "destination": "/services/lead-system",
+      "permanent": true
+    },
+    {
+      "source": "/missed-call-text-back",
+      "destination": "/services/missed-call-text-back",
+      "permanent": true
+    },
+    {
+      "source": "/review-requests",
+      "destination": "/services/review-requests",
+      "permanent": true
+    },
+    {
+      "source": "/google-business-profile",
+      "destination": "/services/google-business-profile",
+      "permanent": true
+    },
+    {
+      "source": "/local-seo",
+      "destination": "/services/local-seo",
+      "permanent": true
+    },
+    {
+      "source": "/ai-web-chat",
+      "destination": "/services/ai-web-chat",
+      "permanent": true
+    },
+    {
+      "source": "/ai-search",
+      "destination": "/services/ai-search",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-website-redesign",
+      "destination": "/services/hvac-website-redesign",
+      "permanent": true
+    },
+    {
+      "source": "/estimate-follow-up",
+      "destination": "/services/estimate-follow-up",
+      "permanent": true
+    },
+    {
+      "source": "/seasonal-campaigns",
+      "destination": "/services/seasonal-campaigns",
+      "permanent": true
+    },
+    {
+      "source": "/hq-command-center",
+      "destination": "/services/hq-command-center",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-specialties",
+      "destination": "/for-hvac",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-new-companies",
+      "destination": "/for-hvac/new-companies",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-residential-replacement",
+      "destination": "/for-hvac/residential",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-light-commercial",
+      "destination": "/for-hvac/commercial",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-ac-repair",
+      "destination": "/for-hvac/ac-repair",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-heating",
+      "destination": "/for-hvac/heating",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-ductwork-air-quality",
+      "destination": "/for-hvac/ductwork-air-quality",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-installation",
+      "destination": "/for-hvac/installation",
+      "permanent": true
+    },
+    {
+      "source": "/guide-google-map-pack-hvac",
+      "destination": "/guides/google-map-pack-hvac",
+      "permanent": true
+    },
+    {
+      "source": "/guide-google-reviews-hvac",
+      "destination": "/guides/google-reviews-hvac",
+      "permanent": true
+    },
+    {
+      "source": "/guide-missed-call-text-back-hvac",
+      "destination": "/guides/missed-call-text-back-hvac",
+      "permanent": true
+    },
+    {
+      "source": "/guide-hvac-website-checklist",
+      "destination": "/guides/hvac-website-checklist",
+      "permanent": true
+    },
+    {
+      "source": "/guide-hvac-marketing-cost",
+      "destination": "/guides/hvac-marketing-cost",
+      "permanent": true
+    },
+    {
+      "source": "/guide-scorpion-alternative-hvac",
+      "destination": "/guides/scorpion-alternative-hvac",
+      "permanent": true
+    },
+    {
+      "source": "/guide-questions-to-ask-hvac-marketing-agency",
+      "destination": "/guides/questions-to-ask-hvac-marketing-agency",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-texas",
+      "destination": "/locations/texas",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-houston-tx",
+      "destination": "/locations/texas/houston",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-dallas-tx",
+      "destination": "/locations/texas/dallas",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-fort-worth-tx",
+      "destination": "/locations/texas/fort-worth",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-san-antonio-tx",
+      "destination": "/locations/texas/san-antonio",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-austin-tx",
+      "destination": "/locations/texas/austin",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-el-paso-tx",
+      "destination": "/locations/texas/el-paso",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-corpus-christi-tx",
+      "destination": "/locations/texas/corpus-christi",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-lubbock-tx",
+      "destination": "/locations/texas/lubbock",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-amarillo-tx",
+      "destination": "/locations/texas/amarillo",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-laredo-tx",
+      "destination": "/locations/texas/laredo",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-mcallen-tx",
+      "destination": "/locations/texas/mcallen",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-brownsville-tx",
+      "destination": "/locations/texas/brownsville",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-killeen-tx",
+      "destination": "/locations/texas/killeen",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-waco-tx",
+      "destination": "/locations/texas/waco",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-temple-tx",
+      "destination": "/locations/texas/temple",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-college-station-tx",
+      "destination": "/locations/texas/college-station",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-tyler-tx",
+      "destination": "/locations/texas/tyler",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-beaumont-tx",
+      "destination": "/locations/texas/beaumont",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-midland-tx",
+      "destination": "/locations/texas/midland",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-abilene-tx",
+      "destination": "/locations/texas/abilene",
+      "permanent": true
+    },
+    {
       "source": "/examples",
       "destination": "/",
       "permanent": true
     },
     {
       "source": "/marketing",
-      "destination": "/google-business-profile",
+      "destination": "/services/google-business-profile",
       "permanent": true
     }
   ]

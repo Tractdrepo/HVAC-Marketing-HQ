@@ -77,16 +77,24 @@ def call_link():
     return CALL_LINK or f"mailto:{EMAIL}?subject=15-minute%20call"
 
 
+# Page key -> folder URL. Pages are built under short keys; ROUTES gives each its public address.
+ROUTES = {}
+
+
+def route(key):
+    return ROUTES.get(key, key)
+
+
 def u(path):
-    """Link to a page. path is like "" (home), "hvac", "plans"."""
+    """Link to a page. path is a page key like "" (home), "plans", "local-seo"."""
     if PREVIEW:
-        return (path or "index") + ".html"
-    return "/" + path
+        return "/" + (route(path) or "index") + ".html"
+    return "/" + route(path)
 
 
 def a(path):
     """Link to a static asset at the site root."""
-    return path if PREVIEW else "/" + path
+    return "/" + path
 
 
 def esc(s):
@@ -187,7 +195,7 @@ def footer(has_form=True):
       <div><h2 class="foot-h">Services</h2><ul>{offers}</ul></div>
       <div><h2 class="foot-h">For HVAC</h2><ul>{niches}</ul></div>
       <div><h2 class="foot-h">Locations</h2><ul><li><a href="{u('hvac-marketing-texas')}">Texas</a></li><li><a href="{u('hvac-marketing-houston-tx')}">Houston</a></li><li><a href="{u('hvac-marketing-dallas-tx')}">Dallas</a></li><li><a href="{u('hvac-marketing-austin-tx')}">Austin</a></li><li><a href="{u('hvac-marketing-waco-tx')}">Waco</a></li><li><a href="{u('locations')}">All locations</a></li></ul></div>
-      <div><h2 class="foot-h">Company</h2><ul><li><a href="{u('report-card')}">Free report card</a></li><li><a href="{esc(call_link())}">Book a 15-minute call</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="{'llms.txt' if PREVIEW else '/llms.txt'}">Info for AI assistants</a></li></ul></div>
+      <div><h2 class="foot-h">Company</h2><ul><li><a href="{u('report-card')}">Free report card</a></li><li><a href="{esc(call_link())}">Book a 15-minute call</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="/llms.txt">Info for AI assistants</a></li></ul></div>
     </div>
     <p class="foot-word" aria-hidden="true">{esc(BRAND)}</p>
     <div class="foot-base">
@@ -320,7 +328,7 @@ def page(path, title, desc, body, extra_head="", has_form=True):
     if len(full_title) > 65 and not title.endswith(BRAND):
         full_title = title  # keep long titles from being cut off in Google
     preview_meta = '<meta name="site-preview" content="1">' if PREVIEW else ""
-    canon = f"https://{DOMAIN}/{path}"
+    canon = f"https://{DOMAIN}/{route(path)}"
     social = (f'<link rel="canonical" href="{canon}">\n<meta property="og:type" content="website">\n<meta property="og:site_name" content="{esc(BRAND)}">\n'
               f'<meta property="og:title" content="{esc(full_title)}">\n<meta property="og:description" content="{esc(desc)}">\n'
               f'<meta property="og:url" content="{canon}">\n<meta property="og:image" content="https://{DOMAIN}/og-image.png">\n'
@@ -1063,7 +1071,7 @@ def guide_page(g):
 """
     art = ld({"@context": "https://schema.org", "@type": "Article", "headline": g["title"], "description": g["desc"],
               "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0]}, "publisher": {"@type": "Organization", "name": BRAND},
-              "dateModified": "2026-10-12", "mainEntityOfPage": f"https://{DOMAIN}/{guide_path(g['slug'])}"})
+              "dateModified": "2026-10-12", "mainEntityOfPage": f"https://{DOMAIN}/{route(guide_path(g['slug']))}"})
     return page(guide_path(g["slug"]), g["title"], g["desc"], body, extra_head=art + faq_ld(g["faq"]), has_form=False)
 
 
@@ -1917,7 +1925,41 @@ Shops that can't take on more work, want only Google Ads management, or want a o
 """
 
 
+NICHE_URL = {"hvac-marketing-residential-replacement": "residential", "hvac-marketing-light-commercial": "commercial"}
+OFFER_URL = {"website": "hvac-websites", "app": "lead-system"}
+OLD_REDIRECTS = {"examples": "", "marketing": "google-business-profile"}  # pages removed Oct 13
+
+
+def build_routes():
+    ROUTES.clear()
+    for k, slug in OFFER_URL.items():
+        ROUTES[k] = f"services/{slug}"
+    for sv in SERVICES:
+        ROUTES[sv["slug"]] = f"services/{sv['slug']}"
+    ROUTES["hvac-specialties"] = "for-hvac"
+    for n in NICHES:
+        ROUTES[n["slug"]] = "for-hvac/" + NICHE_URL.get(n["slug"], n["slug"].removeprefix("hvac-marketing-"))
+    for g in GUIDES:
+        ROUTES[guide_path(g["slug"])] = f"guides/{g['slug']}"
+    ROUTES["hvac-marketing-texas"] = "locations/texas"
+    for c in CITIES:
+        ROUTES[city_path(c)] = f"locations/texas/{c['slug']}"
+
+
+def write_redirects(site_dir):
+    """Old flat URLs point to the folder URLs, so links shared before Oct 13 keep working."""
+    p_ = os.path.join(site_dir, "vercel.json")
+    with open(p_) as f:
+        cfg = json.load(f)
+    reds = [{"source": "/" + old, "destination": "/" + new, "permanent": True} for old, new in ROUTES.items()]
+    reds += [{"source": "/" + old, "destination": "/" + route(new), "permanent": True} for old, new in OLD_REDIRECTS.items()]
+    cfg["redirects"] = reds
+    with open(p_, "w") as f:
+        f.write(json.dumps(cfg, indent=2) + "\n")
+
+
 def build(out_dir):
+    build_routes()
     pages = {"index": home(), "report-card": report_card_page(), "method": method_page(), "plans": plans_page(), "privacy": legal_page("privacy"), "terms": legal_page("terms"), "404": not_found()}
     for k, _, _ in ALL_TRADES:
         pages[k] = trade_page(k)
@@ -1939,12 +1981,16 @@ def build(out_dir):
         pages[city_path(c)] = city_page(c)
     os.makedirs(out_dir, exist_ok=True)
     for name, content in pages.items():
-        with open(os.path.join(out_dir, name + ".html"), "w") as f:
+        dest = os.path.join(out_dir, route(name) + ".html")
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        if route(name) != name and os.path.exists(os.path.join(out_dir, name + ".html")):
+            os.remove(os.path.join(out_dir, name + ".html"))  # old flat file, now redirected
+        with open(dest, "w") as f:
             f.write(content)
     with open(os.path.join(out_dir, "llms.txt"), "w") as f:
         f.write(llms_txt())
     skip = {"404", "hvac", "plumbing", "roofing"}
-    paths = ["" if n == "index" else n for n in pages if n not in skip]
+    paths = ["" if n == "index" else route(n) for n in pages if n not in skip]
     with open(os.path.join(out_dir, "sitemap.xml"), "w") as f:
         f.write(sitemap_xml(sorted(paths, key=lambda x: (x != "", x))))
     with open(os.path.join(out_dir, "robots.txt"), "w") as f:
@@ -1958,9 +2004,10 @@ if __name__ == "__main__":
         PREVIEW = True
         out = sys.argv[2]
         names = build(out)
-        for asset in ("styles.css", "main.js", "favicon.svg", "favicon.ico", "apple-touch-icon-180.png"):
+        for asset in ("styles.css", "main.js", "favicon.svg", "favicon.ico", "apple-touch-icon-180.png", "og-image.png"):
             shutil.copy(os.path.join(site, asset), os.path.join(out, asset))
         shutil.copytree(os.path.join(site, "fonts"), os.path.join(out, "fonts"), dirs_exist_ok=True)
     else:
         names = build(site)
+        write_redirects(site)
     print("Wrote:", ", ".join(n + ".html" for n in names))
