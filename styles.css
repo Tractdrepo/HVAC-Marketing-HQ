@@ -141,10 +141,10 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .nav-menu a { display: block; padding: 10px 6px; text-decoration: none; }
 .nav-menu a span { display: block; font-size: .82rem; color: var(--muted); }
 .nav .btn { margin-top: 10px; }
-@media (min-width: 920px) {
+@media (min-width: 1180px) {
   .nav-toggle { display: none; }
   .nav, .nav-open .nav { display: flex; flex-direction: row; align-items: center; gap: 6px; position: static; padding: 0; background: none; border: 0; }
-  .nav-link, .nav-group > button { padding: 10px 12px; width: auto; }
+  .nav-link, .nav-group > button { padding: 10px 12px; width: auto; white-space: nowrap; }
   .nav-menu { position: absolute; top: calc(100% + 8px); left: 0; min-width: 270px; padding: 8px; background: var(--panel); border: 1px solid var(--line-2); border-radius: 14px; box-shadow: 0 30px 60px -20px rgba(15, 23, 42, .16); }
   .nav-menu a { padding: 11px 12px; border-radius: 10px; }
   .nav-menu a:hover { background: var(--panel-2); }
@@ -766,7 +766,7 @@ input:focus, select:focus { border-color: var(--cool); outline: none; }
 .nav-mega .mega-h svg { width: 14px; height: 14px; }
 .nav-menu .nav-all { font-weight: 600; color: var(--cool); border-top: 1px solid var(--line); margin-top: 6px; }
 .nav-open .nav { max-height: calc(100vh - 70px); overflow-y: auto; }
-@media (min-width: 920px) {
+@media (min-width: 1180px) {
   .nav-open .nav { max-height: none; overflow: visible; }
   .head-row { position: relative; }
   .nav-group { position: static; }
@@ -785,3 +785,7 @@ input:focus, select:focus { border-color: var(--cool); outline: none; }
 .svc-group li b { display: block; font-weight: 600; }
 .svc-group li span { display: block; font-size: .88rem; color: var(--muted); }
 .nav-menu .nav-all .arrow { display: inline; font-size: inherit; color: inherit; }
+
+/* Worth it if / Skip it if */
+.fit .fit-yes h3 { color: var(--go); }
+.fit .fit-no h3 { color: var(--heat-ink, var(--heat)); }

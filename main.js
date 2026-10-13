@@ -86,7 +86,7 @@
   }
 
   // Break-even calculator
-  var calc = document.querySelector(".calc:not(.mcalc)");
+  var calc = document.querySelector(".calc:not(.mcalc):not(.rcalc)");
   if (calc) {
     var num = function (name) { var v = parseFloat(String(calc.querySelector("[name=" + name + "]").value).replace(/[^0-9.]/g, "")); return isNaN(v) ? 0 : v; };
     var fmt = function (n) { return n.toLocaleString("en-US", { maximumFractionDigits: 1 }); };
@@ -99,6 +99,19 @@
     };
     calc.addEventListener("input", update);
     update();
+  }
+
+  // Review gap calculator
+  var rc = document.querySelector(".rcalc");
+  if (rc) {
+    var rnum = function (name) { var v = parseFloat(String(rc.querySelector("[name=" + name + "]").value).replace(/[^0-9.]/g, "")); return isNaN(v) ? 0 : v; };
+    var rupdate = function () {
+      var mine = rnum("jobs") * rnum("rate") / 100, gap = rnum("them") - rnum("you"), pace = mine - rnum("their");
+      rc.querySelector("[data-out=mine]").textContent = (Math.round(mine * 10) / 10).toLocaleString("en-US");
+      rc.querySelector("[data-out=months]").textContent = gap <= 0 ? "Already ahead" : pace <= 0 ? "Never at this pace" : Math.ceil(gap / pace).toLocaleString("en-US");
+    };
+    rc.addEventListener("input", rupdate);
+    rupdate();
   }
 
   // Missed-call cost calculator

@@ -162,6 +162,9 @@ def header(has_form=True):
         links = "".join(f'<a href="{u(k)}">{esc(svc_info(k)[0])}</a>' for k in slugs)
         cols += f'<div class="mega-col"><p class="mega-h"><i>{ICON[icon]}</i>{esc(g)}</p>{links}</div>'
     niche_links = "".join(f'<a href="{u(n["slug"])}">{esc(n["name"])}<span>{esc(n["nav"])}</span></a>' for n in niches_sorted())
+    res = [("guides", "Guides", "Straight answers, every number sourced"), ("tools", "Free tools", "Calculators, no email needed"),
+           (guide_path("scorpion-alternative-hvac"), "Scorpion alternatives", "Honest comparison, from their own terms"), ("getting-started", "Getting started", "What happens after you sign up")]
+    res_links = "".join(f'<a href="{u(k)}">{n}<span>{d}</span></a>' for k, n, d in res)
     rc = "#report-card" if has_form else u("") + "#report-card"
     return f"""<a class="skip" href="#main">Skip to content</a>
 <header class="site-head">
@@ -173,7 +176,8 @@ def header(has_form=True):
       {group("For HVAC", f'<div class="nav-two">{niche_links}</div>', "nav-wide", "hvac-specialties", "See all HVAC specialties")}
       <a class="nav-link" href="{u('plans')}">Pricing</a>
       <a class="nav-link" href="{u('method')}">The method</a>
-      <a class="nav-link" href="{u('guides')}">Guides</a>
+      {group("Resources", res_links, "", "guides", "All guides")}
+      <a class="nav-link" href="{u('contact')}">Contact</a>
       <a class="btn btn-primary btn-small" href="{rc}">Free report card</a>
     </nav>
   </div>
@@ -191,11 +195,11 @@ def footer(has_form=True):
         <a class="brand" href="{u('')}">{MARK}<span>{esc(BRAND)}<small>{esc(TAGLINE)}</small></span></a>
         <p style="margin-top:16px;max-width:36ch">Websites, Google profiles and lead systems for HVAC companies.</p>
       </div>
-      <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('getting-started')}">Getting started</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li></ul></div>
+      <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('getting-started')}">Getting started</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li><li><a href="{u('tools')}">Free tools</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li></ul></div>
       <div><h2 class="foot-h">Services</h2><ul>{offers}</ul></div>
       <div><h2 class="foot-h">For HVAC</h2><ul>{niches}</ul></div>
       <div><h2 class="foot-h">Locations</h2><ul><li><a href="{u('hvac-marketing-texas')}">Texas</a></li><li><a href="{u('hvac-marketing-houston-tx')}">Houston</a></li><li><a href="{u('hvac-marketing-dallas-tx')}">Dallas</a></li><li><a href="{u('hvac-marketing-austin-tx')}">Austin</a></li><li><a href="{u('hvac-marketing-waco-tx')}">Waco</a></li><li><a href="{u('locations')}">All locations</a></li></ul></div>
-      <div><h2 class="foot-h">Company</h2><ul><li><a href="{u('report-card')}">Free report card</a></li><li><a href="{esc(call_link())}">Book a 15-minute call</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="/llms.txt">Info for AI assistants</a></li></ul></div>
+      <div><h2 class="foot-h">Company</h2><ul><li><a href="{u('report-card')}">Free report card</a></li><li><a href="{u('contact')}">Contact</a></li><li><a href="{esc(call_link())}">Book a 15-minute call</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="/llms.txt">Info for AI assistants</a></li></ul></div>
     </div>
     <p class="foot-word" aria-hidden="true">{esc(BRAND)}</p>
     <div class="foot-base">
@@ -1064,6 +1068,7 @@ def guide_page(g):
     <h2>Sources</h2><ul class="g-src">{src}</ul>
   </article>
 </div></section>
+{guide_links(g["slug"])}
 <section class="section alt"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Keep reading</span><h2>Related guides</h2></div>
   <div class="grid two">{rel_html}</div>
@@ -1142,6 +1147,7 @@ def service_page(sv):
   <div><span class="eyebrow">What's included</span><h2>What you get.</h2><p class="lede">{esc(sv['plan'])}</p><a class="more" href="{u('plans')}">Compare plans →</a>{guide}</div>
   <div class="card"><ul class="ticks">{inc}</ul></div>
 </div></section>
+{fit_block(sv["slug"])}
 <section class="section alt"><div class="wrap g-wrap">
   <div class="section-head"><span class="eyebrow">Questions</span><h2>Common questions</h2></div>
   {faq(sv['faq'])}
@@ -1239,6 +1245,182 @@ def specialties_hub():
     return page("hvac-specialties", "Marketing for every kind of HVAC company", "HVAC marketing by specialty: residential, commercial, AC repair, heating, ductwork and air quality, installs and replacement, and new HVAC companies.", body)
 
 
+FIT = {
+    "missed-call-text-back": (["You miss calls when the crew is on jobs", "Callers rarely leave voicemails", "You get after-hours calls"], ["Someone always answers live, every hour", "You don't want to reply to texts"]),
+    "review-requests": (["You finish jobs but rarely ask for reviews", "A nearby shop has far more reviews than you", "You want reviews coming in every week"], ["You want to pick who gets asked (Google doesn't allow it)", "You'd rather buy reviews (it gets profiles suspended)"]),
+    "google-business-profile": (["Your profile is missing services, photos or hours", "You don't show up on the map in towns you serve", "Nobody has touched the profile in months"], ["You don't serve customers in person", "You want a fake address in another town"]),
+    "local-seo": (["You want to show up in more towns", "Your site has one page for all services", "You'd rather own rankings than rent ads"], ["You need calls this week and nothing else", "You only want ads managed"]),
+    "ai-web-chat": (["Visitors come to your site at night", "Your office gets the same questions all day", "You want leads captured after hours"], ["You never want a bot talking to customers", "Your site gets almost no visitors yet"]),
+    "ai-search": (["Customers ask ChatGPT or Google AI for recommendations", "You want plain facts about your shop easy to find", "You're building a site anyway"], ["You want guarantees about AI answers (nobody can give them)"]),
+    "hvac-website-redesign": (["Your site is slow or hard to use on a phone", "You can't change it without calling someone", "It has no page per service or town"], ["Your site already books calls and ranks well", "You want a one-time site with nothing after"]),
+    "estimate-follow-up": (["You send quotes that go quiet", "Nobody owns follow-up in your shop", "Replacement quotes are a big share of your revenue"], ["You close nearly every quote on the spot", "You'd rather not text customers at all"]),
+    "seasonal-campaigns": (["You have a list of past customers", "Spring and fall are slow", "You sell maintenance plans"], ["You're booked solid all year", "You don't have customer contact info yet"]),
+    "hq-command-center": (["You want to see calls and booked jobs, not clicks", "You've never known what your marketing brings in", "You want to check it on your phone"], ["You already track every call to a booked job yourself"]),
+}
+
+
+def fit_block(slug):
+    if slug not in FIT:
+        return ""
+    yes, no = FIT[slug]
+    y = "".join(f"<li>{esc(x)}</li>" for x in yes)
+    n_ = "".join(f"<li>{esc(x)}</li>" for x in no)
+    return f"""<section class="section"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Straight answer</span><h2>Is it worth it for your shop?</h2></div>
+  <div class="grid two fit"><div class="card fit-yes"><h3>Worth it if</h3><ul class="ticks">{y}</ul></div><div class="card fit-no"><h3>Skip it if</h3><ul class="crosses">{n_}</ul></div></div>
+</div></section>"""
+
+
+# Guides link up to the services and specialties they support.
+GUIDE_LINKS = {
+    "google-map-pack-hvac": ["google-business-profile", "local-seo", "review-requests"],
+    "google-reviews-hvac": ["review-requests", "google-business-profile", "seasonal-campaigns"],
+    "missed-call-text-back-hvac": ["missed-call-text-back", "ai-web-chat", "estimate-follow-up"],
+    "hvac-website-checklist": ["website", "hvac-website-redesign", "local-seo"],
+    "hvac-marketing-cost": ["hq-command-center", "local-seo", "missed-call-text-back"],
+    "scorpion-alternative-hvac": ["website", "hq-command-center", "hvac-website-redesign"],
+    "questions-to-ask-hvac-marketing-agency": ["hq-command-center", "website", "local-seo"],
+}
+
+
+def guide_links(slug):
+    keys = GUIDE_LINKS.get(slug, [])
+    if not keys:
+        return ""
+    cards = "".join(f'<a class="card guide-card" href="{u(k)}"><span class="eyebrow">Service</span><h3>{esc(svc_info(k)[0])}</h3><p>{esc(svc_info(k)[1])}</p></a>' for k in keys)
+    return f"""<section class="section"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">Put it to work</span><h2>We can run this for you</h2></div>
+  <div class="grid three">{cards}</div>
+</div></section>"""
+
+
+TOOLS = [
+    {"slug": "missed-call-cost-calculator", "name": "Missed call cost calculator", "line": "What missed calls cost your shop in a year",
+     "title": "Missed call cost calculator for HVAC companies",
+     "desc": "Free calculator: see what missed calls cost your HVAC company each week, month and year. Put in your own numbers. No email needed.",
+     "lede": "Put in how many calls you miss, what a new customer's job is usually worth and how many of them you'd normally book. The math runs in your browser and nothing is sent anywhere.",
+     "formula": ["Weekly cost = calls missed a week x average job value x the share you'd book", "Monthly = weekly x 52 / 12", "Yearly = weekly x 52"],
+     "improve": [("Text back every missed call", "A text in about a minute keeps the caller talking to you instead of the next shop."), ("Share the inbox", "Calls, texts and chats in one app, so whoever's free can reply."), ("Cover after hours", "AI web chat takes the address and the problem at night, so you can call back first thing.")],
+     "service": "missed-call-text-back", "guide": "missed-call-text-back-hvac"},
+    {"slug": "hvac-marketing-break-even-calculator", "name": "Marketing break-even calculator", "line": "How many jobs pay for a marketing plan",
+     "title": "HVAC marketing break-even calculator",
+     "desc": "Free calculator: how many extra service calls or system replacements an HVAC company needs each month to pay for a marketing plan. Your numbers, no email needed.",
+     "lede": "Any marketing spend should pay for itself. Put in the monthly price, your average ticket and your margin to see how many extra jobs cover it. Change the plan price to test any agency's quote.",
+     "formula": ["Service calls to break even = monthly price / (average ticket x gross margin), rounded up", "Replacements to break even = monthly price / (average replacement x gross margin)", "Bought leads for the same money = monthly price / price per lead"],
+     "improve": [("Track booked jobs, not clicks", "You can only check the math if you can see which calls became jobs."), ("Follow up on quotes", "One extra replacement a month changes the math more than any number of clicks."), ("Ask every customer for a review", "More reviews help more of the calls you already get turn into jobs.")],
+     "service": "hq-command-center", "guide": "hvac-marketing-cost"},
+    {"slug": "google-review-gap-calculator", "name": "Review gap calculator", "line": "How long to catch the top shop's reviews",
+     "title": "Google review gap calculator for HVAC companies",
+     "desc": "Free calculator: how many months it takes your HVAC company to catch a competitor's Google review count, based on your jobs a month and how many customers leave a review.",
+     "lede": "Homeowners compare review counts on the map. Put in your count, the top shop's count, your jobs a month and how many customers leave a review to see how long it takes to catch up.",
+     "formula": ["Reviews a month = finished jobs a month x share who leave a review", "Months to catch up = (their reviews - your reviews) / (your reviews a month - their reviews a month)", "If they add reviews as fast as you, you never catch up, so the tool says so"],
+     "improve": [("Ask after every job", "A text right after the job, while the customer is happy, gets far more reviews than asking now and then."), ("Ask everyone", "Google's rules say don't pick and choose who gets asked. Asking everyone is also how the count grows."), ("Reply to every review", "Replies show the next homeowner that a real owner is paying attention.")],
+     "service": "review-requests", "guide": "google-reviews-hvac"},
+]
+
+
+def review_gap_calc():
+    return """<div class="calc rcalc">
+  <div>
+    <div class="field"><label for="r-you">Your Google reviews today</label><input id="r-you" type="text" inputmode="decimal" name="you" value="40"></div>
+    <div class="field"><label for="r-them">The top shop near you</label><input id="r-them" type="text" inputmode="decimal" name="them" value="400"></div>
+    <div class="field"><label for="r-jobs">Jobs you finish a month</label><input id="r-jobs" type="text" inputmode="decimal" name="jobs" value="150"></div>
+    <div class="field"><label for="r-rate">Share of customers who leave a review</label><select id="r-rate" name="rate"><option value="5">5%</option><option value="10">10%</option><option value="15" selected>15%</option><option value="20">20%</option><option value="30">30%</option></select><div class="hint">A guess. Change it to match your shop.</div></div>
+    <div class="field"><label for="r-their">Reviews the top shop adds a month</label><input id="r-their" type="text" inputmode="decimal" name="their" value="6"><div class="hint">Count their reviews from the last 30 days on Google.</div></div>
+  </div>
+  <div class="calc-out" aria-live="polite">
+    <div class="row"><span class="big" data-out="mine">–</span><p>new reviews a month for you</p></div>
+    <div class="row"><span class="big" data-out="months">–</span><p>months to catch the top shop</p></div>
+    <p style="font-size:.85rem">Your numbers; this is math, not a promise of results.</p>
+  </div>
+</div>"""
+
+
+def tool_widget(slug):
+    if slug == "missed-call-cost-calculator":
+        return missed_call_calc()
+    if slug == "hvac-marketing-break-even-calculator":
+        return calculator()
+    return review_gap_calc()
+
+
+def tool_page(t):
+    formula = "".join(f"<li>{esc(x)}</li>" for x in t["formula"])
+    improve = "".join(f'<div class="card reveal"><h3>{esc(h)}</h3><p>{esc(p_)}</p></div>' for h, p_ in t["improve"])
+    others = "".join(f'<a class="card guide-card" href="{u("tools/" + o["slug"])}"><span class="eyebrow">Free tool</span><h3>{esc(o["name"])}</h3><p>{esc(o["line"])}</p></a>' for o in TOOLS if o is not t)
+    g = next(x for x in GUIDES if x["slug"] == t["guide"])
+    sn, sd = svc_info(t["service"])
+    body = f"""<section class="page-head"><div class="wrap">
+  <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('tools')}">Free tools</a> / {esc(t['name'])}</div>
+  <span class="eyebrow">Free tool · No email needed</span>
+  <h1 style="max-width:22ch">{esc(t['title'])}</h1>
+  <p class="lede">{esc(t['lede'])}</p>
+</div></section>
+<section class="section" style="padding-top:12px"><div class="wrap">
+  <h2 class="sr-only">Calculator</h2>
+  {tool_widget(t['slug'])}
+</div></section>
+<section class="section alt"><div class="wrap split">
+  <div><span class="eyebrow">The math</span><h2>How it's worked out.</h2><p class="lede">No hidden numbers. Here's every step.</p></div>
+  <div class="card"><ul class="ticks">{formula}</ul></div>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Improve the number</span><h2>Three ways to move it.</h2></div>
+  <div class="grid three">{improve}</div>
+  <p style="margin-top:22px"><a class="more" href="{u(t['service'])}">{esc(sn)}: {esc(sd)} →</a><br><a class="more" href="{u(guide_path(g['slug']))}">Read the guide: {esc(g['title'])} →</a></p>
+</div></section>
+{report_card()}
+<section class="section"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">Free tools</span><h2>More calculators</h2></div>
+  <div class="grid two">{others}</div>
+</div></section>
+"""
+    app_ld = ld({"@context": "https://schema.org", "@type": "WebApplication", "name": t["title"], "description": t["desc"], "applicationCategory": "BusinessApplication",
+                 "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "provider": {"@type": "Organization", "name": BRAND}})
+    return page("tools/" + t["slug"], t["title"], t["desc"], body, extra_head=app_ld)
+
+
+def tools_hub():
+    cards = "".join(f'<a class="card guide-card reveal" href="{u("tools/" + t["slug"])}"><span class="eyebrow">Free tool</span><h3>{esc(t["name"])}</h3><p>{esc(t["desc"])}</p></a>' for t in TOOLS)
+    body = f"""<section class="page-head"><div class="wrap">
+  <div class="crumbs"><a href="{u('')}">Home</a> / Free tools</div>
+  <span class="eyebrow">Free tools</span>
+  <h1 style="max-width:20ch">Free calculators for HVAC owners.</h1>
+  <p class="lede">Check the math on missed calls, marketing spend and reviews with your own numbers. No email, no sign-up, and nothing you type leaves your browser.</p>
+</div></section>
+<section class="section" style="padding-top:12px"><div class="wrap">
+  <h2 class="sr-only">All tools</h2>
+  <div class="grid two">{cards}</div>
+</div></section>
+{report_card("Want the full picture? Get your report card")}
+"""
+    return page("tools", "Free calculators for HVAC companies", "Free, no-sign-up calculators for HVAC owners: missed call cost, marketing break-even and Google review gap.", body)
+
+
+def contact_page():
+    body = f"""<section class="page-head"><div class="wrap">
+  <div class="crumbs"><a href="{u('')}">Home</a> / Contact</div>
+  <span class="eyebrow">Contact</span>
+  <h1 style="max-width:20ch">Talk to a person who only does HVAC.</h1>
+  <p class="lede">Ask a question, book a short call, or start with the free report card. No pressure and no long sales process.</p>
+</div></section>
+<section class="section" style="padding-top:12px"><div class="wrap">
+  <h2 class="sr-only">Ways to reach us</h2>
+  <div class="grid three">
+    <div class="card reveal"><div class="icon">{ICON['chat']}</div><h3>Email us</h3><p>Questions about plans, your site or how it works.</p><p><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
+    <div class="card reveal"><div class="icon">{ICON['cal']}</div><h3>Book a 15-minute call</h3><p>A quick look at your shop and whether we're a fit.</p><p><a href="{esc(call_link())}">Pick a time →</a></p></div>
+    <div class="card reveal"><div class="icon">{ICON['chart']}</div><h3>Get your report card</h3><p>See where you stand on Google before you talk to anyone.</p><p><a href="#report-card">Start here →</a></p></div>
+  </div>
+</div></section>
+<section class="section alt"><div class="wrap split">
+  <div><span class="eyebrow">What to expect</span><h2>What happens when you reach out.</h2></div>
+  <div class="card"><ul class="ticks"><li>A real person reads every message. No call center.</li><li>No sales sequence. If we're not a fit, we'll say so.</li><li>Prices are on the site, so the call is about your shop, not a quote.</li><li>Nothing is signed on the first call.</li></ul></div>
+</div></section>
+{report_card()}
+"""
+    return page("contact", "Contact", "Contact HVAC Marketing HQ: email, book a 15-minute call, or get a free report card on how your HVAC company shows up on Google.", body)
+
+
 def guides_page():
     cards = "".join(f'<a class="card guide-card reveal" href="{u(guide_path(g["slug"]))}"><span class="eyebrow">{g["read"]} min read</span><h3>{esc(g["title"])}</h3><p>{esc(g["desc"])}</p></a>' for g in GUIDES)
     body = f"""<section class="page-head"><div class="wrap">
@@ -1288,6 +1470,8 @@ def home():
   {method_block()}
   <p style="margin-top:34px"><a class="btn btn-ghost" href="{u('method')}">See the full method <span class="arrow">→</span></a></p>
 </div></section>
+
+<section class="section alt"><div class="wrap">{compare()}</div></section>
 
 <section class="section alt"><div class="wrap">
   <div class="section-head center reveal"><span class="eyebrow">What runs behind it</span><h2>One system. Every piece working.</h2><p class="lede">Your site, your Google profile and your lead system, built once and run for you. Your office just answers the texts.</p></div>
@@ -1941,6 +2125,9 @@ def build_routes():
         ROUTES[n["slug"]] = "for-hvac/" + NICHE_URL.get(n["slug"], n["slug"].removeprefix("hvac-marketing-"))
     for g in GUIDES:
         ROUTES[guide_path(g["slug"])] = f"guides/{g['slug']}"
+    ROUTES["tools"] = "free-tools"  # /tools is the build script folder, kept off the live site
+    for t in TOOLS:
+        ROUTES["tools/" + t["slug"]] = "free-tools/" + t["slug"]
     ROUTES["hvac-marketing-texas"] = "locations/texas"
     for c in CITIES:
         ROUTES[city_path(c)] = f"locations/texas/{c['slug']}"
@@ -1951,7 +2138,7 @@ def write_redirects(site_dir):
     p_ = os.path.join(site_dir, "vercel.json")
     with open(p_) as f:
         cfg = json.load(f)
-    reds = [{"source": "/" + old, "destination": "/" + new, "permanent": True} for old, new in ROUTES.items()]
+    reds = [{"source": "/" + old, "destination": "/" + new, "permanent": True} for old, new in ROUTES.items() if not old.startswith("tools")]
     reds += [{"source": "/" + old, "destination": "/" + route(new), "permanent": True} for old, new in OLD_REDIRECTS.items()]
     cfg["redirects"] = reds
     with open(p_, "w") as f:
@@ -1974,6 +2161,10 @@ def build(out_dir):
         pages[sv["slug"]] = service_page(sv)
     pages["getting-started"] = getting_started_page()
     pages["services"] = services_hub()
+    pages["tools"] = tools_hub()
+    for t in TOOLS:
+        pages["tools/" + t["slug"]] = tool_page(t)
+    pages["contact"] = contact_page()
     pages["hvac-specialties"] = specialties_hub()
     pages["locations"] = locations_page()
     pages["hvac-marketing-texas"] = texas_page()
