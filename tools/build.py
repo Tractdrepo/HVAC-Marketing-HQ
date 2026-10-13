@@ -162,8 +162,8 @@ def header(has_form=True):
         links = "".join(f'<a href="{u(k)}">{esc(svc_info(k)[0])}</a>' for k in slugs)
         cols += f'<div class="mega-col"><p class="mega-h"><i>{ICON[icon]}</i>{esc(g)}</p>{links}</div>'
     niche_links = "".join(f'<a href="{u(n["slug"])}">{esc(n["name"])}<span>{esc(n["nav"])}</span></a>' for n in niches_sorted())
-    res = [("guides", "Guides", "Straight answers, every number sourced"), ("tools", "Free tools", "Calculators, no email needed"),
-           (guide_path("scorpion-alternative-hvac"), "Scorpion alternatives", "Honest comparison, from their own terms"), ("getting-started", "Getting started", "What happens after you sign up")]
+    res = [("hvac-marketing", "HVAC marketing guide", "The whole system on one page"), ("guides", "Guides", "Straight answers, every number sourced"), ("tools", "Free tools", "Calculators, no email needed"),
+           ("compare", "Compare agencies", "Honest side-by-sides, from their own terms"), ("getting-started", "Getting started", "What happens after you sign up")]
     res_links = "".join(f'<a href="{u(k)}">{n}<span>{d}</span></a>' for k, n, d in res)
     rc = "#report-card" if has_form else u("") + "#report-card"
     return f"""<a class="skip" href="#main">Skip to content</a>
@@ -994,6 +994,8 @@ def locations_band():
 # ---- Guides ---------------------------------------------------------------------
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from guides import GUIDES, UPDATED as GUIDES_UPDATED, AUTHOR as GUIDES_AUTHOR
+from vs_guides import VS_GUIDES
+GUIDES = GUIDES + VS_GUIDES
 from niches import NICHES
 from services import SERVICES
 import re as _re
@@ -1280,7 +1282,30 @@ GUIDE_LINKS = {
     "hvac-marketing-cost": ["hq-command-center", "local-seo", "missed-call-text-back"],
     "scorpion-alternative-hvac": ["website", "hq-command-center", "hvac-website-redesign"],
     "questions-to-ask-hvac-marketing-agency": ["hq-command-center", "website", "local-seo"],
+    "websites-for-hvac-alternative": ["website", "missed-call-text-back", "hq-command-center"],
+    "rs-gonzales-alternative": ["local-seo", "google-business-profile", "hq-command-center"],
+    "hook-agency-alternative-hvac": ["local-seo", "website", "hq-command-center"],
+    "footbridge-media-alternative-hvac": ["website", "missed-call-text-back", "review-requests"],
 }
+COMPARE_SLUGS = ["scorpion-alternative-hvac", "websites-for-hvac-alternative", "rs-gonzales-alternative", "hook-agency-alternative-hvac", "footbridge-media-alternative-hvac"]
+
+
+def compare_hub():
+    cards = "".join(f'<a class="card guide-card reveal" href="{u(guide_path(g["slug"]))}"><span class="eyebrow">Comparison</span><h3>{esc(g["title"])}</h3><p>{esc(g["desc"])}</p></a>' for slug in COMPARE_SLUGS for g in GUIDES if g["slug"] == slug)
+    body = f"""<section class="page-head"><div class="wrap">
+  <div class="crumbs"><a href="{u('')}">Home</a> / Compare agencies</div>
+  <span class="eyebrow">Compare</span>
+  <h1 style="max-width:22ch">How we compare with other HVAC marketing companies.</h1>
+  <p class="lede">Honest side-by-sides built from each company's own published prices and terms, with the date we read them. Where they do something better, we say so.</p>
+</div></section>
+<section class="section" style="padding-top:12px"><div class="wrap">
+  <h2 class="sr-only">Comparisons</h2>
+  <div class="grid two">{cards}</div>
+  <div style="margin-top:32px">{compare()}</div>
+</div></section>
+{report_card()}
+"""
+    return page("compare", "Compare HVAC marketing companies", "Honest comparisons of HVAC Marketing HQ with Scorpion, Websites for HVAC, RS Gonzales, Hook Agency and Footbridge Media, from their own published prices and terms.", body)
 
 
 def guide_links(slug):
@@ -1421,6 +1446,100 @@ def contact_page():
     return page("contact", "Contact", "Contact HVAC Marketing HQ: email, book a 15-minute call, or get a free report card on how your HVAC company shows up on Google.", body)
 
 
+PATH_STEPS = [
+    ("search", "Rank", "Searches on Google", "A homeowner with a hot house types \"ac repair near me\" on their phone."),
+    ("pin", "Rank", "Picks from the map", "Three shops show up. Stars, reviews, photos and hours decide who gets the call."),
+    ("phone", "Book", "Calls or chats", "They tap call. After hours, they ask your site's chat instead."),
+    ("chat", "Book", "Gets a text if you miss it", "Busy on a job? A text from your number goes out within 60 seconds."),
+    ("cal", "Book", "Books the job", "Whoever's free replies from the shared inbox and gets it on the schedule."),
+    ("star", "Repeat", "Leaves a review", "A text after the job asks for a review, and that review helps win the next search."),
+]
+
+
+def homeowner_path():
+    steps = "".join(f'<li class="path-step reveal" data-ph="{ph.lower()}"><span class="path-ic">{ICON[ic]}</span><span class="path-ph">{ph}</span><h3>{esc(h)}</h3><p>{esc(t)}</p></li>' for ic, ph, h, t in PATH_STEPS)
+    return f"""<section class="section alt"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">How a homeowner picks a shop</span><h2>From a broken AC to a booked job, in six steps.</h2><p class="lede">Ranking gets you to step two. We run all six.</p></div>
+  <ol class="path">{steps}</ol>
+</div></section>"""
+
+
+PILLAR_FAQ = [
+    ("What is HVAC marketing?", "Everything that gets a homeowner or business to call your shop instead of the next one: showing up on Google and the map, a website that turns visits into calls, answering and following up fast, and turning finished jobs into reviews and repeat work."),
+    ("What's the best marketing for an HVAC company?", "For most owner-run shops, a complete Google Business Profile, steady reviews and a fast site with a page per service and town come first, because that's where homeowners pick a shop. Answering every call matters just as much, since a lead you don't answer is wasted."),
+    ("How long does HVAC SEO take to work?", "It depends on your town, your competition and where you start, so nobody can honestly promise a date. Profile fixes and review growth can show up within weeks; new pages ranking usually takes months. Be wary of anyone who guarantees page one."),
+    ("Should I run Google Ads or do SEO?", "Ads bring calls as long as you pay; SEO and your map listing keep working after you stop. Many shops do both. We don't manage ads, so we focus on the parts you own: your site, your profile, your reviews and your follow-up."),
+    ("Are Google Local Services Ads worth it for HVAC?", "They can be, since you pay per lead and the Google Guaranteed badge shows at the top. Your reviews and how fast you answer affect how often they show, so the basics we run help there too."),
+    ("How do I get more HVAC maintenance plan sign-ups?", "Ask on every job, put the plan on its own page, and remind past customers before each season. We send the reminders; your techs make the ask."),
+    ("How do I market heating in a warm state?", "Heat pumps run in both seasons and cold snaps bring a rush of calls. Have heating pages and your profile ready before the first cold front, not during it."),
+    ("Should I market indoor air quality and ductwork?", "Yes, if you do the work. People search for the symptom, like a hot room or dusty vents, so pages that explain the problem plainly bring in calls that turn into bigger jobs."),
+    ("Do you work with ServiceTitan, Housecall Pro or Jobber?", "Yes. On our Dominate plan we connect them so booked jobs and customers flow into your dashboard and campaigns."),
+    ("Should I put financing on my website?", "If you offer it, put it on the replacement pages where people decide. Hiding it in the footer doesn't help anyone."),
+    ("Does commercial HVAC need different marketing?", "Partly. Property managers want proof you can handle it: license, insurance, service area and response times, on pages written for them, separate from your residential pages."),
+    ("How much should an HVAC company spend on marketing?", "There's no single right number. Work out how many extra jobs pay for the spend with our free break-even calculator, and compare published prices in our cost guide."),
+]
+
+
+def pillar_page():
+    svc = lambda keys: "".join(f'<li><a href="{u(k)}"><b>{esc(svc_info(k)[0])}</b></a> {esc(svc_info(k)[1])}</li>' for k in keys)
+    gd = lambda slugs: "".join(f'<li><a href="{u(guide_path(x["slug"]))}">{esc(x["title"])}</a></li>' for x in GUIDES if x["slug"] in slugs)
+    spec = "".join(f'<a class="card guide-card" href="{u(n["slug"])}"><span class="eyebrow">For HVAC</span><h3>{esc(n["name"])}</h3><p>{esc(n["nav"])}</p></a>' for n in niches_sorted())
+    cities = " · ".join(f'<a href="{u(city_path(c))}">{esc(c["name"])}</a>' for c in CITIES)
+    tools_ = "".join(f'<li><a href="{u("tools/" + t["slug"])}">{esc(t["name"])}</a>: {esc(t["line"])}</li>' for t in TOOLS)
+    toc = [("s-what", "What HVAC marketing is"), ("s-rank", "Rank: get found first"), ("s-book", "Book: answer and follow up"), ("s-repeat", "Repeat: reviews and past customers"),
+           ("s-cost", "What it costs"), ("s-spec", "By specialty"), ("s-loc", "By location"), ("s-faq", "Questions")]
+    toc_html = "".join(f'<li><a href="#{a_}">{esc(b)}</a></li>' for a_, b in toc)
+    body = f"""<section class="page-head"><div class="wrap g-wrap">
+  <div class="crumbs"><a href="{u('')}">Home</a> / HVAC marketing</div>
+  <span class="eyebrow">The complete guide</span>
+  <h1>HVAC marketing: how owner-run shops get found and booked</h1>
+  <p class="lede">Everything that decides whether a homeowner calls your shop or the next one, in plain words, with a link to the detail on each part.</p>
+  <p class="g-meta">By {esc(GUIDES_AUTHOR)} · Updated {GUIDES_UPDATED}</p>
+</div></section>
+<section class="section" style="padding-top:0"><div class="wrap g-wrap">
+  <div class="g-take"><h2>The short version</h2><ul class="ticks"><li>Homeowners pick from the map, so your Google profile and reviews matter most.</li><li>A lead you don't answer is wasted, so answering and following up are marketing too.</li><li>Past customers are the cheapest jobs you'll ever book. Remind them before each season.</li><li>Own everything: your site, domain, profile, reviews and customer list.</li></ul></div>
+  <nav class="g-toc" aria-label="In this guide"><b>In this guide</b><ol>{toc_html}</ol></nav>
+  <article class="g-body">
+    <h2 id="s-what">What HVAC marketing is</h2>
+    <p>HVAC marketing is three jobs that feed each other. <b>Rank</b>: show up first when someone nearby searches. <b>Book</b>: answer every call, text and chat, and follow up until the job is on the schedule. <b>Repeat</b>: turn every finished job into a review and the next visit. Most agencies sell one of the three. A shop needs all of them working together.</p>
+    <h2 id="s-rank">Rank: get found first</h2>
+    <p>When the AC quits, a lot of homeowners search on their phone and pick from the shops on the map. Google ranks those on distance, relevance and prominence. You can't move your shop, but you control the other two.</p>
+    <ul class="ticks">{svc(["google-business-profile", "local-seo", "website", "ai-search"])}</ul>
+    <p>Read more:</p><ul>{gd(["google-map-pack-hvac", "hvac-website-checklist"])}</ul>
+    <h2 id="s-book">Book: answer and follow up</h2>
+    <p>Ranking only matters if someone answers. Many callers who hit voicemail just call the next shop. Quotes go quiet when nobody follows up.</p>
+    <ul class="ticks">{svc(["missed-call-text-back", "ai-web-chat", "estimate-follow-up", "app"])}</ul>
+    <p>Read more:</p><ul>{gd(["missed-call-text-back-hvac"])}</ul>
+    <h2 id="s-repeat">Repeat: reviews and past customers</h2>
+    <p>Fresh reviews help you rank and help the next homeowner pick you. Past customers already trust you; they just need a reminder before the season turns.</p>
+    <ul class="ticks">{svc(["review-requests", "seasonal-campaigns", "hq-command-center"])}</ul>
+    <p>Read more:</p><ul>{gd(["google-reviews-hvac"])}</ul>
+    <h2 id="s-cost">What it costs</h2>
+    <p>Prices range from a few hundred dollars a month for a template site to several thousand for a big agency, plus ad spend. Whatever you pay, check how many extra jobs cover it.</p>
+    <ul>{tools_}</ul>
+    <p>Read more:</p><ul>{gd(["hvac-marketing-cost", "questions-to-ask-hvac-marketing-agency", "scorpion-alternative-hvac"])}</ul>
+    <p>Our own prices are on the <a href="{u('plans')}">plans page</a>.</p>
+  </article>
+</div></section>
+<section class="section alt" id="s-spec"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">By specialty</span><h2>Marketing for the work you want more of</h2></div>
+  <div class="grid three">{spec}</div>
+</div></section>
+<section class="section" id="s-loc"><div class="wrap g-wrap">
+  <div class="section-head"><span class="eyebrow">By location</span><h2>HVAC marketing in Texas</h2><p class="lede">Each page uses real local numbers: population, climate and licensed contractors. See <a href="{u('hvac-marketing-texas')}">Texas</a> or a city:</p></div>
+  <p class="city-links">{cities}</p>
+</div></section>
+<section class="section alt" id="s-faq"><div class="wrap g-wrap">
+  <div class="section-head"><span class="eyebrow">Questions</span><h2>HVAC marketing questions owners ask</h2></div>
+  {faq(PILLAR_FAQ)}
+</div></section>
+{report_card()}
+"""
+    art = ld({"@context": "https://schema.org", "@type": "Article", "headline": "HVAC marketing: how owner-run shops get found and booked",
+              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0]}, "publisher": {"@type": "Organization", "name": BRAND}, "dateModified": BUILD_DATE})
+    return page("hvac-marketing", "HVAC Marketing: The Complete Guide for Owner-Run Shops", "HVAC marketing explained: how to get found on Google and the map, answer and book every call, and turn jobs into reviews and repeat work. With costs, tools and FAQs.", body, extra_head=art + faq_ld(PILLAR_FAQ))
+
+
 def guides_page():
     cards = "".join(f'<a class="card guide-card reveal" href="{u(guide_path(g["slug"]))}"><span class="eyebrow">{g["read"]} min read</span><h3>{esc(g["title"])}</h3><p>{esc(g["desc"])}</p></a>' for g in GUIDES)
     body = f"""<section class="page-head"><div class="wrap">
@@ -1457,6 +1576,7 @@ def home():
   {hero_visual()}
 </div></section>
 <div class="wrap terms-wrap">{terms_strip()}</div>
+{homeowner_path()}
 
 {services_overview()}
 
@@ -2165,6 +2285,8 @@ def build(out_dir):
     for t in TOOLS:
         pages["tools/" + t["slug"]] = tool_page(t)
     pages["contact"] = contact_page()
+    pages["hvac-marketing"] = pillar_page()
+    pages["compare"] = compare_hub()
     pages["hvac-specialties"] = specialties_hub()
     pages["locations"] = locations_page()
     pages["hvac-marketing-texas"] = texas_page()

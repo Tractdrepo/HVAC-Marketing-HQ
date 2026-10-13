@@ -789,3 +789,18 @@ input:focus, select:focus { border-color: var(--cool); outline: none; }
 /* Worth it if / Skip it if */
 .fit .fit-yes h3 { color: var(--go); }
 .fit .fit-no h3 { color: var(--heat-ink, var(--heat)); }
+
+/* Homeowner path (home) */
+.path { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+@media (min-width: 640px) { .path { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .path { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1240px) { .path { grid-template-columns: repeat(6, 1fr); } }
+.path-step { position: relative; padding: 20px 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.path-ic { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; margin-bottom: 12px; background: rgba(10, 111, 194, .1); color: var(--cool); }
+.path-ic svg { width: 20px; height: 20px; }
+.path-ph { display: block; font: 600 .66rem/1 var(--mono); text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 8px; }
+.path-step[data-ph="book"] .path-ic { background: rgba(226, 85, 27, .1); color: var(--heat); }
+.path-step[data-ph="repeat"] .path-ic { background: rgba(13, 138, 87, .1); color: var(--go); }
+.path-step h3 { font-size: 1rem; margin-bottom: 4px; }
+.path-step p { margin: 0; font-size: .9rem; color: var(--muted); }
+.city-links { line-height: 2; }

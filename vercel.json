@@ -191,6 +191,26 @@
       "permanent": true
     },
     {
+      "source": "/guide-websites-for-hvac-alternative",
+      "destination": "/guides/websites-for-hvac-alternative",
+      "permanent": true
+    },
+    {
+      "source": "/guide-rs-gonzales-alternative",
+      "destination": "/guides/rs-gonzales-alternative",
+      "permanent": true
+    },
+    {
+      "source": "/guide-hook-agency-alternative-hvac",
+      "destination": "/guides/hook-agency-alternative-hvac",
+      "permanent": true
+    },
+    {
+      "source": "/guide-footbridge-media-alternative-hvac",
+      "destination": "/guides/footbridge-media-alternative-hvac",
+      "permanent": true
+    },
+    {
       "source": "/hvac-marketing-texas",
       "destination": "/locations/texas",
       "permanent": true
