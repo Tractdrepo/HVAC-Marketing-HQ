@@ -69,10 +69,10 @@ Still missing, in order:
 Done: Resources menu (guides, free tools, Scorpion comparison, getting started) + Contact in nav; /contact; /free-tools hub + 3 ungated calculators (missed call cost, marketing break-even, review gap); "Worth it if / Skip it if" on service pages; guides link up to services; big agency vs DIY vs us table on home; nav collapses to the menu button under 1180px.
 Next, in order:
 - [ ] City pages: "market in numbers" (Places count + top-5 table, keyword volume + CPC, date pulled). Needs Places key + keyword source.
-- [ ] HVAC marketing pillar page that links every service, guide and city, with a long HVAC FAQ (their 19-question list is the right topic set; our own answers).
+- [x] /hvac-marketing pillar page with 12-question FAQ (Oct 13)
 - [ ] Root keyword landing pages (HVAC marketing agency, HVAC SEO company, HVAC website design). Check search volume first.
-- [ ] Honest VS pages (Websites for HVAC, RS Gonzales, Hook, Footbridge) from our crawls: price table, 12-month cost, what they do better, verdict.
+- [x] /compare hub + 4 VS guides (tools/vs_guides.py) (Oct 13). Note: they show Websites for HVAC cheaper at Growth/Dominate and Footbridge far cheaper at entry.
 - [ ] Guide format upgrades: author box + author page, TL;DR, benchmark tables, 90-day plan. Needs Logan's bio/photo.
-- [ ] Homeowner path visual on home (search, map, call, text-back, booked, review).
+- [x] Homeowner path on home (Oct 13)
 - [ ] Blog volume: 2 to 4 HVAC guides a month in clusters.
 - Skipped on purpose: results strips, logos, testimonials, awards, case studies (no proof yet), fake scarcity, unsourced stats, multi-trade links, ad management pages, the top banner (Logan removed it).
