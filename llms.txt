@@ -1,6 +1,6 @@
 # HVAC Marketing HQ
 
-> HVAC Marketing HQ builds websites, runs Google Business Profiles and sets up missed-call text-back and review requests for HVAC contractors. HVAC only. Starting in Texas, serving HVAC companies nationally.
+> HVAC Marketing HQ builds websites, runs Google Business Profiles and sets up missed-call text-back and review requests for HVAC contractors. HVAC only, serving HVAC companies nationally.
 
 ## Quick facts
 - Website: https://hvacmarketinghq.com

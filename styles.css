@@ -762,3 +762,28 @@ input:focus, select:focus { border-color: var(--cool); outline: none; }
 .guide-card:hover { border-color: var(--cool); }
 .guide-card .eyebrow { margin-bottom: 10px; }
 .guide-card h3 { margin-bottom: 8px; }
+
+/* Example site mockups (always labeled as examples) */
+.mocks { display: grid; gap: 22px; }
+@media (min-width: 900px) { .mocks { grid-template-columns: repeat(3, 1fr); } }
+.mock { margin: 0; background: var(--panel); border: 1px solid var(--line-2); border-radius: 18px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(15, 23, 42, .25); }
+.mock-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: var(--panel-2); border-bottom: 1px solid var(--line); }
+.mock-bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(15, 23, 42, .18); }
+.mock-bar span { margin-left: 10px; flex: 1; font: 500 .72rem/1 var(--mono); color: var(--muted); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mock-site { background: #fff; color: #0f1a2a; }
+.ms-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 16px; border-bottom: 1px solid #e8edf3; }
+.ms-top b { font: 700 .86rem/1.1 var(--head); }
+.ms-top em { font: 600 .7rem/1 var(--mono); font-style: normal; color: #fff; background: var(--m); padding: 7px 9px; border-radius: 6px; white-space: nowrap; }
+.ms-hero { padding: 22px 16px 20px; background: linear-gradient(180deg, color-mix(in srgb, var(--m) 10%, #fff), #fff); }
+.ms-hero small { display: inline-block; font: 600 .66rem/1 var(--mono); color: var(--m); letter-spacing: .04em; margin-bottom: 10px; }
+.ms-hero h4 { margin: 0 0 8px; font: 800 1.3rem/1.1 var(--head); letter-spacing: -.01em; }
+.ms-hero p { margin: 0 0 14px; font-size: .8rem; line-height: 1.45; color: #4a586b; }
+.ms-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.ms-btns u, .ms-btns s { text-decoration: none; font: 700 .72rem/1 var(--head); padding: 9px 12px; border-radius: 7px; }
+.ms-btns u { background: var(--m); color: #fff; }
+.ms-btns s { border: 1px solid #cdd6e0; color: #0f1a2a; }
+.ms-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 16px 16px; }
+.ms-cards span { font: 600 .7rem/1.25 var(--head); padding: 12px 8px; border: 1px solid #e3e9f0; border-radius: 8px; text-align: center; border-top: 3px solid var(--m); }
+.ms-strip { padding: 10px 16px; background: #0f1a2a; color: #dbe3ec; font: 500 .64rem/1.4 var(--mono); text-align: center; }
+.mock figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding: 12px 16px; border-top: 1px solid var(--line); font-size: .9rem; }
+.mock-tag { font: 600 .62rem/1 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); border: 1px solid var(--line-2); border-radius: 999px; padding: 5px 8px; }

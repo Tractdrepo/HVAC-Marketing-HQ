@@ -127,8 +127,9 @@ def header(has_form=True):
         return (f'<div class="nav-group"><button type="button" aria-expanded="false">{label}{ICON["chev"]}</button>'
                 f'<div class="nav-menu">{links}</div></div>')
     rc = "#report-card" if has_form else u("") + "#report-card"
+    rc = "#report-card" if has_form else u("") + "#report-card"
     return f"""<a class="skip" href="#main">Skip to content</a>
-<div class="announce"><a href="{u('plans')}"><span class="pill">Now open</span><b>Taking founding HVAC clients in Texas.</b> <span class="muted">See founding pricing →</span></a></div>
+<div class="announce"><a href="{rc}"><span class="pill">Free</span><b>See where your shop stands on Google.</b> <span class="muted">Get your report card →</span></a></div>
 <header class="site-head">
   <div class="wrap head-row">
     <a class="brand" href="{u('')}">{MARK}<span>{esc(BRAND_SHORT)}<small>{esc(TAGLINE)}</small></span></a>
@@ -137,6 +138,7 @@ def header(has_form=True):
       <a class="nav-link" href="{u('method')}">The method</a>
       {menu("Services", OFFERINGS + [(x["slug"], x["name"], x["nav"]) for x in SERVICES])}
       {menu("Who we help", [(n["slug"], n["name"], n["nav"]) for n in NICHES])}
+      <a class="nav-link" href="{u('examples')}">Examples</a>
       <a class="nav-link" href="{u('plans')}">Pricing</a>
       <a class="nav-link" href="{u('guides')}">Guides</a>
       <a class="btn btn-primary btn-small" href="{rc}">Free report card</a>
@@ -154,9 +156,9 @@ def footer(has_form=True):
     <div class="foot-grid">
       <div>
         <a class="brand" href="{u('')}">{MARK}<span>{esc(BRAND)}<small>{esc(TAGLINE)}</small></span></a>
-        <p style="margin-top:16px;max-width:36ch">Websites, Google profiles and lead systems for HVAC companies. Starting in {esc(AREA)}.</p>
+        <p style="margin-top:16px;max-width:36ch">Websites, Google profiles and lead systems for HVAC companies.</p>
       </div>
-      <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('getting-started')}">Getting started</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li></ul></div>
+      <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('getting-started')}">Getting started</a></li><li><a href="{u('examples')}">Examples</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li></ul></div>
       <div><h2 class="foot-h">Services</h2><ul>{offers}</ul><h2 class="foot-h" style="margin-top:18px">Who we help</h2><ul>{niches}</ul></div>
       <div><h2 class="foot-h">Locations</h2><ul><li><a href="{u('hvac-marketing-texas')}">Texas</a></li><li><a href="{u('hvac-marketing-houston-tx')}">Houston</a></li><li><a href="{u('hvac-marketing-dallas-tx')}">Dallas</a></li><li><a href="{u('hvac-marketing-austin-tx')}">Austin</a></li><li><a href="{u('hvac-marketing-waco-tx')}">Waco</a></li><li><a href="{u('locations')}">All locations</a></li></ul></div>
       <div><h2 class="foot-h">Company</h2><ul><li><a href="{u('report-card')}">Free report card</a></li><li><a href="{esc(call_link())}">Book a 15-minute call</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="{'llms.txt' if PREVIEW else '/llms.txt'}">Info for AI assistants</a></li></ul></div>
@@ -458,11 +460,6 @@ def hero_visual():
   <div class="float f1"><span class="ic">{ICON["chat"]}</span><div><b>Missed call texted back</b><span>in 0:08 · booked for Tue 8 AM</span></div></div>
   <span class="sample-tag">Sample</span>
 </div>"""
-
-
-def works_with():
-    names = ["Google Business Profile", "ServiceTitan", "Housecall Pro", "Jobber", "Google Calendar"]
-    return '<div class="works"><div class="wrap works-row"><span>Works with</span>' + "".join(f"<b>{n}</b>" for n in names) + "</div></div>"
 
 
 def pillars():
@@ -907,7 +904,7 @@ def texas_page():
 def locations_page():
     body = f"""<section class="page-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / Locations</div>
-  <span class="eyebrow">Coast to coast</span>
+  <span class="eyebrow">Markets</span>
   <h1 style="max-width:20ch">HVAC marketing, built in Texas, for shops everywhere.</h1>
   <p class="lede">Everything we do works from anywhere: your site, your Google profile and your lead system. We started in Texas and add local market pages state by state.</p>
   {url_form()}
@@ -926,7 +923,7 @@ def locations_band():
     top = [c for c in CITIES if c["slug"] in ("houston", "dallas", "san-antonio", "austin", "fort-worth", "el-paso", "waco", "killeen", "temple", "lubbock", "corpus-christi", "college-station")]
     chips = "".join(f'<a href="{u(city_path(c))}">{esc(c["name"])}</a>' for c in top)
     return f"""<section class="section"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">Coast to coast</span><h2>Built in Texas. Working everywhere.</h2><p class="lede">Local market pages for every city we serve, starting in Texas.</p></div>
+  <div class="section-head reveal"><span class="eyebrow">Coast to coast</span><h2>HVAC marketing, market by market.</h2><p class="lede">A page for each market, built on real census, climate and license data.</p></div>
   <div class="city-links">{chips}<a class="all" href="{u('locations')}">All locations →</a></div>
 </div></section>"""
 
@@ -936,6 +933,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from guides import GUIDES, UPDATED as GUIDES_UPDATED, AUTHOR as GUIDES_AUTHOR
 from niches import NICHES
 from services import SERVICES
+from examples import EXAMPLES
 import re as _re
 
 
@@ -1133,6 +1131,50 @@ def getting_started_page():
     return page("getting-started", "What happens after you sign up", "Exactly what happens after an HVAC shop signs up with HVAC Marketing HQ: the 14-day build, the first 90 days, who does what, and what happens if you leave.", body, extra_head=faq_ld(GETTING_STARTED_FAQ))
 
 
+def site_mock(e):
+    cards = "".join(f"<span>{esc(c)}</span>" for c in e["cards"])
+    return f"""<figure class="mock" style="--m:{e['accent']}" role="img" aria-label="Example website for a fictional shop, {esc(e['shop'])}">
+  <div class="mock-bar" aria-hidden="true"><i></i><i></i><i></i><span>{esc(e['domain'])}</span></div>
+  <div class="mock-site" aria-hidden="true">
+    <div class="ms-top"><b>{esc(e['shop'])}</b><em>{esc(e['phone'])}</em></div>
+    <div class="ms-hero"><small>{esc(e['badge'])}</small><h4>{esc(e['h'])}</h4><p>{esc(e['p'])}</p><div class="ms-btns"><u>{esc(e['b1'])}</u><s>{esc(e['b2'])}</s></div></div>
+    <div class="ms-cards">{cards}</div>
+    <div class="ms-strip">{esc(e['strip'])}</div>
+  </div>
+  <figcaption><span class="mock-tag">Example · fictional shop</span><b>{esc(e['title'])}</b></figcaption>
+</figure>"""
+
+
+def examples_row():
+    return '<div class="mocks">' + "".join(site_mock(e) for e in EXAMPLES) + "</div>"
+
+
+def examples_page():
+    notes = "".join(f'<div class="card reveal"><h3>{esc(e["title"])}</h3><p>{esc(e["note"])}</p></div>' for e in EXAMPLES)
+    body = f"""<section class="page-head"><div class="wrap">
+  <div class="crumbs"><a href="{u('')}">Home</a> / Examples</div>
+  <span class="eyebrow">Examples</span>
+  <h1 style="max-width:20ch">See what you'd get, before you sign.</h1>
+  <p class="lede">Three example sites, a sample dashboard and a sample report card. Each is built for a fictional shop to show what we make. They're examples, not client work.</p>
+</div></section>
+<section class="section" style="padding-top:12px"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Example sites</span><h2>Built to book service calls.</h2></div>
+  {examples_row()}
+  <div class="grid three" style="margin-top:28px">{notes}</div>
+</div></section>
+<section class="section alt"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Example dashboard</span><h2>Your HQ Command Center.</h2><p class="lede">Calls, texts, booked jobs and reviews, live. Sample data for a fictional shop.</p></div>
+  {dashboard()}
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Example report card</span><h2>What lands in your inbox.</h2><p class="lede">A sample report card for a fictional shop. Yours grades your real Google profile, reviews, website and listings.</p></div>
+  {rc_samples()}
+</div></section>
+{report_card("Get your own report card")}
+"""
+    return page("examples", "Examples: sample HVAC websites, dashboard and report card", "Example HVAC websites, a sample HQ Command Center dashboard and a sample report card, all built for fictional shops to show what HVAC Marketing HQ makes.", body)
+
+
 def guides_page():
     cards = "".join(f'<a class="card guide-card reveal" href="{u(guide_path(g["slug"]))}"><span class="eyebrow">{g["read"]} min read</span><h3>{esc(g["title"])}</h3><p>{esc(g["desc"])}</p></a>' for g in GUIDES)
     body = f"""<section class="page-head"><div class="wrap">
@@ -1168,12 +1210,12 @@ def home():
   </div>
   {hero_visual()}
 </div></section>
-{works_with()}
 <div class="wrap terms-wrap">{terms_strip()}</div>
 
 <section class="section"><div class="wrap">
-  <div class="section-head center reveal"><span class="eyebrow">What you get</span><h2>Fast. Found. Booked.</h2><p class="lede">Three things decide who gets the job when a homeowner's AC quits. We handle all three.</p></div>
-  {pillars()}
+  <div class="section-head center reveal"><span class="eyebrow">What we build</span><h2>A site built to book service calls.</h2><p class="lede">Three example builds for fictional shops: a repair shop, a replacement shop and a light commercial shop.</p></div>
+  {examples_row()}
+  <p class="center" style="margin-top:24px"><a class="more" href="{u('examples')}">See all the examples →</a></p>
 </div></section>
 
 <section class="section alt"><div class="wrap">
@@ -1662,7 +1704,7 @@ def plans_page():
 <section class="section" style="padding-top:12px"><div class="wrap">
   {terms_strip()}
   {plans_cards()}
-  <p class="muted" style="margin-top:18px;font-size:.9rem">Founding rate: the first 25 shops keep the annual price on monthly billing, locked for as long as they stay. Normal texting, calling and AI use is included; large campaigns beyond your plan are billed at cost. <span class="tbd">Terms TBD</span></p>
+  <p class="muted" style="margin-top:18px;font-size:.9rem">Rate lock: the first 25 shops keep the annual price on monthly billing, locked for as long as they stay. Normal texting, calling and AI use is included; large campaigns beyond your plan are billed at cost. <span class="tbd">Terms TBD</span></p>
   {addons()}
 </div></section>
 <section class="section alt"><div class="wrap">{replaces()}</div></section>
@@ -1790,7 +1832,7 @@ def llms_txt():
     methods = "\n".join(f"- {n}: {line} " + "; ".join(items) + "." for n, line, items, _ in METHOD)
     return f"""# {BRAND}
 
-> {BRAND} builds websites, runs Google Business Profiles and sets up missed-call text-back and review requests for HVAC contractors. HVAC only. Starting in {AREA}, serving HVAC companies nationally.
+> {BRAND} builds websites, runs Google Business Profiles and sets up missed-call text-back and review requests for HVAC contractors. HVAC only, serving HVAC companies nationally.
 
 ## Quick facts
 - Website: https://{DOMAIN}
@@ -1837,6 +1879,7 @@ def build(out_dir):
     for sv in SERVICES:
         pages[sv["slug"]] = service_page(sv)
     pages["getting-started"] = getting_started_page()
+    pages["examples"] = examples_page()
     pages["locations"] = locations_page()
     pages["hvac-marketing-texas"] = texas_page()
     for c in CITIES:
