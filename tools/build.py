@@ -1048,6 +1048,15 @@ def guide_block(b):
     return ""
 
 
+def author_box():
+    return f"""<aside class="author-box"><img src="{a('img/logan-320.webp')}" width="96" height="96" alt="Logan, founder of HVAC Marketing HQ" loading="lazy">
+  <div><b>Logan</b><span>Founder, {esc(BRAND)} · Waco, Texas</span><p>{esc(BRAND)} works only with HVAC companies. Questions about this guide? <a href="{u('contact')}">Get in touch</a>.</p></div></aside>"""
+
+
+def byline():
+    return f'<p class="g-meta g-by"><img src="{a("img/logan-320.webp")}" width="28" height="28" alt="">By {esc(GUIDES_AUTHOR)} · Updated {GUIDES_UPDATED}</p>'
+
+
 def guide_page(g):
     toc = "".join(f'<li><a href="#s{n}">{esc(h)}</a></li>' for n, (h, _) in enumerate(g["sections"]))
     secs = "".join(f'<h2 id="s{n}">{esc(h)}</h2>' + "".join(guide_block(b) for b in blocks) for n, (h, blocks) in enumerate(g["sections"]))
@@ -1060,7 +1069,7 @@ def guide_page(g):
   <span class="eyebrow">Guide · {g['read']} min read</span>
   <h1>{esc(g['title'])}</h1>
   <p class="lede">{esc(g['desc'])}</p>
-  <p class="g-meta">By {esc(GUIDES_AUTHOR)} · Updated {GUIDES_UPDATED}</p>
+  {byline()}
 </div></section>
 <section class="section" style="padding-top:0"><div class="wrap g-wrap">
   <div class="g-take"><h2>Key takeaways</h2><ul class="ticks">{take}</ul></div>
@@ -1068,6 +1077,7 @@ def guide_page(g):
   <article class="g-body">{secs}
     <h2>Questions</h2>{faq(g['faq'])}
     <h2>Sources</h2><ul class="g-src">{src}</ul>
+    {author_box()}
   </article>
 </div></section>
 {guide_links(g["slug"])}
@@ -1077,7 +1087,7 @@ def guide_page(g):
 </div></section>
 """
     art = ld({"@context": "https://schema.org", "@type": "Article", "headline": g["title"], "description": g["desc"],
-              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0]}, "publisher": {"@type": "Organization", "name": BRAND},
+              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND},
               "dateModified": "2026-10-12", "mainEntityOfPage": f"https://{DOMAIN}/{route(guide_path(g['slug']))}"})
     return page(guide_path(g["slug"]), g["title"], g["desc"], body, extra_head=art + faq_ld(g["faq"]), has_form=False)
 
@@ -1494,7 +1504,7 @@ def pillar_page():
   <span class="eyebrow">The complete guide</span>
   <h1>HVAC marketing: how owner-run shops get found and booked</h1>
   <p class="lede">Everything that decides whether a homeowner calls your shop or the next one, in plain words, with a link to the detail on each part.</p>
-  <p class="g-meta">By {esc(GUIDES_AUTHOR)} · Updated {GUIDES_UPDATED}</p>
+  {byline()}
 </div></section>
 <section class="section" style="padding-top:0"><div class="wrap g-wrap">
   <div class="g-take"><h2>The short version</h2><ul class="ticks"><li>Homeowners pick from the map, so your Google profile and reviews matter most.</li><li>A lead you don't answer is wasted, so answering and following up are marketing too.</li><li>Past customers are the cheapest jobs you'll ever book. Remind them before each season.</li><li>Own everything: your site, domain, profile, reviews and customer list.</li></ul></div>
@@ -1532,11 +1542,12 @@ def pillar_page():
 <section class="section alt" id="s-faq"><div class="wrap g-wrap">
   <div class="section-head"><span class="eyebrow">Questions</span><h2>HVAC marketing questions owners ask</h2></div>
   {faq(PILLAR_FAQ)}
+  {author_box()}
 </div></section>
 {report_card()}
 """
     art = ld({"@context": "https://schema.org", "@type": "Article", "headline": "HVAC marketing: how owner-run shops get found and booked",
-              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0]}, "publisher": {"@type": "Organization", "name": BRAND}, "dateModified": BUILD_DATE})
+              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND}, "dateModified": BUILD_DATE})
     return page("hvac-marketing", "HVAC Marketing: The Complete Guide for Owner-Run Shops", "HVAC marketing explained: how to get found on Google and the map, answer and book every call, and turn jobs into reviews and repeat work. With costs, tools and FAQs.", body, extra_head=art + faq_ld(PILLAR_FAQ))
 
 
