@@ -19,7 +19,7 @@ TAGLINE = "Rank · Book · Repeat"
 DOMAIN = "hvacmarketinghq.com"
 EMAIL = "hello@" + DOMAIN
 CALL_LINK = "https://calendar.app.google/bm89Bh3ot8oEk3VA9"  # Google Calendar booking page (Logan, Oct 14)
-TURNSTILE_SITEKEY = None               # Cloudflare Turnstile site key; widget is skipped until set
+TURNSTILE_SITEKEY = "0x4AAAAAAFW5gSyWKqCFU_8y"  # Cloudflare Turnstile site key (public); secret is TURNSTILE_SECRET in Vercel
 # Founder video bubble (bottom-left). Logan records a 60-90s face-on intro; see video-script.md.
 FOUNDER_NAME = "Logan"
 FOUNDER_VIDEO = None                  # e.g. "video/founder.mp4" once recorded (also add a poster: "video/founder.jpg")

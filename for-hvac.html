@@ -97,7 +97,7 @@
           <p class="muted">Only used if you ask us to text you. We don't cold call.</p>
           <div class="field"><label for="rc-phone-HVAC">Mobile phone</label><input id="rc-phone-HVAC" type="tel" name="phone" required data-msg="Add a phone number." autocomplete="tel" pattern="[0-9()+.\- ]{10,}"></div>
           <label class="consent"><input type="checkbox" name="sms_consent" value="yes"><span>Text me about my report card. Message and data rates may apply. Message frequency varies. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms</a>.</span></label>
-          
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAFW5gSyWKqCFU_8y" data-theme="light"></div>
           <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="submit" class="btn btn-primary">Send my report card</button></div>
         </div>
         <p class="rc-error" role="alert"></p>
@@ -135,6 +135,6 @@
 </footer>
 
 <script src="/main.js?v=12a43f49" defer></script>
-
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>
