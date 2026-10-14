@@ -1264,6 +1264,21 @@
       "source": "/marketing",
       "destination": "/services/google-business-profile",
       "permanent": true
+    },
+    {
+      "source": "/hvac",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/plumbing",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/roofing",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }

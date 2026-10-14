@@ -167,7 +167,7 @@ def header(has_form=True):
         cols += f'<div class="mega-col"><p class="mega-h"><i>{ICON[icon]}</i>{esc(g)}</p>{links}</div>'
     niche_links = "".join(f'<a href="{u(n["slug"])}">{esc(n["name"])}<span>{esc(n["nav"])}</span></a>' for n in niches_sorted())
     res = [("hvac-marketing", "HVAC marketing guide", "The whole system on one page"), ("guides", "Guides", "Straight answers, every number sourced")] + ([("blog", "Blog", "Short answers to owners' questions")] if POSTS else []) + [("tools", "Free tools", "Calculators, no email needed"),
-           ("compare", "Compare agencies", "Honest side-by-sides, from their own terms"), ("getting-started", "Getting started", "What happens after you sign up"), ("about", "About us", "Who we are and how we work")]
+           ("compare", "Compare agencies", "Honest side-by-sides, from their own terms"), ("getting-started", "Getting started", "What happens after you sign up"), ("locations", "Locations", "HVAC marketing in your city"), ("about", "About us", "Who we are and how we work")]
     res_links = "".join(f'<a href="{u(k)}">{n}<span>{d}</span></a>' for k, n, d in res)
     rc = "#report-card" if has_form else u("") + "#report-card"
     return f"""<a class="skip" href="#main">Skip to content</a>
@@ -332,6 +332,9 @@ def crumbs_ld(body):
 def page(path, title, desc, body, extra_head="", has_form=True):
     robots = '<meta name="robots" content="noindex, nofollow">' if NOINDEX else ""
     turnstile = "" if PREVIEW or not TURNSTILE_SITEKEY else '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>'
+    if len(desc) > 160:  # keep descriptions inside what search results show
+        cut = desc[:158]
+        desc = cut[:cut.rfind(". ") + 1] if cut.rfind(". ") > 90 else cut[:cut.rfind(" ")].rstrip(",;:") + "..."
     full_title = title if title.endswith(BRAND) else f"{title} | {BRAND}"
     if len(full_title) > 65 and not title.endswith(BRAND):
         full_title = title  # keep long titles from being cut off in Google
@@ -496,7 +499,7 @@ def tech():
 
 def ownership():
     left = ["Your domain, registered in your name", "Your Google profile and every review on it", "Your site files and content", "Your customer list and every lead"]
-    right = ["An HQ Command Center dashboard you can open anytime", "Prices on the website, not after a sales call", "Month to month [TBD], no long contract", "Your number ported back if you leave"]
+    right = ["An HQ Command Center dashboard you can open anytime", "Prices on the website, not after a sales call", "Month to month, no long contract", "Your number ported back if you leave"]
     l = "".join(f"<li>{esc(x)}</li>" for x in left)
     r = "".join(f"<li>{esc(x)}</li>" for x in right)
     return f"""<div class="grid two">
@@ -679,7 +682,7 @@ def plans_teaser():
 def compare():
     rows = [
         ("Price", "Often $2,500+ a month, quoted after a sales call", "Software fees plus your own evenings", "$499 to $2,499 a month, on this site"),
-        ("Contract", "Often 12 months", "Monthly software subscriptions", "Month to month [TBD]"),
+        ("Contract", "Often 12 months", "Monthly software subscriptions", "Month to month"),
         ("Who owns the website", "Sometimes the agency, or you rebuild when you leave", "You", "You, always"),
         ("Missed-call text-back", "Add-on, if offered", "If you set it up yourself", "In every plan, 60 seconds guaranteed"),
         ("Reporting", "A monthly PDF", "Whatever you have time to check", "HQ Command Center, live anytime"),
@@ -725,10 +728,9 @@ def addons():
 
 
 def promise():
-    return """<div class="promise">
+    return f"""<div class="promise">
   <div class="card reveal"><span class="big">60 seconds</span><p>Every missed call gets a text back within 60 seconds.</p></div>
   <div class="card"><span class="big">14 days</span><p>Your new site is live within 14 days of getting your content.</p></div>
-  <div class="card"><span class="big">[N] reviews</span><p>An agreed number of new Google reviews in your first 90 days.</p></div>
 </div>
 <div class="moneyback reveal"><span class="big">30 days</span><div><h3>Money-back guarantee</h3><p>Not happy in your first 30 days after launch? Tell us and we refund your first month. No form to fill out, no argument. <span class="tbd">Build fee terms TBD</span></p></div></div>
 {demo_line()}
@@ -898,8 +900,10 @@ def city_insights(c):
         out.append(("A cooling season most of the year", f"{c['name']} averages about {days:.0f} days a year at 90°F or hotter. AC repair and replacement pages lead your site, and every missed call in the summer surge gets a text back."))
     elif hot >= 96:
         out.append(("Summers that break AC units", f"July highs average {deg(hot)} in {c['name']}. The hottest weeks bring the most calls and the most missed ones, so text-back and fast booking matter most then."))
-    else:
+    elif hot >= 85:
         out.append(("A long, busy summer", f"July highs average {deg(hot)} in {c['name']}. We build AC repair and replacement pages first and time tune-up texts for spring."))
+    else:
+        out.append(("A short cooling season", f"July highs average {deg(hot)} in {c['name']}, so AC calls bunch into a few hot weeks. Heat pump, furnace and air quality pages carry the rest of the year, and early-summer tune-up texts catch the rush."))
     if cold <= 33:
         out.append(("A real heating season", f"January lows average {deg(cold)}. Furnace and heat pump pages earn their keep here, and fall tune-up campaigns fill the schedule before the first cold snap."))
     else:
@@ -913,6 +917,19 @@ def city_insights(c):
     else:
         out.append(("Reviews decide it", "In a market this size, homeowners often pick between a handful of shops by star rating and how recent the reviews are. Steady review requests after every job are the fastest lever."))
     return out
+
+
+def an(word):
+    return "an" if word[:1].upper() in "AEIOU" else "a"
+
+
+def city_hook(c):
+    hot, cold = c["july_high_f"], c["jan_low_f"]
+    if hot >= 85:
+        return f"When it's {round(hot)}° in July, {an(c['name'])} {esc(c['name'])} homeowner with a dead AC calls the first shop that shows up and answers."
+    if cold <= 32:
+        return f"When January lows sit near {round(cold)}°, {an(c['name'])} {esc(c['name'])} homeowner with no heat calls the first shop that shows up and answers."
+    return f"Summers stay mild in {esc(c['name'])}, so heat pumps, tune-ups and the first hot week decide the year. Homeowners call the first shop that shows up and answers."
 
 
 def city_page(c):
@@ -936,10 +953,10 @@ def city_page(c):
 </div></section>
 """ if others else ""
     body = f"""<section class="page-head city-head"><div class="wrap">
-  <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('locations')}">Locations</a> / <a href="{u(state_key(st))}">{esc(st['name'])}</a> / {esc(c['name'])}</div>
+  <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('locations')}">Locations</a> / {"" if st["abbr"] == "DC" else f'<a href="{u(state_key(st))}">{esc(st["name"])}</a> / '}{esc(c['name'])}</div>
   <span class="eyebrow">{esc(c['county'])} · {esc(c['metro'])}</span>
   <h1 style="max-width:20ch">HVAC marketing in {esc(place(c).rstrip('.'))}.</h1>
-  <p class="lede">When it's {round(c['july_high_f'])}° in July, a {esc(c['name'])} homeowner with a dead AC calls the first shop that shows up and answers. We make sure that's you: a fast site, a Google profile that's actually run, and every missed call texted back in 60 seconds.</p>
+  <p class="lede">{city_hook(c)} We make sure that's you: a fast site, a Google profile that's actually run, and every missed call texted back in 60 seconds.</p>
   {url_form()}
 </div></section>
 <section class="section" style="padding-top:12px"><div class="wrap">
@@ -959,9 +976,22 @@ def city_page(c):
   <div class="section-head reveal"><span class="eyebrow">The method</span><h2>Rank. Book. Repeat.</h2><p class="lede">The same three jobs, run for {esc(c['name'])} shops every day.</p></div>
   {method_block()}
 </div></section>
+{local_links(c['name'])}
 {report_card(f"How does your shop stack up in {c['name']}?")}
 {other_html}"""
     return page(city_path(c), f"HVAC marketing in {c['name']}, {st['abbr']}", f"Websites, Google profiles and missed-call text-back for {place(c)} HVAC companies. July highs average {deg(c['july_high_f'])}; here's what that means for your marketing.", body)
+
+
+def local_links(where):
+    svc = ["website", "local-seo", "google-business-profile", "missed-call-text-back", "google-ads", "local-services-ads"]
+    svc_h = "".join(f'<a href="{u(k)}">{esc(svc_info(k)[0])}</a>' for k in svc)
+    reads = [(guide_path("google-map-pack-hvac"), "How HVAC shops get into the map pack"), (guide_path("hvac-seo-what-moves-rankings"), "HVAC SEO: what moves rankings"),
+             ("tools/missed-call-cost-calculator", "Missed call cost calculator"), ("tools/lsa-cost-calculator", "Local Services Ads cost calculator"), ("plans", "Plans and pricing")]
+    rd = "".join(f'<li><a href="{u(k)}">{esc(t)}</a></li>' for k, t in reads if k in ROUTES or k == "plans")
+    return f"""<section class="section"><div class="wrap split">
+  <div><span class="eyebrow">For {esc(where)} shops</span><h2>What we run for you.</h2><div class="city-links" style="margin-top:18px">{svc_h}</div></div>
+  <div class="card"><h3>Read before you hire anyone</h3><ul class="ticks">{rd}</ul></div>
+</div></section>"""
 
 
 def city_cards(cities):
@@ -990,6 +1020,7 @@ def texas_page():
   <div class="section-head reveal"><span class="eyebrow">Texas markets</span><h2>Pick your city.</h2><p class="lede">Each page shows that market's weather and what it means for your marketing.</p></div>
   <div class="city-grid">{city_cards(CITIES)}</div>
 </div></section>
+{local_links("Texas")}
 {report_card("See how your shop stacks up in your Texas town.")}
 """
     return page("hvac-marketing-texas", "HVAC marketing in Texas", "Websites, Google profiles and missed-call text-back for Texas HVAC contractors, from Houston to El Paso.", body)
@@ -1001,6 +1032,10 @@ def state_page(st):
     coldest = min(cs, key=lambda c: c["jan_low_f"] if c["jan_low_f"] is not None else 99)
     big = max(cs, key=lambda c: c["population_2020"] or 0)
     n = st["name"]
+    if len(cs) > 1:
+        weather_card = f'<div class="card reveal"><h3>Different weather, city to city</h3><p>July highs average {deg(hottest["july_high_f"])} in {esc(hottest["name"])}, while January lows average {deg(coldest["jan_low_f"])} in {esc(coldest["name"])}. Your site should talk about the weather your customers actually live with.</p></div>'
+    else:
+        weather_card = f'<div class="card reveal"><h3>Weather that drives the calls</h3><p>July highs average {deg(big["july_high_f"])} and January lows {deg(big["jan_low_f"])} in {esc(big["name"])}. Your site should talk about the weather your customers actually live with.</p></div>'
     body = f"""<section class="page-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('locations')}">Locations</a> / {esc(n)}</div>
   <span class="eyebrow">{esc(n)} · {len(cs)} markets</span>
@@ -1011,7 +1046,7 @@ def state_page(st):
 <section class="section" style="padding-top:12px"><div class="wrap">
   <h2 class="sr-only">What {esc(n)} means for your marketing</h2>
   <div class="grid three">
-    <div class="card reveal"><h3>Different weather, city to city</h3><p>July highs average {deg(hottest['july_high_f'])} in {esc(hottest['name'])}, while January lows average {deg(coldest['jan_low_f'])} in {esc(coldest['name'])}. Your site should talk about the weather your customers actually live with.</p></div>
+    {weather_card}
     <div class="card reveal"><h3>Big markets, crowded maps</h3><p>{esc(big['name'])} alone has {fnum(big['population_2020'])} people. In a market that size, a page for each part of town you serve helps you show up past your own neighborhood.</p></div>
     <div class="card reveal"><h3>Texting done right</h3><p>Every text we send for you is set up the right way: carrier registration and an opt-out on every message. We never cold text or cold call homeowners.</p></div>
   </div>
@@ -1020,6 +1055,7 @@ def state_page(st):
   <div class="section-head reveal"><span class="eyebrow">{esc(n)} markets</span><h2>Pick your city.</h2><p class="lede">Each page shows that market's weather and what it means for your marketing.</p></div>
   <div class="city-grid">{city_cards(cs)}</div>
 </div></section>
+{local_links(n)}
 {report_card(f"See how your shop stacks up in your {n} town.")}
 """
     names = [c["name"] for c in sorted(cs, key=lambda c: -(c["population_2020"] or 0))]
@@ -1203,6 +1239,19 @@ def niche_page(n):
     return page(n["slug"], n["title"], n["desc"], body, extra_head=faq_ld(n["faq"]))
 
 
+SERVICE_POSTS = {
+    "google-ads": ["how-much-to-spend-on-google-ads-hvac", "google-ads-vs-local-services-ads-hvac"],
+    "local-services-ads": ["google-local-services-ads-hvac", "google-ads-vs-local-services-ads-hvac"],
+    "facebook-ads": ["facebook-ads-for-hvac"],
+    "local-seo": ["hvac-seo-what-moves-rankings"],
+    "google-business-profile": ["hvac-seo-what-moves-rankings"],
+    "review-requests": ["get-more-google-reviews-hvac"],
+    "hvac-website-redesign": ["hvac-website-design"],
+    "missed-call-text-back": ["hvac-lead-generation-bought-vs-owned"],
+    "estimate-follow-up": ["hvac-lead-generation-bought-vs-owned"],
+}
+
+
 def service_page(sv):
     pains = deep_problem(sv.get("pains_h", "Where the calls leak."), sv["pains"])
     steps = "".join(f'<li class="flow-step reveal"><span class="n">{n+1}</span><h3>{esc(a_)}</h3><p>{esc(b)}</p></li>' for n, (a_, b) in enumerate(sv["steps"]))
@@ -1211,7 +1260,11 @@ def service_page(sv):
     rel = [k for k in grp[2] if k != sv["slug"]] + [k for g in SERVICE_GROUPS if g is not grp for k in g[2][:1]]
     others = "".join(f'<a class="card guide-card" href="{u(k)}"><span class="eyebrow">Service</span><h3>{esc(svc_info(k)[0])}</h3><p>{esc(svc_info(k)[1])}</p></a>' for k in rel[:4])
     g = next((x for x in GUIDES if x["slug"] == sv.get("guide")), None)
-    guide = f'<p style="margin-top:18px">Read more: <a href="{u(guide_path(g["slug"]))}">{esc(g["title"])}</a></p>' if g else ""
+    extra = [(guide_path(p_["slug"]), p_["title"]) for p_ in POSTS if p_["slug"] in SERVICE_POSTS.get(sv["slug"], [])]
+    extra += [("tools/" + t["slug"], t["title"]) for t in TOOLS if t["service"] == sv["slug"]]
+    if g:
+        extra.insert(0, (guide_path(g["slug"]), g["title"]))
+    guide = ('<ul class="read-more">' + "".join(f'<li><a href="{u(k)}">{esc(t)}</a></li>' for k, t in extra) + "</ul>") if extra else ""
     calc = f"""<section class="section alt"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">The math</span><h2>What missed calls cost you.</h2><p class="lede">Put in your own numbers.</p></div>
   {missed_call_calc()}
@@ -2322,7 +2375,7 @@ def legal_page(key):
 <p>The promises on this website are written into every client service agreement in the same words:</p>
 <ul>
 <li><b>Ownership:</b> your domain is registered in your name, and your website content, Google Business Profile, reviews, customer list and leads are yours. If you leave, we hand over the site files and help move your phone number.</li>
-<li><b>Money-back guarantee:</b> if you're not happy in the first 30 days after launch, tell us and we refund your first month's fee. [Build fee terms TBD]</li>
+<li><b>Money-back guarantee:</b> if you're not happy in the first 30 days after launch, tell us and we refund your first month's fee.</li>
 <li><b>Text-back:</b> every missed call to your forwarded line gets a text back within 60 seconds while the service is active.</li>
 <li><b>Launch:</b> your new site goes live within 14 days of receiving your content.</li>
 <li><b>Billing:</b> monthly billing starts when you go live, not when you sign.</li>
@@ -2405,7 +2458,7 @@ Shops that can't take on more work, want ads with nobody answering the calls, or
 
 NICHE_URL = {"hvac-marketing-residential-replacement": "residential", "hvac-marketing-light-commercial": "commercial"}
 OFFER_URL = {"website": "hvac-websites", "app": "lead-system"}
-OLD_REDIRECTS = {"examples": "", "marketing": "google-business-profile"}  # pages removed Oct 13
+OLD_REDIRECTS = {"examples": "", "marketing": "google-business-profile", "hvac": "", "plumbing": "", "roofing": ""}  # pages removed Oct 13
 
 
 def build_routes():
@@ -2445,7 +2498,7 @@ def write_redirects(site_dir):
 def build(out_dir):
     build_routes()
     pages = {"index": home(), "report-card": report_card_page(), "method": method_page(), "plans": plans_page(), "privacy": legal_page("privacy"), "terms": legal_page("terms"), "404": not_found()}
-    for k, _, _ in ALL_TRADES:
+    for k, _, _ in TRADES:
         pages[k] = trade_page(k)
     for k, _, _ in OFFERINGS:
         pages[k] = offer_page(k)
