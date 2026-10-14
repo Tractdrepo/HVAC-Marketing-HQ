@@ -61,6 +61,7 @@ Still missing, in order:
 - [ ] Search Console + Bing Webmaster + our own Google Business Profile (Logan's accounts).
 - [ ] About page with Logan's real story, and an author page for guides (trust signals Google looks for).
 - [ ] City pages: Places competitor count + top-5 table, keyword volume + CPC, Census housing age. Then more states.
+- [x] More states (Oct 14): Arizona, Georgia, North Carolina, Florida, 5 cities each. Add more by dropping data/states/<slug>.json.
 - [ ] Cross-links: city pages to specialty and service pages and back.
 - [ ] 16 meta descriptions over 160 characters get cut off; trim.
 - [ ] Content volume: skillmammoth has 246 posts and 17 free tools; we have 7 guides and 1 calculator. Plan 2 to 4 guides a month and a few free tools (they earn links).
