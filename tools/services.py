@@ -374,7 +374,7 @@ SERVICES = [
         "h1": "Google Ads for HVAC, run to book jobs, not to spend budget.",
         "desc": "Google Ads management for HVAC contractors: search campaigns built around AC repair, heating and replacement searches in your service area, with every call tracked to a booked job. Ad spend paid straight to Google, never marked up.",
         "lede": "Ads put you above the map the same day you turn them on. They also burn money fast when they show for the wrong searches, in the wrong towns, at hours nobody answers. We build and run your search campaigns around the jobs you want, and judge them by booked jobs, not clicks.",
-        "plan": "An add-on to any plan. Your ad spend is billed by Google to your own card and never marked up. Management is quoted on a call.",
+        "plan": "An add-on to any plan. Management is a flat $299 a month. Your ad spend is billed by Google to your own card and never marked up.",
         "pains": [
             ("Paying for the wrong searches", "Broad keywords match DIY questions, job seekers and parts shoppers. Every one of those clicks costs the same as a real customer."),
             ("Ads running when nobody answers", "A click at 9 PM that hits voicemail is money spent on the shop down the street."),
@@ -412,7 +412,7 @@ SERVICES = [
         "h1": "Local Services Ads for HVAC, set up right and watched every week.",
         "desc": "Local Services Ads management for HVAC contractors: verification, budget, service types and lead disputes handled for you, with your reviews and response time kept strong so your ads show more.",
         "lede": "Local Services Ads sit at the very top of Google, with a badge and your star rating, and you pay for leads instead of clicks. They also need verification, the right service types, fast answers and someone to dispute the leads that weren't real. We handle all of it.",
-        "plan": "An add-on to any plan. Lead charges are billed by Google to your own account and never marked up. Management is quoted on a call.",
+        "plan": "An add-on to any plan. Management is a flat $299 a month. Lead charges are billed by Google to your own account and never marked up.",
         "pains": [
             ("Stuck in verification", "Licenses, insurance and background checks have to match exactly, or the ads never go live."),
             ("Paying for bad leads", "Wrong service, wrong area or spam calls can be disputed, but only if someone checks every lead."),
@@ -450,7 +450,7 @@ SERVICES = [
         "h1": "Facebook and Instagram ads for HVAC, aimed at the season ahead.",
         "desc": "Facebook and Instagram ads for HVAC contractors: seasonal tune-up offers, maintenance plan sign-ups and retargeting for people who visited your site, in the towns you serve.",
         "lede": "Nobody scrolls Facebook looking for an AC repair. But homeowners will book a spring tune-up or join a maintenance plan when the offer shows up at the right time. We run Meta ads for those jobs, plus retargeting so site visitors see you again.",
-        "plan": "An add-on to any plan. Ad spend is billed by Meta to your own account and never marked up. Management is quoted on a call.",
+        "plan": "An add-on to any plan. Management is a flat $299 a month. Ad spend is billed by Meta to your own account and never marked up.",
         "pains": [
             ("Selling emergencies on social", "People with a dead AC search Google. Facebook works for planned jobs, not emergencies."),
             ("Boosting posts at random", "A boosted post with no offer and no follow-up gets likes, not bookings."),
@@ -487,7 +487,7 @@ SERVICES = [
         "h1": "An AI receptionist that answers your HVAC calls when you can't.",
         "desc": "AI phone answering for HVAC contractors: when nobody can pick up, an AI receptionist answers in your shop's name, takes the details, books or flags urgent calls and texts you a summary.",
         "lede": "Text-back catches the callers who hang up. AI answering catches the ones who'd rather talk. When your line rings out, after hours or on your busiest days, an AI receptionist answers in your shop's name, gets the problem and the address, and either books the call or flags it as urgent.",
-        "plan": "An add-on to any plan. Quoted on a call, based on your call volume.",
+        "plan": "An add-on to any plan, for a flat $299 a month.",
         "pains": [
             ("Rings out on busy days", "The heat wave that fills your schedule is when the most calls go unanswered."),
             ("After-hours calls go to voicemail", "Most people won't leave one. They call the next shop."),

@@ -29,7 +29,7 @@ Pages and structure
 - [ ] "Slow season" section: tune-ups, maintenance plans, win-back texts
 - [ ] About page (Logan's story); reviews and case-study pages once we have founding clients, every quote linked to its public Google review
 Rule: never imply years in business, clients served or results. Examples page and mockups removed Oct 13 at Logan's call. Real client work goes up only after we have it, with the shop's permission.
-Skip at our price: photo and video shoots, podcasts, books, webinars, gated courses, paid ad management
+Skip at our price: photo and video shoots, podcasts, books, webinars, gated courses
 
 ## 2. SEO (essential, right after design)
 - [ ] Turn indexing on: drop NOINDEX in build.py and the X-Robots-Tag header in vercel.json, robots.txt allows all, submit sitemap in Google Search Console (Logan verifies the domain)
@@ -76,4 +76,4 @@ Next, in order:
 - [ ] Guide format upgrades: author box + author page, TL;DR, benchmark tables, 90-day plan. Needs Logan's bio/photo.
 - [x] Homeowner path on home (Oct 13)
 - [ ] Blog volume: 2 to 4 HVAC guides a month in clusters.
-- Skipped on purpose: results strips, logos, testimonials, awards, case studies (no proof yet), fake scarcity, unsourced stats, multi-trade links, ad management pages, the top banner (Logan removed it).
+- Skipped on purpose: results strips, logos, testimonials, awards, case studies (no proof yet), fake scarcity, unsourced stats, multi-trade links, the top banner (Logan removed it).

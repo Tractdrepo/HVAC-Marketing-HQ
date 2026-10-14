@@ -61,10 +61,10 @@ LIGHTHOUSE = {"scores": [("Performance", 99), ("Accessibility", 100), ("Best pra
 LIGHTHOUSE_LCP_DESKTOP = "0.4s"
 
 ADDONS = [
-    ("Google Ads management (ad spend billed to you, no markup)", "Quoted on a call"),
-    ("Local Services Ads management", "Quoted on a call"),
-    ("Facebook and Instagram ads", "Quoted on a call"),
-    ("AI phone answering, after hours and during the rush", "$[X]/mo"),
+    ("Google Ads management (ad spend billed to you, no markup)", "$299/mo"),
+    ("Local Services Ads management", "$299/mo"),
+    ("Facebook and Instagram ads", "$299/mo"),
+    ("AI phone answering, after hours and during the rush", "$299/mo"),
     ("Extra page", "$[X] each"),
     ("Directory listings sync", "$[X]/mo"),
     ("Extra tracked phone number", "$[X]/mo"),
@@ -2334,7 +2334,7 @@ def llms_txt():
 - Who it serves: residential and light commercial HVAC contractors
 - Main offer: a free report card that grades an HVAC company's Google profile, reviews, website and listings against nearby competitors
 - Guarantees: every missed call texted back within 60 seconds; new site live within 14 days of receiving content; first month refunded if the client is unhappy in the first 30 days after launch
-- Paid ads: Google Ads, Local Services Ads and Facebook/Instagram ads managed as add-ons to any plan; ad spend billed by the platform to the client, never marked up
+- Paid ads: Google Ads, Local Services Ads and Facebook/Instagram ads managed as add-ons to any plan at $299/month each (AI phone answering also $299/month); ad spend billed by the platform to the client, never marked up
 - Does not promise: #1 rankings, a set number of jobs, a fixed cost per lead, or AI assistant recommendations
 - Ownership: the client owns their domain, website content, Google profile and reviews
 
