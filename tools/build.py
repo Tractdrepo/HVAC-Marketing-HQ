@@ -960,9 +960,9 @@ def market_block(c):
     return f"""<section class="section"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">{esc(c['name'])} on Google</span><h2>The {esc(c['name'])} HVAC map, in numbers.</h2><p class="lede">What a homeowner sees when they search for HVAC help in {esc(c['name'])}. {esc(gap)}</p></div>
   <div class="cfacts reveal">{st_html}</div>
-  <h3 style="margin-top:34px">Most-reviewed HVAC shops in {esc(c['name'])}</h3>
+  <h3 style="margin-top:34px">Most-reviewed HVAC shops around {esc(c['name'])}</h3>
   {table}
-  <p class="csrc">Data from Google, pulled {esc(d.get("pulled", ""))}. Search: "{esc(d.get("query", ""))}". Refreshed monthly. Listed for context only; these shops are not our clients.</p>
+  <p class="csrc">Data from Google, pulled {esc(d.get("pulled", ""))}. Search: "{esc(d.get("query", ""))}". Refreshed monthly. Google includes shops from nearby towns. Listed for context only; these shops are not our clients.</p>
 </div></section>"""
 
 
