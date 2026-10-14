@@ -1,8 +1,9 @@
 // Report card request handler (Vercel serverless function).
 // Verifies Turnstile, checks the fields, then emails the lead to the team through Resend.
-// Env vars: TURNSTILE_SECRET, RESEND_API_KEY, LEAD_TO (e.g. reports@yourdomain), LEAD_FROM (verified sender).
+// Env vars: TURNSTILE_SECRET (needed for automatic reports), RESEND_API_KEY, LEAD_TO (e.g. reports@yourdomain), LEAD_FROM (verified sender).
 // Automatic report card (grader/): REPORT_CARD_AUTO=on, GOOGLE_PLACES_API_KEY, ANTHROPIC_API_KEY,
-// PAGESPEED_API_KEY (optional), GRADER_MODEL (optional).
+// PAGESPEED_API_KEY (optional), GRADER_MODEL (optional), ANTHROPIC_WORKSPACE_ID (optional),
+// REPORT_FROM (optional), REPORT_TEST_EMAILS (optional), UPSTASH_REDIS_REST_URL/_TOKEN (optional, shared caps).
 
 const hits = new Map(); // best-effort per-instance rate limit
 const LIMIT = 5;
@@ -14,6 +15,46 @@ function rateLimited(ip) {
   list.push(now);
   hits.set(ip, list);
   return list.length > LIMIT;
+}
+
+// Caps on automatic reports (the Zero Vacancy rules): one per email a day, one per website a day,
+// 20 an hour in all. Shared across servers when Upstash Redis is connected in Vercel; otherwise each
+// server copy counts on its own.
+const counts = new Map();
+const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+async function bump(key, ttlSec) {
+  if (REDIS_URL && REDIS_TOKEN) {
+    try {
+      const r = await fetch(`${REDIS_URL}/pipeline`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${REDIS_TOKEN}`, "Content-Type": "application/json" },
+        body: JSON.stringify([["INCR", key], ["EXPIRE", key, String(ttlSec), "NX"]]),
+        signal: AbortSignal.timeout(3000),
+      });
+      if (r.ok) return Number((await r.json())[0].result);
+    } catch { /* fall back to this server's own count */ }
+  }
+  const now = Date.now();
+  const c = counts.get(key);
+  const next = c && c.until > now ? { n: c.n + 1, until: c.until } : { n: 1, until: now + ttlSec * 1000 };
+  counts.set(key, next);
+  return next.n;
+}
+// Addresses in REPORT_TEST_EMAILS (comma separated) skip the daily caps, for testing.
+const testers = () => (process.env.REPORT_TEST_EMAILS || "").toLowerCase().split(",").map((x) => x.trim()).filter(Boolean);
+async function autoBlocked(lead) {
+  if (testers().includes(lead.email.toLowerCase())) return (await bump(`rc:hour:${Math.floor(Date.now() / 3600000)}`, 3600)) > 20 ? "over 20 reports this hour" : null;
+  const site = lead.website.toLowerCase().replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/.*$/, "");
+  const [e, w, h] = await Promise.all([
+    bump(`rc:email:${lead.email.toLowerCase()}`, 86400),
+    bump(`rc:site:${site}`, 86400),
+    bump(`rc:hour:${Math.floor(Date.now() / 3600000)}`, 3600),
+  ]);
+  if (e > 1) return "this email already got a report today";
+  if (w > 1) return "this website was already graded today";
+  if (h > 20) return "over 20 reports this hour";
+  return null;
 }
 
 const BOOKING_URL = "https://calendar.app.google/bm89Bh3ot8oEk3VA9";
@@ -28,6 +69,12 @@ module.exports = async function handler(req, res) {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ error: "Method not allowed." });
   }
+  // Only our own pages may post here, and only as JSON (blocks other sites and plain HTML forms).
+  const origin = String(req.headers.origin || "");
+  if (origin && !/^https:\/\/(www\.)?hvacmarketinghq\.com$|^https:\/\/[a-z0-9-]+\.vercel\.app$|^http:\/\/localhost(:\d+)?$/.test(origin)) {
+    return res.status(403).json({ error: "Please use the form on hvacmarketinghq.com." });
+  }
+  if (!/application\/json/i.test(String(req.headers["content-type"] || ""))) return res.status(415).json({ error: "Please use the form on the site." });
   const ip = clean(req.headers["x-forwarded-for"] || "", 100).split(",")[0].trim() || "unknown";
   if (rateLimited(ip)) return res.status(429).json({ error: "Too many requests. Please try again in a few minutes." });
 
@@ -62,8 +109,12 @@ module.exports = async function handler(req, res) {
   }).then((r) => r.json()).catch(() => ({ success: false }));
   if (!verify.success) return res.status(400).json({ error: "We couldn't verify you're human. Please try again." });
 
-  const auto = process.env.REPORT_CARD_AUTO === "on" && Boolean(process.env.GOOGLE_PLACES_API_KEY);
-  const rows = Object.entries({ ...lead, report_card: auto ? "grading automatically; a copy will follow" : "send by hand" }).map(([k, v]) => `<tr><td><b>${k}</b></td><td>${escapeHtml(v)}</td></tr>`).join("");
+  // Automatic reports spend API money, so they need the human check (Turnstile) and the caps above.
+  let auto = process.env.REPORT_CARD_AUTO === "on" && Boolean(process.env.GOOGLE_PLACES_API_KEY);
+  let handWhy = auto ? null : "automatic report cards are off";
+  if (auto && !process.env.TURNSTILE_SECRET) { auto = false; handWhy = "TURNSTILE_SECRET is not set in Vercel"; }
+  if (auto) { handWhy = await autoBlocked(lead); if (handWhy) auto = false; }
+  const rows = Object.entries({ ...lead, report_card: auto ? "grading automatically; a copy will follow" : `send by hand (${handWhy})` }).map(([k, v]) => `<tr><td><b>${k}</b></td><td>${escapeHtml(v)}</td></tr>`).join("");
   const sent = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
@@ -77,6 +128,7 @@ module.exports = async function handler(req, res) {
   }).catch(() => null);
   if (!sent || !sent.ok) return res.status(502).json({ error: "Something went wrong on our end. Please try again." });
 
+  if (!auto && process.env.REPORT_CARD_AUTO === "on" && !/today/.test(handWhy || "")) await tellShop(lead);
   if (auto) {
     // Grade after answering, so the visitor isn't kept waiting.
     const job = autoReport(lead).catch((err) => console.error("auto report failed", err));
@@ -95,12 +147,26 @@ function sendEmail(msg) {
   }).then((r) => (r.ok ? r : Promise.reject(new Error(`Resend ${r.status}`))));
 }
 
+// The shop was told to expect an email, so when the automatic report can't go out they hear that a
+// person will send it, instead of nothing.
+function tellShop(lead) {
+  const from = process.env.REPORT_FROM || `Logan at HVAC Marketing HQ <${(process.env.LEAD_FROM.match(/<([^>]+)>/) || [, process.env.LEAD_FROM])[1].trim()}>`;
+  return sendEmail({
+    from,
+    to: [lead.email],
+    reply_to: process.env.LEAD_TO,
+    subject: `Your report card: ${lead.business}`,
+    text: `Hi ${lead.first_name},\n\nThanks for asking for a report card for ${lead.business}. Our automatic check couldn't finish this one, so I'll put it together myself and send it within one business day.\n\nIf you have a question in the meantime, just reply to this email.\n\nLogan\nHVAC Marketing HQ`,
+  }).catch((err) => console.error("shop notice failed", err));
+}
+
 // Tell the team the automatic report didn't go out, so it can be sent by hand.
-function tellTeam(lead, why) {
+async function tellTeam(lead, why, { shop = true } = {}) {
+  if (shop) await tellShop(lead);
   return sendEmail({
     to: [process.env.LEAD_TO],
     reply_to: lead.email,
-    subject: `Send by hand: report card for ${lead.business}`,
+    subject: `NEEDS YOU: report card for ${lead.business}`,
     text: `The automatic report card for ${lead.business} (${lead.website}) did not go out: ${why}.\nSend it by hand to ${lead.first_name} at ${lead.email}.`,
   }).catch((err) => console.error("team notice failed", err));
 }
@@ -123,7 +189,7 @@ async function autoReport(lead) {
     const from = process.env.REPORT_FROM || `Logan at HVAC Marketing HQ <${addr}>`;
     await sendEmail({ from, to: [lead.email], reply_to: process.env.LEAD_TO, subject: r.subject, html: r.html, text: r.text });
   } catch (err) {
-    return tellTeam(lead, `the email failed (${err.message})`);
+    return tellTeam(lead, `the email failed (${err.message})`, { shop: false });
   }
   // The team's copy: what ran and what didn't, then the report exactly as the shop got it.
   const note = teamNote(result, lead, Date.now() - started);
