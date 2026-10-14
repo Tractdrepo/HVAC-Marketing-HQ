@@ -9,7 +9,9 @@ let client;
 async function getClient() {
   if (!client) {
     const { default: Anthropic } = await import('@anthropic-ai/sdk');
-    client = new Anthropic();
+    // A key made outside a workspace needs the workspace named on every request.
+    const ws = process.env.ANTHROPIC_WORKSPACE_ID;
+    client = new Anthropic(ws ? { defaultHeaders: { 'anthropic-workspace-id': ws } } : {});
   }
   return client;
 }

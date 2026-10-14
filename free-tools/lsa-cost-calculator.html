@@ -9,7 +9,7 @@
 
 <link rel="preload" href="/fonts/Archivo-600-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/IBMPlexSans-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css?v=224b9076">
+<link rel="stylesheet" href="/styles.css?v=3d058fd2">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -108,7 +108,7 @@
           <h3>What's the business called?</h3>
           <p class="muted">The name on your Google profile, so we grade the right one.</p>
           <div class="field"><label for="rc-biz-HVAC">Business name</label><input id="rc-biz-HVAC" type="text" name="business" required data-msg="Add your business name." autocomplete="organization"></div>
-          <div class="field"><label for="rc-town-HVAC">Main town and state</label><input id="rc-town-HVAC" type="text" name="town" placeholder="Waco, TX" required data-msg="Add your main town and state, like Waco, TX." autocomplete="address-level2"></div>
+          <div class="field"><label for="rc-town-HVAC">Main town and state</label><input id="rc-town-HVAC" type="text" name="town" placeholder="Start typing, like Dallas" required data-msg="Add your main town and state, like Dallas, TX." autocomplete="off" data-towns role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="rc-town-HVAC-list"><ul class="town-suggest" id="rc-town-HVAC-list" role="listbox" hidden></ul></div>
           <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="button" class="btn btn-primary" data-next>Next</button></div>
         </div>
         <div class="rc-step">
@@ -160,7 +160,7 @@
 </footer>
 
 
-<script src="/main.js?v=a16bf3c2" defer></script>
+<script src="/main.js?v=58fe6c19" defer></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>

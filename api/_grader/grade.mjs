@@ -23,7 +23,7 @@ export async function collectFacts(input, env = process.env) {
   let gp = { profile: null, reviews: null };
   if (google) {
     try {
-      place = await findBusiness({ ...input, town, state }, google);
+      place = await findBusiness({ ...input, town, state }, google, trade);
       if (place) {
         town = townOf(place) || town;
         state = stateOf(place) || state;

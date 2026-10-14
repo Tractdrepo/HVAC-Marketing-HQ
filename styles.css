@@ -410,7 +410,12 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .rc-form { background: var(--panel); border: 1px solid var(--line-2); border-radius: 22px; padding: 28px; position: relative; }
 .rc-progress { display: flex; gap: 6px; margin-bottom: 22px; }
 .rc-progress i { flex: 1; height: 4px; border-radius: 4px; background: rgba(15, 23, 42, .08); }
-.rc-progress i.on { background: var(--grad); }
+/* One gradient across the four bars: orange on step 1, blue by step 4 */
+.rc-progress i.on { background: linear-gradient(90deg, #ff6a2b 0%, #7b6cf0 55%, #1d8fe0 100%); background-size: 400% 100%; }
+.rc-progress i.on:nth-child(1) { background-position: 0% 0; }
+.rc-progress i.on:nth-child(2) { background-position: 33.333% 0; }
+.rc-progress i.on:nth-child(3) { background-position: 66.667% 0; }
+.rc-progress i.on:nth-child(4) { background-position: 100% 0; }
 .rc-step { display: none; }
 .rc-step.on { display: block; }
 .rc-step h3 { font-size: 1.4rem; margin-bottom: 6px; }
@@ -989,3 +994,14 @@ main > .section.dark::before { display: none; }
 }
 .site-foot { position: relative; }
 .site-foot::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, #47b8ff, #ff6a2b); opacity: .55; }
+
+/* Town suggestions in the report card form */
+.field:has(.town-suggest) { position: relative; }
+.town-suggest { display: block; position: absolute; z-index: 5; left: 0; right: 0; margin: 4px 0 0; padding: 4px; list-style: none; background: #fff; border: 1px solid var(--line-2); border-radius: var(--radius-sm); box-shadow: 0 14px 34px rgba(15, 23, 42, .16); max-height: 264px; overflow-y: auto; }
+.town-suggest[hidden] { display: none; }
+.town-suggest li { display: block; padding: 10px 12px; border-radius: 7px; cursor: pointer; color: #0f1a2a; font-size: .97rem; }
+.town-suggest li b { font-weight: 600; }
+.town-suggest li[aria-selected="true"], .town-suggest li:hover { background: #eef4fb; }
+#report-card .town-suggest { background: #0f1a2c; border-color: var(--line-2); }
+#report-card .town-suggest li { color: var(--text); }
+#report-card .town-suggest li[aria-selected="true"], #report-card .town-suggest li:hover { background: rgba(255, 255, 255, .08); }

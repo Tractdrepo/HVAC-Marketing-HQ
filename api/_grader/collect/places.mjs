@@ -1,5 +1,6 @@
 // Google Places API (New). Needs GOOGLE_PLACES_API_KEY.
 import { categoryMatches } from '../score.mjs';
+import { nameMatches } from '../names.mjs';
 
 const ENDPOINT = 'https://places.googleapis.com/v1/places:searchText';
 const DETAIL_FIELDS = ['id', 'displayName', 'primaryType', 'primaryTypeDisplayName', 'rating', 'userRatingCount',
@@ -26,12 +27,17 @@ export const host = (u) => { try { return new URL(/^https?:/.test(u) ? u : `http
 const norm = (s) => (s || '').toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
 
 // Find the business itself. Prefer a result whose website is on the same domain.
-export async function findBusiness({ businessName, website, town, state }, key) {
+// Owners type their name a little differently than Google shows it ("Heating and Air" vs "Heat & Air"),
+// and profiles often link a different page or domain, so match on the distinctive name words too.
+const domainKey = (h) => (h || '').split('.').slice(-2, -1)[0] || '';
+export async function findBusiness({ businessName, website, town, state }, key, trade) {
   const where = [town, state].filter(Boolean).join(', ');
   const site = host(website);
   const pick = (results) => results.find((p) => site && host(p.websiteUri) === site)
+    || results.find((p) => site && domainKey(host(p.websiteUri)) === domainKey(site))
     || results.find((p) => norm(p.displayName?.text) === norm(businessName))
     || results.find((p) => norm(p.displayName?.text).includes(norm(businessName)) || norm(businessName).includes(norm(p.displayName?.text)))
+    || (trade && results.find((p) => nameMatches(`${p.displayName?.text} ${host(p.websiteUri) || ''}`, businessName, trade, town)))
     || null;
   const queries = [...new Set([where ? `${businessName}, ${where}` : businessName, site, businessName].filter(Boolean))];
   for (const q of queries) {

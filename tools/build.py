@@ -237,7 +237,7 @@ def rc_form(trade="HVAC", key=None, lazy_turnstile=False):
           <h3>What's the business called?</h3>
           <p class="muted">The name on your Google profile, so we grade the right one.</p>
           <div class="field"><label for="rc-biz-{key}">Business name</label><input id="rc-biz-{key}" type="text" name="business" required data-msg="Add your business name." autocomplete="organization"></div>
-          <div class="field"><label for="rc-town-{key}">Main town and state</label><input id="rc-town-{key}" type="text" name="town" placeholder="Waco, TX" required data-msg="Add your main town and state, like Waco, TX." autocomplete="address-level2"></div>
+          <div class="field"><label for="rc-town-{key}">Main town and state</label><input id="rc-town-{key}" type="text" name="town" placeholder="Start typing, like Dallas" required data-msg="Add your main town and state, like Dallas, TX." autocomplete="off" data-towns role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="rc-town-{key}-list"><ul class="town-suggest" id="rc-town-{key}-list" role="listbox" hidden></ul></div>
           <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="button" class="btn btn-primary" data-next>Next</button></div>
         </div>
         <div class="rc-step">
@@ -1831,6 +1831,32 @@ def blog_page():
     return page("blog", "HVAC Marketing Blog", "Short, sourced posts for HVAC owners on Google Ads, Local Services Ads, SEO, reviews, websites and lead generation.", body)
 
 
+def towns_json():
+    """Town suggestions for the report card form: our city pages first (biggest first), then their
+    nearby towns, then every US place in data/us-cities.csv (kelvins/US-Cities-Database, MIT)."""
+    import csv
+    out, seen = [], set()
+    def add(t):
+        if t.lower() not in seen:
+            seen.add(t.lower()); out.append(t)
+    with open(os.path.join(os.path.dirname(_DATA), "us-cities.csv"), newline="") as f:
+        places = sorted({(r["CITY"], r["STATE_CODE"]) for r in csv.DictReader(f) if r["CITY"] and r["STATE_CODE"]})
+    real = {f"{c}, {st}".lower() for c, st in places}
+    big = sorted(ALL_CITIES, key=lambda c: -(c.get("population_2020") or 0))
+    big_names = {c["name"].lower(): c["_st"]["abbr"] for c in big}
+    for c in big:
+        add(f'{c["name"]}, {c["_st"]["abbr"]}')
+    for c in big:
+        st = c["_st"]["abbr"]
+        for n in c.get("nearby") or []:
+            # "Nearby" can cross a state line (Jersey City next to New York), so keep only real towns in this state.
+            if f"{n}, {st}".lower() in real and big_names.get(n.lower(), st) == st:
+                add(f"{n}, {st}")
+    for c, st in places:
+        add(f"{c}, {st}")
+    return json.dumps(out, separators=(",", ":"))
+
+
 def sitemap_xml(paths):
     urls = "".join(f"<url><loc>https://{DOMAIN}/{p_}</loc><lastmod>{BUILD_DATE}</lastmod></url>" for p_ in paths)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n'
@@ -1841,7 +1867,7 @@ def home():
     body = f"""<section class="hero"><div class="hero-grid-bg" aria-hidden="true"></div><div class="wrap hero-grid">
   <div>
     <span class="chip-top"><i>❄</i>Built only for HVAC contractors</span>
-    <h1>Show up first. <span class="grad">Book every call.</span></h1>
+    <h1>Rank higher. <span class="grad">Book every call.</span></h1>
     <p class="lede">We build your website, run your Google profile and text back every missed call in 60 seconds, guaranteed. Start with a free report card on how you stack up locally.</p>
     {url_form()}
     <div class="hero-points"><span>Live in 14 days</span><span>We run it for you</span><span>You own everything</span></div>
@@ -2576,6 +2602,8 @@ def build(out_dir):
             f.write(content)
     with open(os.path.join(out_dir, "llms.txt"), "w") as f:
         f.write(llms_txt())
+    with open(os.path.join(out_dir, "towns.json"), "w") as f:
+        f.write(towns_json())
     skip = {"404", "hvac", "plumbing", "roofing", "your-report"}
     paths = ["" if n == "index" else route(n) for n in pages if n not in skip]
     with open(os.path.join(out_dir, "sitemap.xml"), "w") as f:

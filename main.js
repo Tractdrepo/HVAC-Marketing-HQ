@@ -174,6 +174,60 @@
     });
   });
 
+  // Town box: suggest "City, ST" as they type, from /towns.json (loaded on first focus).
+  var towns = null, townsLoading = null;
+  var loadTowns = function () {
+    if (!townsLoading) townsLoading = fetch("/towns.json").then(function (r) { return r.json(); }).then(function (t) { towns = t; }).catch(function () { towns = []; });
+    return townsLoading;
+  };
+  var norm = function (v) { return v.toLowerCase().replace(/[.,]/g, " ").replace(/\s+/g, " ").trim(); };
+  function townSuggest(input) {
+    var list = document.getElementById(input.getAttribute("aria-controls"));
+    var items = [], pick = -1;
+    var close = function () { list.hidden = true; input.setAttribute("aria-expanded", "false"); input.removeAttribute("aria-activedescendant"); pick = -1; };
+    var mark = function () {
+      [].forEach.call(list.children, function (li, k) { li.setAttribute("aria-selected", k === pick ? "true" : "false"); });
+      if (pick >= 0) { input.setAttribute("aria-activedescendant", list.children[pick].id); list.children[pick].scrollIntoView({ block: "nearest" }); }
+    };
+    var choose = function (k) { input.value = items[k]; close(); input.dispatchEvent(new Event("change", { bubbles: true })); };
+    var show = function () {
+      var q = norm(input.value);
+      if (!towns || q.length < 2) return close();
+      items = [];
+      for (var k = 0; k < towns.length && items.length < 6; k++) {
+        if (norm(towns[k]).indexOf(q) === 0) items.push(towns[k]);
+      }
+      if (!items.length || (items.length === 1 && items[0] === input.value)) return close();
+      list.innerHTML = items.map(function (t, k) {
+        var n = input.value.trim().length;
+        var safe = function (x) { return x.replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); };
+        return '<li role="option" id="' + list.id + "-" + k + '"><b>' + safe(t.slice(0, n)) + "</b>" + safe(t.slice(n)) + "</li>";
+      }).join("");
+      pick = -1; mark();
+      list.hidden = false; input.setAttribute("aria-expanded", "true");
+    };
+    input.addEventListener("focus", function () { loadTowns().then(function () { if (document.activeElement === input) show(); }); });
+    input.addEventListener("input", function () { if (towns) show(); else loadTowns().then(show); });
+    input.addEventListener("blur", close);
+    list.addEventListener("mousedown", function (e) {
+      e.preventDefault();
+      var li = e.target.closest("li");
+      if (li) choose([].indexOf.call(list.children, li));
+    });
+    input.addEventListener("keydown", function (e) {
+      if (list.hidden) return;
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        pick = (pick + (e.key === "ArrowDown" ? 1 : items.length - 1 + (pick < 0 ? 1 : 0))) % items.length;
+        mark();
+      } else if (e.key === "Enter" || e.key === "Tab") {
+        // Enter or Tab takes the highlighted town, or the top one, so "dallas" becomes "Dallas, TX".
+        if (e.key === "Enter") { e.preventDefault(); e.stopPropagation(); }
+        choose(pick < 0 ? 0 : pick);
+      } else if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); close(); }
+    });
+  }
+
   // Report card form: four steps, posts to /api/lead
   var preview = !!document.querySelector("meta[name=site-preview]");
   document.querySelectorAll(".rc-form").forEach(function (form) {
@@ -204,6 +258,8 @@
     form.addEventListener("keydown", function (e) {
       if (e.key === "Enter" && e.target.tagName === "INPUT" && cur < stepsEls.length - 1) { e.preventDefault(); if (valid(cur)) go(cur + 1); }
     });
+    var town = form.querySelector("[data-towns]");
+    if (town) townSuggest(town);
     var site = form.querySelector("[name=website]");
     site.addEventListener("blur", function () {
       var v = site.value.trim();
