@@ -18,7 +18,7 @@ BRAND_SHORT = "HVAC Marketing HQ"
 TAGLINE = "Rank · Book · Repeat"
 DOMAIN = "hvacmarketinghq.com"
 EMAIL = "hello@" + DOMAIN
-CALL_LINK = None                       # Calendly (later GHL) booking link; until set, "Book a call" opens an email
+CALL_LINK = "https://calendar.app.google/bm89Bh3ot8oEk3VA9"  # Google Calendar booking page (Logan, Oct 14)
 TURNSTILE_SITEKEY = None               # Cloudflare Turnstile site key; widget is skipped until set
 # Founder video bubble (bottom-left). Logan records a 60-90s face-on intro; see video-script.md.
 FOUNDER_NAME = "Logan"
