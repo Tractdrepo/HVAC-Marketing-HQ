@@ -2528,6 +2528,8 @@ def write_redirects(site_dir):
         cfg = json.load(f)
     reds = [{"source": "/" + old, "destination": "/" + new, "permanent": True} for old, new in ROUTES.items() if not old.startswith("tools")]
     reds += [{"source": "/" + old, "destination": "/" + route(new), "permanent": True} for old, new in OLD_REDIRECTS.items()]
+    # One short link on our own domain for the report email; the calendar can change without touching the email.
+    reds.append({"source": "/book", "destination": call_link(), "permanent": False})
     cfg["redirects"] = reds
     with open(p_, "w") as f:
         f.write(json.dumps(cfg, indent=2) + "\n")

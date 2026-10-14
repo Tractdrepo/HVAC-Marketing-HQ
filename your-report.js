@@ -6,17 +6,26 @@
   var esc = function (s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; });
   };
-  var data = null;
+  // #z= is the compressed link the email sends now; #r= is the older plain one.
+  var m = location.hash.match(/([rz])=([A-Za-z0-9_-]+)/);
+  var bytes = null;
   try {
-    var m = location.hash.match(/r=([A-Za-z0-9_-]+)/);
     if (m) {
-      var b64 = m[1].replace(/-/g, "+").replace(/_/g, "/");
+      var b64 = m[2].replace(/-/g, "+").replace(/_/g, "/");
       var bin = atob(b64 + "===".slice((b64.length + 3) % 4));
-      var bytes = new Uint8Array(bin.length);
+      bytes = new Uint8Array(bin.length);
       for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-      data = JSON.parse(new TextDecoder().decode(bytes));
     }
-  } catch (e) { data = null; }
+  } catch (e) { bytes = null; }
+  var parse = function (b) { try { return JSON.parse(new TextDecoder().decode(b)); } catch (e) { return null; } };
+  if (bytes && m[1] === "z" && window.DecompressionStream) {
+    new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).arrayBuffer()
+      .then(function (buf) { render(parse(new Uint8Array(buf))); }, function () { render(null); });
+  } else {
+    render(bytes && m[1] === "r" ? parse(bytes) : null);
+  }
+
+  function render(data) {
 
   var book = function (label, cls) {
     return '<a class="btn btn-primary ' + (cls || "") + '" href="' + esc(BOOK) + '">' + esc(label || "Book a 15-minute call") + ' <span class="arrow">→</span></a>';
@@ -98,4 +107,5 @@
       book("Book a 15-minute call") +
       '<p class="muted yr-fine">Grades come from what anyone can see in public on ' + (date ? esc(date) : "the day we checked") + ". Anything we couldn't measure is left out of your grade, not counted against you.</p>" +
     "</div></section>";
+  }
 })();

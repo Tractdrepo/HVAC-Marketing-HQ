@@ -1284,6 +1284,11 @@
       "source": "/roofing",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/book",
+      "destination": "https://calendar.app.google/bm89Bh3ot8oEk3VA9",
+      "permanent": false
     }
   ]
 }

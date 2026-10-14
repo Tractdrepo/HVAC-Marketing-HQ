@@ -1,5 +1,6 @@
 // Turns a graded result into the report card email and the link to the personal results page.
 // Shows grades, scores out of 100, what we saw and the top fix. The rubric's point values stay internal.
+import { deflateRawSync } from 'node:zlib';
 import { grade } from './grade.mjs';
 
 export const AREAS = [
@@ -133,8 +134,9 @@ export function payload(result, firstName) {
   };
 }
 
+// Compressed (deflate-raw) so the link in the email stays short; the page still reads old #r= links.
 export function resultsUrl(siteUrl, data) {
-  return `${siteUrl}/your-report#r=${Buffer.from(JSON.stringify(data)).toString('base64url')}`;
+  return `${siteUrl}/your-report#z=${deflateRawSync(Buffer.from(JSON.stringify(data)), { level: 9 }).toString('base64url')}`;
 }
 
 export function renderReport(result, { firstName, bookingUrl, siteUrl }) {

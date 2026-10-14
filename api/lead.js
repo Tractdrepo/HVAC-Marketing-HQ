@@ -116,7 +116,7 @@ async function autoReport(lead) {
     return tellTeam(lead, `grading failed (${err.message})`);
   }
   if (result.report.overall == null) return tellTeam(lead, `nothing could be measured (${result.facts.notes.join(" ")})`);
-  const r = renderReport(result, { firstName: lead.first_name, bookingUrl: BOOKING_URL, siteUrl: SITE_URL });
+  const r = renderReport(result, { firstName: lead.first_name, bookingUrl: `${SITE_URL}/book`, siteUrl: SITE_URL });
   try {
     // From a person, not a brand: REPORT_FROM if set, else "Logan at HVAC Marketing HQ" on the LEAD_FROM address.
     const addr = (process.env.LEAD_FROM.match(/<([^>]+)>/) || [, process.env.LEAD_FROM])[1].trim();
