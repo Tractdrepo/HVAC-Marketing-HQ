@@ -14,7 +14,7 @@ VS_GUIDES = [
         "read": 6,
         "takeaways": [
             "Both companies are HVAC only and both publish prices. At the Starter level, paid monthly, the 12-month cost comes out the same: $7,983.",
-            "Their Growth and Dominate plans cost less per month than ours, and their Starter is $399 a month on annual billing.",
+            "Monthly plan prices now match at every level, and both take about 20% off for annual billing. Our build fees are lower at Growth, Dominate and Multi-location.",
             "Their Terms, as published in Oct 2026, say the website goes offline if you cancel and they keep the source code. You keep your domain, content, images and lead data.",
             "Review requests and missed-call text-back are in every one of our plans. On their pricing page, review requests and the lead system start at Growth.",
         ],
@@ -27,8 +27,8 @@ VS_GUIDES = [
                 ("table", [
                     ["Plan level", "Websites for HVAC, monthly billing", "Websites for HVAC, annual billing", "Their build fee", "HVAC Marketing HQ, monthly", "Our build fee"],
                     ["Starter", "$499/mo", "$399/mo", "$1,995", "$499/mo", "$1,995"],
-                    ["Growth", "$799/mo", "$639/mo", "$2,749", "$899/mo", "$2,495"],
-                    ["Dominate", "$1,299/mo", "$1,039/mo", "$3,499", "$1,499/mo", "$2,995"],
+                    ["Growth", "$799/mo", "$639/mo", "$2,749", "$799/mo", "$2,495"],
+                    ["Dominate", "$1,299/mo", "$1,039/mo", "$3,499", "$1,299/mo", "$2,995"],
                     ["Enterprise / Multi-location", "$2,499/mo", "$1,999/mo", "$4,499", "$2,499/mo", "$4,500"],
                 ]),
                 ("p", "Their build fees above are their \"founding\" rates; the list prices shown next to them run $2,295 to $4,999. Their annual prices are the ones shown by default on their pricing page. We take 20% off our plan price if you pay annually; see our <a href=\"{u:plans}\">plans page</a> for the annual numbers."),
@@ -48,10 +48,12 @@ VS_GUIDES = [
                     ["HVAC Marketing HQ Starter, monthly", "$499 x 12 + $1,995", "$7,983"],
                     ["Websites for HVAC Starter, monthly", "$499 x 12 + $1,995", "$7,983"],
                     ["Websites for HVAC Starter, annual", "$399 x 12 + $1,995", "$6,783"],
-                    ["HVAC Marketing HQ Growth, monthly", "$899 x 12 + $2,495", "$13,283"],
+                    ["HVAC Marketing HQ Growth, monthly", "$799 x 12 + $2,495", "$12,083"],
                     ["Websites for HVAC Growth, monthly", "$799 x 12 + $2,749", "$12,337"],
+                    ["HVAC Marketing HQ Dominate, monthly", "$1,299 x 12 + $2,995", "$18,583"],
+                    ["Websites for HVAC Dominate, monthly", "$1,299 x 12 + $3,499", "$19,087"],
                 ]),
-                ("p", "So at Starter the cost is a tie on monthly billing, and they're cheaper on annual billing and at Growth. What differs is what's in the box. Our Starter includes missed-call text-back and review requests. Their Starter, as listed in Oct 2026, includes the website, Google profile setup, a monthly report, their territory lock and content updates, with review requests and the lead system starting at Growth."),
+                ("p", "So the monthly prices are the same, Starter is a tie over 12 months, and we come out $254 lower at Growth and $504 lower at Dominate because of the build fee. Annual billing is about 20% off at both. What really differs is what's in the box. Our Starter includes missed-call text-back and review requests. Their Starter, as listed in Oct 2026, includes the website, Google profile setup, a monthly report, their territory lock and content updates, with review requests and the lead system starting at Growth."),
             ]),
             ("What happens to your site if you cancel", [
                 ("p", "This is the biggest difference between us. Their marketing pages say \"You Own Your Website\". Their Terms, as published in Oct 2026, say that when you cancel, the website goes offline and they keep the source code. You keep your domain, content, images and lead data, with a content export within 30 days."),
@@ -59,7 +61,6 @@ VS_GUIDES = [
             ]),
             ("What they do better", [
                 ("ul", [
-                    "<b>Lower prices at the middle tiers.</b> Their Growth and Dominate plans cost less per month than ours, on both monthly and annual billing.",
                     "<b>Clear, published prices.</b> A detailed plan comparison, a $99 price for extra pages, and billing that starts at launch rather than at signing.",
                     "<b>Paid ads.</b> They sell Google Ads, Local Services Ads and retargeting. We don't run paid ads at all.",
                     "<b>Software connections.</b> Their Dominate plan lists connections to ServiceTitan, Housecall Pro and Jobber.",
@@ -71,12 +72,12 @@ VS_GUIDES = [
             ("Which one fits", [
                 ("table", [
                     ["Your situation", "Better fit"],
-                    ["You want the lowest monthly price at the Growth or Dominate level", "Websites for HVAC"],
+                    ["You want one HVAC company per area, in writing", "Websites for HVAC (ask for their territory terms)"],
                     ["You want someone to run Google Ads or Local Services Ads for you", "Websites for HVAC"],
                     ["You want review requests and missed-call text-back from the first plan", "HVAC Marketing HQ"],
                     ["You want to keep a working website if you leave", "HVAC Marketing HQ"],
                     ["You want your site live in about two weeks", "HVAC Marketing HQ (14 days); they say 2 to 3 weeks"],
-                    ["You need ServiceTitan, Housecall Pro or Jobber connected", "Websites for HVAC (Dominate plan)"],
+                    ["You need ServiceTitan, Housecall Pro or Jobber connected", "Either one, on the Dominate plan"],
                 ]),
             ]),
             ("Questions to ask on their sales call", [
@@ -93,7 +94,7 @@ VS_GUIDES = [
             ]),
         ],
         "faq": [
-            ("Is Websites for HVAC cheaper than HVAC Marketing HQ?", "At Starter on monthly billing the 12-month cost is the same, $7,983. On annual billing, and at their Growth and Dominate levels, they are cheaper, as published on their site in Oct 2026. Compare what each plan includes, not just the price."),
+            ("Is Websites for HVAC cheaper than HVAC Marketing HQ?", "Monthly plan prices are the same at every level, as published on their site in Oct 2026, and both take about 20% off for annual billing. Our build fees are lower from Growth up, so our 12-month cost is the same at Starter and a few hundred dollars lower at Growth and Dominate. Compare what each plan includes, not just the price."),
             ("Do I own my website with Websites for HVAC?", "Their Terms, as published in Oct 2026, say the website goes offline when you cancel and they keep the source code. You keep your domain, content, images and lead data."),
             ("Does Websites for HVAC run Google Ads?", "Yes. They list Google Ads, Local Services Ads and retargeting, with ad spend billed separately. We don't run paid ads."),
             ("Are both companies HVAC only?", "Yes. Both work only with HVAC companies."),
@@ -127,7 +128,7 @@ VS_GUIDES = [
             ("Published prices, side by side", [
                 ("table", [
                     ["", "RS Gonzales", "HVAC Marketing HQ"],
-                    ["Monthly plans", "Grow $2,200 / Accelerate $3,500 / Dominate $5,000", "Starter $499 / Growth $899 / Dominate $1,499 / Multi-location $2,499"],
+                    ["Monthly plans", "Grow $2,200 / Accelerate $3,500 / Dominate $5,000", "Starter $499 / Growth $799 / Dominate $1,299 / Multi-location $2,499"],
                     ["Setup or build fee", "\"No setup fees\"; a $500 onboarding deposit, non-refundable once work starts", "$1,995 / $2,495 / $2,995 / $4,500, one time"],
                     ["Ad spend", "Paid separately, $3,000/mo minimum; 0% markup up to the tier cap, 10% fee on spend above it", "None. We don't run ads"],
                     ["Website", "Included (\"free website\")", "Included, built for a one-time fee"],
@@ -141,7 +142,7 @@ VS_GUIDES = [
                 ("table", [
                     ["Option", "Math", "12-month total"],
                     ["HVAC Marketing HQ Starter", "$499 x 12 + $1,995", "$7,983"],
-                    ["HVAC Marketing HQ Growth", "$899 x 12 + $2,495", "$13,283"],
+                    ["HVAC Marketing HQ Growth", "$799 x 12 + $2,495", "$12,083"],
                     ["RS Gonzales Grow, agency fees only", "$2,200 x 12", "$26,400"],
                     ["RS Gonzales Grow, plus minimum ad spend", "$2,200 x 12 + $3,000 x 12", "$62,400"],
                 ]),
@@ -235,7 +236,7 @@ VS_GUIDES = [
                     ["Google Ads / LSA management", "From $2,000/mo, plus ad spend", "We don't run ads"],
                     ["Meta ads", "From $3,000/mo, plus ad spend", "We don't run ads"],
                     ["Website", "Standard $12,000 or custom $24,000, split into 12 monthly payments", "$1,995 to $4,500 one-time build fee"],
-                    ["Bundles", "Silver $3,500/mo, Gold $7,300/mo, Platinum $10,300/mo, Enterprise $15,000+/mo (shown on two of their landing pages)", "Starter $499 / Growth $899 / Dominate $1,499 / Multi-location $2,499 a month"],
+                    ["Bundles", "Silver $3,500/mo, Gold $7,300/mo, Platinum $10,300/mo, Enterprise $15,000+/mo (shown on two of their landing pages)", "Starter $499 / Growth $799 / Dominate $1,299 / Multi-location $2,499 a month"],
                 ]),
                 ("p", "Hook's Silver bundle, shown for $1M to $2M businesses, lists a standard website, Google Ads management, lead tracking and monthly reporting. Our plan details are on our <a href=\"{u:plans}\">plans page</a>."),
             ]),
@@ -244,7 +245,7 @@ VS_GUIDES = [
                 ("table", [
                     ["Option", "Math", "12-month total"],
                     ["HVAC Marketing HQ Starter", "$499 x 12 + $1,995", "$7,983"],
-                    ["HVAC Marketing HQ Growth", "$899 x 12 + $2,495", "$13,283"],
+                    ["HVAC Marketing HQ Growth", "$799 x 12 + $2,495", "$12,083"],
                     ["Hook standard website + local SEO", "$12,000 + $2,800 x 12", "$45,600"],
                     ["Hook Silver bundle (site + Google Ads management), before ad spend", "$3,500 x 12", "$42,000"],
                 ]),
@@ -327,7 +328,7 @@ VS_GUIDES = [
             ("Published prices, side by side", [
                 ("table", [
                     ["", "Footbridge Media", "HVAC Marketing HQ"],
-                    ["Main plan", "$249/mo, one plan", "Starter $499 / Growth $899 / Dominate $1,499 / Multi-location $2,499 a month"],
+                    ["Main plan", "$249/mo, one plan", "Starter $499 / Growth $799 / Dominate $1,299 / Multi-location $2,499 a month"],
                     ["Setup or build fee", "$0", "$1,995 / $2,495 / $2,995 / $4,500, one time"],
                     ["Member rates", "$194/mo for Nexstar and CertainPath members; $223/mo for Praxis S-10", "None"],
                     ["Contract", "No contract; either side can end with written notice", "See our <a href=\"{u:plans}\">plans page</a>"],

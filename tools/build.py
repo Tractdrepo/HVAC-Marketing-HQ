@@ -31,7 +31,7 @@ AREA = "Texas"                        # launch market; copy says "starting in Te
 
 # Plans: four tiers with a monthly/annual toggle (annual = 20% off). Prices confirmed by Logan Oct 12, 2026.
 ANNUAL_DISCOUNT = 0.20
-PLAN_PRICE_FOR_CALC = 899            # break-even calculator default, editable by the visitor
+PLAN_PRICE_FOR_CALC = 799            # break-even calculator default, editable by the visitor
 PLANS = [
     {
         "name": "Starter", "monthly": 499, "build": 1995, "scope": "5 pages · 1 city", "stage": "1 to 2 trucks",
@@ -39,12 +39,12 @@ PLANS = [
         "items": ["5-page site on our HVAC build", "Missed-call text-back in 60 seconds", "Review requests after every job", "Google profile setup", "Shared inbox app", "HQ Command Center dashboard"],
     },
     {
-        "name": "Growth", "monthly": 899, "build": 2495, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
+        "name": "Growth", "monthly": 799, "build": 2495, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
         "for": "The full Rank, Book, Repeat system for an owner-run shop.",
         "items": ["Everything in Starter", "12 pages, including 3 city pages", "Google profile managed, posting the job photos you text us", "Estimate follow-up until booked or lost", "Review replies and AI web chat", "Win-back texts to past customers each season", "1 new article a month"],
     },
     {
-        "name": "Dominate", "monthly": 1499, "build": 2995, "scope": "25 pages · 10 cities", "stage": "8+ trucks or a wide area",
+        "name": "Dominate", "monthly": 1299, "build": 2995, "scope": "25 pages · 10 cities", "stage": "8+ trucks or a wide area",
         "for": "For shops covering a wide area that want the map in every town they serve.",
         "items": ["Everything in Growth", "25 pages, including 10 city pages", "Full spring and fall tune-up campaigns, text and email", "ServiceTitan, Housecall Pro or Jobber hookup", "Competitor and map spam watch", "Directory listings managed"],
     },
