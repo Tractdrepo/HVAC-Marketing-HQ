@@ -1,8 +1,9 @@
 // Collect public facts about a business, then score them with the fixed rules.
 import { getTrade } from './trades/index.mjs';
 import { scoreAll } from './score.mjs';
-import { fetchHomepage, ruleTitleVerdict } from './collect/homepage.mjs';
-import { findBusiness, townOf, stateOf, localRank, placeFacts, host } from './collect/places.mjs';
+import { fetchHomepage, ruleTitleVerdict, townPages } from './collect/homepage.mjs';
+import { blogFreshness } from './collect/blog.mjs';
+import { findBusiness, townOf, stateOf, localRank, areaRank, newestReviewDays, placeFacts, host } from './collect/places.mjs';
 import { splitTown } from './trades/region.mjs';
 import { pagespeed } from './collect/pagespeed.mjs';
 
@@ -27,10 +28,21 @@ export async function collectFacts(input, env = process.env) {
       if (place) {
         town = townOf(place) || town;
         state = stateOf(place) || state;
-        const searches = town
-          ? await Promise.all(trade.searchQueries.map((q) => localRank(q.replace('{town}', town).replace(', {state}', state ? `, ${state}` : ''), place, google)))
-          : [];
+        // One search in their own town, one across everything within about 20 miles (the towns they serve).
+        const [searches, newest] = await Promise.all([
+          Promise.all([
+            town ? localRank(trade.searchQueries[0].replace('{town}', town).replace(', {state}', state ? `, ${state}` : ''), place, google) : null,
+            areaRank(trade.areaQuery, place, google).then((r) => r && { ...r, query: `${trade.areaQuery} within 20 miles of ${town || 'you'}` }).catch(() => null),
+          ]).then((list) => list.filter(Boolean)),
+          newestReviewDays(place.id, google),
+        ]);
         gp = placeFacts(place, searches, trade, { website: input.website });
+        // The five "most relevant" reviews only prove the newest is at least that recent.
+        if (newest.days != null) gp.reviews.newestDays = newest.days;
+        else {
+          if (gp.reviews.newestDays != null && gp.reviews.newestDays > 30) gp.reviews.newestDays = null;
+          notes.push(`Newest-review lookup failed (${newest.error}); turn on "Places API" for the key to measure it.`);
+        }
       } else {
         gp.profile = { found: false };
         notes.push('No Google profile found for this name and website.');
@@ -51,7 +63,10 @@ export async function collectFacts(input, env = process.env) {
   if (!site.fetched) notes.push(`Home page could not be fetched (${site.error}).`);
   if (speed.error) notes.push(`Speed test did not finish (${speed.error}); speed points left out.`);
 
-  const website = site.fetched ? { ...site, performance: speed.performance, lighthouse: speed.lighthouse } : { fetched: false };
+  const blog = site.fetched ? await blogFreshness(site.blogUrl) : null;
+  if (blog?.error) notes.push(`Blog check failed (${blog.error}).`);
+  const website = site.fetched ? { ...site, performance: speed.performance, lighthouse: speed.lighthouse, blog } : { fetched: false };
+  if (site.fetched) website.areaPages = townPages(site, state, trade);
   if (site.fetched) {
     // A license number is only checked where the trade's license rule applies.
     if (trade.licenseState && state !== trade.licenseState) website.license = null;

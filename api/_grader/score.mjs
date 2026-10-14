@@ -97,7 +97,8 @@ export function scoreProfile(p, trade) {
   ];
 
   const closed = p.operational === false;
-  const result = area(lines, closed ? 40 : 0, { closed });
+  // Google's data doesn't show posts, so this is advice, never a deduction.
+  const result = area(lines, closed ? 40 : 0, { closed, advice: ['Post on your Google profile every week (a finished job, a seasonal tip). Google rewards active profiles; we post your job photos for you.'] });
   if (closed) result.topFix = 'Google does not show your business as open. Fix the status on your profile first.';
   return result;
 }
@@ -143,7 +144,11 @@ export function scoreReviews(r, trade) {
     line('count', 'Number of reviews', 30, countPts, `You have ${r.count} Google reviews.${compText} A review request after every job closes the gap.`),
     line('recent', 'Most recent review', 15, recentPts, known(r.newestDays) ? `Your newest review is ${r.newestDays} days old. Ask after every completed job.` : null),
     line('low', 'Low reviews shown first', 10, lowPts, `${r.lowInShown} of the reviews Google shows first are three stars or lower. Reply to them and bury them with new ones.`),
-  ], 0, { themes: r.themes || null });
+  ], 0, {
+    themes: r.themes || null,
+    // Google's data doesn't show owner replies, so this is advice, never a deduction.
+    advice: ['Reply to every review, good and bad. Customers read the replies and Google sees an active owner; we can answer them for you automatically.'],
+  });
 }
 
 // ---------- 3. Website ----------
@@ -191,10 +196,20 @@ export function scoreWebsite(w, trade) {
       `We did not find your ${trade.licenseName} on the home page. Add it to the footer.`),
     line('chat', 'Chat or after-hours answer', 5, yes(w.chat, 5),
       'We did not find a chat tool. Add one so after-hours visitors get an answer.'),
+    line('blog', 'Fresh articles', 5, blogPoints(w.blog),
+      !w.blog?.found ? 'Start a blog: one helpful article a month (AC tune-up tips, what a new system costs) gives Google something new to rank. We write and post them for you.'
+        : `Your newest blog post is ${w.blog.newestDays} days old. Post a helpful article every month; we write and post them for you.`),
   ];
   const result = area(lines);
   if (w.placeholderPhone) result.notes = [`Your home page shows a placeholder number (${w.placeholderPhone}). Replace it with your real number.`];
   return result;
+}
+
+function blogPoints(b) {
+  if (!b) return null;
+  if (!b.found) return 0;
+  if (!known(b.newestDays)) return null;
+  return b.newestDays <= 60 ? 5 : b.newestDays <= 180 ? 2 : 0;
 }
 
 // ---------- 4. Listings ----------

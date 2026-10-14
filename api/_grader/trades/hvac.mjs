@@ -7,7 +7,8 @@ export default {
 
   // Local search. Each query is scored and the scores averaged.
   // The first query also supplies the competitors for the reviews comparison.
-  searchQueries: ['HVAC near {town}, {state}', 'AC repair {town}, {state}'],
+  searchQueries: ['HVAC near {town}, {state}'],
+  areaQuery: 'HVAC',
 
   // Google's main category. Matched against Places' primaryType and its display name.
   categories: {

@@ -5,7 +5,7 @@ import { nameMatches } from '../names.mjs';
 const ENDPOINT = 'https://places.googleapis.com/v1/places:searchText';
 const DETAIL_FIELDS = ['id', 'displayName', 'primaryType', 'primaryTypeDisplayName', 'rating', 'userRatingCount',
   'reviews', 'photos', 'regularOpeningHours', 'nationalPhoneNumber', 'websiteUri', 'businessStatus',
-  'paymentOptions', 'accessibilityOptions', 'addressComponents', 'formattedAddress'];
+  'paymentOptions', 'accessibilityOptions', 'addressComponents', 'formattedAddress', 'location'];
 const RANK_FIELDS = ['id', 'displayName', 'rating', 'userRatingCount', 'websiteUri', 'primaryType'];
 
 async function searchText(textQuery, fields, key, extra = {}) {
@@ -55,6 +55,33 @@ export function stateOf(place) {
 export function townOf(place) {
   const c = (place.addressComponents || []).find((a) => a.types?.includes('locality'));
   return c?.longText || null;
+}
+
+// Google's Places API (New) only returns the five "most relevant" reviews, which can be months old
+// for a shop that gets reviews every week. The older Place Details endpoint can sort by newest.
+// Needs "Places API" (not only "Places API (New)") enabled on the key; returns null when it isn't.
+export async function newestReviewDays(placeId, key, { now = Date.now() } = {}) {
+  try {
+    const u = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${encodeURIComponent(placeId)}&fields=reviews&reviews_sort=newest&key=${encodeURIComponent(key)}`;
+    const res = await fetch(u, { signal: AbortSignal.timeout(8000) });
+    const j = await res.json();
+    if (j.status !== 'OK') return { days: null, error: `${j.status}${j.error_message ? `: ${j.error_message.slice(0, 120)}` : ''}` };
+    const t = Math.max(...(j.result?.reviews || []).map((r) => (r.time || 0) * 1000));
+    return { days: Number.isFinite(t) && t > 0 ? Math.max(0, Math.floor((now - t) / 86400000)) : null };
+  } catch (err) {
+    return { days: null, error: err.message };
+  }
+}
+
+// Rank among every HVAC shop within about 20 miles of the shop itself. Small-town shops serve the towns
+// around them, and "HVAC near [tiny town]" makes almost anyone first.
+export async function areaRank(query, place, key, radiusM = 32000) {
+  if (!place.location) return null;
+  const results = await searchText(query, RANK_FIELDS, key, {
+    locationBias: { circle: { center: { latitude: place.location.latitude, longitude: place.location.longitude }, radius: radiusM } },
+  });
+  const idx = results.findIndex((p) => p.id === place.id || (place.websiteUri && host(p.websiteUri) === host(place.websiteUri)));
+  return { query, rank: idx + 1, marketSize: results.length, results, area: true };
 }
 
 // Rank of the place in a local search. Searches once more if missing (Google's order shifts).

@@ -1005,3 +1005,11 @@ main > .section.dark::before { display: none; }
 #report-card .town-suggest { background: #0f1a2c; border-color: var(--line-2); }
 #report-card .town-suggest li { color: var(--text); }
 #report-card .town-suggest li[aria-selected="true"], #report-card .town-suggest li:hover { background: rgba(255, 255, 255, .08); }
+
+/* Results page: what happens after the phone rings */
+.yr-ops { background: var(--bg-2); padding-bottom: 56px; margin-top: 32px; }
+.yr-ops-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.yr-ops-grid > div { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 18px 20px; }
+.yr-ops-grid h4 { margin: 0 0 6px; font-size: 1.02rem; }
+.yr-ops-grid p { margin: 0; color: var(--muted); font-size: .95rem; }
+@media (max-width: 640px) { .yr-ops-grid { grid-template-columns: 1fr; } }

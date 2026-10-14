@@ -41,7 +41,7 @@
   var HOW = {
     profile: {
       h: "How we fix your Google profile",
-      p: "We set your profile up the way Google ranks it: the right main category, hours, services, service area and payment details, then post the job photos you text us every week. Setup is in every plan. On Growth and up we run it for you month to month.",
+      p: "We set your profile up the way Google ranks it: the right main category, hours, services, service area and payment details, then post an update with the job photos you text us every week. Setup is in every plan. On Growth and up we run it for you month to month.",
     },
     reviews: {
       h: "How we fix your reviews",
@@ -49,7 +49,7 @@
     },
     website: {
       h: "How we fix your website",
-      p: "We build a fast site on our HVAC build: a page for each service and the towns you serve, tap-to-call and a book-service button on every page, and every missed call texted back in 60 seconds. You own the site and the domain.",
+      p: "We build a fast site on our HVAC build: a page for each service and the towns you serve, tap-to-call and a book-service button on every page, a helpful article every month, and every missed call texted back in 60 seconds. You own the site and the domain.",
     },
     listings: {
       h: "How we fix your listings",
@@ -99,6 +99,15 @@
       '<div class="yr-band"><div><h3>Want these fixed for you?</h3><p>Book 15 minutes. We go through your report line by line and tell you what we would do first, how long it takes, and what it costs.</p></div>' + book("Book my 15-minute call") + "</div>" +
       cards.slice(mid).join("") +
     "</div></section>" +
+    '<section class="yr-body yr-ops"><div class="wrap">' +
+      '<div class="yr-head"><h2>What a report card can\'t see.</h2><p>Your grades cover how customers find you. Just as many jobs are won or lost after the phone rings. Our plans handle that part too.</p></div>' +
+      '<div class="yr-ops-grid">' +
+        '<div><h4>Missed calls texted back</h4><p>Every missed call gets a text in 60 seconds, so the caller books with you instead of the next shop.</p></div>' +
+        '<div><h4>Reviews on autopilot</h4><p>A review request after every finished job, and on Growth and up we answer every review for you.</p></div>' +
+        '<div><h4>Quotes followed up</h4><p>Estimates get followed up until they are booked or lost. On Growth and up, past customers get seasonal tune-up texts.</p></div>' +
+        '<div><h4>One inbox, one dashboard</h4><p>Calls, texts and web leads land in one inbox your office can see, with a dashboard you can open anytime.</p></div>' +
+      '</div>' +
+    '</div></section>' +
     '<section class="yr-close"><div class="wrap">' +
       "<h2>What happens on the call</h2>" +
       '<ol class="yr-steps"><li><b>We walk your report.</b> Every grade above, in plain words, with your search results on screen.</li>' +

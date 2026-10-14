@@ -128,3 +128,18 @@ test('listings are not graded when there is no Google profile and no directory s
   const a = scoreListings({ phoneMatch: undefined, googleLinksSite: undefined, facebookLinked: true }, hvac);
   assert.equal(a.score, null);
 });
+
+test('town pages match real place names, and a contact link counts as a way to book', async () => {
+  const { parseHomepage, townPages } = await import('../collect/homepage.mjs');
+  const html = '<a href="/coolidge/">Coolidge</a><a href="/fairfield-hvac/">Fairfield</a><a href="/ac-services-mexia/">Mexia</a><a href="/navarro-county-hvac-services/">Navarro County</a><a href="/about/">About Us</a><a href="/contact/">Contact Us</a><a href="/blog/">Blog</a>';
+  const f = parseHomepage(html, 'https://www.example.com/', hvac);
+  assert.equal(f.bookingKind, 'form');
+  assert.equal(f.blogUrl, 'https://www.example.com/blog/');
+  assert.deepEqual(townPages(f, 'TX', hvac).sort(), ['coolidge', 'fairfield', 'mexia', 'navarro county']);
+});
+
+test('blog freshness reads the newest post date', async () => {
+  const { parseNewestDate } = await import('../collect/blog.mjs');
+  const t = parseNewestDate('<p>Posted March 3, 2025</p><time datetime="2024-01-02">x</time><p>Jan 9, 2026</p>', Date.parse('2026-10-14'));
+  assert.equal(new Date(t).toISOString().slice(0, 10), '2026-01-09');
+});
