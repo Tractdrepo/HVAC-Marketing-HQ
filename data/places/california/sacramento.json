@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Sacramento, CA",
+  "count": 51,
+  "median_rating": 4.9,
+  "median_reviews": 74,
+  "share_with_website": 0.8,
+  "top5": [
+    [
+      "Bell Brothers Electrical, Plumbing, Heating, & Air",
+      4.8,
+      12029
+    ],
+    [
+      "Rocklin Heating & Air",
+      5,
+      3200
+    ],
+    [
+      "Atticman Heating and Air Conditioning, Insulation",
+      4.9,
+      3055
+    ],
+    [
+      "Beutler Air Conditioning and Plumbing",
+      4.4,
+      3029
+    ],
+    [
+      "Jaguar Heating & Air",
+      4.9,
+      2519
+    ]
+  ]
+}

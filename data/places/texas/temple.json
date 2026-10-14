@@ -1,35 +1,35 @@
 {
   "pulled": "2026-10-14",
   "query": "HVAC contractor in Temple, TX",
-  "count": 18,
+  "count": 44,
   "median_rating": 4.8,
-  "median_reviews": 103.5,
-  "share_with_website": 0.83,
+  "median_reviews": 59.5,
+  "share_with_website": 0.73,
   "top5": [
+    [
+      "Dr. Watts Electric, Heating & Air",
+      4.6,
+      762
+    ],
     [
       "Temple Heat & Air LLC",
       4.8,
       698
     ],
     [
-      "Rohde Air Conditioning & Heating",
-      4.9,
-      493
-    ],
-    [
-      "Moore Air, LLC",
+      "Kane Heating and Air Conditioning",
       4.8,
-      273
+      664
     ],
     [
-      "Airheads HVAC",
-      4.9,
-      265
+      "Belton Air Conditioning",
+      5,
+      642
     ],
     [
-      "Air Control",
-      4.8,
-      255
+      "FIX IT! Services",
+      4.7,
+      533
     ]
   ]
 }

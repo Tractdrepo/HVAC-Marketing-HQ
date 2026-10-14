@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Fresno, CA",
+  "count": 53,
+  "median_rating": 4.8,
+  "median_reviews": 129,
+  "share_with_website": 0.83,
+  "top5": [
+    [
+      "Allbritten Heating, Air Conditioning, Plumbing, and Electrical",
+      4.8,
+      6115
+    ],
+    [
+      "Lee's Air, Plumbing, & Heating",
+      4.8,
+      4933
+    ],
+    [
+      "Balanced Comfort",
+      4.9,
+      3696
+    ],
+    [
+      "PR Plumbing, Heating & Air Conditioning Inc.",
+      4.8,
+      1846
+    ],
+    [
+      "Monarch Home Services - Fresno",
+      4.6,
+      1696
+    ]
+  ]
+}

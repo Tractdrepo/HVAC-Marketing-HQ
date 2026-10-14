@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Augusta, GA",
+  "count": 41,
+  "median_rating": 4.8,
+  "median_reviews": 93,
+  "share_with_website": 0.73,
+  "top5": [
+    [
+      "Cassell Brothers Home Services",
+      4.9,
+      4696
+    ],
+    [
+      "Busby's Heating & Air Conditioning",
+      4.9,
+      3677
+    ],
+    [
+      "Duggan's One Hour Heating & Air Conditioning\u00ae",
+      4.9,
+      2791
+    ],
+    [
+      "Bailey's Comfort Services",
+      4.9,
+      2779
+    ],
+    [
+      "Atlas Heating and Air Conditioning Inc",
+      5,
+      2291
+    ]
+  ]
+}

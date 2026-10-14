@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Memphis, TN",
+  "count": 49,
+  "median_rating": 4.9,
+  "median_reviews": 82,
+  "share_with_website": 0.78,
+  "top5": [
+    [
+      "Conway Services",
+      4.6,
+      8830
+    ],
+    [
+      "Choate's Air Conditioning, Heating, Plumbing And Electrical",
+      4.8,
+      5848
+    ],
+    [
+      "Smith's Plumbing, Heating & Air",
+      4.9,
+      4383
+    ],
+    [
+      "Best Care Plumbing, Heating And Air",
+      4.8,
+      3342
+    ],
+    [
+      "Hiller Plumbing, Heating, Cooling & Electrical",
+      4.8,
+      2374
+    ]
+  ]
+}

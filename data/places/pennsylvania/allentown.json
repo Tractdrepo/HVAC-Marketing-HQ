@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Allentown, PA",
+  "count": 34,
+  "median_rating": 4.8,
+  "median_reviews": 101.0,
+  "share_with_website": 0.74,
+  "top5": [
+    [
+      "Schuler Service, Inc.",
+      4.9,
+      3798
+    ],
+    [
+      "Maitz Home Services",
+      4.7,
+      3421
+    ],
+    [
+      "Ace Hardware Home Services",
+      4.9,
+      1882
+    ],
+    [
+      "Jack Lehr Heating Cooling & Electric",
+      4.9,
+      1588
+    ],
+    [
+      "Haller Enterprises",
+      4.7,
+      1337
+    ]
+  ]
+}

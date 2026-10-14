@@ -944,10 +944,11 @@ def places_data(c):
 
 def market_block(c):
     d = places_data(c)
-    if not d or not d.get("count"):
+    # Under 20 results means Google stopped the search early; the numbers would mislead, so skip the block.
+    if not d or (d.get("count") or 0) < 20:
         return ""
     n_ = d["count"]
-    stats = [("HVAC shops Google shows", f"{n_}+" if n_ % 20 == 0 else fnum(n_), "for one city search"),
+    stats = [("HVAC shops Google shows", f"{n_}+" if n_ >= 60 else fnum(n_), "for one city search"),
              ("Median rating", f'{d["median_rating"]:.1f}★' if d.get("median_rating") is not None else "–", "of those shops"),
              ("Median review count", fnum(d.get("median_reviews")), "of those shops")]
     if d.get("share_with_website") is not None:

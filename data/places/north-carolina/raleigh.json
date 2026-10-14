@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Raleigh, NC",
+  "count": 56,
+  "median_rating": 4.9,
+  "median_reviews": 234.5,
+  "share_with_website": 0.79,
+  "top5": [
+    [
+      "Michael & Son Services",
+      4.8,
+      14427
+    ],
+    [
+      "Air Experts Heating & Cooling",
+      4.9,
+      8625
+    ],
+    [
+      "ARS / Rescue Rooter",
+      4.5,
+      7326
+    ],
+    [
+      "Service Experts Raleigh",
+      4.9,
+      6298
+    ],
+    [
+      "Yellow Dot Heating & Air Conditioning",
+      4.8,
+      4358
+    ]
+  ]
+}

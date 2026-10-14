@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Wichita, KS",
+  "count": 54,
+  "median_rating": 4.9,
+  "median_reviews": 134.0,
+  "share_with_website": 0.83,
+  "top5": [
+    [
+      "On Time Plumbing, Heating, Cooling & Electric",
+      4.9,
+      4341
+    ],
+    [
+      "Eck Services",
+      4.9,
+      3912
+    ],
+    [
+      "Bowers Plumbing Company",
+      4.9,
+      3305
+    ],
+    [
+      "Reddi Industries",
+      4.7,
+      1645
+    ],
+    [
+      "Fahnestock Plumbing, HVAC & Electric",
+      4.9,
+      1279
+    ]
+  ]
+}

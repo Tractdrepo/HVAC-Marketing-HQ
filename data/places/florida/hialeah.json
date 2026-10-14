@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Hialeah, FL",
+  "count": 41,
+  "median_rating": 5,
+  "median_reviews": 13,
+  "share_with_website": 0.78,
+  "top5": [
+    [
+      "South Cooling LLC",
+      4.6,
+      765
+    ],
+    [
+      "Air Zone Mechanical",
+      5,
+      672
+    ],
+    [
+      "Ivannova HVAC, Electrical, Plumbing",
+      4.6,
+      412
+    ],
+    [
+      "ACTL GROUP AIR CONDITIONING",
+      4.9,
+      299
+    ],
+    [
+      "Raircon Corporation",
+      4.7,
+      221
+    ]
+  ]
+}

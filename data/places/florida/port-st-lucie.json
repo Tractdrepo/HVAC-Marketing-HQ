@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Port St. Lucie, FL",
+  "count": 52,
+  "median_rating": 4.9,
+  "median_reviews": 197.0,
+  "share_with_website": 0.9,
+  "top5": [
+    [
+      "Elite Electric, Plumbing & Air",
+      4.8,
+      5218
+    ],
+    [
+      "Treasure Coast Air Conditioning, Inc.",
+      4.9,
+      3284
+    ],
+    [
+      "Sea Coast Air Conditioning & Sheet Metal Inc.",
+      4.9,
+      3069
+    ],
+    [
+      "Snyder Air Conditioning, Plumbing & Electric",
+      4.9,
+      2965
+    ],
+    [
+      "Lindstrom Air Conditioning & Plumbing",
+      4.8,
+      1686
+    ]
+  ]
+}

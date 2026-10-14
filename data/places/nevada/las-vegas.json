@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Las Vegas, NV",
+  "count": 58,
+  "median_rating": 4.9,
+  "median_reviews": 238.5,
+  "share_with_website": 0.95,
+  "top5": [
+    [
+      "Goettl Air Conditioning and Plumbing - Las Vegas NV",
+      4.6,
+      11430
+    ],
+    [
+      "Pure Plumbing & Air",
+      4.8,
+      5218
+    ],
+    [
+      "Bumble Breeze",
+      4.7,
+      4265
+    ],
+    [
+      "Elite Plumbing, Heating & Air Conditioning",
+      4.8,
+      3801
+    ],
+    [
+      "Legacy Air Conditioning and Heating",
+      4.9,
+      3414
+    ]
+  ]
+}

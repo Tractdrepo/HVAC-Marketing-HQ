@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Milwaukee, WI",
+  "count": 48,
+  "median_rating": 4.8,
+  "median_reviews": 70.0,
+  "share_with_website": 0.75,
+  "top5": [
+    [
+      "Roman Home Services - Electric, Plumbing, Heating & Cooling",
+      4.9,
+      5686
+    ],
+    [
+      "Capital Heating, Cooling, Electric, and Plumbing",
+      4.7,
+      3551
+    ],
+    [
+      "West Allis Heating, Cooling, Plumbing, and Electrical",
+      4.8,
+      2701
+    ],
+    [
+      "Burkhardt Heating, Cooling, Plumbing & Electric",
+      4.8,
+      2287
+    ],
+    [
+      "Thielmann Heating, Cooling & Plumbing",
+      4.9,
+      2012
+    ]
+  ]
+}

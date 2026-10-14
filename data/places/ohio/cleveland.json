@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Cleveland, OH",
+  "count": 52,
+  "median_rating": 4.8,
+  "median_reviews": 45.5,
+  "share_with_website": 0.71,
+  "top5": [
+    [
+      "Sal's Heating & Cooling, Plumbing & Sewer",
+      4.7,
+      5229
+    ],
+    [
+      "Anderson HVAC, Plumbing & Electrical",
+      4.9,
+      4050
+    ],
+    [
+      "Gorjanc Home Services",
+      4.9,
+      2955
+    ],
+    [
+      "W.F. Hann and Sons",
+      4.9,
+      2766
+    ],
+    [
+      "Verne & Ellsworth Hann",
+      4.9,
+      2027
+    ]
+  ]
+}

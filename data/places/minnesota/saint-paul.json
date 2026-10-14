@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Saint Paul, MN",
+  "count": 58,
+  "median_rating": 4.8,
+  "median_reviews": 17.5,
+  "share_with_website": 0.6,
+  "top5": [
+    [
+      "Hero: Plumbing, Heating, Cooling, Drains, Ducts & Electrical",
+      4.7,
+      19623
+    ],
+    [
+      "Standard Heating & Air Conditioning",
+      4.9,
+      7809
+    ],
+    [
+      "Aquarius Home Services",
+      4.9,
+      7290
+    ],
+    [
+      "McQuillan Home Services LLC.",
+      4.6,
+      5549
+    ],
+    [
+      "MSP Plumbing Heating Air",
+      4.8,
+      5158
+    ]
+  ]
+}

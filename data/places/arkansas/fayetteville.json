@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Fayetteville, AR",
+  "count": 38,
+  "median_rating": 4.8,
+  "median_reviews": 37.5,
+  "share_with_website": 0.82,
+  "top5": [
+    [
+      "Bud Anderson Home Services",
+      4.8,
+      8095
+    ],
+    [
+      "Paschal Air, Plumbing & Electric",
+      4.8,
+      6399
+    ],
+    [
+      "Anderson Heating & Air Conditioning",
+      4.9,
+      1780
+    ],
+    [
+      "Franklin AC, Plumbing, & Electrical",
+      5,
+      1379
+    ],
+    [
+      "Armor Heating & Air",
+      4.9,
+      689
+    ]
+  ]
+}

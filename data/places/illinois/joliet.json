@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Joliet, IL",
+  "count": 38,
+  "median_rating": 4.9,
+  "median_reviews": 48.0,
+  "share_with_website": 0.84,
+  "top5": [
+    [
+      "TR Miller Heating, Cooling, Plumbing and Electrical",
+      4.9,
+      12255
+    ],
+    [
+      "Comfort First Heating and Cooling",
+      4.9,
+      1694
+    ],
+    [
+      "Zark Heating & Cooling Inc.",
+      5,
+      877
+    ],
+    [
+      "Omega Plumbing Heating and Cooling",
+      4.9,
+      777
+    ],
+    [
+      "PDM Plumbing, Heating, Cooling Since 1885",
+      4.8,
+      708
+    ]
+  ]
+}

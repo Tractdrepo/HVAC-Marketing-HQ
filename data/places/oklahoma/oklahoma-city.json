@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Oklahoma City, OK",
+  "count": 60,
+  "median_rating": 4.9,
+  "median_reviews": 69.5,
+  "share_with_website": 0.63,
+  "top5": [
+    [
+      "Air Comfort Solutions",
+      4.8,
+      6964
+    ],
+    [
+      "Comfort Wave Home Services",
+      4.9,
+      6174
+    ],
+    [
+      "Service Experts Oklahoma City",
+      4.8,
+      3860
+    ],
+    [
+      "Airco Service",
+      4.7,
+      2375
+    ],
+    [
+      "Drabek & Hill Air Conditioning & Heating Inc.",
+      4.8,
+      2297
+    ]
+  ]
+}

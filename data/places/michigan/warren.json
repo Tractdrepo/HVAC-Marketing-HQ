@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Warren, MI",
+  "count": 46,
+  "median_rating": 4.9,
+  "median_reviews": 81.5,
+  "share_with_website": 0.74,
+  "top5": [
+    [
+      "Randazzo Heating & Cooling",
+      4.9,
+      9852
+    ],
+    [
+      "C & C Heating & Air Conditioning",
+      4.9,
+      7660
+    ],
+    [
+      "Cregger Plumbing, Heating, Cooling & Electrical",
+      4.9,
+      7185
+    ],
+    [
+      "FLAME Heating, Cooling, Plumbing, Electrical",
+      4.8,
+      4582
+    ],
+    [
+      "Detroit Furnace LLC",
+      4.9,
+      2291
+    ]
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Shreveport, LA",
+  "count": 46,
+  "median_rating": 4.9,
+  "median_reviews": 92.5,
+  "share_with_website": 0.87,
+  "top5": [
+    [
+      "Southern Air Heating, Cooling, Plumbing & Electrical",
+      4.9,
+      5881
+    ],
+    [
+      "Bobby L. Greene Plumbing, Heating And Cooling",
+      4.9,
+      1331
+    ],
+    [
+      "SBC Cooling + Heating",
+      5,
+      1065
+    ],
+    [
+      "Moore's A/C & Heating Inc.",
+      4.9,
+      947
+    ],
+    [
+      "Pioneer Comfort Systems",
+      4.9,
+      889
+    ]
+  ]
+}

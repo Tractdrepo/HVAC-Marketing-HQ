@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Fort Smith, AR",
+  "count": 49,
+  "median_rating": 4.8,
+  "median_reviews": 16,
+  "share_with_website": 0.69,
+  "top5": [
+    [
+      "Paschal Air, Plumbing & Electric",
+      4.8,
+      6399
+    ],
+    [
+      "Atchley Air Cooling, Heating, Plumbing & Electrical",
+      4.8,
+      2299
+    ],
+    [
+      "Paschal Air, Plumbing & Electric",
+      4.8,
+      1397
+    ],
+    [
+      "Airco Service",
+      4.8,
+      1034
+    ],
+    [
+      "Rice Heating and Air",
+      4.9,
+      615
+    ]
+  ]
+}

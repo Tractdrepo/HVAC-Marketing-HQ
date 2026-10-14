@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Lexington, KY",
+  "count": 56,
+  "median_rating": 4.9,
+  "median_reviews": 79.0,
+  "share_with_website": 0.8,
+  "top5": [
+    [
+      "Fayette Heating & Air",
+      4.8,
+      7081
+    ],
+    [
+      "Dauenhauer Plumbing Heating Air & Electric",
+      4.8,
+      5553
+    ],
+    [
+      "Comfort Heating & Air",
+      4.8,
+      4615
+    ],
+    [
+      "Bryant Heating, Cooling, Plumbing & Electric",
+      4.8,
+      4434
+    ],
+    [
+      "GreenBox Home Services",
+      4.9,
+      1895
+    ]
+  ]
+}

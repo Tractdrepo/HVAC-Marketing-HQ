@@ -1,15 +1,15 @@
 {
   "pulled": "2026-10-14",
   "query": "HVAC contractor in Corpus Christi, TX",
-  "count": 20,
+  "count": 51,
   "median_rating": 4.9,
-  "median_reviews": 291.5,
-  "share_with_website": 0.85,
+  "median_reviews": 23,
+  "share_with_website": 0.63,
   "top5": [
     [
       "Mathews CCAC Heating, Cooling, Plumbing & Electrical",
       4.9,
-      6390
+      6389
     ],
     [
       "One Hour Air Conditioning & Heating",

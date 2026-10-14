@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Omaha, NE",
+  "count": 50,
+  "median_rating": 4.9,
+  "median_reviews": 125.0,
+  "share_with_website": 0.94,
+  "top5": [
+    [
+      "Burton AC Heating Plumbing And More",
+      4.7,
+      7950
+    ],
+    [
+      "aksarben\u00ae Heating, Air Conditioning & Plumbing",
+      4.6,
+      6315
+    ],
+    [
+      "ServiceOne Heating, Cooling, Plumbing, and Electrical",
+      4.8,
+      5509
+    ],
+    [
+      "Getzschman Heating",
+      4.9,
+      3403
+    ],
+    [
+      "Thermal Services, Inc.",
+      4.9,
+      2615
+    ]
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Columbus, GA",
+  "count": 44,
+  "median_rating": 4.9,
+  "median_reviews": 44.0,
+  "share_with_website": 0.66,
+  "top5": [
+    [
+      "Energy Savers of Columbus",
+      4.9,
+      4564
+    ],
+    [
+      "Jackson Services",
+      4.8,
+      1978
+    ],
+    [
+      "Riley Heating & Air Conditioning",
+      4.9,
+      1720
+    ],
+    [
+      "Air Force Heating & Air",
+      4.8,
+      1203
+    ],
+    [
+      "Air Force Heating & Air",
+      4.8,
+      1104
+    ]
+  ]
+}

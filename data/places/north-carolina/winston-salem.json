@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Winston-Salem, NC",
+  "count": 45,
+  "median_rating": 4.9,
+  "median_reviews": 42,
+  "share_with_website": 0.78,
+  "top5": [
+    [
+      "Central Carolina Air Conditioning",
+      4.9,
+      3585
+    ],
+    [
+      "Advanced Appliance Service",
+      4.6,
+      2772
+    ],
+    [
+      "Sutton Brothers Heating, Cooling, Plumbing, & Electrical",
+      4.8,
+      2074
+    ],
+    [
+      "Gwyn Services",
+      4.9,
+      1864
+    ],
+    [
+      "Hawley Air Heating and Cooling",
+      4.9,
+      1484
+    ]
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Fort Myers, FL",
+  "count": 57,
+  "median_rating": 4.9,
+  "median_reviews": 452,
+  "share_with_website": 0.98,
+  "top5": [
+    [
+      "Gulf Shore Cooling, LLC",
+      4.9,
+      4190
+    ],
+    [
+      "Advanced Air & Refrigeration",
+      4.8,
+      3414
+    ],
+    [
+      "Cool Today - Cooling, Plumbing, Electrical",
+      4.8,
+      3297
+    ],
+    [
+      "Certified Heating and Cooling Inc.",
+      4.9,
+      3003
+    ],
+    [
+      "Elevate Home Services",
+      4.9,
+      2484
+    ]
+  ]
+}

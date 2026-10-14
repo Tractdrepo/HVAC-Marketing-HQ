@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Newark, NJ",
+  "count": 31,
+  "median_rating": 4.8,
+  "median_reviews": 13,
+  "share_with_website": 0.39,
+  "top5": [
+    [
+      "Platinum Heating & Cooling",
+      4.8,
+      364
+    ],
+    [
+      "Newmans Heating & Air Conditioning",
+      4.8,
+      222
+    ],
+    [
+      "Garcia Brothers Heating & Air Conditioning",
+      4.8,
+      81
+    ],
+    [
+      "Haddad Plumbing & Heating Inc",
+      3.3,
+      77
+    ],
+    [
+      "Garcia Brothers Heating & Air Conditioning",
+      4.8,
+      69
+    ]
+  ]
+}

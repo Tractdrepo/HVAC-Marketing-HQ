@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Riverside, CA",
+  "count": 43,
+  "median_rating": 4.8,
+  "median_reviews": 102,
+  "share_with_website": 0.84,
+  "top5": [
+    [
+      "NexGen HVAC & Plumbing",
+      4.7,
+      1834
+    ],
+    [
+      "RKM Heating and Air Conditioning",
+      4.9,
+      1324
+    ],
+    [
+      "Ace Home Heating & Air Conditioning",
+      4.7,
+      1309
+    ],
+    [
+      "MSP HEATING AND AIR CONDITIONING",
+      4.9,
+      1212
+    ],
+    [
+      "Sheldon's Heating, Air Conditioning & Plumbing, Inc.",
+      4.8,
+      831
+    ]
+  ]
+}

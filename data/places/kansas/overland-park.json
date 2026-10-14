@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Overland Park, KS",
+  "count": 52,
+  "median_rating": 4.9,
+  "median_reviews": 310.5,
+  "share_with_website": 0.87,
+  "top5": [
+    [
+      "Anthony Plumbing, Heating, Cooling & Electric",
+      4.8,
+      19815
+    ],
+    [
+      "Hamilton Plumbing, Heating, A/C & Rooter",
+      4.7,
+      13023
+    ],
+    [
+      "KB Complete Plumbing, Heating, Cooling & Electrical Inc.",
+      4.8,
+      9423
+    ],
+    [
+      "MVP Air Conditioning, Heating, Plumbing & Electric",
+      4.8,
+      5192
+    ],
+    [
+      "Polestar Plumbing, Heating & Air Conditioning",
+      4.8,
+      4399
+    ]
+  ]
+}

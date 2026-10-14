@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Stockton, CA",
+  "count": 36,
+  "median_rating": 4.8,
+  "median_reviews": 45.5,
+  "share_with_website": 0.75,
+  "top5": [
+    [
+      "Loves Air",
+      5,
+      2729
+    ],
+    [
+      "Delta Sierra Mechanical",
+      4.9,
+      1457
+    ],
+    [
+      "Greener Solutions Heating & A/C",
+      4.9,
+      1236
+    ],
+    [
+      "Grizzly Heating & Air",
+      4.9,
+      585
+    ],
+    [
+      "Coaches HVAC ExtraordinAIR",
+      4.6,
+      388
+    ]
+  ]
+}

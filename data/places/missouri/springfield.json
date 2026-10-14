@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Springfield, MO",
+  "count": 53,
+  "median_rating": 4.9,
+  "median_reviews": 94,
+  "share_with_website": 0.87,
+  "top5": [
+    [
+      "Air Services Heating, Cooling, Plumbing, and Electric",
+      4.9,
+      7923
+    ],
+    [
+      "All Klear All Hours Plumbing, Heating & Cooling",
+      4.8,
+      5188
+    ],
+    [
+      "SS&B Heating & Cooling",
+      4.9,
+      1438
+    ],
+    [
+      "Redeemed HVAC - HVAC Services Springfield",
+      4.7,
+      1241
+    ],
+    [
+      "One Hour Heating & Air Conditioning\u00ae of Springfield",
+      4.8,
+      1120
+    ]
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Bakersfield, CA",
+  "count": 51,
+  "median_rating": 4.8,
+  "median_reviews": 58,
+  "share_with_website": 0.73,
+  "top5": [
+    [
+      "Can Do Crew Plumbing Heating & AC",
+      4.8,
+      2967
+    ],
+    [
+      "LaVerne & Son Electrical A/C & Heating",
+      4.8,
+      1427
+    ],
+    [
+      "Monarch Home Services - Bakersfield",
+      4.5,
+      1155
+    ],
+    [
+      "Holders Air Conditioning & Heating",
+      4.8,
+      1026
+    ],
+    [
+      "All Climate Air Inc.",
+      4.8,
+      891
+    ]
+  ]
+}

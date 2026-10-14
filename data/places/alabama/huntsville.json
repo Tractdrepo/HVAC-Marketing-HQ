@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Huntsville, AL",
+  "count": 53,
+  "median_rating": 4.9,
+  "median_reviews": 86,
+  "share_with_website": 0.89,
+  "top5": [
+    [
+      "Blake Brothers Services Corporation",
+      4.8,
+      5794
+    ],
+    [
+      "Conditioned Air Solutions",
+      4.9,
+      3452
+    ],
+    [
+      "Hiller Plumbing, Heating, Cooling & Electrical",
+      4.9,
+      3404
+    ],
+    [
+      "Valley Heating & Cooling",
+      4.9,
+      3275
+    ],
+    [
+      "Aire Serv of Huntsville",
+      4.7,
+      2070
+    ]
+  ]
+}

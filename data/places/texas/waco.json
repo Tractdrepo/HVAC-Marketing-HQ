@@ -1,11 +1,16 @@
 {
   "pulled": "2026-10-14",
   "query": "HVAC contractor in Waco, TX",
-  "count": 20,
+  "count": 48,
   "median_rating": 4.9,
-  "median_reviews": 123.5,
-  "share_with_website": 1.0,
+  "median_reviews": 42.0,
+  "share_with_website": 0.83,
   "top5": [
+    [
+      "Lochridge Priest Home Services",
+      4.9,
+      2824
+    ],
     [
       "Lochridge-Priest",
       4.8,
@@ -22,14 +27,9 @@
       1139
     ],
     [
-      "Evergreen Heating and Cooling",
-      4.8,
-      890
-    ],
-    [
-      "Clark Heating and Air Conditioning, LLC",
-      5,
-      603
+      "Campbell Appliance Heating & Air Inc.",
+      4.1,
+      1064
     ]
   ]
 }

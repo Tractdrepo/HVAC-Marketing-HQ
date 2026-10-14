@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Orlando, FL",
+  "count": 57,
+  "median_rating": 4.9,
+  "median_reviews": 207,
+  "share_with_website": 0.86,
+  "top5": [
+    [
+      "Rainaldi Home Services",
+      4.8,
+      6054
+    ],
+    [
+      "Cool Today - Cooling, Plumbing, Electrical",
+      4.8,
+      5331
+    ],
+    [
+      "Mills Air Inc",
+      4.7,
+      2612
+    ],
+    [
+      "Mechanical One",
+      4.9,
+      2591
+    ],
+    [
+      "Our Place Air & Home Repair",
+      4.8,
+      2302
+    ]
+  ]
+}

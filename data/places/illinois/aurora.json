@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Aurora, IL",
+  "count": 35,
+  "median_rating": 4.9,
+  "median_reviews": 67,
+  "share_with_website": 0.8,
+  "top5": [
+    [
+      "Andersen Plumbing, Heating and AC Repair",
+      4.9,
+      2054
+    ],
+    [
+      "Brian and Sons Heating and Air Conditioning",
+      4.8,
+      472
+    ],
+    [
+      "Buchner Heating, Air & Plumbing",
+      4.9,
+      468
+    ],
+    [
+      "Youngren's, Inc. Heating & Cooling",
+      4.9,
+      465
+    ],
+    [
+      "Andersen Plumbing, Heating and AC Repair",
+      4.9,
+      424
+    ]
+  ]
+}

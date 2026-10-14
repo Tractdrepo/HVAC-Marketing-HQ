@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Santa Ana, CA",
+  "count": 59,
+  "median_rating": 5.0,
+  "median_reviews": 5,
+  "share_with_website": 0.51,
+  "top5": [
+    [
+      "Dial One Sonshine Heating, Air & Plumbing",
+      4.9,
+      3015
+    ],
+    [
+      "Air Blue HVAC",
+      5,
+      385
+    ],
+    [
+      "Command Comfort",
+      5,
+      351
+    ],
+    [
+      "JW Mitchell Heating and Air Conditioning",
+      5,
+      240
+    ],
+    [
+      "JP Heating and Cooling",
+      5,
+      41
+    ]
+  ]
+}

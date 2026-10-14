@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Jersey City, NJ",
+  "count": 40,
+  "median_rating": 4.9,
+  "median_reviews": 14.5,
+  "share_with_website": 0.75,
+  "top5": [
+    [
+      "Chodaba Electric LLC in Jersey City , NJ",
+      4.9,
+      301
+    ],
+    [
+      "Amazon AC & Appliance Repair",
+      4.7,
+      260
+    ],
+    [
+      "Palomino Heating LLC",
+      4.9,
+      221
+    ],
+    [
+      "Aeromark Mechanical Inc",
+      5,
+      212
+    ],
+    [
+      "Universal HVAC Services, LLC",
+      4.9,
+      181
+    ]
+  ]
+}

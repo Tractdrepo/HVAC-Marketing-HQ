@@ -1,15 +1,25 @@
 {
   "pulled": "2026-10-14",
   "query": "HVAC contractor in Brownsville, TX",
-  "count": 18,
-  "median_rating": 4.8,
-  "median_reviews": 25.5,
-  "share_with_website": 0.44,
+  "count": 41,
+  "median_rating": 4.7,
+  "median_reviews": 14,
+  "share_with_website": 0.56,
   "top5": [
+    [
+      "Frontier Cooling & Heating",
+      4.9,
+      2553
+    ],
     [
       "American AC & Heating",
       4.7,
       1701
+    ],
+    [
+      "Atlas Electrical, Air Conditioning, Refrigeration & Plumbing Services, Inc.",
+      4.8,
+      641
     ],
     [
       "Brownsville Heating & Air Conditioning",
@@ -17,19 +27,9 @@
       378
     ],
     [
-      "Hines Family HVAC Repair",
-      4.9,
-      205
-    ],
-    [
-      "Texas Air Conditioning",
+      "Hess Air",
       4.7,
-      204
-    ],
-    [
-      "Texas Lone Star AC & Heating LLC",
-      4.7,
-      89
+      351
     ]
   ]
 }

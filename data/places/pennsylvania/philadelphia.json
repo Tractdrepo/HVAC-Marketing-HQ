@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Philadelphia, PA",
+  "count": 58,
+  "median_rating": 4.9,
+  "median_reviews": 24.5,
+  "share_with_website": 0.6,
+  "top5": [
+    [
+      "Sila Heating, Air Conditioning, Plumbing & Electrical",
+      4.8,
+      5515
+    ],
+    [
+      "GEN3 Electric & HVAC",
+      4.9,
+      5433
+    ],
+    [
+      "WM Henderson Heating, Cooling, Plumbing, & Electrical Inc.",
+      4.7,
+      3763
+    ],
+    [
+      "H & H Heating and Air Conditioning Inc.",
+      4.9,
+      2228
+    ],
+    [
+      "AirMaster Heating & Cooling Specialists",
+      4.9,
+      1236
+    ]
+  ]
+}

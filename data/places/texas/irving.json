@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Irving, TX",
+  "count": 58,
+  "median_rating": 4.9,
+  "median_reviews": 15.5,
+  "share_with_website": 0.71,
+  "top5": [
+    [
+      "ARS / Rescue Rooter",
+      4.7,
+      6873
+    ],
+    [
+      "Reliant Air Conditioning",
+      4.7,
+      4877
+    ],
+    [
+      "Rescue Air and Plumbing",
+      4.8,
+      4088
+    ],
+    [
+      "Xtreme Air Services - HVAC, Plumbing, & Electrical",
+      4.8,
+      2909
+    ],
+    [
+      "Tempo Air",
+      4.7,
+      2058
+    ]
+  ]
+}

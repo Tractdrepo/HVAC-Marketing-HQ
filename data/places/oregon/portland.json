@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Portland, OR",
+  "count": 60,
+  "median_rating": 4.9,
+  "median_reviews": 181.5,
+  "share_with_website": 0.85,
+  "top5": [
+    [
+      "Wolfer\u2019s Home Services",
+      4.8,
+      7212
+    ],
+    [
+      "Sunset Heating & Cooling",
+      4.8,
+      6463
+    ],
+    [
+      "Sky Heating, AC, Plumbing & Electrical",
+      4.9,
+      3631
+    ],
+    [
+      "D&F Plumbing, Heating and Cooling",
+      4.5,
+      2241
+    ],
+    [
+      "Central Air Heating, Cooling & Plumbing",
+      4.9,
+      2162
+    ]
+  ]
+}

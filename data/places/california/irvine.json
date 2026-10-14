@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Irvine, CA",
+  "count": 46,
+  "median_rating": 5.0,
+  "median_reviews": 32.5,
+  "share_with_website": 0.83,
+  "top5": [
+    [
+      "Just Right Services",
+      4.9,
+      1053
+    ],
+    [
+      "Alicia Air Conditioning & Heating, Inc.",
+      4.9,
+      597
+    ],
+    [
+      "White Mechanical, Inc.",
+      4.9,
+      499
+    ],
+    [
+      "Apex heating and air conditioning",
+      5,
+      460
+    ],
+    [
+      "Green Fuse HVAC & Appliance repair",
+      5,
+      453
+    ]
+  ]
+}

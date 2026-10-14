@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Lincoln, NE",
+  "count": 50,
+  "median_rating": 4.8,
+  "median_reviews": 26.5,
+  "share_with_website": 0.72,
+  "top5": [
+    [
+      "John Henry's Plumbing, Heating, Air, and Electrical",
+      4.8,
+      5954
+    ],
+    [
+      "Star City Heating, Cooling, Electrical & Plumbing",
+      4.9,
+      2803
+    ],
+    [
+      "Action Plumbing, Heating, A/C & Electrical",
+      4.9,
+      1212
+    ],
+    [
+      "Harley's Heating & Air Conditioning",
+      4.9,
+      624
+    ],
+    [
+      "Dave's Heating and Air",
+      4.9,
+      607
+    ]
+  ]
+}

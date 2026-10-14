@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Kansas City, KS",
+  "count": 41,
+  "median_rating": 4.9,
+  "median_reviews": 130,
+  "share_with_website": 0.76,
+  "top5": [
+    [
+      "Anthony Plumbing, Heating, Cooling & Electric",
+      4.8,
+      19815
+    ],
+    [
+      "KB Complete Plumbing, Heating, Cooling & Electrical Inc.",
+      4.8,
+      9423
+    ],
+    [
+      "Polestar Plumbing, Heating & Air Conditioning",
+      4.8,
+      4399
+    ],
+    [
+      "C.M. Mose & Son",
+      4.9,
+      3925
+    ],
+    [
+      "LBA Air Conditioning, Heating & Plumbing",
+      4.7,
+      3301
+    ]
+  ]
+}

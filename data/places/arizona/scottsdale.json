@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Scottsdale, AZ",
+  "count": 41,
+  "median_rating": 5,
+  "median_reviews": 63,
+  "share_with_website": 0.8,
+  "top5": [
+    [
+      "Collins Comfort Masters",
+      4.8,
+      11422
+    ],
+    [
+      "AC by J",
+      4.8,
+      2345
+    ],
+    [
+      "Larson Air Conditioning",
+      4.9,
+      1946
+    ],
+    [
+      "AirTime Cooling and Heating",
+      4.9,
+      1800
+    ],
+    [
+      "Scottsdale Air Heating & Cooling",
+      4.9,
+      1497
+    ]
+  ]
+}

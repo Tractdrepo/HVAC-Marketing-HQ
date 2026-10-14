@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Tucson, AZ",
+  "count": 60,
+  "median_rating": 4.9,
+  "median_reviews": 447.0,
+  "share_with_website": 0.93,
+  "top5": [
+    [
+      "Rite Way Heating, Cooling & Plumbing",
+      4.9,
+      13548
+    ],
+    [
+      "Parker & Sons",
+      4.7,
+      5897
+    ],
+    [
+      "Goettl Air Conditioning & Plumbing - Tucson AZ",
+      4.7,
+      4962
+    ],
+    [
+      "D&H Air Conditioning & Heating & Plumbing",
+      4.8,
+      4101
+    ],
+    [
+      "Alaskan Air Conditioning & Heating Tucson",
+      4.7,
+      3866
+    ]
+  ]
+}

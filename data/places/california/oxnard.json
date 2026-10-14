@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Oxnard, CA",
+  "count": 55,
+  "median_rating": 5,
+  "median_reviews": 6,
+  "share_with_website": 0.42,
+  "top5": [
+    [
+      "Conejo Services HVAC, Plumbing and Electrical",
+      4.9,
+      2767
+    ],
+    [
+      "Pacific Aire",
+      4.5,
+      1181
+    ],
+    [
+      "AirWorks Heating Air Plumbing",
+      4.9,
+      1157
+    ],
+    [
+      "TriCounty Services",
+      4.8,
+      413
+    ],
+    [
+      "West Coast Air Conditioning",
+      4.9,
+      311
+    ]
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Wilmington, NC",
+  "count": 50,
+  "median_rating": 4.9,
+  "median_reviews": 175.0,
+  "share_with_website": 0.94,
+  "top5": [
+    [
+      "Blaze Heating, Cooling, Electrical & Plumbing - Cape Fear",
+      4.8,
+      3943
+    ],
+    [
+      "Michael & Son Services",
+      4.8,
+      3697
+    ],
+    [
+      "ARS / Rescue Rooter",
+      4.6,
+      1888
+    ],
+    [
+      "Salt Air AC, Heat Pump & Electrical Repair",
+      4.9,
+      1641
+    ],
+    [
+      "Bluewater Plumbing Heating & Air",
+      5,
+      1622
+    ]
+  ]
+}

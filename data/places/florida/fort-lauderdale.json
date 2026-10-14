@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Fort Lauderdale, FL",
+  "count": 56,
+  "median_rating": 4.9,
+  "median_reviews": 56.5,
+  "share_with_website": 0.75,
+  "top5": [
+    [
+      "Lindstrom Air Conditioning & Plumbing",
+      4.7,
+      11358
+    ],
+    [
+      "Paradise Plumbing, Air & Electric",
+      4.8,
+      5524
+    ],
+    [
+      "Air Around the Clock Air Conditioning And Plumbing",
+      4.6,
+      5086
+    ],
+    [
+      "Cool Air USA",
+      4.9,
+      4959
+    ],
+    [
+      "AAA Modern Air",
+      4.8,
+      1853
+    ]
+  ]
+}

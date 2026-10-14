@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Tacoma, WA",
+  "count": 57,
+  "median_rating": 4.9,
+  "median_reviews": 22,
+  "share_with_website": 0.65,
+  "top5": [
+    [
+      "Pacific Heating, Cooling, Plumbing & Electrical",
+      4.9,
+      7207
+    ],
+    [
+      "Harts Plumbers, Electricians, & HVAC Technicians",
+      4.8,
+      5890
+    ],
+    [
+      "Mercurio's Heating & Air Conditioning",
+      4.9,
+      5087
+    ],
+    [
+      "Hunt's Services",
+      4.8,
+      3745
+    ],
+    [
+      "Essential Heating and Air",
+      4.9,
+      1824
+    ]
+  ]
+}

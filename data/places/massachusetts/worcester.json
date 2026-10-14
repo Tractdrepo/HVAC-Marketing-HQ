@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Worcester, MA",
+  "count": 48,
+  "median_rating": 4.8,
+  "median_reviews": 27.5,
+  "share_with_website": 0.83,
+  "top5": [
+    [
+      "Landry Mechanical Inc Plumbing HVAC & Electric",
+      4.8,
+      3297
+    ],
+    [
+      "Heritage Home Service",
+      4.8,
+      3037
+    ],
+    [
+      "Gervais Mechanical Services LLC",
+      4.7,
+      1503
+    ],
+    [
+      "ckSmithSuperior",
+      4.9,
+      1423
+    ],
+    [
+      "Chaves Heating & Air Conditioning",
+      4.9,
+      1220
+    ]
+  ]
+}

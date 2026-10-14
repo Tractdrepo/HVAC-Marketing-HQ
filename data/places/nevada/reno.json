@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Reno, NV",
+  "count": 48,
+  "median_rating": 4.8,
+  "median_reviews": 95.0,
+  "share_with_website": 0.92,
+  "top5": [
+    [
+      "Sierra Air Cooling Heating & Plumbing Reno",
+      4.8,
+      4582
+    ],
+    [
+      "All Hours Air",
+      4.7,
+      2366
+    ],
+    [
+      "Goettl Air Conditioning and Plumbing - Reno NV",
+      4.8,
+      2266
+    ],
+    [
+      "Lincoln Heating & Air",
+      4.8,
+      1612
+    ],
+    [
+      "DeHart Plumbing, Heating, & Air",
+      4.9,
+      1398
+    ]
+  ]
+}

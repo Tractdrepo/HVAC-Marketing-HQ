@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Charlotte, NC",
+  "count": 53,
+  "median_rating": 4.9,
+  "median_reviews": 199,
+  "share_with_website": 0.77,
+  "top5": [
+    [
+      "Morris-Jenkins",
+      4.9,
+      36719
+    ],
+    [
+      "Dilling Heating, Cooling, Plumbing & Electrical",
+      4.9,
+      6620
+    ],
+    [
+      "One Hour Heating & Air Conditioning of Charlotte",
+      4.8,
+      6180
+    ],
+    [
+      "Michael & Son Services",
+      4.8,
+      4557
+    ],
+    [
+      "McClintock",
+      5,
+      3653
+    ]
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Oakland, CA",
+  "count": 50,
+  "median_rating": 5.0,
+  "median_reviews": 4.5,
+  "share_with_website": 0.54,
+  "top5": [
+    [
+      "Jazz Heating, Air Conditioning and Plumbing",
+      4.9,
+      4678
+    ],
+    [
+      "Albert Nahman Plumbing, Heating, and Cooling",
+      4.7,
+      3395
+    ],
+    [
+      "Hometown Heating and Air Conditioning",
+      4.9,
+      2764
+    ],
+    [
+      "Service Champions - Pleasanton",
+      4.8,
+      2475
+    ],
+    [
+      "Hassler Heating and Air Conditioning, LLC",
+      4.9,
+      723
+    ]
+  ]
+}

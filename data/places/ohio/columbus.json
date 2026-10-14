@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Columbus, OH",
+  "count": 58,
+  "median_rating": 4.8,
+  "median_reviews": 74.0,
+  "share_with_website": 0.76,
+  "top5": [
+    [
+      "Eco Plumbers, Electricians, and HVAC Technicians",
+      4.9,
+      20915
+    ],
+    [
+      "Atlas Butler Heating, Cooling & Plumbing",
+      4.7,
+      8366
+    ],
+    [
+      "Columbus Worthington Air",
+      4.8,
+      7266
+    ],
+    [
+      "Logan Services A/C, Heat & Plumbing",
+      4.8,
+      4809
+    ],
+    [
+      "Fire & Ice Heating, Cooling, Plumbing & Electrical",
+      4.8,
+      4324
+    ]
+  ]
+}

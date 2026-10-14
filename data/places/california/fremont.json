@@ -1,0 +1,20 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Fremont, CA",
+  "count": 2,
+  "median_rating": 5.0,
+  "median_reviews": 464.5,
+  "share_with_website": 1.0,
+  "top5": [
+    [
+      "AIS Heating & Air Conditioning",
+      4.9,
+      859
+    ],
+    [
+      "Giant HVAC, Inc",
+      5,
+      70
+    ]
+  ]
+}

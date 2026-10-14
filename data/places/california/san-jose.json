@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in San Jose, CA",
+  "count": 60,
+  "median_rating": 5.0,
+  "median_reviews": 59.0,
+  "share_with_website": 0.73,
+  "top5": [
+    [
+      "Service Champions",
+      4.8,
+      3657
+    ],
+    [
+      "IRBIS Air Plumbing Electrical",
+      4.9,
+      1595
+    ],
+    [
+      "Atlas Trillo",
+      4.5,
+      1523
+    ],
+    [
+      "TRIO Heating, Air & Plumbing",
+      4.9,
+      1318
+    ],
+    [
+      "Pacific Coast Home Services",
+      4.4,
+      773
+    ]
+  ]
+}

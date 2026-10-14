@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Cape Coral, FL",
+  "count": 54,
+  "median_rating": 4.9,
+  "median_reviews": 148.5,
+  "share_with_website": 0.91,
+  "top5": [
+    [
+      "Plumbing, Cooling & Electrical Nerds",
+      4.8,
+      1369
+    ],
+    [
+      "Mr Cool Air Conditioning",
+      4.9,
+      1359
+    ],
+    [
+      "Ultimate Homes Cooling and Electrical",
+      4.9,
+      1285
+    ],
+    [
+      "Affordable Air and Plumbing",
+      4.8,
+      1068
+    ],
+    [
+      "Non-Stop Air Conditioning & Heating",
+      5,
+      855
+    ]
+  ]
+}

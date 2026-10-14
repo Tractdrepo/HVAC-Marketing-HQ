@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Tulsa, OK",
+  "count": 49,
+  "median_rating": 4.9,
+  "median_reviews": 144,
+  "share_with_website": 0.9,
+  "top5": [
+    [
+      "Airco Service",
+      4.8,
+      7540
+    ],
+    [
+      "Air Comfort Solutions Cooling, Heating, Plumbing & Electrical Tulsa",
+      4.8,
+      5542
+    ],
+    [
+      "Air Assurance Heating, Air Conditioning & Plumbing",
+      4.8,
+      4155
+    ],
+    [
+      "Quality Heating, Cooling, Plumbing & Electric",
+      4.8,
+      2510
+    ],
+    [
+      "Quality Heating, Cooling, Plumbing & Electric",
+      4.8,
+      2426
+    ]
+  ]
+}

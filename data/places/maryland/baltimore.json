@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Baltimore, MD",
+  "count": 45,
+  "median_rating": 4.7,
+  "median_reviews": 28,
+  "share_with_website": 0.62,
+  "top5": [
+    [
+      "Len The Plumber Heating & Air, LLC",
+      4.7,
+      18175
+    ],
+    [
+      "Michael & Son Services",
+      4.7,
+      9185
+    ],
+    [
+      "Horizon Services - Air Conditioning, Heating, Plumbing, & Electrical",
+      4.8,
+      5179
+    ],
+    [
+      "Amazing Plumbing, Heating & Air",
+      4.8,
+      2385
+    ],
+    [
+      "Complete Climate Services LLC",
+      5,
+      1039
+    ]
+  ]
+}

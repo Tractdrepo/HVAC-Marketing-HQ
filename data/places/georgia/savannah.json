@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Savannah, GA",
+  "count": 60,
+  "median_rating": 4.9,
+  "median_reviews": 10.0,
+  "share_with_website": 0.55,
+  "top5": [
+    [
+      "Thompson & Thompson Service Group",
+      4.9,
+      3477
+    ],
+    [
+      "Canady's Heating, Air, & Plumbing",
+      4.9,
+      3085
+    ],
+    [
+      "Galbreath Heating & Air",
+      4.9,
+      1324
+    ],
+    [
+      "Old Coast",
+      4.8,
+      1133
+    ],
+    [
+      "Service Experts Savannah",
+      4.7,
+      1077
+    ]
+  ]
+}

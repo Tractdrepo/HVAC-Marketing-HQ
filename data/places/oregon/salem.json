@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Salem, OR",
+  "count": 38,
+  "median_rating": 4.9,
+  "median_reviews": 104.5,
+  "share_with_website": 0.89,
+  "top5": [
+    [
+      "Woodward Heating, Air & Plumbing",
+      4.9,
+      5038
+    ],
+    [
+      "Evergreen Plumbing & Mechanical LLC",
+      4.9,
+      3111
+    ],
+    [
+      "Advantage Heating & Air Conditioning",
+      4.8,
+      1601
+    ],
+    [
+      "Mill Creek Heating",
+      4.9,
+      856
+    ],
+    [
+      "Air Stars Heating, AC, Plumbing & Electrical",
+      4.9,
+      815
+    ]
+  ]
+}

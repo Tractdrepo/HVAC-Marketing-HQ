@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Anaheim, CA",
+  "count": 51,
+  "median_rating": 4.9,
+  "median_reviews": 43,
+  "share_with_website": 0.82,
+  "top5": [
+    [
+      "Home Comfort Cooling, Heating & Plumbing",
+      4.8,
+      3864
+    ],
+    [
+      "NexGen HVAC & Plumbing",
+      4.7,
+      2456
+    ],
+    [
+      "Biard & Crockett Plumbing, Heating, and Air Conditioning",
+      4.9,
+      2038
+    ],
+    [
+      "Veteran Air",
+      4.9,
+      1353
+    ],
+    [
+      "Alps Heating & Air Conditioning, Inc.",
+      4.9,
+      1197
+    ]
+  ]
+}

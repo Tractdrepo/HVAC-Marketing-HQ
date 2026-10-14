@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Meridian, ID",
+  "count": 46,
+  "median_rating": 4.9,
+  "median_reviews": 228.5,
+  "share_with_website": 0.89,
+  "top5": [
+    [
+      "Right Now Heating and Air Conditioning",
+      4.8,
+      8939
+    ],
+    [
+      "Western Heating and Air Conditioning",
+      4.9,
+      4132
+    ],
+    [
+      "A-1 Heating, Air Conditioning & Electric",
+      4.9,
+      3620
+    ],
+    [
+      "Ultimate Heating & Air, Inc",
+      4.8,
+      2392
+    ],
+    [
+      "Right Now Heating and Air Conditioning & Plumbing",
+      5,
+      1899
+    ]
+  ]
+}

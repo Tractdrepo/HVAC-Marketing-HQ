@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Las Cruces, NM",
+  "count": 34,
+  "median_rating": 4.7,
+  "median_reviews": 35.0,
+  "share_with_website": 0.79,
+  "top5": [
+    [
+      "Sun City Plumbing & Heating",
+      4.9,
+      1694
+    ],
+    [
+      "Aire Serv of Southern New Mexico",
+      4.8,
+      1426
+    ],
+    [
+      "The Air Conditioning Company",
+      4.8,
+      938
+    ],
+    [
+      "Aircon Heating & Cooling Inc",
+      4.9,
+      347
+    ],
+    [
+      "On The GO Heating & Cooling, LLC",
+      4.8,
+      299
+    ]
+  ]
+}

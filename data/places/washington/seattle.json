@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Seattle, WA",
+  "count": 58,
+  "median_rating": 4.8,
+  "median_reviews": 49.0,
+  "share_with_website": 0.64,
+  "top5": [
+    [
+      "Seatown Electric Plumbing Heating and Air",
+      4.8,
+      6940
+    ],
+    [
+      "BelRed Heating, Cooling, Plumbing & Electrical",
+      4.9,
+      6422
+    ],
+    [
+      "Greenwood Heating and Home Services",
+      4.9,
+      4956
+    ],
+    [
+      "2 Sons Plumbing & Sewer",
+      4.9,
+      4118
+    ],
+    [
+      "Bee's Plumbing and Heating",
+      4.8,
+      3842
+    ]
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Norman, OK",
+  "count": 37,
+  "median_rating": 4.9,
+  "median_reviews": 130,
+  "share_with_website": 0.92,
+  "top5": [
+    [
+      "Air Comfort Solutions",
+      4.8,
+      6964
+    ],
+    [
+      "Norman Air",
+      4.9,
+      4019
+    ],
+    [
+      "Drabek & Hill Air Conditioning & Heating Inc.",
+      4.8,
+      2297
+    ],
+    [
+      "Arthur's Air Conditioning and Heating, LLC",
+      4.9,
+      1659
+    ],
+    [
+      "Yarbrough and Sons Heating, Cooling and Plumbing",
+      4.9,
+      1350
+    ]
+  ]
+}

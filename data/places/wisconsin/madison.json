@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Madison, WI",
+  "count": 53,
+  "median_rating": 4.8,
+  "median_reviews": 44,
+  "share_with_website": 0.81,
+  "top5": [
+    [
+      "Cardinal Heating, Cooling, Plumbing & Electric",
+      4.9,
+      5386
+    ],
+    [
+      "All Comfort Services",
+      4.8,
+      3736
+    ],
+    [
+      "24HR Home Comfort Services",
+      4.9,
+      2969
+    ],
+    [
+      "Harker Heating & Cooling",
+      4.9,
+      2059
+    ],
+    [
+      "Dave Jones, LLC",
+      4.9,
+      1985
+    ]
+  ]
+}

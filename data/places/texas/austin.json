@@ -1,10 +1,10 @@
 {
   "pulled": "2026-10-14",
   "query": "HVAC contractor in Austin, TX",
-  "count": 19,
-  "median_rating": 4.8,
-  "median_reviews": 1354,
-  "share_with_website": 1.0,
+  "count": 56,
+  "median_rating": 4.9,
+  "median_reviews": 58.5,
+  "share_with_website": 0.7,
   "top5": [
     [
       "Radiant Plumbing, Air Conditioning, & Electrical",
@@ -22,14 +22,14 @@
       6812
     ],
     [
+      "Abacus Plumbing, Air Conditioning, & Electrical",
+      4.8,
+      6108
+    ],
+    [
       "Goettl Air Conditioning and Plumbing - Austin TX",
       4.8,
       4047
-    ],
-    [
-      "McCullough Heating, Air Conditioning & Plumbing",
-      4.8,
-      3875
     ]
   ]
 }

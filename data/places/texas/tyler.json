@@ -1,10 +1,10 @@
 {
   "pulled": "2026-10-14",
   "query": "HVAC contractor in Tyler, TX",
-  "count": 20,
+  "count": 46,
   "median_rating": 4.9,
-  "median_reviews": 239.5,
-  "share_with_website": 0.95,
+  "median_reviews": 47.5,
+  "share_with_website": 0.83,
   "top5": [
     [
       "C. Woods Company",
@@ -22,14 +22,14 @@
       1612
     ],
     [
+      "A/C Contractors",
+      4.9,
+      1610
+    ],
+    [
       "Rose City Air",
       5,
       813
-    ],
-    [
-      "Bannister Plumbing & Air",
-      5,
-      752
     ]
   ]
 }

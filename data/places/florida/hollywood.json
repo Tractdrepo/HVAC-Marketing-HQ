@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Hollywood, FL",
+  "count": 58,
+  "median_rating": 5.0,
+  "median_reviews": 34.0,
+  "share_with_website": 0.78,
+  "top5": [
+    [
+      "AAA Modern Air",
+      4.8,
+      1853
+    ],
+    [
+      "Air Pros (Hollywood)",
+      4.6,
+      1023
+    ],
+    [
+      "AC Police, LLC.",
+      4.9,
+      659
+    ],
+    [
+      "Weathershield Air Conditioning",
+      4.9,
+      386
+    ],
+    [
+      "Honest Air A/C LLC",
+      5,
+      300
+    ]
+  ]
+}

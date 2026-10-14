@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Buffalo, NY",
+  "count": 52,
+  "median_rating": 4.8,
+  "median_reviews": 88.0,
+  "share_with_website": 0.83,
+  "top5": [
+    [
+      "Reimer Heating, Cooling & Plumbing",
+      4.9,
+      9629
+    ],
+    [
+      "Zenner & Ritter Home Services",
+      4.9,
+      5960
+    ],
+    [
+      "T-Mark Plumbing, Heating & Cooling- Buffalo",
+      4.9,
+      4493
+    ],
+    [
+      "Roy's Plumbing, Heating, Cooling & Electrical",
+      4.8,
+      3442
+    ],
+    [
+      "T-Mark Plumbing, Heating, Cooling & Electric - West Seneca",
+      4.9,
+      2949
+    ]
+  ]
+}

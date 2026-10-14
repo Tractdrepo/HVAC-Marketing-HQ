@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Moreno Valley, CA",
+  "count": 39,
+  "median_rating": 5.0,
+  "median_reviews": 28,
+  "share_with_website": 0.74,
+  "top5": [
+    [
+      "NexGen HVAC & Plumbing",
+      4.7,
+      1834
+    ],
+    [
+      "RKM Heating and Air Conditioning",
+      4.9,
+      1324
+    ],
+    [
+      "Sheldon's Heating, Air Conditioning & Plumbing, Inc.",
+      4.8,
+      831
+    ],
+    [
+      "Hush Air Heating & Air Conditioning",
+      5,
+      734
+    ],
+    [
+      "Inland Empire Comfort",
+      5,
+      474
+    ]
+  ]
+}

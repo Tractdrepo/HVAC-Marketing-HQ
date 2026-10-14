@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Fontana, CA",
+  "count": 31,
+  "median_rating": 5,
+  "median_reviews": 53,
+  "share_with_website": 0.77,
+  "top5": [
+    [
+      "All Pro Cooling, Heating, Plumbing & Electrical",
+      4.8,
+      9114
+    ],
+    [
+      "Family Ties Air, Plumbing, & Drain",
+      4.9,
+      1465
+    ],
+    [
+      "Burgeson's Heating, A/C, Electrical, Solar & Plumbing",
+      4.9,
+      1310
+    ],
+    [
+      "RC Air Heating & Air Conditioning Service",
+      4.9,
+      797
+    ],
+    [
+      "NexGen HVAC & Plumbing",
+      4.7,
+      791
+    ]
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Denver, CO",
+  "count": 53,
+  "median_rating": 4.8,
+  "median_reviews": 252,
+  "share_with_website": 0.89,
+  "top5": [
+    [
+      "Applewood Plumbing Heating & Electric",
+      4.8,
+      17858
+    ],
+    [
+      "Brothers Plumbing, Heating & Electric",
+      4.7,
+      9207
+    ],
+    [
+      "Tipping Hat Plumbing, Heating & Electric",
+      4.6,
+      7304
+    ],
+    [
+      "Doctor Fix-It Plumbing, Heating, Cooling & Electric",
+      4.7,
+      3990
+    ],
+    [
+      "Swan Plumbing, Heating & Air of Denver",
+      4.8,
+      3856
+    ]
+  ]
+}

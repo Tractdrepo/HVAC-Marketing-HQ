@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Indianapolis, IN",
+  "count": 60,
+  "median_rating": 4.9,
+  "median_reviews": 160.5,
+  "share_with_website": 0.72,
+  "top5": [
+    [
+      "One Hour Heating & Air Conditioning",
+      4.8,
+      8218
+    ],
+    [
+      "Chapman Heating, Air Conditioning, Plumbing and Electrical",
+      4.9,
+      7361
+    ],
+    [
+      "Williams Comfort Air - Heating Cooling Plumbing Electrical",
+      4.8,
+      6756
+    ],
+    [
+      "Airtron Heating & Air Conditioning",
+      4.9,
+      6639
+    ],
+    [
+      "Bassett Services: Heating, Cooling, Plumbing, & Electrical",
+      4.8,
+      4419
+    ]
+  ]
+}

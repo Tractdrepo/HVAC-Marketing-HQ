@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in San Bernardino, CA",
+  "count": 55,
+  "median_rating": 4.9,
+  "median_reviews": 22,
+  "share_with_website": 0.67,
+  "top5": [
+    [
+      "All Pro Cooling, Heating, Plumbing & Electrical",
+      4.8,
+      9114
+    ],
+    [
+      "Ballard Plumbing Heating & Air Conditioning",
+      4.9,
+      2665
+    ],
+    [
+      "Steve's Plumbing Heating & Air Conditioning",
+      4.9,
+      1705
+    ],
+    [
+      "Service Champions Plumbing, Heating & AC",
+      4.8,
+      1518
+    ],
+    [
+      "Family Ties Air, Plumbing, & Drain",
+      4.9,
+      1465
+    ]
+  ]
+}

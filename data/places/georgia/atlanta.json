@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Atlanta, GA",
+  "count": 48,
+  "median_rating": 4.9,
+  "median_reviews": 46.0,
+  "share_with_website": 0.58,
+  "top5": [
+    [
+      "Reliable Heating & Air, Plumbing and Electrical - Kennesaw",
+      4.7,
+      12970
+    ],
+    [
+      "TE Certified, Electrical, Plumbing, Heating & Cooling",
+      4.9,
+      12942
+    ],
+    [
+      "Coolray Heating & Air Conditioning",
+      4.7,
+      11222
+    ],
+    [
+      "Cool Air Mechanical",
+      4.9,
+      11108
+    ],
+    [
+      "Casteel Heating, Cooling, Plumbing & Electrical",
+      4.8,
+      10779
+    ]
+  ]
+}

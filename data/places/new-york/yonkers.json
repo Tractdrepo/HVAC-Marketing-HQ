@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Yonkers, NY",
+  "count": 41,
+  "median_rating": 5.0,
+  "median_reviews": 5,
+  "share_with_website": 0.59,
+  "top5": [
+    [
+      "Yost & Campbell",
+      4.8,
+      3136
+    ],
+    [
+      "AMHAC",
+      4.9,
+      1551
+    ],
+    [
+      "Innovative Air Solutions Inc.",
+      4.9,
+      1119
+    ],
+    [
+      "Maximum Indoor Comfort",
+      4.5,
+      172
+    ],
+    [
+      "Flotechs Plumbing & Heating",
+      4.6,
+      133
+    ]
+  ]
+}

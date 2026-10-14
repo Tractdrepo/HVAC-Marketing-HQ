@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Tampa, FL",
+  "count": 57,
+  "median_rating": 4.9,
+  "median_reviews": 319,
+  "share_with_website": 0.88,
+  "top5": [
+    [
+      "And Services",
+      4.7,
+      11343
+    ],
+    [
+      "Acree Plumbing, Air & Electric",
+      4.6,
+      11104
+    ],
+    [
+      "Red Cap Plumbing, Air & Electric",
+      4.7,
+      7780
+    ],
+    [
+      "One Hour Air Conditioning & Heating",
+      4.7,
+      4668
+    ],
+    [
+      "Hoffman Electrical & A/C",
+      4.8,
+      4115
+    ]
+  ]
+}

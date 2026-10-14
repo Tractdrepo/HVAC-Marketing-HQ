@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Nampa, ID",
+  "count": 42,
+  "median_rating": 4.9,
+  "median_reviews": 92.0,
+  "share_with_website": 0.86,
+  "top5": [
+    [
+      "Western Heating and Air Conditioning",
+      4.9,
+      4132
+    ],
+    [
+      "A-1 Heating, Air Conditioning & Electric",
+      4.9,
+      3620
+    ],
+    [
+      "Express Plumbing Heating & Air",
+      4.9,
+      2782
+    ],
+    [
+      "Ultimate Heating & Air, Inc",
+      4.8,
+      2392
+    ],
+    [
+      "Right Now Heating, Air Conditioning & Plumbing",
+      5,
+      1677
+    ]
+  ]
+}

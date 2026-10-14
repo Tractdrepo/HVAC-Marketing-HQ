@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Rio Rancho, NM",
+  "count": 16,
+  "median_rating": 4.8,
+  "median_reviews": 44.0,
+  "share_with_website": 0.81,
+  "top5": [
+    [
+      "Affordable Service Plumbing, Heating, Air Conditioning and Electric",
+      4.8,
+      1895
+    ],
+    [
+      "First Rate Plumbing Heating and Cooling Inc",
+      4.9,
+      391
+    ],
+    [
+      "NCB Mechanical",
+      4.8,
+      361
+    ],
+    [
+      "Budget Climate Control - Heating, Cooling & Plumbing Repair & Service",
+      4.5,
+      246
+    ],
+    [
+      "TLC Plumbing Heating Cooling Electrical",
+      4.9,
+      189
+    ]
+  ]
+}

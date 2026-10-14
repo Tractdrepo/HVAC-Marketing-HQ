@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Pittsburgh, PA",
+  "count": 60,
+  "median_rating": 4.8,
+  "median_reviews": 156.5,
+  "share_with_website": 0.88,
+  "top5": [
+    [
+      "Sullivan Super Service",
+      4.8,
+      4380
+    ],
+    [
+      "Gillece Services",
+      4.5,
+      4278
+    ],
+    [
+      "CALFO Home Services",
+      4.8,
+      4253
+    ],
+    [
+      "Wade Heating & Cooling",
+      4.9,
+      1992
+    ],
+    [
+      "White Heating",
+      4.9,
+      1578
+    ]
+  ]
+}

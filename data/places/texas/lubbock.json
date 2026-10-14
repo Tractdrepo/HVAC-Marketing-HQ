@@ -1,10 +1,10 @@
 {
   "pulled": "2026-10-14",
   "query": "HVAC contractor in Lubbock, TX",
-  "count": 20,
+  "count": 49,
   "median_rating": 4.9,
-  "median_reviews": 352.0,
-  "share_with_website": 1.0,
+  "median_reviews": 89,
+  "share_with_website": 0.9,
   "top5": [
     [
       "Action Air Plumbing & Septic",
@@ -17,6 +17,11 @@
       1764
     ],
     [
+      "Earl's Plumbing, Air & Electrical",
+      4.9,
+      1728
+    ],
+    [
       "Lowery Plumbing, Heating & Air Conditioning",
       4.5,
       1646
@@ -25,11 +30,6 @@
       "Sinclair Heating, Cooling, Plumbing, Inc.",
       4.9,
       1106
-    ],
-    [
-      "On The Double! Heating & Cooling",
-      5,
-      1047
     ]
   ]
 }

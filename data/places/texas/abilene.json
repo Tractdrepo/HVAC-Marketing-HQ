@@ -1,10 +1,10 @@
 {
   "pulled": "2026-10-14",
   "query": "HVAC contractor in Abilene, TX",
-  "count": 19,
+  "count": 51,
   "median_rating": 4.8,
-  "median_reviews": 210,
-  "share_with_website": 0.95,
+  "median_reviews": 13,
+  "share_with_website": 0.75,
   "top5": [
     [
       "Quality Cooling, Heating & Plumbing",
@@ -17,6 +17,11 @@
       1341
     ],
     [
+      "Earl's Plumbing",
+      4.9,
+      723
+    ],
+    [
       "Olympus Electric & Air",
       4.9,
       561
@@ -25,11 +30,6 @@
       "Batjer Heating & Cooling",
       4.9,
       425
-    ],
-    [
-      "Cutting Edge Air Conditioning and Heating",
-      5,
-      346
     ]
   ]
 }

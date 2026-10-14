@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Washington, DC",
+  "count": 57,
+  "median_rating": 4.9,
+  "median_reviews": 12,
+  "share_with_website": 0.63,
+  "top5": [
+    [
+      "Michael & Son Services",
+      4.7,
+      16061
+    ],
+    [
+      "F.H. Furr Plumbing, Heating, Air Conditioning & Electrical",
+      4.7,
+      6838
+    ],
+    [
+      "Presidential, Inc.",
+      4.9,
+      1895
+    ],
+    [
+      "Magnolia Plumbing, Heating & Cooling",
+      4.4,
+      1518
+    ],
+    [
+      "C.D. Shanahan's HVAC, Plumbing, Electrical & Remodeling LLC",
+      4.9,
+      1158
+    ]
+  ]
+}

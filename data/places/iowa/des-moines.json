@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Des Moines, IA",
+  "count": 57,
+  "median_rating": 4.9,
+  "median_reviews": 19,
+  "share_with_website": 0.56,
+  "top5": [
+    [
+      "Golden Rule Plumbing, Heating, Cooling & Electrical",
+      4.9,
+      9646
+    ],
+    [
+      "Service Legends Heating, Cooling, Plumbing & Indoor Air",
+      4.9,
+      5641
+    ],
+    [
+      "Bell Brothers Heating, Cooling & Plumbing",
+      4.9,
+      4507
+    ],
+    [
+      "Holt Plumbing & Heating, Inc.",
+      4.8,
+      4144
+    ],
+    [
+      "Kohles & Bach Heating & Cooling",
+      4.9,
+      2421
+    ]
+  ]
+}

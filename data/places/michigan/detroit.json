@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Detroit, MI",
+  "count": 46,
+  "median_rating": 4.7,
+  "median_reviews": 20.5,
+  "share_with_website": 0.46,
+  "top5": [
+    [
+      "Randazzo Heating & Cooling",
+      4.9,
+      9852
+    ],
+    [
+      "C & C Heating & Air Conditioning",
+      4.9,
+      7660
+    ],
+    [
+      "Great Dane Heating, Cooling, Electrical, & Plumbing",
+      4.8,
+      3473
+    ],
+    [
+      "Mechanical Heating, Cooling & Electrical",
+      4.8,
+      1809
+    ],
+    [
+      "McCarver Mechanical Heating & Cooling",
+      4.9,
+      510
+    ]
+  ]
+}

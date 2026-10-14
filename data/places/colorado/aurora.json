@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Aurora, CO",
+  "count": 33,
+  "median_rating": 4.9,
+  "median_reviews": 52,
+  "share_with_website": 0.73,
+  "top5": [
+    [
+      "Mighty Plumbing Heating Air and Electric LLC.",
+      4.7,
+      4832
+    ],
+    [
+      "Done Plumbing, Heating, Cooling & Electric",
+      4.7,
+      4705
+    ],
+    [
+      "Absolute Plumbing, Electrical, Heating & Air",
+      4.8,
+      3984
+    ],
+    [
+      "ARS / Rescue Rooter",
+      4.5,
+      3777
+    ],
+    [
+      "Signature Heating & Air, Inc.",
+      5,
+      2045
+    ]
+  ]
+}

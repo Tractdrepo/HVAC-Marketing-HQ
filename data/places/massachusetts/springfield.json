@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Springfield, MA",
+  "count": 39,
+  "median_rating": 4.7,
+  "median_reviews": 16,
+  "share_with_website": 0.72,
+  "top5": [
+    [
+      "Hurley & David - Air Conditioning, Heating, Plumbing, & Electrical",
+      4.7,
+      3808
+    ],
+    [
+      "A Plus HVAC",
+      4.9,
+      1731
+    ],
+    [
+      "Noonan Energy Corporation",
+      4.7,
+      194
+    ],
+    [
+      "McNeill Heating & Air Conditioning",
+      4.5,
+      186
+    ],
+    [
+      "Wilson Services, Inc.",
+      4.7,
+      126
+    ]
+  ]
+}

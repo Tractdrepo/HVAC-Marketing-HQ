@@ -1,10 +1,10 @@
 {
   "pulled": "2026-10-14",
   "query": "HVAC contractor in Midland, TX",
-  "count": 19,
-  "median_rating": 4.9,
-  "median_reviews": 133,
-  "share_with_website": 0.89,
+  "count": 46,
+  "median_rating": 4.8,
+  "median_reviews": 31.5,
+  "share_with_website": 0.74,
   "top5": [
     [
       "ONEWAY Heating & Air Conditioning",
@@ -12,24 +12,24 @@
       2600
     ],
     [
+      "HVAC Experts",
+      4.9,
+      1893
+    ],
+    [
       "D&D Plumbing, Heating, and Air Conditioning",
       4.7,
       1749
     ],
     [
+      "The Darville Company",
+      4.9,
+      1412
+    ],
+    [
       "The Bosworth Company",
       4.7,
       1281
-    ],
-    [
-      "Billy Black HVAC",
-      4.9,
-      418
-    ],
-    [
-      "THE RIGHT WAY HEATING, AC & PLUMBING",
-      4.9,
-      406
     ]
   ]
 }

@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Knoxville, TN",
+  "count": 51,
+  "median_rating": 4.9,
+  "median_reviews": 250,
+  "share_with_website": 0.9,
+  "top5": [
+    [
+      "Pipe Wrench Plumbing, Heating & Cooling",
+      4.8,
+      5899
+    ],
+    [
+      "Hiller Plumbing, Heating, Cooling & Electrical",
+      4.9,
+      5495
+    ],
+    [
+      "Pioneer Heating, Cooling, Plumbing and Electrical",
+      4.8,
+      5163
+    ],
+    [
+      "Service Experts Knoxville",
+      4.9,
+      2334
+    ],
+    [
+      "Chancey & Reynolds, Inc.",
+      4.8,
+      1661
+    ]
+  ]
+}

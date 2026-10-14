@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Grand Rapids, MI",
+  "count": 54,
+  "median_rating": 4.9,
+  "median_reviews": 52.5,
+  "share_with_website": 0.69,
+  "top5": [
+    [
+      "Vredevoogd Heating & Cooling",
+      4.9,
+      12194
+    ],
+    [
+      "Service Professor",
+      4.8,
+      9451
+    ],
+    [
+      "Grapids Home Services",
+      4.8,
+      5642
+    ],
+    [
+      "Schaafsma Heating & Cooling",
+      4.9,
+      3808
+    ],
+    [
+      "Vander Hyde Service",
+      4.7,
+      2702
+    ]
+  ]
+}

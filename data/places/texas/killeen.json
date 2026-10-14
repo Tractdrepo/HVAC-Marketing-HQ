@@ -1,11 +1,16 @@
 {
   "pulled": "2026-10-14",
   "query": "HVAC contractor in Killeen, TX",
-  "count": 16,
-  "median_rating": 4.8,
-  "median_reviews": 285.5,
-  "share_with_website": 1.0,
+  "count": 36,
+  "median_rating": 4.7,
+  "median_reviews": 75.0,
+  "share_with_website": 0.75,
   "top5": [
+    [
+      "Airheads HVAC",
+      4.9,
+      1649
+    ],
     [
       "Kane Heating and Air Conditioning",
       4.8,
@@ -25,11 +30,6 @@
       "Artie's Heating & Air Conditioning",
       4.8,
       518
-    ],
-    [
-      "Ellis Air Systems",
-      4.7,
-      479
     ]
   ]
 }

@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Little Rock, AR",
+  "count": 43,
+  "median_rating": 4.8,
+  "median_reviews": 92,
+  "share_with_website": 0.79,
+  "top5": [
+    [
+      "Sanders Plumbing HVAC",
+      4.9,
+      2819
+    ],
+    [
+      "DASH Heating & Cooling",
+      4.8,
+      2343
+    ],
+    [
+      "Airco Service",
+      4.8,
+      1666
+    ],
+    [
+      "Bert Black - AC Heating Plumbing Electric",
+      4.8,
+      1376
+    ],
+    [
+      "Middleton Heat & Air",
+      4.7,
+      1343
+    ]
+  ]
+}

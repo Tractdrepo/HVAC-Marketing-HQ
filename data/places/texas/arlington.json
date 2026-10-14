@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Arlington, TX",
+  "count": 56,
+  "median_rating": 4.9,
+  "median_reviews": 48.0,
+  "share_with_website": 0.79,
+  "top5": [
+    [
+      "Willard Cooling, Heating, Plumbing, & Electrical (Max Air And Plumbing \u2013 Max Mechanical)",
+      4.8,
+      4695
+    ],
+    [
+      "Baker Brothers Plumbing, Air & Electric",
+      4.8,
+      2307
+    ],
+    [
+      "Minuteman Heating & AC Repair",
+      4.8,
+      1210
+    ],
+    [
+      "Team Enoch",
+      4.8,
+      1140
+    ],
+    [
+      "Tom's Mechanical, Inc.",
+      4.9,
+      965
+    ]
+  ]
+}

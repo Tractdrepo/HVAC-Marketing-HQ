@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Montgomery, AL",
+  "count": 13,
+  "median_rating": 4.8,
+  "median_reviews": 567,
+  "share_with_website": 1.0,
+  "top5": [
+    [
+      "Dixie Electric, Plumbing & Air",
+      4.9,
+      3065
+    ],
+    [
+      "Chad's AC Direct",
+      4.9,
+      1334
+    ],
+    [
+      "Clark Heating, Air Conditioning & Plumbing",
+      4.8,
+      1167
+    ],
+    [
+      "United Heating and Air Conditioning Inc",
+      4.8,
+      1114
+    ],
+    [
+      "Edwards Plumbing and Heating",
+      4.8,
+      844
+    ]
+  ]
+}

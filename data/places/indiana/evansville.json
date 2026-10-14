@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Evansville, IN",
+  "count": 51,
+  "median_rating": 4.8,
+  "median_reviews": 23,
+  "share_with_website": 0.84,
+  "top5": [
+    [
+      "A Plus Derr Heating & Cooling",
+      4.9,
+      5416
+    ],
+    [
+      "Brackett Heating, Air & Plumbing",
+      4.9,
+      3605
+    ],
+    [
+      "Bryant Heating, Cooling, Plumbing & Electric",
+      4.9,
+      2304
+    ],
+    [
+      "Bud's Plumbing & Repair Service",
+      4.8,
+      2152
+    ],
+    [
+      "Ray's Heating & Air",
+      4.9,
+      1489
+    ]
+  ]
+}

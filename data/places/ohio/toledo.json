@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Toledo, OH",
+  "count": 59,
+  "median_rating": 4.8,
+  "median_reviews": 58,
+  "share_with_website": 0.71,
+  "top5": [
+    [
+      "All Seasons Heating, AC & Plumbing",
+      4.9,
+      2556
+    ],
+    [
+      "Fry Heating, Cooling & Plumbing",
+      4.8,
+      1620
+    ],
+    [
+      "Kellermeier Plumbing & Heating, Inc.",
+      4.8,
+      1205
+    ],
+    [
+      "Bluflame Service Company",
+      4.8,
+      1112
+    ],
+    [
+      "Pugh Heating & Air Conditioning",
+      4.9,
+      1075
+    ]
+  ]
+}

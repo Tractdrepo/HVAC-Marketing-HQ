@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Chesapeake, VA",
+  "count": 54,
+  "median_rating": 4.8,
+  "median_reviews": 152.5,
+  "share_with_website": 0.8,
+  "top5": [
+    [
+      "Michael & Son Services",
+      4.8,
+      9220
+    ],
+    [
+      "Russell's American Mechanical",
+      4.7,
+      8520
+    ],
+    [
+      "RS Andrews of Tidewater",
+      4.6,
+      7810
+    ],
+    [
+      "Miller's Heating & Air Conditioning",
+      4.7,
+      2573
+    ],
+    [
+      "Get Lit Electrical, Plumbing & HVAC",
+      4.9,
+      2407
+    ]
+  ]
+}

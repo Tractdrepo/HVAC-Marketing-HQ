@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Albuquerque, NM",
+  "count": 51,
+  "median_rating": 4.8,
+  "median_reviews": 164,
+  "share_with_website": 0.92,
+  "top5": [
+    [
+      "Wagner Air Conditioning, Heating, Plumbing, & Electrical",
+      4.7,
+      7080
+    ],
+    [
+      "TLC Plumbing Heating Cooling Electrical",
+      4.8,
+      5711
+    ],
+    [
+      "Albuquerque Plumbing, Heating & Cooling",
+      4.6,
+      3534
+    ],
+    [
+      "Signature Heating, Cooling & Plumbing",
+      4.7,
+      3228
+    ],
+    [
+      "B. Carlson Heating, Cooling & Plumbing, Inc.",
+      4.7,
+      1657
+    ]
+  ]
+}

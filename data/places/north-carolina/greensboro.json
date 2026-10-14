@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Greensboro, NC",
+  "count": 48,
+  "median_rating": 4.8,
+  "median_reviews": 52.5,
+  "share_with_website": 0.83,
+  "top5": [
+    [
+      "Blaze Heating, Cooling, Electrical & Plumbing - Triad",
+      4.8,
+      7228
+    ],
+    [
+      "Go Green Plumbing, Heating, Air & Electrical",
+      4.8,
+      4519
+    ],
+    [
+      "Central Carolina Air Conditioning",
+      4.9,
+      3585
+    ],
+    [
+      "Berico",
+      4.9,
+      2424
+    ],
+    [
+      "Webb Heating, Air Conditioning & Electrical",
+      4.9,
+      2059
+    ]
+  ]
+}

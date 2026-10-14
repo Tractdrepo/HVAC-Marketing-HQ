@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Chula Vista, CA",
+  "count": 35,
+  "median_rating": 4.9,
+  "median_reviews": 17,
+  "share_with_website": 0.74,
+  "top5": [
+    [
+      "Mauzy Cooling Heating Plumbing Electrical",
+      4.8,
+      5489
+    ],
+    [
+      "Same Day Heating, Cooling, Plumbing",
+      4.7,
+      1880
+    ],
+    [
+      "Comfort Bros Heating Air Plumbing & Electrical",
+      4.9,
+      1323
+    ],
+    [
+      "Friar's Plumbing Heating and AC Repair",
+      4.9,
+      671
+    ],
+    [
+      "Air Pro Heating & Air",
+      4.9,
+      395
+    ]
+  ]
+}

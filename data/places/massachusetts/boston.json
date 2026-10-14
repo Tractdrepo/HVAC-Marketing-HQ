@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Boston, MA",
+  "count": 50,
+  "median_rating": 4.9,
+  "median_reviews": 14.0,
+  "share_with_website": 0.64,
+  "top5": [
+    [
+      "Boston Standard Company",
+      4.7,
+      3336
+    ],
+    [
+      "HomeWorks Energy",
+      4.7,
+      2705
+    ],
+    [
+      "Akian Plumbing, Heating, Cooling & Electric",
+      4.8,
+      1948
+    ],
+    [
+      "Total Comfort Mechanical",
+      4.9,
+      906
+    ],
+    [
+      "Excel Mechanical",
+      4.9,
+      609
+    ]
+  ]
+}

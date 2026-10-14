@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Davenport, IA",
+  "count": 50,
+  "median_rating": 4.8,
+  "median_reviews": 27.5,
+  "share_with_website": 0.68,
+  "top5": [
+    [
+      "TMI - Total Maintenance, Inc. Heating, Air Conditioning, Plumbing",
+      4.9,
+      3344
+    ],
+    [
+      "Northwest Plumbing, Heating & AC",
+      4.8,
+      1504
+    ],
+    [
+      "Petersen Plumbing & Heating Co",
+      4.8,
+      1360
+    ],
+    [
+      "Davenport HVAC Heating & Air Conditioning",
+      4.2,
+      1326
+    ],
+    [
+      "Doug's Heating & Air Conditioning",
+      4.8,
+      1252
+    ]
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Paterson, NJ",
+  "count": 40,
+  "median_rating": 5.0,
+  "median_reviews": 9.5,
+  "share_with_website": 0.62,
+  "top5": [
+    [
+      "Rescue Plumbing & HVAC",
+      4.6,
+      422
+    ],
+    [
+      "Zaina Service Tech",
+      5,
+      203
+    ],
+    [
+      "Indoor Expert Heating & Cooling",
+      4.6,
+      166
+    ],
+    [
+      "Advanced Professional Home Services",
+      4.6,
+      142
+    ],
+    [
+      "3 brothers plumbing & heating LLC",
+      4.7,
+      127
+    ]
+  ]
+}

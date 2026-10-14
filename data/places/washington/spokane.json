@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Spokane, WA",
+  "count": 55,
+  "median_rating": 4.8,
+  "median_reviews": 51,
+  "share_with_website": 0.78,
+  "top5": [
+    [
+      "Bill's Heating & A/C",
+      4.8,
+      6139
+    ],
+    [
+      "Mainstream Electric, Heating, Cooling and Plumbing",
+      4.8,
+      5879
+    ],
+    [
+      "Holliday Heating + Cooling + Electric",
+      4.9,
+      4278
+    ],
+    [
+      "Cougar Heating and Air Conditioning",
+      4.8,
+      3080
+    ],
+    [
+      "Bearcat Heating and Cooling",
+      4.9,
+      2611
+    ]
+  ]
+}

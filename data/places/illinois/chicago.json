@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Chicago, IL",
+  "count": 53,
+  "median_rating": 4.9,
+  "median_reviews": 87,
+  "share_with_website": 0.66,
+  "top5": [
+    [
+      "Four Seasons Heating, Air Conditioning, Plumbing, Sewer & Electric",
+      4.7,
+      31861
+    ],
+    [
+      "ABC Plumbing, Sewer, Heating, Cooling & Electric",
+      4.7,
+      25874
+    ],
+    [
+      "AA Service Co.",
+      4.9,
+      3584
+    ],
+    [
+      "Deljo Heating, Cooling & Plumbing",
+      4.9,
+      3443
+    ],
+    [
+      "Shavitz Heating and Air Conditioning",
+      4.9,
+      2992
+    ]
+  ]
+}

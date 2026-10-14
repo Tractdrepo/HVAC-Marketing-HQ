@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Frisco, TX",
+  "count": 60,
+  "median_rating": 5.0,
+  "median_reviews": 23.0,
+  "share_with_website": 0.7,
+  "top5": [
+    [
+      "Baker Brothers Plumbing, Air & Electric",
+      4.8,
+      24623
+    ],
+    [
+      "A#1 Air",
+      4.7,
+      13580
+    ],
+    [
+      "Air Repair Pros",
+      4.9,
+      5472
+    ],
+    [
+      "Rescue Air and Plumbing",
+      4.8,
+      4088
+    ],
+    [
+      "Legacy Plumbing & Electric",
+      4.9,
+      2311
+    ]
+  ]
+}

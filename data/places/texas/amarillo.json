@@ -1,15 +1,25 @@
 {
   "pulled": "2026-10-14",
   "query": "HVAC contractor in Amarillo, TX",
-  "count": 19,
+  "count": 50,
   "median_rating": 4.9,
-  "median_reviews": 161,
-  "share_with_website": 0.95,
+  "median_reviews": 49.0,
+  "share_with_website": 0.86,
   "top5": [
+    [
+      "Frank\u2019s Repair Plumbing Inc.",
+      4.9,
+      3117
+    ],
     [
       "Gary's Heating and Air Conditioning, Inc.",
       4.9,
       2287
+    ],
+    [
+      "1-800-Plumber +Air & Electric",
+      4.9,
+      1640
     ],
     [
       "Snow Bear Heat and Air Amarillo",
@@ -20,16 +30,6 @@
       "Amarillo Air Conditioning LLC",
       5,
       630
-    ],
-    [
-      "Scottco",
-      4.7,
-      607
-    ],
-    [
-      "Bob Jay's Heating, Air Conditioning, and Plumbing Inc.",
-      4.9,
-      361
     ]
   ]
 }

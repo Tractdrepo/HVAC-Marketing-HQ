@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Colorado Springs, CO",
+  "count": 59,
+  "median_rating": 4.9,
+  "median_reviews": 208,
+  "share_with_website": 0.88,
+  "top5": [
+    [
+      "WireNut Home Services",
+      4.7,
+      7021
+    ],
+    [
+      "Peak Home Performance",
+      4.8,
+      4374
+    ],
+    [
+      "Smith Plumbing, Heating, Air Conditioning & Electrical - Colorado Springs",
+      4.9,
+      3588
+    ],
+    [
+      "Affordable Plumbing, Heat, and Electrical",
+      4.5,
+      2946
+    ],
+    [
+      "Awesome Home Services",
+      4.9,
+      2170
+    ]
+  ]
+}

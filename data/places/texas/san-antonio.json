@@ -1,15 +1,15 @@
 {
   "pulled": "2026-10-14",
   "query": "HVAC contractor in San Antonio, TX",
-  "count": 20,
+  "count": 56,
   "median_rating": 4.9,
-  "median_reviews": 687.5,
-  "share_with_website": 1.0,
+  "median_reviews": 519.0,
+  "share_with_website": 0.95,
   "top5": [
     [
       "Jon Wayne Service Company",
       4.8,
-      17128
+      17127
     ],
     [
       "Goettl Air Conditioning and Plumbing - San Antonio TX",
@@ -17,19 +17,19 @@
       11110
     ],
     [
+      "Champion Home Services",
+      4.8,
+      10445
+    ],
+    [
+      "Elmer's Home Services",
+      4.8,
+      7945
+    ],
+    [
       "Cowboys Air Conditioning & Heating",
       4.7,
       4334
-    ],
-    [
-      "Rosenberg Plumbing & Air",
-      4.9,
-      2603
-    ],
-    [
-      "Radiant Plumbing & Air Conditioning - San Antonio",
-      4.8,
-      2276
     ]
   ]
 }

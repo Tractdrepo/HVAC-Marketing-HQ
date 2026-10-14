@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Garland, TX",
+  "count": 58,
+  "median_rating": 4.9,
+  "median_reviews": 43.5,
+  "share_with_website": 0.76,
+  "top5": [
+    [
+      "Baker Brothers Plumbing, Air & Electric",
+      4.8,
+      24623
+    ],
+    [
+      "On Time Experts",
+      4.8,
+      7631
+    ],
+    [
+      "Astar Air Conditioning, Plumbing & Electric",
+      4.8,
+      2947
+    ],
+    [
+      "A-US Air Conditioning Of Texas",
+      3.8,
+      2083
+    ],
+    [
+      "Milestone Electric, A/C, & Plumbing",
+      4.9,
+      1521
+    ]
+  ]
+}

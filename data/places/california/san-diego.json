@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in San Diego, CA",
+  "count": 39,
+  "median_rating": 5,
+  "median_reviews": 22,
+  "share_with_website": 0.74,
+  "top5": [
+    [
+      "ASI, The White Glove Guys",
+      4.8,
+      7637
+    ],
+    [
+      "Same Day Heating, Cooling, Plumbing",
+      4.7,
+      1880
+    ],
+    [
+      "Guthrie & Sons Heating, Air and Solar",
+      4.9,
+      1693
+    ],
+    [
+      "Bob Jenson",
+      4.9,
+      1579
+    ],
+    [
+      "Friar's Plumbing Heating and AC Repair",
+      4.9,
+      671
+    ]
+  ]
+}

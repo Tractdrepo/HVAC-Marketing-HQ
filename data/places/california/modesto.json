@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Modesto, CA",
+  "count": 49,
+  "median_rating": 4.9,
+  "median_reviews": 25,
+  "share_with_website": 0.76,
+  "top5": [
+    [
+      "Honey's Air & Solar",
+      4.9,
+      6052
+    ],
+    [
+      "Loves Air",
+      5,
+      2729
+    ],
+    [
+      "DeHart Plumbing, Heating, and Air Inc.",
+      4.9,
+      2577
+    ],
+    [
+      "Derek Sawyer's Cooling, Heating & Plumbing",
+      4.8,
+      2054
+    ],
+    [
+      "Wally Falke's Heating & Air Conditioning",
+      4.9,
+      1457
+    ]
+  ]
+}

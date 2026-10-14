@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Mesa, AZ",
+  "count": 49,
+  "median_rating": 4.9,
+  "median_reviews": 197,
+  "share_with_website": 0.96,
+  "top5": [
+    [
+      "John's Heating, Cooling, and Plumbing",
+      4.9,
+      3446
+    ],
+    [
+      "PlumbSmart Plumbing Heating and Air",
+      4.9,
+      3351
+    ],
+    [
+      "Valley Heating, Cooling & Appliances",
+      4.8,
+      1839
+    ],
+    [
+      "AirTime Cooling and Heating",
+      4.9,
+      1800
+    ],
+    [
+      "Hansen Family Air Conditioning & Plumbing",
+      4.9,
+      1445
+    ]
+  ]
+}

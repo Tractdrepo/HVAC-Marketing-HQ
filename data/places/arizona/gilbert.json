@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Gilbert, AZ",
+  "count": 47,
+  "median_rating": 5,
+  "median_reviews": 209,
+  "share_with_website": 0.96,
+  "top5": [
+    [
+      "Semper Fi Heating and Cooling",
+      4.8,
+      13434
+    ],
+    [
+      "Rite Way Heating, Cooling & Plumbing: Phoenix",
+      4.9,
+      5318
+    ],
+    [
+      "Arizona's Dukes of Air & Plumbing",
+      4.9,
+      4868
+    ],
+    [
+      "John's Heating, Cooling, and Plumbing",
+      4.9,
+      3446
+    ],
+    [
+      "A/C & Plumbing Doctors",
+      4.9,
+      2865
+    ]
+  ]
+}

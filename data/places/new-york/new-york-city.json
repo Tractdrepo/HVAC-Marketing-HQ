@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in New York City, NY",
+  "count": 54,
+  "median_rating": 4.9,
+  "median_reviews": 22.0,
+  "share_with_website": 0.96,
+  "top5": [
+    [
+      "Vigilante Plumbing, Heating & Air Conditioning",
+      4.8,
+      2166
+    ],
+    [
+      "ADH Group Home Improvements",
+      4.9,
+      1331
+    ],
+    [
+      "Richair Comfort Solutions",
+      4.8,
+      445
+    ],
+    [
+      "212 HVAC Brooklyn",
+      4.9,
+      432
+    ],
+    [
+      "Airnizer HVAC",
+      4.9,
+      412
+    ]
+  ]
+}

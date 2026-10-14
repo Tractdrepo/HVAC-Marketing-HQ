@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Tallahassee, FL",
+  "count": 55,
+  "median_rating": 4.9,
+  "median_reviews": 80,
+  "share_with_website": 0.8,
+  "top5": [
+    [
+      "Cooper's Plumbing & Air",
+      4.8,
+      3175
+    ],
+    [
+      "Benson's Heating and Air Conditioning",
+      4.9,
+      2283
+    ],
+    [
+      "Barineau Heating and Air Conditioning, Inc.",
+      4.9,
+      2034
+    ],
+    [
+      "Tony Kelly Heating & Air Conditioning",
+      5,
+      1715
+    ],
+    [
+      "Harper Revell Heating & Air Conditioning, Inc.",
+      4.9,
+      946
+    ]
+  ]
+}

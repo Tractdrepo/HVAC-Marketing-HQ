@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Eugene, OR",
+  "count": 50,
+  "median_rating": 4.9,
+  "median_reviews": 18.5,
+  "share_with_website": 0.82,
+  "top5": [
+    [
+      "Priority One Heating & Air Conditioning",
+      4.9,
+      3076
+    ],
+    [
+      "Reynolds Electric, Plumbing, Heating and Air",
+      4.9,
+      2806
+    ],
+    [
+      "Associated Heating and Air Conditioning",
+      4.9,
+      2528
+    ],
+    [
+      "Hendrix Heating & Air Conditioning",
+      4.9,
+      2180
+    ],
+    [
+      "Alpine Heating & Air Conditioning",
+      4.8,
+      1620
+    ]
+  ]
+}

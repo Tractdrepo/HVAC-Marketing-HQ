@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Anchorage, AK",
+  "count": 56,
+  "median_rating": 4.6,
+  "median_reviews": 14.5,
+  "share_with_website": 0.79,
+  "top5": [
+    [
+      "Diamond Heating & AirTemp Alaska",
+      4.9,
+      1676
+    ],
+    [
+      "Extreme Heating and Air",
+      4.9,
+      1343
+    ],
+    [
+      "Discount Mechanical Heating and Plumbing",
+      4.6,
+      1239
+    ],
+    [
+      "Circle Plumbing & Heating Inc",
+      4.4,
+      271
+    ],
+    [
+      "Anchorage Plumbing & Heating",
+      4.1,
+      255
+    ]
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Honolulu, HI",
+  "count": 48,
+  "median_rating": 4.7,
+  "median_reviews": 9.0,
+  "share_with_website": 0.81,
+  "top5": [
+    [
+      "535 Plumbing LLC",
+      4.9,
+      720
+    ],
+    [
+      "Kama'aina Handyman",
+      4.9,
+      629
+    ],
+    [
+      "E I Electrical, Inc.",
+      4.7,
+      582
+    ],
+    [
+      "Standard Air, LLC",
+      5,
+      483
+    ],
+    [
+      "Air Masters Inc",
+      4.9,
+      435
+    ]
+  ]
+}

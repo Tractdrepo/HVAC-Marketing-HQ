@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Fayetteville, NC",
+  "count": 46,
+  "median_rating": 4.8,
+  "median_reviews": 94.5,
+  "share_with_website": 0.72,
+  "top5": [
+    [
+      "Blanton's Air, Plumbing & Electric",
+      4.8,
+      10200
+    ],
+    [
+      "Bass Air Conditioning Company",
+      4.9,
+      3223
+    ],
+    [
+      "Air Pro Heating, Air & Electric",
+      5,
+      2575
+    ],
+    [
+      "Cape Fear Air, Electric, & Plumbing",
+      4.9,
+      2053
+    ],
+    [
+      "Carolina Comfort Air",
+      4.9,
+      1311
+    ]
+  ]
+}

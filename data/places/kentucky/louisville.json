@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Louisville, KY",
+  "count": 60,
+  "median_rating": 4.8,
+  "median_reviews": 174.0,
+  "share_with_website": 0.87,
+  "top5": [
+    [
+      "Tom Drexler Plumbing, Air & Electric",
+      4.8,
+      21470
+    ],
+    [
+      "Dauenhauer Plumbing Heating Air & Electric",
+      4.8,
+      9449
+    ],
+    [
+      "Bryant Heating, Cooling, Plumbing, & Electric",
+      4.8,
+      6768
+    ],
+    [
+      "Jarboe's Heating, Cooling, Plumbing & Electrical",
+      4.8,
+      5992
+    ],
+    [
+      "Maeser Master Services",
+      4.8,
+      5828
+    ]
+  ]
+}

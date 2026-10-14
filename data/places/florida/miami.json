@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Miami, FL",
+  "count": 39,
+  "median_rating": 5.0,
+  "median_reviews": 26,
+  "share_with_website": 0.69,
+  "top5": [
+    [
+      "ARS / Rescue Rooter",
+      4.5,
+      2999
+    ],
+    [
+      "Sunny Bliss Plumbing & Air",
+      4.9,
+      870
+    ],
+    [
+      "RCI Air Conditioning Company",
+      4.9,
+      613
+    ],
+    [
+      "Weathershield Air Conditioning",
+      4.9,
+      386
+    ],
+    [
+      "ECO AC Repair Miami",
+      4.5,
+      329
+    ]
+  ]
+}

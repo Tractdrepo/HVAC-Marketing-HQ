@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Richmond, VA",
+  "count": 52,
+  "median_rating": 4.9,
+  "median_reviews": 129.5,
+  "share_with_website": 0.83,
+  "top5": [
+    [
+      "Woodfin - Your Home Team",
+      4.9,
+      11624
+    ],
+    [
+      "Michael & Son Services",
+      4.8,
+      10015
+    ],
+    [
+      "James River Air Conditioning Co.",
+      4.9,
+      6009
+    ],
+    [
+      "Davis & Green Services",
+      4.8,
+      3369
+    ],
+    [
+      "Service Experts Greater Richmond",
+      4.8,
+      3170
+    ]
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Chandler, AZ",
+  "count": 47,
+  "median_rating": 4.9,
+  "median_reviews": 149,
+  "share_with_website": 0.85,
+  "top5": [
+    [
+      "Goettl Air Conditioning and Plumbing - Phoenix AZ",
+      4.7,
+      14492
+    ],
+    [
+      "Emergency Air Heating, Cooling and Plumbing",
+      4.8,
+      7164
+    ],
+    [
+      "Precision Air & Plumbing",
+      4.7,
+      5266
+    ],
+    [
+      "Climate Pro LLC",
+      4.9,
+      3289
+    ],
+    [
+      "Ground Zero Plumbing, AC and Electrical - Chandler",
+      4.9,
+      2148
+    ]
+  ]
+}

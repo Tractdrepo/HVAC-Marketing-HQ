@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Plano, TX",
+  "count": 55,
+  "median_rating": 5.0,
+  "median_reviews": 95,
+  "share_with_website": 0.76,
+  "top5": [
+    [
+      "Milestone Electric, A/C, & Plumbing",
+      4.9,
+      6298
+    ],
+    [
+      "Bill Joplin's Air Conditioning & Heating",
+      4.9,
+      3799
+    ],
+    [
+      "Xtreme Air Services - HVAC, Plumbing, & Electrical",
+      4.8,
+      2909
+    ],
+    [
+      "Bacon Plumbing Heating Air Electric",
+      4.9,
+      2651
+    ],
+    [
+      "Total Air & Plumbing",
+      4.9,
+      1781
+    ]
+  ]
+}

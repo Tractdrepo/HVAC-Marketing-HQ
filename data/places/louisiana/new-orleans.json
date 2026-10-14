@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in New Orleans, LA",
+  "count": 41,
+  "median_rating": 4.8,
+  "median_reviews": 47,
+  "share_with_website": 0.78,
+  "top5": [
+    [
+      "Keefe's Air Conditioning Heating Electrical Generator & Plumbing",
+      4.8,
+      6829
+    ],
+    [
+      "Surgi's Heating, Cooling & Plumbing",
+      4.8,
+      4191
+    ],
+    [
+      "Stuart Services",
+      4.8,
+      3980
+    ],
+    [
+      "Natal's Air Conditioning, Plumbing & Electrical",
+      4.9,
+      2266
+    ],
+    [
+      "Hvac New Orleans: Heating & Air Conditioning Market",
+      4.4,
+      1278
+    ]
+  ]
+}

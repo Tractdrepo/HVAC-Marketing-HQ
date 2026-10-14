@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Los Angeles, CA",
+  "count": 52,
+  "median_rating": 5,
+  "median_reviews": 15.5,
+  "share_with_website": 0.67,
+  "top5": [
+    [
+      "JW Plumbing, Heating and Air",
+      4.8,
+      3042
+    ],
+    [
+      "NexGen HVAC & Plumbing",
+      4.7,
+      2456
+    ],
+    [
+      "Around the Clock Heating and Air Conditioning, Inc.",
+      4.8,
+      814
+    ],
+    [
+      "Southwest Heating & Air Conditioning",
+      4.8,
+      366
+    ],
+    [
+      "United Plumbing Heating Air & Electric",
+      4.8,
+      272
+    ]
+  ]
+}
