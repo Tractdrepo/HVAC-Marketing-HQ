@@ -1,0 +1,27 @@
+{
+  "_note": "Made-up shop for testing. Not a real business.",
+  "trade": "hvac",
+  "businessName": "Heart of Texas Mechanical",
+  "town": "Temple",
+  "profile": {
+    "found": true,
+    "searches": [
+      { "query": "HVAC near Temple, TX", "rank": 1, "marketSize": 20 },
+      { "query": "AC repair Temple, TX", "rank": 2, "marketSize": 20 }
+    ],
+    "photos": { "count": 10, "byBusiness": 7 },
+    "linksToSite": true,
+    "primaryCategory": { "id": "hvac_contractor", "name": "HVAC contractor" },
+    "hasHours": true, "paymentListed": true, "accessibilityListed": true, "hasPhone": true, "operational": true
+  },
+  "reviews": { "rating": 4.9, "count": 1240, "newestDays": 2, "lowInShown": 0,
+    "competitors": { "n": 3, "avgRating": 4.7, "avgCount": 480 } },
+  "website": {
+    "fetched": true, "https": true, "mobileViewport": true, "pageCount": 34,
+    "serviceTopics": ["AC repair", "heating", "installation", "maintenance plan", "heat pump", "ductwork"],
+    "areaPages": ["Temple", "Belton", "Killeen", "Harker Heights"],
+    "booking": true, "performance": 0.81, "lighthouse": { "seo": 0.98, "accessibility": 0.93, "bestPractices": 0.96 },
+    "titleVerdict": "clear", "tapToCall": true, "emergency": true, "financing": true, "license": true, "chat": true
+  },
+  "listings": { "directoriesFound": ["Facebook", "Yelp", "BBB", "Angi", "Nextdoor", "HomeAdvisor"], "phoneMatch": true, "googleLinksSite": true }
+}

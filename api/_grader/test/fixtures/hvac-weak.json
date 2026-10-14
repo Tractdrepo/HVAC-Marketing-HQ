@@ -1,0 +1,27 @@
+{
+  "_note": "Made-up shop for testing. Not a real business. Speed test failed and AI was off, so those are unmeasured.",
+  "trade": "hvac",
+  "businessName": "Lorena AC Service",
+  "town": "Lorena",
+  "profile": {
+    "found": true,
+    "searches": [
+      { "query": "HVAC near Lorena, TX", "rank": 0, "marketSize": 20 },
+      { "query": "AC repair Lorena, TX", "rank": 14, "marketSize": 20 }
+    ],
+    "photos": { "count": 3, "byBusiness": 0 },
+    "linksToSite": false,
+    "primaryCategory": { "id": "general_contractor", "name": "General contractor" },
+    "hasHours": false, "paymentListed": false, "accessibilityListed": false, "hasPhone": true, "operational": true
+  },
+  "reviews": { "rating": 4.1, "count": 9, "newestDays": 400, "lowInShown": 2,
+    "competitors": { "n": 3, "avgRating": 4.8, "avgCount": 350 } },
+  "website": {
+    "fetched": true, "https": false, "mobileViewport": true, "pageCount": 3,
+    "serviceTopics": ["AC repair"], "areaPages": [],
+    "booking": false, "performance": null, "lighthouse": null,
+    "titleVerdict": "vague", "tapToCall": false, "emergency": false, "financing": false, "license": false, "chat": false,
+    "placeholderPhone": "(555) 555-5555", "phones": []
+  },
+  "listings": { "phoneMatch": null, "googleLinksSite": false, "facebookLinked": true }
+}

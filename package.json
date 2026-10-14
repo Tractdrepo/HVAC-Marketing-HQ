@@ -1,0 +1,9 @@
+{
+  "name": "hvac-marketing-hq-site",
+  "private": true,
+  "description": "Static site plus two serverless functions (api/). Dependencies are for the report card grader.",
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.132.1",
+    "@vercel/functions": "3.9.11"
+  }
+}

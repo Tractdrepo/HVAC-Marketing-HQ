@@ -1,0 +1,54 @@
+{
+  "_note": "Made-up shop for testing. Not a real business.",
+  "trade": "hvac",
+  "businessName": "Brazos Comfort Heating & Air",
+  "siteUrl": "https://example-brazoscomfort.com",
+  "town": "Waco",
+  "profile": {
+    "found": true,
+    "searches": [
+      { "query": "HVAC near Waco, TX", "rank": 7, "marketSize": 20 },
+      { "query": "AC repair Waco, TX", "rank": 4, "marketSize": 20 }
+    ],
+    "photos": { "count": 10, "byBusiness": 2 },
+    "linksToSite": true,
+    "primaryCategory": { "id": "hvac_contractor", "name": "HVAC contractor" },
+    "hasHours": true,
+    "paymentListed": false,
+    "accessibilityListed": true,
+    "hasPhone": true,
+    "operational": true,
+    "phone": "(254) 555-0142"
+  },
+  "reviews": {
+    "rating": 4.6,
+    "count": 140,
+    "newestDays": 21,
+    "lowInShown": 1,
+    "competitors": { "n": 3, "avgRating": 4.8, "avgCount": 610 }
+  },
+  "website": {
+    "fetched": true,
+    "https": true,
+    "mobileViewport": true,
+    "pageCount": 9,
+    "serviceTopics": ["AC repair", "heating", "installation"],
+    "areaPages": [],
+    "booking": true,
+    "performance": 0.42,
+    "lighthouse": { "seo": 0.85, "accessibility": 0.78, "bestPractices": 0.74 },
+    "titleVerdict": "vague",
+    "tapToCall": true,
+    "emergency": true,
+    "financing": false,
+    "license": false,
+    "chat": false,
+    "phones": ["2547770142"]
+  },
+  "listings": {
+    "directoriesFound": ["Facebook", "Yelp", "BBB"],
+    "directoriesChecked": ["Facebook", "Yelp", "BBB", "Angi", "Nextdoor", "Thumbtack", "HomeAdvisor"],
+    "phoneMatch": false,
+    "googleLinksSite": true
+  }
+}

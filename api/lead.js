@@ -1,6 +1,8 @@
 // Report card request handler (Vercel serverless function).
 // Verifies Turnstile, checks the fields, then emails the lead to the team through Resend.
 // Env vars: TURNSTILE_SECRET, RESEND_API_KEY, LEAD_TO (e.g. reports@yourdomain), LEAD_FROM (verified sender).
+// Automatic report card (grader/): REPORT_CARD_AUTO=on, GOOGLE_PLACES_API_KEY, ANTHROPIC_API_KEY,
+// PAGESPEED_API_KEY (optional), GRADER_MODEL (optional).
 
 const hits = new Map(); // best-effort per-instance rate limit
 const LIMIT = 5;
@@ -13,6 +15,10 @@ function rateLimited(ip) {
   hits.set(ip, list);
   return list.length > LIMIT;
 }
+
+const BOOKING_URL = "https://calendar.app.google/bm89Bh3ot8oEk3VA9";
+const SITE_URL = "https://hvacmarketinghq.com";
+const GRADE_MS = 48000; // the function's limit is 60s (vercel.json)
 
 const clean = (v, max = 200) => String(v == null ? "" : v).replace(/[\r\n\t]+/g, " ").trim().slice(0, max);
 const escapeHtml = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -56,7 +62,8 @@ module.exports = async function handler(req, res) {
   }).then((r) => r.json()).catch(() => ({ success: false }));
   if (!verify.success) return res.status(400).json({ error: "We couldn't verify you're human. Please try again." });
 
-  const rows = Object.entries(lead).map(([k, v]) => `<tr><td><b>${k}</b></td><td>${escapeHtml(v)}</td></tr>`).join("");
+  const auto = process.env.REPORT_CARD_AUTO === "on" && Boolean(process.env.GOOGLE_PLACES_API_KEY);
+  const rows = Object.entries({ ...lead, report_card: auto ? "grading automatically; a copy will follow" : "send by hand" }).map(([k, v]) => `<tr><td><b>${k}</b></td><td>${escapeHtml(v)}</td></tr>`).join("");
   const sent = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
@@ -70,8 +77,51 @@ module.exports = async function handler(req, res) {
   }).catch(() => null);
   if (!sent || !sent.ok) return res.status(502).json({ error: "Something went wrong on our end. Please try again." });
 
+  if (auto) {
+    // Grade after answering, so the visitor isn't kept waiting.
+    const job = autoReport(lead).catch((err) => console.error("auto report failed", err));
+    let waitUntil;
+    try { ({ waitUntil } = require("@vercel/functions")); } catch { waitUntil = null; }
+    if (waitUntil) waitUntil(job); else await job;
+  }
   return res.status(200).json({ ok: true });
 };
+
+function sendEmail(msg) {
+  return fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ from: process.env.LEAD_FROM, ...msg }),
+  }).then((r) => (r.ok ? r : Promise.reject(new Error(`Resend ${r.status}`))));
+}
+
+// Tell the team the automatic report didn't go out, so it can be sent by hand.
+function tellTeam(lead, why) {
+  return sendEmail({
+    to: [process.env.LEAD_TO],
+    reply_to: lead.email,
+    subject: `Send by hand: report card for ${lead.business}`,
+    text: `The automatic report card for ${lead.business} (${lead.website}) did not go out: ${why}.\nSend it by hand to ${lead.first_name} at ${lead.email}.`,
+  }).catch((err) => console.error("team notice failed", err));
+}
+
+async function autoReport(lead) {
+  const { gradeWithDeadline, renderReport, isPublicSite } = await import("./_grader/report.mjs");
+  if (!isPublicSite(lead.website)) return tellTeam(lead, "the website address isn't a public site");
+  let result;
+  try {
+    result = await gradeWithDeadline({ website: lead.website, businessName: lead.business, town: lead.town, trade: "hvac" }, GRADE_MS);
+  } catch (err) {
+    return tellTeam(lead, `grading failed (${err.message})`);
+  }
+  if (result.report.overall == null) return tellTeam(lead, `nothing could be measured (${result.facts.notes.join(" ")})`);
+  const r = renderReport(result, { firstName: lead.first_name, bookingUrl: BOOKING_URL, siteUrl: SITE_URL });
+  try {
+    await sendEmail({ to: [lead.email], bcc: [process.env.LEAD_TO], reply_to: process.env.LEAD_TO, subject: r.subject, html: r.html, text: r.text });
+  } catch (err) {
+    return tellTeam(lead, `the email failed (${err.message})`);
+  }
+}
 
 function safeJson(s) {
   try { return JSON.parse(s); } catch { return {}; }

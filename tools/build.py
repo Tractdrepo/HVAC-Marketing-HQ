@@ -25,7 +25,7 @@ FOUNDER_NAME = "Logan"
 FOUNDER_VIDEO = None                  # e.g. "video/founder.mp4" once recorded (also add a poster: "video/founder.jpg")
 FOUNDER_POSTER = None
 DEMO_PHONE = None                     # demo line for missed-call text-back, e.g. "+12545550123"; block hidden until set
-LEGAL_UPDATED = "October 12, 2026"   # "Last updated" on Privacy and Terms
+LEGAL_UPDATED = "October 14, 2026"   # "Last updated" on Privacy and Terms
 NOINDEX = True                       # stays on until forms are tested and Logan says push
 AREA = "Texas"                        # launch market; copy says "starting in Texas"
 
@@ -2366,7 +2366,7 @@ def legal_page(key):
 <h2>Text messaging</h2>
 <p>If you opt in to text messages, we will text you about your report card and our services. Message frequency varies. Message and data rates may apply. Reply STOP to opt out at any time and HELP for help. <b>We do not sell, rent or share your mobile number or text messaging opt-in data with third parties or affiliates for their marketing purposes.</b> Opt-in data and consent are not shared with any third parties, except service providers that deliver messages on our behalf.</p>
 <h2>Who we share it with</h2>
-<p>We use service providers to run this site and our services, such as hosting (Vercel), email delivery (Resend), spam protection (Cloudflare), our CRM and messaging platform, and scheduling tools. They only use your information to provide services to us. We do not sell your personal information.</p>
+<p>We use service providers to run this site and our services, such as hosting (Vercel), email delivery (Resend), spam protection (Cloudflare), our CRM and messaging platform, and scheduling tools. To build report cards we send your business name, town and website (never your own name, email or phone) to Google for business lookups and site speed tests and to Anthropic for AI that checks listings and writes part of the report. They only use your information to provide services to us. We do not sell your personal information.</p>
 <h2>Client customer data</h2>
 <p>When we provide services to a business, we handle that business's customer data only on its instructions, never sell it, and notify the business of any breach as required by law.</p>
 <h2>How long we keep it</h2>
