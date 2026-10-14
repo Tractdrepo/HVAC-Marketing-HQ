@@ -101,6 +101,14 @@ export function parseHomepage(html, finalUrl, trade) {
     placeholderPhone: placeholder ? fmtPhone(placeholder) : null,
     facebookLinked: links.some((l) => /facebook\.com\/(?!sharer|share)/i.test(l.href)),
     areaPages: [...areaPages],
+    // Business details code (schema.org) that Google and AI search read for name, phone and area served.
+    schema: /"@type"\s*:\s*\[?\s*"(LocalBusiness|HVACBusiness|HomeAndConstructionBusiness|Plumber|Electrician|RoofingContractor|GeneralContractor|ProfessionalService)"/i.test(html)
+      || /itemtype=["'][^"']*schema\.org\/(LocalBusiness|HVACBusiness|HomeAndConstructionBusiness)/i.test(html),
+    // Reviews or testimonials shown on the site itself.
+    reviewsOnSite: /(trustindex|elfsight[^"']*review|embedsocial|reviewsonmywebsite|nicejob|birdeye[^"']*review|grade\.us|podium[^"']*review|widget[^"']*google[^"']*review)/i.test(html)
+      || /\b(testimonials?|what (our )?customers (are )?say|customer reviews|google reviews|read (our|more) reviews)\b/i.test(text),
+    // Questions answered on the page: what AI search tools quote.
+    faq: /"@type"\s*:\s*"FAQPage"/i.test(html) || /\b(faqs?|frequently asked questions|common questions)\b/i.test(text) || links.some((l) => /\bfaqs?\b/i.test(l.text)),
     pageLinks: pageLinks.slice(0, 300),
     blogUrl: blogLink ? new URL(blogLink.href, base).href : null,
   };

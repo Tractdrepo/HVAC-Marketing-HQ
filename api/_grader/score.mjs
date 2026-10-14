@@ -37,7 +37,7 @@ function area(lines, penalty = 0, extra = {}) {
   const score = total(lines, penalty);
   const failed = lines.filter((l) => l.measured && l.points < l.max && l.fix);
   const top = failed.sort((a, b) => (b.max - b.points) - (a.max - a.points))[0] || null;
-  return { score, grade: letter(score), lines, topFix: top ? top.fix : null, ...extra };
+  return { score, grade: letter(score), lines, topFix: top ? top.fix : null, topFixId: top ? top.id : null, ...extra };
 }
 
 // Search position: 1-based rank, 0 = not in results, null = not measured.
@@ -98,8 +98,8 @@ export function scoreProfile(p, trade) {
 
   const closed = p.operational === false;
   // Google's data doesn't show posts, so this is advice, never a deduction.
-  const result = area(lines, closed ? 40 : 0, { closed, advice: ['Post on your Google profile every week (a finished job, a seasonal tip). Google rewards active profiles; we post your job photos for you.'] });
-  if (closed) result.topFix = 'Google does not show your business as open. Fix the status on your profile first.';
+  const result = area(lines, closed ? 40 : 0, { closed, advice: [{ id: 'posts', fix: 'Post on your Google profile every week (a finished job, a seasonal tip). Google rewards active profiles.' }] });
+  if (closed) { result.topFix = 'Google does not show your business as open. Fix the status on your profile first.'; result.topFixId = 'closed'; }
   return result;
 }
 
@@ -147,7 +147,7 @@ export function scoreReviews(r, trade) {
   ], 0, {
     themes: r.themes || null,
     // Google's data doesn't show owner replies, so this is advice, never a deduction.
-    advice: ['Reply to every review, good and bad. Customers read the replies and Google sees an active owner; we can answer them for you automatically.'],
+    advice: [{ id: 'replies', fix: 'Reply to every review, good and bad. Customers read the replies and Google sees an active owner.' }],
   });
 }
 
@@ -196,9 +196,15 @@ export function scoreWebsite(w, trade) {
       `We did not find your ${trade.licenseName} on the home page. Add it to the footer.`),
     line('chat', 'Chat or after-hours answer', 5, yes(w.chat, 5),
       'We did not find a chat tool. Add one so after-hours visitors get an answer.'),
+    line('schema', 'Business details code for Google and AI search', 5, yes(w.schema, 5),
+      'Add business details code (LocalBusiness markup) so Google and AI tools like ChatGPT can read your name, phone and the towns you serve.'),
+    line('reviewsOnSite', 'Reviews shown on the site', 5, yes(w.reviewsOnSite, 5),
+      'Show your Google reviews on your website. Visitors who came from an ad or a search see proof before they call.'),
+    line('faq', 'Common questions answered', 3, yes(w.faq, 3),
+      'Answer the questions customers ask (what a new system costs, how long a repair takes). AI search tools quote pages that answer them.'),
     line('blog', 'Fresh articles', 5, blogPoints(w.blog),
-      !w.blog?.found ? 'Start a blog: one helpful article a month (AC tune-up tips, what a new system costs) gives Google something new to rank. We write and post them for you.'
-        : `Your newest blog post is ${w.blog.newestDays} days old. Post a helpful article every month; we write and post them for you.`),
+      !w.blog?.found ? 'Start a blog: one helpful article a month (AC tune-up tips, what a new system costs) gives Google something new to rank.'
+        : `Your newest blog post is ${w.blog.newestDays} days old. Post a helpful article every month.`),
   ];
   const result = area(lines);
   if (w.placeholderPhone) result.notes = [`Your home page shows a placeholder number (${w.placeholderPhone}). Replace it with your real number.`];

@@ -41,7 +41,7 @@
   var HOW = {
     profile: {
       h: "How we fix your Google profile",
-      p: "We set your profile up the way Google ranks it: the right main category, hours, services, service area and payment details, then post an update with the job photos you text us every week. Setup is in every plan. On Growth and up we run it for you month to month.",
+      p: "We set your profile up the way Google ranks it: the right main category, hours, services, service area and payment details, then post an update with the job photos you text us every week. Setup is in every plan. On Growth and up we run it for you every month.",
     },
     reviews: {
       h: "How we fix your reviews",
@@ -66,21 +66,47 @@
     return a - b;
   });
 
+  // Each fix comes with how we handle it: [fix, how]. Older links carry plain strings.
+  var fixItem = function (f) {
+    var t = typeof f === "string" ? f : f[0], h = typeof f === "string" ? "" : f[1];
+    return "<li><span class=\"yr-fix-t\">" + esc(t) + "</span>" + (h ? '<span class="yr-fix-h"><b>How we fix it:</b> ' + esc(h) + "</span>" : "") + "</li>";
+  };
   var cards = areas.map(function (a, n) {
     var how = HOW[a.k];
-    var fixes = (a.fx || []).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("");
-    var ok = a.s != null && !(a.fx || []).length;
+    var list = a.fx || [];
+    var structured = list.length && typeof list[0] !== "string";
+    var fixes = list.map(fixItem).join("");
+    var ok = a.s != null && !list.length;
     return '<article class="yr-area' + (n === 0 && a.s != null && a.s < 80 ? " yr-weak" : "") + '">' +
       '<div class="yr-area-head"><b class="yr-g g-' + gcls(a.g) + '">' + esc(a.g || "N/A") + '</b><div><h3>' + esc(NAMES[a.k]) + "</h3>" +
       (a.s != null ? '<span class="yr-score">' + a.s + " / 100</span>" : '<span class="yr-score">Not measured</span>') + "</div></div>" +
       '<p class="yr-saw"><span>What we saw</span>' + esc(a.saw) + "</p>" +
-      (fixes ? '<div class="yr-fixes"><span>What to fix</span><ol>' + fixes + "</ol></div>" : "") +
+      (fixes ? '<div class="yr-fixes"><span>What to fix, and how we fix it</span><ol>' + fixes + "</ol></div>" : "") +
       (ok ? '<p class="yr-ok">Nothing to fix here. Keep doing what you are doing.</p>' : "") +
-      (!ok ? '<div class="yr-how"><h4>' + esc(how.h) + "</h4><p>" + esc(how.p) + "</p></div>" : "") +
+      (!ok && !structured ? '<div class="yr-how"><h4>' + esc(how.h) + "</h4><p>" + esc(how.p) + "</p></div>" : "") +
       "</article>";
   });
   var mid = Math.ceil(cards.length / 2);
   var weak = data.lo ? NAMES[data.lo] : null;
+  var weakArea = null;
+  data.a.forEach(function (a) { if (a.k === data.lo) weakArea = a; });
+  var weakFix = weakArea && weakArea.fx && weakArea.fx[0] ? (typeof weakArea.fx[0] === "string" ? weakArea.fx[0] : weakArea.fx[0][0]) : null;
+
+  // Book and Repeat speak to what we saw when the link carries it (b, rv), else stay general.
+  var b = data.b, rv = data.rv;
+  var bookSaw = !b ? "" : "On your site we found " +
+    (b.k === "online" ? "online booking" : b.k === "form" ? "a contact form, but no online booking" : "no way to book or request service") +
+    ", " + (b.c ? "a chat tool" : "no chat") + " and " + (b.t ? "a tap-to-call number" : "no tap-to-call number") + ".";
+  var repeatSaw = !rv ? "" : rv.n + " Google reviews" + (rv.d != null ? ", the newest " + (rv.d === 0 ? "today" : rv.d + " days ago") : "") + ".";
+  var tile = function (h, p, tag) { return '<div><h4>' + esc(h) + (tag ? ' <small class="yr-tag">' + esc(tag) + "</small>" : "") + "</h4><p>" + esc(p) + "</p></div>"; };
+  var section = function (n, word, title, lede, saw, tiles, cls) {
+    return '<section class="yr-body yr-pillar ' + (cls || "") + '"><div class="wrap">' +
+      '<div class="yr-head"><span class="yr-step">' + n + " · " + word + "</span><h2>" + esc(title) + "</h2><p>" + esc(lede) + "</p></div>" +
+      (saw ? '<p class="yr-pillar-saw"><b>What we saw:</b> ' + esc(saw) + "</p>" : "") +
+      '<div class="yr-ops-grid">' + tiles.join("") + "</div></div></section>";
+  };
+  var bookLine = !b ? "Make it easy to book from any page." : b.k === "online" ? "Keep online booking, and catch the calls you miss." : b.k === "form" ? "Add online booking next to your form, and text back every missed call." : "Add a book-service button and text back every missed call.";
+  var repeatLine = !rv ? "Ask for a review after every job." : rv.n < 100 ? "Ask for a review after every job until you pass the top shops near you." : "Keep reviews coming every week and reply to every one.";
 
   root.innerHTML =
     '<section class="yr-hero"><div class="wrap yr-hero-in">' +
@@ -92,29 +118,43 @@
       '<ul>' + data.a.map(function (a) { return '<li><span>' + esc(NAMES[a.k]) + '</span><b class="g-' + gcls(a.g) + '">' + esc(a.g || "N/A") + "</b></li>"; }).join("") + "</ul>" +
       (data.w ? '<p class="muted">' + esc(data.w) + "</p>" : "") + "</div>" +
     "</div></section>" +
-    '<section class="yr-body"><div class="wrap">' +
-      '<div class="yr-head"><h2>' + (weak ? "Start with your " + esc(weak === "Google profile" ? weak : weak.toLowerCase()) + "." : "Here's what we found.") + "</h2>" +
-      "<p>Each area below shows what we saw, what to fix first, and how we'd fix it for you. Weakest area first.</p></div>" +
+    '<nav class="yr-method wrap" aria-label="Report sections"><a href="#yr-rank"><b>1</b> Rank</a><a href="#yr-book"><b>2</b> Book</a><a href="#yr-repeat"><b>3</b> Repeat</a><a href="#yr-plan"><b>✓</b> Your plan</a></nav>' +
+    '<section class="yr-body" id="yr-rank"><div class="wrap">' +
+      '<div class="yr-head"><span class="yr-step">1 · Rank</span><h2>' + (weak ? "Start with your " + esc(weak === "Google profile" ? weak : weak.toLowerCase()) + "." : "How customers find you.") + "</h2>" +
+      "<p>This is your report card: how you show up when someone nearby searches for HVAC. Each area shows what we saw, what to fix, and how we fix it for you. Weakest area first.</p></div>" +
       cards.slice(0, mid).join("") +
       '<div class="yr-band"><div><h3>Want these fixed for you?</h3><p>Book 15 minutes. We go through your report line by line and tell you what we would do first, how long it takes, and what it costs.</p></div>' + book("Book my 15-minute call") + "</div>" +
       cards.slice(mid).join("") +
     "</div></section>" +
-    '<section class="yr-body yr-ops"><div class="wrap">' +
-      '<div class="yr-head"><h2>What a report card can\'t see.</h2><p>Your grades cover how customers find you. Just as many jobs are won or lost after the phone rings. Our plans handle that part too.</p></div>' +
-      '<div class="yr-ops-grid">' +
-        '<div><h4>Missed calls texted back</h4><p>Every missed call gets a text in 60 seconds, so the caller books with you instead of the next shop.</p></div>' +
-        '<div><h4>Reviews on autopilot</h4><p>A review request after every finished job, and on Growth and up we answer every review for you.</p></div>' +
-        '<div><h4>Quotes followed up</h4><p>Estimates get followed up until they are booked or lost. On Growth and up, past customers get seasonal tune-up texts.</p></div>' +
-        '<div><h4>One inbox, one dashboard</h4><p>Calls, texts and web leads land in one inbox your office can see, with a dashboard you can open anytime.</p></div>' +
-      '</div>' +
-    '</div></section>' +
-    '<section class="yr-close"><div class="wrap">' +
-      "<h2>What happens on the call</h2>" +
-      '<ol class="yr-steps"><li><b>We walk your report.</b> Every grade above, in plain words, with your search results on screen.</li>' +
-      "<li><b>We show the fix order.</b> What moves calls first, what can wait, and which plan covers it.</li>" +
-      "<li><b>You decide.</b> Plans are month to month. If it's not a fit, you keep the report and the fix list.</li></ol>" +
-      book("Book a 15-minute call") +
-      '<p class="muted yr-fine">Grades come from what anyone can see in public on ' + (date ? esc(date) : "the day we checked") + ". Anything we couldn't measure is left out of your grade, not counted against you.</p>" +
+    '<div id="yr-book">' + section("2", "Book", "Turn visits and calls into booked jobs.",
+      "Ranking gets you the call. A homeowner with a broken AC books whoever answers first or lets them book right away, so every page needs an easy way to book and every missed call needs an answer.",
+      bookSaw, [
+        tile("Book-service button and form", "Every site we build has a book-service button and a short form on every page, landing in your inbox app.", "Every plan"),
+        tile("Missed calls texted back", "Every missed call gets a text in 60 seconds, so the caller books with you instead of the next shop.", "Every plan"),
+        tile("AI web chat", "Answers questions on your site and books jobs after hours, when your office is closed.", "Growth and up"),
+        tile("AI phone answering", "An AI receptionist picks up when you can't, during the rush or after hours.", "Add-on"),
+        tile("One inbox", "Calls, texts and web leads land in one inbox app your office and techs can all see.", "Every plan"),
+        tile("Booking hookup", "New jobs go straight into ServiceTitan, Housecall Pro or Jobber.", "Dominate"),
+      ]) + "</div>" +
+    '<div id="yr-repeat">' + section("3", "Repeat", "Customers who come back, and send others.",
+      "The shops that stay on top don't win one job at a time. They ask every customer for a review, answer every review, and stay in touch so last summer's repair becomes this fall's tune-up.",
+      repeatSaw, [
+        tile("Review requests", "A text after every finished job with a one-tap link to Google.", "Every plan"),
+        tile("Review replies", "We write and post a reply to every review, good and bad.", "Growth and up"),
+        tile("Quote follow-up", "Open estimates get texts until they are booked or lost.", "Growth and up"),
+        tile("Tune-up and win-back texts", "Past customers hear from you each season, so slow months fill up.", "Growth and up"),
+        tile("HQ Command Center", "Calls, jobs and reviews in one live dashboard you can open anytime.", "Every plan"),
+        tile("Fresh content", "A new article every month keeps your site growing in search.", "Growth and up"),
+      ], "yr-ops") + "</div>" +
+    '<section class="yr-close" id="yr-plan"><div class="wrap">' +
+      "<h2>Your plan in three lines</h2>" +
+      '<ol class="yr-steps yr-plan">' +
+        "<li><b>Rank.</b> " + esc(weakFix || "Keep your Google profile and site growing.") + "</li>" +
+        "<li><b>Book.</b> " + esc(bookLine) + "</li>" +
+        "<li><b>Repeat.</b> " + esc(repeatLine) + "</li></ol>" +
+      '<p class="yr-close-lede">On a 15-minute call we walk your report, show the fix order and what it costs. If it\'s not a fit, you keep the report and the fix list.</p>' +
+      book("Book my 15-minute call") +
+      '<p class="muted yr-fine">Grades come from what anyone can see in public on ' + (date ? esc(date) : "the day we checked") + ". Anything we couldn't measure is left out of your grade, not counted against you. Map rankings compare you with HVAC businesses within 30 miles of your shop.</p>" +
     "</div></section>";
   }
 })();

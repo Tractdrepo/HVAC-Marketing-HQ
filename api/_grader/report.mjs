@@ -90,14 +90,55 @@ export function sawLine(key, facts, area) {
   return '';
 }
 
-// Every fix for an area, biggest gap first.
-export function fixesFor(area) {
+// How we handle each fix, so every problem the shop reads comes with our answer to it.
+// Plan names and inclusions match PLANS and ADDONS in tools/build.py; keep them in step.
+const SETUP = 'Fixed in our Google profile setup, included in every plan.';
+const BUILD = 'Built into every site we make on our HVAC build.';
+export const HOW = {
+  profile: {
+    search: 'Local SEO plus a managed Google profile (Growth and up) is how we move you up the map.',
+    photos: 'Text us job photos from your phone. On Growth and up we post them to your profile every week.',
+    website: SETUP, category: SETUP, hours: SETUP, details: SETUP, phone: SETUP,
+    closed: 'We fix the status with Google in setup, before anything else.',
+    posts: 'On Growth and up we post to your profile every week, using the job photos you text us.',
+  },
+  reviews: {
+    rating: 'Every plan texts a review request after each finished job, with a one-tap link to Google.',
+    count: 'Every plan texts a review request after each finished job, with a one-tap link to Google.',
+    recent: 'Every plan sends a review request after each job, so new reviews keep coming every week.',
+    low: 'On Growth and up we reply to every review, so the next customer sees an owner who answers.',
+    replies: 'On Growth and up we write and post a reply to every review for you.',
+  },
+  website: {
+    pages: 'Our sites give each service and each town its own page: 12 pages on Growth, 25 on Dominate.',
+    booking: 'Every site we build has a book-service button and a short form that lands in your inbox app.',
+    speed: 'Our HVAC build is made for phones; our own site scores 99 for speed on Google\'s phone test.',
+    lighthouse: BUILD, title: BUILD, mobile: BUILD, call: BUILD,
+    emergency: 'We put it on every page of the site we build.', financing: 'We put it on every page of the site we build.',
+    license: 'We put it in the footer of every page we build.',
+    chat: 'AI web chat (Growth and up) answers questions and books jobs after hours.',
+    schema: 'Every site we build includes business details code for Google and AI search.',
+    reviewsOnSite: 'Every site we build shows your Google reviews, updated as new ones come in.',
+    faq: 'We write answers to the questions your customers ask, the kind AI search quotes.',
+    blog: 'Growth includes a new article every month, written and posted for you.',
+    placeholder: 'We check every number and link before your site goes live.',
+  },
+  listings: {
+    directories: 'Directory listings are managed on Dominate, or as an add-on to any plan.',
+    phone: 'Fixed in setup: one number on Google, your site and every listing.',
+    googleLink: SETUP, facebook: 'We link your Facebook page from the site we build.', base: null,
+  },
+};
+
+// Every fix for an area, biggest gap first, each with how we handle it.
+export function fixesFor(area, key) {
+  const how = (id) => (key && HOW[key]?.[id]) || null;
   const fixes = (area.lines || [])
     .filter((l) => l.measured && l.points < l.max && l.fix)
     .sort((a, b) => (b.max - b.points) - (a.max - a.points))
-    .map((l) => l.fix);
-  if (area.topFix && !fixes.includes(area.topFix)) fixes.unshift(area.topFix);
-  return [...(area.notes || []), ...fixes, ...(area.advice || [])];
+    .map((l) => ({ t: l.fix, h: how(l.id) }));
+  if (area.topFix && !fixes.some((f) => f.t === area.topFix)) fixes.unshift({ t: area.topFix, h: how(area.topFixId) });
+  return [...(area.notes || []).map((t) => ({ t, h: how('placeholder') })), ...fixes, ...(area.advice || []).map((a) => ({ t: a.fix, h: how(a.id) }))];
 }
 
 // A short summary when the AI paragraph isn't available.
@@ -129,9 +170,12 @@ export function payload(result, firstName) {
     lo: report.weakest,
     s: report.opening || plainSummary(result),
     d: new Date().toISOString().slice(0, 10),
+    // What the Book and Repeat sections speak to: how a visitor reaches them, and their review flow.
+    b: facts.website?.fetched ? { k: facts.website.bookingKind || null, c: Boolean(facts.website.chat), t: Boolean(facts.website.tapToCall) } : null,
+    rv: facts.reviews && known(facts.reviews.count) ? { n: facts.reviews.count, d: facts.reviews.newestDays ?? null } : null,
     a: AREAS.map(([k]) => {
       const a = report.areas[k] || {};
-      return { k, g: a.grade || null, s: a.score ?? null, saw: sawLine(k, facts, a), fx: fixesFor(a).slice(0, 4) };
+      return { k, g: a.grade || null, s: a.score ?? null, saw: sawLine(k, facts, a), fx: fixesFor(a, k).slice(0, 4).map((f) => [f.t, f.h || '']) };
     }),
   };
 }
@@ -139,6 +183,30 @@ export function payload(result, firstName) {
 // Compressed (deflate-raw) so the link in the email stays short; the page still reads old #r= links.
 export function resultsUrl(siteUrl, data) {
   return `${siteUrl}/your-report#z=${deflateRawSync(Buffer.from(JSON.stringify(data)), { level: 9 }).toString('base64url')}`;
+}
+
+export const AREA_MILES = 30;
+
+// Book: what we saw about how a visitor reaches them, then what our plans add. HTML, already escaped.
+export function bookLines(data) {
+  const b = data.b;
+  const saw = !b ? 'We could not load your site, so we could not check how customers reach you.'
+    : `On your site we found ${b.k === 'online' ? 'online booking' : b.k === 'form' ? 'a contact form, but no online booking' : 'no way to book or request service'}, ${b.c ? 'a chat tool' : 'no chat'} and ${b.t ? 'a tap-to-call number' : 'no tap-to-call number'}.`;
+  return [
+    `<b>What we saw:</b> ${esc(saw)}`,
+    '<b>How we fix it:</b> every missed call gets a text back in 60 seconds, every site we build has a book-service button and a short form, and calls, texts and web leads land in one inbox your office can see. On Growth and up, AI web chat answers and books after hours; AI phone answering is an add-on for the rush.',
+  ];
+}
+
+// Repeat: their review flow, then what our plans add.
+export function repeatLines(data) {
+  const r = data.rv;
+  const saw = !r ? 'We could not see your Google reviews.'
+    : `${r.n} Google reviews${known(r.d) ? `, the newest ${r.d === 0 ? 'today' : `${r.d} days ago`}` : ''}. The shops that stay on top ask after every job and reply to every review.`;
+  return [
+    `<b>What we saw:</b> ${esc(saw)}`,
+    '<b>How we fix it:</b> every plan texts a review request after each finished job. On Growth and up we reply to every review, follow up on open quotes until they are booked or lost, and text past customers each season for tune-ups. You see it all in your HQ Command Center dashboard.',
+  ];
 }
 
 export function renderReport(result, { firstName, bookingUrl, siteUrl }) {
@@ -154,8 +222,10 @@ export function renderReport(result, { firstName, bookingUrl, siteUrl }) {
     return `<tr><td style="padding:16px 0;border-top:1px solid #e5e7eb;vertical-align:top;width:52px;${font};font-weight:700;font-size:22px;line-height:1.1;color:${color(a.g)}">${esc(a.g || 'N/A')}</td>
 <td style="padding:16px 0 16px 8px;border-top:1px solid #e5e7eb;${font};font-size:14px;line-height:1.55;color:#111827">
 <b>${esc(names[a.k])}</b>${score}<br><span style="font-size:13px;color:#4b5563">${esc(a.saw)}</span>
-${top ? `<br><b>Top fix:</b> ${esc(top)}` : ''}</td></tr>`;
+${top ? `<br><b>Top fix:</b> ${esc(top[0])}` : ''}${top && top[1] ? `<br><span style="color:#c2410c"><b>How we fix it:</b> ${esc(top[1])}</span>` : ''}</td></tr>`;
   }).join('');
+  const box = (title, lines) => `<div style="margin-top:18px;padding:16px 18px;background:#f9fafb;border-radius:8px;${font};font-size:13px;line-height:1.6;color:#111827">
+<div style="font-size:11px;font-weight:700;letter-spacing:.14em;color:#c2410c;margin-bottom:6px">${title}</div>${lines.map((l) => `<div style="margin-top:6px">${l}</div>`).join('')}</div>`;
   const weakName = data.lo ? lc(names[data.lo]) : null;
   const when = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   const summary = data.s.startsWith(`${data.n} scores `) ? data.s.replace(/^.*?\.\s+/, '') : data.s;
@@ -171,26 +241,21 @@ ${top ? `<br><b>Top fix:</b> ${esc(top)}` : ''}</td></tr>`;
 <p style="${font};font-size:14px;line-height:1.6;color:#111827;margin:18px 0 10px">Hi ${esc(data.f || 'there')},</p>
 <p style="${font};font-size:14px;line-height:1.6;color:#111827;margin:0 0 12px">${esc(summary)}</p>
 <p style="${font};font-size:14px;line-height:1.6;color:#111827;margin:0 0 16px">Want help with it? <a href="${esc(bookingUrl)}" style="color:#c2410c;font-weight:700">Book a 15-minute walkthrough</a> of this report.</p>
+<div style="${font};font-size:11px;font-weight:700;letter-spacing:.14em;color:#c2410c;margin:4px 0 2px">1. RANK: HOW CUSTOMERS FIND YOU</div>
 <table role="presentation" style="width:100%;border-collapse:collapse">${rows}</table>
-<div style="border-top:1px solid #e5e7eb;padding-top:16px;${font};font-size:14px;line-height:1.6;color:#111827">
+${box('2. BOOK: TURNING VISITS AND CALLS INTO JOBS', bookLines(data))}
+${box('3. REPEAT: CUSTOMERS WHO COME BACK AND REVIEW YOU', repeatLines(data))}
+<div style="border-top:1px solid #e5e7eb;padding-top:16px;margin-top:20px;${font};font-size:14px;line-height:1.6;color:#111827">
 ${weakName ? `Your lowest grade is <b>your ${esc(weakName)}</b>. ` : ''}Book 15 minutes and I'll show you how we'd fix it and what it would cost.
 <div style="margin:14px 0 4px"><a href="${esc(bookingUrl)}" style="display:inline-block;background:#c2410c;color:#ffffff;text-decoration:none;${font};font-weight:700;font-size:14px;padding:11px 18px;border-radius:7px">Book a 15-minute walkthrough</a></div>
 </div>
-<div style="margin-top:20px;padding:16px 18px;background:#f9fafb;border-radius:8px;${font};font-size:13px;line-height:1.6;color:#111827">
-<b>What a report card can't see: what happens after the phone rings.</b><br>
-Rankings bring the calls. Our plans make sure they turn into jobs:
-<br>• Missed calls get a text back in 60 seconds, so the caller books with you, not the next shop.
-<br>• Every finished job gets a review request, and on Growth and up we answer your reviews for you.
-<br>• Quotes get followed up until they're booked or lost, and on Growth and up past customers get seasonal tune-up texts.
-<br>• Calls, texts and web leads land in one inbox your office can see, with a dashboard you can open anytime.
-</div>
 <p style="${font};font-size:13px;line-height:1.6;color:#4b5563;margin:16px 0 0">Not ready to talk? <a href="${esc(link)}" style="color:#c2410c">See your full report and how each fix works</a>, or just reply to this email with a question. It comes straight to me.</p>
 <p style="${font};font-size:13px;line-height:1.6;color:#111827;margin:14px 0 0">Logan<br>HVAC Marketing HQ</p>
-<p style="${font};font-size:11px;line-height:1.5;color:#9ca3af;margin:16px 0 0">We checked your Google profile, reviews, home page and listings on ${esc(when)}. Anything we couldn't measure is left out of your grade, not counted against you.</p>
+<p style="${font};font-size:11px;line-height:1.5;color:#9ca3af;margin:16px 0 0">We checked your Google profile, reviews, home page and listings on ${esc(when)}. Anything we couldn't measure is left out of your grade, not counted against you. Map rankings compare you with HVAC businesses within ${AREA_MILES} miles of your shop.</p>
 </div></div></body></html>`;
   const text = [`Hi ${data.f || 'there'},`, '', `HVAC report card: ${data.n}${data.w ? ` (${data.w})` : ''}`,
     `Overall: ${data.g || 'N/A'}${known(data.o) ? ` (${data.o} / 100)` : ''}`, '', data.s, '',
-    ...data.a.flatMap((a) => [`${names[a.k]}: ${a.g || 'N/A'}${known(a.s) ? ` (${a.s} / 100)` : ''}`, `  ${a.saw}`, ...(a.fx[0] ? [`  Top fix: ${a.fx[0]}`] : []), '']),
+    ...data.a.flatMap((a) => [`${names[a.k]}: ${a.g || 'N/A'}${known(a.s) ? ` (${a.s} / 100)` : ''}`, `  ${a.saw}`, ...(a.fx[0] ? [`  Top fix: ${a.fx[0][0]}`, ...(a.fx[0][1] ? [`  How we fix it: ${a.fx[0][1]}`] : [])] : []), '']),
     `Full report and how to fix it: ${link}`, `Grab 15 minutes on my calendar: ${bookingUrl}`, '', 'Logan', 'HVAC Marketing HQ'].join('\n');
   const article = (g) => (/^[AEF]/.test(g) ? 'an' : 'a');
   return { subject: `Your report card: ${data.n} gets ${data.g ? `${article(data.g)} ${data.g}` : 'graded'}`, html, text, link, data };

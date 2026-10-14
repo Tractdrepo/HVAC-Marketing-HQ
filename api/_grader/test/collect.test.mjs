@@ -119,6 +119,8 @@ test('report email shows grades and fixes, not points', async () => {
   const back = JSON.parse(inflateRawSync(Buffer.from(m[1], 'base64url')).toString());
   assert.equal(back.n, facts.businessName);
   assert.equal(back.a.length, 4);
+  assert.ok(r.html.includes('How we fix it:'), 'each top fix comes with how we fix it');
+  assert.ok(back.a.some((a) => Array.isArray(a.fx[0]) && a.fx[0][1]), 'fixes carry how');
   assert.ok(back.s.length > 20, 'summary present without AI');
   assert.ok(r.link.length < 6000, `link length ${r.link.length}`);
 });

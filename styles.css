@@ -1013,3 +1013,18 @@ main > .section.dark::before { display: none; }
 .yr-ops-grid h4 { margin: 0 0 6px; font-size: 1.02rem; }
 .yr-ops-grid p { margin: 0; color: var(--muted); font-size: .95rem; }
 @media (max-width: 640px) { .yr-ops-grid { grid-template-columns: 1fr; } }
+
+/* Results page: Rank, Book, Repeat */
+.yr-method { display: flex; gap: 8px; flex-wrap: wrap; margin-top: -22px; position: relative; z-index: 2; max-width: 860px; }
+.yr-method a { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line-2); border-radius: 999px; padding: 9px 16px; font-weight: 600; color: var(--text); text-decoration: none; box-shadow: 0 6px 18px rgba(15, 23, 42, .08); }
+.yr-method a b { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #c2410c; color: #fff; font-size: .78rem; }
+.yr-step { display: inline-block; font: 700 .74rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #c2410c; margin-bottom: 10px; }
+.yr-pillar { margin-top: 24px; padding-bottom: 56px; }
+.yr-pillar-saw { background: #fff; border: 1px solid var(--line); border-left: 4px solid #c2410c; border-radius: 10px; padding: 12px 16px; margin: 0 0 18px; }
+.yr-tag { display: inline-block; margin-left: 6px; font: 600 .68rem/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--panel-2); border-radius: 5px; padding: 4px 6px; vertical-align: middle; }
+.yr-fixes li { margin: 8px 0 10px; }
+.yr-fix-t { display: block; }
+.yr-fix-h { display: block; margin-top: 3px; color: #9a3412; font-size: .95rem; }
+.yr-close-lede { max-width: 620px; margin: 6px auto 18px; color: var(--muted); }
+.yr-plan li { text-align: left; }
+@media (max-width: 640px) { .yr-method { margin-top: 16px; } }

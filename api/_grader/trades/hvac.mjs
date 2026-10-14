@@ -9,6 +9,7 @@ export default {
   // The first query also supplies the competitors for the reviews comparison.
   searchQueries: ['HVAC near {town}, {state}'],
   areaQuery: 'HVAC',
+  areaMiles: 30, // keep in step with AREA_MILES in report.mjs
 
   // Google's main category. Matched against Places' primaryType and its display name.
   categories: {
