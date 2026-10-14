@@ -225,7 +225,7 @@ SERVICES = [
         "h1": "A new site for your HVAC shop, without losing what already ranks.",
         "desc": "HVAC website redesign: we rebuild a slow or dated contractor site on our fast HVAC build, keep the pages and links that already rank, and add the pages that book calls.",
         "lede": "Your site is slow, dated, or built by a cousin in 2016, but it has years of Google history. A redesign should fix the first part without throwing away the second. We move what works, redirect every old link and build the rest the right way.",
-        "plan": "Included in the build fee on every plan. The redesign is the build.",
+        "plan": "Included in the build fee. The redesign is the build.",
         "pains": [
             ("Redesigns can wipe out rankings", "A new site that changes every link without redirects can drop pages Google already trusted."),
             ("Slow on a phone", "Most HVAC searches happen on phones. A heavy theme with sliders and popups loses the caller before the page loads."),

@@ -8,6 +8,7 @@ Edit copy and settings here, then run:
 Shared header, footer and report card form live in one place so the pages stay in step.
 """
 import html
+import re
 import os
 import shutil
 import sys
@@ -25,6 +26,9 @@ FOUNDER_NAME = "Logan"
 FOUNDER_VIDEO = None                  # e.g. "video/founder.mp4" once recorded (also add a poster: "video/founder.jpg")
 FOUNDER_POSTER = None
 DEMO_PHONE = None                     # demo line for missed-call text-back, e.g. "+12545550123"; block hidden until set
+SAME_AS = []                          # public profiles for schema, e.g. LinkedIn and Facebook URLs; add when Logan shares them
+FOUNDING_SPOTS = 25                   # founding rate: annual price on monthly billing, locked while they stay
+FOUNDING_LEFT = 25                    # lower this as shops sign; the strip hides at 0
 LEGAL_UPDATED = "October 14, 2026"   # "Last updated" on Privacy and Terms
 NOINDEX = True                       # stays on until forms are tested and Logan says push
 AREA = "Texas"                        # launch market; copy says "starting in Texas"
@@ -65,9 +69,9 @@ ADDONS = [
     ("Local Services Ads management", "$299/mo"),
     ("Facebook and Instagram ads", "$299/mo"),
     ("AI phone answering, after hours and during the rush", "$299/mo"),
-    ("Extra page", "$[X] each"),
-    ("Directory listings sync", "$[X]/mo"),
-    ("Extra tracked phone number", "$[X]/mo"),
+    ("Extra page", "$150 one time"),
+    ("Directory listings sync", "$49/mo"),
+    ("Extra tracked phone number", "$15/mo"),
     ("Campaigns beyond the included allowance", "At cost"),
 ]
 
@@ -138,6 +142,8 @@ SERVICE_GROUPS = [
     ("Paid ads", "search", ["google-ads", "local-services-ads", "facebook-ads"]),
     ("Keep customers coming", "star", ["review-requests", "seasonal-campaigns", "hq-command-center"]),
 ]
+# The six core services in the footer; the rest live on /services.
+FOOTER_SERVICES = ["website", "google-business-profile", "local-seo", "missed-call-text-back", "review-requests", "google-ads"]
 # For HVAC menu order.
 NICHE_ORDER = ["hvac-marketing-residential-replacement", "hvac-marketing-light-commercial", "hvac-marketing-ac-repair", "hvac-marketing-heating",
                "hvac-marketing-ductwork-air-quality", "hvac-marketing-installation", "hvac-marketing-new-companies"]
@@ -189,7 +195,7 @@ def header(has_form=True):
 
 
 def footer(has_form=True):
-    offers = "".join(f'<li><a href="{u(k)}">{esc(svc_info(k)[0])}</a></li>' for _, _, slugs in SERVICE_GROUPS for k in slugs)
+    offers = "".join(f'<li><a href="{u(k)}">{esc(svc_info(k)[0])}</a></li>' for k in FOOTER_SERVICES) + f'<li><a href="{u("services")}">All services</a></li>'
     niches = "".join(f'<li><a href="{u(n["slug"])}">{esc(n["name"])}</a></li>' for n in niches_sorted())
     rc = "#report-card" if has_form else u("") + "#report-card"
     return f"""<footer class="site-foot">
@@ -394,7 +400,7 @@ def page(path, title, desc, body, extra_head="", has_form=True):
 {footer(has_form)}
 {founder_video(has_form)}
 {rc_modal() if "data-url-form" in body else ""}
-<script src="{asset_v('main.js')}" defer></script>
+<script src="{asset_v('main.js')}" defer></script>{"" if PREVIEW else chr(10) + '<script src="/_vercel/insights/script.js" defer></script>'}
 {turnstile}
 </body>
 </html>
@@ -532,7 +538,7 @@ def tech():
 
 def ownership():
     left = ["Your domain, registered in your name", "Your Google profile and every review on it", "Your site files and content", "Your customer list and every lead"]
-    right = ["An HQ Command Center dashboard you can open anytime", "Prices on the website, not after a sales call", "Month to month, no long contract", "Your number ported back if you leave"]
+    right = ["An HQ Command Center dashboard you can open anytime", "Prices on the website, not after a sales call", "6-month first term, then month to month", "Your number ported back if you leave"]
     l = "".join(f"<li>{esc(x)}</li>" for x in left)
     r = "".join(f"<li>{esc(x)}</li>" for x in right)
     return f"""<div class="grid two">
@@ -694,7 +700,7 @@ def plans_cards():
   <p class="scope">{esc(p['scope'])}</p>
   <p class="stage">Best for {esc(p['stage'])}</p>
   <div class="price"><span data-monthly="{money(m)}" data-annual="{money(annual)}">{money(annual)}</span><small> /month</small>{tbd}</div>
-  <p class="billing"><span class="when-annual">Billed yearly · <b>{save}</b></span><span class="when-monthly">Billed monthly, cancel anytime</span></p>
+  <p class="billing"><span class="when-annual">Billed yearly · <b>{save}</b><br><span class="or-monthly">or {money(m)}/mo billed monthly</span></span><span class="when-monthly">Billed monthly · 6-month first term</span></p>
   <p class="for">{esc(p['for'])}</p>
   <ul class="ticks">{items}</ul>
   <div class="build">One-time build: {money(p['build'])}</div>
@@ -704,7 +710,7 @@ def plans_cards():
   <button type="button" data-bill="monthly" aria-pressed="false">Monthly</button>
   <button type="button" data-bill="annual" aria-pressed="true">Annual <span class="save">Save {int(ANNUAL_DISCOUNT*100)}%</span></button>
 </div>"""
-    return f'<div class="pricing" data-billing="annual"><h2 class="sr-only">Plans</h2>{toggle}<div class="plans">' + "".join(out) + "</div></div>"
+    return f'<div class="pricing" data-billing="annual"><h2 class="sr-only">Plans</h2>{founding_strip()}{toggle}<div class="plans">' + "".join(out) + "</div></div>"
 
 
 def plans_teaser():
@@ -715,7 +721,7 @@ def plans_teaser():
 def compare():
     rows = [
         ("Price", "Often $2,500+ a month, quoted after a sales call", "Software fees plus your own evenings", "$499 to $2,499 a month, on this site"),
-        ("Contract", "Often 12 months", "Monthly software subscriptions", "Month to month"),
+        ("Contract", "Often 12 months", "Monthly software subscriptions", "6 months, then month to month"),
         ("Who owns the website", "Sometimes the agency, or you rebuild when you leave", "You", "You, always"),
         ("Missed-call text-back", "Add-on, if offered", "If you set it up yourself", "In every plan, 60 seconds guaranteed"),
         ("Reporting", "A monthly PDF", "Whatever you have time to check", "HQ Command Center, live anytime"),
@@ -770,6 +776,13 @@ def promise():
 <div class="wont reveal"><h3>What we won't promise</h3><p class="muted">Anyone who guarantees these is guessing. We'd rather tell you now.</p><ul class="crosses">
   <li>A #1 ranking on Google</li><li>A set number of jobs or calls</li><li>That ChatGPT will recommend you</li><li>A fixed cost per lead</li></ul></div>
 <p class="promise-note">We only guarantee what we control. <span class="tbd">What happens if we miss: TBD</span></p>"""
+
+
+def founding_strip():
+    if FOUNDING_LEFT <= 0:
+        return ""
+    return (f'<p class="founding"><b>Founding rate:</b> the first {FOUNDING_SPOTS} shops pay the annual price on monthly billing, '
+            f'locked for as long as they stay. <span class="founding-n">{FOUNDING_LEFT} of {FOUNDING_SPOTS} spots open</span></p>')
 
 
 def terms_strip():
@@ -858,7 +871,7 @@ COMMON_FAQ = [
     ("Is there a money-back guarantee?", "Yes. If you're not happy in your first 30 days after launch, tell us and we refund your first month. You keep your domain, Google profile and reviews either way."),
     ("What do I have to do?", "One kickoff call, sharing access to your domain, Google profile and phone line, approving your site before it goes live, and answering the texts. We do the rest."),
     ("Do I own my website?", "Yes. Your domain, Google profile, reviews and site content are yours. If you leave, we hand over the site files and help move your number. It's written into the agreement."),
-    ("How long is the contract?", "Plan terms are being finalized. Ask us on a 15-minute call and we'll walk you through them."),
+    ("How long is the contract?", "Six months to start, then month to month. Six months gives the Google profile and reviews time to move. After that you stay because it's working. And if you're not happy in the first 30 days after launch, we refund your first month."),
     ("What if I already have a website I like?", "Keep it. We can add the booking form and lead system to your current site, and the build fee is lower or waived."),
     ("Do I have to change my phone number?", "No. You forward your existing line through the system, so customers keep calling the number they already know. We walk you through it during setup."),
     ("Does it work with ServiceTitan, Housecall Pro or Jobber?", "Yes. Booking can go straight to your field-service software, or into our calendar if you don't use one. Review requests can trigger when a job is marked done."),
@@ -975,6 +988,22 @@ def places_data(c):
         return None
 
 
+def _shop_key(name):
+    return re.sub(r"[^a-z0-9]+", " ", name.lower()).split()
+
+
+def dedupe_shops(top):
+    """Google sometimes lists one shop twice ("Lochridge Priest Home Services" and "Lochridge-Priest").
+    Treat two names as one shop when the shorter (two words or more) starts the longer; keep the first (most reviewed)."""
+    out = []
+    for t in top:
+        k = _shop_key(t[0])
+        if any(len(min(k, o, key=len)) >= 2 and k[:len(min(k, o, key=len))] == o[:len(min(k, o, key=len))] for o in (_shop_key(x[0]) for x in out)):
+            continue
+        out.append(t)
+    return out
+
+
 def market_block(c):
     d = places_data(c)
     # Under 20 results means Google stopped the search early; the numbers would mislead, so skip the block.
@@ -987,7 +1016,7 @@ def market_block(c):
     if d.get("share_with_website") is not None:
         stats.append(("Have a website", f'{round(d["share_with_website"] * 100) if d["share_with_website"] <= 1 else round(d["share_with_website"])}%', "linked on Google"))
     st_html = "".join(f'<div class="cfact"><span>{a_}</span><b>{b}</b><small>{c_}</small></div>' for a_, b, c_ in stats)
-    rows = "".join(f'<tr><td>{n + 1}</td><td>{esc(t[0])}</td><td>{f"{t[1]:.1f}" if t[1] is not None else "–"}</td><td>{fnum(t[2])}</td></tr>' for n, t in enumerate(d.get("top5", [])[:5]))
+    rows = "".join(f'<tr><td>{n + 1}</td><td>{esc(t[0])}</td><td>{f"{t[1]:.1f}" if t[1] is not None else "–"}</td><td>{fnum(t[2])}</td></tr>' for n, t in enumerate(dedupe_shops(d.get("top5", []))[:5]))
     table = f'<table class="mtable"><thead><tr><th>#</th><th>Shop</th><th>Rating</th><th>Reviews</th></tr></thead><tbody>{rows}</tbody></table>' if rows else ""
     top = d.get("top5") or []
     gap = f"The most-reviewed shop has {fnum(top[0][2])} reviews; the median shop has {fnum(d.get('median_reviews'))}. That gap is what review requests close." if top and d.get("median_reviews") is not None else ""
@@ -1050,7 +1079,7 @@ def local_links(where, more=""):
              ("tools/missed-call-cost-calculator", "Missed call cost calculator"), ("tools/lsa-cost-calculator", "Local Services Ads cost calculator"), ("plans", "Plans and pricing")]
     rd = "".join(f'<li><a href="{u(k)}">{esc(t)}</a></li>' for k, t in reads if k in ROUTES or k == "plans")
     return f"""<section class="section alt"><div class="wrap"><div class="split">
-  <div><span class="eyebrow">For {esc(where)} shops</span><h2>What we run for you.</h2><p class="lede">The same system on every plan: Rank, Book, Repeat. <a class="more" href="{u('method')}">How it works →</a></p><div class="city-links" style="margin-top:18px">{svc_h}</div></div>
+  <div><span class="eyebrow">For {esc(where)} shops</span><h2>What we run for you.</h2><p class="lede">One system: Rank, Book, Repeat. <a class="more" href="{u('method')}">How it works →</a></p><div class="city-links" style="margin-top:18px">{svc_h}</div></div>
   <div class="card"><h3>Read before you hire anyone</h3><ul class="ticks">{rd}</ul></div>
 </div>{more}</div></section>"""
 
@@ -1192,7 +1221,9 @@ def org_ld():
     return ld({"@context": "https://schema.org", "@type": "ProfessionalService", "name": BRAND, "url": f"https://{DOMAIN}/",
                "email": EMAIL, "description": "Websites, Google Business Profile management, missed-call text-back and review requests for HVAC contractors.",
                "address": {"@type": "PostalAddress", "addressLocality": "Waco", "addressRegion": "TX", "addressCountry": "US"},
-               "areaServed": "US", "slogan": TAGLINE})
+               "areaServed": "US", "slogan": TAGLINE,
+               "founder": {"@type": "Person", "name": "Logan", "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg"},
+               **({"sameAs": SAME_AS} if SAME_AS else {})})
 
 
 def _links(text):
@@ -1661,7 +1692,7 @@ def contact_page():
 def about_page():
     beliefs = [
         ("HVAC only", "One trade means we know the jobs, the seasons and the searches. Every page, script and campaign is built for heating and cooling work."),
-        ("You own everything", "Your domain, site content, Google profile, reviews, ad accounts and customer list are in your name. Leave anytime and take it all."),
+        ("You own everything", "Your domain, site content, Google profile, reviews, ad accounts and customer list are in your name. If you ever leave, you take it all."),
         ("Prices on the site", "Plan prices are published on the site. The call is about your shop, not a quote."),
         ("Booked jobs, not clicks", "We judge our work by calls answered and jobs booked, on a dashboard you can check yourself."),
     ]
@@ -1910,6 +1941,11 @@ def home():
   {tech()}
 </div></section>
 
+<section class="section founder-sec"><div class="wrap"><div class="founder reveal">
+  <img src="{a('img/logan-320.webp')}" width="96" height="96" alt="Logan, founder of {esc(BRAND)}" loading="lazy">
+  <div><p class="founder-q">"I started {esc(BRAND)} to do it the other way. One trade. Prices on the site. Everything in your name, tracked to booked jobs. If we're not the right fit for your shop, I'll tell you."</p>
+  <p class="founder-by"><b>Logan</b>, founder · Waco, Texas · <a href="{u('about')}">Why I started it →</a></p></div>
+</div></div></section>
 <section class="section dark"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Guarantees</span><h2>We guarantee what we control.</h2></div>
   {promise()}
@@ -1950,7 +1986,7 @@ def method_page():
   <div class="crumbs"><a href="{u('')}">Home</a> / The method</div>
   <span class="eyebrow">The method</span>
   <h1>Rank. Book. Repeat.</h1>
-  <p class="lede">Most agencies sell you a website, or ads, or software. We run the three jobs that actually fill an HVAC schedule, as one system, on every plan.</p>
+  <p class="lede">Most agencies sell you a website, or ads, or software. We run the three jobs that actually fill an HVAC schedule as one system. Every plan starts with all three; higher plans add more tools to each.</p>
 </div></section>
 <section class="section" style="padding-top:0"><div class="wrap"><h2 class="sr-only">The three phases</h2>{method_block()}</div></section>
 {"".join(phases)}
@@ -2349,7 +2385,7 @@ def plans_page():
 <section class="section" style="padding-top:12px"><div class="wrap">
   {terms_strip()}
   {plans_cards()}
-  <p class="muted" style="margin-top:18px;font-size:.9rem">Rate lock: the first 25 shops keep the annual price on monthly billing, locked for as long as they stay. Normal texting, calling and AI use is included; large campaigns beyond your plan are billed at cost. <span class="tbd">Terms TBD</span></p>
+  <p class="muted" style="margin-top:18px;font-size:.9rem">Normal texting, calling and AI use is included; large campaigns beyond your plan are billed at cost.</p>
   {addons()}
 </div></section>
 <section class="section alt"><div class="wrap">{replaces()}</div></section>
@@ -2386,7 +2422,7 @@ def legal_page(key):
 <ul>
 <li><b>Information you give us.</b> When you request a report card or contact us: your website, business name, the town you serve, first name, email address and phone number.</li>
 <li><b>Public business information.</b> To build your report card we look up public information about your business, such as your Google Business Profile, reviews, website and directory listings.</li>
-<li><b>Usage information.</b> Basic technical data such as browser type and pages visited. If we add analytics tools such as Google Analytics, they may set cookies to measure how the site is used.</li>
+<li><b>Usage information.</b> Basic technical data such as browser type and pages visited. We use Vercel Web Analytics to count page views and report card requests. It sets no cookies and doesn't track you across other sites.</li>
 <li><b>Chat and messages.</b> If we add a web chat, we keep the messages you send so we can reply.</li>
 </ul>
 <h2>How we use it</h2>
@@ -2431,6 +2467,7 @@ def legal_page(key):
 <li><b>Money-back guarantee:</b> if you're not happy in the first 30 days after launch, tell us and we refund your first month's fee.</li>
 <li><b>Text-back:</b> every missed call to your forwarded line gets a text back within 60 seconds while the service is active.</li>
 <li><b>Launch:</b> your new site goes live within 14 days of receiving your content.</li>
+<li><b>Term:</b> a 6-month first term, then month to month.</li>
 <li><b>Billing:</b> monthly billing starts when you go live, not when you sign.</li>
 </ul>
 <h2>Using this site</h2>
@@ -2482,6 +2519,7 @@ def llms_txt():
 - Email: {EMAIL}
 - Who it serves: residential and light commercial HVAC contractors
 - Main offer: a free report card that grades an HVAC company's Google profile, reviews, website and listings against nearby competitors
+- Contract: 6-month first term, then month to month
 - Guarantees: every missed call texted back within 60 seconds; new site live within 14 days of receiving content; first month refunded if the client is unhappy in the first 30 days after launch
 - Paid ads: Google Ads, Local Services Ads and Facebook/Instagram ads managed as add-ons to any plan at $299/month each (AI phone answering also $299/month); ad spend billed by the platform to the client, never marked up
 - Does not promise: #1 rankings, a set number of jobs, a fixed cost per lead, or AI assistant recommendations

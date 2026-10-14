@@ -417,7 +417,7 @@ GUIDES = [
             ("Our answers", [
                 ("table", [
                     ["Question", "HVAC Marketing HQ"],
-                    ["Contract", "Month to month (being finalized before launch). See our <a href=\"{u:terms}\">Terms</a> page."],
+                    ["Contract", "6-month first term, then month to month. See our <a href=\"{u:terms}\">Terms</a> page."],
                     ["Website, domain, content", "Yours. If you leave, you keep the site and the domain."],
                     ["Google profile, number, accounts", "In your name. Your number is ported back if you leave."],
                     ["Total monthly cost", "$499 to $2,499 a month plus a one-time build fee, all on our <a href=\"{u:plans}\">pricing page</a>. Ads are an optional add-on; ad spend is billed by Google or Meta to you, never marked up."],
@@ -425,7 +425,6 @@ GUIDES = [
                     ["Results", "Your HQ Command Center shows calls, texts, booked jobs and reviews, anytime."],
                     ["Who does the work", "A small team that only works with HVAC companies."],
                 ]),
-                ("note", "Some of our contract terms are still being finalized before launch. The pricing and Terms pages are the source of truth."),
             ]),
         ],
         "faq": [

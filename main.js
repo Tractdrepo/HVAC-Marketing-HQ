@@ -1,6 +1,8 @@
 // Site script: nav, reveal, hero demo, method loop, pricing toggle, calculator, report card form.
 (function () {
   "use strict";
+  // Vercel Web Analytics queue; the script in the page head sends these once loaded.
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Reveal sections as they scroll in
@@ -283,6 +285,7 @@
         .then(function (res) {
           if (!res.ok) throw new Error(res.j && res.j.error ? res.j.error : "Something went wrong.");
           done();
+          window.va("event", { name: "report_card_requested" });
         })
         .catch(function (ex) {
           err.textContent = ex.message || "Something went wrong. Please try again.";
