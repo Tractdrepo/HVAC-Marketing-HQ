@@ -86,7 +86,7 @@
   }
 
   // Break-even calculator
-  var calc = document.querySelector(".calc:not(.mcalc):not(.rcalc)");
+  var calc = document.querySelector(".calc:not(.mcalc):not(.rcalc):not(.gcalc)");
   if (calc) {
     var num = function (name) { var v = parseFloat(String(calc.querySelector("[name=" + name + "]").value).replace(/[^0-9.]/g, "")); return isNaN(v) ? 0 : v; };
     var fmt = function (n) { return n.toLocaleString("en-US", { maximumFractionDigits: 1 }); };

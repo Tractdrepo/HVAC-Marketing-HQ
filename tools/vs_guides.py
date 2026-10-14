@@ -42,7 +42,7 @@ VS_GUIDES = [
                 ]),
             ]),
             ("12-month cost, with the math", [
-                ("p", "Same method for both: plan price times 12, plus the one-time build fee. No ad spend in either, since we don't run ads and their ad spend is billed separately."),
+                ("p", "Same method for both: plan price times 12, plus the one-time build fee. No ad spend in either, since both bill ad spend separately."),
                 ("table", [
                     ["Option", "Math", "12-month total"],
                     ["HVAC Marketing HQ Starter, monthly", "$499 x 12 + $1,995", "$7,983"],
@@ -62,7 +62,7 @@ VS_GUIDES = [
             ("What they do better", [
                 ("ul", [
                     "<b>Clear, published prices.</b> A detailed plan comparison, a $99 price for extra pages, and billing that starts at launch rather than at signing.",
-                    "<b>Paid ads.</b> They sell Google Ads, Local Services Ads and retargeting. We don't run paid ads at all.",
+                    "<b>Paid ads.</b> Both run Google Ads and Local Services Ads with ad spend billed separately. We also run Facebook ads, and never mark up spend.",
                     "<b>Software connections.</b> Their Dominate plan lists connections to ServiceTitan, Housecall Pro and Jobber.",
                     "<b>Exclusive territory.</b> They offer one HVAC company per service area. If that matters to you, it's a real selling point. Ask for it in writing.",
                     "<b>Lots of free material.</b> A free audit, an ROI calculator, a website checklist and a published book, \"The HVAC Online Playbook\".",
@@ -73,7 +73,7 @@ VS_GUIDES = [
                 ("table", [
                     ["Your situation", "Better fit"],
                     ["You want one HVAC company per area, in writing", "Websites for HVAC (ask for their territory terms)"],
-                    ["You want someone to run Google Ads or Local Services Ads for you", "Websites for HVAC"],
+                    ["You want someone to run Google Ads or Local Services Ads for you", "Either one"],
                     ["You want review requests and missed-call text-back from the first plan", "HVAC Marketing HQ"],
                     ["You want to keep a working website if you leave", "HVAC Marketing HQ"],
                     ["You want your site live in about two weeks", "HVAC Marketing HQ (14 days); they say 2 to 3 weeks"],
@@ -96,7 +96,7 @@ VS_GUIDES = [
         "faq": [
             ("Is Websites for HVAC cheaper than HVAC Marketing HQ?", "Monthly plan prices are the same at every level, as published on their site in Oct 2026, and both take about 20% off for annual billing. Our build fees are lower from Growth up, so our 12-month cost is the same at Starter and a few hundred dollars lower at Growth and Dominate. Compare what each plan includes, not just the price."),
             ("Do I own my website with Websites for HVAC?", "Their Terms, as published in Oct 2026, say the website goes offline when you cancel and they keep the source code. You keep your domain, content, images and lead data."),
-            ("Does Websites for HVAC run Google Ads?", "Yes. They list Google Ads, Local Services Ads and retargeting, with ad spend billed separately. We don't run paid ads."),
+            ("Does Websites for HVAC run Google Ads?", "Yes. They list Google Ads, Local Services Ads and retargeting, with ad spend billed separately. We run Google Ads, Local Services Ads and Facebook ads as add-ons, with spend billed to you and never marked up."),
             ("Are both companies HVAC only?", "Yes. Both work only with HVAC companies."),
         ],
         "sources": [
@@ -118,7 +118,7 @@ VS_GUIDES = [
             "RS Gonzales is a full-service HVAC agency that runs ads. Its plans are $2,200, $3,500 and $5,000 a month, plus ad spend, as published in Oct 2026.",
             "Their pricing page lists a $3,000 a month minimum ad spend and a 12-month term. Their fine print says you own the website after 12 months or a $4,500 buyout.",
             "They have far more proof than we do: named case studies, a 5.0 Google rating and a team of about 28 to 30 people.",
-            "We cost less and don't run ads. If paid ads are most of what you need, they're likely the better fit.",
+            "We cost less and run ads as an add-on with no minimum spend. If you want a big agency running a large ad budget, they may be the better fit.",
         ],
         "sections": [
             ("The short version", [
@@ -130,7 +130,7 @@ VS_GUIDES = [
                     ["", "RS Gonzales", "HVAC Marketing HQ"],
                     ["Monthly plans", "Grow $2,200 / Accelerate $3,500 / Dominate $5,000", "Starter $499 / Growth $799 / Dominate $1,299 / Multi-location $2,499"],
                     ["Setup or build fee", "\"No setup fees\"; a $500 onboarding deposit, non-refundable once work starts", "$1,995 / $2,495 / $2,995 / $4,500, one time"],
-                    ["Ad spend", "Paid separately, $3,000/mo minimum; 0% markup up to the tier cap, 10% fee on spend above it", "None. We don't run ads"],
+                    ["Ad spend", "Paid separately, $3,000/mo minimum; 0% markup up to the tier cap, 10% fee on spend above it", "No minimum. Ads are an optional add-on; spend is billed to you, never marked up"],
                     ["Website", "Included (\"free website\")", "Included, built for a one-time fee"],
                     ["Contract", "12 months on their pricing page (one page says 6 months for Grow)", "See our <a href=\"{u:plans}\">plans page</a>"],
                     ["Money-back", "30-day guarantee, covering the first month only", "First month refunded within 30 days of launch"],
@@ -161,7 +161,7 @@ VS_GUIDES = [
             ("What they do better", [
                 ("ul", [
                     "<b>Real, named proof.</b> 12 named case studies with dashboard screenshots, a 5.0 Google rating from about 40 reviews, and a reviews page that links each quote to Google. We don't have clients or case studies yet.",
-                    "<b>Paid ads, run for you.</b> Google Ads, Local Services Ads, Meta and Yelp, with detailed cost-per-lead guidance on their channel pages. We don't run paid ads.",
+                    "<b>Paid ads, run for you.</b> Google Ads, Local Services Ads, Meta and Yelp, with detailed cost-per-lead guidance on their channel pages. We run Google Ads, Local Services Ads and Facebook ads too, as add-ons.",
                     "<b>A bigger team.</b> About 28 to 30 staff by their count, with the owners and 11 staff named on their About page, and a stated cap of 12 clients per account manager.",
                     "<b>A CRM included.</b> Their CRM, included with every plan, covers missed-call text-back, booking, estimates and invoices, and syncs with ServiceTitan, Housecall Pro, FieldEdge and Jobber.",
                     "<b>Content and openness.</b> 92 blog posts, a day-by-day 90-day plan with a section on what day 90 does not guarantee, and a free founder-recorded video audit.",
@@ -195,7 +195,7 @@ VS_GUIDES = [
             ("How much does RS Gonzales cost?", "As published on their site in Oct 2026: $2,200, $3,500 or $5,000 a month, plus ad spend with a $3,000 a month minimum, on a 12-month term. A $500 onboarding deposit applies."),
             ("Do you own your website with RS Gonzales?", "Their fine print, as published in Oct 2026, says ownership applies after 12 months or a $4,500 buyout."),
             ("Is RS Gonzales HVAC only?", "Yes, it markets itself as an HVAC agency, like us."),
-            ("Why is HVAC Marketing HQ so much cheaper?", "We do less. We don't run paid ads, and we don't have a large team. We focus on your website, Google profile, reviews and missed-call follow-up."),
+            ("Why is HVAC Marketing HQ so much cheaper?", "We're a small HVAC-only team with one system for every shop, and ads are an add-on instead of a required package. The core is your website, Google profile, reviews and missed-call follow-up."),
         ],
         "sources": [
             ("RS Gonzales: Pricing (as published on their site, Oct 2026)", "https://rsgonzales.com/pricing/"),
@@ -225,7 +225,7 @@ VS_GUIDES = [
         ],
         "sections": [
             ("The short version", [
-                ("p", "Hook Agency (hookagency.com) is a Minneapolis agency for home-service companies: roofing, HVAC, plumbing and more. It sells SEO, Google Maps SEO, AI search work, Google Ads, Local Services Ads, Meta ads and websites. It aims at shops over $1 million in revenue. We work only with HVAC companies, mostly owner-run shops, and we don't run ads."),
+                ("p", "Hook Agency (hookagency.com) is a Minneapolis agency for home-service companies: roofing, HVAC, plumbing and more. It sells SEO, Google Maps SEO, AI search work, Google Ads, Local Services Ads, Meta ads and websites. It aims at shops over $1 million in revenue. We work only with HVAC companies, mostly owner-run shops, and run ads as an optional add-on."),
                 ("note", "Everything about Hook Agency on this page is as published on their site, Oct 2026. Their full Terms of Service sit in an embedded page we couldn't read, so check the contract itself before you sign."),
             ]),
             ("Published prices, side by side", [
@@ -233,8 +233,8 @@ VS_GUIDES = [
                     ["Service", "Hook Agency (starting prices)", "HVAC Marketing HQ"],
                     ["Local SEO", "$2,800/mo", "Included in every plan, from $499/mo"],
                     ["AI search (AEO)", "$4,000/mo, or $2,000 added to SEO", "Not sold separately"],
-                    ["Google Ads / LSA management", "From $2,000/mo, plus ad spend", "We don't run ads"],
-                    ["Meta ads", "From $3,000/mo, plus ad spend", "We don't run ads"],
+                    ["Google Ads / LSA management", "From $2,000/mo, plus ad spend", "Add-on to any plan, quoted on a call; spend billed to you"],
+                    ["Meta ads", "From $3,000/mo, plus ad spend", "Add-on to any plan, quoted on a call; spend billed to you"],
                     ["Website", "Standard $12,000 or custom $24,000, split into 12 monthly payments", "$1,995 to $4,500 one-time build fee"],
                     ["Bundles", "Silver $3,500/mo, Gold $7,300/mo, Platinum $10,300/mo, Enterprise $15,000+/mo (shown on two of their landing pages)", "Starter $499 / Growth $799 / Dominate $1,299 / Multi-location $2,499 a month"],
                 ]),
@@ -249,7 +249,7 @@ VS_GUIDES = [
                     ["Hook standard website + local SEO", "$12,000 + $2,800 x 12", "$45,600"],
                     ["Hook Silver bundle (site + Google Ads management), before ad spend", "$3,500 x 12", "$42,000"],
                 ]),
-                ("p", "These aren't the same products. Hook's prices include work we don't do, like running Google Ads. The point is the size of the commitment: Hook is built for bigger budgets."),
+                ("p", "These aren't the same products. Hook's prices bundle ads management, which we sell as a separate add-on. The point is the size of the commitment: Hook is built for bigger budgets."),
             ]),
             ("Contracts and ownership", [
                 ("p", "Hook is clear and generous on ownership. Its pricing page says \"You own your website 100%\" and that you own your ad account, with your own card paying for the spend. Its Meta ads page says you own your raw footage and ad creative."),
@@ -258,7 +258,7 @@ VS_GUIDES = [
             ("What they do better", [
                 ("ul", [
                     "<b>Track record and proof.</b> Named case studies, including HVAC companies like Lorenz Plumbing Heating &amp; Air and Pro Shine Air Duct Experts with cost-per-lead figures, video testimonials, a large review wall and an Inc. 5000 listing. We don't have clients or case studies yet.",
-                    "<b>Paid ads and creative.</b> Google Ads, Local Services Ads and Meta ads, with a video and photo shoot every 60 days on their Meta plan. We don't run ads or do shoots.",
+                    "<b>Paid ads and creative.</b> Google Ads, Local Services Ads and Meta ads, with a video and photo shoot every 60 days on their Meta plan. We run ads too, but we don't do photo or video shoots.",
                     "<b>A big in-house team.</b> Named staff and leaders on their About page, and a one-hour live call each month.",
                     "<b>Plain ownership terms.</b> Website, ad accounts and creative are yours, in plain words on their pricing page.",
                     "<b>Free learning.</b> A free Local Services Ads course, a marketing budget calculator, a podcast and a book.",
@@ -335,8 +335,8 @@ VS_GUIDES = [
                     ["Money-back", "90 days", "First month refunded within 30 days of launch"],
                     ["Review requests", "Included (Birdeye, by text and email)", "Included in every plan"],
                     ["Missed-call text-back", "Not listed in their plan; their AI web chat add-on is $19/mo", "Included in every plan, within 60 seconds"],
-                    ["Google Ads management", "$149 first month, then $249/mo, plus ad spend (from $775/mo recommended)", "We don't run ads"],
-                    ["Local Services Ads", "$499 setup, then $149/mo", "We don't run ads"],
+                    ["Google Ads management", "$149 first month, then $249/mo, plus ad spend (from $775/mo recommended)", "Add-on, quoted on a call; spend billed to you"],
+                    ["Local Services Ads", "$499 setup, then $149/mo", "Add-on, quoted on a call"],
                 ]),
             ]),
             ("12-month cost, with the math", [
@@ -356,7 +356,7 @@ VS_GUIDES = [
                     "<b>Money-back.</b> The 90-day guarantee is in the Terms. The Terms mention first contacting them to try to resolve any issues, then a refund \"with no questions asked\". Otherwise fees are non-refundable once work has started.",
                     "<b>Price lock.</b> Their \"Three Year Fixed Price Pledge\" is on their guarantees page but not in the Terms, which let them change terms without prior notice.",
                     "<b>Website ownership.</b> The Terms say you own the site once more than 90 days have passed since signup. On exit, they zip up the files and give you a download link. Their sites run on their own platform, not WordPress, and their FAQ adds that some subscription parts stop working after you cancel.",
-                    "<b>Ad accounts.</b> Footbridge keeps ownership of the Google Ads account it creates for you.",
+                    "<b>Ad accounts.</b> Footbridge keeps ownership of the Google Ads account it creates for you. Ad accounts we set up are in your name.",
                     "<b>Existing sites.</b> They don't work on existing websites; every client gets a rebuild.",
                 ]),
                 ("p", "With us, you own your site, your domain, your Google profile and your reviews."),
@@ -367,7 +367,7 @@ VS_GUIDES = [
                     "<b>Longer money-back window.</b> 90 days, against our first month back within 30 days of launch.",
                     "<b>Years in business.</b> They say they've served contractors since 2004, with client relationships going back to 2013.",
                     "<b>A CRM included.</b> Booking, quotes, invoices and online payments come with the plan.",
-                    "<b>Ads and add-ons you can buy online.</b> Google Ads, Local Services Ads, Facebook and email newsletters, each with a published price and checkout link. We don't run ads.",
+                    "<b>Ads and add-ons you can buy online.</b> Google Ads, Local Services Ads, Facebook and email newsletters, each with a published price and checkout link. We run Google Ads, Local Services Ads and Facebook ads too, quoted on a call for now.",
                     "<b>HVAC references.</b> Eight HVAC companies among their testimonials. We don't have clients or case studies yet.",
                 ]),
             ]),
@@ -376,7 +376,7 @@ VS_GUIDES = [
                     ["Your situation", "Better fit"],
                     ["You want the lowest monthly price and no build fee", "Footbridge Media"],
                     ["You're a Nexstar or CertainPath member", "Footbridge Media (member rate)"],
-                    ["You want ads managed by the same company as your website", "Footbridge Media"],
+                    ["You want ads managed by the same company as your website", "Either one"],
                     ["You lose jobs to missed calls and want them texted back in 60 seconds", "HVAC Marketing HQ"],
                     ["You want an agency that works only with HVAC companies", "HVAC Marketing HQ"],
                     ["You want to keep your website, not just its files, if you leave", "HVAC Marketing HQ"],

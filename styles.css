@@ -770,8 +770,8 @@ input:focus, select:focus { border-color: var(--cool); outline: none; }
   .nav-open .nav { max-height: none; overflow: visible; }
   .head-row { position: relative; }
   .nav-group { position: static; }
-  .nav-mega { width: min(880px, 100%); left: auto; right: 0; padding: 14px; }
-  .nav-mega .mega { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px 10px; }
+  .nav-mega { width: min(1100px, calc(100vw - 40px)); left: auto; right: 0; padding: 14px; }
+  .nav-mega .mega { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px 10px; }
   .nav-mega .mega-h { margin: 6px 12px 6px; }
   .nav-wide { width: min(640px, 100%); left: auto; right: 0; padding: 12px; }
   .nav-wide .nav-two { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 8px; }

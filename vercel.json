@@ -116,6 +116,26 @@
       "permanent": true
     },
     {
+      "source": "/google-ads",
+      "destination": "/services/google-ads",
+      "permanent": true
+    },
+    {
+      "source": "/local-services-ads",
+      "destination": "/services/local-services-ads",
+      "permanent": true
+    },
+    {
+      "source": "/facebook-ads",
+      "destination": "/services/facebook-ads",
+      "permanent": true
+    },
+    {
+      "source": "/ai-phone-answering",
+      "destination": "/services/ai-phone-answering",
+      "permanent": true
+    },
+    {
       "source": "/hvac-specialties",
       "destination": "/for-hvac",
       "permanent": true

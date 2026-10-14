@@ -61,6 +61,9 @@ LIGHTHOUSE = {"scores": [("Performance", 99), ("Accessibility", 100), ("Best pra
 LIGHTHOUSE_LCP_DESKTOP = "0.4s"
 
 ADDONS = [
+    ("Google Ads management (ad spend billed to you, no markup)", "Quoted on a call"),
+    ("Local Services Ads management", "Quoted on a call"),
+    ("Facebook and Instagram ads", "Quoted on a call"),
     ("AI phone answering, after hours and during the rush", "$[X]/mo"),
     ("Extra page", "$[X] each"),
     ("Directory listings sync", "$[X]/mo"),
@@ -131,7 +134,8 @@ OFFERINGS = [("website", "HVAC websites", "Fast sites built to book service call
 SERVICE_GROUPS = [
     ("Your website", "web", ["website", "hvac-website-redesign", "ai-web-chat"]),
     ("Get found online", "pin", ["local-seo", "google-business-profile", "ai-search"]),
-    ("Get more calls", "chat", ["missed-call-text-back", "estimate-follow-up", "app"]),
+    ("Get more calls", "chat", ["missed-call-text-back", "ai-phone-answering", "estimate-follow-up", "app"]),
+    ("Paid ads", "search", ["google-ads", "local-services-ads", "facebook-ads"]),
     ("Keep customers coming", "star", ["review-requests", "seasonal-campaigns", "hq-command-center"]),
 ]
 # For HVAC menu order.
@@ -790,7 +794,7 @@ def roles_split():
 
 def fit():
     good = ["You do good work and want more of the right jobs", "You miss calls when the crew is busy", "You want to own your marketing, not rent leads", "You'll answer the texts and book the work"]
-    bad = ["You can't take on more work right now", "You only want Google Ads managed", "You want a one-time site and nothing after", "You want someone to promise #1 on Google"]
+    bad = ["You can't take on more work right now", "You want ads with no one answering the calls they bring", "You want a one-time site and nothing after", "You want someone to promise #1 on Google"]
     l = "".join(f"<li>{esc(x)}</li>" for x in good)
     r = "".join(f"<li>{esc(x)}</li>" for x in bad)
     return f"""<div class="grid two fit">
@@ -825,7 +829,7 @@ COMMON_FAQ = [
     ("Does it work with ServiceTitan, Housecall Pro or Jobber?", "Yes. Booking can go straight to your field-service software, or into our calendar if you don't use one. Review requests can trigger when a job is marked done."),
     ("Who owns my website, Google profile and reviews?", "You do. Your domain, Google profile and reviews always stay yours, even if you leave."),
     ("Do I have to manage the software?", "No. You and your office use one inbox app on your phones, and you can check your HQ Command Center dashboard anytime. We build and run everything behind it."),
-    ("Do you run Google Ads or Local Services Ads?", "Not yet. We start with the foundation that makes ads pay off: answered calls, a site that books and a strong Google profile. Ads management is coming as an add-on."),
+    ("Do you run Google Ads or Local Services Ads?", "Yes, as an add-on to any plan: Google Ads, Local Services Ads and Facebook ads. Your ad spend is billed by Google or Meta to your own account and never marked up, and every call from an ad is tracked to a booked job."),
     ("How many Google reviews do I need?", "There's no magic number. Steady, recent reviews beat a big pile of old ones, which is why every plan asks every finished job for one."),
     ("Can you get my shop recommended by ChatGPT?", "We build what AI tools read: a complete Google profile, consistent listings, clear service pages and recent reviews. Nobody can honestly guarantee an AI answer, and we won't."),
     ("What if we can't handle more calls yet?", "Tell us on the call. We'd rather wait, or start with text-back only, than send you work your crew can't get to."),
@@ -1051,6 +1055,7 @@ from vs_guides import VS_GUIDES
 GUIDES = GUIDES + VS_GUIDES
 from niches import NICHES
 from services import SERVICES
+from free_tools import NEW_TOOLS, gcalc_widget
 import re as _re
 
 
@@ -1229,7 +1234,7 @@ def service_page(sv):
 
 
 GETTING_STARTED_FAQ = [
-    ("Why do you cost less than Scorpion or the big agencies?", "We only do HVAC, we don't run ad campaigns, and we don't do photo or video shoots. Every client gets the same proven system, set up for their shop, instead of a custom project. That keeps our costs, and your price, down."),
+    ("Why do you cost less than Scorpion or the big agencies?", "We only do HVAC, ads are an add-on you only pay for if you want them, and we don't do photo or video shoots. Every client gets the same proven system, set up for their shop, instead of a custom project. That keeps our costs, and your price, down."),
     ("What happens if I leave?", "Your website, domain, Google profile, reviews and phone number are yours. We hand over the site and your data, and your number is ported back to you."),
     ("Will I actually get more calls?", "We can't promise a number, and nobody honest can. We guarantee what we control: missed calls texted back in 60 seconds, review requests after every job, and launch in 14 days. Your HQ Command Center shows what's working."),
     ("How much of my time does it take?", "One kickoff call, sharing access, and a review of your site before launch. After that, answering the texts and booking the work, which you're doing already."),
@@ -1290,7 +1295,7 @@ def services_hub():
 </div></section>
 {report_card()}
 """
-    return page("services", "HVAC marketing services", "Websites, local SEO, Google Business Profile, missed-call text-back, estimate follow-up, review requests and seasonal campaigns for HVAC companies, run for you.", body)
+    return page("services", "HVAC Digital Marketing Services", "HVAC digital marketing services: websites, SEO, Google Business Profile, Google Ads, Local Services Ads, Facebook ads, missed-call text-back, AI phone answering and review requests, run for you.", body)
 
 
 def specialties_hub():
@@ -1311,6 +1316,10 @@ def specialties_hub():
 
 
 FIT = {
+    "google-ads": (["You want calls this week, not just next season", "You can answer the calls ads bring", "You want to see which ads book jobs"], ["Nobody answers the phone during the day", "You want ads with no tracking"]),
+    "local-services-ads": (["You can pass Google's license, insurance and background checks", "You answer most calls live", "You'd rather pay per lead than per click"], ["You can't get verified in your state", "You can't answer leads quickly"]),
+    "facebook-ads": (["You sell tune-ups or maintenance plans", "You have your own job photos", "You want past site visitors to see you again"], ["You only want emergency repair calls", "You won't follow up on form leads"]),
+    "ai-phone-answering": (["Calls ring out on busy days", "You get after-hours calls", "A live answering service costs too much"], ["You never want a bot talking to customers", "Someone always answers live, every hour"]),
     "missed-call-text-back": (["You miss calls when the crew is on jobs", "Callers rarely leave voicemails", "You get after-hours calls"], ["Someone always answers live, every hour", "You don't want to reply to texts"]),
     "review-requests": (["You finish jobs but rarely ask for reviews", "A nearby shop has far more reviews than you", "You want reviews coming in every week"], ["You want to pick who gets asked (Google doesn't allow it)", "You'd rather buy reviews (it gets profiles suspended)"]),
     "google-business-profile": (["Your profile is missing services, photos or hours", "You don't show up on the map in towns you serve", "Nobody has touched the profile in months"], ["You don't serve customers in person", "You want a fake address in another town"]),
@@ -1407,6 +1416,9 @@ TOOLS = [
 ]
 
 
+TOOLS = TOOLS + NEW_TOOLS
+
+
 def review_gap_calc():
     return """<div class="calc rcalc">
   <div>
@@ -1425,6 +1437,9 @@ def review_gap_calc():
 
 
 def tool_widget(slug):
+    nt = next((t for t in NEW_TOOLS if t["slug"] == slug), None)
+    if nt:
+        return gcalc_widget(nt)
     if slug == "missed-call-cost-calculator":
         return missed_call_calc()
     if slug == "hvac-marketing-break-even-calculator":
@@ -1432,10 +1447,17 @@ def tool_widget(slug):
     return review_gap_calc()
 
 
+def related_tools(t, n=4):
+    grp = next((ks for _, ks in TOOL_GROUPS if t["slug"] in ks), [])
+    order = [k for k in grp if k != t["slug"]] + [k for _, ks in TOOL_GROUPS for k in ks if k not in grp]
+    tb = {x["slug"]: x for x in TOOLS}
+    return [tb[k] for k in order if k in tb][:n]
+
+
 def tool_page(t):
     formula = "".join(f"<li>{esc(x)}</li>" for x in t["formula"])
     improve = "".join(f'<div class="card reveal"><h3>{esc(h)}</h3><p>{esc(p_)}</p></div>' for h, p_ in t["improve"])
-    others = "".join(f'<a class="card guide-card" href="{u("tools/" + o["slug"])}"><span class="eyebrow">Free tool</span><h3>{esc(o["name"])}</h3><p>{esc(o["line"])}</p></a>' for o in TOOLS if o is not t)
+    others = "".join(f'<a class="card guide-card" href="{u("tools/" + o["slug"])}"><span class="eyebrow">Free tool</span><h3>{esc(o["name"])}</h3><p>{esc(o["line"])}</p></a>' for o in related_tools(t))
     g = next(x for x in GUIDES if x["slug"] == t["guide"])
     sn, sd = svc_info(t["service"])
     body = f"""<section class="page-head"><div class="wrap">
@@ -1465,24 +1487,35 @@ def tool_page(t):
 """
     app_ld = ld({"@context": "https://schema.org", "@type": "WebApplication", "name": t["title"], "description": t["desc"], "applicationCategory": "BusinessApplication",
                  "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "provider": {"@type": "Organization", "name": BRAND}})
+    if any(x["slug"] == t["slug"] for x in NEW_TOOLS):
+        app_ld += f'<script src="{asset_v("gcalc.js")}" defer></script>'
     return page("tools/" + t["slug"], t["title"], t["desc"], body, extra_head=app_ld)
 
 
+TOOL_GROUPS = [
+    ("Ads and lead costs", ["hvac-cost-per-lead-calculator", "google-ads-budget-calculator-hvac", "lsa-cost-calculator", "hvac-marketing-budget-calculator", "hvac-marketing-break-even-calculator", "hvac-seo-roi-calculator"]),
+    ("Calls and booking", ["missed-call-cost-calculator", "after-hours-call-calculator", "hvac-close-rate-calculator", "hvac-estimate-follow-up-calculator"]),
+    ("Customers and reviews", ["google-review-gap-calculator", "hvac-maintenance-plan-calculator", "hvac-customer-lifetime-value-calculator"]),
+]
+
+
 def tools_hub():
-    cards = "".join(f'<a class="card guide-card reveal" href="{u("tools/" + t["slug"])}"><span class="eyebrow">Free tool</span><h3>{esc(t["name"])}</h3><p>{esc(t["desc"])}</p></a>' for t in TOOLS)
+    tb = {t["slug"]: t for t in TOOLS}
+    cards = "".join(f'<div class="section-head" style="margin-top:28px"><h2>{esc(g)}</h2></div><div class="grid three">' + "".join(
+        f'<a class="card guide-card reveal" href="{u("tools/" + tb[k]["slug"])}"><span class="eyebrow">Free tool</span><h3>{esc(tb[k]["name"])}</h3><p>{esc(tb[k]["line"])}</p></a>' for k in ks if k in tb) + "</div>" for g, ks in TOOL_GROUPS)
     body = f"""<section class="page-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / Free tools</div>
   <span class="eyebrow">Free tools</span>
   <h1 style="max-width:20ch">Free calculators for HVAC owners.</h1>
-  <p class="lede">Check the math on missed calls, marketing spend and reviews with your own numbers. No email, no sign-up, and nothing you type leaves your browser.</p>
+  <p class="lede">Check the math on ads, missed calls, marketing spend and reviews with your own numbers. No email, no sign-up, and nothing you type leaves your browser.</p>
 </div></section>
 <section class="section" style="padding-top:12px"><div class="wrap">
   <h2 class="sr-only">All tools</h2>
-  <div class="grid two">{cards}</div>
+  {cards}
 </div></section>
 {report_card("Want the full picture? Get your report card")}
 """
-    return page("tools", "Free calculators for HVAC companies", "Free, no-sign-up calculators for HVAC owners: missed call cost, marketing break-even and Google review gap.", body)
+    return page("tools", "Free calculators for HVAC companies", f"{len(TOOLS)} free, no-sign-up calculators for HVAC owners: cost per lead, Google Ads and LSA budgets, missed calls, close rate, maintenance plans, reviews and more.", body)
 
 
 def contact_page():
@@ -1531,7 +1564,7 @@ PILLAR_FAQ = [
     ("What is HVAC marketing?", "Everything that gets a homeowner or business to call your shop instead of the next one: showing up on Google and the map, a website that turns visits into calls, answering and following up fast, and turning finished jobs into reviews and repeat work."),
     ("What's the best marketing for an HVAC company?", "For most owner-run shops, a complete Google Business Profile, steady reviews and a fast site with a page per service and town come first, because that's where homeowners pick a shop. Answering every call matters just as much, since a lead you don't answer is wasted."),
     ("How long does HVAC SEO take to work?", "It depends on your town, your competition and where you start, so nobody can honestly promise a date. Profile fixes and review growth can show up within weeks; new pages ranking usually takes months. Be wary of anyone who guarantees page one."),
-    ("Should I run Google Ads or do SEO?", "Ads bring calls as long as you pay; SEO and your map listing keep working after you stop. Many shops do both. We don't manage ads, so we focus on the parts you own: your site, your profile, your reviews and your follow-up."),
+    ("Should I run Google Ads or do SEO?", "Ads bring calls as long as you pay; SEO and your map listing keep working after you stop. Many shops do both. We run both: ads as an add-on, on top of the parts you own, like your site, your profile, your reviews and your follow-up."),
     ("Are Google Local Services Ads worth it for HVAC?", "They can be, since you pay per lead and the Google Guaranteed badge shows at the top. Your reviews and how fast you answer affect how often they show, so the basics we run help there too."),
     ("How do I get more HVAC maintenance plan sign-ups?", "Ask on every job, put the plan on its own page, and remind past customers before each season. We send the reminders; your techs make the ask."),
     ("How do I market heating in a warm state?", "Heat pumps run in both seasons and cold snaps bring a rush of calls. Have heating pages and your profile ready before the first cold front, not during it."),
@@ -1631,7 +1664,7 @@ def home():
     body = f"""<section class="hero"><div class="hero-grid-bg" aria-hidden="true"></div><div class="wrap hero-grid">
   <div>
     <span class="chip-top"><i>❄</i>Built only for HVAC contractors</span>
-    <h1>Every call answered. <span class="grad">Every job booked.</span></h1>
+    <h1>Show up first. <span class="grad">Book every call.</span></h1>
     <p class="lede">We build your website, run your Google profile and text back every missed call in 60 seconds, guaranteed. Start with a free report card on how you stack up locally.</p>
     {url_form()}
     <div class="hero-points"><span>Live in 14 days</span><span>We run it for you</span><span>You own everything</span></div>
@@ -1841,7 +1874,7 @@ def trade_page(key):
 
 OFFER_CONTENT = {
     "website": {
-        "title": "Website", "h1": "A website built to book service calls.",
+        "title": "Website", "seo_title": "HVAC Web Design: Websites Built to Book Calls", "h1": "HVAC web design built to book service calls.",
         "lede": "Not a brochure. Every page is built around a job people search for, with a clear way to book on every screen.",
         "cards": [
             ("web", "Service pages", "A page for each service you want more of, written for how homeowners search."),
@@ -1864,10 +1897,10 @@ OFFER_CONTENT = {
             ("cal", "Seasonal campaigns", "Tune-up and reminder campaigns to past customers before the busy season."),
             ("chart", "Monthly statement", "Calls, texts, booked jobs and new reviews, in one page each month."),
         ],
-        "list": ["We ask every customer for a review and never filter out unhappy ones (Google doesn't allow it)", "Map spam reports on fake competitor listings", "Call tracking by source", "Paid ads available later as an add-on", "No promises of rankings, only of the work"],
+        "list": ["We ask every customer for a review and never filter out unhappy ones (Google doesn't allow it)", "Map spam reports on fake competitor listings", "Call tracking by source", "Google Ads, Local Services Ads and Facebook ads available as add-ons", "No promises of rankings, only of the work"],
     },
     "app": {
-        "title": "Lead system", "h1": "Every call, text and form in one inbox.",
+        "title": "Lead system", "seo_title": "HVAC Lead Generation System: Every Lead in One Inbox", "h1": "Every call, text and form in one inbox.",
         "lede": "The lead system behind it all. It texts back missed calls, follows up on estimates and keeps your whole team on the same page.",
         "cards": [
             ("phone", "Missed-call text-back", "Every call you can't pick up gets a text in seconds, with your name on it."),
@@ -1932,7 +1965,7 @@ OFFER_DEEP = {
             ("How long until I move up the map?", "Profile fixes can help within weeks. Steady movement usually takes three to six months, longer in a big metro. We show you where you rank on your dashboard."),
             ("How many Google reviews do I need?", "There's no magic number. Recent, steady reviews matter more than a big total."),
             ("What do you do about a bad review?", "Reply calmly and professionally, offer to make it right, and keep good reviews coming so one bad one doesn't define you."),
-            ("Do you run Google Ads or Local Services Ads?", "Not yet. Ads work better once calls are answered and your profile is strong, so we start there. Ads are coming as an add-on."),
+            ("Do you run Google Ads or Local Services Ads?", "Yes, as an add-on to any plan. Ads work best once calls are answered and your profile is strong, and every plan already covers that part."),
             ("Can you guarantee I'll be #1?", "No, and be careful with anyone who does. We guarantee the work: a complete profile, review requests after every job and a reply to every review."),
         ],
     },
@@ -2052,7 +2085,7 @@ def offer_page(key):
 {offer_faq(key)}
 """
     items = OFFER_DEEP.get(key, {}).get("faq")
-    return page(key, f"{_strip(o['title'])} for HVAC companies", o["lede"], body, extra_head=faq_ld(items) if items else "")
+    return page(key, o.get("seo_title", f"{_strip(o['title'])} for HVAC companies"), o["lede"], body, extra_head=faq_ld(items) if items else "")
 
 
 def rc_samples():
@@ -2268,6 +2301,7 @@ def llms_txt():
 - Who it serves: residential and light commercial HVAC contractors
 - Main offer: a free report card that grades an HVAC company's Google profile, reviews, website and listings against nearby competitors
 - Guarantees: every missed call texted back within 60 seconds; new site live within 14 days of receiving content; first month refunded if the client is unhappy in the first 30 days after launch
+- Paid ads: Google Ads, Local Services Ads and Facebook/Instagram ads managed as add-ons to any plan; ad spend billed by the platform to the client, never marked up
 - Does not promise: #1 rankings, a set number of jobs, a fixed cost per lead, or AI assistant recommendations
 - Ownership: the client owns their domain, website content, Google profile and reviews
 
@@ -2281,7 +2315,7 @@ def llms_txt():
 HVAC shops that do good work, miss calls when the crew is busy, and want to own their marketing rather than rent leads.
 
 ## Not a fit
-Shops that can't take on more work, want only Google Ads management, or want a one-time website with nothing after.
+Shops that can't take on more work, want ads with nobody answering the calls, or want a one-time website with nothing after.
 
 ## Pages
 - Home: https://{DOMAIN}/
@@ -2383,9 +2417,10 @@ if __name__ == "__main__":
         PREVIEW = True
         out = sys.argv[2]
         names = build(out)
-        for asset in ("styles.css", "main.js", "favicon.svg", "favicon.ico", "apple-touch-icon-180.png", "og-image.png"):
+        for asset in ("styles.css", "main.js", "gcalc.js", "favicon.svg", "favicon.ico", "apple-touch-icon-180.png", "og-image.png"):
             shutil.copy(os.path.join(site, asset), os.path.join(out, asset))
         shutil.copytree(os.path.join(site, "fonts"), os.path.join(out, "fonts"), dirs_exist_ok=True)
+        shutil.copytree(os.path.join(site, "img"), os.path.join(out, "img"), dirs_exist_ok=True)
     else:
         names = build(site)
         write_redirects(site)

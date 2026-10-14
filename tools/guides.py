@@ -370,7 +370,7 @@ GUIDES = [
                 ]),
             ]),
             ("How we compare", [
-                ("p", "We built HVAC Marketing HQ for owner-run shops: a fast website you own, a Google profile we actually run, missed-call text-back and review requests, and the HQ Command Center dashboard so you can check the numbers yourself. Our prices and plan details are on the <a href=\"{u:plans}\">pricing page</a>. We don't run ad campaigns today, so if paid ads are most of what you need, a larger agency may suit you better."),
+                ("p", "We built HVAC Marketing HQ for owner-run shops: a fast website you own, a Google profile we actually run, missed-call text-back and review requests, and the HQ Command Center dashboard so you can check the numbers yourself. Our prices and plan details are on the <a href=\"{u:plans}\">pricing page</a>. We run Google Ads, Local Services Ads and Facebook ads as add-ons, with ad spend billed to you and never marked up."),
                 ("cta",),
             ]),
         ],
@@ -420,7 +420,7 @@ GUIDES = [
                     ["Contract", "Month to month (being finalized before launch). See our <a href=\"{u:terms}\">Terms</a> page."],
                     ["Website, domain, content", "Yours. If you leave, you keep the site and the domain."],
                     ["Google profile, number, accounts", "In your name. Your number is ported back if you leave."],
-                    ["Total monthly cost", "$499 to $2,499 a month plus a one-time build fee, all on our <a href=\"{u:plans}\">pricing page</a>. We don't run ads, so there's no ad spend or markup."],
+                    ["Total monthly cost", "$499 to $2,499 a month plus a one-time build fee, all on our <a href=\"{u:plans}\">pricing page</a>. Ads are an optional add-on; ad spend is billed by Google or Meta to you, never marked up."],
                     ["Guarantees", "Missed calls texted back in 60 seconds, launch in 14 days, and your first month back if you're not happy within 30 days of launch. We don't guarantee rankings."],
                     ["Results", "Your HQ Command Center shows calls, texts, booked jobs and reviews, anytime."],
                     ["Who does the work", "A small team that only works with HVAC companies."],
