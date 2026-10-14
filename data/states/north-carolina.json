@@ -1,0 +1,147 @@
+{
+  "state": {
+    "name": "North Carolina",
+    "abbr": "nc",
+    "slug": "north-carolina",
+    "population_2020": 10439388,
+    "source_url": "https://en.wikipedia.org/wiki/North_Carolina"
+  },
+  "cities": [
+    {
+      "slug": "charlotte",
+      "name": "Charlotte",
+      "county": "Mecklenburg County",
+      "population_2020": 874579,
+      "metro": "Charlotte metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 90.3,
+      "jan_low_f": 31.8,
+      "climate_station": "Charlotte Douglas International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 44,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 104,
+      "nearby": [
+        "Matthews",
+        "Mint Hill",
+        "Huntersville",
+        "Cornelius",
+        "Concord",
+        "Gastonia"
+      ],
+      "one_fact": "Hurricane Hugo hit Charlotte on September 22, 1989.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Charlotte,_North_Carolina"
+      ]
+    },
+    {
+      "slug": "raleigh",
+      "name": "Raleigh",
+      "county": "Wake County",
+      "population_2020": 467665,
+      "metro": "Raleigh–Cary metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 90.8,
+      "jan_low_f": 31.8,
+      "climate_station": "Raleigh–Durham International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 48,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 106,
+      "nearby": [
+        "Cary",
+        "Apex",
+        "Garner",
+        "Wake Forest",
+        "Holly Springs",
+        "Morrisville"
+      ],
+      "one_fact": "Hurricane Florence in 2018 was the most recent hurricane to hit the Raleigh area hard.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Raleigh,_North_Carolina"
+      ]
+    },
+    {
+      "slug": "greensboro",
+      "name": "Greensboro",
+      "county": "Guilford County",
+      "population_2020": 299035,
+      "metro": "Greensboro–High Point metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 88.5,
+      "jan_low_f": 30.1,
+      "climate_station": "Piedmont Triad International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 32,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 104,
+      "nearby": [
+        "High Point",
+        "Winston-Salem",
+        "Browns Summit",
+        "Clemmons"
+      ],
+      "one_fact": "Greensboro averages 75 nights a year at or below freezing.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Greensboro,_North_Carolina"
+      ]
+    },
+    {
+      "slug": "durham",
+      "name": "Durham",
+      "county": "Durham County",
+      "population_2020": 283506,
+      "metro": "Durham–Chapel Hill metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 90.8,
+      "jan_low_f": 31.8,
+      "climate_station": "Raleigh–Durham International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 105,
+      "nearby": [
+        "Chapel Hill",
+        "Carrboro",
+        "Hillsborough",
+        "Morrisville",
+        "Cary",
+        "Butner"
+      ],
+      "one_fact": "The four-county Durham–Chapel Hill metro area has about 620,000 residents.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Durham,_North_Carolina",
+        "https://en.wikipedia.org/wiki/Research_Triangle"
+      ]
+    },
+    {
+      "slug": "wilmington",
+      "name": "Wilmington",
+      "county": "New Hanover County",
+      "population_2020": 115451,
+      "metro": "Wilmington metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 90.0,
+      "jan_low_f": 36.3,
+      "climate_station": "Wilmington International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 43,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 104,
+      "nearby": [
+        "Wrightsville Beach",
+        "Carolina Beach",
+        "Kure Beach",
+        "Hampstead",
+        "Southport",
+        "Boiling Spring Lakes"
+      ],
+      "one_fact": "Wilmington summers bring high humidity, with daily highs usually in the upper 80s to low 90s °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Wilmington,_North_Carolina",
+        "https://en.wikipedia.org/wiki/Wilmington_metropolitan_area",
+        "https://en.wikipedia.org/wiki/New_Hanover_County,_North_Carolina"
+      ]
+    }
+  ]
+}

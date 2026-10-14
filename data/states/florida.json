@@ -1,0 +1,145 @@
+{
+  "state": {
+    "name": "Florida",
+    "abbr": "fl",
+    "slug": "florida",
+    "population_2020": 21538187,
+    "source_url": "https://en.wikipedia.org/wiki/Florida"
+  },
+  "cities": [
+    {
+      "slug": "tampa",
+      "name": "Tampa",
+      "county": "Hillsborough County",
+      "population_2020": 384959,
+      "metro": "Tampa Bay area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 91.0,
+      "jan_low_f": 52.8,
+      "climate_station": "Tampa International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 100,
+      "nearby": [
+        "St. Petersburg",
+        "Clearwater",
+        "Safety Harbor",
+        "Tarpon Springs"
+      ],
+      "one_fact": "Tampa's official temperature never reached 100 °F until July 27, 2025.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Tampa,_Florida"
+      ]
+    },
+    {
+      "slug": "orlando",
+      "name": "Orlando",
+      "county": "Orange County",
+      "population_2020": 307573,
+      "metro": "Orlando metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 92.0,
+      "jan_low_f": 49.5,
+      "climate_station": "Orlando International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 103,
+      "nearby": [
+        "Winter Park",
+        "Kissimmee",
+        "Maitland",
+        "Apopka",
+        "Winter Garden",
+        "Altamonte Springs"
+      ],
+      "one_fact": "Orlando drops below freezing on only about 1.6 nights a year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Orlando,_Florida"
+      ]
+    },
+    {
+      "slug": "jacksonville",
+      "name": "Jacksonville",
+      "county": "Duval County",
+      "population_2020": 949611,
+      "metro": "Jacksonville metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 91.9,
+      "jan_low_f": 42.4,
+      "climate_station": "Jacksonville International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 105,
+      "nearby": [
+        "Jacksonville Beach",
+        "Atlantic Beach",
+        "Neptune Beach",
+        "Baldwin",
+        "Ponte Vedra Beach",
+        "St. Augustine"
+      ],
+      "one_fact": "Jacksonville usually sees only about 10 to 15 nights a year at or below freezing.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Jacksonville,_Florida"
+      ]
+    },
+    {
+      "slug": "miami",
+      "name": "Miami",
+      "county": "Miami-Dade County",
+      "population_2020": 442241,
+      "metro": "Miami metropolitan area",
+      "koppen": "tropical monsoon (Am)",
+      "july_high_f": 90.6,
+      "jan_low_f": 61.0,
+      "climate_station": "Miami International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 100,
+      "nearby": [
+        "Hialeah",
+        "Miami Beach",
+        "Coral Gables",
+        "Doral",
+        "Miami Springs",
+        "Miami Gardens"
+      ],
+      "one_fact": "About 40% of homes in Miami sit on floodplains and are considered flood-risk zones.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Miami"
+      ]
+    },
+    {
+      "slug": "fort-myers",
+      "name": "Fort Myers",
+      "county": "Lee County",
+      "population_2020": 86395,
+      "metro": "Cape Coral–Fort Myers metropolitan area",
+      "koppen": "tropical monsoon (Am), formerly humid subtropical (Cfa)",
+      "july_high_f": 91.6,
+      "jan_low_f": 54.3,
+      "climate_station": "Page Field",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 103,
+      "nearby": [
+        "Cape Coral",
+        "Lehigh Acres",
+        "Estero",
+        "Bonita Springs",
+        "Fort Myers Beach",
+        "North Fort Myers"
+      ],
+      "one_fact": "Fort Myers suffered catastrophic damage from Hurricane Ian on September 28, 2022.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Fort_Myers,_Florida",
+        "https://en.wikipedia.org/wiki/Lee_County,_Florida"
+      ]
+    }
+  ]
+}

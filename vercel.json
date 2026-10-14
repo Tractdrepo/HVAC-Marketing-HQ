@@ -316,6 +316,126 @@
       "permanent": true
     },
     {
+      "source": "/hvac-marketing-arizona",
+      "destination": "/locations/arizona",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-phoenix-az",
+      "destination": "/locations/arizona/phoenix",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-tucson-az",
+      "destination": "/locations/arizona/tucson",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-mesa-az",
+      "destination": "/locations/arizona/mesa",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-chandler-az",
+      "destination": "/locations/arizona/chandler",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-scottsdale-az",
+      "destination": "/locations/arizona/scottsdale",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-florida",
+      "destination": "/locations/florida",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-tampa-fl",
+      "destination": "/locations/florida/tampa",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-orlando-fl",
+      "destination": "/locations/florida/orlando",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-jacksonville-fl",
+      "destination": "/locations/florida/jacksonville",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-miami-fl",
+      "destination": "/locations/florida/miami",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-fort-myers-fl",
+      "destination": "/locations/florida/fort-myers",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-georgia",
+      "destination": "/locations/georgia",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-atlanta-ga",
+      "destination": "/locations/georgia/atlanta",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-savannah-ga",
+      "destination": "/locations/georgia/savannah",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-augusta-ga",
+      "destination": "/locations/georgia/augusta",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-columbus-ga",
+      "destination": "/locations/georgia/columbus",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-macon-ga",
+      "destination": "/locations/georgia/macon",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-north-carolina",
+      "destination": "/locations/north-carolina",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-charlotte-nc",
+      "destination": "/locations/north-carolina/charlotte",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-raleigh-nc",
+      "destination": "/locations/north-carolina/raleigh",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-greensboro-nc",
+      "destination": "/locations/north-carolina/greensboro",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-durham-nc",
+      "destination": "/locations/north-carolina/durham",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-wilmington-nc",
+      "destination": "/locations/north-carolina/wilmington",
+      "permanent": true
+    },
+    {
       "source": "/examples",
       "destination": "/",
       "permanent": true

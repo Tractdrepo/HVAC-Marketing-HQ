@@ -705,11 +705,11 @@ input:focus, select:focus { border-color: var(--cool); outline: none; }
 
 /* ---- Location pages ---- */
 .page-head .url-form { margin-top: 28px; max-width: 560px; }
-.cfacts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-@media (min-width: 900px) { .cfacts { grid-template-columns: repeat(4, 1fr); } }
-.cfact { padding: 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.cfacts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (min-width: 900px) { .cfacts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.cfact { padding: clamp(14px, 4vw, 20px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
 .cfact span { display: block; font: 500 .74rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
-.cfact b { display: block; margin: 10px 0 4px; font: 800 2rem/1 var(--head); font-stretch: 110%; }
+.cfact b { display: block; margin: 10px 0 4px; font: 800 clamp(1.45rem, 6.4vw, 2rem)/1 var(--head); font-stretch: 110%; }
 .cfact small { color: var(--muted); font-size: .82rem; }
 .csrc { margin: 12px 0 0; font-size: .82rem; color: var(--muted); }
 .clic { margin: 22px 0 0; padding: 16px 18px; border-left: 3px solid var(--heat); background: rgba(255,106,43,.06); border-radius: 0 12px 12px 0; color: var(--muted); }
@@ -813,3 +813,4 @@ input:focus, select:focus { border-color: var(--cool); outline: none; }
 .author-box b { display: block; font: 700 1.05rem/1.2 var(--head); }
 .author-box span { display: block; font-size: .85rem; color: var(--muted); margin: 2px 0 8px; }
 .author-box p { margin: 0; font-size: .95rem; }
+.city-links-by-state p { line-height: 2; margin: 0 0 12px; }

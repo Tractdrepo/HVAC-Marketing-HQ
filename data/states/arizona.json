@@ -1,0 +1,143 @@
+{
+  "state": {
+    "name": "Arizona",
+    "abbr": "az",
+    "slug": "arizona",
+    "population_2020": 7151502,
+    "source_url": "https://en.wikipedia.org/wiki/Arizona"
+  },
+  "cities": [
+    {
+      "slug": "phoenix",
+      "name": "Phoenix",
+      "county": "Maricopa County",
+      "population_2020": 1608139,
+      "metro": "Phoenix metropolitan area",
+      "koppen": "hot desert (BWh)",
+      "july_high_f": 106.5,
+      "jan_low_f": 46.0,
+      "climate_station": "Phoenix Sky Harbor International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 122,
+      "nearby": [
+        "Tempe",
+        "Mesa",
+        "Scottsdale",
+        "Glendale",
+        "Chandler",
+        "Peoria"
+      ],
+      "one_fact": "Phoenix has the hottest average summer highs of any major US city, with about 111 days a year reaching at least 100 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Phoenix,_Arizona"
+      ]
+    },
+    {
+      "slug": "tucson",
+      "name": "Tucson",
+      "county": "Pima County",
+      "population_2020": 542629,
+      "metro": "Tucson metropolitan area",
+      "koppen": "hot desert (BWh)",
+      "july_high_f": 100.2,
+      "jan_low_f": 40.8,
+      "climate_station": "Tucson International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 158,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 117,
+      "nearby": [
+        "Oro Valley",
+        "Marana",
+        "Sahuarita",
+        "South Tucson",
+        "Catalina Foothills",
+        "Vail"
+      ],
+      "one_fact": "During the summer monsoon, humidity in Tucson runs much higher than in the rest of the year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Tucson,_Arizona"
+      ]
+    },
+    {
+      "slug": "mesa",
+      "name": "Mesa",
+      "county": "Maricopa County",
+      "population_2020": 504258,
+      "metro": "Phoenix metropolitan area",
+      "koppen": "hot desert (BWh)",
+      "july_high_f": 105.9,
+      "jan_low_f": 41.0,
+      "climate_station": "East Mesa",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 121,
+      "nearby": [
+        "Tempe",
+        "Chandler",
+        "Gilbert",
+        "Queen Creek",
+        "Apache Junction"
+      ],
+      "one_fact": "Mesa's population boomed once air conditioning arrived and tourism took off.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Mesa,_Arizona"
+      ]
+    },
+    {
+      "slug": "chandler",
+      "name": "Chandler",
+      "county": "Maricopa County",
+      "population_2020": 275987,
+      "metro": "Phoenix metropolitan area",
+      "koppen": "hot desert (BWh)",
+      "july_high_f": 106,
+      "jan_low_f": 41,
+      "climate_station": "Chandler, AZ (The Weather Channel data)",
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 119,
+      "nearby": [
+        "Mesa",
+        "Gilbert",
+        "Tempe",
+        "Phoenix"
+      ],
+      "one_fact": "Chandler's population nearly doubled over the last twenty years.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Chandler,_Arizona"
+      ]
+    },
+    {
+      "slug": "scottsdale",
+      "name": "Scottsdale",
+      "county": "Maricopa County",
+      "population_2020": 241361,
+      "metro": "Phoenix metropolitan area",
+      "koppen": null,
+      "july_high_f": 104.1,
+      "jan_low_f": 43.4,
+      "climate_station": "Scottsdale Municipal Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 118,
+      "nearby": [
+        "Paradise Valley",
+        "Fountain Hills",
+        "Carefree",
+        "Tempe",
+        "Mesa",
+        "Phoenix"
+      ],
+      "one_fact": "Over the past two decades Scottsdale has been one of the fastest growing cities and housing markets in the United States.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Scottsdale,_Arizona"
+      ]
+    }
+  ]
+}

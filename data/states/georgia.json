@@ -1,0 +1,148 @@
+{
+  "state": {
+    "name": "Georgia",
+    "abbr": "ga",
+    "slug": "georgia",
+    "population_2020": 10711908,
+    "source_url": "https://en.wikipedia.org/wiki/Georgia_(U.S._state)"
+  },
+  "cities": [
+    {
+      "slug": "atlanta",
+      "name": "Atlanta",
+      "county": "Fulton County",
+      "population_2020": 498715,
+      "metro": "Atlanta metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 90.1,
+      "jan_low_f": 35.6,
+      "climate_station": "Hartsfield–Jackson Atlanta International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 47,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 106,
+      "nearby": [
+        "Marietta",
+        "Sandy Springs",
+        "Alpharetta",
+        "Decatur",
+        "Roswell",
+        "Smyrna"
+      ],
+      "one_fact": "In Atlanta, ice storms usually cause more trouble than snow, and the worst one struck on January 7, 1973.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Atlanta",
+        "https://en.wikipedia.org/wiki/Atlanta_metropolitan_area"
+      ]
+    },
+    {
+      "slug": "savannah",
+      "name": "Savannah",
+      "county": "Chatham County",
+      "population_2020": 147780,
+      "metro": "Savannah metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 92.3,
+      "jan_low_f": 40.0,
+      "climate_station": "Savannah/Hilton Head International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 105,
+      "nearby": [
+        "Pooler",
+        "Garden City",
+        "Thunderbolt",
+        "Tybee Island",
+        "Richmond Hill",
+        "Wilmington Island"
+      ],
+      "one_fact": "Savannah is at risk from hurricanes, especially the Cape Verde type of storm.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Savannah,_Georgia"
+      ]
+    },
+    {
+      "slug": "augusta",
+      "name": "Augusta",
+      "county": "Richmond County",
+      "population_2020": 202071,
+      "metro": "Augusta metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 94.1,
+      "jan_low_f": 35.3,
+      "climate_station": "Augusta Regional Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 82,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 108,
+      "nearby": [
+        "Evans",
+        "Martinez",
+        "Grovetown",
+        "North Augusta",
+        "Aiken",
+        "Hephzibah"
+      ],
+      "one_fact": "Augusta averages 82 days a year at 90 °F or hotter and about five and a half days at 100 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Augusta,_Georgia",
+        "https://en.wikipedia.org/wiki/Augusta_metropolitan_area"
+      ]
+    },
+    {
+      "slug": "columbus",
+      "name": "Columbus",
+      "county": "Muscogee County",
+      "population_2020": 206922,
+      "metro": "Columbus metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 92.9,
+      "jan_low_f": 38.2,
+      "climate_station": "Columbus Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 106,
+      "nearby": [
+        "Phenix City",
+        "Cusseta",
+        "Hamilton",
+        "Pine Mountain",
+        "Ladonia"
+      ],
+      "one_fact": "Summer daytime highs in Columbus often top 95 °F and sometimes approach or pass 100 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Columbus,_Georgia",
+        "https://en.wikipedia.org/wiki/Columbus_metropolitan_area,_Georgia"
+      ]
+    },
+    {
+      "slug": "macon",
+      "name": "Macon",
+      "county": "Bibb County",
+      "population_2020": 157346,
+      "metro": "Macon metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 93.5,
+      "jan_low_f": 35.9,
+      "climate_station": "Middle Georgia Regional Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 83,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 108,
+      "nearby": [
+        "Warner Robins",
+        "Forsyth",
+        "Gray",
+        "Lizella",
+        "Jeffersonville"
+      ],
+      "one_fact": "Freezing temperatures in Macon can come anytime from about October 18 to April 19.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Macon,_Georgia",
+        "https://en.wikipedia.org/wiki/Macon_metropolitan_area,_Georgia"
+      ]
+    }
+  ]
+}

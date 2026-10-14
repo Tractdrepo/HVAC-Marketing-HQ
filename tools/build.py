@@ -844,12 +844,28 @@ with open(_DATA) as _f:
     _TX = json.load(_f)
 CITIES = _TX["cities"]
 TX_POP = _TX["texas"]["population_2020"]
+# Every other state lives in data/states/<slug>.json: {"state": {name, abbr, slug, population_2020, source_url}, "cities": [...]}
+STATES = [{"name": "Texas", "abbr": "TX", "slug": "texas", "population_2020": TX_POP, "cities": CITIES}]
+_SDIR = os.path.join(os.path.dirname(_DATA), "states")
+for _fn in sorted(os.listdir(_SDIR)) if os.path.isdir(_SDIR) else []:
+    if _fn.endswith(".json"):
+        with open(os.path.join(_SDIR, _fn)) as _f:
+            _d = json.load(_f)
+        STATES.append(dict(_d["state"], abbr=_d["state"]["abbr"].upper(), cities=_d["cities"]))
+for _st in STATES:
+    for _c in _st["cities"]:
+        _c["_st"] = _st
+ALL_CITIES = [c for st in STATES for c in st["cities"]]
 # Businesses holding an active TDLR A/C contractor license, merged by company (prospects/centex-prospects.xlsx, Oct 11, 2026)
 TDLR_COUNTY = {"McLennan County": 156, "Bell County": 161}
 
 
 def city_path(c):
-    return f"hvac-marketing-{c['slug']}-tx"
+    return f"hvac-marketing-{c['slug']}-{c['_st']['abbr'].lower()}"
+
+
+def state_key(st):
+    return f"hvac-marketing-{st['slug']}"
 
 
 def fnum(n):
@@ -875,7 +891,7 @@ def city_insights(c):
         out.append(("A real heating season", f"January lows average {deg(cold)}. Furnace and heat pump pages earn their keep here, and fall tune-up campaigns fill the schedule before the first cold snap."))
     else:
         out.append(("Mild winters, steady heat pump work", f"January lows average {deg(cold)}. Heat pump repair and installs carry the cooler months, with fewer emergency heating calls."))
-    if "cfa" in k or "humid" in k:
+    if "cfa" in k or "humid" in k or "tropical" in k:
         out.append(("Humidity sells comfort", "Humid air makes homes feel warmer than the thermostat says. Pages for dehumidifiers, indoor air quality and duct work bring higher-value jobs."))
     elif "bs" in k or "bw" in k or "arid" in k or "desert" in k:
         out.append(("Dry air and dust", "Dust works filters and outdoor units hard. Maintenance plan pages and filter reminders keep customers coming back between breakdowns."))
@@ -896,20 +912,21 @@ def city_page(c):
     station = f"{c['climate_station']}, {c['climate_period']}" if c.get("climate_station") and c.get("climate_period") else (c.get("climate_station") or "local weather records")
     ins = "".join(f'<div class="card reveal"><h3>{esc(h)}</h3><p>{esc(t)}</p></div>' for h, t in city_insights(c))
     towns = "".join(f"<li>{esc(t)}</li>" for t in c["nearby"])
-    lic = TDLR_COUNTY.get(c["county"])
+    st = c["_st"]
+    lic = TDLR_COUNTY.get(c["county"]) if st["abbr"] == "TX" else None
     lic_html = f'<p class="clic"><b>{lic}</b> businesses hold an active Texas A/C contractor license in {esc(c["county"])} (TDLR records, Oct 2026). That\'s who you\'re up against on the map.</p>' if lic else ""
-    others = [o for o in CITIES if o["slug"] != c["slug"]]
+    others = [o for o in st["cities"] if o["slug"] != c["slug"]]
     near = "".join(f'<a href="{u(city_path(o))}">{esc(o["name"])}</a>' for o in others)
     body = f"""<section class="page-head city-head"><div class="wrap">
-  <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('locations')}">Locations</a> / <a href="{u('hvac-marketing-texas')}">Texas</a> / {esc(c['name'])}</div>
+  <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('locations')}">Locations</a> / <a href="{u(state_key(st))}">{esc(st['name'])}</a> / {esc(c['name'])}</div>
   <span class="eyebrow">{esc(c['county'])} · {esc(c['metro'])}</span>
-  <h1 style="max-width:20ch">HVAC marketing in {esc(c['name'])}, Texas.</h1>
+  <h1 style="max-width:20ch">HVAC marketing in {esc(c['name'])}, {esc(st['name'])}.</h1>
   <p class="lede">When it's {round(c['july_high_f'])}° in July, a {esc(c['name'])} homeowner with a dead AC calls the first shop that shows up and answers. We make sure that's you: a fast site, a Google profile that's actually run, and every missed call texted back in 60 seconds.</p>
   {url_form()}
 </div></section>
 <section class="section" style="padding-top:12px"><div class="wrap">
   <div class="cfacts reveal">{fact_html}</div>
-  <p class="csrc">Population: 2020 U.S. Census. Climate: {esc(station)} normals. Both as published on Wikipedia.</p>
+  <p class="csrc">Population: 2020 U.S. Census. Climate: {esc(station)}{" normals" if c.get("climate_period") else ""}. Both as published on Wikipedia.</p>
 </div></section>
 <section class="section alt"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">{esc(c['name'])} market</span><h2>What {esc(c['name'])}'s weather means for your marketing.</h2><p class="lede">{esc(c['one_fact'])}</p></div>
@@ -926,11 +943,11 @@ def city_page(c):
 </div></section>
 {report_card(f"How does your shop stack up in {c['name']}?")}
 <section class="section"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Texas</span><h2>Other Texas markets</h2></div>
+  <div class="section-head"><span class="eyebrow">{esc(st['name'])}</span><h2>Other {esc(st['name'])} markets</h2></div>
   <div class="city-links">{near}</div>
 </div></section>
 """
-    return page(city_path(c), f"HVAC marketing in {c['name']}, TX", f"Websites, Google profiles and missed-call text-back for {c['name']}, Texas HVAC companies. July highs average {deg(c['july_high_f'])}; here's what that means for your marketing.", body)
+    return page(city_path(c), f"HVAC marketing in {c['name']}, {st['abbr']}", f"Websites, Google profiles and missed-call text-back for {c['name']}, {st['name']} HVAC companies. July highs average {deg(c['july_high_f'])}; here's what that means for your marketing.", body)
 
 
 def city_cards(cities):
@@ -964,29 +981,65 @@ def texas_page():
     return page("hvac-marketing-texas", "HVAC marketing in Texas", "Websites, Google profiles and missed-call text-back for Texas HVAC contractors, from Houston to El Paso.", body)
 
 
+def state_page(st):
+    cs = st["cities"]
+    hottest = max(cs, key=lambda c: c["july_high_f"] or 0)
+    coldest = min(cs, key=lambda c: c["jan_low_f"] if c["jan_low_f"] is not None else 99)
+    big = max(cs, key=lambda c: c["population_2020"] or 0)
+    n = st["name"]
+    body = f"""<section class="page-head"><div class="wrap">
+  <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('locations')}">Locations</a> / {esc(n)}</div>
+  <span class="eyebrow">{esc(n)} · {len(cs)} markets</span>
+  <h1 style="max-width:20ch">HVAC marketing for {esc(n)} contractors.</h1>
+  <p class="lede">{fnum(st['population_2020'])} people live in {esc(n)}, and each market has its own weather and its own map to win. We build the same system for every shop here: a fast site, a Google profile that's actually run, and every missed call texted back.</p>
+  {url_form()}
+</div></section>
+<section class="section" style="padding-top:12px"><div class="wrap">
+  <h2 class="sr-only">What {esc(n)} means for your marketing</h2>
+  <div class="grid three">
+    <div class="card reveal"><h3>Different weather, city to city</h3><p>July highs average {deg(hottest['july_high_f'])} in {esc(hottest['name'])}, while January lows average {deg(coldest['jan_low_f'])} in {esc(coldest['name'])}. Your site should talk about the weather your customers actually live with.</p></div>
+    <div class="card reveal"><h3>Big markets, crowded maps</h3><p>{esc(big['name'])} alone has {fnum(big['population_2020'])} people. In a market that size, a page for each part of town you serve helps you show up past your own neighborhood.</p></div>
+    <div class="card reveal"><h3>Texting done right</h3><p>Every text we send for you is set up the right way: carrier registration and an opt-out on every message. We never cold text or cold call homeowners.</p></div>
+  </div>
+</div></section>
+<section class="section alt"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">{esc(n)} markets</span><h2>Pick your city.</h2><p class="lede">Each page shows that market's weather and what it means for your marketing.</p></div>
+  <div class="city-grid">{city_cards(cs)}</div>
+</div></section>
+{report_card(f"See how your shop stacks up in your {n} town.")}
+"""
+    names = [c["name"] for c in sorted(cs, key=lambda c: -(c["population_2020"] or 0))]
+    return page(state_key(st), f"HVAC marketing in {n}", f"Websites, Google profiles and missed-call text-back for {n} HVAC contractors in {', '.join(names[:-1])} and {names[-1]}.", body)
+
+
 def locations_page():
+    blocks = "".join(f"""<div class="loc-state reveal"><div><h2><a href="{u(state_key(st))}">{esc(st['name'])}</a></h2><p class="muted">{len(st['cities'])} markets · {fnum(st['population_2020'])} people</p></div>
+  <div class="city-grid">{city_cards(st['cities'])}</div></div>
+  """ for st in STATES)
     body = f"""<section class="page-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / Locations</div>
   <span class="eyebrow">Markets</span>
   <h1 style="max-width:20ch">HVAC marketing, built in Texas, for shops everywhere.</h1>
-  <p class="lede">Everything we do works from anywhere: your site, your Google profile and your lead system. We started in Texas and add local market pages state by state.</p>
+  <p class="lede">Everything we do works from anywhere: your site, your Google profile and your lead system. We started in Texas and add local market pages state by state. {len(ALL_CITIES)} markets in {len(STATES)} states so far.</p>
   {url_form()}
 </div></section>
 <section class="section" style="padding-top:12px"><div class="wrap">
-  <div class="loc-state reveal"><div><span class="eyebrow">Live now</span><h2><a href="{u('hvac-marketing-texas')}">Texas</a></h2><p class="muted">{len(CITIES)} markets · {fnum(TX_POP)} people</p></div>
-  <div class="city-grid">{city_cards(CITIES)}</div></div>
-  <div class="loc-next reveal"><h3>Outside Texas?</h3><p>We already work with HVAC companies in any state. Local market pages for your state are on the way; the report card works for any town today.</p><a class="btn btn-ghost btn-small" href="#report-card">Grade my shop</a></div>
+  {blocks}<div class="loc-next reveal"><h3>Don't see your state?</h3><p>We work with HVAC companies in any state. Local market pages for more states are on the way; the report card works for any town today.</p><a class="btn btn-ghost btn-small" href="#report-card">Grade my shop</a></div>
 </div></section>
 {report_card()}
 """
-    return page("locations", "HVAC marketing locations", "HVAC marketing for contractors across the U.S., starting with Texas markets from Houston to El Paso.", body)
+    return page("locations", "HVAC marketing locations", f"HVAC marketing for contractors across the U.S.: {len(ALL_CITIES)} markets in {', '.join(st['name'] for st in STATES[:-1])} and {STATES[-1]['name']}." if len(STATES) > 1 else "HVAC marketing for contractors across the U.S., starting with Texas markets from Houston to El Paso.", body)
+
+
+BAND = [("houston", "TX"), ("dallas", "TX"), ("san-antonio", "TX"), ("austin", "TX"), ("waco", "TX"), ("phoenix", "AZ"), ("tucson", "AZ"),
+        ("atlanta", "GA"), ("savannah", "GA"), ("charlotte", "NC"), ("raleigh", "NC"), ("tampa", "FL"), ("orlando", "FL"), ("jacksonville", "FL")]
 
 
 def locations_band():
-    top = [c for c in CITIES if c["slug"] in ("houston", "dallas", "san-antonio", "austin", "fort-worth", "el-paso", "waco", "killeen", "temple", "lubbock", "corpus-christi", "college-station")]
+    top = [c for k in BAND for c in ALL_CITIES if (c["slug"], c["_st"]["abbr"]) == k]
     chips = "".join(f'<a href="{u(city_path(c))}">{esc(c["name"])}</a>' for c in top)
     return f"""<section class="section"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">Coast to coast</span><h2>HVAC marketing, market by market.</h2><p class="lede">A page for each market, built on real census, climate and license data.</p></div>
+  <div class="section-head reveal"><span class="eyebrow">Coast to coast</span><h2>HVAC marketing, market by market.</h2><p class="lede">A page for each market, built on real census and climate data.</p></div>
   <div class="city-links">{chips}<a class="all" href="{u('locations')}">All locations →</a></div>
 </div></section>"""
 
@@ -1494,7 +1547,7 @@ def pillar_page():
     svc = lambda keys: "".join(f'<li><a href="{u(k)}"><b>{esc(svc_info(k)[0])}</b></a> {esc(svc_info(k)[1])}</li>' for k in keys)
     gd = lambda slugs: "".join(f'<li><a href="{u(guide_path(x["slug"]))}">{esc(x["title"])}</a></li>' for x in GUIDES if x["slug"] in slugs)
     spec = "".join(f'<a class="card guide-card" href="{u(n["slug"])}"><span class="eyebrow">For HVAC</span><h3>{esc(n["name"])}</h3><p>{esc(n["nav"])}</p></a>' for n in niches_sorted())
-    cities = " · ".join(f'<a href="{u(city_path(c))}">{esc(c["name"])}</a>' for c in CITIES)
+    cities = "".join(f'<p><b><a href="{u(state_key(st))}">{esc(st["name"])}</a>:</b> ' + " · ".join(f'<a href="{u(city_path(c))}">{esc(c["name"])}</a>' for c in st["cities"]) + "</p>" for st in STATES)
     tools_ = "".join(f'<li><a href="{u("tools/" + t["slug"])}">{esc(t["name"])}</a>: {esc(t["line"])}</li>' for t in TOOLS)
     toc = [("s-what", "What HVAC marketing is"), ("s-rank", "Rank: get found first"), ("s-book", "Book: answer and follow up"), ("s-repeat", "Repeat: reviews and past customers"),
            ("s-cost", "What it costs"), ("s-spec", "By specialty"), ("s-loc", "By location"), ("s-faq", "Questions")]
@@ -1536,8 +1589,8 @@ def pillar_page():
   <div class="grid three">{spec}</div>
 </div></section>
 <section class="section" id="s-loc"><div class="wrap g-wrap">
-  <div class="section-head"><span class="eyebrow">By location</span><h2>HVAC marketing in Texas</h2><p class="lede">Each page uses real local numbers: population, climate and licensed contractors. See <a href="{u('hvac-marketing-texas')}">Texas</a> or a city:</p></div>
-  <p class="city-links">{cities}</p>
+  <div class="section-head"><span class="eyebrow">By location</span><h2>HVAC marketing by state</h2><p class="lede">Each page uses real local numbers: population and climate, plus licensed contractors where the state publishes them. Pick a state or a city:</p></div>
+  <div class="city-links-by-state">{cities}</div>
 </div></section>
 <section class="section alt" id="s-faq"><div class="wrap g-wrap">
   <div class="section-head"><span class="eyebrow">Questions</span><h2>HVAC marketing questions owners ask</h2></div>
@@ -2197,7 +2250,7 @@ def not_found():
 
 # ---- Write -----------------------------------------------------------------------
 def llms_txt():
-    city_names = ", ".join(c["name"] for c in CITIES)
+    city_names = "; ".join(f"{st['name']}: " + ", ".join(c["name"] for c in st["cities"]) for st in STATES)
     guide_names = "; ".join(g["title"] for g in GUIDES)
     # Plain facts for AI assistants (the "Answer" in our own method). Only states what the site states.
     plans = []
@@ -2236,7 +2289,7 @@ Shops that can't take on more work, want only Google Ads management, or want a o
 - Pricing: https://{DOMAIN}/plans ({'; '.join(f"{p_['name']} ${p_['monthly']:,}/mo" for p_ in PLANS)}, 20% off annual)
 - Free report card: https://{DOMAIN}/report-card
 - Guides: https://{DOMAIN}/guides ({guide_names})
-- Locations: https://{DOMAIN}/locations (Texas markets: {city_names})
+- Locations: https://{DOMAIN}/locations ({city_names})
 """
 
 
@@ -2259,9 +2312,10 @@ def build_routes():
     ROUTES["tools"] = "free-tools"  # /tools is the build script folder, kept off the live site
     for t in TOOLS:
         ROUTES["tools/" + t["slug"]] = "free-tools/" + t["slug"]
-    ROUTES["hvac-marketing-texas"] = "locations/texas"
-    for c in CITIES:
-        ROUTES[city_path(c)] = f"locations/texas/{c['slug']}"
+    for st in STATES:
+        ROUTES[state_key(st)] = f"locations/{st['slug']}"
+        for c in st["cities"]:
+            ROUTES[city_path(c)] = f"locations/{st['slug']}/{c['slug']}"
 
 
 def write_redirects(site_dir):
@@ -2300,9 +2354,10 @@ def build(out_dir):
     pages["compare"] = compare_hub()
     pages["hvac-specialties"] = specialties_hub()
     pages["locations"] = locations_page()
-    pages["hvac-marketing-texas"] = texas_page()
-    for c in CITIES:
-        pages[city_path(c)] = city_page(c)
+    for st in STATES:
+        pages[state_key(st)] = texas_page() if st["abbr"] == "TX" else state_page(st)
+        for c in st["cities"]:
+            pages[city_path(c)] = city_page(c)
     os.makedirs(out_dir, exist_ok=True)
     for name, content in pages.items():
         dest = os.path.join(out_dir, route(name) + ".html")
