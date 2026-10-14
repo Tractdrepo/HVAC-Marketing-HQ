@@ -140,6 +140,219 @@
         "https://en.wikipedia.org/wiki/Fort_Myers,_Florida",
         "https://en.wikipedia.org/wiki/Lee_County,_Florida"
       ]
+    },
+    {
+      "slug": "st-petersburg",
+      "name": "St. Petersburg",
+      "county": "Pinellas County",
+      "population_2020": 258308,
+      "metro": "Tampa Bay area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 90.9,
+      "jan_low_f": 54.3,
+      "climate_station": "St. Petersburg, Florida",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 100,
+      "nearby": [
+        "St. Pete Beach",
+        "Pinellas Park",
+        "Gulfport",
+        "South Pasadena",
+        "Seminole",
+        "Clearwater"
+      ],
+      "one_fact": "Located on the Gulf of Mexico, St. Petersburg's average water temperature is typically around 76 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/St._Petersburg,_Florida"
+      ]
+    },
+    {
+      "slug": "hialeah",
+      "name": "Hialeah",
+      "county": "Miami-Dade County",
+      "population_2020": 223109,
+      "metro": "Miami metropolitan area",
+      "koppen": "tropical monsoon (Am)",
+      "july_high_f": 89.9,
+      "jan_low_f": 59.1,
+      "climate_station": "Hialeah, Florida",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 100,
+      "nearby": [
+        "Miami Lakes",
+        "Miami Springs",
+        "Hialeah Gardens",
+        "Medley",
+        "Doral",
+        "Opa-locka"
+      ],
+      "one_fact": "According to the Köppen climate classification, Hialeah has a tropical monsoon climate (Am).",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Hialeah,_Florida"
+      ]
+    },
+    {
+      "slug": "port-st-lucie",
+      "name": "Port St. Lucie",
+      "county": "St. Lucie County",
+      "population_2020": 204851,
+      "metro": "Port St. Lucie metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 90.3,
+      "jan_low_f": 51.2,
+      "climate_station": "Treasure Coast International Airport, Fort Pierce",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 101,
+      "nearby": [
+        "Fort Pierce",
+        "St. Lucie Village",
+        "White City",
+        "Jensen Beach",
+        "Stuart",
+        "River Park"
+      ],
+      "one_fact": "Port St. Lucie summers are usually hot, with high temperatures averaging in the low 90s °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Port_St._Lucie,_Florida"
+      ]
+    },
+    {
+      "slug": "tallahassee",
+      "name": "Tallahassee",
+      "county": "Leon County",
+      "population_2020": 196169,
+      "metro": "Tallahassee metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 92.1,
+      "jan_low_f": 40.5,
+      "climate_station": "Tallahassee International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 105,
+      "nearby": [
+        "Crawfordville",
+        "Quincy",
+        "Havana",
+        "Monticello",
+        "Woodville",
+        "Thomasville"
+      ],
+      "one_fact": "Snow and ice are rare in Tallahassee, not occurring during most winters.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Tallahassee,_Florida"
+      ]
+    },
+    {
+      "slug": "cape-coral",
+      "name": "Cape Coral",
+      "county": "Lee County",
+      "population_2020": 194016,
+      "metro": "Cape Coral–Fort Myers metropolitan area",
+      "koppen": "tropical savanna (Aw), bordering on tropical monsoon (Am)",
+      "july_high_f": 92,
+      "jan_low_f": 54,
+      "climate_station": null,
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 103,
+      "nearby": [
+        "Fort Myers",
+        "North Fort Myers",
+        "Matlacha",
+        "Pine Island",
+        "Punta Gorda"
+      ],
+      "one_fact": "Cape Coral averages 355 days of sunshine per year and experiences precipitation on 145 days per year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Cape_Coral,_Florida"
+      ]
+    },
+    {
+      "slug": "fort-lauderdale",
+      "name": "Fort Lauderdale",
+      "county": "Broward County",
+      "population_2020": 182760,
+      "metro": "Miami metropolitan area",
+      "koppen": null,
+      "july_high_f": 90.0,
+      "jan_low_f": 60.9,
+      "climate_station": "Fort Lauderdale–Hollywood International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 100,
+      "nearby": [
+        "Wilton Manors",
+        "Oakland Park",
+        "Lauderdale-by-the-Sea",
+        "Plantation",
+        "Dania Beach",
+        "Tamarac"
+      ],
+      "one_fact": "In Fort Lauderdale, the dry season often arrives some time in November and lasts through early to mid April.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Fort_Lauderdale,_Florida"
+      ]
+    },
+    {
+      "slug": "pembroke-pines",
+      "name": "Pembroke Pines",
+      "county": "Broward County",
+      "population_2020": 171178,
+      "metro": "Miami metropolitan area",
+      "koppen": "tropical monsoon (Am)",
+      "july_high_f": 91.7,
+      "jan_low_f": 59.4,
+      "climate_station": "North Perry Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 101,
+      "nearby": [
+        "Southwest Ranches",
+        "Davie",
+        "Cooper City",
+        "Hollywood",
+        "Miramar"
+      ],
+      "one_fact": "Pembroke Pines has a tropical monsoon climate (Am) with hot, wet summers and warm, dry winters.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Pembroke_Pines,_Florida"
+      ]
+    },
+    {
+      "slug": "hollywood",
+      "name": "Hollywood",
+      "county": "Broward County",
+      "population_2020": 153067,
+      "metro": "Miami metropolitan area",
+      "koppen": "tropical rainforest (Af)",
+      "july_high_f": 89.6,
+      "jan_low_f": 59.2,
+      "climate_station": "Hollywood, Florida",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 98,
+      "nearby": [
+        "Dania Beach",
+        "Hallandale Beach",
+        "Pembroke Pines",
+        "Fort Lauderdale",
+        "Miramar"
+      ],
+      "one_fact": "Hollywood has a tropical rainforest climate with long, hot, humid, and rainy summers and short, warm, and dry winters.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Hollywood,_Florida"
+      ]
     }
   ]
 }

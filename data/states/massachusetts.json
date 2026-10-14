@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Massachusetts",
+    "abbr": "MA",
+    "slug": "massachusetts",
+    "population_2020": 7029917,
+    "source_url": "https://en.wikipedia.org/wiki/Massachusetts"
+  },
+  "cities": [
+    {
+      "slug": "boston",
+      "name": "Boston",
+      "county": "Suffolk County",
+      "population_2020": 675647,
+      "metro": "Greater Boston",
+      "koppen": "humid subtropical (Cfa) or humid continental (Dfa), depending on isotherm",
+      "july_high_f": 82.1,
+      "jan_low_f": 23.1,
+      "climate_station": "Logan International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 104,
+      "nearby": [
+        "Cambridge",
+        "Somerville",
+        "Brookline",
+        "Newton",
+        "Quincy",
+        "Milton"
+      ],
+      "one_fact": "Winters in Boston are cold and stormy, with occasional periods of heavy snow.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Boston"
+      ]
+    },
+    {
+      "slug": "worcester",
+      "name": "Worcester",
+      "county": "Worcester County",
+      "population_2020": 206518,
+      "metro": "Greater Boston (Boston–Worcester–Providence CSA)",
+      "koppen": "humid continental (Dfb)",
+      "july_high_f": 79.8,
+      "jan_low_f": 17.1,
+      "climate_station": "Worcester Regional Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 3.5,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 102,
+      "nearby": [
+        "Auburn",
+        "Grafton",
+        "Holden",
+        "Leicester",
+        "Millbury",
+        "Shrewsbury"
+      ],
+      "one_fact": "Worcester averages only 3.5 days a year of highs at or above 90 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Worcester,_Massachusetts"
+      ]
+    },
+    {
+      "slug": "springfield",
+      "name": "Springfield",
+      "county": "Hampden County",
+      "population_2020": 155929,
+      "metro": "Springfield metropolitan area",
+      "koppen": "hot-summer humid continental (Dfa)",
+      "july_high_f": 85.2,
+      "jan_low_f": 18.8,
+      "climate_station": "Bradley International Airport, Connecticut",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 103,
+      "nearby": [
+        "Chicopee",
+        "West Springfield",
+        "Agawam",
+        "Longmeadow",
+        "East Longmeadow",
+        "Ludlow"
+      ],
+      "one_fact": "Winters in Springfield are cold, with a daily average in January of around 26 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Springfield,_Massachusetts"
+      ]
+    }
+  ]
+}

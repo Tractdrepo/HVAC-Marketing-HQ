@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Illinois",
+    "abbr": "IL",
+    "slug": "illinois",
+    "population_2020": 12812508,
+    "source_url": "https://en.wikipedia.org/wiki/Illinois"
+  },
+  "cities": [
+    {
+      "slug": "chicago",
+      "name": "Chicago",
+      "county": "Cook County",
+      "population_2020": 2746388,
+      "metro": "Chicago metropolitan area",
+      "koppen": "hot-summer humid continental (Dfa)",
+      "july_high_f": 85.2,
+      "jan_low_f": 19.5,
+      "climate_station": "Midway International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 17,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 109,
+      "nearby": [
+        "Evanston",
+        "Oak Park",
+        "Cicero",
+        "Skokie",
+        "Oak Lawn",
+        "Berwyn"
+      ],
+      "one_fact": "Summers in Chicago are hot and humid, with frequent heat waves.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Chicago"
+      ]
+    },
+    {
+      "slug": "aurora",
+      "name": "Aurora",
+      "county": "Kane, DuPage, Kendall and Will counties",
+      "population_2020": 180542,
+      "metro": "Chicago metropolitan area",
+      "koppen": "hot-summer humid continental (Dfa)",
+      "july_high_f": 84.0,
+      "jan_low_f": 16.0,
+      "climate_station": "Downtown Aurora, Illinois",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 111,
+      "nearby": [
+        "Batavia",
+        "Naperville",
+        "Geneva",
+        "Oswego",
+        "Sugar Grove",
+        "Plainfield"
+      ],
+      "one_fact": "The annual precipitation for Aurora is about 40 inches.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Aurora,_Illinois"
+      ]
+    },
+    {
+      "slug": "joliet",
+      "name": "Joliet",
+      "county": "Will and Kendall counties",
+      "population_2020": 150362,
+      "metro": "Chicago metropolitan area",
+      "koppen": "humid continental (Dfa)",
+      "july_high_f": 83.6,
+      "jan_low_f": 16.6,
+      "climate_station": "Joliet, Illinois",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 104,
+      "nearby": [
+        "Channahon",
+        "Romeoville",
+        "Elwood",
+        "New Lenox",
+        "Crest Hill",
+        "Plainfield"
+      ],
+      "one_fact": "Joliet has hot, humid summers and cold winters with moderate to heavy snowfall.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Joliet,_Illinois"
+      ]
+    }
+  ]
+}

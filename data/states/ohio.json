@@ -1,0 +1,119 @@
+{
+  "state": {
+    "name": "Ohio",
+    "abbr": "OH",
+    "slug": "ohio",
+    "population_2020": 11799448,
+    "source_url": "https://en.wikipedia.org/wiki/Ohio"
+  },
+  "cities": [
+    {
+      "slug": "columbus",
+      "name": "Columbus",
+      "county": "Franklin County",
+      "population_2020": 905748,
+      "metro": "Columbus metropolitan area",
+      "koppen": "humid continental (Dfa)",
+      "july_high_f": 85.4,
+      "jan_low_f": 22.0,
+      "climate_station": "John Glenn Columbus International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 106,
+      "nearby": [
+        "Dublin",
+        "Gahanna",
+        "Westerville",
+        "Worthington",
+        "Whitehall",
+        "Grove City"
+      ],
+      "one_fact": "Columbus is within USDA hardiness zone 6b, bordering on 7a.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Columbus,_Ohio"
+      ]
+    },
+    {
+      "slug": "cleveland",
+      "name": "Cleveland",
+      "county": "Cuyahoga County",
+      "population_2020": 372624,
+      "metro": "Greater Cleveland",
+      "koppen": "humid continental (Dfa) or humid subtropical (Cfa), depending on isotherm",
+      "july_high_f": 83.7,
+      "jan_low_f": 22.3,
+      "climate_station": "Cleveland Hopkins International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 104,
+      "nearby": [
+        "Lakewood",
+        "Rocky River",
+        "Fairview Park",
+        "Shaker Heights",
+        "Cleveland Heights",
+        "South Euclid"
+      ],
+      "one_fact": "The worst winter storm in Cleveland's history was the Great Blizzard of 1978.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Cleveland"
+      ]
+    },
+    {
+      "slug": "cincinnati",
+      "name": "Cincinnati",
+      "county": "Hamilton County",
+      "population_2020": 309317,
+      "metro": "Cincinnati metropolitan area",
+      "koppen": "humid continental (Dfa)",
+      "july_high_f": 86.0,
+      "jan_low_f": 23.1,
+      "climate_station": "Cincinnati/Northern Kentucky International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 27,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 108,
+      "nearby": [
+        "Norwood",
+        "St. Bernard",
+        "Evendale",
+        "Blue Ash",
+        "Covington",
+        "Newport"
+      ],
+      "one_fact": "In Cincinnati, highs reach 90 °F or above on an average of 27 days per year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Cincinnati"
+      ]
+    },
+    {
+      "slug": "toledo",
+      "name": "Toledo",
+      "county": "Lucas County",
+      "population_2020": 270871,
+      "metro": "Toledo metropolitan area",
+      "koppen": "humid continental (Dfa)",
+      "july_high_f": 86.5,
+      "jan_low_f": 20.3,
+      "climate_station": "Toledo Express Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 18.8,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 105,
+      "nearby": [
+        "Maumee",
+        "Perrysburg",
+        "Sylvania",
+        "Oregon",
+        "Waterville",
+        "Rossford"
+      ],
+      "one_fact": "In Toledo, the spring months tend to be the wettest time of year, although precipitation is common year-round.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Toledo,_Ohio"
+      ]
+    }
+  ]
+}

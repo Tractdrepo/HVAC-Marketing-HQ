@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Indiana",
+    "abbr": "IN",
+    "slug": "indiana",
+    "population_2020": 6785528,
+    "source_url": "https://en.wikipedia.org/wiki/Indiana"
+  },
+  "cities": [
+    {
+      "slug": "indianapolis",
+      "name": "Indianapolis",
+      "county": "Marion County",
+      "population_2020": 887642,
+      "metro": "Indianapolis metropolitan area",
+      "koppen": "hot-summer humid continental (Dfa)",
+      "july_high_f": 85.2,
+      "jan_low_f": 20.9,
+      "climate_station": "Indianapolis International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 18,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 106,
+      "nearby": [
+        "Carmel",
+        "Fishers",
+        "Greenwood",
+        "Beech Grove",
+        "Lawrence",
+        "Speedway"
+      ],
+      "one_fact": "Winters in Indianapolis are generally cold with moderate snowfall.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Indianapolis"
+      ]
+    },
+    {
+      "slug": "fort-wayne",
+      "name": "Fort Wayne",
+      "county": "Allen County",
+      "population_2020": 263886,
+      "metro": "Fort Wayne metropolitan area",
+      "koppen": "humid continental (Dfa)",
+      "july_high_f": 84.1,
+      "jan_low_f": 18.4,
+      "climate_station": "Fort Wayne International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 106,
+      "nearby": [
+        "New Haven",
+        "Huntertown",
+        "Leo-Cedarville",
+        "Grabill",
+        "Roanoke",
+        "Auburn"
+      ],
+      "one_fact": "Summers in Fort Wayne are typically hot, humid, and wet.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Fort_Wayne,_Indiana"
+      ]
+    },
+    {
+      "slug": "evansville",
+      "name": "Evansville",
+      "county": "Vanderburgh County",
+      "population_2020": 117298,
+      "metro": "Evansville metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 88.6,
+      "jan_low_f": 25.5,
+      "climate_station": "Evansville Regional Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 41,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 111,
+      "nearby": [
+        "Newburgh",
+        "Henderson",
+        "Darmstadt",
+        "Mount Vernon",
+        "Boonville",
+        "Chandler"
+      ],
+      "one_fact": "Evansville averages 41 days a year with a maximum temperature of 90 °F or above.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Evansville,_Indiana"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "state": {
+    "name": "Alabama",
+    "abbr": "AL",
+    "slug": "alabama",
+    "population_2020": 5024279,
+    "source_url": "https://en.wikipedia.org/wiki/Alabama"
+  },
+  "cities": [
+    {
+      "slug": "huntsville",
+      "name": "Huntsville",
+      "county": "Madison County",
+      "population_2020": 215006,
+      "metro": "Huntsville metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 91.5,
+      "jan_low_f": 33.1,
+      "climate_station": "Huntsville International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 111,
+      "nearby": [
+        "Madison",
+        "Decatur",
+        "Athens",
+        "Meridianville",
+        "Harvest",
+        "Owens Cross Roads"
+      ],
+      "one_fact": "Huntsville experiences hot, humid summers and generally mild winters.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Huntsville,_Alabama"
+      ]
+    },
+    {
+      "slug": "birmingham",
+      "name": "Birmingham",
+      "county": "Jefferson County",
+      "population_2020": 200733,
+      "metro": "Birmingham metropolitan area",
+      "koppen": "humid subtropical",
+      "july_high_f": 91.0,
+      "jan_low_f": 34.9,
+      "climate_station": "Birmingham–Shuttlesworth International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 65,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 107,
+      "nearby": [
+        "Hoover",
+        "Vestavia Hills",
+        "Mountain Brook",
+        "Homewood",
+        "Bessemer",
+        "Pelham"
+      ],
+      "one_fact": "In Birmingham, highs reach or exceed 90 °F on 65 days per year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Birmingham,_Alabama"
+      ]
+    },
+    {
+      "slug": "montgomery",
+      "name": "Montgomery",
+      "county": "Montgomery County",
+      "population_2020": 200603,
+      "metro": "Montgomery metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 93.7,
+      "jan_low_f": 36.5,
+      "climate_station": "Montgomery, Alabama",
+      "climate_period": "1991–2020",
+      "days_90_plus": 86,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 107,
+      "nearby": [
+        "Prattville",
+        "Millbrook",
+        "Wetumpka",
+        "Pike Road",
+        "Mount Meigs"
+      ],
+      "one_fact": "Snowfall in Montgomery occurs only during some winters, and even then is usually light.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Montgomery,_Alabama"
+      ]
+    }
+  ]
+}

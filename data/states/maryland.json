@@ -1,0 +1,38 @@
+{
+  "state": {
+    "name": "Maryland",
+    "abbr": "MD",
+    "slug": "maryland",
+    "population_2020": 6177224,
+    "source_url": "https://en.wikipedia.org/wiki/Maryland"
+  },
+  "cities": [
+    {
+      "slug": "baltimore",
+      "name": "Baltimore",
+      "county": "Independent city",
+      "population_2020": 585708,
+      "metro": "Baltimore metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 88.8,
+      "jan_low_f": 25.4,
+      "climate_station": "Baltimore/Washington International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 43,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 107,
+      "nearby": [
+        "Towson",
+        "Dundalk",
+        "Catonsville",
+        "Glen Burnie",
+        "Pikesville",
+        "Essex"
+      ],
+      "one_fact": "Baltimore summers are hot and humid, with a daily average in July of 80.7 °F and occasional late-day thunderstorms.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Baltimore"
+      ]
+    }
+  ]
+}

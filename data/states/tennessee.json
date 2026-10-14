@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Tennessee",
+    "abbr": "TN",
+    "slug": "tennessee",
+    "population_2020": 6910840,
+    "source_url": "https://en.wikipedia.org/wiki/Tennessee"
+  },
+  "cities": [
+    {
+      "slug": "nashville",
+      "name": "Nashville",
+      "county": "Davidson County",
+      "population_2020": 689447,
+      "metro": "Nashville metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 90.9,
+      "jan_low_f": 30.1,
+      "climate_station": "Nashville International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 109,
+      "nearby": [
+        "Franklin",
+        "Brentwood",
+        "Hendersonville",
+        "Gallatin",
+        "Smyrna",
+        "Lebanon"
+      ],
+      "one_fact": "Snowfall occurs in Nashville during the winter months, but it is usually not heavy.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Nashville,_Tennessee"
+      ]
+    },
+    {
+      "slug": "memphis",
+      "name": "Memphis",
+      "county": "Shelby County",
+      "population_2020": 633104,
+      "metro": "Memphis metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 91.9,
+      "jan_low_f": 33.3,
+      "climate_station": "Memphis International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 64,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 108,
+      "nearby": [
+        "Germantown",
+        "Collierville",
+        "Bartlett",
+        "Millington",
+        "Cordova",
+        "Southaven"
+      ],
+      "one_fact": "Memphis summer weather may come from Texas (very hot and humid) or the Gulf (hot and very humid).",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Memphis,_Tennessee"
+      ]
+    },
+    {
+      "slug": "knoxville",
+      "name": "Knoxville",
+      "county": "Knox County",
+      "population_2020": 190740,
+      "metro": "Knoxville metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 88.4,
+      "jan_low_f": 30.0,
+      "climate_station": "McGhee Tyson Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 36,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 105,
+      "nearby": [
+        "Farragut",
+        "Maryville",
+        "Oak Ridge",
+        "Alcoa",
+        "Lenoir City",
+        "Powell"
+      ],
+      "one_fact": "Knoxville averages 36 days per year with temperatures reaching 90 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Knoxville,_Tennessee"
+      ]
+    }
+  ]
+}

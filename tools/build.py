@@ -166,7 +166,7 @@ def header(has_form=True):
         links = "".join(f'<a href="{u(k)}">{esc(svc_info(k)[0])}</a>' for k in slugs)
         cols += f'<div class="mega-col"><p class="mega-h"><i>{ICON[icon]}</i>{esc(g)}</p>{links}</div>'
     niche_links = "".join(f'<a href="{u(n["slug"])}">{esc(n["name"])}<span>{esc(n["nav"])}</span></a>' for n in niches_sorted())
-    res = [("hvac-marketing", "HVAC marketing guide", "The whole system on one page"), ("guides", "Guides", "Straight answers, every number sourced"), ("tools", "Free tools", "Calculators, no email needed"),
+    res = [("hvac-marketing", "HVAC marketing guide", "The whole system on one page"), ("guides", "Guides", "Straight answers, every number sourced")] + ([("blog", "Blog", "Short answers to owners' questions")] if POSTS else []) + [("tools", "Free tools", "Calculators, no email needed"),
            ("compare", "Compare agencies", "Honest side-by-sides, from their own terms"), ("getting-started", "Getting started", "What happens after you sign up")]
     res_links = "".join(f'<a href="{u(k)}">{n}<span>{d}</span></a>' for k, n, d in res)
     rc = "#report-card" if has_form else u("") + "#report-card"
@@ -199,7 +199,7 @@ def footer(has_form=True):
         <a class="brand" href="{u('')}">{MARK}<span>{esc(BRAND)}<small>{esc(TAGLINE)}</small></span></a>
         <p style="margin-top:16px;max-width:36ch">Websites, Google profiles and lead systems for HVAC companies.</p>
       </div>
-      <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('getting-started')}">Getting started</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li><li><a href="{u('tools')}">Free tools</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li></ul></div>
+      <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('getting-started')}">Getting started</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li>{f'<li><a href="{u("blog")}">Blog</a></li>' if POSTS else ''}<li><a href="{u('tools')}">Free tools</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li></ul></div>
       <div><h2 class="foot-h">Services</h2><ul>{offers}</ul></div>
       <div><h2 class="foot-h">For HVAC</h2><ul>{niches}</ul></div>
       <div><h2 class="foot-h">Locations</h2><ul><li><a href="{u('hvac-marketing-texas')}">Texas</a></li><li><a href="{u('hvac-marketing-houston-tx')}">Houston</a></li><li><a href="{u('hvac-marketing-dallas-tx')}">Dallas</a></li><li><a href="{u('hvac-marketing-austin-tx')}">Austin</a></li><li><a href="{u('hvac-marketing-waco-tx')}">Waco</a></li><li><a href="{u('locations')}">All locations</a></li></ul></div>
@@ -857,8 +857,11 @@ for _fn in sorted(os.listdir(_SDIR)) if os.path.isdir(_SDIR) else []:
             _d = json.load(_f)
         STATES.append(dict(_d["state"], abbr=_d["state"]["abbr"].upper(), cities=_d["cities"]))
 for _st in STATES:
+    # A city page needs its own climate numbers; cities whose article has none wait for map data.
+    _st["cities"] = [c for c in _st["cities"] if c.get("july_high_f") is not None and c.get("jan_low_f") is not None]
     for _c in _st["cities"]:
         _c["_st"] = _st
+STATES = [st for st in STATES if st["cities"]]
 ALL_CITIES = [c for st in STATES for c in st["cities"]]
 # Businesses holding an active TDLR A/C contractor license, merged by company (prospects/centex-prospects.xlsx, Oct 11, 2026)
 TDLR_COUNTY = {"McLennan County": 156, "Bell County": 161}
@@ -866,6 +869,11 @@ TDLR_COUNTY = {"McLennan County": 156, "Bell County": 161}
 
 def city_path(c):
     return f"hvac-marketing-{c['slug']}-{c['_st']['abbr'].lower()}"
+
+
+def place(c):
+    st = c["_st"]
+    return st["name"] if st["abbr"] == "DC" else f"{c['name']}, {st['name']}"
 
 
 def state_key(st):
@@ -921,10 +929,15 @@ def city_page(c):
     lic_html = f'<p class="clic"><b>{lic}</b> businesses hold an active Texas A/C contractor license in {esc(c["county"])} (TDLR records, Oct 2026). That\'s who you\'re up against on the map.</p>' if lic else ""
     others = [o for o in st["cities"] if o["slug"] != c["slug"]]
     near = "".join(f'<a href="{u(city_path(o))}">{esc(o["name"])}</a>' for o in others)
+    other_html = f"""<section class="section"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">{esc(st['name'])}</span><h2>Other {esc(st['name'])} markets</h2></div>
+  <div class="city-links">{near}</div>
+</div></section>
+""" if others else ""
     body = f"""<section class="page-head city-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('locations')}">Locations</a> / <a href="{u(state_key(st))}">{esc(st['name'])}</a> / {esc(c['name'])}</div>
   <span class="eyebrow">{esc(c['county'])} · {esc(c['metro'])}</span>
-  <h1 style="max-width:20ch">HVAC marketing in {esc(c['name'])}, {esc(st['name'])}.</h1>
+  <h1 style="max-width:20ch">HVAC marketing in {esc(place(c).rstrip('.'))}.</h1>
   <p class="lede">When it's {round(c['july_high_f'])}° in July, a {esc(c['name'])} homeowner with a dead AC calls the first shop that shows up and answers. We make sure that's you: a fast site, a Google profile that's actually run, and every missed call texted back in 60 seconds.</p>
   {url_form()}
 </div></section>
@@ -946,12 +959,8 @@ def city_page(c):
   {method_block()}
 </div></section>
 {report_card(f"How does your shop stack up in {c['name']}?")}
-<section class="section"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">{esc(st['name'])}</span><h2>Other {esc(st['name'])} markets</h2></div>
-  <div class="city-links">{near}</div>
-</div></section>
-"""
-    return page(city_path(c), f"HVAC marketing in {c['name']}, {st['abbr']}", f"Websites, Google profiles and missed-call text-back for {c['name']}, {st['name']} HVAC companies. July highs average {deg(c['july_high_f'])}; here's what that means for your marketing.", body)
+{other_html}"""
+    return page(city_path(c), f"HVAC marketing in {c['name']}, {st['abbr']}", f"Websites, Google profiles and missed-call text-back for {place(c)} HVAC companies. July highs average {deg(c['july_high_f'])}; here's what that means for your marketing.", body)
 
 
 def city_cards(cities):
@@ -1013,7 +1022,7 @@ def state_page(st):
 {report_card(f"See how your shop stacks up in your {n} town.")}
 """
     names = [c["name"] for c in sorted(cs, key=lambda c: -(c["population_2020"] or 0))]
-    return page(state_key(st), f"HVAC marketing in {n}", f"Websites, Google profiles and missed-call text-back for {n} HVAC contractors in {', '.join(names[:-1])} and {names[-1]}.", body)
+    return page(state_key(st), f"HVAC marketing in {n}", f"Websites, Google profiles and missed-call text-back for {n} HVAC contractors in " + (f"{', '.join(names[:-1])} and {names[-1]}." if len(names) > 1 else f"{names[0]}."), body)
 
 
 def locations_page():
@@ -1053,6 +1062,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from guides import GUIDES, UPDATED as GUIDES_UPDATED, AUTHOR as GUIDES_AUTHOR
 from vs_guides import VS_GUIDES
 GUIDES = GUIDES + VS_GUIDES
+try:
+    from posts import POSTS, UPDATED as POSTS_UPDATED
+except ImportError:
+    POSTS = []
+POST_SLUGS = {p_["slug"] for p_ in POSTS}
 from niches import NICHES
 from services import SERVICES
 from free_tools import NEW_TOOLS, gcalc_widget
@@ -1060,7 +1074,7 @@ import re as _re
 
 
 def guide_path(slug):
-    return "guide-" + slug
+    return ("post-" if slug in POST_SLUGS else "guide-") + slug
 
 
 def ld(obj):
@@ -1111,8 +1125,8 @@ def author_box():
   <div><b>Logan</b><span>Founder, {esc(BRAND)} · Waco, Texas</span><p>{esc(BRAND)} works only with HVAC companies. Questions about this guide? <a href="{u('contact')}">Get in touch</a>.</p></div></aside>"""
 
 
-def byline():
-    return f'<p class="g-meta g-by"><img src="{a("img/logan-320.webp")}" width="28" height="28" alt="">By {esc(GUIDES_AUTHOR)} · Updated {GUIDES_UPDATED}</p>'
+def byline(updated=None):
+    return f'<p class="g-meta g-by"><img src="{a("img/logan-320.webp")}" width="28" height="28" alt="">By {esc(GUIDES_AUTHOR)} · Updated {updated or GUIDES_UPDATED}</p>'
 
 
 def guide_page(g):
@@ -1120,14 +1134,15 @@ def guide_page(g):
     secs = "".join(f'<h2 id="s{n}">{esc(h)}</h2>' + "".join(guide_block(b) for b in blocks) for n, (h, blocks) in enumerate(g["sections"]))
     take = "".join(f"<li>{esc(t)}</li>" for t in g["takeaways"])
     src = "".join(f'<li><a href="{esc(url)}" rel="noopener">{esc(lbl)}</a></li>' for lbl, url in g["sources"])
-    rel = [x for x in GUIDES if x["slug"] in g["related"]]
+    is_post = g["slug"] in POST_SLUGS
+    rel = [x for x in GUIDES + POSTS if x["slug"] in g["related"] and x["slug"] != g["slug"]]
     rel_html = "".join(f'<a class="card guide-card" href="{u(guide_path(x["slug"]))}"><span class="eyebrow">{x["read"]} min read</span><h3>{esc(x["title"])}</h3><p>{esc(x["desc"])}</p></a>' for x in rel)
     body = f"""<section class="page-head"><div class="wrap g-wrap">
-  <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('guides')}">Guides</a> / {esc(g['short'])}</div>
-  <span class="eyebrow">Guide · {g['read']} min read</span>
+  <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('blog' if is_post else 'guides')}">{'Blog' if is_post else 'Guides'}</a> / {esc(g['short'])}</div>
+  <span class="eyebrow">{'Blog' if is_post else 'Guide'} · {g['read']} min read</span>
   <h1>{esc(g['title'])}</h1>
   <p class="lede">{esc(g['desc'])}</p>
-  {byline()}
+  {byline(POSTS_UPDATED if is_post else None)}
 </div></section>
 <section class="section" style="padding-top:0"><div class="wrap g-wrap">
   <div class="g-take"><h2>Key takeaways</h2><ul class="ticks">{take}</ul></div>
@@ -1140,13 +1155,13 @@ def guide_page(g):
 </div></section>
 {guide_links(g["slug"])}
 <section class="section alt"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Keep reading</span><h2>Related guides</h2></div>
+  <div class="section-head"><span class="eyebrow">Keep reading</span><h2>Related reading</h2></div>
   <div class="grid two">{rel_html}</div>
 </div></section>
 """
     art = ld({"@context": "https://schema.org", "@type": "Article", "headline": g["title"], "description": g["desc"],
               "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND},
-              "dateModified": "2026-10-12", "mainEntityOfPage": f"https://{DOMAIN}/{route(guide_path(g['slug']))}"})
+              "dateModified": g.get("date", "2026-10-12"), "mainEntityOfPage": f"https://{DOMAIN}/{route(guide_path(g['slug']))}"})
     return page(guide_path(g["slug"]), g["title"], g["desc"], body, extra_head=art + faq_ld(g["faq"]), has_form=False)
 
 
@@ -1565,7 +1580,7 @@ PILLAR_FAQ = [
     ("What's the best marketing for an HVAC company?", "For most owner-run shops, a complete Google Business Profile, steady reviews and a fast site with a page per service and town come first, because that's where homeowners pick a shop. Answering every call matters just as much, since a lead you don't answer is wasted."),
     ("How long does HVAC SEO take to work?", "It depends on your town, your competition and where you start, so nobody can honestly promise a date. Profile fixes and review growth can show up within weeks; new pages ranking usually takes months. Be wary of anyone who guarantees page one."),
     ("Should I run Google Ads or do SEO?", "Ads bring calls as long as you pay; SEO and your map listing keep working after you stop. Many shops do both. We run both: ads as an add-on, on top of the parts you own, like your site, your profile, your reviews and your follow-up."),
-    ("Are Google Local Services Ads worth it for HVAC?", "They can be, since you pay per lead and the Google Guaranteed badge shows at the top. Your reviews and how fast you answer affect how often they show, so the basics we run help there too."),
+    ("Are Google Local Services Ads worth it for HVAC?", "They can be, since you pay per lead and the Google Verified badge shows at the top. Your reviews and how fast you answer affect how often they show, so the basics we run help there too."),
     ("How do I get more HVAC maintenance plan sign-ups?", "Ask on every job, put the plan on its own page, and remind past customers before each season. We send the reminders; your techs make the ask."),
     ("How do I market heating in a warm state?", "Heat pumps run in both seasons and cold snaps bring a rush of calls. Have heating pages and your profile ready before the first cold front, not during it."),
     ("Should I market indoor air quality and ductwork?", "Yes, if you do the work. People search for the symptom, like a hot room or dusty vents, so pages that explain the problem plainly bring in calls that turn into bigger jobs."),
@@ -1652,6 +1667,23 @@ def guides_page():
 {report_card("Rather have it checked for you?")}
 """
     return page("guides", "Guides for HVAC owners", "Sourced, plain-English guides on Google rankings, reviews, websites, texting rules and marketing costs for HVAC companies.", body)
+
+
+def blog_page():
+    cards = "".join(f'<a class="card guide-card reveal" href="{u(guide_path(g["slug"]))}"><span class="eyebrow">{g["read"]} min read</span><h3>{esc(g["title"])}</h3><p>{esc(g["desc"])}</p></a>' for g in POSTS)
+    body = f"""<section class="page-head"><div class="wrap">
+  <div class="crumbs"><a href="{u('')}">Home</a> / Blog</div>
+  <span class="eyebrow">Blog</span>
+  <h1 style="max-width:20ch">HVAC marketing, one question at a time.</h1>
+  <p class="lede">Short, sourced answers to the questions HVAC owners ask about ads, SEO, reviews and leads. For the deep dives, see our <a href="{u('guides')}">guides</a>.</p>
+</div></section>
+<section class="section" style="padding-top:12px"><div class="wrap">
+  <h2 class="sr-only">All posts</h2>
+  <div class="grid two">{cards}</div>
+</div></section>
+{report_card("Rather have it checked for you?")}
+"""
+    return page("blog", "HVAC Marketing Blog", "Short, sourced posts for HVAC owners on Google Ads, Local Services Ads, SEO, reviews, websites and lead generation.", body)
 
 
 def sitemap_xml(paths):
@@ -2343,6 +2375,8 @@ def build_routes():
         ROUTES[n["slug"]] = "for-hvac/" + NICHE_URL.get(n["slug"], n["slug"].removeprefix("hvac-marketing-"))
     for g in GUIDES:
         ROUTES[guide_path(g["slug"])] = f"guides/{g['slug']}"
+    for g in POSTS:
+        ROUTES[guide_path(g["slug"])] = f"blog/{g['slug']}"
     ROUTES["tools"] = "free-tools"  # /tools is the build script folder, kept off the live site
     for t in TOOLS:
         ROUTES["tools/" + t["slug"]] = "free-tools/" + t["slug"]
@@ -2374,6 +2408,10 @@ def build(out_dir):
     pages["guides"] = guides_page()
     for g in GUIDES:
         pages[guide_path(g["slug"])] = guide_page(g)
+    if POSTS:
+        pages["blog"] = blog_page()
+        for g in POSTS:
+            pages[guide_path(g["slug"])] = guide_page(g)
     for n in NICHES:
         pages[n["slug"]] = niche_page(n)
     for sv in SERVICES:

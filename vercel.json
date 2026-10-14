@@ -231,6 +231,46 @@
       "permanent": true
     },
     {
+      "source": "/post-how-much-to-spend-on-google-ads-hvac",
+      "destination": "/blog/how-much-to-spend-on-google-ads-hvac",
+      "permanent": true
+    },
+    {
+      "source": "/post-google-local-services-ads-hvac",
+      "destination": "/blog/google-local-services-ads-hvac",
+      "permanent": true
+    },
+    {
+      "source": "/post-google-ads-vs-local-services-ads-hvac",
+      "destination": "/blog/google-ads-vs-local-services-ads-hvac",
+      "permanent": true
+    },
+    {
+      "source": "/post-hvac-seo-what-moves-rankings",
+      "destination": "/blog/hvac-seo-what-moves-rankings",
+      "permanent": true
+    },
+    {
+      "source": "/post-get-more-google-reviews-hvac",
+      "destination": "/blog/get-more-google-reviews-hvac",
+      "permanent": true
+    },
+    {
+      "source": "/post-hvac-website-design",
+      "destination": "/blog/hvac-website-design",
+      "permanent": true
+    },
+    {
+      "source": "/post-hvac-lead-generation-bought-vs-owned",
+      "destination": "/blog/hvac-lead-generation-bought-vs-owned",
+      "permanent": true
+    },
+    {
+      "source": "/post-facebook-ads-for-hvac",
+      "destination": "/blog/facebook-ads-for-hvac",
+      "permanent": true
+    },
+    {
       "source": "/hvac-marketing-texas",
       "destination": "/locations/texas",
       "permanent": true
@@ -336,6 +376,26 @@
       "permanent": true
     },
     {
+      "source": "/hvac-marketing-alabama",
+      "destination": "/locations/alabama",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-huntsville-al",
+      "destination": "/locations/alabama/huntsville",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-birmingham-al",
+      "destination": "/locations/alabama/birmingham",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-montgomery-al",
+      "destination": "/locations/alabama/montgomery",
+      "permanent": true
+    },
+    {
       "source": "/hvac-marketing-arizona",
       "destination": "/locations/arizona",
       "permanent": true
@@ -396,6 +456,46 @@
       "permanent": true
     },
     {
+      "source": "/hvac-marketing-st-petersburg-fl",
+      "destination": "/locations/florida/st-petersburg",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-hialeah-fl",
+      "destination": "/locations/florida/hialeah",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-port-st-lucie-fl",
+      "destination": "/locations/florida/port-st-lucie",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-tallahassee-fl",
+      "destination": "/locations/florida/tallahassee",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-cape-coral-fl",
+      "destination": "/locations/florida/cape-coral",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-fort-lauderdale-fl",
+      "destination": "/locations/florida/fort-lauderdale",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-pembroke-pines-fl",
+      "destination": "/locations/florida/pembroke-pines",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-hollywood-fl",
+      "destination": "/locations/florida/hollywood",
+      "permanent": true
+    },
+    {
       "source": "/hvac-marketing-georgia",
       "destination": "/locations/georgia",
       "permanent": true
@@ -426,6 +526,146 @@
       "permanent": true
     },
     {
+      "source": "/hvac-marketing-illinois",
+      "destination": "/locations/illinois",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-chicago-il",
+      "destination": "/locations/illinois/chicago",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-aurora-il",
+      "destination": "/locations/illinois/aurora",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-joliet-il",
+      "destination": "/locations/illinois/joliet",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-indiana",
+      "destination": "/locations/indiana",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-indianapolis-in",
+      "destination": "/locations/indiana/indianapolis",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-fort-wayne-in",
+      "destination": "/locations/indiana/fort-wayne",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-evansville-in",
+      "destination": "/locations/indiana/evansville",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-kentucky",
+      "destination": "/locations/kentucky",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-louisville-ky",
+      "destination": "/locations/kentucky/louisville",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-lexington-ky",
+      "destination": "/locations/kentucky/lexington",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-maryland",
+      "destination": "/locations/maryland",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-baltimore-md",
+      "destination": "/locations/maryland/baltimore",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-massachusetts",
+      "destination": "/locations/massachusetts",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-boston-ma",
+      "destination": "/locations/massachusetts/boston",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-worcester-ma",
+      "destination": "/locations/massachusetts/worcester",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-springfield-ma",
+      "destination": "/locations/massachusetts/springfield",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-michigan",
+      "destination": "/locations/michigan",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-detroit-mi",
+      "destination": "/locations/michigan/detroit",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-grand-rapids-mi",
+      "destination": "/locations/michigan/grand-rapids",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-warren-mi",
+      "destination": "/locations/michigan/warren",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-new-jersey",
+      "destination": "/locations/new-jersey",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-newark-nj",
+      "destination": "/locations/new-jersey/newark",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-jersey-city-nj",
+      "destination": "/locations/new-jersey/jersey-city",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-new-york",
+      "destination": "/locations/new-york",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-new-york-city-ny",
+      "destination": "/locations/new-york/new-york-city",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-buffalo-ny",
+      "destination": "/locations/new-york/buffalo",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-rochester-ny",
+      "destination": "/locations/new-york/rochester",
+      "permanent": true
+    },
+    {
       "source": "/hvac-marketing-north-carolina",
       "destination": "/locations/north-carolina",
       "permanent": true
@@ -453,6 +693,131 @@
     {
       "source": "/hvac-marketing-wilmington-nc",
       "destination": "/locations/north-carolina/wilmington",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-winston-salem-nc",
+      "destination": "/locations/north-carolina/winston-salem",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-fayetteville-nc",
+      "destination": "/locations/north-carolina/fayetteville",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-ohio",
+      "destination": "/locations/ohio",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-columbus-oh",
+      "destination": "/locations/ohio/columbus",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-cleveland-oh",
+      "destination": "/locations/ohio/cleveland",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-cincinnati-oh",
+      "destination": "/locations/ohio/cincinnati",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-toledo-oh",
+      "destination": "/locations/ohio/toledo",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-pennsylvania",
+      "destination": "/locations/pennsylvania",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-philadelphia-pa",
+      "destination": "/locations/pennsylvania/philadelphia",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-pittsburgh-pa",
+      "destination": "/locations/pennsylvania/pittsburgh",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-allentown-pa",
+      "destination": "/locations/pennsylvania/allentown",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-tennessee",
+      "destination": "/locations/tennessee",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-nashville-tn",
+      "destination": "/locations/tennessee/nashville",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-memphis-tn",
+      "destination": "/locations/tennessee/memphis",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-knoxville-tn",
+      "destination": "/locations/tennessee/knoxville",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-virginia",
+      "destination": "/locations/virginia",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-virginia-beach-va",
+      "destination": "/locations/virginia/virginia-beach",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-chesapeake-va",
+      "destination": "/locations/virginia/chesapeake",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-norfolk-va",
+      "destination": "/locations/virginia/norfolk",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-richmond-va",
+      "destination": "/locations/virginia/richmond",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-washington-dc",
+      "destination": "/locations/washington-dc/washington",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-wisconsin",
+      "destination": "/locations/wisconsin",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-milwaukee-wi",
+      "destination": "/locations/wisconsin/milwaukee",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-madison-wi",
+      "destination": "/locations/wisconsin/madison",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-green-bay-wi",
+      "destination": "/locations/wisconsin/green-bay",
       "permanent": true
     },
     {

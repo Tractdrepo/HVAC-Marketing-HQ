@@ -1,0 +1,119 @@
+{
+  "state": {
+    "name": "Virginia",
+    "abbr": "VA",
+    "slug": "virginia",
+    "population_2020": 8631393,
+    "source_url": "https://en.wikipedia.org/wiki/Virginia"
+  },
+  "cities": [
+    {
+      "slug": "virginia-beach",
+      "name": "Virginia Beach",
+      "county": "Independent city",
+      "population_2020": 459470,
+      "metro": "Hampton Roads (Virginia Beach–Norfolk–Newport News metropolitan area)",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 89.4,
+      "jan_low_f": 33.6,
+      "climate_station": "Norfolk International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 105,
+      "nearby": [
+        "Norfolk",
+        "Chesapeake",
+        "Portsmouth",
+        "Suffolk",
+        "Hampton",
+        "Newport News"
+      ],
+      "one_fact": "Much of the year in Virginia Beach is mild to warm.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Virginia_Beach,_Virginia"
+      ]
+    },
+    {
+      "slug": "chesapeake",
+      "name": "Chesapeake",
+      "county": "Independent city",
+      "population_2020": 249422,
+      "metro": "Hampton Roads metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 88.7,
+      "jan_low_f": 30.3,
+      "climate_station": "Chesapeake, Virginia",
+      "climate_period": "1980–2010",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": null,
+      "nearby": [
+        "Portsmouth",
+        "Norfolk",
+        "Virginia Beach",
+        "Suffolk",
+        "Hampton",
+        "Newport News"
+      ],
+      "one_fact": "Chesapeake's climate is characterized by hot, humid summers and generally mild to cool winters.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Chesapeake,_Virginia"
+      ]
+    },
+    {
+      "slug": "norfolk",
+      "name": "Norfolk",
+      "county": "Independent city",
+      "population_2020": 238005,
+      "metro": "Hampton Roads (Virginia Beach–Norfolk–Newport News metropolitan area)",
+      "koppen": "humid subtropical",
+      "july_high_f": 89.4,
+      "jan_low_f": 33.6,
+      "climate_station": "Norfolk International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 35,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 105,
+      "nearby": [
+        "Virginia Beach",
+        "Chesapeake",
+        "Portsmouth",
+        "Hampton",
+        "Newport News",
+        "Suffolk"
+      ],
+      "one_fact": "Norfolk reaches 90 °F or higher on an average of 35 days annually.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Norfolk,_Virginia"
+      ]
+    },
+    {
+      "slug": "richmond",
+      "name": "Richmond",
+      "county": "Independent city",
+      "population_2020": 226610,
+      "metro": "Greater Richmond (Richmond–Petersburg metropolitan area)",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 89.5,
+      "jan_low_f": 28.8,
+      "climate_station": "Richmond International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 43,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 107,
+      "nearby": [
+        "Glen Allen",
+        "Short Pump",
+        "Tuckahoe",
+        "Mechanicsville",
+        "Petersburg",
+        "Colonial Heights"
+      ],
+      "one_fact": "In Richmond, high temperatures reach or exceed 90 °F approximately 43 days a year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Richmond,_Virginia"
+      ]
+    }
+  ]
+}

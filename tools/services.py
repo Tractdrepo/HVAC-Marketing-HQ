@@ -407,7 +407,7 @@ SERVICES = [
         "slug": "local-services-ads",
         "pains_h": "Where Local Services Ads go wrong.",
         "name": "Local Services Ads",
-        "nav": "Pay per lead, with the Google Guaranteed badge",
+        "nav": "Pay per lead, with the Google Verified badge",
         "title": "Local Services Ads management for HVAC companies",
         "h1": "Local Services Ads for HVAC, set up right and watched every week.",
         "desc": "Local Services Ads management for HVAC contractors: verification, budget, service types and lead disputes handled for you, with your reviews and response time kept strong so your ads show more.",

@@ -142,6 +142,60 @@
         "https://en.wikipedia.org/wiki/Wilmington_metropolitan_area",
         "https://en.wikipedia.org/wiki/New_Hanover_County,_North_Carolina"
       ]
+    },
+    {
+      "slug": "winston-salem",
+      "name": "Winston-Salem",
+      "county": "Forsyth County",
+      "population_2020": 249545,
+      "metro": "Winston-Salem metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 88.0,
+      "jan_low_f": 30.7,
+      "climate_station": "Smith Reynolds Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 104,
+      "nearby": [
+        "Clemmons",
+        "Lewisville",
+        "Bermuda Run",
+        "Kernersville",
+        "Walkertown",
+        "Bethania"
+      ],
+      "one_fact": "Winston-Salem has a humid subtropical climate, characterized by cool winters and warm, humid summers.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Winston-Salem,_North_Carolina"
+      ]
+    },
+    {
+      "slug": "fayetteville",
+      "name": "Fayetteville",
+      "county": "Cumberland County",
+      "population_2020": 208501,
+      "metro": "Fayetteville metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 91.4,
+      "jan_low_f": 34.0,
+      "climate_station": "Fayetteville, North Carolina",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 110,
+      "nearby": [
+        "Hope Mills",
+        "Spring Lake",
+        "Raeford",
+        "Stedman",
+        "Eastover",
+        "Wade"
+      ],
+      "one_fact": "Fayetteville summers are hot, with levels of humidity that can cause spontaneous thunderstorms and rain showers.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Fayetteville,_North_Carolina"
+      ]
     }
   ]
 }

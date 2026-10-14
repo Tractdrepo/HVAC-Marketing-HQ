@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Pennsylvania",
+    "abbr": "PA",
+    "slug": "pennsylvania",
+    "population_2020": 13002700,
+    "source_url": "https://en.wikipedia.org/wiki/Pennsylvania"
+  },
+  "cities": [
+    {
+      "slug": "philadelphia",
+      "name": "Philadelphia",
+      "county": "Philadelphia County",
+      "population_2020": 1603797,
+      "metro": "Philadelphia metropolitan area (Delaware Valley)",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 87.8,
+      "jan_low_f": 26.0,
+      "climate_station": "Philadelphia International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 30,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 106,
+      "nearby": [
+        "Cheltenham",
+        "Cherry Hill",
+        "Conshohocken",
+        "Camden",
+        "Ridley Park",
+        "Upper Darby"
+      ],
+      "one_fact": "Philadelphia sees highs reaching or exceeding 90 °F on about 30 days of the year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Philadelphia"
+      ]
+    },
+    {
+      "slug": "pittsburgh",
+      "name": "Pittsburgh",
+      "county": "Allegheny County",
+      "population_2020": 302971,
+      "metro": "Pittsburgh metropolitan area",
+      "koppen": "humid continental (Dfa) or humid subtropical (Cfa), depending on isotherm",
+      "july_high_f": 82.9,
+      "jan_low_f": 21.4,
+      "climate_station": "Pittsburgh International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 9.5,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 103,
+      "nearby": [
+        "Dormont",
+        "Mount Lebanon",
+        "West Mifflin",
+        "McKees Rocks",
+        "Bethel Park",
+        "Monroeville"
+      ],
+      "one_fact": "Pittsburgh summers are hot and winters are moderately cold, with wide variations in temperature.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Pittsburgh"
+      ]
+    },
+    {
+      "slug": "allentown",
+      "name": "Allentown",
+      "county": "Lehigh County",
+      "population_2020": 125845,
+      "metro": "Lehigh Valley metropolitan area",
+      "koppen": "humid continental (Dfa) or humid subtropical (Cfa), depending on isotherm",
+      "july_high_f": 86.4,
+      "jan_low_f": 21.8,
+      "climate_station": "Lehigh Valley International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 105,
+      "nearby": [
+        "Bethlehem",
+        "Easton",
+        "Emmaus",
+        "Whitehall Township",
+        "South Whitehall Township",
+        "Salisbury Township"
+      ],
+      "one_fact": "Summers in Allentown are typically warm and muggy.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Allentown,_Pennsylvania"
+      ]
+    }
+  ]
+}

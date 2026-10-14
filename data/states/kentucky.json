@@ -1,0 +1,65 @@
+{
+  "state": {
+    "name": "Kentucky",
+    "abbr": "KY",
+    "slug": "kentucky",
+    "population_2020": 4505836,
+    "source_url": "https://en.wikipedia.org/wiki/Kentucky"
+  },
+  "cities": [
+    {
+      "slug": "louisville",
+      "name": "Louisville",
+      "county": "Jefferson County",
+      "population_2020": 633045,
+      "metro": "Louisville metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 89.0,
+      "jan_low_f": 27.8,
+      "climate_station": "Louisville International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 38,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 107,
+      "nearby": [
+        "Jeffersontown",
+        "Shively",
+        "St. Matthews",
+        "Middletown",
+        "Jeffersonville",
+        "New Albany"
+      ],
+      "one_fact": "Louisville averages 38 days a year with high temperatures at or above 90 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Louisville,_Kentucky"
+      ]
+    },
+    {
+      "slug": "lexington",
+      "name": "Lexington",
+      "county": "Fayette County",
+      "population_2020": 322570,
+      "metro": "Lexington–Fayette metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 86.9,
+      "jan_low_f": 25.4,
+      "climate_station": "Blue Grass Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 25,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 108,
+      "nearby": [
+        "Georgetown",
+        "Nicholasville",
+        "Winchester",
+        "Versailles",
+        "Paris",
+        "Richmond"
+      ],
+      "one_fact": "Lexington averages 25 days a year at or above 90 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Lexington,_Kentucky"
+      ]
+    }
+  ]
+}

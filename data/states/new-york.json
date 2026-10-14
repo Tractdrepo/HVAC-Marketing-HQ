@@ -1,0 +1,119 @@
+{
+  "state": {
+    "name": "New York",
+    "abbr": "NY",
+    "slug": "new-york",
+    "population_2020": 20201249,
+    "source_url": "https://en.wikipedia.org/wiki/New_York_(state)"
+  },
+  "cities": [
+    {
+      "slug": "new-york-city",
+      "name": "New York City",
+      "county": "New York, Kings, Queens, Bronx and Richmond counties",
+      "population_2020": 8804190,
+      "metro": "New York metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 84.9,
+      "jan_low_f": 27.9,
+      "climate_station": "Belvedere Castle, Central Park",
+      "climate_period": "1991–2020",
+      "days_90_plus": 17,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 106,
+      "nearby": [
+        "Yonkers",
+        "Jersey City",
+        "Newark",
+        "Hoboken",
+        "New Rochelle",
+        "Mount Vernon"
+      ],
+      "one_fact": "Summers in New York City are typically hot and humid, with a daily mean temperature of 77.5 °F in July.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/New_York_City"
+      ]
+    },
+    {
+      "slug": "buffalo",
+      "name": "Buffalo",
+      "county": "Erie County",
+      "population_2020": 278349,
+      "metro": "Buffalo–Niagara Falls metropolitan area",
+      "koppen": "humid continental (Dfa)",
+      "july_high_f": 80.2,
+      "jan_low_f": 19.0,
+      "climate_station": "Buffalo Niagara International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 3,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 99,
+      "nearby": [
+        "Amherst",
+        "Williamsville",
+        "West Seneca",
+        "East Aurora",
+        "Lackawanna",
+        "Orchard Park"
+      ],
+      "one_fact": "Buffalo is one of the top five snowiest large cities in the country, receiving on average 95 inches of snow annually.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Buffalo,_New_York"
+      ]
+    },
+    {
+      "slug": "rochester",
+      "name": "Rochester",
+      "county": "Monroe County",
+      "population_2020": 211328,
+      "metro": "Rochester metropolitan area",
+      "koppen": "humid continental (Dfa)",
+      "july_high_f": 82.5,
+      "jan_low_f": 19.0,
+      "climate_station": "Greater Rochester International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 102,
+      "nearby": [
+        "Irondequoit",
+        "Brighton",
+        "Chili",
+        "Gates",
+        "Greece",
+        "Henrietta"
+      ],
+      "one_fact": "Winters in Rochester are cold, with temperatures dropping to 0 °F on 4.2 nights annually.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Rochester,_New_York"
+      ]
+    },
+    {
+      "slug": "yonkers",
+      "name": "Yonkers",
+      "county": "Westchester County",
+      "population_2020": 211569,
+      "metro": "New York metropolitan area",
+      "koppen": null,
+      "july_high_f": null,
+      "jan_low_f": null,
+      "climate_station": null,
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": null,
+      "nearby": [
+        "Mount Vernon",
+        "Tuckahoe",
+        "Eastchester",
+        "Bronxville",
+        "Scarsdale",
+        "Hastings-on-Hudson"
+      ],
+      "one_fact": null,
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Yonkers,_New_York"
+      ]
+    }
+  ]
+}

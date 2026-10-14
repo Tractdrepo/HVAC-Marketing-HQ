@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "New Jersey",
+    "abbr": "NJ",
+    "slug": "new-jersey",
+    "population_2020": 9288994,
+    "source_url": "https://en.wikipedia.org/wiki/New_Jersey"
+  },
+  "cities": [
+    {
+      "slug": "newark",
+      "name": "Newark",
+      "county": "Essex County",
+      "population_2020": 311549,
+      "metro": "New York metropolitan area",
+      "koppen": "humid subtropical/humid continental (Cfa/Dfa)",
+      "july_high_f": 86.9,
+      "jan_low_f": 25.5,
+      "climate_station": "Newark Liberty International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 28.3,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 108,
+      "nearby": [
+        "Belleville",
+        "Bloomfield",
+        "East Orange",
+        "Irvington",
+        "Maplewood",
+        "South Orange"
+      ],
+      "one_fact": "Spring and autumn in the Newark area are generally unstable yet mild.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Newark,_New_Jersey"
+      ]
+    },
+    {
+      "slug": "jersey-city",
+      "name": "Jersey City",
+      "county": "Hudson County",
+      "population_2020": 292449,
+      "metro": "New York metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 84,
+      "jan_low_f": 27,
+      "climate_station": null,
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 106,
+      "nearby": [
+        "Hoboken",
+        "Bayonne",
+        "Union City",
+        "Secaucus",
+        "North Bergen",
+        "Kearny"
+      ],
+      "one_fact": "Jersey City recorded a record high of 106 °F in July 1936.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Jersey_City,_New_Jersey"
+      ]
+    },
+    {
+      "slug": "paterson",
+      "name": "Paterson",
+      "county": "Passaic County",
+      "population_2020": 159732,
+      "metro": "New York metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": null,
+      "jan_low_f": null,
+      "climate_station": null,
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": null,
+      "nearby": [
+        "Clifton",
+        "Haledon",
+        "Hawthorne",
+        "Prospect Park",
+        "Totowa",
+        "Woodland Park"
+      ],
+      "one_fact": "Despite its size, Paterson has no weather reporting station and thus no historical climate data.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Paterson,_New_Jersey"
+      ]
+    }
+  ]
+}

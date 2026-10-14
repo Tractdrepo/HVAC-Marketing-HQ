@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Wisconsin",
+    "abbr": "WI",
+    "slug": "wisconsin",
+    "population_2020": 5893718,
+    "source_url": "https://en.wikipedia.org/wiki/Wisconsin"
+  },
+  "cities": [
+    {
+      "slug": "milwaukee",
+      "name": "Milwaukee",
+      "county": "Milwaukee County",
+      "population_2020": 577222,
+      "metro": "Milwaukee metropolitan area",
+      "koppen": "humid continental (Dfa)",
+      "july_high_f": 81.9,
+      "jan_low_f": 17.2,
+      "climate_station": "Milwaukee Mitchell International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 9,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 105,
+      "nearby": [
+        "Wauwatosa",
+        "West Allis",
+        "Whitefish Bay",
+        "South Milwaukee",
+        "Cudahy",
+        "Brookfield"
+      ],
+      "one_fact": "Thunderstorms in the Milwaukee region can be dangerous and damaging, bringing hail and high winds.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Milwaukee"
+      ]
+    },
+    {
+      "slug": "madison",
+      "name": "Madison",
+      "county": "Dane County",
+      "population_2020": 269840,
+      "metro": "Madison metropolitan area",
+      "koppen": "humid continental (Dfa)",
+      "july_high_f": 82.1,
+      "jan_low_f": 11.8,
+      "climate_station": "Dane County Regional Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 12,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 107,
+      "nearby": [
+        "Sun Prairie",
+        "Middleton",
+        "McFarland",
+        "Fitchburg",
+        "Verona",
+        "Waunakee"
+      ],
+      "one_fact": "Madison reaches 90 °F on an average of 12 afternoons per year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Madison,_Wisconsin"
+      ]
+    },
+    {
+      "slug": "green-bay",
+      "name": "Green Bay",
+      "county": "Brown County",
+      "population_2020": 107395,
+      "metro": "Green Bay metropolitan area",
+      "koppen": "humid continental (Dfb)",
+      "july_high_f": 81.0,
+      "jan_low_f": 11.1,
+      "climate_station": "Austin Straubel International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 6.1,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 104,
+      "nearby": [
+        "Ashwaubenon",
+        "Bellevue",
+        "Hobart",
+        "De Pere",
+        "Howard",
+        "Allouez"
+      ],
+      "one_fact": "Green Bay experiences warm, humid summers and cold, snowy winters.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Green_Bay,_Wisconsin"
+      ]
+    }
+  ]
+}
