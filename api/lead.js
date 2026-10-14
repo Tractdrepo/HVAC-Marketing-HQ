@@ -118,7 +118,10 @@ async function autoReport(lead) {
   if (result.report.overall == null) return tellTeam(lead, `nothing could be measured (${result.facts.notes.join(" ")})`);
   const r = renderReport(result, { firstName: lead.first_name, bookingUrl: BOOKING_URL, siteUrl: SITE_URL });
   try {
-    await sendEmail({ to: [lead.email], reply_to: process.env.LEAD_TO, subject: r.subject, html: r.html, text: r.text });
+    // From a person, not a brand: REPORT_FROM if set, else "Logan at HVAC Marketing HQ" on the LEAD_FROM address.
+    const addr = (process.env.LEAD_FROM.match(/<([^>]+)>/) || [, process.env.LEAD_FROM])[1].trim();
+    const from = process.env.REPORT_FROM || `Logan at HVAC Marketing HQ <${addr}>`;
+    await sendEmail({ from, to: [lead.email], reply_to: process.env.LEAD_TO, subject: r.subject, html: r.html, text: r.text });
   } catch (err) {
     return tellTeam(lead, `the email failed (${err.message})`);
   }

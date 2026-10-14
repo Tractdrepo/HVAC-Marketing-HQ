@@ -142,43 +142,32 @@ export function renderReport(result, { firstName, bookingUrl, siteUrl }) {
   const link = resultsUrl(siteUrl, data);
   const names = Object.fromEntries(AREAS);
   const font = 'font-family:Arial,Helvetica,sans-serif';
+  // Written like a note from Logan, not a newsletter: no banner, no button, no footer, two links.
+  // Designed, image-like emails with buttons are what Gmail files under Promotions.
+  const p = (inner, extra = '') => `<p style="${font};font-size:15px;line-height:1.6;color:#111827;margin:0 0 14px;${extra}">${inner}</p>`;
   const rows = data.a.map((a) => {
     const top = a.fx[0];
-    const score = known(a.s) ? `<span style="color:#64748b;font-weight:400"> ${a.s} / 100</span>` : '';
-    return `<tr><td style="padding:16px 0;border-top:1px solid #e2e8f0;vertical-align:top;width:56px;${font};font-weight:700;font-size:26px;line-height:1;color:${color(a.g)}">${esc(a.g || 'N/A')}</td>
-<td style="padding:16px 0 16px 10px;border-top:1px solid #e2e8f0;${font};font-size:15px;line-height:1.5;color:#0f172a">
-<b>${esc(names[a.k])}</b>${score}<br><span style="font-size:13px;color:#475569">${esc(a.saw)}</span>
-${top ? `<br><b style="font-size:14px">Top fix:</b> <span style="font-size:14px;color:#334155">${esc(top)}</span>` : known(a.s) ? '<br><span style="font-size:14px;color:#334155">Nothing to fix here. Keep it up.</span>' : ''}
-</td></tr>`;
+    const score = known(a.s) ? ` (${a.s} / 100)` : '';
+    return `<tr><td style="padding:10px 12px 10px 0;vertical-align:top;${font};font-size:18px;font-weight:700;color:${color(a.g)};width:44px">${esc(a.g || 'N/A')}</td>
+<td style="padding:10px 0;vertical-align:top;${font};font-size:15px;line-height:1.5;color:#111827"><b>${esc(names[a.k])}</b>${score}<br>${esc(a.saw)}${top ? `<br>Top fix: ${esc(top)}` : ''}</td></tr>`;
   }).join('');
   const weakName = data.lo ? lc(names[data.lo]) : null;
-  const btn = (href, label, bg) => `<a href="${esc(href)}" style="display:inline-block;background:${bg};color:#fff;text-decoration:none;${font};font-weight:700;font-size:15px;padding:12px 18px;border-radius:8px">${label}</a>`;
-  const html = `<!doctype html><html><body style="margin:0;background:#eef2f7">
-<div style="max-width:620px;margin:0 auto;padding:24px 14px">
-<div style="background:#fff;border-radius:12px;padding:26px 26px 22px">
-<table role="presentation" style="width:100%;border-collapse:collapse"><tr>
-<td style="${font};vertical-align:top"><div style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c2410c">HVAC Marketing HQ</div>
-<div style="font-size:13px;color:#64748b;margin-top:14px">HVAC report card</div>
-<div style="font-size:21px;font-weight:700;color:#0f172a;line-height:1.25">${esc(data.n)}</div>${data.w ? `<div style="font-size:13px;color:#64748b">${esc(data.w)}</div>` : ''}</td>
-<td style="${font};text-align:right;vertical-align:top;white-space:nowrap"><div style="font-size:46px;font-weight:800;line-height:1;color:${color(data.g)}">${esc(data.g || 'N/A')}</div><div style="font-size:13px;color:#64748b;margin-top:4px">${known(data.o) ? `${data.o} / 100` : ''}</div></td>
-</tr></table>
-<p style="${font};font-size:15px;line-height:1.6;color:#334155;margin:20px 0 6px">Hi ${esc(data.f || 'there')},</p>
-<p style="${font};font-size:15px;line-height:1.6;color:#0f172a;margin:0 0 16px">${esc(data.s)}</p>
-<p style="${font};font-size:14px;color:#334155;margin:0 0 14px">Want the full breakdown? <a href="${esc(link)}" style="color:#c2410c;font-weight:700">See your full report and how to fix it</a>.</p>
-<table role="presentation" style="width:100%;border-collapse:collapse">${rows}</table>
-<div style="border-top:1px solid #e2e8f0;padding-top:18px;${font};font-size:15px;line-height:1.6;color:#0f172a">
-${weakName ? `Your lowest grade is <b>your ${esc(weakName)}</b>. ` : ''}Book 15 minutes and we'll show you how we'd fix it and what it would cost. No pitch deck.
-<div style="margin:14px 0 6px">${btn(bookingUrl, 'Book a 15-minute call', '#c2410c')}</div>
-<div style="font-size:14px;color:#475569;margin-top:10px">Not ready yet? <a href="${esc(link)}" style="color:#c2410c">See exactly how each fix works</a>, or just reply to this email with a question.</div>
-</div>
-<p style="${font};font-size:12px;line-height:1.5;color:#64748b;margin:20px 0 0">We checked your Google profile, reviews, home page and listings on ${esc(new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }))}. Anything we couldn't measure is left out of your grade, not counted against you.</p>
-</div>
-<p style="${font};font-size:12px;color:#94a3b8;text-align:center">HVAC Marketing HQ · <a href="${esc(siteUrl)}" style="color:#94a3b8">hvacmarketinghq.com</a></p>
+  const when = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  const html = `<!doctype html><html><body style="margin:0;padding:0">
+<div style="max-width:600px;padding:8px 4px">
+${p(`Hi ${esc(data.f || 'there')},`)}
+${p(`Here's the report card for ${esc(data.n)}${data.w ? ` in ${esc(data.w)}` : ''}. Overall you got <b>${esc(data.g || 'N/A')}</b>${known(data.o) ? `, ${data.o} out of 100` : ''}.`)}
+${p(esc(data.s.startsWith(`${data.n} scores `) ? data.s.replace(/^.*?\.\s+/, '') : data.s))}
+<table role="presentation" style="border-collapse:collapse;margin:0 0 14px">${rows}</table>
+${p(`${weakName ? `The one I'd fix first is your ${esc(weakName)}. ` : ''}Your full report, with how each fix works, is here: <a href="${esc(link)}">your full report card</a>.`)}
+${p(`If you'd like to walk through it together, you can <a href="${esc(bookingUrl)}">grab 15 minutes on my calendar</a>. Or just reply to this email with a question. It comes straight to me.`)}
+${p('Logan<br>HVAC Marketing HQ', 'margin-top:20px')}
+${p(`We checked your Google profile, reviews, home page and listings on ${esc(when)}. Anything we couldn't measure is left out of your grade, not counted against you.`, 'font-size:13px;color:#6b7280')}
 </div></body></html>`;
   const text = [`Hi ${data.f || 'there'},`, '', `HVAC report card: ${data.n}${data.w ? ` (${data.w})` : ''}`,
     `Overall: ${data.g || 'N/A'}${known(data.o) ? ` (${data.o} / 100)` : ''}`, '', data.s, '',
     ...data.a.flatMap((a) => [`${names[a.k]}: ${a.g || 'N/A'}${known(a.s) ? ` (${a.s} / 100)` : ''}`, `  ${a.saw}`, ...(a.fx[0] ? [`  Top fix: ${a.fx[0]}`] : []), '']),
-    `Full report and how to fix it: ${link}`, `Book a 15-minute call: ${bookingUrl}`].join('\n');
+    `Full report and how to fix it: ${link}`, `Grab 15 minutes on my calendar: ${bookingUrl}`, '', 'Logan', 'HVAC Marketing HQ'].join('\n');
   const article = (g) => (/^[AEF]/.test(g) ? 'an' : 'a');
   return { subject: `Your report card: ${data.n} gets ${data.g ? `${article(data.g)} ${data.g}` : 'graded'}`, html, text, link, data };
 }
