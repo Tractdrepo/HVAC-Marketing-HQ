@@ -167,7 +167,7 @@ def header(has_form=True):
         cols += f'<div class="mega-col"><p class="mega-h"><i>{ICON[icon]}</i>{esc(g)}</p>{links}</div>'
     niche_links = "".join(f'<a href="{u(n["slug"])}">{esc(n["name"])}<span>{esc(n["nav"])}</span></a>' for n in niches_sorted())
     res = [("hvac-marketing", "HVAC marketing guide", "The whole system on one page"), ("guides", "Guides", "Straight answers, every number sourced")] + ([("blog", "Blog", "Short answers to owners' questions")] if POSTS else []) + [("tools", "Free tools", "Calculators, no email needed"),
-           ("compare", "Compare agencies", "Honest side-by-sides, from their own terms"), ("getting-started", "Getting started", "What happens after you sign up")]
+           ("compare", "Compare agencies", "Honest side-by-sides, from their own terms"), ("getting-started", "Getting started", "What happens after you sign up"), ("about", "About us", "Who we are and how we work")]
     res_links = "".join(f'<a href="{u(k)}">{n}<span>{d}</span></a>' for k, n, d in res)
     rc = "#report-card" if has_form else u("") + "#report-card"
     return f"""<a class="skip" href="#main">Skip to content</a>
@@ -203,7 +203,7 @@ def footer(has_form=True):
       <div><h2 class="foot-h">Services</h2><ul>{offers}</ul></div>
       <div><h2 class="foot-h">For HVAC</h2><ul>{niches}</ul></div>
       <div><h2 class="foot-h">Locations</h2><ul><li><a href="{u('hvac-marketing-texas')}">Texas</a></li><li><a href="{u('hvac-marketing-houston-tx')}">Houston</a></li><li><a href="{u('hvac-marketing-dallas-tx')}">Dallas</a></li><li><a href="{u('hvac-marketing-austin-tx')}">Austin</a></li><li><a href="{u('hvac-marketing-waco-tx')}">Waco</a></li><li><a href="{u('locations')}">All locations</a></li></ul></div>
-      <div><h2 class="foot-h">Company</h2><ul><li><a href="{u('report-card')}">Free report card</a></li><li><a href="{u('contact')}">Contact</a></li><li><a href="{esc(call_link())}">Book a 15-minute call</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="/llms.txt">Info for AI assistants</a></li></ul></div>
+      <div><h2 class="foot-h">Company</h2><ul><li><a href="{u('about')}">About</a></li><li><a href="{u('report-card')}">Free report card</a></li><li><a href="{u('contact')}">Contact</a></li><li><a href="{esc(call_link())}">Book a 15-minute call</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="/llms.txt">Info for AI assistants</a></li></ul></div>
     </div>
     <p class="foot-word" aria-hidden="true">{esc(BRAND)}</p>
     <div class="foot-base">
@@ -1558,6 +1558,49 @@ def contact_page():
     return page("contact", "Contact", "Contact HVAC Marketing HQ: email, book a 15-minute call, or get a free report card on how your HVAC company shows up on Google.", body)
 
 
+def about_page():
+    beliefs = [
+        ("HVAC only", "One trade means we know the jobs, the seasons and the searches. Every page, script and campaign is built for heating and cooling work."),
+        ("You own everything", "Your domain, site content, Google profile, reviews, ad accounts and customer list are in your name. Leave anytime and take it all."),
+        ("Prices on the site", "Plan prices are published on the site. The call is about your shop, not a quote."),
+        ("Booked jobs, not clicks", "We judge our work by calls answered and jobs booked, on a dashboard you can check yourself."),
+    ]
+    cards = "".join(f'<div class="card reveal"><h3>{esc(h)}</h3><p>{esc(t)}</p></div>' for h, t in beliefs)
+    body = f"""<section class="page-head"><div class="wrap about-head">
+  <div>
+    <div class="crumbs"><a href="{u('')}">Home</a> / About</div>
+    <span class="eyebrow">About {esc(BRAND)}</span>
+    <h1 style="max-width:18ch">Built for the HVAC shops that do the work.</h1>
+    <p class="lede">{esc(BRAND)} is a marketing company for HVAC contractors, and only HVAC contractors. We're based in Waco, Texas, and work with shops anywhere in the U.S.</p>
+  </div>
+  <figure class="about-photo"><img src="{a('img/logan-portrait-600.webp')}" width="600" height="900" alt="Logan, founder of {esc(BRAND)}" loading="eager"><figcaption><b>Logan</b><span>Founder</span></figcaption></figure>
+</div></section>
+<section class="section"><div class="wrap g-wrap">
+  <span class="eyebrow">A note from the founder</span>
+  <h2>Why I started {esc(BRAND)}.</h2>
+  <div class="about-note">
+    <p>Most HVAC owners I talk to are great at the work and stuck with marketing that doesn't add up. They're paying for a site they don't own, leads they share with three other shops, or a report full of clicks that never turned into a job.</p>
+    <p>I started {esc(BRAND)} to do it the other way. One trade. Prices on the site. A fast website, a Google profile that's actually run, every missed call texted back, and reviews coming in after every job, all in your name, all tracked to booked jobs.</p>
+    <p>If we're not the right fit for your shop, I'll tell you. If we are, you'll always know exactly what you're paying for and what it's bringing in.</p>
+    <p class="about-sign">Logan<br><span>Founder, {esc(BRAND)}</span></p>
+  </div>
+</div></section>
+<section class="section alt"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">What we believe</span><h2>How we work.</h2></div>
+  <div class="grid two">{cards}</div>
+</div></section>
+<section class="section"><div class="wrap split">
+  <div><span class="eyebrow">The facts</span><h2>{esc(BRAND)} at a glance.</h2></div>
+  <div class="card"><ul class="ticks"><li>HVAC contractors only, residential and light commercial</li><li>Based in Waco, Texas, serving shops across the U.S.</li><li>The method: <a href="{u('method')}">Rank, Book, Repeat</a></li><li>Published <a href="{u('plans')}">pricing</a>, with a 30-day money-back guarantee</li><li>Email: <a href="mailto:{EMAIL}">{EMAIL}</a></li></ul></div>
+</div></section>
+{report_card()}
+"""
+    ld_ = ld({"@context": "https://schema.org", "@type": "AboutPage", "name": f"About {BRAND}", "url": f"https://{DOMAIN}/about",
+              "mainEntity": {"@type": "Organization", "name": BRAND, "url": f"https://{DOMAIN}/", "email": EMAIL, "address": {"@type": "PostalAddress", "addressLocality": "Waco", "addressRegion": "TX", "addressCountry": "US"},
+                             "founder": {"@type": "Person", "name": "Logan", "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg"}}})
+    return page("about", f"About {BRAND}", f"About {BRAND}: an HVAC-only marketing company based in Waco, Texas. Meet the founder and how we work.", body, extra_head=ld_)
+
+
 PATH_STEPS = [
     ("search", "Rank", "Searches on Google", "A homeowner with a hot house types \"ac repair near me\" on their phone."),
     ("pin", "Rank", "Picks from the map", "Three shops show up. Stars, reviews, photos and hours decide who gets the call."),
@@ -2423,6 +2466,7 @@ def build(out_dir):
     for t in TOOLS:
         pages["tools/" + t["slug"]] = tool_page(t)
     pages["contact"] = contact_page()
+    pages["about"] = about_page()
     pages["hvac-marketing"] = pillar_page()
     pages["compare"] = compare_hub()
     pages["hvac-specialties"] = specialties_hub()
