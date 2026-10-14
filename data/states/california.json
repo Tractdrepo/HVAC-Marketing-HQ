@@ -1,0 +1,605 @@
+{
+  "state": {
+    "name": "California",
+    "abbr": "CA",
+    "slug": "california",
+    "population_2020": 39538223,
+    "source_url": "https://en.wikipedia.org/wiki/California"
+  },
+  "cities": [
+    {
+      "slug": "los-angeles",
+      "name": "Los Angeles",
+      "county": "Los Angeles County",
+      "population_2020": 3898747,
+      "metro": "Los Angeles-Long Beach-Anaheim metropolitan area",
+      "koppen": "hot semi-arid (BSh)",
+      "july_high_f": 82.0,
+      "jan_low_f": 48.9,
+      "climate_station": "Dodger Stadium, Downtown Los Angeles",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 113,
+      "nearby": [
+        "Long Beach",
+        "Santa Monica",
+        "Glendale",
+        "Pasadena",
+        "Burbank",
+        "Inglewood"
+      ],
+      "one_fact": "Daytime temperatures in Los Angeles are generally temperate all year round.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Los_Angeles"
+      ]
+    },
+    {
+      "slug": "san-diego",
+      "name": "San Diego",
+      "county": "San Diego County",
+      "population_2020": 1386932,
+      "metro": "San Diego metropolitan area",
+      "koppen": "hot semi-arid (BSh) or hot-summer Mediterranean (Csa)",
+      "july_high_f": 75.3,
+      "jan_low_f": 50.3,
+      "climate_station": "San Diego International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 111,
+      "nearby": [
+        "Chula Vista",
+        "National City",
+        "El Cajon",
+        "La Mesa",
+        "Carlsbad",
+        "Poway"
+      ],
+      "one_fact": "Snow in San Diego is rare, having been observed only six times in the century and a half that records have been kept.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/San_Diego"
+      ]
+    },
+    {
+      "slug": "san-jose",
+      "name": "San Jose",
+      "county": "Santa Clara County",
+      "population_2020": 1013240,
+      "metro": "San Jose metropolitan area",
+      "koppen": "Mediterranean (Csb)",
+      "july_high_f": 80.8,
+      "jan_low_f": 41.8,
+      "climate_station": "San Jose International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 16,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 109,
+      "nearby": [
+        "Santa Clara",
+        "Sunnyvale",
+        "Cupertino",
+        "Milpitas",
+        "Campbell",
+        "Mountain View"
+      ],
+      "one_fact": "San Jose lies inland, surrounded on three sides by mountains, and does not front the Pacific Ocean like San Francisco.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/San_Jose,_California"
+      ]
+    },
+    {
+      "slug": "san-francisco",
+      "name": "San Francisco",
+      "county": "San Francisco County",
+      "population_2020": 873965,
+      "metro": "San Francisco–Oakland–Hayward metropolitan statistical area",
+      "koppen": "warm-summer Mediterranean (Csb)",
+      "july_high_f": 66.3,
+      "jan_low_f": 46.6,
+      "climate_station": "San Francisco (downtown)",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 106,
+      "nearby": [
+        "Daly City",
+        "Oakland",
+        "South San Francisco",
+        "Sausalito",
+        "Berkeley",
+        "Brisbane"
+      ],
+      "one_fact": "In San Francisco the year's warmest month, on average, is September, and October is on average warmer than July, especially in daytime.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/San_Francisco"
+      ]
+    },
+    {
+      "slug": "fresno",
+      "name": "Fresno",
+      "county": "Fresno County",
+      "population_2020": 542107,
+      "metro": "Fresno metropolitan area",
+      "koppen": "semi-arid (BSh, bordering BSk)",
+      "july_high_f": 97.7,
+      "jan_low_f": 40.6,
+      "climate_station": "Fresno Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 113,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 115,
+      "nearby": [
+        "Clovis",
+        "Sanger",
+        "Selma",
+        "Kerman",
+        "Madera",
+        "Reedley"
+      ],
+      "one_fact": "Fresno normally sees 38 days a year with highs of 100 °F or more and 113 days with highs of 90 °F or more.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Fresno,_California"
+      ]
+    },
+    {
+      "slug": "sacramento",
+      "name": "Sacramento",
+      "county": "Sacramento County",
+      "population_2020": 524943,
+      "metro": "Sacramento–Roseville–Arden-Arcade metropolitan area",
+      "koppen": "hot-summer Mediterranean (Csa)",
+      "july_high_f": 92.6,
+      "jan_low_f": 39.2,
+      "climate_station": "Sacramento Executive Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 76,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 115,
+      "nearby": [
+        "West Sacramento",
+        "Elk Grove",
+        "Roseville",
+        "Davis",
+        "Folsom",
+        "Citrus Heights"
+      ],
+      "one_fact": "Sacramento averages 76 days a year with a high of 90 °F or more and 14 days with a high of 100 °F or more.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Sacramento,_California"
+      ]
+    },
+    {
+      "slug": "long-beach",
+      "name": "Long Beach",
+      "county": "Los Angeles County",
+      "population_2020": 466742,
+      "metro": "Los Angeles-Long Beach-Anaheim metropolitan area",
+      "koppen": "hot semi-arid (BSh) or hot-summer Mediterranean (Csa)",
+      "july_high_f": 81.4,
+      "jan_low_f": 46.9,
+      "climate_station": "Long Beach Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 23,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 111,
+      "nearby": [
+        "Signal Hill",
+        "Seal Beach",
+        "Lakewood",
+        "Los Alamitos",
+        "Huntington Beach",
+        "Carson"
+      ],
+      "one_fact": "Days in Long Beach are mostly sunny, as in Southern California in general.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Long_Beach,_California"
+      ]
+    },
+    {
+      "slug": "oakland",
+      "name": "Oakland",
+      "county": "Alameda County",
+      "population_2020": 440646,
+      "metro": "San Francisco-Oakland-Hayward metropolitan area",
+      "koppen": "warm-summer Mediterranean (Csb)",
+      "july_high_f": 71.6,
+      "jan_low_f": 45.1,
+      "climate_station": "Oakland, California (station not named in table)",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 109,
+      "nearby": [
+        "Berkeley",
+        "Emeryville",
+        "Piedmont",
+        "San Leandro",
+        "Alameda",
+        "Hayward"
+      ],
+      "one_fact": "In general, Oakland features warm, dry summers and cool, wet winters.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Oakland,_California"
+      ]
+    },
+    {
+      "slug": "bakersfield",
+      "name": "Bakersfield",
+      "county": "Kern County",
+      "population_2020": 403455,
+      "metro": "Bakersfield–Delano metropolitan statistical area",
+      "koppen": "hot desert (BWh)",
+      "july_high_f": 98.3,
+      "jan_low_f": 40.5,
+      "climate_station": "Bakersfield, California (station not named in table)",
+      "climate_period": "1991–2020",
+      "days_90_plus": 112,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 118,
+      "nearby": [
+        "Oildale",
+        "Shafter",
+        "Arvin",
+        "Delano",
+        "Lamont",
+        "Wasco"
+      ],
+      "one_fact": "Rainfall is low in Bakersfield, averaging only 6.36 inches annually, with most of it falling in the winter.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Bakersfield,_California"
+      ]
+    },
+    {
+      "slug": "anaheim",
+      "name": "Anaheim",
+      "county": "Orange County",
+      "population_2020": 346824,
+      "metro": "Greater Los Angeles area",
+      "koppen": "hot semi-arid (BSh)",
+      "july_high_f": 86.8,
+      "jan_low_f": 48.9,
+      "climate_station": "Anaheim, California (station not named in table)",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 115,
+      "nearby": [
+        "Fullerton",
+        "Orange",
+        "Garden Grove",
+        "Placentia",
+        "Santa Ana",
+        "Buena Park"
+      ],
+      "one_fact": "The record high temperature in Anaheim is 115 °F, set on July 6, 2018.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Anaheim,_California"
+      ]
+    },
+    {
+      "slug": "stockton",
+      "name": "Stockton",
+      "county": "San Joaquin County",
+      "population_2020": 320804,
+      "metro": "Stockton metropolitan area",
+      "koppen": "boundary of hot-summer Mediterranean (Csa) and cool semi-arid (BSk)",
+      "july_high_f": 95.4,
+      "jan_low_f": 39.1,
+      "climate_station": "Stockton Metropolitan Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 88,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 115,
+      "nearby": [
+        "Lodi",
+        "Manteca",
+        "Tracy",
+        "Lathrop",
+        "French Camp",
+        "Ripon"
+      ],
+      "one_fact": "Stockton averages 88 afternoons a year with high temperatures of 90 °F or higher.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Stockton,_California"
+      ]
+    },
+    {
+      "slug": "riverside",
+      "name": "Riverside",
+      "county": "Riverside County",
+      "population_2020": 314998,
+      "metro": "Riverside–San Bernardino metropolitan area",
+      "koppen": "semi-arid (BSh), bordering arid (BWh)",
+      "july_high_f": 93.3,
+      "jan_low_f": 43.6,
+      "climate_station": "Riverside Municipal Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 118,
+      "nearby": [
+        "Moreno Valley",
+        "Jurupa Valley",
+        "Corona",
+        "San Bernardino",
+        "Redlands",
+        "Loma Linda"
+      ],
+      "one_fact": "In Riverside, normal monthly mean temperatures range from 54.8 °F in December to 79.8 °F in August.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Riverside,_California"
+      ]
+    },
+    {
+      "slug": "irvine",
+      "name": "Irvine",
+      "county": "Orange County",
+      "population_2020": 307670,
+      "metro": "Los Angeles metropolitan area",
+      "koppen": "Mediterranean (no Köppen code given)",
+      "july_high_f": 88.1,
+      "jan_low_f": 48.6,
+      "climate_station": "Irvine Ranch, Irvine",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 111,
+      "nearby": [
+        "Tustin",
+        "Santa Ana",
+        "Lake Forest",
+        "Costa Mesa",
+        "Newport Beach",
+        "Laguna Hills"
+      ],
+      "one_fact": "Irvine has a Mediterranean climate wherein precipitation occurs predominantly during the winter months.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Irvine,_California"
+      ]
+    },
+    {
+      "slug": "santa-ana",
+      "name": "Santa Ana",
+      "county": "Orange County",
+      "population_2020": 310227,
+      "metro": "Los Angeles metropolitan area",
+      "koppen": "hot semi-arid (BSh)",
+      "july_high_f": 82.5,
+      "jan_low_f": 48.7,
+      "climate_station": "Santa Ana, California (Santa Ana Fire Station)",
+      "climate_period": "1991–2020",
+      "days_90_plus": 30.1,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 112,
+      "nearby": [
+        "Anaheim",
+        "Irvine",
+        "Costa Mesa",
+        "Tustin",
+        "Garden Grove",
+        "Orange"
+      ],
+      "one_fact": "Santa Ana averages 30.1 days a year with highs of 90 °F or higher.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Santa_Ana,_California"
+      ]
+    },
+    {
+      "slug": "chula-vista",
+      "name": "Chula Vista",
+      "county": "San Diego County",
+      "population_2020": 275487,
+      "metro": "San Diego–Tijuana metropolitan area",
+      "koppen": "semi-arid (BSk)",
+      "july_high_f": 74.6,
+      "jan_low_f": 46.5,
+      "climate_station": "Chula Vista, California",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 103,
+      "nearby": [
+        "National City",
+        "Bonita",
+        "San Diego",
+        "Imperial Beach",
+        "Otay Mesa",
+        "Spring Valley"
+      ],
+      "one_fact": "Thanks to maritime moderation, the coldest day of the year in Chula Vista averages a very mild 57 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Chula_Vista,_California"
+      ]
+    },
+    {
+      "slug": "santa-clarita",
+      "name": "Santa Clarita",
+      "county": "Los Angeles County",
+      "population_2020": 228673,
+      "metro": "Los Angeles-Long Beach-Anaheim metropolitan statistical area",
+      "koppen": "hot-summer Mediterranean (Csa)",
+      "july_high_f": 93.0,
+      "jan_low_f": 45.6,
+      "climate_station": "Saugus, Santa Clarita",
+      "climate_period": "1994–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 118,
+      "nearby": [
+        "Castaic",
+        "Stevenson Ranch",
+        "Agua Dulce",
+        "Acton",
+        "San Fernando",
+        "Palmdale"
+      ],
+      "one_fact": "In Santa Clarita, rain falls primarily from December through March.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Santa_Clarita,_California"
+      ]
+    },
+    {
+      "slug": "fremont",
+      "name": "Fremont",
+      "county": "Alameda County",
+      "population_2020": 230504,
+      "metro": "San Francisco Bay Area",
+      "koppen": "warm-summer Mediterranean (Csb)",
+      "july_high_f": 77.9,
+      "jan_low_f": 42.6,
+      "climate_station": "Fremont, California",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 110,
+      "nearby": [
+        "Newark",
+        "Union City",
+        "Hayward",
+        "Milpitas",
+        "San Jose",
+        "Pleasanton"
+      ],
+      "one_fact": "Fremont's climate features warm, dry summers and cool, wet winters.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Fremont,_California"
+      ]
+    },
+    {
+      "slug": "san-bernardino",
+      "name": "San Bernardino",
+      "county": "San Bernardino County",
+      "population_2020": 222101,
+      "metro": "Riverside–San Bernardino metropolitan area",
+      "koppen": "hot-summer Mediterranean (Csa)",
+      "july_high_f": 96.2,
+      "jan_low_f": 42.8,
+      "climate_station": "San Bernardino, California",
+      "climate_period": "1981–2010",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 117,
+      "nearby": [
+        "Loma Linda",
+        "Redlands",
+        "Riverside",
+        "Rialto",
+        "Colton",
+        "Highland"
+      ],
+      "one_fact": "San Bernardino gets an average of 16 inches of rain, hail, or light snow showers each year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/San_Bernardino,_California"
+      ]
+    },
+    {
+      "slug": "fontana",
+      "name": "Fontana",
+      "county": "San Bernardino County",
+      "population_2020": 208393,
+      "metro": "Riverside–San Bernardino metropolitan area",
+      "koppen": null,
+      "july_high_f": 95,
+      "jan_low_f": 46,
+      "climate_station": "Fontana, California",
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 117,
+      "nearby": [
+        "Rialto",
+        "Rancho Cucamonga",
+        "San Bernardino",
+        "Ontario",
+        "Bloomington",
+        "Colton"
+      ],
+      "one_fact": "Fontana can be extremely hot in summer, well over 100 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Fontana,_California"
+      ]
+    },
+    {
+      "slug": "modesto",
+      "name": "Modesto",
+      "county": "Stanislaus County",
+      "population_2020": 218464,
+      "metro": "Modesto metropolitan area",
+      "koppen": "hot-summer Mediterranean (Csa)",
+      "july_high_f": 95.0,
+      "jan_low_f": 38.8,
+      "climate_station": "Modesto City-County Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 79,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 113,
+      "nearby": [
+        "Ceres",
+        "Riverbank",
+        "Salida",
+        "Oakdale",
+        "Turlock",
+        "Empire"
+      ],
+      "one_fact": "Modesto averages 79 afternoons a year that reach or exceed 90 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Modesto,_California"
+      ]
+    },
+    {
+      "slug": "moreno-valley",
+      "name": "Moreno Valley",
+      "county": "Riverside County",
+      "population_2020": 208634,
+      "metro": "Riverside–San Bernardino metropolitan area",
+      "koppen": "semi-arid (BSh)",
+      "july_high_f": 95,
+      "jan_low_f": 43,
+      "climate_station": "Moreno Valley, California",
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 118,
+      "nearby": [
+        "Riverside",
+        "Perris",
+        "Redlands",
+        "Mead Valley",
+        "Edgemont",
+        "Beaumont"
+      ],
+      "one_fact": "Moreno Valley has a mild semi-arid climate with Mediterranean characteristics.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Moreno_Valley,_California"
+      ]
+    },
+    {
+      "slug": "oxnard",
+      "name": "Oxnard",
+      "county": "Ventura County",
+      "population_2020": 202063,
+      "metro": "Oxnard–Thousand Oaks–Ventura metropolitan statistical area",
+      "koppen": "warm-summer Mediterranean (no Köppen code given)",
+      "july_high_f": 72.9,
+      "jan_low_f": 46.1,
+      "climate_station": "Oxnard Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 105,
+      "nearby": [
+        "Ventura",
+        "Port Hueneme",
+        "Camarillo",
+        "El Rio",
+        "Moorpark",
+        "Thousand Oaks"
+      ],
+      "one_fact": "Oxnard's weather is generally mild and dry, with around 300 days of sunshine annually.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Oxnard,_California"
+      ]
+    }
+  ]
+}

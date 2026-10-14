@@ -138,6 +138,60 @@
       "source_urls": [
         "https://en.wikipedia.org/wiki/Scottsdale,_Arizona"
       ]
+    },
+    {
+      "slug": "gilbert",
+      "name": "Gilbert",
+      "county": "Maricopa County",
+      "population_2020": 267918,
+      "metro": "Phoenix metropolitan area",
+      "koppen": "hot arid (BWh)",
+      "july_high_f": 106,
+      "jan_low_f": 41,
+      "climate_station": "Gilbert, Arizona",
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 119,
+      "nearby": [
+        "Mesa",
+        "Chandler",
+        "Queen Creek",
+        "Tempe",
+        "Higley",
+        "San Tan Valley"
+      ],
+      "one_fact": "Gilbert has a hot arid climate with very hot summers, mild winters and little rainfall.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Gilbert,_Arizona"
+      ]
+    },
+    {
+      "slug": "glendale",
+      "name": "Glendale",
+      "county": "Maricopa County",
+      "population_2020": 248325,
+      "metro": "Phoenix metropolitan area",
+      "koppen": "hot desert (BWh)",
+      "july_high_f": 106.5,
+      "jan_low_f": 46.0,
+      "climate_station": "Phoenix Sky Harbor International Airport (table used for Glendale)",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 122,
+      "nearby": [
+        "Phoenix",
+        "Peoria",
+        "Surprise",
+        "Avondale",
+        "Tolleson",
+        "El Mirage"
+      ],
+      "one_fact": "Glendale has a hot desert climate typical of Southern Arizona, with very hot and dry summers and mild winters.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Glendale,_Arizona"
+      ]
     }
   ]
 }

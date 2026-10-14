@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Louisiana",
+    "abbr": "LA",
+    "slug": "louisiana",
+    "population_2020": 4657757,
+    "source_url": "https://en.wikipedia.org/wiki/Louisiana"
+  },
+  "cities": [
+    {
+      "slug": "new-orleans",
+      "name": "New Orleans",
+      "county": "Orleans Parish",
+      "population_2020": 383997,
+      "metro": "New Orleans metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 91.4,
+      "jan_low_f": 46.1,
+      "climate_station": "Louis Armstrong New Orleans International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 105,
+      "nearby": [
+        "Metairie",
+        "Kenner",
+        "Gretna",
+        "Harvey",
+        "Chalmette",
+        "Terrytown"
+      ],
+      "one_fact": "New Orleans experiences snowfall only on rare occasions.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/New_Orleans"
+      ]
+    },
+    {
+      "slug": "baton-rouge",
+      "name": "Baton Rouge",
+      "county": "East Baton Rouge Parish",
+      "population_2020": 227470,
+      "metro": "Greater Baton Rouge",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 91.9,
+      "jan_low_f": 41.6,
+      "climate_station": "Baton Rouge Metropolitan Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 110,
+      "nearby": [
+        "Baker",
+        "Zachary",
+        "Central",
+        "St. George",
+        "Denham Springs",
+        "Port Allen"
+      ],
+      "one_fact": "The Baton Rouge area is usually free from extremes in temperature, with some cold winter fronts that are usually brief.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Baton_Rouge,_Louisiana"
+      ]
+    },
+    {
+      "slug": "shreveport",
+      "name": "Shreveport",
+      "county": "Caddo Parish",
+      "population_2020": 187593,
+      "metro": "Shreveport–Bossier City metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 94.3,
+      "jan_low_f": 37.3,
+      "climate_station": "Shreveport Regional Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 91,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 110,
+      "nearby": [
+        "Bossier City",
+        "Blanchard",
+        "Greenwood",
+        "Keithville",
+        "Benton",
+        "Haughton"
+      ],
+      "one_fact": "Rainfall in Shreveport is abundant, with normal annual precipitation averaging over 51 inches.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Shreveport,_Louisiana"
+      ]
+    }
+  ]
+}

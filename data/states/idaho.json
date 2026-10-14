@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Idaho",
+    "abbr": "ID",
+    "slug": "idaho",
+    "population_2020": 1839106,
+    "source_url": "https://en.wikipedia.org/wiki/Idaho"
+  },
+  "cities": [
+    {
+      "slug": "boise",
+      "name": "Boise",
+      "county": "Ada County",
+      "population_2020": 235684,
+      "metro": "Boise metropolitan area",
+      "koppen": "cool semi-arid (BSk)",
+      "july_high_f": 92.7,
+      "jan_low_f": 25.5,
+      "climate_station": "Boise Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 55,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 111,
+      "nearby": [
+        "Meridian",
+        "Eagle",
+        "Garden City",
+        "Nampa",
+        "Kuna",
+        "Star"
+      ],
+      "one_fact": "Precipitation in Boise is usually infrequent and light, especially during the summer months.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Boise,_Idaho"
+      ]
+    },
+    {
+      "slug": "meridian",
+      "name": "Meridian",
+      "county": "Ada County",
+      "population_2020": 117635,
+      "metro": "Boise metropolitan area",
+      "koppen": "semi-arid (no Köppen code given)",
+      "july_high_f": 91,
+      "jan_low_f": 25,
+      "climate_station": "Meridian, Idaho",
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 111,
+      "nearby": [
+        "Boise",
+        "Nampa",
+        "Eagle",
+        "Kuna",
+        "Star",
+        "Caldwell"
+      ],
+      "one_fact": "Meridian's climate is characterized as semi-arid with four distinct seasons.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Meridian,_Idaho"
+      ]
+    },
+    {
+      "slug": "nampa",
+      "name": "Nampa",
+      "county": "Canyon County",
+      "population_2020": 100200,
+      "metro": "Boise metropolitan area",
+      "koppen": null,
+      "july_high_f": 91,
+      "jan_low_f": 21,
+      "climate_station": "Nampa, Idaho",
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 109,
+      "nearby": [
+        "Caldwell",
+        "Meridian",
+        "Boise",
+        "Kuna",
+        "Middleton",
+        "Star"
+      ],
+      "one_fact": "Nampa's climate table lists a record high of 109 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Nampa,_Idaho"
+      ]
+    }
+  ]
+}

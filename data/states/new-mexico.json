@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "New Mexico",
+    "abbr": "NM",
+    "slug": "new-mexico",
+    "population_2020": 2117522,
+    "source_url": "https://en.wikipedia.org/wiki/New_Mexico"
+  },
+  "cities": [
+    {
+      "slug": "albuquerque",
+      "name": "Albuquerque",
+      "county": "Bernalillo County",
+      "population_2020": 564559,
+      "metro": "Albuquerque metropolitan area",
+      "koppen": "cold semi-arid (BSk)",
+      "july_high_f": 91.2,
+      "jan_low_f": 26.4,
+      "climate_station": "Albuquerque International Sunport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 107,
+      "nearby": [
+        "Rio Rancho",
+        "Bernalillo",
+        "Corrales",
+        "Los Lunas",
+        "Belen",
+        "Los Ranchos de Albuquerque"
+      ],
+      "one_fact": "Albuquerque's climate is usually sunny and dry, with an average of 3,415 sunshine hours per year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Albuquerque,_New_Mexico"
+      ]
+    },
+    {
+      "slug": "las-cruces",
+      "name": "Las Cruces",
+      "county": "Doña Ana County",
+      "population_2020": 111385,
+      "metro": "Las Cruces metropolitan statistical area",
+      "koppen": "cool desert (BWk)",
+      "july_high_f": 95.6,
+      "jan_low_f": 29.6,
+      "climate_station": "Las Cruces, New Mexico",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 110,
+      "nearby": [
+        "Mesilla",
+        "Doña Ana",
+        "Radium Springs",
+        "University Park",
+        "Sunland Park",
+        "Anthony"
+      ],
+      "one_fact": "Summer precipitation in Las Cruces often comes from heavy thunderstorms, especially during the late summer monsoon.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Las_Cruces,_New_Mexico"
+      ]
+    },
+    {
+      "slug": "rio-rancho",
+      "name": "Rio Rancho",
+      "county": "Sandoval County",
+      "population_2020": 104046,
+      "metro": "Albuquerque metropolitan area",
+      "koppen": null,
+      "july_high_f": 96,
+      "jan_low_f": 30,
+      "climate_station": "Rio Rancho, New Mexico",
+      "climate_period": "1981–2010",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 111,
+      "nearby": [
+        "Albuquerque",
+        "Bernalillo",
+        "Corrales",
+        "Placitas",
+        "Santa Ana Pueblo",
+        "Los Ranchos de Albuquerque"
+      ],
+      "one_fact": "Rio Rancho receives 8.90 inches of precipitation annually on average.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Rio_Rancho,_New_Mexico"
+      ]
+    }
+  ]
+}

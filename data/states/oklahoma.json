@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Oklahoma",
+    "abbr": "OK",
+    "slug": "oklahoma",
+    "population_2020": 3959353,
+    "source_url": "https://en.wikipedia.org/wiki/Oklahoma"
+  },
+  "cities": [
+    {
+      "slug": "oklahoma-city",
+      "name": "Oklahoma City",
+      "county": "Oklahoma County",
+      "population_2020": 681054,
+      "metro": "Oklahoma City metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 93.1,
+      "jan_low_f": 27.0,
+      "climate_station": "Will Rogers World Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 113,
+      "nearby": [
+        "Edmond",
+        "Norman",
+        "Moore",
+        "Midwest City",
+        "Bethany",
+        "Yukon"
+      ],
+      "one_fact": "Oklahoma City features hot, humid summers and cool winters.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Oklahoma_City"
+      ]
+    },
+    {
+      "slug": "tulsa",
+      "name": "Tulsa",
+      "county": "Tulsa County",
+      "population_2020": 413066,
+      "metro": "Tulsa metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 93.6,
+      "jan_low_f": 28.0,
+      "climate_station": "Tulsa International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 115,
+      "nearby": [
+        "Broken Arrow",
+        "Jenks",
+        "Bixby",
+        "Owasso",
+        "Sand Springs",
+        "Glenpool"
+      ],
+      "one_fact": "Triple-digit temperatures above 100 °F are observed in Tulsa on average 11 days per year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Tulsa,_Oklahoma"
+      ]
+    },
+    {
+      "slug": "norman",
+      "name": "Norman",
+      "county": "Cleveland County",
+      "population_2020": 128026,
+      "metro": "Oklahoma City metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 92.5,
+      "jan_low_f": 27.7,
+      "climate_station": "Norman 3SSE",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 116,
+      "nearby": [
+        "Moore",
+        "Oklahoma City",
+        "Noble",
+        "Slaughterville",
+        "Purcell",
+        "Newcastle"
+      ],
+      "one_fact": "Temperatures in Norman average 61 °F for the year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Norman,_Oklahoma"
+      ]
+    }
+  ]
+}

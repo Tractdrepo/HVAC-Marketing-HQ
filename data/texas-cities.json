@@ -560,6 +560,141 @@
         "https://en.wikipedia.org/wiki/Abilene,_Texas",
         "https://en.wikipedia.org/wiki/Abilene_metropolitan_area"
       ]
+    },
+    {
+      "slug": "arlington",
+      "name": "Arlington",
+      "county": "Tarrant County",
+      "population_2020": 394266,
+      "metro": "Dallas–Fort Worth–Arlington metropolitan statistical area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 94.4,
+      "jan_low_f": 34.3,
+      "climate_station": "Arlington Six Flags",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 113,
+      "nearby": [
+        "Grand Prairie",
+        "Mansfield",
+        "Kennedale",
+        "Pantego",
+        "Dalworthington Gardens",
+        "Fort Worth"
+      ],
+      "one_fact": "Winters in Arlington are typically mild with little to no snow.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Arlington,_Texas"
+      ]
+    },
+    {
+      "slug": "plano",
+      "name": "Plano",
+      "county": "Collin County",
+      "population_2020": 285494,
+      "metro": "Dallas–Fort Worth metroplex",
+      "koppen": "humid subtropical (no Köppen code given)",
+      "july_high_f": null,
+      "jan_low_f": null,
+      "climate_station": null,
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 118,
+      "nearby": [
+        "Richardson",
+        "Allen",
+        "McKinney",
+        "Frisco",
+        "Murphy",
+        "Carrollton"
+      ],
+      "one_fact": "Plano's highest recorded temperature was 118 °F, in 1936.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Plano,_Texas"
+      ]
+    },
+    {
+      "slug": "irving",
+      "name": "Irving",
+      "county": "Dallas County",
+      "population_2020": 256684,
+      "metro": "Dallas–Fort Worth metroplex",
+      "koppen": "humid subtropical (no Köppen code given)",
+      "july_high_f": null,
+      "jan_low_f": null,
+      "climate_station": null,
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 112,
+      "nearby": [
+        "Dallas",
+        "Grand Prairie",
+        "Coppell",
+        "Farmers Branch",
+        "Carrollton",
+        "Euless"
+      ],
+      "one_fact": "In Irving the warmest month on average is July, and the highest recorded temperature was 112 °F, in 1980.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Irving,_Texas"
+      ]
+    },
+    {
+      "slug": "garland",
+      "name": "Garland",
+      "county": "Dallas County",
+      "population_2020": 246018,
+      "metro": "Dallas–Fort Worth metroplex",
+      "koppen": "humid subtropical (no Köppen code given)",
+      "july_high_f": 94,
+      "jan_low_f": 31,
+      "climate_station": "Garland, Texas (source: Weather.com / NWS)",
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 111,
+      "nearby": [
+        "Mesquite",
+        "Richardson",
+        "Rowlett",
+        "Sachse",
+        "Wylie",
+        "Dallas"
+      ],
+      "one_fact": "Garland's highest recorded temperature was 111 °F, in 2000.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Garland,_Texas"
+      ]
+    },
+    {
+      "slug": "frisco",
+      "name": "Frisco",
+      "county": "Collin County",
+      "population_2020": 200509,
+      "metro": "Dallas–Fort Worth metroplex",
+      "koppen": "humid subtropical (no Köppen code given)",
+      "july_high_f": null,
+      "jan_low_f": null,
+      "climate_station": null,
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": null,
+      "nearby": [
+        "Plano",
+        "McKinney",
+        "Little Elm",
+        "Prosper",
+        "The Colony",
+        "Allen"
+      ],
+      "one_fact": "Frisco gets about 39 inches of precipitation per year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Frisco,_Texas"
+      ]
     }
   ]
 }

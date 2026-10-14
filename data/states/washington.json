@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Washington",
+    "abbr": "WA",
+    "slug": "washington",
+    "population_2020": 7705281,
+    "source_url": "https://en.wikipedia.org/wiki/Washington_(state)"
+  },
+  "cities": [
+    {
+      "slug": "seattle",
+      "name": "Seattle",
+      "county": "King County",
+      "population_2020": 737015,
+      "metro": "Seattle metropolitan area",
+      "koppen": "warm-summer Mediterranean (Csb)",
+      "july_high_f": 77.4,
+      "jan_low_f": 37.7,
+      "climate_station": "SeaTac Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 108,
+      "nearby": [
+        "Bellevue",
+        "Shoreline",
+        "Renton",
+        "Burien",
+        "SeaTac",
+        "Kirkland"
+      ],
+      "one_fact": "Extreme heat waves are rare in the Seattle area, as are very cold temperatures below about 15 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Seattle"
+      ]
+    },
+    {
+      "slug": "spokane",
+      "name": "Spokane",
+      "county": "Spokane County",
+      "population_2020": 228989,
+      "metro": "Spokane metropolitan area",
+      "koppen": "warm-summer humid continental (Dsb)",
+      "july_high_f": 84.4,
+      "jan_low_f": 24.7,
+      "climate_station": "Spokane International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 21,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 109,
+      "nearby": [
+        "Spokane Valley",
+        "Cheney",
+        "Millwood",
+        "Airway Heights",
+        "Liberty Lake",
+        "Medical Lake"
+      ],
+      "one_fact": "Spokane sees temperatures of 90 °F or higher an average of 21 days a year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Spokane,_Washington"
+      ]
+    },
+    {
+      "slug": "tacoma",
+      "name": "Tacoma",
+      "county": "Pierce County",
+      "population_2020": 219346,
+      "metro": "Seattle metropolitan area",
+      "koppen": "warm-summer Mediterranean (Csb)",
+      "july_high_f": 76.8,
+      "jan_low_f": 37.4,
+      "climate_station": "Tacoma, Washington",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 105,
+      "nearby": [
+        "Lakewood",
+        "Ruston",
+        "Fife",
+        "University Place",
+        "Fircrest",
+        "Puyallup"
+      ],
+      "one_fact": "According to the Köppen climate classification, Tacoma has a warm-summer Mediterranean climate (Csb).",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Tacoma,_Washington"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "state": {
+    "name": "Nevada",
+    "abbr": "NV",
+    "slug": "nevada",
+    "population_2020": 3104614,
+    "source_url": "https://en.wikipedia.org/wiki/Nevada"
+  },
+  "cities": [
+    {
+      "slug": "las-vegas",
+      "name": "Las Vegas",
+      "county": "Clark County",
+      "population_2020": 641903,
+      "metro": "Las Vegas metropolitan area",
+      "koppen": "subtropical hot desert (BWh)",
+      "july_high_f": 104.5,
+      "jan_low_f": 40.5,
+      "climate_station": "Harry Reid International Airport (Paradise, Nevada)",
+      "climate_period": "1991–2020",
+      "days_90_plus": 137,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 120,
+      "nearby": [
+        "Henderson",
+        "North Las Vegas",
+        "Paradise",
+        "Spring Valley",
+        "Summerlin South",
+        "Boulder City"
+      ],
+      "one_fact": "Rainfall in Las Vegas is scarce, averaging 4.2 inches spread over roughly 26 rainy days per year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Las_Vegas"
+      ]
+    },
+    {
+      "slug": "henderson",
+      "name": "Henderson",
+      "county": "Clark County",
+      "population_2020": 317610,
+      "metro": "Las Vegas Valley",
+      "koppen": "hot desert (BWh)",
+      "july_high_f": 101,
+      "jan_low_f": 41,
+      "climate_station": "Henderson, Nevada",
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 120,
+      "nearby": [
+        "Las Vegas",
+        "Boulder City",
+        "Paradise",
+        "Whitney",
+        "Enterprise",
+        "Sloan"
+      ],
+      "one_fact": "In Henderson the hottest month is July and the coldest month is December.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Henderson,_Nevada"
+      ]
+    },
+    {
+      "slug": "north-las-vegas",
+      "name": "North Las Vegas",
+      "county": "Clark County",
+      "population_2020": 262527,
+      "metro": "Las Vegas metropolitan area",
+      "koppen": "desert (no Köppen code given)",
+      "july_high_f": 105,
+      "jan_low_f": 30,
+      "climate_station": "North Las Vegas, Nevada",
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 119,
+      "nearby": [
+        "Las Vegas",
+        "Sunrise Manor",
+        "Nellis AFB",
+        "Henderson",
+        "Paradise",
+        "Whitney"
+      ],
+      "one_fact": "Temperatures in North Las Vegas are generally mild in the winter and hot in the summer.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/North_Las_Vegas,_Nevada"
+      ]
+    },
+    {
+      "slug": "reno",
+      "name": "Reno",
+      "county": "Washoe County",
+      "population_2020": 264165,
+      "metro": "Reno–Sparks metropolitan area",
+      "koppen": "cold semi-arid (BSk)",
+      "july_high_f": 93.9,
+      "jan_low_f": 26.1,
+      "climate_station": "Reno-Tahoe International Airport (RNO)",
+      "climate_period": "1991–2020",
+      "days_90_plus": 65,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 108,
+      "nearby": [
+        "Sparks",
+        "Sun Valley",
+        "Verdi",
+        "Spanish Springs",
+        "Carson City",
+        "Fernley"
+      ],
+      "one_fact": "Reno's annual precipitation has ranged from 1.55 inches in 1947 to 13.73 inches in 2017.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Reno,_Nevada"
+      ]
+    }
+  ]
+}

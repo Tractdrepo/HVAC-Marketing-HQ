@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Kansas",
+    "abbr": "KS",
+    "slug": "kansas",
+    "population_2020": 2937880,
+    "source_url": "https://en.wikipedia.org/wiki/Kansas"
+  },
+  "cities": [
+    {
+      "slug": "wichita",
+      "name": "Wichita",
+      "county": "Sedgwick County",
+      "population_2020": 397532,
+      "metro": "Wichita metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 92.6,
+      "jan_low_f": 22.5,
+      "climate_station": "Wichita, Kansas",
+      "climate_period": "1991–2020",
+      "days_90_plus": 65,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 114,
+      "nearby": [
+        "Derby",
+        "Haysville",
+        "Park City",
+        "Valley Center",
+        "Andover",
+        "Maize"
+      ],
+      "one_fact": "In Wichita the high temperature reaches or exceeds 90 °F an average of 65 days a year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Wichita,_Kansas"
+      ]
+    },
+    {
+      "slug": "overland-park",
+      "name": "Overland Park",
+      "county": "Johnson County",
+      "population_2020": 197238,
+      "metro": "Kansas City metropolitan area",
+      "koppen": "transition between humid subtropical and humid continental (no Köppen code given)",
+      "july_high_f": 89,
+      "jan_low_f": 20,
+      "climate_station": "Overland Park, Kansas",
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 114,
+      "nearby": [
+        "Olathe",
+        "Lenexa",
+        "Shawnee",
+        "Merriam",
+        "Prairie Village",
+        "Leawood"
+      ],
+      "one_fact": "Overland Park lies in the transition zone between North America's humid subtropical and humid continental climate zones, with hot, humid summers and cold, dry winters.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Overland_Park,_Kansas"
+      ]
+    },
+    {
+      "slug": "kansas-city",
+      "name": "Kansas City",
+      "county": "Wyandotte County",
+      "population_2020": 156607,
+      "metro": "Kansas City metropolitan area",
+      "koppen": "humid continental (Dfa)",
+      "july_high_f": 90.2,
+      "jan_low_f": 22.2,
+      "climate_station": "Kansas City Downtown Airport, Missouri (table used for Kansas City, Kansas)",
+      "climate_period": "1991–2020",
+      "days_90_plus": 47,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 113,
+      "nearby": [
+        "Kansas City, Missouri",
+        "Bonner Springs",
+        "Edwardsville",
+        "Shawnee",
+        "Mission",
+        "Roeland Park"
+      ],
+      "one_fact": "In Kansas City, Kansas, the coldest month of the year is January, with an average temperature of 31.0 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Kansas_City,_Kansas"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Minnesota",
+    "abbr": "MN",
+    "slug": "minnesota",
+    "population_2020": 5706494,
+    "source_url": "https://en.wikipedia.org/wiki/Minnesota"
+  },
+  "cities": [
+    {
+      "slug": "minneapolis",
+      "name": "Minneapolis",
+      "county": "Hennepin County",
+      "population_2020": 429954,
+      "metro": "Twin Cities (Minneapolis–Saint Paul) metropolitan area",
+      "koppen": "hot-summer humid continental (Dfa)",
+      "july_high_f": 83.4,
+      "jan_low_f": 8.8,
+      "climate_station": "Minneapolis–Saint Paul International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 108,
+      "nearby": [
+        "Saint Paul",
+        "Bloomington",
+        "Edina",
+        "Richfield",
+        "St. Louis Park",
+        "Roseville"
+      ],
+      "one_fact": "The highest recorded temperature in Minneapolis is 108 °F, in July 1936.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Minneapolis"
+      ]
+    },
+    {
+      "slug": "saint-paul",
+      "name": "Saint Paul",
+      "county": "Ramsey County",
+      "population_2020": 311527,
+      "metro": "Twin Cities (Minneapolis–Saint Paul) metropolitan area",
+      "koppen": "hot-summer humid continental (Dfa, bordering Dwa)",
+      "july_high_f": 82.6,
+      "jan_low_f": 8.6,
+      "climate_station": "St. Paul Downtown Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 104,
+      "nearby": [
+        "Minneapolis",
+        "Roseville",
+        "Maplewood",
+        "South St. Paul",
+        "Mendota Heights",
+        "West St. Paul"
+      ],
+      "one_fact": "Saint Paul winters are frigid and snowy, while summers are warm to hot and humid.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Saint_Paul,_Minnesota"
+      ]
+    },
+    {
+      "slug": "rochester",
+      "name": "Rochester",
+      "county": "Olmsted County",
+      "population_2020": 121395,
+      "metro": "Rochester metropolitan area",
+      "koppen": "warm-summer humid continental (Dfb)",
+      "july_high_f": 80.3,
+      "jan_low_f": 7.0,
+      "climate_station": "Rochester International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 108,
+      "nearby": [
+        "Byron",
+        "Stewartville",
+        "Oronoco",
+        "Pine Island",
+        "Kasson",
+        "Chatfield"
+      ],
+      "one_fact": "Rochester is the second windiest city in the United States, with wind speeds averaging 12.6 mph.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Rochester,_Minnesota"
+      ]
+    }
+  ]
+}

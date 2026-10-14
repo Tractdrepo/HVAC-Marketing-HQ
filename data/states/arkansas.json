@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Arkansas",
+    "abbr": "AR",
+    "slug": "arkansas",
+    "population_2020": 3011524,
+    "source_url": "https://en.wikipedia.org/wiki/Arkansas"
+  },
+  "cities": [
+    {
+      "slug": "little-rock",
+      "name": "Little Rock",
+      "county": "Pulaski County",
+      "population_2020": 202591,
+      "metro": "Little Rock-North Little Rock-Conway metropolitan statistical area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 91.7,
+      "jan_low_f": 30.9,
+      "climate_station": "Clinton National Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 114,
+      "nearby": [
+        "North Little Rock",
+        "Sherwood",
+        "Maumelle",
+        "Jacksonville",
+        "Bryant",
+        "Benton"
+      ],
+      "one_fact": "Little Rock has hot, humid summers and cool winters with usually little snow.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Little_Rock,_Arkansas"
+      ]
+    },
+    {
+      "slug": "fayetteville",
+      "name": "Fayetteville",
+      "county": "Washington County",
+      "population_2020": 93949,
+      "metro": "Fayetteville–Springdale–Rogers metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 89.2,
+      "jan_low_f": 25.1,
+      "climate_station": "Drake Field",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 110,
+      "nearby": [
+        "Springdale",
+        "Johnson",
+        "Farmington",
+        "Greenland",
+        "Elkins",
+        "Rogers"
+      ],
+      "one_fact": "Temperatures above 100 °F are rare in Fayetteville but do occur, on average, 3 times a year.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Fayetteville,_Arkansas"
+      ]
+    },
+    {
+      "slug": "fort-smith",
+      "name": "Fort Smith",
+      "county": "Sebastian County",
+      "population_2020": 89142,
+      "metro": "Fort Smith, Arkansas–Oklahoma metropolitan statistical area",
+      "koppen": "humid subtropical (no Köppen code given)",
+      "july_high_f": 94.1,
+      "jan_low_f": 29.6,
+      "climate_station": "Fort Smith Regional Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 77.8,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 115,
+      "nearby": [
+        "Van Buren",
+        "Barling",
+        "Alma",
+        "Greenwood",
+        "Poteau, Oklahoma",
+        "Lavaca"
+      ],
+      "one_fact": "Fort Smith has a humid subtropical climate with generally mild winters and hot, humid summers.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Fort_Smith,_Arkansas"
+      ]
+    }
+  ]
+}

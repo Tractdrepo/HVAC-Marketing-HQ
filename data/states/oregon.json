@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Oregon",
+    "abbr": "OR",
+    "slug": "oregon",
+    "population_2020": 4237256,
+    "source_url": "https://en.wikipedia.org/wiki/Oregon"
+  },
+  "cities": [
+    {
+      "slug": "portland",
+      "name": "Portland",
+      "county": "Multnomah County",
+      "population_2020": 652503,
+      "metro": "Portland metropolitan area",
+      "koppen": "warm-summer Mediterranean (Csb)",
+      "july_high_f": 81.9,
+      "jan_low_f": 36.2,
+      "climate_station": "Portland International Airport (PDX)",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 116,
+      "nearby": [
+        "Gresham",
+        "Beaverton",
+        "Lake Oswego",
+        "Milwaukie",
+        "Tigard",
+        "Vancouver, Washington"
+      ],
+      "one_fact": "Summers in Portland are warm, dry, and sunny, though the sunny warm weather is short-lived, from mid-June to early September.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Portland,_Oregon"
+      ]
+    },
+    {
+      "slug": "eugene",
+      "name": "Eugene",
+      "county": "Lane County",
+      "population_2020": 176654,
+      "metro": "Eugene-Springfield metropolitan statistical area",
+      "koppen": "warm-summer Mediterranean (Csb)",
+      "july_high_f": 84.0,
+      "jan_low_f": 34.7,
+      "climate_station": "Eugene Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 16,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 111,
+      "nearby": [
+        "Springfield",
+        "Cottage Grove",
+        "Veneta",
+        "Junction City",
+        "Creswell",
+        "Coburg"
+      ],
+      "one_fact": "Eugene averages 16 days per year reaching 90 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Eugene,_Oregon"
+      ]
+    },
+    {
+      "slug": "salem",
+      "name": "Salem",
+      "county": "Marion County",
+      "population_2020": 175535,
+      "metro": "Salem metropolitan area",
+      "koppen": "Mediterranean (Csb)",
+      "july_high_f": 83.5,
+      "jan_low_f": 35.8,
+      "climate_station": "McNary Field",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 117,
+      "nearby": [
+        "Keizer",
+        "Silverton",
+        "Woodburn",
+        "Independence",
+        "Monmouth",
+        "Turner"
+      ],
+      "one_fact": "In Salem, mostly cloudy skies and low cloud ceilings are commonplace during the rainy season.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Salem,_Oregon"
+      ]
+    }
+  ]
+}

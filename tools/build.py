@@ -862,6 +862,7 @@ for _st in STATES:
     for _c in _st["cities"]:
         _c["_st"] = _st
 STATES = [st for st in STATES if st["cities"]]
+CITIES = STATES[0]["cities"]
 ALL_CITIES = [c for st in STATES for c in st["cities"]]
 # Businesses holding an active TDLR A/C contractor license, merged by company (prospects/centex-prospects.xlsx, Oct 11, 2026)
 TDLR_COUNTY = {"McLennan County": 156, "Bell County": 161}

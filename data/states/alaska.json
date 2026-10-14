@@ -1,0 +1,38 @@
+{
+  "state": {
+    "name": "Alaska",
+    "abbr": "AK",
+    "slug": "alaska",
+    "population_2020": 733391,
+    "source_url": "https://en.wikipedia.org/wiki/Alaska"
+  },
+  "cities": [
+    {
+      "slug": "anchorage",
+      "name": "Anchorage",
+      "county": "Municipality of Anchorage (consolidated city-borough)",
+      "population_2020": 291247,
+      "metro": "Anchorage metropolitan area",
+      "koppen": "subarctic (Dsc, bordering Dsb)",
+      "july_high_f": 66.2,
+      "jan_low_f": 11.0,
+      "climate_station": "Ted Stevens Anchorage International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 90,
+      "nearby": [
+        "Eagle River",
+        "Chugiak",
+        "Girdwood",
+        "Palmer",
+        "Wasilla",
+        "Eklutna"
+      ],
+      "one_fact": "Anchorage is often cloudy during the winter, which further decreases the amount of sunlight residents experience.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Anchorage,_Alaska"
+      ]
+    }
+  ]
+}

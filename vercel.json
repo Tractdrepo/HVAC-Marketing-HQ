@@ -376,6 +376,16 @@
       "permanent": true
     },
     {
+      "source": "/hvac-marketing-arlington-tx",
+      "destination": "/locations/texas/arlington",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-garland-tx",
+      "destination": "/locations/texas/garland",
+      "permanent": true
+    },
+    {
       "source": "/hvac-marketing-alabama",
       "destination": "/locations/alabama",
       "permanent": true
@@ -393,6 +403,16 @@
     {
       "source": "/hvac-marketing-montgomery-al",
       "destination": "/locations/alabama/montgomery",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-alaska",
+      "destination": "/locations/alaska",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-anchorage-ak",
+      "destination": "/locations/alaska/anchorage",
       "permanent": true
     },
     {
@@ -423,6 +443,171 @@
     {
       "source": "/hvac-marketing-scottsdale-az",
       "destination": "/locations/arizona/scottsdale",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-gilbert-az",
+      "destination": "/locations/arizona/gilbert",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-glendale-az",
+      "destination": "/locations/arizona/glendale",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-arkansas",
+      "destination": "/locations/arkansas",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-little-rock-ar",
+      "destination": "/locations/arkansas/little-rock",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-fayetteville-ar",
+      "destination": "/locations/arkansas/fayetteville",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-fort-smith-ar",
+      "destination": "/locations/arkansas/fort-smith",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-california",
+      "destination": "/locations/california",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-los-angeles-ca",
+      "destination": "/locations/california/los-angeles",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-san-diego-ca",
+      "destination": "/locations/california/san-diego",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-san-jose-ca",
+      "destination": "/locations/california/san-jose",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-san-francisco-ca",
+      "destination": "/locations/california/san-francisco",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-fresno-ca",
+      "destination": "/locations/california/fresno",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-sacramento-ca",
+      "destination": "/locations/california/sacramento",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-long-beach-ca",
+      "destination": "/locations/california/long-beach",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-oakland-ca",
+      "destination": "/locations/california/oakland",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-bakersfield-ca",
+      "destination": "/locations/california/bakersfield",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-anaheim-ca",
+      "destination": "/locations/california/anaheim",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-stockton-ca",
+      "destination": "/locations/california/stockton",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-riverside-ca",
+      "destination": "/locations/california/riverside",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-irvine-ca",
+      "destination": "/locations/california/irvine",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-santa-ana-ca",
+      "destination": "/locations/california/santa-ana",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-chula-vista-ca",
+      "destination": "/locations/california/chula-vista",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-santa-clarita-ca",
+      "destination": "/locations/california/santa-clarita",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-fremont-ca",
+      "destination": "/locations/california/fremont",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-san-bernardino-ca",
+      "destination": "/locations/california/san-bernardino",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-fontana-ca",
+      "destination": "/locations/california/fontana",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-modesto-ca",
+      "destination": "/locations/california/modesto",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-moreno-valley-ca",
+      "destination": "/locations/california/moreno-valley",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-oxnard-ca",
+      "destination": "/locations/california/oxnard",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-colorado",
+      "destination": "/locations/colorado",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-denver-co",
+      "destination": "/locations/colorado/denver",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-colorado-springs-co",
+      "destination": "/locations/colorado/colorado-springs",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-aurora-co",
+      "destination": "/locations/colorado/aurora",
       "permanent": true
     },
     {
@@ -526,6 +711,36 @@
       "permanent": true
     },
     {
+      "source": "/hvac-marketing-hawaii",
+      "destination": "/locations/hawaii",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-honolulu-hi",
+      "destination": "/locations/hawaii/honolulu",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-idaho",
+      "destination": "/locations/idaho",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-boise-id",
+      "destination": "/locations/idaho/boise",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-meridian-id",
+      "destination": "/locations/idaho/meridian",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-nampa-id",
+      "destination": "/locations/idaho/nampa",
+      "permanent": true
+    },
+    {
       "source": "/hvac-marketing-illinois",
       "destination": "/locations/illinois",
       "permanent": true
@@ -566,6 +781,46 @@
       "permanent": true
     },
     {
+      "source": "/hvac-marketing-iowa",
+      "destination": "/locations/iowa",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-des-moines-ia",
+      "destination": "/locations/iowa/des-moines",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-cedar-rapids-ia",
+      "destination": "/locations/iowa/cedar-rapids",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-davenport-ia",
+      "destination": "/locations/iowa/davenport",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-kansas",
+      "destination": "/locations/kansas",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-wichita-ks",
+      "destination": "/locations/kansas/wichita",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-overland-park-ks",
+      "destination": "/locations/kansas/overland-park",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-kansas-city-ks",
+      "destination": "/locations/kansas/kansas-city",
+      "permanent": true
+    },
+    {
       "source": "/hvac-marketing-kentucky",
       "destination": "/locations/kentucky",
       "permanent": true
@@ -578,6 +833,26 @@
     {
       "source": "/hvac-marketing-lexington-ky",
       "destination": "/locations/kentucky/lexington",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-louisiana",
+      "destination": "/locations/louisiana",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-new-orleans-la",
+      "destination": "/locations/louisiana/new-orleans",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-baton-rouge-la",
+      "destination": "/locations/louisiana/baton-rouge",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-shreveport-la",
+      "destination": "/locations/louisiana/shreveport",
       "permanent": true
     },
     {
@@ -631,6 +906,86 @@
       "permanent": true
     },
     {
+      "source": "/hvac-marketing-minnesota",
+      "destination": "/locations/minnesota",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-minneapolis-mn",
+      "destination": "/locations/minnesota/minneapolis",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-saint-paul-mn",
+      "destination": "/locations/minnesota/saint-paul",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-rochester-mn",
+      "destination": "/locations/minnesota/rochester",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-missouri",
+      "destination": "/locations/missouri",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-kansas-city-mo",
+      "destination": "/locations/missouri/kansas-city",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-st-louis-mo",
+      "destination": "/locations/missouri/st-louis",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-springfield-mo",
+      "destination": "/locations/missouri/springfield",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-nebraska",
+      "destination": "/locations/nebraska",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-omaha-ne",
+      "destination": "/locations/nebraska/omaha",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-lincoln-ne",
+      "destination": "/locations/nebraska/lincoln",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-nevada",
+      "destination": "/locations/nevada",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-las-vegas-nv",
+      "destination": "/locations/nevada/las-vegas",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-henderson-nv",
+      "destination": "/locations/nevada/henderson",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-north-las-vegas-nv",
+      "destination": "/locations/nevada/north-las-vegas",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-reno-nv",
+      "destination": "/locations/nevada/reno",
+      "permanent": true
+    },
+    {
       "source": "/hvac-marketing-new-jersey",
       "destination": "/locations/new-jersey",
       "permanent": true
@@ -643,6 +998,26 @@
     {
       "source": "/hvac-marketing-jersey-city-nj",
       "destination": "/locations/new-jersey/jersey-city",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-new-mexico",
+      "destination": "/locations/new-mexico",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-albuquerque-nm",
+      "destination": "/locations/new-mexico/albuquerque",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-las-cruces-nm",
+      "destination": "/locations/new-mexico/las-cruces",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-rio-rancho-nm",
+      "destination": "/locations/new-mexico/rio-rancho",
       "permanent": true
     },
     {
@@ -731,6 +1106,46 @@
       "permanent": true
     },
     {
+      "source": "/hvac-marketing-oklahoma",
+      "destination": "/locations/oklahoma",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-oklahoma-city-ok",
+      "destination": "/locations/oklahoma/oklahoma-city",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-tulsa-ok",
+      "destination": "/locations/oklahoma/tulsa",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-norman-ok",
+      "destination": "/locations/oklahoma/norman",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-oregon",
+      "destination": "/locations/oregon",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-portland-or",
+      "destination": "/locations/oregon/portland",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-eugene-or",
+      "destination": "/locations/oregon/eugene",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-salem-or",
+      "destination": "/locations/oregon/salem",
+      "permanent": true
+    },
+    {
       "source": "/hvac-marketing-pennsylvania",
       "destination": "/locations/pennsylvania",
       "permanent": true
@@ -798,6 +1213,26 @@
     {
       "source": "/hvac-marketing-washington-dc",
       "destination": "/locations/washington-dc/washington",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-washington",
+      "destination": "/locations/washington",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-seattle-wa",
+      "destination": "/locations/washington/seattle",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-spokane-wa",
+      "destination": "/locations/washington/spokane",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-marketing-tacoma-wa",
+      "destination": "/locations/washington/tacoma",
       "permanent": true
     },
     {

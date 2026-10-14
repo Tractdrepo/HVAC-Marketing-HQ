@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Colorado",
+    "abbr": "CO",
+    "slug": "colorado",
+    "population_2020": 5773714,
+    "source_url": "https://en.wikipedia.org/wiki/Colorado"
+  },
+  "cities": [
+    {
+      "slug": "denver",
+      "name": "Denver",
+      "county": "City and County of Denver",
+      "population_2020": 715522,
+      "metro": "Denver metropolitan area",
+      "koppen": "cool semi-arid (BSk)",
+      "july_high_f": 89.9,
+      "jan_low_f": 18.7,
+      "climate_station": "Denver International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 38,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 105,
+      "nearby": [
+        "Aurora",
+        "Lakewood",
+        "Arvada",
+        "Englewood",
+        "Littleton",
+        "Westminster"
+      ],
+      "one_fact": "Denver has four distinct seasons and receives most of its precipitation from April through August.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Denver"
+      ]
+    },
+    {
+      "slug": "colorado-springs",
+      "name": "Colorado Springs",
+      "county": "El Paso County",
+      "population_2020": 478961,
+      "metro": "Colorado Springs metropolitan area",
+      "koppen": "monsoon-influenced continental (Dwa/Cwa)",
+      "july_high_f": 86.5,
+      "jan_low_f": 18.5,
+      "climate_station": "Colorado Springs Municipal Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 18,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 101,
+      "nearby": [
+        "Manitou Springs",
+        "Fountain",
+        "Security-Widefield",
+        "Monument",
+        "Woodland Park",
+        "Palmer Lake"
+      ],
+      "one_fact": "Colorado Springs is one of the most active lightning strike areas in the United States.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Colorado_Springs,_Colorado"
+      ]
+    },
+    {
+      "slug": "aurora",
+      "name": "Aurora",
+      "county": "Arapahoe, Adams and Douglas counties",
+      "population_2020": 386261,
+      "metro": "Denver–Aurora–Centennial metropolitan statistical area",
+      "koppen": "semi-arid (BSk)",
+      "july_high_f": 89,
+      "jan_low_f": 18,
+      "climate_station": "Aurora, Colorado",
+      "climate_period": null,
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 108,
+      "nearby": [
+        "Denver",
+        "Centennial",
+        "Greenwood Village",
+        "Parker",
+        "Commerce City",
+        "Englewood"
+      ],
+      "one_fact": "In Aurora, December is the coldest month of the year, with an average high of 43 °F and an average low of 17 °F.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Aurora,_Colorado"
+      ]
+    }
+  ]
+}

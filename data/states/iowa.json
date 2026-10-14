@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Iowa",
+    "abbr": "IA",
+    "slug": "iowa",
+    "population_2020": 3190369,
+    "source_url": "https://en.wikipedia.org/wiki/Iowa"
+  },
+  "cities": [
+    {
+      "slug": "des-moines",
+      "name": "Des Moines",
+      "county": "Polk County",
+      "population_2020": 214133,
+      "metro": "Des Moines–West Des Moines metropolitan statistical area",
+      "koppen": "hot-summer humid continental (Dfa)",
+      "july_high_f": 85.6,
+      "jan_low_f": 13.8,
+      "climate_station": "Des Moines International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 110,
+      "nearby": [
+        "West Des Moines",
+        "Urbandale",
+        "Ankeny",
+        "Clive",
+        "Altoona",
+        "Johnston"
+      ],
+      "one_fact": "Fall in Des Moines brings pleasant temperatures and colorful fall foliage.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Des_Moines,_Iowa"
+      ]
+    },
+    {
+      "slug": "cedar-rapids",
+      "name": "Cedar Rapids",
+      "county": "Linn County",
+      "population_2020": 137710,
+      "metro": "Cedar Rapids metropolitan area",
+      "koppen": "humid continental (no Köppen code given)",
+      "july_high_f": 82.8,
+      "jan_low_f": 11.3,
+      "climate_station": "Eastern Iowa Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 110,
+      "nearby": [
+        "Marion",
+        "Hiawatha",
+        "Robins",
+        "Fairfax",
+        "Ely",
+        "Palo"
+      ],
+      "one_fact": "Cedar Rapids has a humid continental climate with long, cold, sometimes brutal winters.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Cedar_Rapids,_Iowa"
+      ]
+    },
+    {
+      "slug": "davenport",
+      "name": "Davenport",
+      "county": "Scott County",
+      "population_2020": 101724,
+      "metro": "Quad Cities metropolitan area",
+      "koppen": "humid continental (Dfa)",
+      "july_high_f": 83.8,
+      "jan_low_f": 14.0,
+      "climate_station": "Davenport, Iowa",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": null,
+      "nearby": [
+        "Bettendorf",
+        "Rock Island, Illinois",
+        "Moline, Illinois",
+        "East Moline, Illinois",
+        "Riverdale",
+        "Eldridge"
+      ],
+      "one_fact": "Davenport summers are very warm to hot with high levels of humidity.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Davenport,_Iowa"
+      ]
+    }
+  ]
+}

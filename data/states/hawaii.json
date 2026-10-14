@@ -1,0 +1,38 @@
+{
+  "state": {
+    "name": "Hawaii",
+    "abbr": "HI",
+    "slug": "hawaii",
+    "population_2020": 1455271,
+    "source_url": "https://en.wikipedia.org/wiki/Hawaii"
+  },
+  "cities": [
+    {
+      "slug": "honolulu",
+      "name": "Honolulu",
+      "county": "Honolulu County (City and County of Honolulu)",
+      "population_2020": 350964,
+      "metro": "Urban Honolulu metropolitan area",
+      "koppen": "hot semi-arid (BSh)",
+      "july_high_f": 88.1,
+      "jan_low_f": 66.8,
+      "climate_station": "Honolulu International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 32,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 95,
+      "nearby": [
+        "Pearl City",
+        "Aiea",
+        "Kailua",
+        "Kaneohe",
+        "Waipahu",
+        "Mililani"
+      ],
+      "one_fact": "Although Honolulu is in the tropics, hurricanes are quite rare.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Honolulu"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "state": {
+    "name": "Nebraska",
+    "abbr": "NE",
+    "slug": "nebraska",
+    "population_2020": 1961504,
+    "source_url": "https://en.wikipedia.org/wiki/Nebraska"
+  },
+  "cities": [
+    {
+      "slug": "omaha",
+      "name": "Omaha",
+      "county": "Douglas County",
+      "population_2020": 486051,
+      "metro": "Omaha–Council Bluffs metropolitan area",
+      "koppen": "hot-summer humid continental (Dfa)",
+      "july_high_f": 88.1,
+      "jan_low_f": 15.2,
+      "climate_station": "Eppley Airfield",
+      "climate_period": "1991–2020",
+      "days_90_plus": 29,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 114,
+      "nearby": [
+        "Council Bluffs, Iowa",
+        "Bellevue",
+        "La Vista",
+        "Papillion",
+        "Ralston",
+        "Elkhorn"
+      ],
+      "one_fact": "Omaha reaches 90 °F on 29 days and 100 °F on 1.7 days annually.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Omaha,_Nebraska"
+      ]
+    },
+    {
+      "slug": "lincoln",
+      "name": "Lincoln",
+      "county": "Lancaster County",
+      "population_2020": 291082,
+      "metro": "Lincoln metropolitan area",
+      "koppen": "humid continental (Dfa)",
+      "july_high_f": 89.4,
+      "jan_low_f": 14.4,
+      "climate_station": "Lincoln Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 41.8,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 115,
+      "nearby": [
+        "Waverly",
+        "Hickman",
+        "Ashland",
+        "Malcolm",
+        "Crete",
+        "Seward"
+      ],
+      "one_fact": "Lincoln winters are cold, while summers are hot and humid.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Lincoln,_Nebraska"
+      ]
+    }
+  ]
+}

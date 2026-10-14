@@ -1,0 +1,92 @@
+{
+  "state": {
+    "name": "Missouri",
+    "abbr": "MO",
+    "slug": "missouri",
+    "population_2020": 6154913,
+    "source_url": "https://en.wikipedia.org/wiki/Missouri"
+  },
+  "cities": [
+    {
+      "slug": "kansas-city",
+      "name": "Kansas City",
+      "county": "Jackson, Clay, Platte and Cass counties",
+      "population_2020": 508090,
+      "metro": "Kansas City metropolitan area",
+      "koppen": "humid continental or humid subtropical, depending on isotherm (no Köppen code given)",
+      "july_high_f": 90.2,
+      "jan_low_f": 22.2,
+      "climate_station": "Kansas City Downtown Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 47,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 113,
+      "nearby": [
+        "Independence",
+        "Kansas City, Kansas",
+        "North Kansas City",
+        "Overland Park",
+        "Raytown",
+        "Gladstone"
+      ],
+      "one_fact": "In Kansas City, high temperatures surpass 100 °F on 5.6 days of the year and 90 °F on 47 days.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Kansas_City,_Missouri"
+      ]
+    },
+    {
+      "slug": "st-louis",
+      "name": "St. Louis",
+      "county": "Independent city (not in any county)",
+      "population_2020": 301578,
+      "metro": "St. Louis, MO-IL metropolitan area (Greater St. Louis)",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 89.6,
+      "jan_low_f": 23.8,
+      "climate_station": "Lambert–St. Louis International Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": null,
+      "days_90_plus_source": null,
+      "record_high_f": 115,
+      "nearby": [
+        "East St. Louis, Illinois",
+        "University City",
+        "Clayton",
+        "Florissant",
+        "Kirkwood",
+        "Granite City, Illinois"
+      ],
+      "one_fact": "St. Louis experiences hot, humid summers and chilly to cold winters.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/St._Louis"
+      ]
+    },
+    {
+      "slug": "springfield",
+      "name": "Springfield",
+      "county": "Greene County",
+      "population_2020": 169176,
+      "metro": "Springfield metropolitan area",
+      "koppen": "humid subtropical (Cfa)",
+      "july_high_f": 89.6,
+      "jan_low_f": 24.2,
+      "climate_station": "Springfield–Branson National Airport",
+      "climate_period": "1991–2020",
+      "days_90_plus": 40,
+      "days_90_plus_source": "article text (not climate table)",
+      "record_high_f": 113,
+      "nearby": [
+        "Republic",
+        "Nixa",
+        "Ozark",
+        "Battlefield",
+        "Willard",
+        "Strafford"
+      ],
+      "one_fact": "Springfield averages 40 days a year with high temperatures of 90 °F or greater.",
+      "source_urls": [
+        "https://en.wikipedia.org/wiki/Springfield,_Missouri"
+      ]
+    }
+  ]
+}
