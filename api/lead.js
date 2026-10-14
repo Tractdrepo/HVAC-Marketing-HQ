@@ -126,7 +126,11 @@ module.exports = async function handler(req, res) {
       html: `<table cellpadding="6">${rows}<tr><td><b>received</b></td><td>${new Date().toISOString()}</td></tr></table>`,
     }),
   }).catch(() => null);
-  if (!sent || !sent.ok) return res.status(502).json({ error: "Something went wrong on our end. Please try again." });
+  if (!sent || !sent.ok) {
+    // Shows in Vercel > Logs, so a bad key or unverified domain is easy to spot.
+    console.error("lead email failed", sent ? `Resend ${sent.status}: ${(await sent.text().catch(() => "")).slice(0, 300)}` : "network error");
+    return res.status(502).json({ error: "Something went wrong on our end. Please try again." });
+  }
 
   if (!auto && process.env.REPORT_CARD_AUTO === "on" && !/today/.test(handWhy || "")) await tellShop(lead);
   if (auto) {
