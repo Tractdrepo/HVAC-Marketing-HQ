@@ -29,11 +29,17 @@ export async function collectFacts(input, env = process.env) {
         town = townOf(place) || town;
         state = stateOf(place) || state;
         // One search in their own town, one across everything within about 20 miles (the towns they serve).
+        // The circle scales with the market: a town search that turns up few shops (Wortham) means the
+        // shop competes across the towns around it, about 20 miles; a full market (Waco, Dallas) is
+        // judged closer in, about 8 miles, where customers actually choose between shops.
         const [searches, newest] = await Promise.all([
-          Promise.all([
-            town ? localRank(trade.searchQueries[0].replace('{town}', town).replace(', {state}', state ? `, ${state}` : ''), place, google) : null,
-            areaRank(trade.areaQuery, place, google).then((r) => r && { ...r, query: `${trade.areaQuery} within 20 miles of ${town || 'you'}` }).catch(() => null),
-          ]).then((list) => list.filter(Boolean)),
+          (async () => {
+            const own = town ? await localRank(trade.searchQueries[0].replace('{town}', town).replace(', {state}', state ? `, ${state}` : ''), place, google) : null;
+            const miles = !own || own.marketSize < 10 ? 20 : 8;
+            const wide = await areaRank(trade.areaQuery, place, google, Math.round(miles * 1609))
+              .then((r) => r && { ...r, query: `${trade.areaQuery} within ${miles} miles of ${town || 'you'}` }).catch(() => null);
+            return [own, wide].filter(Boolean);
+          })(),
           newestReviewDays(place.id, google),
         ]);
         gp = placeFacts(place, searches, trade, { website: input.website });
