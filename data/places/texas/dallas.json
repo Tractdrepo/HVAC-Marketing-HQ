@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Dallas, TX",
+  "count": 20,
+  "median_rating": 4.9,
+  "median_reviews": 340.5,
+  "share_with_website": 1.0,
+  "top5": [
+    [
+      "Baker Brothers Plumbing, Air & Electric",
+      4.8,
+      24623
+    ],
+    [
+      "Service Experts Dallas",
+      4.8,
+      6181
+    ],
+    [
+      "Airtron Heating & Air Conditioning",
+      4.8,
+      5622
+    ],
+    [
+      "Rescue Air and Plumbing",
+      4.8,
+      4088
+    ],
+    [
+      "Berkeys Plumbing, A/C & Electrical",
+      4.9,
+      3352
+    ]
+  ]
+}

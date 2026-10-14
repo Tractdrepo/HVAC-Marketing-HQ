@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Tyler, TX",
+  "count": 20,
+  "median_rating": 4.9,
+  "median_reviews": 239.5,
+  "share_with_website": 0.95,
+  "top5": [
+    [
+      "C. Woods Company",
+      4.8,
+      3927
+    ],
+    [
+      "Evans Air Conditioning, The Original",
+      5,
+      2920
+    ],
+    [
+      "ETR Air Conditioning & Heating",
+      4.9,
+      1612
+    ],
+    [
+      "Rose City Air",
+      5,
+      813
+    ],
+    [
+      "Bannister Plumbing & Air",
+      5,
+      752
+    ]
+  ]
+}

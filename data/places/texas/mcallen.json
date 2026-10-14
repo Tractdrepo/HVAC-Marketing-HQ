@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in McAllen, TX",
+  "count": 20,
+  "median_rating": 5.0,
+  "median_reviews": 110.0,
+  "share_with_website": 0.95,
+  "top5": [
+    [
+      "Colair",
+      5,
+      3429
+    ],
+    [
+      "Mighty Mike's Plumbing, Electrical & HVAC",
+      4.9,
+      3015
+    ],
+    [
+      "Frontier Cooling & Heating",
+      4.9,
+      2553
+    ],
+    [
+      "Millennium A/C",
+      5,
+      1597
+    ],
+    [
+      "My Prime Air HVAC",
+      5,
+      1305
+    ]
+  ]
+}

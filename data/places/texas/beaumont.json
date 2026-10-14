@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Beaumont, TX",
+  "count": 20,
+  "median_rating": 4.9,
+  "median_reviews": 125.5,
+  "share_with_website": 0.9,
+  "top5": [
+    [
+      "Efficient Systems AC & Plumbing",
+      4.9,
+      3563
+    ],
+    [
+      "Efficient Systems AC & Plumbing",
+      4.9,
+      749
+    ],
+    [
+      "Big Fish Cooling & Heating",
+      4.9,
+      741
+    ],
+    [
+      "Delta Air Conditioning",
+      4.9,
+      490
+    ],
+    [
+      "Thermacon Service Company, Inc",
+      4.8,
+      338
+    ]
+  ]
+}

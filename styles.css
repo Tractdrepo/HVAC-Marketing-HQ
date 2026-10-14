@@ -862,3 +862,7 @@ a.card:hover, .card.guide-card:hover { transform: translateY(-3px); border-color
 .read-more { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 8px; }
 .read-more a { color: var(--cool); font-weight: 600; text-decoration: none; }
 .read-more a::after { content: " →"; }
+.mtable { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; font-size: .95rem; }
+.mtable th, .mtable td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.mtable th { font: 600 .72rem/1 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); background: var(--panel-2); }
+.mtable tr:last-child td { border-bottom: 0; }

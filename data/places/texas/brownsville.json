@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Brownsville, TX",
+  "count": 18,
+  "median_rating": 4.8,
+  "median_reviews": 25.5,
+  "share_with_website": 0.44,
+  "top5": [
+    [
+      "American AC & Heating",
+      4.7,
+      1701
+    ],
+    [
+      "Brownsville Heating & Air Conditioning",
+      4.9,
+      378
+    ],
+    [
+      "Hines Family HVAC Repair",
+      4.9,
+      205
+    ],
+    [
+      "Texas Air Conditioning",
+      4.7,
+      204
+    ],
+    [
+      "Texas Lone Star AC & Heating LLC",
+      4.7,
+      89
+    ]
+  ]
+}

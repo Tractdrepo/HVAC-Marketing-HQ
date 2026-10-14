@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Fort Worth, TX",
+  "count": 16,
+  "median_rating": 4.9,
+  "median_reviews": 497.0,
+  "share_with_website": 0.94,
+  "top5": [
+    [
+      "Service Experts Fort Worth",
+      4.8,
+      5037
+    ],
+    [
+      "AirCo Air Conditioning, Heating and Plumbing",
+      4.8,
+      4746
+    ],
+    [
+      "One Hour Air Conditioning & Heating",
+      4.7,
+      3523
+    ],
+    [
+      "Comfort Experts",
+      4.8,
+      2114
+    ],
+    [
+      "1st Choice Plumbing, Heating & Air Solutions",
+      4.9,
+      1988
+    ]
+  ]
+}

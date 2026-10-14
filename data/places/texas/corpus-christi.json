@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Corpus Christi, TX",
+  "count": 20,
+  "median_rating": 4.9,
+  "median_reviews": 291.5,
+  "share_with_website": 0.85,
+  "top5": [
+    [
+      "Mathews CCAC Heating, Cooling, Plumbing & Electrical",
+      4.9,
+      6390
+    ],
+    [
+      "One Hour Air Conditioning & Heating",
+      4.8,
+      3141
+    ],
+    [
+      "Triple A Air Conditioning & Heating",
+      4.9,
+      2656
+    ],
+    [
+      "Bodine-Scott Air Conditioning & Plumbing Co.",
+      4.7,
+      1162
+    ],
+    [
+      "Logicool Air Solutions",
+      4.9,
+      1100
+    ]
+  ]
+}

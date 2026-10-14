@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Temple, TX",
+  "count": 18,
+  "median_rating": 4.8,
+  "median_reviews": 103.5,
+  "share_with_website": 0.83,
+  "top5": [
+    [
+      "Temple Heat & Air LLC",
+      4.8,
+      698
+    ],
+    [
+      "Rohde Air Conditioning & Heating",
+      4.9,
+      493
+    ],
+    [
+      "Moore Air, LLC",
+      4.8,
+      273
+    ],
+    [
+      "Airheads HVAC",
+      4.9,
+      265
+    ],
+    [
+      "Air Control",
+      4.8,
+      255
+    ]
+  ]
+}

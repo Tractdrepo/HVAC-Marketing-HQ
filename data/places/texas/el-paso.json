@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in El Paso, TX",
+  "count": 20,
+  "median_rating": 4.7,
+  "median_reviews": 292.5,
+  "share_with_website": 0.9,
+  "top5": [
+    [
+      "SoBellas Home Services",
+      4.8,
+      2794
+    ],
+    [
+      "EA Heating and Cooling",
+      5,
+      1215
+    ],
+    [
+      "Mechanical Technologies",
+      4.7,
+      1185
+    ],
+    [
+      "The Air Conditioning Company",
+      4.8,
+      938
+    ],
+    [
+      "Expert HVAC & Refrigeration",
+      4.8,
+      772
+    ]
+  ]
+}

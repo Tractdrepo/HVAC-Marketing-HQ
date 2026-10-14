@@ -1,0 +1,35 @@
+{
+  "pulled": "2026-10-14",
+  "query": "HVAC contractor in Houston, TX",
+  "count": 20,
+  "median_rating": 4.9,
+  "median_reviews": 467.0,
+  "share_with_website": 1.0,
+  "top5": [
+    [
+      "Abacus Plumbing, Air Conditioning, & Electrical",
+      4.7,
+      11822
+    ],
+    [
+      "Village Plumbing, Air & Electric",
+      4.8,
+      10910
+    ],
+    [
+      "Royal Air Houston",
+      4.6,
+      9086
+    ],
+    [
+      "Air Tech of Houston AC & Plumbing",
+      4.8,
+      6600
+    ],
+    [
+      "Service Experts Houston",
+      4.8,
+      4489
+    ]
+  ]
+}

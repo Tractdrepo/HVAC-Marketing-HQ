@@ -932,6 +932,40 @@ def city_hook(c):
     return f"Summers stay mild in {esc(c['name'])}, so heat pumps, tune-ups and the first hot week decide the year. Homeowners call the first shop that shows up and answers."
 
 
+def places_data(c):
+    """Google Maps snapshot for a city, written by the city map data pull (data/places/<state>/<city>.json). Refreshed within 30 days."""
+    p_ = os.path.join(os.path.dirname(_DATA), "places", c["_st"]["slug"], c["slug"] + ".json")
+    try:
+        with open(p_) as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return None
+
+
+def market_block(c):
+    d = places_data(c)
+    if not d or not d.get("count"):
+        return ""
+    n_ = d["count"]
+    stats = [("HVAC shops Google shows", f"{n_}+" if n_ % 20 == 0 else fnum(n_), "for one city search"),
+             ("Median rating", f'{d["median_rating"]:.1f}★' if d.get("median_rating") is not None else "–", "of those shops"),
+             ("Median review count", fnum(d.get("median_reviews")), "of those shops")]
+    if d.get("share_with_website") is not None:
+        stats.append(("Have a website", f'{round(d["share_with_website"] * 100) if d["share_with_website"] <= 1 else round(d["share_with_website"])}%', "linked on Google"))
+    st_html = "".join(f'<div class="cfact"><span>{a_}</span><b>{b}</b><small>{c_}</small></div>' for a_, b, c_ in stats)
+    rows = "".join(f'<tr><td>{n + 1}</td><td>{esc(t[0])}</td><td>{f"{t[1]:.1f}" if t[1] is not None else "–"}</td><td>{fnum(t[2])}</td></tr>' for n, t in enumerate(d.get("top5", [])[:5]))
+    table = f'<table class="mtable"><thead><tr><th>#</th><th>Shop</th><th>Rating</th><th>Reviews</th></tr></thead><tbody>{rows}</tbody></table>' if rows else ""
+    top = d.get("top5") or []
+    gap = f"The most-reviewed shop has {fnum(top[0][2])} reviews; the median shop has {fnum(d.get('median_reviews'))}. That gap is what review requests close." if top and d.get("median_reviews") is not None else ""
+    return f"""<section class="section"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">{esc(c['name'])} on Google</span><h2>The {esc(c['name'])} HVAC map, in numbers.</h2><p class="lede">What a homeowner sees when they search for HVAC help in {esc(c['name'])}. {esc(gap)}</p></div>
+  <div class="cfacts reveal">{st_html}</div>
+  <h3 style="margin-top:34px">Most-reviewed HVAC shops in {esc(c['name'])}</h3>
+  {table}
+  <p class="csrc">Data from Google, pulled {esc(d.get("pulled", ""))}. Search: "{esc(d.get("query", ""))}". Refreshed monthly. Listed for context only; these shops are not our clients.</p>
+</div></section>"""
+
+
 def city_page(c):
     facts = [("Population", fnum(c["population_2020"]), "2020 Census"), ("Average July high", deg(c["july_high_f"]), "daily max"), ("Average January low", deg(c["jan_low_f"]), "daily min")]
     if c.get("days_90_plus"):
@@ -963,6 +997,7 @@ def city_page(c):
   <div class="cfacts reveal">{fact_html}</div>
   <p class="csrc">Population: 2020 U.S. Census. Climate: {esc(station)}{" normals" if c.get("climate_period") else ""}. Both as published on Wikipedia.</p>
 </div></section>
+{market_block(c)}
 <section class="section alt"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">{esc(c['name'])} market</span><h2>What {esc(c['name'])}'s weather means for your marketing.</h2><p class="lede">{esc(c['one_fact'])}</p></div>
   <div class="grid two">{ins}</div>
