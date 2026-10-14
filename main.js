@@ -140,11 +140,29 @@
   });
 
   // Website boxes (hero, closing CTA) start the report card with the site filled in
+  // Hero URL box: open the report card in a pop-up with the website filled in, instead of
+  // scrolling to the form at the bottom of the page.
+  var modal = document.querySelector(".rc-modal");
+  var openModal = function (v) {
+    var target = modal.querySelector(".rc-form");
+    var site = target.querySelector("[name=website]");
+    if (v) site.value = /^https?:\/\//i.test(v) ? v : "https://" + v;
+    if (target._go) target._go(v ? 1 : 0);
+    var lazy = modal.querySelector(".cf-turnstile-lazy");
+    if (lazy && window.turnstile && !lazy.dataset.done) { lazy.dataset.done = "1"; window.turnstile.render(lazy); }
+    modal.showModal();
+    var i = target.querySelector(".rc-step.on input"); if (i) i.focus();
+  };
+  if (modal) {
+    modal.querySelector(".rc-modal-x").addEventListener("click", function () { modal.close(); });
+    modal.addEventListener("click", function (e) { if (e.target === modal) modal.close(); });
+  }
   document.querySelectorAll("[data-url-form]").forEach(function (f) {
     f.addEventListener("submit", function (e) {
       e.preventDefault();
-      var target = document.querySelector("#report-card .rc-form");
       var v = f.querySelector("input").value.trim();
+      if (modal && modal.showModal) return openModal(v);
+      var target = document.querySelector("#report-card .rc-form");
       if (!target) return;
       var site = target.querySelector("[name=website]");
       if (v) {

@@ -86,16 +86,16 @@ export async function directorySearch({ businessName, town, state }, trade) {
 }
 
 // 4. Opening paragraph, written from the finished grades only.
-export async function openingParagraph(report, businessName) {
+export async function openingParagraph(report, businessName, seen = {}) {
   const areaNames = { profile: 'Google profile', reviews: 'Reviews', website: 'Website', listings: 'Listings' };
   const facts = Object.entries(report.areas)
     .filter(([, a]) => a.score != null)
-    .map(([k, a]) => `${areaNames[k]}: ${a.grade} (${a.score})${a.topFix ? `. Top fix: ${a.topFix}` : ''}`).join('\n');
+    .map(([k, a]) => `${areaNames[k]}: ${a.grade} (${a.score}). What we saw: ${seen[k] || 'n/a'}${a.topFix ? ` Top fix: ${a.topFix}` : ''}`).join('\n');
   const res = await ask({
-    system: `Write a three-sentence opening paragraph for a report card on a local home service business's online presence. Use only the facts given. Sentence one: the overall grade and what is working. Sentence two: the top fix for the lowest-scoring area. Sentence three: a plain, low-pressure note on what fixing it would mean for calls. Never call an area scoring 80 or more a problem. No links, addresses, phone numbers, prices or promises of rankings. Plain words, no exclamation marks.`,
+    system: `Write a three-sentence opening paragraph for a report card on a local home service business's online presence. Use only the facts given. Sentence one: the overall score and the areas that are working, with one specific number from what we saw. Sentence two: the lowest-scoring area, the specific problem we saw there (a search position, a count, a speed score) and its top fix. Sentence three: a plain, low-pressure note on what fixing it would mean for calls and booked jobs. Never call an area scoring 80 or more a problem. No links, addresses, phone numbers, prices or promises of rankings. Plain words, no exclamation marks, no dashes as punctuation.`,
     messages: [{ role: 'user', content: `Business: ${businessName}\nOverall: ${report.grade} (${report.overall})\nLowest area: ${areaNames[report.weakest]}\n${facts}` }],
   });
-  const p = textOf(res);
+  const p = textOf(res).replace(/\s*[\u2014\u2013]\s*/g, ', ');
   // Dropped if it contains anything that looks like a link, address or phone number.
   if (!p || /https?:|www\.|\.com\b|\d{3}[\s.-]\d{4}|\b\d{2,5}\s+\w+\s+(st|street|rd|road|ave|avenue|dr|drive|blvd|hwy|lane|ln)\b/i.test(p)) return null;
   return p;

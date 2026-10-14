@@ -9,7 +9,7 @@
 
 <link rel="preload" href="/fonts/Archivo-600-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/IBMPlexSans-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css?v=8c7b21b4">
+<link rel="stylesheet" href="/styles.css?v=224b9076">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -95,6 +95,10 @@
 <section class="section"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">How it works</span><h2>Under a minute for you.</h2></div>
   <ol class="how-list"><li class="how reveal"><span class="who">You</span><h3>Type your website</h3><p>Under a minute. Four quick questions, no credit card.</p></li><li class="how reveal"><span class="who">We</span><h3>Compare you locally</h3><p>Your profile, reviews, site and listings next to the HVAC shops people find near you.</p></li><li class="how reveal"><span class="who">You get</span><h3>Grades and a fix-first list</h3><p>In your inbox in about five minutes, in plain English.</p></li><li class="how reveal"><span class="who">You</span><h3>Decide what's next</h3><p>Fix it yourself, or have us do it. The report card is yours to keep either way.</p></li></ol>
+  <div class="split" style="margin-top:80px">
+  <div><span class="eyebrow">After the report card</span><h2>You've got the grades. Now what?</h2><p class="lede">Some owners fix it themselves, and the report shows exactly where to start. Others hand it to us. Either way, it's yours to keep.</p></div>
+  <div class="card"><ul class="ticks"><li>Graded only on what anyone can see in public</li><li>The same facts always give the same grade</li><li>Plain English, no jargon</li><li>Re-grade anytime to see what changed</li></ul><a class="more" href="https://calendar.app.google/bm89Bh3ot8oEk3VA9">Rather talk it through? Book a 15-minute call →</a></div>
+  </div>
 </div></section>
 <section class="section" id="report-card">
   <div class="wrap"><div class="rc-wrap reveal"><div class="rc">
@@ -110,7 +114,7 @@
       </div>
       <p class="muted" style="margin-top:18px;font-size:.92rem">Graded only on what anyone can see in public. You get the grades and what to fix first.</p>
     </div>
-    <form class="rc-form" novalidate>
+        <form class="rc-form" novalidate>
       <div class="rc-body">
         <div class="rc-progress" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
         <input class="hp" type="text" name="company_fax" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -125,7 +129,7 @@
           <h3>What's the business called?</h3>
           <p class="muted">The name on your Google profile, so we grade the right one.</p>
           <div class="field"><label for="rc-biz-HVAC">Business name</label><input id="rc-biz-HVAC" type="text" name="business" required data-msg="Add your business name." autocomplete="organization"></div>
-          <div class="field"><label for="rc-town-HVAC">Main town you serve</label><input id="rc-town-HVAC" type="text" name="town" placeholder="Waco"></div>
+          <div class="field"><label for="rc-town-HVAC">Main town and state</label><input id="rc-town-HVAC" type="text" name="town" placeholder="Waco, TX" required data-msg="Add your main town and state, like Waco, TX." autocomplete="address-level2"></div>
           <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="button" class="btn btn-primary" data-next>Next</button></div>
         </div>
         <div class="rc-step">
@@ -153,10 +157,6 @@
     </form>
   </div></div></div>
 </section>
-<section class="section"><div class="wrap split">
-  <div><span class="eyebrow">After the report card</span><h2>You've got the grades. Now what?</h2><p class="lede">Some owners fix it themselves, and the report shows exactly where to start. Others hand it to us. Either way, it's yours to keep.</p></div>
-  <div class="card"><ul class="ticks"><li>Graded only on what anyone can see in public</li><li>The same facts always give the same grade</li><li>Plain English, no jargon</li><li>Re-grade anytime to see what changed</li></ul><a class="more" href="https://calendar.app.google/bm89Bh3ot8oEk3VA9">Rather talk it through? Book a 15-minute call →</a></div>
-</div></section>
 
 </main>
 <footer class="site-foot">
@@ -180,7 +180,8 @@
   </div>
 </footer>
 
-<script src="/main.js?v=12a43f49" defer></script>
+
+<script src="/main.js?v=a16bf3c2" defer></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>

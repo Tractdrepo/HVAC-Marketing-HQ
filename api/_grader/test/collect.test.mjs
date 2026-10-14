@@ -111,5 +111,19 @@ test('report email shows grades and fixes, not points', async () => {
   assert.match(r.subject, /^Your report card: .+ gets an? [A-F]/);
   assert.ok(r.html.includes('Hi Sam') && r.html.includes('https://cal.example/x'));
   assert.ok(!/\/ ?\d+ points|\bpts\b/i.test(r.html));
-  assert.ok(r.text.includes('Overall grade:'));
+  assert.ok(r.text.includes('Overall:') && r.text.includes('Top fix:'));
+  assert.ok(r.html.includes('/ 100'));
+  const m = r.link.match(/\/your-report#r=([A-Za-z0-9_-]+)$/);
+  assert.ok(m, 'results link');
+  const back = JSON.parse(Buffer.from(m[1], 'base64url').toString());
+  assert.equal(back.n, facts.businessName);
+  assert.equal(back.a.length, 4);
+  assert.ok(back.s.length > 20, 'summary present without AI');
+  assert.ok(r.link.length < 6000, `link length ${r.link.length}`);
+});
+
+test('listings are not graded when there is no Google profile and no directory search', async () => {
+  const { scoreListings } = await import('../score.mjs');
+  const a = scoreListings({ phoneMatch: undefined, googleLinksSite: undefined, facebookLinked: true }, hvac);
+  assert.equal(a.score, null);
 });

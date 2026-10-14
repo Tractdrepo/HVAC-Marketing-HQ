@@ -28,12 +28,17 @@ const norm = (s) => (s || '').toLowerCase().replace(/&/g, 'and').replace(/[^a-z0
 // Find the business itself. Prefer a result whose website is on the same domain.
 export async function findBusiness({ businessName, website, town, state }, key) {
   const where = [town, state].filter(Boolean).join(', ');
-  const results = await searchText(where ? `${businessName}, ${where}` : businessName, DETAIL_FIELDS, key);
   const site = host(website);
-  return results.find((p) => site && host(p.websiteUri) === site)
+  const pick = (results) => results.find((p) => site && host(p.websiteUri) === site)
     || results.find((p) => norm(p.displayName?.text) === norm(businessName))
     || results.find((p) => norm(p.displayName?.text).includes(norm(businessName)) || norm(businessName).includes(norm(p.displayName?.text)))
     || null;
+  const queries = [...new Set([where ? `${businessName}, ${where}` : businessName, site, businessName].filter(Boolean))];
+  for (const q of queries) {
+    const found = pick(await searchText(q, DETAIL_FIELDS, key));
+    if (found) return found;
+  }
+  return null;
 }
 
 export function stateOf(place) {

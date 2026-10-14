@@ -106,7 +106,8 @@ function tellTeam(lead, why) {
 }
 
 async function autoReport(lead) {
-  const { gradeWithDeadline, renderReport, isPublicSite } = await import("./_grader/report.mjs");
+  const { gradeWithDeadline, renderReport, isPublicSite, teamNote } = await import("./_grader/report.mjs");
+  const started = Date.now();
   if (!isPublicSite(lead.website)) return tellTeam(lead, "the website address isn't a public site");
   let result;
   try {
@@ -117,10 +118,19 @@ async function autoReport(lead) {
   if (result.report.overall == null) return tellTeam(lead, `nothing could be measured (${result.facts.notes.join(" ")})`);
   const r = renderReport(result, { firstName: lead.first_name, bookingUrl: BOOKING_URL, siteUrl: SITE_URL });
   try {
-    await sendEmail({ to: [lead.email], bcc: [process.env.LEAD_TO], reply_to: process.env.LEAD_TO, subject: r.subject, html: r.html, text: r.text });
+    await sendEmail({ to: [lead.email], reply_to: process.env.LEAD_TO, subject: r.subject, html: r.html, text: r.text });
   } catch (err) {
     return tellTeam(lead, `the email failed (${err.message})`);
   }
+  // The team's copy: what ran and what didn't, then the report exactly as the shop got it.
+  const note = teamNote(result, lead, Date.now() - started);
+  await sendEmail({
+    to: [process.env.LEAD_TO],
+    reply_to: lead.email,
+    subject: `Sent: ${r.subject.replace(/^Your report card: /, "")}`,
+    text: `${note}\n\nResults page: ${r.link}\n\n${r.text}`,
+    html: `<pre style="font:13px/1.5 monospace;white-space:pre-wrap;background:#f1f5f9;padding:12px;border-radius:8px">${escapeHtml(note)}</pre><p><a href="${escapeHtml(r.link)}">Open their results page</a></p>${r.html}`,
+  }).catch((err) => console.error("team copy failed", err));
 }
 
 function safeJson(s) {

@@ -55,7 +55,7 @@ export async function collectFacts(input, env = process.env) {
   if (site.fetched) {
     // A license number is only checked where the trade's license rule applies.
     if (trade.licenseState && state !== trade.licenseState) website.license = null;
-    website.titleVerdict = ai ? await ai.titleVerdict(site, trade).catch(() => null) : null;
+    website.titleVerdict = ai ? await ai.titleVerdict(site, trade).catch((err) => { notes.push(`AI title check failed: ${err.message}`); return null; }) : null;
     website.titleVerdict ??= ruleTitleVerdict(site, trade, { town, state });
   }
 
@@ -80,7 +80,7 @@ export async function collectFacts(input, env = process.env) {
   }
 
   if (ai && gp.reviews?.shownText?.length) {
-    gp.reviews.themes = await ai.reviewThemes(gp.reviews.shownText).catch(() => null);
+    gp.reviews.themes = await ai.reviewThemes(gp.reviews.shownText).catch((err) => { notes.push(`AI review themes failed: ${err.message}`); return null; });
   }
 
   return {
@@ -99,7 +99,10 @@ export async function grade(input, env = process.env) {
   const report = scoreFacts(facts);
   if (facts.ai && report.overall != null) {
     const { openingParagraph } = await import('./ai.mjs');
-    report.opening = await openingParagraph(report, facts.businessName).catch(() => null);
+    const { sawLine } = await import('./report.mjs');
+    const seen = Object.fromEntries(Object.keys(report.areas).map((k) => [k, sawLine(k, facts, report.areas[k])]));
+    report.opening = await openingParagraph(report, facts.businessName, seen).catch((err) => { facts.notes.push(`AI summary failed: ${err.message}`); return null; });
+    if (!report.opening) facts.notes.push('AI summary was empty or dropped; the plain summary was used.');
   }
   return { gradedAt: new Date().toISOString(), facts, report };
 }

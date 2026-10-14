@@ -214,10 +214,73 @@ def footer(has_form=True):
 </footer>"""
 
 
+def rc_form(trade="HVAC", key=None, lazy_turnstile=False):
+    """The four-step report card form. key keeps ids unique when a page has two forms; the pop-up's
+    Turnstile renders when the pop-up opens (main.js), since it can't render while hidden."""
+    key = key or trade
+    if PREVIEW or not TURNSTILE_SITEKEY:
+        ts = ""
+    else:
+        ts = f'<div class="{"cf-turnstile-lazy" if lazy_turnstile else "cf-turnstile"}" data-sitekey="{TURNSTILE_SITEKEY}" data-theme="light"></div>'
+    return f"""    <form class="rc-form" novalidate>
+      <div class="rc-body">
+        <div class="rc-progress" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+        <input class="hp" type="text" name="company_fax" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="trade" value="{esc(trade)}">
+        <div class="rc-step on">
+          <h3>What's your website?</h3>
+          <p class="muted">No website yet? Put your Facebook page or type "none".</p>
+          <div class="field"><label for="rc-site-{key}">Website</label><input id="rc-site-{key}" type="text" name="website" placeholder="yourcompany.com" required data-msg="Add your website, or type none." autocomplete="url"></div>
+          <div class="rc-nav"><button type="button" class="btn btn-primary" data-next>Next</button></div>
+        </div>
+        <div class="rc-step">
+          <h3>What's the business called?</h3>
+          <p class="muted">The name on your Google profile, so we grade the right one.</p>
+          <div class="field"><label for="rc-biz-{key}">Business name</label><input id="rc-biz-{key}" type="text" name="business" required data-msg="Add your business name." autocomplete="organization"></div>
+          <div class="field"><label for="rc-town-{key}">Main town and state</label><input id="rc-town-{key}" type="text" name="town" placeholder="Waco, TX" required data-msg="Add your main town and state, like Waco, TX." autocomplete="address-level2"></div>
+          <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="button" class="btn btn-primary" data-next>Next</button></div>
+        </div>
+        <div class="rc-step">
+          <h3>Where should we send it?</h3>
+          <div class="field"><label for="rc-name-{key}">First name</label><input id="rc-name-{key}" type="text" name="first_name" required data-msg="Add your first name." autocomplete="given-name"></div>
+          <div class="field"><label for="rc-email-{key}">Email</label><input id="rc-email-{key}" type="email" name="email" required data-msg="Add a valid email." autocomplete="email"></div>
+          <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="button" class="btn btn-primary" data-next>Next</button></div>
+        </div>
+        <div class="rc-step">
+          <h3>Last one: your phone</h3>
+          <p class="muted">Only used if you ask us to text you. We don't cold call.</p>
+          <div class="field"><label for="rc-phone-{key}">Mobile phone</label><input id="rc-phone-{key}" type="tel" name="phone" required data-msg="Add a phone number." autocomplete="tel" pattern="[0-9()+.\\- ]{{10,}}"></div>
+          <label class="consent"><input type="checkbox" name="sms_consent" value="yes"><span>Text me about my report card. Message and data rates may apply. Message frequency varies. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our <a href="{u('privacy')}">Privacy Policy</a> and <a href="{u('terms')}">Terms</a>.</span></label>
+          {ts}
+          <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="submit" class="btn btn-primary">Send my report card</button></div>
+        </div>
+        <p class="rc-error" role="alert"></p>
+      </div>
+      <div class="rc-done" role="status">
+        <div class="ok">✓</div>
+        <h3>It's on the way</h3>
+        <p class="muted">Check your inbox in about five minutes. If it's not there, look in spam for an email from {esc(BRAND_SHORT)}.</p>
+      </div>
+      <p class="rc-call">Rather talk it through? <a href="{esc(call_link())}">Book a 15-minute call</a></p>
+    </form>"""
+
+
+def rc_modal():
+    """Pop-up report card form opened by the hero URL box, so nobody gets thrown to the bottom of the page."""
+    return f"""<dialog class="rc-modal" aria-labelledby="rc-modal-h">
+  <div class="rc-modal-in">
+    <button type="button" class="rc-modal-x" aria-label="Close">×</button>
+    <span class="eyebrow">Free report card</span>
+    <h2 id="rc-modal-h">Grade your shop in four quick steps</h2>
+    <p class="muted">Google profile, reviews, website and listings, graded against the shops near you. No sales call.</p>
+    {rc_form(key="modal", lazy_turnstile=True)}
+  </div>
+</dialog>"""
+
+
 def report_card(title="Get your free report card", sub=None, trade="HVAC"):
     sub = sub or (f"We grade your Google profile, reviews, website and listings against the {trade if trade.isupper() else trade.lower()} companies "
                   "people find near you. It lands in your inbox in about five minutes. Nobody will call you.")
-    turnstile = "" if PREVIEW or not TURNSTILE_SITEKEY else f'<div class="cf-turnstile" data-sitekey="{TURNSTILE_SITEKEY}" data-theme="light"></div>'
     return f"""<section class="section" id="report-card">
   <div class="wrap"><div class="rc-wrap reveal"><div class="rc">
     <div>
@@ -232,47 +295,7 @@ def report_card(title="Get your free report card", sub=None, trade="HVAC"):
       </div>
       <p class="muted" style="margin-top:18px;font-size:.92rem">Graded only on what anyone can see in public. You get the grades and what to fix first.</p>
     </div>
-    <form class="rc-form" novalidate>
-      <div class="rc-body">
-        <div class="rc-progress" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
-        <input class="hp" type="text" name="company_fax" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input type="hidden" name="trade" value="{esc(trade)}">
-        <div class="rc-step on">
-          <h3>What's your website?</h3>
-          <p class="muted">No website yet? Put your Facebook page or type "none".</p>
-          <div class="field"><label for="rc-site-{trade}">Website</label><input id="rc-site-{trade}" type="text" name="website" placeholder="yourcompany.com" required data-msg="Add your website, or type none." autocomplete="url"></div>
-          <div class="rc-nav"><button type="button" class="btn btn-primary" data-next>Next</button></div>
-        </div>
-        <div class="rc-step">
-          <h3>What's the business called?</h3>
-          <p class="muted">The name on your Google profile, so we grade the right one.</p>
-          <div class="field"><label for="rc-biz-{trade}">Business name</label><input id="rc-biz-{trade}" type="text" name="business" required data-msg="Add your business name." autocomplete="organization"></div>
-          <div class="field"><label for="rc-town-{trade}">Main town you serve</label><input id="rc-town-{trade}" type="text" name="town" placeholder="Waco"></div>
-          <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="button" class="btn btn-primary" data-next>Next</button></div>
-        </div>
-        <div class="rc-step">
-          <h3>Where should we send it?</h3>
-          <div class="field"><label for="rc-name-{trade}">First name</label><input id="rc-name-{trade}" type="text" name="first_name" required data-msg="Add your first name." autocomplete="given-name"></div>
-          <div class="field"><label for="rc-email-{trade}">Email</label><input id="rc-email-{trade}" type="email" name="email" required data-msg="Add a valid email." autocomplete="email"></div>
-          <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="button" class="btn btn-primary" data-next>Next</button></div>
-        </div>
-        <div class="rc-step">
-          <h3>Last one: your phone</h3>
-          <p class="muted">Only used if you ask us to text you. We don't cold call.</p>
-          <div class="field"><label for="rc-phone-{trade}">Mobile phone</label><input id="rc-phone-{trade}" type="tel" name="phone" required data-msg="Add a phone number." autocomplete="tel" pattern="[0-9()+.\\- ]{{10,}}"></div>
-          <label class="consent"><input type="checkbox" name="sms_consent" value="yes"><span>Text me about my report card. Message and data rates may apply. Message frequency varies. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our <a href="{u('privacy')}">Privacy Policy</a> and <a href="{u('terms')}">Terms</a>.</span></label>
-          {turnstile}
-          <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="submit" class="btn btn-primary">Send my report card</button></div>
-        </div>
-        <p class="rc-error" role="alert"></p>
-      </div>
-      <div class="rc-done" role="status">
-        <div class="ok">✓</div>
-        <h3>It's on the way</h3>
-        <p class="muted">Check your inbox in about five minutes. If it's not there, look in spam for an email from {esc(BRAND_SHORT)}.</p>
-      </div>
-      <p class="rc-call">Rather talk it through? <a href="{esc(call_link())}">Book a 15-minute call</a></p>
-    </form>
+    {rc_form(trade)}
   </div></div></div>
 </section>"""
 
@@ -370,6 +393,7 @@ def page(path, title, desc, body, extra_head="", has_form=True):
 </main>
 {footer(has_form)}
 {founder_video(has_form)}
+{rc_modal() if "data-url-form" in body else ""}
 <script src="{asset_v('main.js')}" defer></script>
 {turnstile}
 </body>
@@ -380,6 +404,15 @@ def page(path, title, desc, body, extra_head="", has_form=True):
 def cta_band(text="See where your shop stands before you spend a dollar."):
     return f"""<section class="section tight"><div class="wrap"><div class="cta-band">
   <h2>{esc(text)}</h2><a class="btn" href="#report-card">Get your report card</a>
+</div></div></section>"""
+
+
+def next_step(title="Know where your shop stands.", sub="The free report card grades your Google profile, reviews, website and listings against the shops near you, so you know what to fix first."):
+    """Closing navy band for pages without the inline form (guides, posts): one primary action, one fallback."""
+    return f"""<section class="section dark next-step"><div class="wrap"><div class="ns">
+  <div><span class="eyebrow">Your next step</span><h2>{esc(title)}</h2><p class="lede">{esc(sub)}</p>
+    <div class="ns-actions"><a class="btn btn-primary" href="{u('report-card')}">Get my free report card <span class="arrow">→</span></a><a class="btn btn-ghost" href="{esc(call_link())}">Book a 15-minute call</a></div></div>
+  <ul class="ns-list"><li><b>Grades</b>Google profile, reviews, website and listings</li><li><b>Time</b>In your inbox in about five minutes</li><li><b>Cost</b>Free. Nobody calls you.</li></ul>
 </div></div></section>"""
 
 
@@ -958,7 +991,7 @@ def market_block(c):
     table = f'<table class="mtable"><thead><tr><th>#</th><th>Shop</th><th>Rating</th><th>Reviews</th></tr></thead><tbody>{rows}</tbody></table>' if rows else ""
     top = d.get("top5") or []
     gap = f"The most-reviewed shop has {fnum(top[0][2])} reviews; the median shop has {fnum(d.get('median_reviews'))}. That gap is what review requests close." if top and d.get("median_reviews") is not None else ""
-    return f"""<section class="section"><div class="wrap">
+    return f"""<section class="section dark"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">{esc(c['name'])} on Google</span><h2>The {esc(c['name'])} HVAC map, in numbers.</h2><p class="lede">What a homeowner sees when they search for HVAC help in {esc(c['name'])}. {esc(gap)}</p></div>
   <div class="cfacts reveal">{st_html}</div>
   <h3 style="margin-top:34px">Most-reviewed HVAC shops around {esc(c['name'])}</h3>
@@ -982,11 +1015,8 @@ def city_page(c):
     lic_html = f'<p class="clic"><b>{lic}</b> businesses hold an active Texas A/C contractor license in {esc(c["county"])} (TDLR records, Oct 2026). That\'s who you\'re up against on the map.</p>' if lic else ""
     others = [o for o in st["cities"] if o["slug"] != c["slug"]]
     near = "".join(f'<a href="{u(city_path(o))}">{esc(o["name"])}</a>' for o in others)
-    other_html = f"""<section class="section"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">{esc(st['name'])}</span><h2>Other {esc(st['name'])} markets</h2></div>
-  <div class="city-links">{near}</div>
-</div></section>
-""" if others else ""
+    other_html = f"""<div class="more-row"><h3>Other {esc(st['name'])} markets</h3><div class="city-links">{near}</div></div>""" if others else ""
+    mk = market_block(c)
     body = f"""<section class="page-head city-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('locations')}">Locations</a> / {"" if st["abbr"] == "DC" else f'<a href="{u(state_key(st))}">{esc(st["name"])}</a> / '}{esc(c['name'])}</div>
   <span class="eyebrow">{esc(c['county'])} · {esc(c['metro'])}</span>
@@ -998,8 +1028,8 @@ def city_page(c):
   <div class="cfacts reveal">{fact_html}</div>
   <p class="csrc">Population: 2020 U.S. Census. Climate: {esc(station)}{" normals" if c.get("climate_period") else ""}. Both as published on Wikipedia.</p>
 </div></section>
-{market_block(c)}
-<section class="section alt"><div class="wrap">
+{mk}
+<section class="section {"alt" if mk else "dark"}"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">{esc(c['name'])} market</span><h2>What {esc(c['name'])}'s weather means for your marketing.</h2><p class="lede">{esc(c['one_fact'])}</p></div>
   <div class="grid two">{ins}</div>
   {lic_html}
@@ -1008,26 +1038,21 @@ def city_page(c):
   <div><span class="eyebrow">Service areas</span><h2>A page for every town you really serve.</h2><p class="lede">Google shows the shops closest to the person searching. Real town pages, with your work and reviews from that town, stretch your reach past your own zip code.</p></div>
   <div class="card"><h3>Around {esc(c['name'])}</h3><ul class="ticks town-list">{towns}</ul><p class="muted" style="font-size:.9rem">We only build pages for towns you actually take calls in.</p></div>
 </div></section>
-<section class="section alt"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">The method</span><h2>Rank. Book. Repeat.</h2><p class="lede">The same three jobs, run for {esc(c['name'])} shops every day.</p></div>
-  {method_block()}
-</div></section>
-{local_links(c['name'])}
-{report_card(f"How does your shop stack up in {c['name']}?")}
-{other_html}"""
+{local_links(c['name'], other_html)}
+{report_card(f"How does your shop stack up in {c['name']}?")}"""
     return page(city_path(c), f"HVAC marketing in {c['name']}, {st['abbr']}", f"Websites, Google profiles and missed-call text-back for {place(c)} HVAC companies. July highs average {deg(c['july_high_f'])}; here's what that means for your marketing.", body)
 
 
-def local_links(where):
+def local_links(where, more=""):
     svc = ["website", "local-seo", "google-business-profile", "missed-call-text-back", "google-ads", "local-services-ads"]
     svc_h = "".join(f'<a href="{u(k)}">{esc(svc_info(k)[0])}</a>' for k in svc)
     reads = [(guide_path("google-map-pack-hvac"), "How HVAC shops get into the map pack"), (guide_path("hvac-seo-what-moves-rankings"), "HVAC SEO: what moves rankings"),
              ("tools/missed-call-cost-calculator", "Missed call cost calculator"), ("tools/lsa-cost-calculator", "Local Services Ads cost calculator"), ("plans", "Plans and pricing")]
     rd = "".join(f'<li><a href="{u(k)}">{esc(t)}</a></li>' for k, t in reads if k in ROUTES or k == "plans")
-    return f"""<section class="section"><div class="wrap split">
-  <div><span class="eyebrow">For {esc(where)} shops</span><h2>What we run for you.</h2><div class="city-links" style="margin-top:18px">{svc_h}</div></div>
+    return f"""<section class="section alt"><div class="wrap"><div class="split">
+  <div><span class="eyebrow">For {esc(where)} shops</span><h2>What we run for you.</h2><p class="lede">The same system on every plan: Rank, Book, Repeat. <a class="more" href="{u('method')}">How it works →</a></p><div class="city-links" style="margin-top:18px">{svc_h}</div></div>
   <div class="card"><h3>Read before you hire anyone</h3><ul class="ticks">{rd}</ul></div>
-</div></section>"""
+</div>{more}</div></section>"""
 
 
 def city_cards(cities):
@@ -1044,15 +1069,15 @@ def texas_page():
   <p class="lede">{fnum(TX_POP)} Texans, and summer runs half the year. We're based in Waco and built this for Texas heat first: every missed call texted back, a fast site and a Google profile that wins the map.</p>
   {url_form()}
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
-  <h2 class="sr-only">Why Texas is different</h2>
+<section class="section dark"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Why Texas is different</span><h2>Heat, freezes and crowded maps.</h2></div>
   <div class="grid three">
     <div class="card reveal"><h3>One state, very different weather</h3><p>July highs average {deg(hottest['july_high_f'])} in {esc(hottest['name'])}, while January lows average {deg(coldest['jan_low_f'])} in {esc(coldest['name'])}. Your site should talk about the weather your customers actually live with.</p></div>
     <div class="card reveal"><h3>Freezes happen too</h3><p>The February 2021 winter storm showed how fast heating calls can pile up in a state built for cooling. Heat pump and furnace pages pay off even here.</p></div>
     <div class="card reveal"><h3>Built for Texas rules</h3><p>Texting customers is set up the right way: carrier registration and opt-outs on every message. And we never cold text or cold call, in line with Texas law.</p></div>
   </div>
 </div></section>
-<section class="section alt"><div class="wrap">
+<section class="section"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Texas markets</span><h2>Pick your city.</h2><p class="lede">Each page shows that market's weather and what it means for your marketing.</p></div>
   <div class="city-grid">{city_cards(CITIES)}</div>
 </div></section>
@@ -1079,15 +1104,15 @@ def state_page(st):
   <p class="lede">{fnum(st['population_2020'])} people live in {esc(n)}, and each market has its own weather and its own map to win. We build the same system for every shop here: a fast site, a Google profile that's actually run, and every missed call texted back.</p>
   {url_form()}
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
-  <h2 class="sr-only">What {esc(n)} means for your marketing</h2>
+<section class="section dark"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">{esc(n)} up close</span><h2>What {esc(n)} means for your marketing.</h2></div>
   <div class="grid three">
     {weather_card}
     <div class="card reveal"><h3>Big markets, crowded maps</h3><p>{esc(big['name'])} alone has {fnum(big['population_2020'])} people. In a market that size, a page for each part of town you serve helps you show up past your own neighborhood.</p></div>
     <div class="card reveal"><h3>Texting done right</h3><p>Every text we send for you is set up the right way: carrier registration and an opt-out on every message. We never cold text or cold call homeowners.</p></div>
   </div>
 </div></section>
-<section class="section alt"><div class="wrap">
+<section class="section"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">{esc(n)} markets</span><h2>Pick your city.</h2><p class="lede">Each page shows that market's weather and what it means for your marketing.</p></div>
   <div class="city-grid">{city_cards(cs)}</div>
 </div></section>
@@ -1226,11 +1251,11 @@ def guide_page(g):
     {author_box()}
   </article>
 </div></section>
-{guide_links(g["slug"])}
-<section class="section alt"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Keep reading</span><h2>Related reading</h2></div>
-  <div class="grid two">{rel_html}</div>
-</div></section>
+<section class="section alt"><div class="wrap"><div class="keep">
+  <div><span class="eyebrow">Keep reading</span><h2>Related reading</h2>{rel_html}</div>
+  {guide_links(g["slug"])}
+</div></div></section>
+{next_step()}
 """
     art = ld({"@context": "https://schema.org", "@type": "Article", "headline": g["title"], "description": g["desc"],
               "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND},
@@ -1240,7 +1265,7 @@ def guide_page(g):
 
 def niche_page(n):
     setup = "".join(f'<div class="card reveal"><h3>{esc(h)}</h3><p>{esc(t)}</p></div>' for h, t in n["setup"])
-    others = "".join(f'<a class="card guide-card" href="{u(o["slug"])}"><span class="eyebrow">For HVAC</span><h3>{esc(o["name"])}</h3><p>{esc(o["nav"])}</p></a>' for o in niches_sorted() if o["slug"] != n["slug"])
+    others = "".join(f'<a href="{u(o["slug"])}">{esc(o["name"])}</a>' for o in niches_sorted() if o["slug"] != n["slug"])
     ticket, job, label = n["calc"]
     body = f"""<section class="page-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('hvac-specialties')}">For HVAC</a> / {esc(n['name'])}</div>
@@ -1249,14 +1274,10 @@ def niche_page(n):
   <p class="lede">{esc(n['lede'])}</p>
   {url_form()}
 </div></section>
-<section class="section"><div class="wrap">{deep_problem("Where shops like yours lose jobs.", n["pains"])}</div></section>
-<section class="section alt"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">What we set up</span><h2>Built for how your customers really pick a shop.</h2></div>
-  <div class="grid three">{setup}</div>
-</div></section>
+<section class="section dark"><div class="wrap">{deep_problem("Where shops like yours lose jobs.", n["pains"])}</div></section>
 <section class="section"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">The method</span><h2>Rank. Book. Repeat.</h2></div>
-  {method_block()}
+  <div class="section-head reveal"><span class="eyebrow">What we set up</span><h2>Built for how your customers really pick a shop.</h2><p class="lede">All of it runs on the same method: Rank, Book, Repeat. <a class="more" href="{u('method')}">How it works →</a></p></div>
+  <div class="grid three">{setup}</div>
 </div></section>
 <section class="section alt"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Break-even</span><h2>Check the math for your shop.</h2></div>
@@ -1265,12 +1286,9 @@ def niche_page(n):
 <section class="section"><div class="wrap g-wrap">
   <div class="section-head"><span class="eyebrow">Questions</span><h2>Common questions</h2></div>
   {faq(n['faq'])}
+  <div class="more-row"><h3>Other HVAC specialties</h3><div class="city-links">{others}</div></div>
 </div></section>
 {report_card()}
-<section class="section"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">For HVAC</span><h2>Other HVAC specialties</h2></div>
-  <div class="grid three">{others}</div>
-</div></section>
 """
     return page(n["slug"], n["title"], n["desc"], body, extra_head=faq_ld(n["faq"]))
 
@@ -1294,7 +1312,7 @@ def service_page(sv):
     inc = "".join(f"<li>{esc(x)}</li>" for x in sv["includes"])
     grp = next(g for g in SERVICE_GROUPS if sv["slug"] in g[2])
     rel = [k for k in grp[2] if k != sv["slug"]] + [k for g in SERVICE_GROUPS if g is not grp for k in g[2][:1]]
-    others = "".join(f'<a class="card guide-card" href="{u(k)}"><span class="eyebrow">Service</span><h3>{esc(svc_info(k)[0])}</h3><p>{esc(svc_info(k)[1])}</p></a>' for k in rel[:4])
+    others = "".join(f'<a href="{u(k)}">{esc(svc_info(k)[0])}</a>' for k in rel[:6])
     g = next((x for x in GUIDES if x["slug"] == sv.get("guide")), None)
     extra = [(guide_path(p_["slug"]), p_["title"]) for p_ in POSTS if p_["slug"] in SERVICE_POSTS.get(sv["slug"], [])]
     extra += [("tools/" + t["slug"], t["title"]) for t in TOOLS if t["service"] == sv["slug"]]
@@ -1312,26 +1330,22 @@ def service_page(sv):
   <p class="lede">{esc(sv['lede'])}</p>
   {url_form()}
 </div></section>
-<section class="section"><div class="wrap">{pains}</div></section>
-<section class="section alt"><div class="wrap">
+<section class="section dark"><div class="wrap">{pains}</div></section>
+<section class="section"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">How it works</span><h2>Set up for you. Running on day one.</h2></div>
   <ol class="flow">{steps}</ol>
 </div></section>
 {calc}
-<section class="section"><div class="wrap split">
+<section class="section{"" if calc else " alt"}"><div class="wrap"><div class="split">
   <div><span class="eyebrow">What's included</span><h2>What you get.</h2><p class="lede">{esc(sv['plan'])}</p><a class="more" href="{u('plans')}">Compare plans →</a>{guide}</div>
   <div class="card"><ul class="ticks">{inc}</ul></div>
-</div></section>
-{fit_block(sv["slug"])}
-<section class="section alt"><div class="wrap g-wrap">
+</div>{fit_block(sv["slug"], inner=True)}</div></section>
+<section class="section{" alt" if calc else ""}"><div class="wrap g-wrap">
   <div class="section-head"><span class="eyebrow">Questions</span><h2>Common questions</h2></div>
   {faq(sv['faq'])}
+  <div class="more-row"><h3>The rest of the system</h3><div class="city-links">{others}<a class="all" href="{u('services')}">All services →</a></div></div>
 </div></section>
 {report_card()}
-<section class="section"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Services</span><h2>The rest of the system</h2></div>
-  <div class="grid two">{others}</div>
-</div></section>
 """
     svc = ld({"@context": "https://schema.org", "@type": "Service", "name": sv["title"], "description": sv["desc"], "serviceType": sv["name"],
               "provider": {"@type": "ProfessionalService", "name": BRAND, "url": f"https://{DOMAIN}/"}, "areaServed": "US", "audience": {"@type": "BusinessAudience", "name": "HVAC contractors"}})
@@ -1438,12 +1452,15 @@ FIT = {
 }
 
 
-def fit_block(slug):
+def fit_block(slug, inner=False):
     if slug not in FIT:
         return ""
     yes, no = FIT[slug]
     y = "".join(f"<li>{esc(x)}</li>" for x in yes)
     n_ = "".join(f"<li>{esc(x)}</li>" for x in no)
+    if inner:  # sits under "What you get" in the same band instead of its own white section
+        return f"""<div style="margin-top:56px"><div class="section-head reveal" style="margin-bottom:28px"><span class="eyebrow">Straight answer</span><h2>Is it worth it for your shop?</h2></div>
+  <div class="grid two fit"><div class="card fit-yes"><h3>Worth it if</h3><ul class="ticks">{y}</ul></div><div class="card fit-no"><h3>Skip it if</h3><ul class="crosses">{n_}</ul></div></div></div>"""
     return f"""<section class="section"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Straight answer</span><h2>Is it worth it for your shop?</h2></div>
   <div class="grid two fit"><div class="card fit-yes"><h3>Worth it if</h3><ul class="ticks">{y}</ul></div><div class="card fit-no"><h3>Skip it if</h3><ul class="crosses">{n_}</ul></div></div>
@@ -1489,11 +1506,8 @@ def guide_links(slug):
     keys = GUIDE_LINKS.get(slug, [])
     if not keys:
         return ""
-    cards = "".join(f'<a class="card guide-card" href="{u(k)}"><span class="eyebrow">Service</span><h3>{esc(svc_info(k)[0])}</h3><p>{esc(svc_info(k)[1])}</p></a>' for k in keys)
-    return f"""<section class="section"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Put it to work</span><h2>We can run this for you</h2></div>
-  <div class="grid three">{cards}</div>
-</div></section>"""
+    cards = "".join(f'<li><a href="{u(k)}"><b>{esc(svc_info(k)[0])}</b><span>{esc(svc_info(k)[1])}</span></a></li>' for k in keys)
+    return f"""<div><span class="eyebrow">Put it to work</span><h2>We can run this for you</h2><ul class="link-list">{cards}</ul></div>"""
 
 
 TOOLS = [
@@ -1562,7 +1576,7 @@ def related_tools(t, n=4):
 def tool_page(t):
     formula = "".join(f"<li>{esc(x)}</li>" for x in t["formula"])
     improve = "".join(f'<div class="card reveal"><h3>{esc(h)}</h3><p>{esc(p_)}</p></div>' for h, p_ in t["improve"])
-    others = "".join(f'<a class="card guide-card" href="{u("tools/" + o["slug"])}"><span class="eyebrow">Free tool</span><h3>{esc(o["name"])}</h3><p>{esc(o["line"])}</p></a>' for o in related_tools(t))
+    others = "".join(f'<a href="{u("tools/" + o["slug"])}">{esc(o["name"])}</a>' for o in related_tools(t))
     g = next(x for x in GUIDES if x["slug"] == t["guide"])
     sn, sd = svc_info(t["service"])
     body = f"""<section class="page-head"><div class="wrap">
@@ -1583,12 +1597,9 @@ def tool_page(t):
   <div class="section-head reveal"><span class="eyebrow">Improve the number</span><h2>Three ways to move it.</h2></div>
   <div class="grid three">{improve}</div>
   <p style="margin-top:22px"><a class="more" href="{u(t['service'])}">{esc(sn)}: {esc(sd)} →</a><br><a class="more" href="{u(guide_path(g['slug']))}">Read the guide: {esc(g['title'])} →</a></p>
+  <div class="more-row"><h3>More free calculators</h3><div class="city-links">{others}<a class="all" href="{u('tools')}">All tools →</a></div></div>
 </div></section>
-{report_card()}
-<section class="section"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Free tools</span><h2>More calculators</h2></div>
-  <div class="grid two">{others}</div>
-</div></section>
+{report_card("Got your number? See what is behind it.")}
 """
     app_ld = ld({"@context": "https://schema.org", "@type": "WebApplication", "name": t["title"], "description": t["desc"], "applicationCategory": "BusinessApplication",
                  "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "provider": {"@type": "Organization", "name": BRAND}})
@@ -1674,7 +1685,7 @@ def about_page():
     <p class="about-sign">Logan<br><span>Founder, {esc(BRAND)}</span></p>
   </div>
 </div></section>
-<section class="section alt"><div class="wrap">
+<section class="section dark"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">What we believe</span><h2>How we work.</h2></div>
   <div class="grid two">{cards}</div>
 </div></section>
@@ -1702,9 +1713,10 @@ PATH_STEPS = [
 
 def homeowner_path():
     steps = "".join(f'<li class="path-step reveal" data-ph="{ph.lower()}"><span class="path-ic">{ICON[ic]}</span><span class="path-ph">{ph}</span><h3>{esc(h)}</h3><p>{esc(t)}</p></li>' for ic, ph, h, t in PATH_STEPS)
-    return f"""<section class="section alt"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">How a homeowner picks a shop</span><h2>From a broken AC to a booked job, in six steps.</h2><p class="lede">Ranking gets you to step two. We run all six.</p></div>
+    return f"""<section class="section" id="method"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">How a homeowner picks a shop</span><h2>From a broken AC to a booked job, in six steps.</h2><p class="lede">Ranking gets you to step two. We run all six: Rank, Book, Repeat.</p></div>
   <ol class="path">{steps}</ol>
+  <p style="margin-top:30px"><a class="btn btn-ghost" href="{u('method')}">See the full method <span class="arrow">→</span></a></p>
 </div></section>"""
 
 
@@ -1838,26 +1850,18 @@ def home():
   {hero_visual()}
 </div></section>
 <div class="wrap terms-wrap">{terms_strip()}</div>
-{homeowner_path()}
 
-{services_overview()}
-
-<section class="section alt"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">Sounds familiar?</span><h2>The phone rings when you can't answer it.</h2></div>
+<section class="section dark"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Sounds familiar?</span><h2>The phone rings when you can't answer it.</h2><p class="lede">Most shops don't lose jobs to a better competitor. They lose them to voicemail, slow follow-up and a Google profile nobody runs.</p></div>
   {pains_grid()}
 </div></section>
 
-<section class="section" id="method"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">The method</span><h2>Rank. Book. Repeat.</h2><p class="lede">Three jobs, run for you every day, on every plan. Each one feeds the next.</p></div>
-  {method_block()}
-  <p style="margin-top:34px"><a class="btn btn-ghost" href="{u('method')}">See the full method <span class="arrow">→</span></a></p>
-</div></section>
-
-<section class="section alt"><div class="wrap">{compare()}</div></section>
+{homeowner_path()}
 
 <section class="section alt"><div class="wrap">
   <div class="section-head center reveal"><span class="eyebrow">What runs behind it</span><h2>One system. Every piece working.</h2><p class="lede">Your site, your Google profile and your lead system, built once and run for you. Your office just answers the texts.</p></div>
   {bento()}
+  <p style="margin-top:30px;text-align:center"><a class="btn btn-ghost" href="{u('services')}">See all twelve services <span class="arrow">→</span></a></p>
 </div></section>
 
 <section class="section" id="tech"><div class="wrap">
@@ -1865,39 +1869,27 @@ def home():
   {tech()}
 </div></section>
 
-{report_card()}
-
-<section class="section" style="padding-top:24px"><div class="wrap">
+<section class="section dark"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Guarantees</span><h2>We guarantee what we control.</h2></div>
   {promise()}
   <div style="margin-top:28px">{ownership()}</div>
 </div></section>
 
-<section class="section alt" id="pricing"><div class="wrap">
+<section class="section" id="pricing"><div class="wrap">
   <div class="section-head center reveal"><span class="eyebrow">Pricing</span><h2>Pick a plan. Go live in 14 days.</h2><p class="lede">Every plan texts back every missed call. Monthly billing starts at launch, not at signing.</p></div>
   {plans_cards()}
+  <p style="margin-top:24px;text-align:center"><a class="more" href="{u('plans')}">Compare plans side by side, with add-ons →</a></p>
 </div></section>
 
-<section class="section"><div class="wrap" style="max-width:900px">
+<section class="section alt"><div class="wrap" style="max-width:900px">
   <div class="section-head reveal"><span class="eyebrow">Questions</span><h2>Straight answers.</h2></div>
   {faq(COMMON_FAQ[:6])}
-  <p style="margin-top:22px"><a class="more" href="{u('plans')}#faq">All pricing and contract questions →</a> · <a class="more" href="{u('getting-started')}">What happens after you sign up →</a></p>
+  <p style="margin-top:22px"><a class="more" href="{u('plans')}#faq">All pricing and contract questions →</a> · <a class="more" href="{u('getting-started')}">What happens after you sign up →</a> · <a class="more" href="{u('guides')}">Guides, with sources →</a></p>
 </div></section>
 
-<section class="section alt"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">Guides</span><h2>Straight answers, with sources.</h2></div>
-  <div class="grid three">{"".join(f'<a class="card guide-card reveal" href="{u(guide_path(g["slug"]))}"><span class="eyebrow">{g["read"]} min read</span><h3>{esc(g["title"])}</h3></a>' for g in GUIDES[:3])}</div>
-  <p style="margin-top:22px"><a class="btn btn-ghost" href="{u('guides')}">All guides <span class="arrow">→</span></a></p>
-</div></section>
+{locations_band().replace('<section class="section">', '<section class="section tight">', 1)}
 
-{locations_band()}
-
-<section class="section final"><div class="wrap">
-  <span class="eyebrow">Free report card</span>
-  <h2>See where you stand <span class="grad">before you spend a dollar.</span></h2>
-  {url_form("Get my report card")}
-  <p class="rc-call">Rather talk? <a href="{esc(call_link())}">Book a 15-minute call</a></p>
-</div></section>
+{report_card("See where you stand before you spend a dollar.")}
 """
     return page("", f"Web Design & SEO for HVAC Businesses | {BRAND}",
                 "Websites, Google profiles and missed-call text-back for HVAC companies. Every missed call texted back in 60 seconds, guaranteed.", body,
@@ -2186,12 +2178,13 @@ def offer_deep(key):
     d = OFFER_DEEP.get(key, {})
     out = []
     alt = False
-    def sec(inner):
+    def sec(inner, cls=None):
         nonlocal alt
-        cls = "section alt" if alt else "section"
-        alt = not alt
+        if cls is None:
+            cls = "section alt" if alt else "section"
+            alt = not alt
         out.append(f'<section class="{cls}"><div class="wrap">{inner}</div></section>')
-    if "problem" in d: sec(deep_problem(*d["problem"]))
+    if "problem" in d: sec(deep_problem(*d["problem"]), "section dark")
     if "personas" in d: sec(deep_personas(*d["personas"]))
     if "auto" in d: sec(deep_auto(*d["auto"]))
     if "flow" in d: sec(deep_flow(*d["flow"]))
@@ -2200,6 +2193,8 @@ def offer_deep(key):
     if d.get("replaces"): sec(replaces())
     if d.get("speed"): sec('<div class="section-head reveal"><span class="eyebrow">Speed</span><h2>Slow sites lose jobs.</h2><p class="lede">This is how our own site scores on Google\'s test. Yours is built the same way.</p></div>' + tech())
     if "timeline" in d: sec(deep_timeline(*d["timeline"]))
+    if d.get("faq"):  # questions sit above the closing report card, keeping the band rhythm
+        sec(f'<div style="max-width:900px;margin:0 auto"><div class="section-head"><span class="eyebrow">Questions</span><h2>{OFFER_CONTENT[key]["title"]} questions</h2></div>{faq(d["faq"])}</div>')
     return "".join(out)
 
 
@@ -2231,7 +2226,6 @@ def offer_page(key):
 </div></section>
 {offer_deep(key)}
 {report_card()}
-{offer_faq(key)}
 """
     items = OFFER_DEEP.get(key, {}).get("faq")
     return page(key, o.get("seo_title", f"{_strip(o['title'])} for HVAC companies"), o["lede"], body, extra_head=faq_ld(items) if items else "")
@@ -2294,12 +2288,12 @@ def report_card_page():
 <section class="section"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">How it works</span><h2>Under a minute for you.</h2></div>
   {rc_how()}
-</div></section>
-{report_card()}
-<section class="section"><div class="wrap split">
+  <div class="split" style="margin-top:80px">
   <div><span class="eyebrow">After the report card</span><h2>You've got the grades. Now what?</h2><p class="lede">Some owners fix it themselves, and the report shows exactly where to start. Others hand it to us. Either way, it's yours to keep.</p></div>
   <div class="card"><ul class="ticks"><li>Graded only on what anyone can see in public</li><li>The same facts always give the same grade</li><li>Plain English, no jargon</li><li>Re-grade anytime to see what changed</li></ul><a class="more" href="{esc(call_link())}">Rather talk it through? Book a 15-minute call →</a></div>
+  </div>
 </div></section>
+{report_card()}
 """
     return page("report-card", "Free HVAC marketing report card", "A free report card grading your HVAC company's Google profile, reviews, website and listings against the shops near you.", body)
 
@@ -2318,28 +2312,26 @@ def plans_page():
   {addons()}
 </div></section>
 <section class="section alt"><div class="wrap">{replaces()}</div></section>
-<section class="section" style="padding-bottom:0"><div class="wrap">
+<section class="section"><div class="wrap">
   {compare()}
   <div style="margin-top:28px">{report_vs_track()}</div>
   <p style="margin-top:18px"><a class="more" href="{u('getting-started')}">What happens after you sign up →</a></p>
 </div></section>
-<section class="section" style="padding-top:0"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Is this for you?</span><h2>Who we work with, and who we don't.</h2></div>
-  {fit()}
-</div></section>
-<section class="section" style="padding-top:0"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Guarantees</span><h2>We guarantee what we control.</h2></div>
+<section class="section dark"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Guarantees</span><h2>We guarantee what we control.</h2></div>
   {promise()}
 </div></section>
-<section class="section" style="padding-top:0"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Break-even</span><h2>Check the math for your shop.</h2></div>
+<section class="section"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Is this for you?</span><h2>Who we work with, and who we don't.</h2></div>
+  {fit()}
+  <div class="section-head reveal" style="margin-top:72px"><span class="eyebrow">Break-even</span><h2>Check the math for your shop.</h2></div>
   {calculator()}
 </div></section>
-{report_card("Not sure which plan? Start with the report card.")}
-<section class="section" id="faq"><div class="wrap" style="max-width:860px">
-  <div class="section-head"><h2>Pricing questions</h2></div>
+<section class="section alt" id="faq"><div class="wrap" style="max-width:860px">
+  <div class="section-head"><span class="eyebrow">Questions</span><h2>Pricing questions</h2></div>
   {faq(COMMON_FAQ)}
 </div></section>
+{report_card("Not sure which plan? Start with the report card.")}
 """
     return page("plans", "Pricing", "HVAC website, Google profile and missed-call text-back plans, billed monthly or annually.", body, extra_head=faq_ld(COMMON_FAQ))
 
@@ -2515,6 +2507,31 @@ def write_redirects(site_dir):
         f.write(json.dumps(cfg, indent=2) + "\n")
 
 
+def your_report_page():
+    """Personal results page linked from the report card email. One job: book the call.
+    No menu or footer links; the report itself is read from the link by your-report.js."""
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your HVAC report card | {esc(BRAND)}</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="preload" href="{a('fonts/Archivo-600-800.woff2')}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{asset_v('styles.css')}">
+<link rel="icon" href="{a('favicon.svg')}" type="image/svg+xml">
+</head>
+<body class="yr-page">
+<header class="yr-top"><div class="wrap"><span class="brand">{MARK}<span>{esc(BRAND_SHORT)}<small>{esc(TAGLINE)}</small></span></span><a class="btn btn-primary btn-small" href="{esc(call_link())}">Book a call</a></div></header>
+<main id="yr" data-book="{esc(call_link())}"><noscript><div class="wrap" style="padding:60px 0"><h1>Your report card</h1><p>Turn on JavaScript to see your report, or <a href="{esc(call_link())}">book a 15-minute call</a> and we'll walk you through it.</p></div></noscript></main>
+<footer class="yr-foot"><div class="wrap">© 2026 {esc(BRAND)}. This report is for you; anyone with the link can open it.</div></footer>
+<script src="{asset_v('your-report.js')}" defer></script>
+</body>
+</html>
+"""
+
+
 def build(out_dir):
     build_routes()
     pages = {"index": home(), "report-card": report_card_page(), "method": method_page(), "plans": plans_page(), "privacy": legal_page("privacy"), "terms": legal_page("terms"), "404": not_found()}
@@ -2540,6 +2557,7 @@ def build(out_dir):
         pages["tools/" + t["slug"]] = tool_page(t)
     pages["contact"] = contact_page()
     pages["about"] = about_page()
+    pages["your-report"] = your_report_page()
     pages["hvac-marketing"] = pillar_page()
     pages["compare"] = compare_hub()
     pages["hvac-specialties"] = specialties_hub()
@@ -2558,7 +2576,7 @@ def build(out_dir):
             f.write(content)
     with open(os.path.join(out_dir, "llms.txt"), "w") as f:
         f.write(llms_txt())
-    skip = {"404", "hvac", "plumbing", "roofing"}
+    skip = {"404", "hvac", "plumbing", "roofing", "your-report"}
     paths = ["" if n == "index" else route(n) for n in pages if n not in skip]
     with open(os.path.join(out_dir, "sitemap.xml"), "w") as f:
         f.write(sitemap_xml(sorted(paths, key=lambda x: (x != "", x))))
@@ -2573,7 +2591,7 @@ if __name__ == "__main__":
         PREVIEW = True
         out = sys.argv[2]
         names = build(out)
-        for asset in ("styles.css", "main.js", "gcalc.js", "favicon.svg", "favicon.ico", "apple-touch-icon-180.png", "og-image.png"):
+        for asset in ("styles.css", "main.js", "gcalc.js", "your-report.js", "favicon.svg", "favicon.ico", "apple-touch-icon-180.png", "og-image.png"):
             shutil.copy(os.path.join(site, asset), os.path.join(out, asset))
         shutil.copytree(os.path.join(site, "fonts"), os.path.join(out, "fonts"), dirs_exist_ok=True)
         shutil.copytree(os.path.join(site, "img"), os.path.join(out, "img"), dirs_exist_ok=True)

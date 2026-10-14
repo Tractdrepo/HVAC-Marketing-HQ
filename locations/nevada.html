@@ -9,7 +9,7 @@
 
 <link rel="preload" href="/fonts/Archivo-600-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/IBMPlexSans-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css?v=8c7b21b4">
+<link rel="stylesheet" href="/styles.css?v=224b9076">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -56,22 +56,22 @@
 </form>
 <p class="url-note">Free report card in your inbox in about 5 minutes. Nobody calls you.</p>
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
-  <h2 class="sr-only">What Nevada means for your marketing</h2>
+<section class="section dark"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Nevada up close</span><h2>What Nevada means for your marketing.</h2></div>
   <div class="grid three">
     <div class="card reveal"><h3>Different weather, city to city</h3><p>July highs average 105°F in North Las Vegas, while January lows average 26.1°F in Reno. Your site should talk about the weather your customers actually live with.</p></div>
     <div class="card reveal"><h3>Big markets, crowded maps</h3><p>Las Vegas alone has 641,903 people. In a market that size, a page for each part of town you serve helps you show up past your own neighborhood.</p></div>
     <div class="card reveal"><h3>Texting done right</h3><p>Every text we send for you is set up the right way: carrier registration and an opt-out on every message. We never cold text or cold call homeowners.</p></div>
   </div>
 </div></section>
-<section class="section alt"><div class="wrap">
+<section class="section"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Nevada markets</span><h2>Pick your city.</h2><p class="lede">Each page shows that market's weather and what it means for your marketing.</p></div>
   <div class="city-grid"><a class="city-card" href="/locations/nevada/las-vegas"><b>Las Vegas</b><span>104.5°F July high · pop. 641,903</span></a><a class="city-card" href="/locations/nevada/henderson"><b>Henderson</b><span>101°F July high · pop. 317,610</span></a><a class="city-card" href="/locations/nevada/north-las-vegas"><b>North Las Vegas</b><span>105°F July high · pop. 262,527</span></a><a class="city-card" href="/locations/nevada/reno"><b>Reno</b><span>93.9°F July high · pop. 264,165</span></a></div>
 </div></section>
-<section class="section"><div class="wrap split">
-  <div><span class="eyebrow">For Nevada shops</span><h2>What we run for you.</h2><div class="city-links" style="margin-top:18px"><a href="/services/hvac-websites">HVAC websites</a><a href="/services/local-seo">Local SEO</a><a href="/services/google-business-profile">Google Business Profile</a><a href="/services/missed-call-text-back">Missed-call text-back</a><a href="/services/google-ads">Google Ads</a><a href="/services/local-services-ads">Local Services Ads</a></div></div>
+<section class="section alt"><div class="wrap"><div class="split">
+  <div><span class="eyebrow">For Nevada shops</span><h2>What we run for you.</h2><p class="lede">The same system on every plan: Rank, Book, Repeat. <a class="more" href="/method">How it works →</a></p><div class="city-links" style="margin-top:18px"><a href="/services/hvac-websites">HVAC websites</a><a href="/services/local-seo">Local SEO</a><a href="/services/google-business-profile">Google Business Profile</a><a href="/services/missed-call-text-back">Missed-call text-back</a><a href="/services/google-ads">Google Ads</a><a href="/services/local-services-ads">Local Services Ads</a></div></div>
   <div class="card"><h3>Read before you hire anyone</h3><ul class="ticks"><li><a href="/guides/google-map-pack-hvac">How HVAC shops get into the map pack</a></li><li><a href="/blog/hvac-seo-what-moves-rankings">HVAC SEO: what moves rankings</a></li><li><a href="/free-tools/missed-call-cost-calculator">Missed call cost calculator</a></li><li><a href="/free-tools/lsa-cost-calculator">Local Services Ads cost calculator</a></li><li><a href="/plans">Plans and pricing</a></li></ul></div>
-</div></section>
+</div></div></section>
 <section class="section" id="report-card">
   <div class="wrap"><div class="rc-wrap reveal"><div class="rc">
     <div>
@@ -86,7 +86,7 @@
       </div>
       <p class="muted" style="margin-top:18px;font-size:.92rem">Graded only on what anyone can see in public. You get the grades and what to fix first.</p>
     </div>
-    <form class="rc-form" novalidate>
+        <form class="rc-form" novalidate>
       <div class="rc-body">
         <div class="rc-progress" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
         <input class="hp" type="text" name="company_fax" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -101,7 +101,7 @@
           <h3>What's the business called?</h3>
           <p class="muted">The name on your Google profile, so we grade the right one.</p>
           <div class="field"><label for="rc-biz-HVAC">Business name</label><input id="rc-biz-HVAC" type="text" name="business" required data-msg="Add your business name." autocomplete="organization"></div>
-          <div class="field"><label for="rc-town-HVAC">Main town you serve</label><input id="rc-town-HVAC" type="text" name="town" placeholder="Waco"></div>
+          <div class="field"><label for="rc-town-HVAC">Main town and state</label><input id="rc-town-HVAC" type="text" name="town" placeholder="Waco, TX" required data-msg="Add your main town and state, like Waco, TX." autocomplete="address-level2"></div>
           <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="button" class="btn btn-primary" data-next>Next</button></div>
         </div>
         <div class="rc-step">
@@ -152,7 +152,56 @@
   </div>
 </footer>
 
-<script src="/main.js?v=12a43f49" defer></script>
+<dialog class="rc-modal" aria-labelledby="rc-modal-h">
+  <div class="rc-modal-in">
+    <button type="button" class="rc-modal-x" aria-label="Close">×</button>
+    <span class="eyebrow">Free report card</span>
+    <h2 id="rc-modal-h">Grade your shop in four quick steps</h2>
+    <p class="muted">Google profile, reviews, website and listings, graded against the shops near you. No sales call.</p>
+        <form class="rc-form" novalidate>
+      <div class="rc-body">
+        <div class="rc-progress" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+        <input class="hp" type="text" name="company_fax" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="trade" value="HVAC">
+        <div class="rc-step on">
+          <h3>What's your website?</h3>
+          <p class="muted">No website yet? Put your Facebook page or type "none".</p>
+          <div class="field"><label for="rc-site-modal">Website</label><input id="rc-site-modal" type="text" name="website" placeholder="yourcompany.com" required data-msg="Add your website, or type none." autocomplete="url"></div>
+          <div class="rc-nav"><button type="button" class="btn btn-primary" data-next>Next</button></div>
+        </div>
+        <div class="rc-step">
+          <h3>What's the business called?</h3>
+          <p class="muted">The name on your Google profile, so we grade the right one.</p>
+          <div class="field"><label for="rc-biz-modal">Business name</label><input id="rc-biz-modal" type="text" name="business" required data-msg="Add your business name." autocomplete="organization"></div>
+          <div class="field"><label for="rc-town-modal">Main town and state</label><input id="rc-town-modal" type="text" name="town" placeholder="Waco, TX" required data-msg="Add your main town and state, like Waco, TX." autocomplete="address-level2"></div>
+          <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="button" class="btn btn-primary" data-next>Next</button></div>
+        </div>
+        <div class="rc-step">
+          <h3>Where should we send it?</h3>
+          <div class="field"><label for="rc-name-modal">First name</label><input id="rc-name-modal" type="text" name="first_name" required data-msg="Add your first name." autocomplete="given-name"></div>
+          <div class="field"><label for="rc-email-modal">Email</label><input id="rc-email-modal" type="email" name="email" required data-msg="Add a valid email." autocomplete="email"></div>
+          <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="button" class="btn btn-primary" data-next>Next</button></div>
+        </div>
+        <div class="rc-step">
+          <h3>Last one: your phone</h3>
+          <p class="muted">Only used if you ask us to text you. We don't cold call.</p>
+          <div class="field"><label for="rc-phone-modal">Mobile phone</label><input id="rc-phone-modal" type="tel" name="phone" required data-msg="Add a phone number." autocomplete="tel" pattern="[0-9()+.\- ]{10,}"></div>
+          <label class="consent"><input type="checkbox" name="sms_consent" value="yes"><span>Text me about my report card. Message and data rates may apply. Message frequency varies. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms</a>.</span></label>
+          <div class="cf-turnstile-lazy" data-sitekey="0x4AAAAAAFW5gSyWKqCFU_8y" data-theme="light"></div>
+          <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="submit" class="btn btn-primary">Send my report card</button></div>
+        </div>
+        <p class="rc-error" role="alert"></p>
+      </div>
+      <div class="rc-done" role="status">
+        <div class="ok">✓</div>
+        <h3>It's on the way</h3>
+        <p class="muted">Check your inbox in about five minutes. If it's not there, look in spam for an email from HVAC Marketing HQ.</p>
+      </div>
+      <p class="rc-call">Rather talk it through? <a href="https://calendar.app.google/bm89Bh3ot8oEk3VA9">Book a 15-minute call</a></p>
+    </form>
+  </div>
+</dialog>
+<script src="/main.js?v=a16bf3c2" defer></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>

@@ -219,7 +219,7 @@ export function scoreListings(l, trade) {
 
   // Directory search failed or was skipped: consistency only.
   const scale = (ln, max) => ({ ...ln, max, points: ln.measured ? (ln.points / ln.max) * max : null });
-  if (!phoneLine.measured && !linkLine.measured && !known(l.facebookLinked)) return area([], 0, { fallback: true });
+  if (!phoneLine.measured && !linkLine.measured) return area([], 0, { fallback: true });
   return area([
     line('base', 'Directory search could not run', 30, 30),
     scale(phoneLine, 35), scale(linkLine, 20),
