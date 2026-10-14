@@ -1829,29 +1829,12 @@ def home():
   {tech()}
 </div></section>
 
-<section class="section alt"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">The free report card</span><h2>Where are you losing calls?</h2><p class="lede">We check the four things that decide who a homeowner calls, and grade you against the HVAC shops people find near you.</p></div>
-  {rc_learn()}
-  {rc_how()}
-</div></section>
-
 {report_card()}
-
-<section class="section alt"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">Your first 90 days</span><h2>Live in 14 days. A plan for the next 90.</h2><p class="lede">No mystery months. Here's what happens, and who does what.</p></div>
-  {first_90()}
-  {roles_split()}
-</div></section>
 
 <section class="section" style="padding-top:24px"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Guarantees</span><h2>We guarantee what we control.</h2></div>
   {promise()}
   <div style="margin-top:28px">{ownership()}</div>
-</div></section>
-
-<section class="section"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">Is this for you?</span><h2>Who we work with, and who we don't.</h2></div>
-  {fit()}
 </div></section>
 
 <section class="section alt" id="pricing"><div class="wrap">
@@ -1861,7 +1844,8 @@ def home():
 
 <section class="section"><div class="wrap" style="max-width:900px">
   <div class="section-head reveal"><span class="eyebrow">Questions</span><h2>Straight answers.</h2></div>
-  {faq(COMMON_FAQ)}
+  {faq(COMMON_FAQ[:6])}
+  <p style="margin-top:22px"><a class="more" href="{u('plans')}#faq">All pricing and contract questions →</a> · <a class="more" href="{u('getting-started')}">What happens after you sign up →</a></p>
 </div></section>
 
 <section class="section alt"><div class="wrap">
@@ -1881,7 +1865,7 @@ def home():
 """
     return page("", f"Web Design & SEO for HVAC Businesses | {BRAND}",
                 "Websites, Google profiles and missed-call text-back for HVAC companies. Every missed call texted back in 60 seconds, guaranteed.", body,
-                extra_head=org_ld() + faq_ld(COMMON_FAQ))
+                extra_head=org_ld() + faq_ld(COMMON_FAQ[:6]))
 
 
 def method_page():
@@ -2316,7 +2300,7 @@ def plans_page():
   {calculator()}
 </div></section>
 {report_card("Not sure which plan? Start with the report card.")}
-<section class="section"><div class="wrap" style="max-width:860px">
+<section class="section" id="faq"><div class="wrap" style="max-width:860px">
   <div class="section-head"><h2>Pricing questions</h2></div>
   {faq(COMMON_FAQ)}
 </div></section>
