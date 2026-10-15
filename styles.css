@@ -1276,3 +1276,15 @@ main > .section.dark::before { display: none; }
   .b-phone .phone { align-self: center; grid-row: 1 / 3; }
   .b-phone .demo-caption { text-align: left; }
 }
+
+/* Top hook bar: one hook at a time, fades every few seconds, pauses on hover; static with reduced motion */
+.hookbar { position: relative; height: 40px; background: #0b1220; overflow: hidden; }
+.hookbar::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--grad); opacity: .8; }
+.hook { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 16px; color: #e8eef6; text-decoration: none; font-size: var(--fs-sm); opacity: 0; visibility: hidden; transition: opacity .5s, visibility .5s; white-space: nowrap; }
+.hook.on { opacity: 1; visibility: visible; }
+.hook b { font-weight: 500; }
+.hook .arrow { color: #ff8a5c; transition: transform .2s; }
+.hook:hover .arrow { transform: translateX(3px); }
+.hook:hover b { text-decoration: underline; text-underline-offset: 3px; }
+.hook-s { display: none; font-weight: 500; }
+@media (max-width: 700px) { .hook b { display: none; } .hook-s { display: inline; } }

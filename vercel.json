@@ -11,10 +11,6 @@
       "source": "/(.*)",
       "headers": [
         {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        },
-        {
           "key": "Strict-Transport-Security",
           "value": "max-age=63072000; includeSubDomains; preload"
         },
@@ -278,6 +274,36 @@
     {
       "source": "/post-best-hvac-marketing-agencies",
       "destination": "/blog/best-hvac-marketing-agencies",
+      "permanent": true
+    },
+    {
+      "source": "/post-best-crm-for-hvac",
+      "destination": "/blog/best-crm-for-hvac",
+      "permanent": true
+    },
+    {
+      "source": "/post-servicetitan-vs-housecall-pro",
+      "destination": "/blog/servicetitan-vs-housecall-pro",
+      "permanent": true
+    },
+    {
+      "source": "/post-hvac-marketing-ideas",
+      "destination": "/blog/hvac-marketing-ideas",
+      "permanent": true
+    },
+    {
+      "source": "/post-how-to-get-more-hvac-leads",
+      "destination": "/blog/how-to-get-more-hvac-leads",
+      "permanent": true
+    },
+    {
+      "source": "/post-hvac-advertising",
+      "destination": "/blog/hvac-advertising",
+      "permanent": true
+    },
+    {
+      "source": "/post-google-guaranteed-hvac",
+      "destination": "/blog/google-guaranteed-hvac",
       "permanent": true
     },
     {

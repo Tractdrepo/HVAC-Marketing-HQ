@@ -359,3 +359,20 @@
     });
   });
 })();
+
+// Top hook bar: rotate hooks every 6 seconds, pause while hovered or focused
+(function () {
+  var bar = document.querySelector(".hookbar");
+  if (!bar || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var hooks = bar.querySelectorAll(".hook"), i = 0, paused = false;
+  if (hooks.length < 2) return;
+  hooks.forEach(function (h, n) { if (n) h.setAttribute("tabindex", "-1"); });
+  ["mouseenter", "focusin"].forEach(function (e) { bar.addEventListener(e, function () { paused = true; }); });
+  ["mouseleave", "focusout"].forEach(function (e) { bar.addEventListener(e, function () { paused = false; }); });
+  setInterval(function () {
+    if (paused || document.hidden) return;
+    hooks[i].classList.remove("on"); hooks[i].setAttribute("tabindex", "-1");
+    i = (i + 1) % hooks.length;
+    hooks[i].classList.add("on"); hooks[i].removeAttribute("tabindex");
+  }, 6000);
+})();
