@@ -233,7 +233,8 @@ def footer(has_form=True):
       <span><a href="{u('privacy')}">Privacy</a> · <a href="{u('terms')}">Terms</a></span>
     </div>
   </div>
-</footer>"""
+</footer>
+<a class="m-cta" href="{rc}" data-m-cta>Get my free report card <span class="arrow">→</span></a>"""
 
 
 def rc_form(trade="HVAC", key=None, lazy_turnstile=False):
@@ -315,7 +316,7 @@ def report_card(title="Get your free report card", sub=None, trade="HVAC"):
         <div class="grade blur"><span>Website</span><b class="g-d">D</b></div>
         <div class="grade blur"><span>Listings</span><b class="g-c">C</b></div>
       </div>
-      <p class="muted" style="margin-top:18px;font-size:.92rem">Graded only on what anyone can see in public. You get the grades and what to fix first.</p>
+      <p class="muted rc-note" style="margin-top:18px;font-size:.92rem">Graded only on what anyone can see in public. You get the grades and what to fix first.</p>
     </div>
     {rc_form(trade)}
   </div></div></div>
@@ -630,7 +631,7 @@ def tech():
     <div class="scores">{rings}</div>
     <p class="note">{esc(scores['note'])}</p>
   </div>
-  <div class="stack">{items}</div>
+  <div class="stack hide-m">{items}</div>
 </div>"""
 
 
@@ -2193,24 +2194,24 @@ def sitemap_xml(paths):
 
 # ---- Pages -----------------------------------------------------------------------
 def home():
-    body = f"""<section class="hero"><div class="hero-grid-bg" aria-hidden="true"></div><div class="wrap hero-grid">
+    body = f"""<section class="hero hero-home"><div class="hero-grid-bg" aria-hidden="true"></div><div class="wrap hero-grid">
   <div>
     <span class="chip-top"><i>❄</i>HVAC marketing agency · HVAC only</span>
-    <h1 class="hero-h1"><span>Rank higher.</span> <span class="grad">Book every call.</span></h1>
-    <p class="lede">An HVAC marketing agency that builds your website, runs your Google profile and SEO, and texts back every missed call in 60 seconds, guaranteed. Start with a free report card on how you stack up locally.</p>
+    <h1 class="hero-h1"><span>Rank higher.</span> <span class="grad nowrap">Book every call.</span></h1>
+    <p class="lede"><span class="lede-long">An HVAC marketing agency that builds your website, runs your Google profile and SEO, and texts back every missed call in 60 seconds, guaranteed. Start with a free report card on how you stack up locally.</span><span class="lede-short">Your website, Google profile and SEO, run for you. Every missed call texted back in 60 seconds, guaranteed.</span></p>
     {url_form()}
     <p class="hero-alt">Rather talk first? <a href="{esc(call_link())}">Book a 15-minute call</a></p>
   </div>
   {hero_visual()}
-</div></section>
-<div class="wrap terms-wrap">{terms_strip()}</div>
+</div>
+<div class="wrap terms-wrap">{terms_strip()}</div></section>
 
 <section class="section dark"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Sounds familiar?</span><h2>The phone rings when you can't answer it.</h2><p class="lede">Most shops don't lose jobs to a better competitor. They lose them to voicemail, slow follow-up and a Google profile nobody runs.</p></div>
   {pains_grid()}
 </div></section>
 
-{homeowner_path()}
+{homeowner_path().replace('<section class="section"', '<section class="section hide-m"', 1)}
 
 <section class="section dark"><div class="wrap">
   <div class="section-head center reveal"><span class="eyebrow">What runs behind it</span><h2>One system. Every piece working.</h2><p class="lede">Your site, your Google profile and your lead system, built once and run for you. Your office just answers the texts.</p></div>

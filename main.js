@@ -376,3 +376,18 @@
     hooks[i].classList.add("on"); hooks[i].removeAttribute("tabindex");
   }, 6000);
 })();
+
+// Phone-only sticky "free report card" button: shows after the hero, hides while a form or the footer is on screen.
+(function () {
+  var cta = document.querySelector("[data-m-cta]");
+  if (!cta || !("IntersectionObserver" in window)) return;
+  var visible = new Set();
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) visible.add(e.target); else visible.delete(e.target); });
+    update();
+  });
+  document.querySelectorAll("#report-card, .site-foot, form").forEach(function (el) { io.observe(el); });
+  function update() { cta.classList.toggle("show", window.scrollY > 520 && visible.size === 0); }
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+})();

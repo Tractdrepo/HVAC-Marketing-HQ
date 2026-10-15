@@ -1290,3 +1290,89 @@ main > .section.dark::before { display: none; }
 .hook-s { display: none; font-weight: 500; }
 @media (max-width: 700px) { .hook b { display: none; } .hook-s { display: inline; } }
 .mtable-h { margin: 32px 0 16px; }
+
+/* ---- Mobile pass for owners in the field (Oct 15) ---- */
+.nowrap { white-space: nowrap; }
+.lede-short { display: none; }
+.hero-home { padding-bottom: 0; }
+.hero-home .terms-wrap { padding-top: 48px; }
+.hero-home .terms-strip { margin-bottom: 40px; }
+@media (min-width: 1020px) { .hero-home { padding-bottom: 0; } .hero-home .terms-wrap { padding-top: 64px; } .hero-home .terms-strip { margin-bottom: 56px; } }
+.m-cta { display: none; }
+@media (max-width: 700px) {
+  .hide-m { display: none !important; }
+  .section { padding: 52px 0; }
+  .section.tight { padding: 40px 0; }
+  .section.dark + .section.hide-m + .section.dark { border-top: 1px solid rgba(255, 255, 255, .08); }
+  /* Hero: headline, one line of value, the form. No mockup. */
+  .hero-home { padding-top: 28px; }
+  .hero-home .stack-vis { display: none; }
+  .hero-home .hero-grid { gap: 0; }
+  .hero-h1 { font-size: clamp(1.9rem, 9.4vw, 2.5rem); }
+  .hero-home .chip-top { margin-bottom: 16px; }
+  .hero-home .lede { font-size: var(--fs-md); margin: 14px 0 20px; }
+  .hero-home .lede-long { display: none; }
+  .hero-home .lede-short { display: inline; }
+  .hero-home .hero-alt { margin-top: 12px; }
+  .hero-home .terms-wrap { padding-top: 24px; }
+  .hero-home .terms-strip { margin-bottom: 28px; gap: 8px; }
+  .terms-strip li { padding: 10px 12px; gap: 10px; font-size: var(--fs-xs); border-radius: 12px; }
+  /* Pains: icon beside the title, tighter cards */
+  .pains { gap: 10px; }
+  .pain { display: grid; grid-template-columns: 28px 1fr; column-gap: 12px; padding: 16px 18px; }
+  .pain .x { width: 28px; height: 28px; margin: 0; grid-row: span 2; border-radius: 8px; font-size: .8rem; }
+  .pain h3 { font-size: var(--fs-base); margin-bottom: 4px; }
+  .pain p { font-size: var(--fs-sm); }
+  /* What runs behind it: keep the missed-call demo and the dashboard, text only for the rest */
+  .bento { gap: 12px; }
+  .tile { padding: 20px; gap: 14px; border-radius: 18px; }
+  .tile.b-map .mock, .tile.b-2 .mock, .tile.b-3:not(.b-phone) .mock { display: none; }
+  .b-phone .demo-caption { display: none; }
+  /* Missed-call demo: one row of four bars, only the current step named under it */
+  .demo-steps { flex-wrap: nowrap; row-gap: 0; gap: 6px; min-height: 30px; margin-bottom: 14px; }
+  .demo-steps button { flex: 1 1 0; font-size: 0; white-space: nowrap; }
+  .demo-steps button.active { font-size: var(--fs-3xs); }
+  .demo-steps button:nth-child(n+3) { direction: rtl; text-align: right; }
+  .section.dark .demo-steps button::before { background-color: rgba(255, 255, 255, .16); }
+  /* The tech: four small dials in a row */
+  .tech-scores { padding: 18px; }
+  .scores { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .score b { font-size: var(--fs-lg); }
+  .score span { font-size: 9px; letter-spacing: .04em; }
+  .tech-scores .note { font-size: var(--fs-xs); margin-top: 14px; }
+  /* Founder: photo beside the quote */
+  .founder { flex-direction: row; text-align: left; gap: 16px; padding: 18px; align-items: flex-start; }
+  .founder img { width: 56px; height: 56px; }
+  .founder-q { font-size: var(--fs-md); }
+  /* Guarantees: one compact row each, number then promise */
+  .promise { gap: 10px; }
+  .promise .card { display: grid; grid-template-columns: 104px 1fr; gap: 12px; align-items: center; padding: 16px 18px; }
+  .promise .big { font-size: var(--fs-xl); margin: 0; }
+  .promise .card p { font-size: var(--fs-sm); margin: 0; }
+  .moneyback { padding: 18px; gap: 12px; }
+  .moneyback .big { font-size: var(--fs-2xl); }
+  .moneyback h3 { font-size: var(--fs-base); }
+  .moneyback p { font-size: var(--fs-sm); }
+  .dash-feed { display: none; }
+  /* Cities: six plus the full list */
+  .loc-band .city-links a:nth-child(n+7):not(:last-child) { display: none; }
+  /* Report card: headline and form only */
+  #report-card .grades, #report-card .rc-note { display: none; }
+  #report-card .rc { gap: 20px; }
+  #report-card .lede { font-size: var(--fs-md); }
+  #report-card .rc { padding: 24px 18px; }
+  /* Footer: the columns an owner needs */
+  .foot-grid > :nth-child(4), .foot-grid > :nth-child(5) { display: none; }
+  .foot-word { display: none; }
+  /* Icon cards: icon beside the title, not stacked above it */
+  .grid { gap: 12px; }
+  .card:has(> .icon:first-child) { display: grid; grid-template-columns: 36px 1fr; column-gap: 14px; padding: 18px; }
+  .card:has(> .icon:first-child) > .icon { grid-row: span 3; width: 36px; height: 36px; margin: 0; }
+  .card:has(> .icon:first-child) > :not(.icon) { grid-column: 2; }
+  .card:has(> .icon:first-child) h3 { font-size: var(--fs-base); margin-bottom: 4px; }
+  .card:has(> .icon:first-child) p { font-size: var(--fs-sm); margin: 0; }
+  /* Sticky report card button once they scroll past the hero */
+  .m-cta { display: flex; position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 60; justify-content: center; align-items: center; gap: 8px; padding: 15px 18px; border-radius: 14px; background: #c2410c; color: #fff; font-weight: 700; text-decoration: none; box-shadow: 0 10px 30px rgba(15, 23, 42, .3); transform: translateY(160%); transition: transform .25s ease; }
+  .m-cta.show { transform: none; }
+}
+@media (max-width: 700px) and (prefers-reduced-motion: reduce) { .m-cta { transition: none; } }
