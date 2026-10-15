@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Columbus city, Georgia",
+ "geo": "1319000",
+ "median_year_built": 1978,
+ "households": 81415,
+ "owner_occupied": 41390,
+ "owner_occupied_share": 0.508,
+ "housing_units": 92031,
+ "median_home_value": 193900,
+ "share_built_before_2000": 0.757,
+ "year_built": [
+  [
+   "2020 or later",
+   922
+  ],
+  [
+   "2010-2019",
+   7656
+  ],
+  [
+   "2000-2009",
+   13771
+  ],
+  [
+   "1990-1999",
+   10068
+  ],
+  [
+   "1980-1989",
+   10927
+  ],
+  [
+   "1970-1979",
+   13745
+  ],
+  [
+   "1960-1969",
+   13230
+  ],
+  [
+   "1950-1959",
+   10924
+  ],
+  [
+   "1940-1949",
+   4997
+  ],
+  [
+   "1939 or earlier",
+   5791
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.408,
+  "electricity": 0.565
+ }
+}

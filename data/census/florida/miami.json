@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Miami city, Florida",
+ "geo": "1245000",
+ "median_year_built": 1979,
+ "households": 194821,
+ "owner_occupied": 60068,
+ "owner_occupied_share": 0.308,
+ "housing_units": 223826,
+ "median_home_value": 518100,
+ "share_built_before_2000": 0.636,
+ "year_built": [
+  [
+   "2020 or later",
+   7057
+  ],
+  [
+   "2010-2019",
+   36010
+  ],
+  [
+   "2000-2009",
+   38396
+  ],
+  [
+   "1990-1999",
+   12249
+  ],
+  [
+   "1980-1989",
+   16382
+  ],
+  [
+   "1970-1979",
+   25943
+  ],
+  [
+   "1960-1969",
+   21032
+  ],
+  [
+   "1950-1959",
+   29388
+  ],
+  [
+   "1940-1949",
+   19997
+  ],
+  [
+   "1939 or earlier",
+   17372
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.028,
+  "electricity": 0.908
+ }
+}

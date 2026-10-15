@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "New Orleans city, Louisiana",
+ "geo": "2255000",
+ "median_year_built": 1960,
+ "households": 155821,
+ "owner_occupied": 79744,
+ "owner_occupied_share": 0.512,
+ "housing_units": 195552,
+ "median_home_value": 315700,
+ "share_built_before_2000": 0.853,
+ "year_built": [
+  [
+   "2020 or later",
+   1306
+  ],
+  [
+   "2010-2019",
+   12563
+  ],
+  [
+   "2000-2009",
+   14963
+  ],
+  [
+   "1990-1999",
+   6240
+  ],
+  [
+   "1980-1989",
+   16384
+  ],
+  [
+   "1970-1979",
+   25704
+  ],
+  [
+   "1960-1969",
+   20043
+  ],
+  [
+   "1950-1959",
+   22671
+  ],
+  [
+   "1940-1949",
+   14351
+  ],
+  [
+   "1939 or earlier",
+   61327
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.369,
+  "electricity": 0.614
+ }
+}

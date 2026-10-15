@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Tyler city, Texas",
+ "geo": "4874144",
+ "median_year_built": 1978,
+ "households": 38505,
+ "owner_occupied": 21339,
+ "owner_occupied_share": 0.554,
+ "housing_units": 46019,
+ "median_home_value": 235300,
+ "share_built_before_2000": 0.736,
+ "year_built": [
+  [
+   "2020 or later",
+   854
+  ],
+  [
+   "2010-2019",
+   4657
+  ],
+  [
+   "2000-2009",
+   6641
+  ],
+  [
+   "1990-1999",
+   4159
+  ],
+  [
+   "1980-1989",
+   5519
+  ],
+  [
+   "1970-1979",
+   7170
+  ],
+  [
+   "1960-1969",
+   4918
+  ],
+  [
+   "1950-1959",
+   6537
+  ],
+  [
+   "1940-1949",
+   3109
+  ],
+  [
+   "1939 or earlier",
+   2455
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.533,
+  "electricity": 0.448
+ }
+}

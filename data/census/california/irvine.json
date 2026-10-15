@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Irvine city, California",
+ "geo": "0636770",
+ "median_year_built": 2002,
+ "households": 112091,
+ "owner_occupied": 49830,
+ "owner_occupied_share": 0.445,
+ "housing_units": 120206,
+ "median_home_value": 1191500,
+ "share_built_before_2000": 0.469,
+ "year_built": [
+  [
+   "2020 or later",
+   4302
+  ],
+  [
+   "2010-2019",
+   35450
+  ],
+  [
+   "2000-2009",
+   24095
+  ],
+  [
+   "1990-1999",
+   13526
+  ],
+  [
+   "1980-1989",
+   17947
+  ],
+  [
+   "1970-1979",
+   19715
+  ],
+  [
+   "1960-1969",
+   3417
+  ],
+  [
+   "1950-1959",
+   842
+  ],
+  [
+   "1940-1949",
+   151
+  ],
+  [
+   "1939 or earlier",
+   761
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.608,
+  "electricity": 0.348
+ }
+}

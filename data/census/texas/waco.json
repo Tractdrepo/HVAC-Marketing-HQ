@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Waco city, Texas",
+ "geo": "4876000",
+ "median_year_built": 1979,
+ "households": 53906,
+ "owner_occupied": 26648,
+ "owner_occupied_share": 0.494,
+ "housing_units": 61163,
+ "median_home_value": 221700,
+ "share_built_before_2000": 0.706,
+ "year_built": [
+  [
+   "2020 or later",
+   1543
+  ],
+  [
+   "2010-2019",
+   9598
+  ],
+  [
+   "2000-2009",
+   6811
+  ],
+  [
+   "1990-1999",
+   4467
+  ],
+  [
+   "1980-1989",
+   7593
+  ],
+  [
+   "1970-1979",
+   7383
+  ],
+  [
+   "1960-1969",
+   6812
+  ],
+  [
+   "1950-1959",
+   10127
+  ],
+  [
+   "1940-1949",
+   2955
+  ],
+  [
+   "1939 or earlier",
+   3874
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.309,
+  "electricity": 0.672
+ }
+}

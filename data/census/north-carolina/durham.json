@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Durham city, North Carolina",
+ "geo": "3719000",
+ "median_year_built": 1995,
+ "households": 126550,
+ "owner_occupied": 66203,
+ "owner_occupied_share": 0.523,
+ "housing_units": 136837,
+ "median_home_value": 392800,
+ "share_built_before_2000": 0.573,
+ "year_built": [
+  [
+   "2020 or later",
+   5751
+  ],
+  [
+   "2010-2019",
+   28928
+  ],
+  [
+   "2000-2009",
+   23696
+  ],
+  [
+   "1990-1999",
+   18758
+  ],
+  [
+   "1980-1989",
+   19126
+  ],
+  [
+   "1970-1979",
+   12348
+  ],
+  [
+   "1960-1969",
+   9331
+  ],
+  [
+   "1950-1959",
+   7086
+  ],
+  [
+   "1940-1949",
+   4746
+  ],
+  [
+   "1939 or earlier",
+   7067
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.386,
+  "electricity": 0.59
+ }
+}

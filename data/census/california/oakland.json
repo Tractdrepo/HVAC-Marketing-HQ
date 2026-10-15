@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Oakland city, California",
+ "geo": "0653000",
+ "median_year_built": 1953,
+ "households": 176584,
+ "owner_occupied": 74753,
+ "owner_occupied_share": 0.423,
+ "housing_units": 191713,
+ "median_home_value": 929900,
+ "share_built_before_2000": 0.869,
+ "year_built": [
+  [
+   "2020 or later",
+   2798
+  ],
+  [
+   "2010-2019",
+   11406
+  ],
+  [
+   "2000-2009",
+   10886
+  ],
+  [
+   "1990-1999",
+   9462
+  ],
+  [
+   "1980-1989",
+   10112
+  ],
+  [
+   "1970-1979",
+   19210
+  ],
+  [
+   "1960-1969",
+   19143
+  ],
+  [
+   "1950-1959",
+   19338
+  ],
+  [
+   "1940-1949",
+   18124
+  ],
+  [
+   "1939 or earlier",
+   71234
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.612,
+  "electricity": 0.32
+ }
+}

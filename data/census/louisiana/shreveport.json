@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Shreveport city, Louisiana",
+ "geo": "2270000",
+ "median_year_built": 1973,
+ "households": 75996,
+ "owner_occupied": 40481,
+ "owner_occupied_share": 0.533,
+ "housing_units": 90007,
+ "median_home_value": 178900,
+ "share_built_before_2000": 0.848,
+ "year_built": [
+  [
+   "2020 or later",
+   359
+  ],
+  [
+   "2010-2019",
+   5481
+  ],
+  [
+   "2000-2009",
+   7878
+  ],
+  [
+   "1990-1999",
+   6073
+  ],
+  [
+   "1980-1989",
+   12114
+  ],
+  [
+   "1970-1979",
+   18766
+  ],
+  [
+   "1960-1969",
+   15869
+  ],
+  [
+   "1950-1959",
+   13581
+  ],
+  [
+   "1940-1949",
+   4917
+  ],
+  [
+   "1939 or earlier",
+   4969
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.432,
+  "electricity": 0.548
+ }
+}

@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Kansas City city, Kansas",
+ "geo": "2036000",
+ "median_year_built": 1961,
+ "households": 57016,
+ "owner_occupied": 34735,
+ "owner_occupied_share": 0.609,
+ "housing_units": 64000,
+ "median_home_value": 167400,
+ "share_built_before_2000": 0.871,
+ "year_built": [
+  [
+   "2020 or later",
+   434
+  ],
+  [
+   "2010-2019",
+   3503
+  ],
+  [
+   "2000-2009",
+   4323
+  ],
+  [
+   "1990-1999",
+   2746
+  ],
+  [
+   "1980-1989",
+   4527
+  ],
+  [
+   "1970-1979",
+   7964
+  ],
+  [
+   "1960-1969",
+   9732
+  ],
+  [
+   "1950-1959",
+   11971
+  ],
+  [
+   "1940-1949",
+   5471
+  ],
+  [
+   "1939 or earlier",
+   13329
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.675,
+  "electricity": 0.287
+ }
+}

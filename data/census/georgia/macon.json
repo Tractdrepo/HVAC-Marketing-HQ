@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Macon-Bibb County, Georgia",
+ "geo": "1349008",
+ "median_year_built": 1977,
+ "households": 59921,
+ "owner_occupied": 30802,
+ "owner_occupied_share": 0.514,
+ "housing_units": 71962,
+ "median_home_value": 174500,
+ "share_built_before_2000": 0.807,
+ "year_built": [
+  [
+   "2020 or later",
+   738
+  ],
+  [
+   "2010-2019",
+   5607
+  ],
+  [
+   "2000-2009",
+   7569
+  ],
+  [
+   "1990-1999",
+   9388
+  ],
+  [
+   "1980-1989",
+   9076
+  ],
+  [
+   "1970-1979",
+   10613
+  ],
+  [
+   "1960-1969",
+   9557
+  ],
+  [
+   "1950-1959",
+   9489
+  ],
+  [
+   "1940-1949",
+   3721
+  ],
+  [
+   "1939 or earlier",
+   6204
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.324,
+  "electricity": 0.649
+ }
+}

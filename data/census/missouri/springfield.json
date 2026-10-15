@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Springfield city, Missouri",
+ "geo": "2970000",
+ "median_year_built": 1975,
+ "households": 78824,
+ "owner_occupied": 34606,
+ "owner_occupied_share": 0.439,
+ "housing_units": 84761,
+ "median_home_value": 177700,
+ "share_built_before_2000": 0.812,
+ "year_built": [
+  [
+   "2020 or later",
+   610
+  ],
+  [
+   "2010-2019",
+   6532
+  ],
+  [
+   "2000-2009",
+   8822
+  ],
+  [
+   "1990-1999",
+   9942
+  ],
+  [
+   "1980-1989",
+   9685
+  ],
+  [
+   "1970-1979",
+   15027
+  ],
+  [
+   "1960-1969",
+   9806
+  ],
+  [
+   "1950-1959",
+   9424
+  ],
+  [
+   "1940-1949",
+   4104
+  ],
+  [
+   "1939 or earlier",
+   10809
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.535,
+  "electricity": 0.439
+ }
+}

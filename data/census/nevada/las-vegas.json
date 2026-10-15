@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Las Vegas city, Nevada",
+ "geo": "3240000",
+ "median_year_built": 1994,
+ "households": 247741,
+ "owner_occupied": 140325,
+ "owner_occupied_share": 0.566,
+ "housing_units": 267654,
+ "median_home_value": 427900,
+ "share_built_before_2000": 0.666,
+ "year_built": [
+  [
+   "2020 or later",
+   6913
+  ],
+  [
+   "2010-2019",
+   24860
+  ],
+  [
+   "2000-2009",
+   57498
+  ],
+  [
+   "1990-1999",
+   74732
+  ],
+  [
+   "1980-1989",
+   42741
+  ],
+  [
+   "1970-1979",
+   26630
+  ],
+  [
+   "1960-1969",
+   19565
+  ],
+  [
+   "1950-1959",
+   10901
+  ],
+  [
+   "1940-1949",
+   2575
+  ],
+  [
+   "1939 or earlier",
+   1239
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.576,
+  "electricity": 0.392
+ }
+}

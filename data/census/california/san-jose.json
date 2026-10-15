@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "San Jose city, California",
+ "geo": "0668000",
+ "median_year_built": 1976,
+ "households": 328550,
+ "owner_occupied": 183331,
+ "owner_occupied_share": 0.558,
+ "housing_units": 345066,
+ "median_home_value": 1233200,
+ "share_built_before_2000": 0.814,
+ "year_built": [
+  [
+   "2020 or later",
+   3551
+  ],
+  [
+   "2010-2019",
+   27029
+  ],
+  [
+   "2000-2009",
+   33624
+  ],
+  [
+   "1990-1999",
+   31769
+  ],
+  [
+   "1980-1989",
+   40575
+  ],
+  [
+   "1970-1979",
+   80473
+  ],
+  [
+   "1960-1969",
+   63835
+  ],
+  [
+   "1950-1959",
+   37545
+  ],
+  [
+   "1940-1949",
+   8838
+  ],
+  [
+   "1939 or earlier",
+   17827
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.58,
+  "electricity": 0.366
+ }
+}

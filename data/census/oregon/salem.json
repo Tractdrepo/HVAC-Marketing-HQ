@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Salem city, Oregon",
+ "geo": "4164900",
+ "median_year_built": 1980,
+ "households": 67629,
+ "owner_occupied": 37812,
+ "owner_occupied_share": 0.559,
+ "housing_units": 71124,
+ "median_home_value": 416900,
+ "share_built_before_2000": 0.739,
+ "year_built": [
+  [
+   "2020 or later",
+   1970
+  ],
+  [
+   "2010-2019",
+   6836
+  ],
+  [
+   "2000-2009",
+   9737
+  ],
+  [
+   "1990-1999",
+   10593
+  ],
+  [
+   "1980-1989",
+   6660
+  ],
+  [
+   "1970-1979",
+   12454
+  ],
+  [
+   "1960-1969",
+   6567
+  ],
+  [
+   "1950-1959",
+   6762
+  ],
+  [
+   "1940-1949",
+   3307
+  ],
+  [
+   "1939 or earlier",
+   6238
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.448,
+  "electricity": 0.518
+ }
+}

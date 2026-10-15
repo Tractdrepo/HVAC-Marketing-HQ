@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Urban Honolulu CDP, Hawaii",
+ "geo": "1571550",
+ "median_year_built": 1974,
+ "households": 136902,
+ "owner_occupied": 66990,
+ "owner_occupied_share": 0.489,
+ "housing_units": 157303,
+ "median_home_value": 843400,
+ "share_built_before_2000": 0.84,
+ "year_built": [
+  [
+   "2020 or later",
+   1442
+  ],
+  [
+   "2010-2019",
+   12557
+  ],
+  [
+   "2000-2009",
+   11159
+  ],
+  [
+   "1990-1999",
+   12684
+  ],
+  [
+   "1980-1989",
+   16547
+  ],
+  [
+   "1970-1979",
+   41181
+  ],
+  [
+   "1960-1969",
+   28959
+  ],
+  [
+   "1950-1959",
+   17821
+  ],
+  [
+   "1940-1949",
+   7359
+  ],
+  [
+   "1939 or earlier",
+   7594
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.052,
+  "electricity": 0.491
+ }
+}

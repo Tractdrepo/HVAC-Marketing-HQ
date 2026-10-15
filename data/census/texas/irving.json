@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Irving city, Texas",
+ "geo": "4837000",
+ "median_year_built": 1986,
+ "households": 94845,
+ "owner_occupied": 36146,
+ "owner_occupied_share": 0.381,
+ "housing_units": 102512,
+ "median_home_value": 315600,
+ "share_built_before_2000": 0.724,
+ "year_built": [
+  [
+   "2020 or later",
+   1858
+  ],
+  [
+   "2010-2019",
+   12290
+  ],
+  [
+   "2000-2009",
+   14104
+  ],
+  [
+   "1990-1999",
+   13901
+  ],
+  [
+   "1980-1989",
+   23585
+  ],
+  [
+   "1970-1979",
+   12700
+  ],
+  [
+   "1960-1969",
+   12709
+  ],
+  [
+   "1950-1959",
+   8864
+  ],
+  [
+   "1940-1949",
+   1576
+  ],
+  [
+   "1939 or earlier",
+   925
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.333,
+  "electricity": 0.651
+ }
+}

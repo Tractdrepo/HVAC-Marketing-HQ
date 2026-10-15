@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Huntsville city, Alabama",
+ "geo": "0137000",
+ "median_year_built": 1985,
+ "households": 95310,
+ "owner_occupied": 55540,
+ "owner_occupied_share": 0.583,
+ "housing_units": 104388,
+ "median_home_value": 293600,
+ "share_built_before_2000": 0.673,
+ "year_built": [
+  [
+   "2020 or later",
+   4668
+  ],
+  [
+   "2010-2019",
+   16545
+  ],
+  [
+   "2000-2009",
+   12898
+  ],
+  [
+   "1990-1999",
+   10553
+  ],
+  [
+   "1980-1989",
+   14255
+  ],
+  [
+   "1970-1979",
+   12715
+  ],
+  [
+   "1960-1969",
+   19575
+  ],
+  [
+   "1950-1959",
+   8304
+  ],
+  [
+   "1940-1949",
+   1883
+  ],
+  [
+   "1939 or earlier",
+   2992
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.228,
+  "electricity": 0.753
+ }
+}

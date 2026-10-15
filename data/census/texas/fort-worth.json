@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Fort Worth city, Texas",
+ "geo": "4827000",
+ "median_year_built": 1994,
+ "households": 342126,
+ "owner_occupied": 195072,
+ "owner_occupied_share": 0.57,
+ "housing_units": 373948,
+ "median_home_value": 303000,
+ "share_built_before_2000": 0.566,
+ "year_built": [
+  [
+   "2020 or later",
+   16296
+  ],
+  [
+   "2010-2019",
+   70138
+  ],
+  [
+   "2000-2009",
+   75826
+  ],
+  [
+   "1990-1999",
+   38362
+  ],
+  [
+   "1980-1989",
+   47430
+  ],
+  [
+   "1970-1979",
+   31359
+  ],
+  [
+   "1960-1969",
+   23904
+  ],
+  [
+   "1950-1959",
+   34417
+  ],
+  [
+   "1940-1949",
+   15318
+  ],
+  [
+   "1939 or earlier",
+   20898
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.301,
+  "electricity": 0.678
+ }
+}

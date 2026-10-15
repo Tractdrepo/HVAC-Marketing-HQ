@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Savannah city, Georgia",
+ "geo": "1369000",
+ "median_year_built": 1971,
+ "households": 58192,
+ "owner_occupied": 26392,
+ "owner_occupied_share": 0.454,
+ "housing_units": 68174,
+ "median_home_value": 248900,
+ "share_built_before_2000": 0.756,
+ "year_built": [
+  [
+   "2020 or later",
+   1290
+  ],
+  [
+   "2010-2019",
+   8857
+  ],
+  [
+   "2000-2009",
+   6512
+  ],
+  [
+   "1990-1999",
+   3809
+  ],
+  [
+   "1980-1989",
+   7377
+  ],
+  [
+   "1970-1979",
+   7311
+  ],
+  [
+   "1960-1969",
+   7434
+  ],
+  [
+   "1950-1959",
+   9689
+  ],
+  [
+   "1940-1949",
+   4830
+  ],
+  [
+   "1939 or earlier",
+   11065
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.297,
+  "electricity": 0.675
+ }
+}

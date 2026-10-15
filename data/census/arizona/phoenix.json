@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Phoenix city, Arizona",
+ "geo": "0455000",
+ "median_year_built": 1985,
+ "households": 610442,
+ "owner_occupied": 350001,
+ "owner_occupied_share": 0.573,
+ "housing_units": 653065,
+ "median_home_value": 420700,
+ "share_built_before_2000": 0.722,
+ "year_built": [
+  [
+   "2020 or later",
+   13327
+  ],
+  [
+   "2010-2019",
+   62125
+  ],
+  [
+   "2000-2009",
+   106406
+  ],
+  [
+   "1990-1999",
+   86963
+  ],
+  [
+   "1980-1989",
+   112785
+  ],
+  [
+   "1970-1979",
+   121730
+  ],
+  [
+   "1960-1969",
+   58559
+  ],
+  [
+   "1950-1959",
+   61630
+  ],
+  [
+   "1940-1949",
+   17238
+  ],
+  [
+   "1939 or earlier",
+   12302
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.231,
+  "electricity": 0.736
+ }
+}

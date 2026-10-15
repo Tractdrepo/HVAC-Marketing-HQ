@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Orlando city, Florida",
+ "geo": "1253000",
+ "median_year_built": 1992,
+ "households": 131179,
+ "owner_occupied": 51828,
+ "owner_occupied_share": 0.395,
+ "housing_units": 148754,
+ "median_home_value": 394100,
+ "share_built_before_2000": 0.593,
+ "year_built": [
+  [
+   "2020 or later",
+   4827
+  ],
+  [
+   "2010-2019",
+   24521
+  ],
+  [
+   "2000-2009",
+   31125
+  ],
+  [
+   "1990-1999",
+   18453
+  ],
+  [
+   "1980-1989",
+   21304
+  ],
+  [
+   "1970-1979",
+   18205
+  ],
+  [
+   "1960-1969",
+   10508
+  ],
+  [
+   "1950-1959",
+   12284
+  ],
+  [
+   "1940-1949",
+   3681
+  ],
+  [
+   "1939 or earlier",
+   3846
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.045,
+  "electricity": 0.918
+ }
+}

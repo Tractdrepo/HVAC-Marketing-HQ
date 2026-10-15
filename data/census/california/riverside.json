@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Riverside city, California",
+ "geo": "0662000",
+ "median_year_built": 1976,
+ "households": 95176,
+ "owner_occupied": 54044,
+ "owner_occupied_share": 0.568,
+ "housing_units": 99910,
+ "median_home_value": 584800,
+ "share_built_before_2000": 0.808,
+ "year_built": [
+  [
+   "2020 or later",
+   596
+  ],
+  [
+   "2010-2019",
+   5745
+  ],
+  [
+   "2000-2009",
+   12802
+  ],
+  [
+   "1990-1999",
+   9075
+  ],
+  [
+   "1980-1989",
+   15226
+  ],
+  [
+   "1970-1979",
+   17967
+  ],
+  [
+   "1960-1969",
+   11777
+  ],
+  [
+   "1950-1959",
+   16583
+  ],
+  [
+   "1940-1949",
+   3855
+  ],
+  [
+   "1939 or earlier",
+   6284
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.72,
+  "electricity": 0.228
+ }
+}

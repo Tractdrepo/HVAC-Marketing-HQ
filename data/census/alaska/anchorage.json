@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Anchorage municipality, Alaska",
+ "geo": "0203000",
+ "median_year_built": 1982,
+ "households": 108597,
+ "owner_occupied": 69393,
+ "owner_occupied_share": 0.639,
+ "housing_units": 120348,
+ "median_home_value": 395900,
+ "share_built_before_2000": 0.806,
+ "year_built": [
+  [
+   "2020 or later",
+   547
+  ],
+  [
+   "2010-2019",
+   8292
+  ],
+  [
+   "2000-2009",
+   14533
+  ],
+  [
+   "1990-1999",
+   14090
+  ],
+  [
+   "1980-1989",
+   29279
+  ],
+  [
+   "1970-1979",
+   33209
+  ],
+  [
+   "1960-1969",
+   11346
+  ],
+  [
+   "1950-1959",
+   6910
+  ],
+  [
+   "1940-1949",
+   1269
+  ],
+  [
+   "1939 or earlier",
+   873
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.787,
+  "electricity": 0.161
+ }
+}

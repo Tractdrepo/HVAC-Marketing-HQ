@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Colorado Springs city, Colorado",
+ "geo": "0816000",
+ "median_year_built": 1986,
+ "households": 202515,
+ "owner_occupied": 123264,
+ "owner_occupied_share": 0.609,
+ "housing_units": 211353,
+ "median_home_value": 452600,
+ "share_built_before_2000": 0.701,
+ "year_built": [
+  [
+   "2020 or later",
+   7011
+  ],
+  [
+   "2010-2019",
+   25918
+  ],
+  [
+   "2000-2009",
+   30182
+  ],
+  [
+   "1990-1999",
+   28793
+  ],
+  [
+   "1980-1989",
+   36074
+  ],
+  [
+   "1970-1979",
+   34916
+  ],
+  [
+   "1960-1969",
+   19446
+  ],
+  [
+   "1950-1959",
+   14354
+  ],
+  [
+   "1940-1949",
+   3424
+  ],
+  [
+   "1939 or earlier",
+   11235
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.695,
+  "electricity": 0.274
+ }
+}

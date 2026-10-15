@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Seattle city, Washington",
+ "geo": "5363000",
+ "median_year_built": 1976,
+ "households": 363466,
+ "owner_occupied": 158945,
+ "owner_occupied_share": 0.437,
+ "housing_units": 393918,
+ "median_home_value": 938600,
+ "share_built_before_2000": 0.672,
+ "year_built": [
+  [
+   "2020 or later",
+   9425
+  ],
+  [
+   "2010-2019",
+   73349
+  ],
+  [
+   "2000-2009",
+   46412
+  ],
+  [
+   "1990-1999",
+   27608
+  ],
+  [
+   "1980-1989",
+   29267
+  ],
+  [
+   "1970-1979",
+   27249
+  ],
+  [
+   "1960-1969",
+   29354
+  ],
+  [
+   "1950-1959",
+   32742
+  ],
+  [
+   "1940-1949",
+   28671
+  ],
+  [
+   "1939 or earlier",
+   89841
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.328,
+  "electricity": 0.611
+ }
+}

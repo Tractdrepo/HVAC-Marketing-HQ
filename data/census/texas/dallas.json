@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Dallas city, Texas",
+ "geo": "4819000",
+ "median_year_built": 1981,
+ "households": 533915,
+ "owner_occupied": 226615,
+ "owner_occupied_share": 0.424,
+ "housing_units": 590237,
+ "median_home_value": 320700,
+ "share_built_before_2000": 0.739,
+ "year_built": [
+  [
+   "2020 or later",
+   10731
+  ],
+  [
+   "2010-2019",
+   74163
+  ],
+  [
+   "2000-2009",
+   68868
+  ],
+  [
+   "1990-1999",
+   57082
+  ],
+  [
+   "1980-1989",
+   95614
+  ],
+  [
+   "1970-1979",
+   86073
+  ],
+  [
+   "1960-1969",
+   70377
+  ],
+  [
+   "1950-1959",
+   70459
+  ],
+  [
+   "1940-1949",
+   26829
+  ],
+  [
+   "1939 or earlier",
+   30041
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.332,
+  "electricity": 0.649
+ }
+}

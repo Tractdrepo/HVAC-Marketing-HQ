@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Raleigh city, North Carolina",
+ "geo": "3755000",
+ "median_year_built": 1997,
+ "households": 203443,
+ "owner_occupied": 103241,
+ "owner_occupied_share": 0.507,
+ "housing_units": 224853,
+ "median_home_value": 415800,
+ "share_built_before_2000": 0.549,
+ "year_built": [
+  [
+   "2020 or later",
+   6807
+  ],
+  [
+   "2010-2019",
+   41048
+  ],
+  [
+   "2000-2009",
+   53590
+  ],
+  [
+   "1990-1999",
+   36823
+  ],
+  [
+   "1980-1989",
+   34577
+  ],
+  [
+   "1970-1979",
+   20689
+  ],
+  [
+   "1960-1969",
+   14600
+  ],
+  [
+   "1950-1959",
+   8185
+  ],
+  [
+   "1940-1949",
+   2802
+  ],
+  [
+   "1939 or earlier",
+   5732
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.393,
+  "electricity": 0.586
+ }
+}

@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Buffalo city, New York",
+ "geo": "3611000",
+ "median_year_built": 1938,
+ "households": 119630,
+ "owner_occupied": 51496,
+ "owner_occupied_share": 0.43,
+ "housing_units": 136850,
+ "median_home_value": 164200,
+ "share_built_before_2000": 0.954,
+ "year_built": [
+  [
+   "2020 or later",
+   587
+  ],
+  [
+   "2010-2019",
+   3328
+  ],
+  [
+   "2000-2009",
+   2381
+  ],
+  [
+   "1990-1999",
+   3569
+  ],
+  [
+   "1980-1989",
+   4229
+  ],
+  [
+   "1970-1979",
+   5912
+  ],
+  [
+   "1960-1969",
+   6976
+  ],
+  [
+   "1950-1959",
+   15923
+  ],
+  [
+   "1940-1949",
+   10447
+  ],
+  [
+   "1939 or earlier",
+   83498
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.859,
+  "electricity": 0.099
+ }
+}

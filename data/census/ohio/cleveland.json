@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Cleveland city, Ohio",
+ "geo": "3916000",
+ "median_year_built": 1941,
+ "households": 169683,
+ "owner_occupied": 70804,
+ "owner_occupied_share": 0.417,
+ "housing_units": 201141,
+ "median_home_value": 102000,
+ "share_built_before_2000": 0.911,
+ "year_built": [
+  [
+   "2020 or later",
+   2134
+  ],
+  [
+   "2010-2019",
+   8013
+  ],
+  [
+   "2000-2009",
+   7834
+  ],
+  [
+   "1990-1999",
+   5736
+  ],
+  [
+   "1980-1989",
+   6330
+  ],
+  [
+   "1970-1979",
+   11427
+  ],
+  [
+   "1960-1969",
+   16539
+  ],
+  [
+   "1950-1959",
+   24198
+  ],
+  [
+   "1940-1949",
+   21262
+  ],
+  [
+   "1939 or earlier",
+   97668
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.779,
+  "electricity": 0.189
+ }
+}

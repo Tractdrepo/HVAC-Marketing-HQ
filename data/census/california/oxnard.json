@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Oxnard city, California",
+ "geo": "0654652",
+ "median_year_built": 1977,
+ "households": 52828,
+ "owner_occupied": 28755,
+ "owner_occupied_share": 0.544,
+ "housing_units": 56455,
+ "median_home_value": 652700,
+ "share_built_before_2000": 0.772,
+ "year_built": [
+  [
+   "2020 or later",
+   485
+  ],
+  [
+   "2010-2019",
+   4381
+  ],
+  [
+   "2000-2009",
+   8003
+  ],
+  [
+   "1990-1999",
+   4758
+  ],
+  [
+   "1980-1989",
+   6583
+  ],
+  [
+   "1970-1979",
+   11951
+  ],
+  [
+   "1960-1969",
+   10088
+  ],
+  [
+   "1950-1959",
+   6971
+  ],
+  [
+   "1940-1949",
+   2007
+  ],
+  [
+   "1939 or earlier",
+   1228
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.688,
+  "electricity": 0.193
+ }
+}

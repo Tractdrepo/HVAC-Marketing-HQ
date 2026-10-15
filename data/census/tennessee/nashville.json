@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Nashville-Davidson metropolitan government (balance), Tennessee",
+ "geo": "4752006",
+ "median_year_built": 1987,
+ "households": 313513,
+ "owner_occupied": 164334,
+ "owner_occupied_share": 0.524,
+ "housing_units": 344794,
+ "median_home_value": 413600,
+ "share_built_before_2000": 0.652,
+ "year_built": [
+  [
+   "2020 or later",
+   18674
+  ],
+  [
+   "2010-2019",
+   55485
+  ],
+  [
+   "2000-2009",
+   45888
+  ],
+  [
+   "1990-1999",
+   35818
+  ],
+  [
+   "1980-1989",
+   48387
+  ],
+  [
+   "1970-1979",
+   42664
+  ],
+  [
+   "1960-1969",
+   35527
+  ],
+  [
+   "1950-1959",
+   30091
+  ],
+  [
+   "1940-1949",
+   11458
+  ],
+  [
+   "1939 or earlier",
+   20802
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.305,
+  "electricity": 0.67
+ }
+}

@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Green Bay city, Wisconsin",
+ "geo": "5531000",
+ "median_year_built": 1971,
+ "households": 43790,
+ "owner_occupied": 25351,
+ "owner_occupied_share": 0.579,
+ "housing_units": 45701,
+ "median_home_value": 207200,
+ "share_built_before_2000": 0.874,
+ "year_built": [
+  [
+   "2020 or later",
+   276
+  ],
+  [
+   "2010-2019",
+   1793
+  ],
+  [
+   "2000-2009",
+   3692
+  ],
+  [
+   "1990-1999",
+   4444
+  ],
+  [
+   "1980-1989",
+   5621
+  ],
+  [
+   "1970-1979",
+   7920
+  ],
+  [
+   "1960-1969",
+   5707
+  ],
+  [
+   "1950-1959",
+   7068
+  ],
+  [
+   "1940-1949",
+   2929
+  ],
+  [
+   "1939 or earlier",
+   6251
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.737,
+  "electricity": 0.22
+ }
+}

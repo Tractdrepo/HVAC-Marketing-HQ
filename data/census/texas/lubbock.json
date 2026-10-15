@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Lubbock city, Texas",
+ "geo": "4845000",
+ "median_year_built": 1984,
+ "households": 107086,
+ "owner_occupied": 54816,
+ "owner_occupied_share": 0.512,
+ "housing_units": 118143,
+ "median_home_value": 212400,
+ "share_built_before_2000": 0.672,
+ "year_built": [
+  [
+   "2020 or later",
+   3156
+  ],
+  [
+   "2010-2019",
+   18353
+  ],
+  [
+   "2000-2009",
+   17189
+  ],
+  [
+   "1990-1999",
+   11925
+  ],
+  [
+   "1980-1989",
+   14735
+  ],
+  [
+   "1970-1979",
+   18180
+  ],
+  [
+   "1960-1969",
+   15036
+  ],
+  [
+   "1950-1959",
+   13115
+  ],
+  [
+   "1940-1949",
+   3715
+  ],
+  [
+   "1939 or earlier",
+   2739
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.442,
+  "electricity": 0.541
+ }
+}

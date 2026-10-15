@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Eugene city, Oregon",
+ "geo": "4123850",
+ "median_year_built": 1980,
+ "households": 76822,
+ "owner_occupied": 36794,
+ "owner_occupied_share": 0.479,
+ "housing_units": 80856,
+ "median_home_value": 460400,
+ "share_built_before_2000": 0.744,
+ "year_built": [
+  [
+   "2020 or later",
+   1077
+  ],
+  [
+   "2010-2019",
+   8656
+  ],
+  [
+   "2000-2009",
+   10931
+  ],
+  [
+   "1990-1999",
+   11792
+  ],
+  [
+   "1980-1989",
+   7292
+  ],
+  [
+   "1970-1979",
+   15773
+  ],
+  [
+   "1960-1969",
+   9571
+  ],
+  [
+   "1950-1959",
+   6427
+  ],
+  [
+   "1940-1949",
+   4431
+  ],
+  [
+   "1939 or earlier",
+   4906
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.221,
+  "electricity": 0.753
+ }
+}

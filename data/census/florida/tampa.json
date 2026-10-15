@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Tampa city, Florida",
+ "geo": "1271000",
+ "median_year_built": 1985,
+ "households": 166278,
+ "owner_occupied": 83683,
+ "owner_occupied_share": 0.503,
+ "housing_units": 182425,
+ "median_home_value": 420400,
+ "share_built_before_2000": 0.657,
+ "year_built": [
+  [
+   "2020 or later",
+   5360
+  ],
+  [
+   "2010-2019",
+   27390
+  ],
+  [
+   "2000-2009",
+   29828
+  ],
+  [
+   "1990-1999",
+   18160
+  ],
+  [
+   "1980-1989",
+   20426
+  ],
+  [
+   "1970-1979",
+   18583
+  ],
+  [
+   "1960-1969",
+   16115
+  ],
+  [
+   "1950-1959",
+   22541
+  ],
+  [
+   "1940-1949",
+   8645
+  ],
+  [
+   "1939 or earlier",
+   15377
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.056,
+  "electricity": 0.919
+ }
+}

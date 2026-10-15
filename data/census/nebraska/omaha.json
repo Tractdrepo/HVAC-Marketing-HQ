@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Omaha city, Nebraska",
+ "geo": "3137000",
+ "median_year_built": 1973,
+ "households": 201698,
+ "owner_occupied": 115679,
+ "owner_occupied_share": 0.574,
+ "housing_units": 213023,
+ "median_home_value": 245500,
+ "share_built_before_2000": 0.834,
+ "year_built": [
+  [
+   "2020 or later",
+   1738
+  ],
+  [
+   "2010-2019",
+   14436
+  ],
+  [
+   "2000-2009",
+   19098
+  ],
+  [
+   "1990-1999",
+   24539
+  ],
+  [
+   "1980-1989",
+   23477
+  ],
+  [
+   "1970-1979",
+   32393
+  ],
+  [
+   "1960-1969",
+   28703
+  ],
+  [
+   "1950-1959",
+   22145
+  ],
+  [
+   "1940-1949",
+   8582
+  ],
+  [
+   "1939 or earlier",
+   37912
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.723,
+  "electricity": 0.254
+ }
+}

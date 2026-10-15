@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Frisco city, Texas",
+ "geo": "4827684",
+ "median_year_built": 2009,
+ "households": 77208,
+ "owner_occupied": 50878,
+ "owner_occupied_share": 0.659,
+ "housing_units": 80353,
+ "median_home_value": 642100,
+ "share_built_before_2000": 0.185,
+ "year_built": [
+  [
+   "2020 or later",
+   5373
+  ],
+  [
+   "2010-2019",
+   32151
+  ],
+  [
+   "2000-2009",
+   27976
+  ],
+  [
+   "1990-1999",
+   11014
+  ],
+  [
+   "1980-1989",
+   2605
+  ],
+  [
+   "1970-1979",
+   727
+  ],
+  [
+   "1960-1969",
+   279
+  ],
+  [
+   "1950-1959",
+   144
+  ],
+  [
+   "1940-1949",
+   37
+  ],
+  [
+   "1939 or earlier",
+   47
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.542,
+  "electricity": 0.44
+ }
+}
