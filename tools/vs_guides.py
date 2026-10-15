@@ -102,7 +102,7 @@ VS_GUIDES = [
             ("Websites for HVAC: Services (as published on their site, Oct 2026)", "https://websitesforhvac.com/services"),
             ("Websites for HVAC: Home page and FAQ (as published on their site, Oct 2026)", "https://websitesforhvac.com"),
         ],
-        "related": ["hvac-marketing-cost", "questions-to-ask-hvac-marketing-agency", "rs-gonzales-alternative"],
+        "related": ["hvac-marketing-cost", "questions-to-ask-hvac-marketing-agency", "rs-gonzales-alternative", "best-hvac-marketing-agencies"],
     },
     # ------------------------------------------------------------------ RS Gonzales
     {
@@ -202,7 +202,7 @@ VS_GUIDES = [
             ("RS Gonzales: 90-day HVAC growth plan (as published on their site, Oct 2026)", "https://rsgonzales.com/90-day-hvac-growth-plan/"),
             ("RS Gonzales: About us (as published on their site, Oct 2026)", "https://rsgonzales.com/about-us/"),
         ],
-        "related": ["hvac-marketing-cost", "questions-to-ask-hvac-marketing-agency", "websites-for-hvac-alternative"],
+        "related": ["hvac-marketing-cost", "questions-to-ask-hvac-marketing-agency", "websites-for-hvac-alternative", "best-hvac-marketing-agencies"],
     },
     # ------------------------------------------------------------------ Hook Agency
     {
@@ -297,7 +297,7 @@ VS_GUIDES = [
             ("Hook Agency: Case studies (as published on their site, Oct 2026)", "https://hookagency.com/case-studies/"),
             ("Hook Agency: Contact form (as published on their site, Oct 2026)", "https://hookagency.com/contact-us/"),
         ],
-        "related": ["hvac-marketing-cost", "questions-to-ask-hvac-marketing-agency", "footbridge-media-alternative-hvac"],
+        "related": ["hvac-marketing-cost", "questions-to-ask-hvac-marketing-agency", "footbridge-media-alternative-hvac", "best-hvac-marketing-agencies"],
     },
     # ------------------------------------------------------------------ Footbridge Media
     {
@@ -401,6 +401,6 @@ VS_GUIDES = [
             ("Footbridge Media: Nexstar member page (as published on their site, Oct 2026)", "https://www.footbridgemedia.com/nexstar"),
             ("Footbridge Media: Reviews (as published on their site, Oct 2026)", "https://www.footbridgemedia.com/reviews"),
         ],
-        "related": ["hvac-marketing-cost", "missed-call-text-back-hvac", "hook-agency-alternative-hvac"],
+        "related": ["hvac-marketing-cost", "missed-call-text-back-hvac", "hook-agency-alternative-hvac", "best-hvac-marketing-agencies"],
     },
 ]

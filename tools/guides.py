@@ -137,7 +137,7 @@ GUIDES = [
             ("Google Business Profile Help: Tips to improve your local ranking on Google", "https://support.google.com/business/answer/7091"),
             ("FTC: Final rule banning fake reviews and testimonials (Aug 2024)", "https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials"),
         ],
-        "related": ["google-map-pack-hvac", "missed-call-text-back-hvac"],
+        "related": ["google-map-pack-hvac", "missed-call-text-back-hvac", "get-more-google-reviews-hvac"],
     },
     {
         "slug": "missed-call-text-back-hvac",
@@ -263,7 +263,7 @@ GUIDES = [
             ("Google: Largest Contentful Paint (web.dev)", "https://web.dev/articles/lcp"),
             ("Google PageSpeed Insights", "https://pagespeed.web.dev/"),
         ],
-        "related": ["google-map-pack-hvac", "hvac-marketing-cost"],
+        "related": ["google-map-pack-hvac", "hvac-marketing-cost", "hvac-website-design"],
     },
     {
         "slug": "hvac-marketing-cost",
@@ -322,7 +322,7 @@ GUIDES = [
             ("RS Gonzales pricing", "https://rsgonzales.com/pricing/"),
             ("Hook Agency pricing", "https://hookagency.com/pricing/"),
         ],
-        "related": ["hvac-website-checklist", "missed-call-text-back-hvac"],
+        "related": ["hvac-website-checklist", "missed-call-text-back-hvac", "best-hvac-marketing-agencies"],
     },
     {
         "slug": "scorpion-alternative-hvac",
@@ -384,7 +384,7 @@ GUIDES = [
             ("Scorpion FAQ", "https://www.scorpion.co/faq/"),
             ("Scorpion reviews on Trustpilot", "https://www.trustpilot.com/review/scorpion.co"),
         ],
-        "related": ["hvac-marketing-cost", "hvac-website-checklist"],
+        "related": ["hvac-marketing-cost", "hvac-website-checklist", "best-hvac-marketing-agencies"],
     },
     {
         "slug": "questions-to-ask-hvac-marketing-agency",
@@ -437,6 +437,6 @@ GUIDES = [
             ("Hook Agency pricing", "https://hookagency.com/pricing/"),
             ("Google Business Profile: owners and managers", "https://support.google.com/business/answer/3403100"),
         ],
-        "related": ["scorpion-alternative-hvac", "hvac-marketing-cost"],
+        "related": ["scorpion-alternative-hvac", "hvac-marketing-cost", "best-hvac-marketing-agencies"],
     },
 ]
