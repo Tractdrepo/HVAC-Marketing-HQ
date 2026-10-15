@@ -225,7 +225,7 @@ GUIDES = [
                 ("ol", [
                     "<b>Service pages:</b> a separate page for each service you want more of: AC repair, heating repair, installs and replacements, maintenance plans.",
                     "<b>Town pages:</b> a real page for each town you take calls in, with work and reviews from that town. Not the same page with the name swapped.",
-                    "Each page's title says what it is and where: \"AC Repair in Waco, TX | Your Shop Heating &amp; Air\".",
+                    "Each page's title says what it is and where: \"AC Repair in Dallas, TX | Your Shop Heating &amp; Air\".",
                     "Your business name, address and phone on the site match your Google Business Profile exactly.",
                     "Your Google Business Profile links to your website, and your website links to your profile.",
                 ]),

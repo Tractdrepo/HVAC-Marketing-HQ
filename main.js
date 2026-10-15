@@ -335,3 +335,27 @@
     try { localStorage.setItem(key, "1"); } catch (e) {}
   });
 })();
+
+// Free download forms: email the PDF; if email isn't on yet, hand over the link
+(function () {
+  document.querySelectorAll("form[data-magnet]").forEach(function (form) {
+    var msg = form.querySelector(".magnet-msg");
+    var btn = form.querySelector("[type=submit]");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var data = { magnet: form.getAttribute("data-magnet"), page: location.pathname };
+      new FormData(form).forEach(function (v, k) { data[k] = v; });
+      if (!data.first_name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email || "")) { msg.textContent = "Please add your first name and a valid email."; return; }
+      btn.disabled = true; btn.textContent = "Sending…";
+      var link = function (href, text) { msg.innerHTML = text + ' <a href="' + href + '" target="_blank" rel="noopener">Download the PDF</a>'; };
+      fetch("/api/magnet", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) {
+          if (res.ok) { form.classList.add("sent"); link(res.j.link, "Sent. Check your inbox, or grab it now:"); if (window.va) window.va("event", { name: "magnet_" + data.magnet }); return; }
+          if (res.j && res.j.link) { form.classList.add("sent"); link(res.j.link, res.j.error); return; }
+          throw new Error(res.j && res.j.error ? res.j.error : "Something went wrong.");
+        })
+        .catch(function (ex) { msg.textContent = ex.message || "Something went wrong. Please try again."; btn.disabled = false; btn.textContent = "Email me the PDF"; });
+    });
+  });
+})();
