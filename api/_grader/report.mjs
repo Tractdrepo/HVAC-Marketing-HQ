@@ -155,7 +155,7 @@ export function plainSummary({ facts, report }) {
   return parts.join(' ');
 }
 
-const color = (g) => (!g ? '#64748b' : g.startsWith('A') ? '#15803d' : g.startsWith('B') ? '#1d4ed8' : g.startsWith('C') ? '#b45309' : '#b91c1c');
+const color = (g) => (!g ? '#64748b' : g.startsWith('A') ? '#1d6fd8' : g.startsWith('B') ? '#4f5bd5' : g.startsWith('C') ? '#7c3aed' : '#c2410c');
 
 // The compact payload the results page reads from its link. Only what the page shows.
 export function payload(result, firstName) {

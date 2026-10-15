@@ -41,7 +41,7 @@ PLANS = [
     {
         "name": "Starter", "monthly": 499, "build": 1995, "scope": "5 pages · 1 city", "stage": "1 to 2 trucks",
         "for": "A fast site and a complete Google profile, with every missed call texted back.",
-        "items": ["Custom 5-page website", "Missed-call text-back in 60 seconds", "Review requests after every job", "Google profile setup", "Shared inbox app", "HQ Command Center dashboard"],
+        "items": ["Custom 5-page website", "Missed-call text-back in 60 seconds", "Review requests after every job", "Google profile setup", "HQ Command Center CRM and app", "Unlimited logins for your whole team"],
     },
     {
         "name": "Growth", "monthly": 799, "build": 2495, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
@@ -453,10 +453,10 @@ def lp_item(name, rating, reviews, status, open_now=True, you=False):
 def demo():
     return f"""<div class="demo" aria-label="How a service call gets booked">
   <div class="demo-steps">
-    <button type="button">Found on Google</button>
-    <button type="button">Missed call texted back</button>
-    <button type="button">Service call booked</button>
-    <button type="button">Review asked for</button>
+    <button type="button">Found on Google<span>They search "ac repair near me" and see you first.</span></button>
+    <button type="button">Missed call texted back<span>You're on a job. They get a text from you in seconds.</span></button>
+    <button type="button">Service call booked<span>They pick a time and it lands on your calendar.</span></button>
+    <button type="button">Review asked for<span>After the job, a review request goes out on its own.</span></button>
   </div>
   <div class="phone"><div class="screen">
     <div class="island" aria-hidden="true"></div>
@@ -657,8 +657,8 @@ def bento():
     return f"""<div class="bento">
   <div class="tile b-3 b-phone reveal"><div class="b-phone-copy"><span class="tile-label">Book</span><h3>Missed-call text-back</h3><p>Every call you miss gets a text in seconds, with your name on it. The caller books with you instead of the next shop.</p><p class="demo-caption">Illustration. Your name, your number, your customers.</p></div>{demo()}</div>
   <div class="tile b-3 b-map reveal"><div><span class="tile-label">Rank</span><h3>Top of the map pack</h3><p>A complete, active Google profile and real town pages.</p></div><div class="mock">{mappack()}</div></div>
-  <div class="tile b-2 reveal"><div><span class="tile-label">Book</span><h3>AI web chat</h3><p>Answers questions and captures the lead after hours.</p></div><div class="mock chat"><div class="chat-head"><i></i>Your Shop assistant</div><div class="msg user">Do you do weekend AC repair?</div><div class="msg bot">Yes, Saturdays 8 to 4. Want me to book a time? What's your address?</div><div class="msg user">1412 Oak Lawn Ave, Dallas</div><div class="msg bot">You're set for Saturday, 10 to 12. We'll text when the tech is on the way.</div></div></div>
-  <div class="tile b-4 reveal"><div><span class="tile-label">Repeat</span><h3>HQ Command Center</h3><p>Your CRM, set up around your shop. Every lead, call, text, job and review in one place, live. No monthly PDF.</p></div><div class="mock">{dashboard()}</div></div>
+  <div class="tile b-2 reveal"><div><span class="tile-label">Book</span><h3>AI web chat</h3><p>Answers questions and captures the lead after hours.</p></div><div class="mock chat"><div class="chat-head"><i></i>Your Shop Heating &amp; Air</div><div class="msg user">Do you do weekend AC repair?</div><div class="msg bot">Yes, Saturdays 8 to 4. Want me to book a time? What's your address?</div><div class="msg user">1412 Oak Lawn Ave, Dallas</div><div class="msg bot">You're set for Saturday, 10 to 12. We'll text when the tech is on the way.</div></div></div>
+  <div class="tile b-4 reveal"><div><span class="tile-label">Repeat</span><h3>HQ Command Center</h3><p>Your CRM, set up around your shop. Every lead, call, text, job and review in one place, with a login for everyone on your team.</p></div><div class="mock">{dashboard()}</div></div>
   <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Reviews on autopilot</h3><p>A request after every finished job, and a reply to every review.</p></div><div class="mock review"><div class="req"><span class="tag">Sent</span>Review request · job marked done 2:14 PM</div><span class="stars">★★★★★</span> Texted me back in seconds and had it fixed by 10.<div class="reply"><b>Owner reply:</b> Thank you! Glad we got you cool again.</div></div></div>
   <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Seasonal campaigns</h3><p>Spring and fall tune-up texts to past customers, and maintenance plan reminders before they lapse.</p></div><div class="mock chat"><div class="msg bot">Hi Maria, it's Your Shop Heating &amp; Air. Summer's coming. Book your AC tune-up this month? Reply YES and we'll find a time.</div><div class="msg user">YES</div></div></div>
 </div>"""
@@ -760,6 +760,7 @@ def compare():
         ("If it's not working", "Locked in until the term ends", "Cancel the tools", "First month back within 30 days"),
         ("What they promise", "Often page-one rankings", "Nothing", "Only what we control, in writing"),
         ("Who does the work", "An account manager with dozens of clients", "You", "An HVAC-only team with a direct line to you"),
+        ("Who can see it", "Usually just you, in a monthly report", "Whoever logs in to each tool", "Your whole team, unlimited logins, one app"),
     ]
     body = "".join(f"<tr><th scope=\"row\">{esc(a_)}</th><td>{esc(b)}</td><td>{esc(c)}</td><td>{esc(d)}</td></tr>" for a_, b, c, d in rows)
     return f'''<div class="compare"><h3>Compared with a big agency, or doing it yourself</h3>
@@ -1377,6 +1378,42 @@ SERVICE_POSTS = {
 }
 
 
+# Services that run on the HQ Command Center platform (our GHL stack). Each page says the whole team can be on it.
+GHL_SLUGS = {"missed-call-text-back", "review-requests", "ai-web-chat", "estimate-follow-up", "seasonal-campaigns", "hq-command-center", "ai-phone-answering"}
+TEAM_POINTS = [
+    ("Unlimited team logins", "Owners, managers, the office and techs. Add as many people as you want, at no extra cost."),
+    ("One inbox for everything", "Calls, texts, web chat, email and Facebook and Instagram messages, in one thread per customer."),
+    ("An app on every phone", "iPhone and Android, with alerts, so whoever's free can answer from the truck."),
+    ("Everyone on the same page", "The same customer history, notes and next steps for everyone. No more \"did anyone call them back?\""),
+]
+HQ_FEATURES = [
+    ("Contacts and customer history", "Every customer, every call, text and job in one record, imported from your current list on day one."),
+    ("Job pipeline", "New lead, quoted, booked, won or lost, set up with the stages your shop actually uses."),
+    ("Calendar and online booking", "Customers book open slots online, and your office sees the same calendar."),
+    ("Call tracking and recording", "Tracked numbers show which source made the phone ring, with recordings for training."),
+    ("Automations", "Missed-call texts, quote follow-ups, review requests and tune-up reminders run on their own."),
+    ("Estimates, invoices and text-to-pay", "Send a quote or invoice by text and get paid by card from the customer's phone."),
+    ("Reviews in one place", "Requests go out after every job, and every new review shows up for a reply."),
+    ("Live dashboard", "Calls answered and missed, texts, booked jobs and reviews, updated as they happen."),
+]
+
+
+def team_band():
+    items = "".join(f'<div class="team-pt reveal"><h3>{esc(a_)}</h3><p>{esc(b)}</p></div>' for a_, b in TEAM_POINTS)
+    return f"""<section class="section alt"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Your whole team</span><h2>One app. Everyone on the same page.</h2><p class="lede">This runs inside HQ Command Center, the CRM we set up around your shop. Everyone who needs it gets a login.</p></div>
+  <div class="team-grid">{items}</div>
+</div></section>"""
+
+
+def hq_features():
+    items = "".join(f'<div class="card feat reveal"><h3>{esc(a_)}</h3><p>{esc(b)}</p></div>' for a_, b in HQ_FEATURES)
+    return f"""<section class="section"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">What's inside</span><h2>Everything your office runs on, in one place.</h2><p class="lede">One login for each person, one app, one customer record. Set up for you, with your services, towns and team.</p></div>
+  <div class="grid four">{items}</div>
+</div></section>"""
+
+
 def service_page(sv):
     pains = deep_problem(sv.get("pains_h", "Where the calls leak."), sv["pains"])
     steps = "".join(f'<li class="tl-step reveal"><span class="n">{n+1}</span><h3>{esc(a_)}</h3><p>{esc(b)}</p></li>' for n, (a_, b) in enumerate(sv["steps"]))
@@ -1406,6 +1443,8 @@ def service_page(sv):
   <div class="section-head reveal"><span class="eyebrow">How it works</span><h2>{esc(sv.get("steps_h", "How we set it up."))}</h2><p class="lede">You give us access and approve the work. We do the rest.</p></div>
   <ol class="timeline-steps" style="--n:{len(sv["steps"])}">{steps}</ol>
 </div></section>
+{hq_features() if sv["slug"] == "hq-command-center" else ""}
+{team_band() if sv["slug"] in GHL_SLUGS else ""}
 {calc}
 <section class="section{"" if calc else " alt"}"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">What's included</span><h2>What you get.</h2><p class="lede">{esc(sv['plan'])} <a class="more" href="{u('plans')}">Compare plans →</a></p></div>
@@ -1525,8 +1564,11 @@ FIT = {
     "hvac-website-redesign": (["Your site is slow or hard to use on a phone", "You can't change it without calling someone", "It has no page per service or town"], ["Your site already books calls and ranks well", "You want a one-time site with nothing after"]),
     "estimate-follow-up": (["You send quotes that go quiet", "Nobody owns follow-up in your shop", "Replacement quotes are a big share of your revenue"], ["You close nearly every quote on the spot", "You'd rather not text customers at all"]),
     "seasonal-campaigns": (["You have a list of past customers", "Spring and fall are slow", "You sell maintenance plans"], ["You're booked solid all year", "You don't have customer contact info yet"]),
-    "hq-command-center": (["You want to see calls and booked jobs, not clicks", "You've never known what your marketing brings in", "You want to check it on your phone"], ["You already track every call to a booked job yourself"]),
+    "hq-command-center": (["Leads come in by phone, text, web and Facebook and live in different places", "More than one person needs to know what's going on", "You want to see booked jobs, not clicks"], ["ServiceTitan, Housecall Pro or Jobber: we connect it so jobs flow in (Dominate)", "Your phone system's call log: HQ adds the texts, chats and reviews it can't see", "A spreadsheet: we import your customer list on day one"]),
 }
+
+
+FIT_ALREADY = {"hq-command-center"}
 
 
 def fit_block(slug, inner=False):
@@ -1535,12 +1577,13 @@ def fit_block(slug, inner=False):
     yes, no = FIT[slug]
     y = "".join(f"<li>{esc(x)}</li>" for x in yes)
     n_ = "".join(f"<li>{esc(x)}</li>" for x in no)
+    no_h, no_cls = ("Already tracking somewhere?", "ticks") if slug in FIT_ALREADY else ("Skip it if", "crosses")
     if inner:  # sits under "What you get" in the same band instead of its own white section
         return f"""<div class="fit-inner"><div class="section-head reveal" style="margin-bottom:28px"><span class="eyebrow">Straight answer</span><h2>Is it worth it for your shop?</h2></div>
-  <div class="grid two fit"><div class="card fit-yes"><h3>Worth it if</h3><ul class="ticks">{y}</ul></div><div class="card fit-no"><h3>Skip it if</h3><ul class="crosses">{n_}</ul></div></div></div>"""
+  <div class="grid two fit"><div class="card fit-yes"><h3>Worth it if</h3><ul class="ticks">{y}</ul></div><div class="card fit-no"><h3>{no_h}</h3><ul class="{no_cls}">{n_}</ul></div></div></div>"""
     return f"""<section class="section"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Straight answer</span><h2>Is it worth it for your shop?</h2></div>
-  <div class="grid two fit"><div class="card fit-yes"><h3>Worth it if</h3><ul class="ticks">{y}</ul></div><div class="card fit-no"><h3>Skip it if</h3><ul class="crosses">{n_}</ul></div></div>
+  <div class="grid two fit"><div class="card fit-yes"><h3>Worth it if</h3><ul class="ticks">{y}</ul></div><div class="card fit-no"><h3>{no_h}</h3><ul class="{no_cls}">{n_}</ul></div></div>
 </div></section>"""
 
 
@@ -1999,11 +2042,6 @@ def home():
   <div style="margin-top:28px">{ownership()}</div>
 </div></section>
 
-<section class="section" id="pricing"><div class="wrap">
-  <div class="section-head center reveal"><span class="eyebrow">Pricing</span><h2>Pick a plan. Go live in 14 days.</h2><p class="lede">Every plan texts back every missed call. Monthly billing starts at launch, not at signing.</p></div>
-  {plans_teaser()}
-  <p style="margin-top:24px;text-align:center"><a class="btn btn-ghost" href="{u('plans')}">See every plan and what's included <span class="arrow">→</span></a></p>
-</div></section>
 
 <section class="section"><div class="wrap">{magnet_box(heading="Score your own shop in 10 minutes")}</div></section>
 
@@ -2624,6 +2662,13 @@ def write_redirects(site_dir):
     # One short link on our own domain for the report email; the calendar can change without touching the email.
     reds.append({"source": "/book", "destination": call_link(), "permanent": False})
     cfg["redirects"] = reds
+    # The site-wide noindex header follows NOINDEX, so "index it" is one switch, not two.
+    for rule in cfg.get("headers", []):
+        if rule.get("source") == "/(.*)":
+            hs = [h for h in rule["headers"] if h.get("key") != "X-Robots-Tag"]
+            if NOINDEX:
+                hs.insert(0, {"key": "X-Robots-Tag", "value": "noindex, nofollow"})
+            rule["headers"] = hs
     with open(p_, "w") as f:
         f.write(json.dumps(cfg, indent=2) + "\n")
 

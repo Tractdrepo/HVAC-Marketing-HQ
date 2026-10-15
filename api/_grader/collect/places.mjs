@@ -33,12 +33,20 @@ const domainKey = (h) => (h || '').split('.').slice(-2, -1)[0] || '';
 export async function findBusiness({ businessName, website, town, state }, key, trade) {
   const where = [town, state].filter(Boolean).join(', ');
   const site = host(website);
-  const pick = (results) => results.find((p) => site && host(p.websiteUri) === site)
-    || results.find((p) => site && domainKey(host(p.websiteUri)) === domainKey(site))
-    || results.find((p) => norm(p.displayName?.text) === norm(businessName))
-    || results.find((p) => norm(p.displayName?.text).includes(norm(businessName)) || norm(businessName).includes(norm(p.displayName?.text)))
-    || (trade && results.find((p) => nameMatches(`${p.displayName?.text} ${host(p.websiteUri) || ''}`, businessName, trade, town)))
-    || null;
+  // A website match wins anywhere. A name-only match must be in the state the shop gave us, and a
+  // partial name must be most of the name ("Robbins" alone must not match "Robbins AC and Heating").
+  const st = (state || '').trim().toUpperCase();
+  const inState = (p) => !st || !stateOf(p) || stateOf(p).toUpperCase() === st;
+  const near = (a, b) => a && b && (a.includes(b) || b.includes(a)) && Math.min(a.length, b.length) >= 0.6 * Math.max(a.length, b.length);
+  const pick = (all) => {
+    const results = all.filter(inState);
+    return all.find((p) => site && host(p.websiteUri) === site)
+      || all.find((p) => site && domainKey(host(p.websiteUri)) === domainKey(site))
+      || results.find((p) => norm(p.displayName?.text) === norm(businessName))
+      || results.find((p) => near(norm(p.displayName?.text), norm(businessName)))
+      || (trade && results.find((p) => nameMatches(`${p.displayName?.text} ${host(p.websiteUri) || ''}`, businessName, trade, town)))
+      || null;
+  };
   const queries = [...new Set([where ? `${businessName}, ${where}` : businessName, site, businessName].filter(Boolean))];
   for (const q of queries) {
     const found = pick(await searchText(q, DETAIL_FIELDS, key));
