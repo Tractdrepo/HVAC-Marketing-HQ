@@ -328,7 +328,7 @@ GUIDES = [
         "slug": "scorpion-alternative-hvac",
         "title": "Scorpion alternatives for HVAC companies: what to compare before you sign",
         "short": "Scorpion alternatives",
-        "desc": "What Scorpion's own FAQ says about contracts, website ownership and leaving, what its reviews complain about, and the questions to ask any HVAC marketing agency.",
+        "desc": "What Scorpion's own FAQ says about contracts, website ownership and leaving, and the questions to ask any HVAC marketing agency before you sign.",
         "read": 7,
         "takeaways": [
             "Scorpion's FAQ says its marketing technology (website and SEO) typically needs a 12-month contract; ads are typically month to month.",
@@ -390,7 +390,7 @@ GUIDES = [
         "slug": "questions-to-ask-hvac-marketing-agency",
         "title": "7 questions to ask any HVAC marketing agency before you sign",
         "short": "Questions to ask an agency",
-        "desc": "The seven questions that separate a good HVAC marketing agency from a costly one: contracts, ownership, total cost, guarantees, reporting, who does the work and what happens when you leave. With our own answers.",
+        "desc": "Seven questions that separate a good HVAC marketing agency from a costly one: contracts, ownership, total cost, guarantees and who does the work.",
         "read": 6,
         "takeaways": [
             "Get the exit terms in writing: contract length, notice period, buyouts and what you keep.",

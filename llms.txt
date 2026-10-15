@@ -1,6 +1,6 @@
 # HVAC Marketing HQ
 
-> HVAC Marketing HQ builds websites, runs Google Business Profiles and sets up missed-call text-back and review requests for HVAC contractors. HVAC only, serving HVAC companies nationally.
+> HVAC Marketing HQ is an HVAC marketing agency. It builds websites, runs Google Business Profiles and local SEO, manages Google Ads, Local Services Ads and Facebook ads, and sets up missed-call text-back, review requests and a shared CRM for HVAC contractors. HVAC only, serving HVAC companies nationally.
 
 ## Quick facts
 - Website: https://hvacmarketinghq.com
@@ -35,5 +35,29 @@ Shops that can't take on more work, want ads with nobody answering the calls, or
 - The method: https://hvacmarketinghq.com/method
 - Pricing: https://hvacmarketinghq.com/plans (Starter $499/mo; Growth $799/mo; Dominate $1,299/mo; Multi-location $2,499/mo, 20% off annual)
 - Free report card: https://hvacmarketinghq.com/report-card
+- HVAC marketing guide: https://hvacmarketinghq.com/hvac-marketing
+- All services: https://hvacmarketinghq.com/services
+- Compare agencies: https://hvacmarketinghq.com/compare
+- Free tools: https://hvacmarketinghq.com/free-tools
+- Blog: https://hvacmarketinghq.com/blog
 - Guides: https://hvacmarketinghq.com/guides (How Google picks the HVAC companies in the map pack; How many Google reviews does an HVAC company need?; Missed-call text-back for HVAC: how it works and how to do it legally; The HVAC website checklist: 20 things that decide if the phone rings; What HVAC marketing costs in 2026: published prices compared; Scorpion alternatives for HVAC companies: what to compare before you sign; 7 questions to ask any HVAC marketing agency before you sign; Websites for HVAC alternative: an honest comparison; RS Gonzales alternative for HVAC: an honest comparison; Hook Agency alternative for HVAC: an honest comparison; Footbridge Media alternative for HVAC: honest comparison)
+
+## Services
+- HVAC websites: https://hvacmarketinghq.com/hvac-website-design (Fast sites built to book service calls)
+- Website redesign: https://hvacmarketinghq.com/services/hvac-website-redesign (Rebuild a slow or dated site, keep your rankings)
+- AI web chat: https://hvacmarketinghq.com/services/ai-web-chat (Answers questions and books after hours)
+- HVAC SEO: https://hvacmarketinghq.com/hvac-seo (Rank in the map and search, town by town)
+- Google Business Profile: https://hvacmarketinghq.com/services/google-business-profile (Show up in the map pack)
+- AI search: https://hvacmarketinghq.com/services/ai-search (Get found in ChatGPT and AI answers)
+- HVAC lead generation: https://hvacmarketinghq.com/hvac-lead-generation (Leads you own, not rented from lead sites)
+- Missed-call text-back: https://hvacmarketinghq.com/services/missed-call-text-back (Every missed call texted in 60 seconds)
+- AI phone answering: https://hvacmarketinghq.com/services/ai-phone-answering (An AI receptionist that answers when you can't)
+- Estimate follow-up: https://hvacmarketinghq.com/services/estimate-follow-up (Texts on open quotes until booked or lost)
+- Lead system: https://hvacmarketinghq.com/services/lead-system (Text-back, inbox and follow-up in one app)
+- Google Ads: https://hvacmarketinghq.com/hvac-google-ads (Search ads that ring your phone, managed for you)
+- Local Services Ads: https://hvacmarketinghq.com/services/local-services-ads (Pay per lead, with the Google Verified badge)
+- Facebook ads: https://hvacmarketinghq.com/services/facebook-ads (Seasonal offers and retargeting on Meta)
+- Review requests: https://hvacmarketinghq.com/services/review-requests (More Google reviews, the right way)
+- Tune-up and win-back campaigns: https://hvacmarketinghq.com/services/seasonal-campaigns (Fill the slow months with past customers)
+- HQ Command Center: https://hvacmarketinghq.com/services/hq-command-center (Your CRM and live dashboard, set up around your shop)
 - Locations: https://hvacmarketinghq.com/locations (Texas: Houston, Dallas, Fort Worth, San Antonio, Austin, El Paso, Corpus Christi, Lubbock, Amarillo, Laredo, McAllen, Brownsville, Killeen, Waco, Temple, College Station, Tyler, Beaumont, Midland, Abilene, Arlington, Garland; Alabama: Huntsville, Birmingham, Montgomery; Alaska: Anchorage; Arizona: Phoenix, Tucson, Mesa, Chandler, Scottsdale, Gilbert, Glendale; Arkansas: Little Rock, Fayetteville, Fort Smith; California: Los Angeles, San Diego, San Jose, San Francisco, Fresno, Sacramento, Long Beach, Oakland, Bakersfield, Anaheim, Stockton, Riverside, Irvine, Santa Ana, Chula Vista, Santa Clarita, Fremont, San Bernardino, Fontana, Modesto, Moreno Valley, Oxnard; Colorado: Denver, Colorado Springs, Aurora; Florida: Tampa, Orlando, Jacksonville, Miami, Fort Myers, St. Petersburg, Hialeah, Port St. Lucie, Tallahassee, Cape Coral, Fort Lauderdale, Pembroke Pines, Hollywood; Georgia: Atlanta, Savannah, Augusta, Columbus, Macon; Hawaii: Honolulu; Idaho: Boise, Meridian, Nampa; Illinois: Chicago, Aurora, Joliet; Indiana: Indianapolis, Fort Wayne, Evansville; Iowa: Des Moines, Cedar Rapids, Davenport; Kansas: Wichita, Overland Park, Kansas City; Kentucky: Louisville, Lexington; Louisiana: New Orleans, Baton Rouge, Shreveport; Maryland: Baltimore; Massachusetts: Boston, Worcester, Springfield; Michigan: Detroit, Grand Rapids, Warren; Minnesota: Minneapolis, Saint Paul, Rochester; Missouri: Kansas City, St. Louis, Springfield; Nebraska: Omaha, Lincoln; Nevada: Las Vegas, Henderson, North Las Vegas, Reno; New Jersey: Newark, Jersey City; New Mexico: Albuquerque, Las Cruces, Rio Rancho; New York: New York City, Buffalo, Rochester; North Carolina: Charlotte, Raleigh, Greensboro, Durham, Wilmington, Winston-Salem, Fayetteville; Ohio: Columbus, Cleveland, Cincinnati, Toledo; Oklahoma: Oklahoma City, Tulsa, Norman; Oregon: Portland, Eugene, Salem; Pennsylvania: Philadelphia, Pittsburgh, Allentown; Tennessee: Nashville, Memphis, Knoxville; Virginia: Virginia Beach, Chesapeake, Norfolk, Richmond; Washington, D.C.: Washington; Washington: Seattle, Spokane, Tacoma; Wisconsin: Milwaukee, Madison, Green Bay)

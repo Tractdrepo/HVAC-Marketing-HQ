@@ -15,7 +15,7 @@ POSTS = [
         "slug": "how-much-to-spend-on-google-ads-hvac",
         "title": "How much should an HVAC company spend on Google Ads?",
         "short": "Google Ads budget",
-        "desc": "There's no right number from a chart. Here's how to work out a Google Ads budget from the jobs you want, what a click costs in your town and how Google actually spends a daily budget.",
+        "desc": "There's no right number from a chart. Work out an HVAC Google Ads budget from the jobs you want and what a click costs in your town.",
         "read": 5,
         "date": DATE,
         "takeaways": [
@@ -161,7 +161,7 @@ POSTS = [
         "slug": "google-ads-vs-local-services-ads-hvac",
         "title": "Google Ads vs Local Services Ads for HVAC companies",
         "short": "Google Ads vs LSA",
-        "desc": "Pay per click or pay per lead? How Google Ads and Local Services Ads differ in cost, control and ranking, and when an HVAC company should run one, the other or both.",
+        "desc": "Pay per click or pay per lead? How Google Ads and Local Services Ads differ in cost, control and ranking, and when an HVAC company should run each.",
         "read": 5,
         "date": DATE,
         "takeaways": [
@@ -229,9 +229,9 @@ POSTS = [
     # ------------------------------------------------------------------ 4. HVAC SEO
     {
         "slug": "hvac-seo-what-moves-rankings",
-        "title": "HVAC SEO: what actually moves rankings in the map and organic results",
+        "title": "How HVAC rankings work: what moves the map pack and organic results",
         "short": "HVAC SEO",
-        "desc": "The map pack and the regular results rank differently. What Google says matters for each, what an HVAC company can change this month, and what to stop paying for.",
+        "desc": "The map pack and the regular results rank differently. What Google says matters for each, and what an HVAC company can change this month.",
         "read": 6,
         "date": DATE,
         "takeaways": [
@@ -361,7 +361,7 @@ POSTS = [
     # ------------------------------------------------------------------ 6. Website design
     {
         "slug": "hvac-website-design",
-        "title": "HVAC website design: what a contractor site needs to book calls",
+        "title": "What an HVAC contractor website needs to book calls",
         "short": "HVAC website design",
         "desc": "A good HVAC website isn't about looks. It's about a homeowner on a phone finding your number, trusting you and calling in under a minute. Here's what that takes.",
         "read": 5,
@@ -427,9 +427,9 @@ POSTS = [
     # ------------------------------------------------------------------ 7. Lead generation
     {
         "slug": "hvac-lead-generation-bought-vs-owned",
-        "title": "HVAC lead generation: bought leads vs leads you own",
+        "title": "Bought HVAC leads vs leads you own: which to pay for",
         "short": "Bought vs owned leads",
-        "desc": "Paying per lead is quick. Owning the channels that bring in calls lasts. How the two compare, what to ask any lead seller, and how to build calls that don't stop when you stop paying.",
+        "desc": "Paying per lead is quick. Owning the channels that bring in calls lasts. How bought and owned HVAC leads compare, and what to ask any lead seller.",
         "read": 5,
         "date": DATE,
         "takeaways": [
@@ -507,7 +507,7 @@ POSTS = [
         "slug": "facebook-ads-for-hvac",
         "title": "Facebook ads for HVAC: when they work (seasonal tune-ups, retargeting)",
         "short": "Facebook ads",
-        "desc": "Facebook isn't where homeowners search for a repair. It's where you remind them about a tune-up before the season and follow up with people who visited your site. How to use it for that.",
+        "desc": "Facebook isn't where homeowners search for a repair. It's where you remind past visitors about tune-ups before the season. When HVAC Facebook ads work.",
         "read": 5,
         "date": DATE,
         "takeaways": [
