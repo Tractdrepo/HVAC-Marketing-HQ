@@ -10,7 +10,7 @@ VS_GUIDES = [
         "slug": "websites-for-hvac-alternative",
         "title": "Websites for HVAC alternative: an honest comparison",
         "short": "Websites for HVAC alternative",
-        "desc": "Websites for HVAC and HVAC Marketing HQ side by side: published prices, a 12-month cost example with the math, what happens to your site if you cancel, what they do better, and questions to ask on their sales call.",
+        "desc": "Websites for HVAC and HVAC Marketing HQ side by side: published prices, a 12-month cost example with the math, what happens to your site if you cancel, where they're strong, and questions to ask on their sales call.",
         "read": 6,
         "takeaways": [
             "Both companies are HVAC only and both publish prices. At the Starter level, paid monthly, the 12-month cost comes out the same: $7,983.",
@@ -59,15 +59,12 @@ VS_GUIDES = [
                 ("p", "This is the biggest difference between us. Their marketing pages say \"You Own Your Website\". Their Terms, as published in Oct 2026, say that when you cancel, the website goes offline and they keep the source code. You keep your domain, content, images and lead data, with a content export within 30 days."),
                 ("p", "With us, you own your site, your domain, your Google profile and your reviews. Either way, read the contract, not the sales page, and ask what you'd have the day after you cancel."),
             ]),
-            ("What they do better", [
+            ("Where they're strong", [
                 ("ul", [
                     "<b>Clear, published prices.</b> A detailed plan comparison, a $99 price for extra pages, and billing that starts at launch rather than at signing.",
-                    "<b>Paid ads.</b> Both run Google Ads and Local Services Ads with ad spend billed separately. We also run Facebook ads, and never mark up spend.",
                     "<b>Software connections.</b> Their Dominate plan lists connections to ServiceTitan, Housecall Pro and Jobber.",
                     "<b>Exclusive territory.</b> They offer one HVAC company per service area. If that matters to you, it's a real selling point. Ask for it in writing.",
-                    "<b>Lots of free material.</b> A free audit, an ROI calculator, a website checklist and a published book, \"The HVAC Online Playbook\".",
                 ]),
-                ("p", "On proof, we're in the same spot. We didn't find named clients, testimonials or case studies on their site in Oct 2026, and we don't have clients or case studies to show yet either. Ask both of us how we'd earn your trust without them."),
             ]),
             ("Which one fits", [
                 ("table", [
@@ -112,17 +109,17 @@ VS_GUIDES = [
         "slug": "rs-gonzales-alternative",
         "title": "RS Gonzales alternative for HVAC: an honest comparison",
         "short": "RS Gonzales alternative",
-        "desc": "RS Gonzales and HVAC Marketing HQ side by side: published prices, a 12-month cost example with the math, contract and website terms, what they do better, and questions to ask on their sales call.",
+        "desc": "RS Gonzales and HVAC Marketing HQ side by side: published prices, a 12-month cost example with the math, contract and website terms, where they're strong, and questions to ask on their sales call.",
         "read": 6,
         "takeaways": [
-            "RS Gonzales is a full-service HVAC agency that runs ads. Its plans are $2,200, $3,500 and $5,000 a month, plus ad spend, as published in Oct 2026.",
+            "RS Gonzales is a full-service agency that leads with HVAC and runs ads. Its plans are $2,200, $3,500 and $5,000 a month, plus ad spend, as published in Oct 2026.",
             "Their pricing page lists a $3,000 a month minimum ad spend and a 12-month term. Their fine print says you own the website after 12 months or a $4,500 buyout.",
-            "They have far more proof than we do: named case studies, a 5.0 Google rating and a team of about 28 to 30 people.",
-            "We cost less and run ads as an add-on with no minimum spend. If you want a big agency running a large ad budget, they may be the better fit.",
+            "They're a larger agency, about 28 to 30 people, built around paid ads.",
+            "We cost less, you own your site from day one, and ads are an add-on with no minimum spend.",
         ],
         "sections": [
             ("The short version", [
-                ("p", "RS Gonzales (rsgonzales.com) is an HVAC-only agency based in Washington, DC. It runs SEO, Google Ads, Local Services Ads, Meta and Yelp ads, and includes a website and a CRM with its plans. With a $3,000 a month minimum ad spend, it suits shops ready to spend on ads. We're a smaller, lower-cost option for owner-run shops that want a website they own, a Google profile that's run well, and fast follow-up on missed calls, without paid ads."),
+                ("p", "RS Gonzales (rsgonzales.com) is an agency based in Washington, DC. It markets itself to HVAC companies, but its site also has pages for plumbers, electricians and other industries. It runs SEO, Google Ads, Local Services Ads, Meta and Yelp ads, and includes a website and a CRM with its plans. With a $3,000 a month minimum ad spend, it suits shops ready to spend on ads. We're a smaller, lower-cost option for owner-run shops that want a website they own, a Google profile that's run well, and fast follow-up on missed calls, without paid ads."),
                 ("note", "Everything about RS Gonzales on this page is as published on their site, Oct 2026. Prices and terms change, so check their pricing page and terms before you decide."),
             ]),
             ("Published prices, side by side", [
@@ -156,22 +153,19 @@ VS_GUIDES = [
                     "The 30-day money-back guarantee covers the first month only. If the new site is already live, you pay $4,500 or have your old site restored.",
                     "\"You own your website\" applies after 12 months or a $4,500 buyout.",
                 ]),
-                ("p", "None of this is unusual for a full-service agency, and they publish it, which is more than many do. Just read it before you sign."),
+                ("p", "Read the fine print before you sign, with any agency."),
             ]),
-            ("What they do better", [
+            ("Where they're strong", [
                 ("ul", [
-                    "<b>Real, named proof.</b> 12 named case studies with dashboard screenshots, a 5.0 Google rating from about 40 reviews, and a reviews page that links each quote to Google. We don't have clients or case studies yet.",
-                    "<b>Paid ads, run for you.</b> Google Ads, Local Services Ads, Meta and Yelp, with detailed cost-per-lead guidance on their channel pages. We run Google Ads, Local Services Ads and Facebook ads too, as add-ons.",
-                    "<b>A bigger team.</b> About 28 to 30 staff by their count, with the owners and 11 staff named on their About page, and a stated cap of 12 clients per account manager.",
-                    "<b>A CRM included.</b> Their CRM, included with every plan, covers missed-call text-back, booking, estimates and invoices, and syncs with ServiceTitan, Housecall Pro, FieldEdge and Jobber.",
-                    "<b>Content and openness.</b> 92 blog posts, a day-by-day 90-day plan with a section on what day 90 does not guarantee, and a free founder-recorded video audit.",
+                    "<b>Published case studies.</b> Named client results on their site.",
+                    "<b>Large ad budgets.</b> Google, Local Services, Meta and Yelp ads, for shops spending $3,000 a month or more.",
+                    "<b>Field software sync.</b> Their CRM connects to ServiceTitan, Housecall Pro, FieldEdge and Jobber.",
                 ]),
             ]),
             ("Which one fits", [
                 ("table", [
                     ["Your situation", "Better fit"],
                     ["You want ads run for you and can spend $3,000 a month or more on them", "RS Gonzales"],
-                    ["You want an agency with named HVAC case studies you can check", "RS Gonzales"],
                     ["Your marketing budget is under about $1,500 a month, all in", "HVAC Marketing HQ"],
                     ["You want to own the website from the start, not after 12 months", "HVAC Marketing HQ"],
                     ["You mainly need a strong website, Google profile, reviews and missed-call follow-up", "HVAC Marketing HQ"],
@@ -194,8 +188,8 @@ VS_GUIDES = [
         "faq": [
             ("How much does RS Gonzales cost?", "As published on their site in Oct 2026: $2,200, $3,500 or $5,000 a month, plus ad spend with a $3,000 a month minimum, on a 12-month term. A $500 onboarding deposit applies."),
             ("Do you own your website with RS Gonzales?", "Their fine print, as published in Oct 2026, says ownership applies after 12 months or a $4,500 buyout."),
-            ("Is RS Gonzales HVAC only?", "Yes, it markets itself as an HVAC agency, like us."),
-            ("Why is HVAC Marketing HQ so much cheaper?", "We're a small HVAC-only team with one system for every shop, and ads are an add-on instead of a required package. The core is your website, Google profile, reviews and missed-call follow-up."),
+            ("Is RS Gonzales HVAC only?", "No. It markets itself to HVAC companies, but its site also has pages for plumbers, electricians and other industries, as published in Oct 2026. We work only with HVAC companies."),
+            ("Why is HVAC Marketing HQ so much cheaper?", "We work only with HVAC companies, we don't carry the overhead of a large ad agency, and ads are an add-on instead of a required package. The core is your website, Google profile, reviews and missed-call follow-up."),
         ],
         "sources": [
             ("RS Gonzales: Pricing (as published on their site, Oct 2026)", "https://rsgonzales.com/pricing/"),
@@ -215,13 +209,13 @@ VS_GUIDES = [
         "slug": "hook-agency-alternative-hvac",
         "title": "Hook Agency alternative for HVAC: an honest comparison",
         "short": "Hook Agency alternative",
-        "desc": "Hook Agency and HVAC Marketing HQ side by side: published prices, a 12-month cost example with the math, contracts and ownership, what Hook does better, and questions to ask on their sales call.",
+        "desc": "Hook Agency and HVAC Marketing HQ side by side: published prices, a 12-month cost example with the math, contracts and ownership, where Hook is strong, and questions to ask on their sales call.",
         "read": 6,
         "takeaways": [
             "Hook Agency is a home-services agency for many trades, with HVAC one of them. Its forms list under $1M in revenue as not a fit, as published in Oct 2026.",
             "Its published prices start at $2,800 a month for local SEO, and $12,000 or $24,000 for a website, paid over 12 months.",
             "A website plus local SEO from Hook comes to $45,600 over 12 months. Our Starter plan comes to $7,983.",
-            "Hook has years of proof, a large in-house team and paid ads. We're HVAC only and built for smaller, owner-run shops.",
+            "Hook is a larger, multi-trade agency aimed at shops over $1M. We're HVAC only and built for owner-run shops.",
         ],
         "sections": [
             ("The short version", [
@@ -255,13 +249,11 @@ VS_GUIDES = [
                 ("p", "Hook is clear and generous on ownership. Its pricing page says \"You own your website 100%\" and that you own your ad account, with your own card paying for the spend. Its Meta ads page says you own your raw footage and ad creative."),
                 ("p", "On contract length, their pages say different things, as published in Oct 2026. The home page FAQ explains \"a yearly commitment\". Their main SEO page says SEO contracts start at 12 months, then go month to month. Their HVAC SEO page says \"We have month to month contracts.\" Their website is paid over 12 months. Ask which applies to you, and get it in writing."),
             ]),
-            ("What they do better", [
+            ("Where they're strong", [
                 ("ul", [
-                    "<b>Track record and proof.</b> Named case studies, including HVAC companies like Lorenz Plumbing Heating &amp; Air and Pro Shine Air Duct Experts with cost-per-lead figures, video testimonials, a large review wall and an Inc. 5000 listing. We don't have clients or case studies yet.",
-                    "<b>Paid ads and creative.</b> Google Ads, Local Services Ads and Meta ads, with a video and photo shoot every 60 days on their Meta plan. We run ads too, but we don't do photo or video shoots.",
-                    "<b>A big in-house team.</b> Named staff and leaders on their About page, and a one-hour live call each month.",
-                    "<b>Plain ownership terms.</b> Website, ad accounts and creative are yours, in plain words on their pricing page.",
-                    "<b>Free learning.</b> A free Local Services Ads course, a marketing budget calculator, a podcast and a book.",
+                    "<b>Track record.</b> Published case studies across several trades.",
+                    "<b>Ad creative.</b> Photo and video shoots on their Meta ads plan.",
+                    "<b>Plain ownership terms.</b> Website, ad accounts and creative are yours, in writing on their pricing page.",
                 ]),
             ]),
             ("Which one fits", [
@@ -312,7 +304,7 @@ VS_GUIDES = [
         "slug": "footbridge-media-alternative-hvac",
         "title": "Footbridge Media alternative for HVAC: honest comparison",
         "short": "Footbridge Media alternative",
-        "desc": "Footbridge Media and HVAC Marketing HQ side by side: published prices, a 12-month cost example with the math, guarantees and website terms, what Footbridge does better, and questions to ask on their sales call.",
+        "desc": "Footbridge Media and HVAC Marketing HQ side by side: published prices, a 12-month cost example with the math, guarantees and website terms, where Footbridge is strong, and questions to ask on their sales call.",
         "read": 6,
         "takeaways": [
             "Footbridge Media costs much less than we do: $249 a month with no setup fee, as published in Oct 2026. That's $2,988 for 12 months, against $7,983 for our Starter plan.",
@@ -361,14 +353,11 @@ VS_GUIDES = [
                 ]),
                 ("p", "With us, you own your site, your domain, your Google profile and your reviews."),
             ]),
-            ("What they do better", [
+            ("Where they're strong", [
                 ("ul", [
-                    "<b>Price.</b> $249 a month with no setup fee is far below our entry price, and HVAC coaching group members pay less.",
+                    "<b>Price.</b> $249 a month with no setup fee, for shops that want the lowest monthly cost.",
                     "<b>Longer money-back window.</b> 90 days, against our first month back within 30 days of launch.",
-                    "<b>Years in business.</b> They say they've served contractors since 2004, with client relationships going back to 2013.",
                     "<b>A CRM included.</b> Booking, quotes, invoices and online payments come with the plan.",
-                    "<b>Ads and add-ons you can buy online.</b> Google Ads, Local Services Ads, Facebook and email newsletters, each with a published price and checkout link. We run Google Ads, Local Services Ads and Facebook ads too, each $299 a month.",
-                    "<b>HVAC references.</b> Eight HVAC companies among their testimonials. We don't have clients or case studies yet.",
                 ]),
             ]),
             ("Which one fits", [

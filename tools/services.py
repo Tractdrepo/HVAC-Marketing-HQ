@@ -223,7 +223,7 @@ SERVICES = [
         "nav": "Rebuild a slow or dated site, keep your rankings",
         "title": "HVAC website redesign",
         "h1": "A new site for your HVAC shop, without losing what already ranks.",
-        "desc": "HVAC website redesign: we rebuild a slow or dated contractor site on our fast HVAC build, keep the pages and links that already rank, and add the pages that book calls.",
+        "desc": "HVAC website redesign: we rebuild a slow or dated contractor site as a fast, custom-coded site, keep the pages and links that already rank, and add the pages that book calls.",
         "lede": "Your site is slow, dated, or built by a cousin in 2016, but it has years of Google history. A redesign should fix the first part without throwing away the second. We move what works, redirect every old link and build the rest the right way.",
         "plan": "Included in the build fee. The redesign is the build.",
         "pains": [
@@ -234,7 +234,7 @@ SERVICES = [
         ],
         "steps": [
             ("We map your current site", "Every page, every link and what already brings in traffic, so nothing that works gets lost."),
-            ("We build the new site", "Our fast HVAC build, with a page per service and town, call and book buttons on every screen."),
+            ("We build the new site", "A fast, custom-coded site, with a page per service and town, call and book buttons on every screen."),
             ("We redirect every old link", "Old addresses point to the new pages, so Google and old bookmarks land in the right place."),
             ("We launch and watch it", "We check that Google picks up the new pages and fix anything that slips."),
         ],
@@ -249,7 +249,7 @@ SERVICES = [
         "guide": "hvac-website-checklist",
         "faq": [
             ("Will a redesign hurt my Google rankings?", "It can if it's done carelessly. Keeping what works and redirecting every old link is how we avoid that. We can't promise rankings never move, but we don't throw away what you've built."),
-            ("Can you redesign a site built on WordPress or Wix?", "Yes. We move the content to our build and point your domain at it. Your domain stays registered to you."),
+            ("Can you redesign a site built on WordPress or Wix?", "Yes. We rebuild it as a custom site, move your content over and point your domain at it. Your domain stays registered to you."),
             ("What if my current agency owns the site?", "We can rebuild from what's public and redirect the old links once your domain points to us. Your domain is the part that matters, and it should be in your name."),
             ("Do I need to write anything?", "No. We write the pages from a short call and your answers to a few questions, and you approve before it goes live."),
         ],

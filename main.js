@@ -44,6 +44,21 @@
       if (open) { g.classList.add("open"); btn.setAttribute("aria-expanded", "true"); }
     });
   });
+  // Desktop with a mouse: menus open on hover, with a short grace period so moving into the menu doesn't close it
+  var hoverNav = window.matchMedia("(hover: hover) and (min-width: 1180px)");
+  groups.forEach(function (g) {
+    var btn = g.querySelector("button"), timer;
+    g.addEventListener("mouseenter", function () {
+      if (!hoverNav.matches) return;
+      clearTimeout(timer);
+      groups.forEach(function (o) { if (o !== g) { o.classList.remove("open"); o.querySelector("button").setAttribute("aria-expanded", "false"); } });
+      g.classList.add("open"); btn.setAttribute("aria-expanded", "true");
+    });
+    g.addEventListener("mouseleave", function () {
+      if (!hoverNav.matches) return;
+      timer = setTimeout(function () { g.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); }, 180);
+    });
+  });
   document.addEventListener("click", function () { groups.forEach(function (g) { g.classList.remove("open"); }); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") groups.forEach(function (g) { g.classList.remove("open"); }); });
 

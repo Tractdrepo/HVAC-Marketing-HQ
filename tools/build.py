@@ -29,6 +29,7 @@ DEMO_PHONE = None                     # demo line for missed-call text-back, e.g
 SAME_AS = []                          # public profiles for schema, e.g. LinkedIn and Facebook URLs; add when Logan shares them
 FOUNDING_SPOTS = 25                   # founding rate: annual price on monthly billing, locked while they stay
 FOUNDING_LEFT = 25                    # lower this as shops sign; the strip hides at 0
+SHOW_FOUNDING = False                 # Logan, Oct 15: hide the founding strip on the site (reads as a new company); offer it on calls instead
 LEGAL_UPDATED = "October 14, 2026"   # "Last updated" on Privacy and Terms
 NOINDEX = True                       # stays on until forms are tested and Logan says push
 AREA = "Texas"                        # launch market; copy says "starting in Texas"
@@ -40,7 +41,7 @@ PLANS = [
     {
         "name": "Starter", "monthly": 499, "build": 1995, "scope": "5 pages · 1 city", "stage": "1 to 2 trucks",
         "for": "A fast site and a complete Google profile, with every missed call texted back.",
-        "items": ["5-page site on our HVAC build", "Missed-call text-back in 60 seconds", "Review requests after every job", "Google profile setup", "Shared inbox app", "HQ Command Center dashboard"],
+        "items": ["Custom 5-page website", "Missed-call text-back in 60 seconds", "Review requests after every job", "Google profile setup", "Shared inbox app", "HQ Command Center dashboard"],
     },
     {
         "name": "Growth", "monthly": 799, "build": 2495, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
@@ -519,7 +520,7 @@ def tech():
     scores = LIGHTHOUSE
     rings = "".join(f'<div class="score"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.9" class="trk"/><circle cx="18" cy="18" r="15.9" class="val" stroke-dasharray="{v} 100"/></svg><b>{v}</b><span>{k}</span></div>' for k, v in scores["scores"])
     stack = [
-        ("Static pages on a global edge network", "No WordPress, no page builder, no plugins to patch. Pages are pre-built and served close to the visitor."),
+        ("Custom-coded, no page builder", "No WordPress, no drag-and-drop builder, no plugins to patch. Served from a global network close to every visitor."),
         ("Built for Google from the start", "LocalBusiness schema, clean service and city pages, Core Web Vitals in the green."),
         ("Tracking you can trust", "Tracked phone numbers by source, form tracking and a live dashboard, not a monthly PDF."),
         ("Plugs into your software", "Booking and job-done triggers for ServiceTitan, Housecall Pro and Jobber, or our calendar if you don't use one."),
@@ -560,7 +561,7 @@ def hero_visual():
     rows = [("Google profile", "B", "b", 78), ("Reviews", "C", "c", 61), ("Website", "D", "d", 44), ("Listings", "C", "c", 58)]
     g = "".join(f'<div class="g-row"><span>{n}</span><b class="g-{c}">{l}</b><div class="g-bar"><i class="bar-{c}" style="width:{w}%"></i></div></div>' for n, l, c, w in rows)
     return f"""<div class="stack-vis" aria-label="Sample report card">
-  <div class="float f2"><span class="ic">{ICON["pin"]}</span><div><b>#1 in the map pack</b><span>"ac repair near me"</span></div></div>
+  <div class="float f2"><span class="ic">{ICON["pin"]}</span><div><b>7th on the map</b><span>for "ac repair near me"</span></div></div>
   <div class="rc-sample">
     <div class="rc-sample-head"><div><small>HVAC report card</small><b>Your Shop Heating &amp; Air</b><br><span class="muted" style="font-size:.84rem">Compared with the top shops near you</span></div><div class="overall">C</div></div>
     {g}
@@ -591,7 +592,7 @@ def pains_grid():
     return f'<div class="pains grid4">{cards}</div>'
 
 
-def method_block():
+def method_block(full=False):
     # Three arcs around a center, one per phase; JS lights them in turn.
     import math
     cx = cy = 200; r = 150
@@ -611,8 +612,9 @@ def method_block():
 </svg>"""
     phases = []
     for n, (name, line, items, close) in enumerate(METHOD):
-        lis = "".join(f"<li>{esc(x)}</li>" for x in items[:4])
-        phases.append(f'<div class="phase" data-phase="{n}"><div class="phase-top"><span class="phase-n">0{n+1}</span><h3>{name}</h3></div><p class="phase-line">{esc(line)}</p><ul class="ticks">{lis}</ul></div>')
+        lis = "".join(f"<li>{esc(x)}</li>" for x in (items if full else items[:4]))
+        tail = f'<p class="phase-close">{esc(close)}</p>' if full else ""
+        phases.append(f'<div class="phase" data-phase="{n}"><div class="phase-top"><span class="phase-n">0{n+1}</span><h3>{name}</h3></div><p class="phase-line">{esc(line)}</p><ul class="ticks">{lis}</ul>{tail}</div>')
     return f'<div class="method" data-method><div class="method-dia reveal">{svg}</div><div class="phase-list">{"".join(phases)}</div></div>'
 
 
@@ -629,7 +631,7 @@ def bento():
     return f"""<div class="bento">
   <div class="tile b-2 b-tall reveal"><div><span class="tile-label">Book</span><h3>Missed-call text-back</h3><p>Every call you miss gets a text in seconds, with your name on it.</p></div>{demo()}</div>
   <div class="tile b-2 reveal"><div><span class="tile-label">Rank</span><h3>Top of the map pack</h3><p>A complete, active Google profile and real town pages.</p></div><div class="mock">{mappack()}</div></div>
-  <div class="tile b-2 reveal"><div><span class="tile-label">Book</span><h3>AI web chat</h3><p>Answers questions and captures the lead after hours.</p></div><div class="mock chat"><div class="chat-head"><i></i>Your Shop assistant</div><div class="msg user">Do you do weekend AC repair?</div><div class="msg bot">Yes, Saturdays 8 to 4. Want me to book a time? What's your address?</div></div></div>
+  <div class="tile b-2 reveal"><div><span class="tile-label">Book</span><h3>AI web chat</h3><p>Answers questions and captures the lead after hours.</p></div><div class="mock chat"><div class="chat-head"><i></i>Your Shop assistant</div><div class="msg user">Do you do weekend AC repair?</div><div class="msg bot">Yes, Saturdays 8 to 4. Want me to book a time? What's your address?</div><div class="msg user">1412 Oak St, Waco</div><div class="msg bot">You're set for Saturday, 10 to 12. We'll text when the tech is on the way.</div></div></div>
   <div class="tile b-4 reveal"><div><span class="tile-label">Repeat</span><h3>HQ Command Center</h3><p>Calls, texts, booked jobs and reviews, updated as they happen. No monthly PDF.</p></div><div class="mock">{dashboard()}</div></div>
   <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Reviews on autopilot</h3><p>A request after every finished job, and a reply to every review.</p></div><div class="mock review"><div class="req"><span class="tag">Sent</span>Review request · job marked done 2:14 PM</div><span class="stars">★★★★★</span> Texted me back in seconds and had it fixed by 10.<div class="reply"><b>Owner reply:</b> Thank you! Glad we got you cool again.</div></div></div>
   <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Seasonal campaigns</h3><p>Spring and fall tune-up texts to past customers, and maintenance plan reminders before they lapse.</p></div><div class="mock chat"><div class="msg bot">Hi Maria, it's Your Shop Heating &amp; Air. Summer's coming. Book your AC tune-up this month? Reply YES and we'll find a time.</div><div class="msg user">YES</div></div></div>
@@ -640,7 +642,7 @@ def process():
     steps = [
         ("Report card", "Get your grades by email in about five minutes. Free, and nobody calls you."),
         ("15-minute walkthrough", "If you want, we go over your weakest grade and what we'd fix first."),
-        ("14-day build", "We set up your site, Google profile and lead system on our proven template."),
+        ("14-day build", "We design your site, set up your Google profile and connect your lead system."),
         ("Go live", "Your line forwards through the system and every missed call starts getting texted back."),
         ("Monthly statement", "Calls, texts, booked jobs and new reviews, on one page each month."),
     ]
@@ -769,17 +771,16 @@ def addons():
 def promise():
     return f"""<div class="promise">
   <div class="card reveal"><span class="big">60 seconds</span><p>Every missed call gets a text back within 60 seconds.</p></div>
-  <div class="card"><span class="big">14 days</span><p>Your new site is live within 14 days of getting your content.</p></div>
+  <div class="card reveal"><span class="big">14 days</span><p>Your new site is live within 14 days of getting your content.</p></div>
+  <div class="card reveal"><span class="big">1 day</span><p>Every change you send us is done, or answered with a date, within one business day.</p></div>
 </div>
 <div class="moneyback reveal"><span class="big">30 days</span><div><h3>Money-back guarantee</h3><p>Not happy in your first 30 days after launch? Tell us and we refund your first month. No form to fill out, no argument. <span class="tbd">Build fee terms TBD</span></p></div></div>
 {demo_line()}
-<div class="wont reveal"><h3>What we won't promise</h3><p class="muted">Anyone who guarantees these is guessing. We'd rather tell you now.</p><ul class="crosses">
-  <li>A #1 ranking on Google</li><li>A set number of jobs or calls</li><li>That ChatGPT will recommend you</li><li>A fixed cost per lead</li></ul></div>
-<p class="promise-note">We only guarantee what we control. <span class="tbd">What happens if we miss: TBD</span></p>"""
+<p class="promise-note">We guarantee what we control. Nobody honest can promise a #1 ranking or a set number of calls, so we don't. <span class="tbd">What happens if we miss: TBD</span></p>"""
 
 
 def founding_strip():
-    if FOUNDING_LEFT <= 0:
+    if not SHOW_FOUNDING or FOUNDING_LEFT <= 0:
         return ""
     return (f'<p class="founding"><b>Founding rate:</b> the first {FOUNDING_SPOTS} shops pay the annual price on monthly billing, '
             f'locked for as long as they stay. <span class="founding-n">{FOUNDING_LEFT} of {FOUNDING_SPOTS} spots open</span></p>')
@@ -868,14 +869,14 @@ def faq(items):
 
 COMMON_FAQ = [
     ("I got burned by an agency before. Why is this different?", "Because you can check it. Prices are on this page, you own your site, domain and reviews, and you can open your dashboard anytime to see calls, texts and booked jobs. If it isn't working, you'll see it before we tell you."),
-    ("Is there a money-back guarantee?", "Yes. If you're not happy in your first 30 days after launch, tell us and we refund your first month. You keep your domain, Google profile and reviews either way."),
+    ("How soon will I see more calls?", "Missed-call text-back works the day your line is connected, so you see texted-back calls in week one. Google rankings and reviews take longer: months, not weeks. That's why the first term is six months, and why your HQ Command Center shows what's moving along the way."),
     ("What do I have to do?", "One kickoff call, sharing access to your domain, Google profile and phone line, approving your site before it goes live, and answering the texts. We do the rest."),
     ("Do I own my website?", "Yes. Your domain, Google profile, reviews and site content are yours. If you leave, we hand over the site files and help move your number. It's written into the agreement."),
     ("How long is the contract?", "Six months to start, then month to month. Six months gives the Google profile and reviews time to move. After that you stay because it's working. And if you're not happy in the first 30 days after launch, we refund your first month."),
     ("What if I already have a website I like?", "Keep it. We can add the booking form and lead system to your current site, and the build fee is lower or waived."),
+    ("Is there a money-back guarantee?", "Yes. If you're not happy in your first 30 days after launch, tell us and we refund your first month. You keep your domain, Google profile and reviews either way."),
     ("Do I have to change my phone number?", "No. You forward your existing line through the system, so customers keep calling the number they already know. We walk you through it during setup."),
     ("Does it work with ServiceTitan, Housecall Pro or Jobber?", "Yes. Booking can go straight to your field-service software, or into our calendar if you don't use one. Review requests can trigger when a job is marked done."),
-    ("Who owns my website, Google profile and reviews?", "You do. Your domain, Google profile and reviews always stay yours, even if you leave."),
     ("Do I have to manage the software?", "No. You and your office use one inbox app on your phones, and you can check your HQ Command Center dashboard anytime. We build and run everything behind it."),
     ("Do you run Google Ads or Local Services Ads?", "Yes, as an add-on to any plan: Google Ads, Local Services Ads and Facebook ads. Your ad spend is billed by Google or Meta to your own account and never marked up, and every call from an ad is tracked to a booked job."),
     ("How many Google reviews do I need?", "There's no magic number. Steady, recent reviews beat a big pile of old ones, which is why every plan asks every finished job for one."),
@@ -1174,13 +1175,14 @@ def locations_page():
 
 
 BAND = [("houston", "TX"), ("dallas", "TX"), ("san-antonio", "TX"), ("austin", "TX"), ("waco", "TX"), ("phoenix", "AZ"), ("tucson", "AZ"),
-        ("atlanta", "GA"), ("savannah", "GA"), ("charlotte", "NC"), ("raleigh", "NC"), ("tampa", "FL"), ("orlando", "FL"), ("jacksonville", "FL")]
+        ("atlanta", "GA"), ("savannah", "GA"), ("charlotte", "NC"), ("raleigh", "NC"), ("tampa", "FL"), ("orlando", "FL"), ("jacksonville", "FL"),
+        ("fort-worth", "TX"), ("el-paso", "TX"), ("miami", "FL"), ("las-vegas", "NV"), ("denver", "CO"), ("nashville", "TN"), ("chicago", "IL"), ("los-angeles", "CA")]
 
 
 def locations_band():
     top = [c for k in BAND for c in ALL_CITIES if (c["slug"], c["_st"]["abbr"]) == k]
     chips = "".join(f'<a href="{u(city_path(c))}">{esc(c["name"])}</a>' for c in top)
-    return f"""<section class="section"><div class="wrap">
+    return f"""<section class="section loc-band"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Coast to coast</span><h2>HVAC marketing, market by market.</h2><p class="lede">A page for each market, built on real census and climate data.</p></div>
   <div class="city-links">{chips}<a class="all" href="{u('locations')}">All locations →</a></div>
 </div></section>"""
@@ -1341,7 +1343,7 @@ SERVICE_POSTS = {
 
 def service_page(sv):
     pains = deep_problem(sv.get("pains_h", "Where the calls leak."), sv["pains"])
-    steps = "".join(f'<li class="flow-step reveal"><span class="n">{n+1}</span><h3>{esc(a_)}</h3><p>{esc(b)}</p></li>' for n, (a_, b) in enumerate(sv["steps"]))
+    steps = "".join(f'<li class="tl-step reveal"><span class="n">{n+1}</span><h3>{esc(a_)}</h3><p>{esc(b)}</p></li>' for n, (a_, b) in enumerate(sv["steps"]))
     inc = "".join(f"<li>{esc(x)}</li>" for x in sv["includes"])
     grp = next(g for g in SERVICE_GROUPS if sv["slug"] in g[2])
     rel = [k for k in grp[2] if k != sv["slug"]] + [k for g in SERVICE_GROUPS if g is not grp for k in g[2][:1]]
@@ -1351,7 +1353,7 @@ def service_page(sv):
     extra += [("tools/" + t["slug"], t["title"]) for t in TOOLS if t["service"] == sv["slug"]]
     if g:
         extra.insert(0, (guide_path(g["slug"]), g["title"]))
-    guide = ('<ul class="read-more">' + "".join(f'<li><a href="{u(k)}">{esc(t)}</a></li>' for k, t in extra) + "</ul>") if extra else ""
+    guide = ('<div class="card related"><h3>Read before you decide</h3><ul>' + "".join(f'<li><a href="{u(k)}">{esc(t)}</a></li>' for k, t in extra) + "</ul></div>") if extra else ""
     calc = f"""<section class="section alt"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">The math</span><h2>What missed calls cost you.</h2><p class="lede">Put in your own numbers.</p></div>
   {missed_call_calc()}
@@ -1365,14 +1367,13 @@ def service_page(sv):
 </div></section>
 <section class="section dark"><div class="wrap">{pains}</div></section>
 <section class="section"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">How it works</span><h2>Set up for you. Running on day one.</h2></div>
-  <ol class="flow">{steps}</ol>
+  <div class="section-head reveal"><span class="eyebrow">How it works</span><h2>{esc(sv.get("steps_h", "How we set it up."))}</h2><p class="lede">You give us access and approve the work. We do the rest.</p></div>
+  <ol class="timeline-steps" style="--n:{len(sv["steps"])}">{steps}</ol>
 </div></section>
 {calc}
-<section class="section{"" if calc else " alt"}"><div class="wrap"><div class="split">
-  <div><span class="eyebrow">What's included</span><h2>What you get.</h2><p class="lede">{esc(sv['plan'])}</p><a class="more" href="{u('plans')}">Compare plans →</a>{guide}</div>
-  <div class="card"><ul class="ticks">{inc}</ul></div>
-</div>{fit_block(sv["slug"], inner=True)}</div></section>
+<section class="section{"" if calc else " alt"}"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">What's included</span><h2>What you get.</h2><p class="lede">{esc(sv['plan'])} <a class="more" href="{u('plans')}">Compare plans →</a></p></div>
+  <div class="get-grid{" solo" if not guide else ""}"><div class="card included"><ul class="ticks">{inc}</ul></div>{guide}</div>{fit_block(sv["slug"], inner=True)}</div></section>
 <section class="section{" alt" if calc else ""}"><div class="wrap g-wrap">
   <div class="section-head"><span class="eyebrow">Questions</span><h2>Common questions</h2></div>
   {faq(sv['faq'])}
@@ -1501,7 +1502,7 @@ def fit_block(slug, inner=False):
     y = "".join(f"<li>{esc(x)}</li>" for x in yes)
     n_ = "".join(f"<li>{esc(x)}</li>" for x in no)
     if inner:  # sits under "What you get" in the same band instead of its own white section
-        return f"""<div style="margin-top:56px"><div class="section-head reveal" style="margin-bottom:28px"><span class="eyebrow">Straight answer</span><h2>Is it worth it for your shop?</h2></div>
+        return f"""<div class="fit-inner"><div class="section-head reveal" style="margin-bottom:28px"><span class="eyebrow">Straight answer</span><h2>Is it worth it for your shop?</h2></div>
   <div class="grid two fit"><div class="card fit-yes"><h3>Worth it if</h3><ul class="ticks">{y}</ul></div><div class="card fit-no"><h3>Skip it if</h3><ul class="crosses">{n_}</ul></div></div></div>"""
     return f"""<section class="section"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Straight answer</span><h2>Is it worth it for your shop?</h2></div>
@@ -1523,7 +1524,7 @@ GUIDE_LINKS = {
     "hook-agency-alternative-hvac": ["local-seo", "website", "hq-command-center"],
     "footbridge-media-alternative-hvac": ["website", "missed-call-text-back", "review-requests"],
 }
-COMPARE_SLUGS = ["scorpion-alternative-hvac", "websites-for-hvac-alternative", "rs-gonzales-alternative", "hook-agency-alternative-hvac", "footbridge-media-alternative-hvac"]
+COMPARE_SLUGS = ["websites-for-hvac-alternative", "scorpion-alternative-hvac", "rs-gonzales-alternative", "hook-agency-alternative-hvac", "footbridge-media-alternative-hvac"]
 
 
 def compare_hub():
@@ -1532,7 +1533,7 @@ def compare_hub():
   <div class="crumbs"><a href="{u('')}">Home</a> / Compare agencies</div>
   <span class="eyebrow">Compare</span>
   <h1 style="max-width:22ch">How we compare with other HVAC marketing companies.</h1>
-  <p class="lede">Honest side-by-sides built from each company's own published prices and terms, with the date we read them. Where they do something better, we say so.</p>
+  <p class="lede">Honest side-by-sides built from each company's own published prices and terms, with the date we read them. Read the fine print before you sign with anyone, including us.</p>
 </div></section>
 <section class="section after-head"><div class="wrap">
   <h2 class="sr-only">Comparisons</h2>
@@ -1924,7 +1925,7 @@ def home():
     body = f"""<section class="hero"><div class="hero-grid-bg" aria-hidden="true"></div><div class="wrap hero-grid">
   <div>
     <span class="chip-top"><i>❄</i>Built only for HVAC contractors</span>
-    <h1>Rank higher. <span class="grad">Book every call.</span></h1>
+    <h1 class="hero-h1"><span>Rank higher.</span> <span class="grad">Book every call.</span></h1>
     <p class="lede">We build your website, run your Google profile and text back every missed call in 60 seconds, guaranteed. Start with a free report card on how you stack up locally.</p>
     {url_form()}
     <div class="hero-points"><span>Live in 14 days</span><span>We run it for you</span><span>You own everything</span></div>
@@ -1985,22 +1986,13 @@ def home():
 
 
 def method_page():
-    phases = []
-    for n, (name, line, items, close) in enumerate(METHOD):
-        lis = "".join(f"<li>{esc(x)}</li>" for x in items)
-        alt = " alt" if n == 1 else ""
-        phases.append(f"""<section class="section{alt}"><div class="wrap split">
-  <div><span class="eyebrow">Phase 0{n+1}</span><h2>{name}.</h2><p class="lede">{esc(line)}</p><p class="phase-close">{esc(close)}</p></div>
-  <div class="card"><ul class="ticks">{lis}</ul></div>
-</div></section>""")
     body = f"""<section class="page-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / The method</div>
   <span class="eyebrow">The method</span>
   <h1>Rank. Book. Repeat.</h1>
   <p class="lede">Most agencies sell you a website, or ads, or software. We run the three jobs that actually fill an HVAC schedule as one system. Every plan starts with all three; higher plans add more tools to each.</p>
 </div></section>
-<section class="section after-head"><div class="wrap"><h2 class="sr-only">The three phases</h2>{method_block()}</div></section>
-{"".join(phases)}
+<section class="section after-head"><div class="wrap"><h2 class="sr-only">The three phases</h2>{method_block(full=True)}</div></section>
 <section class="section"><div class="wrap split">
   <div><span class="eyebrow">Every plan</span><h2>Watch it work in your HQ Command Center.</h2><p class="lede">Calls, texts, booked jobs and reviews, updated as they happen.</p></div>
   {dashboard()}
@@ -2170,7 +2162,7 @@ OFFER_DEEP = {
             ("How long does a new site take?", "14 days from when we get your photos and details. Most of that time is us writing and building; your part is one kickoff call and one review."),
             ("Do I own the website?", "Yes. Your domain is registered in your name and the site's content is yours. If you leave, we hand over the files."),
             ("Can I edit it myself?", "You can, but you don't have to. Send us changes by text or email and they're included in your plan."),
-            ("Is it WordPress?", "No. It's pre-built static pages on a global network, so there are no plugins to update and nothing to hack. That's why it loads so fast."),
+            ("Is it WordPress?", "No. Your site is custom-coded and served from a global network, so there are no plugins to update and nothing to hack. That's why it loads so fast."),
             ("I already have a site I like. Do I need a new one?", "No. We can add the booking form and lead system to your current site, and the build fee is lower or waived."),
             ("Who writes the pages?", "We do, from your kickoff call. You review everything before it goes live."),
             ("How is this different from Wix or a freelancer?", "A builder gives you a template and leaves the rest to you. A freelancer usually builds and leaves. We build it, keep it updated, connect it to text-back and reviews, and show you the results."),
@@ -2279,7 +2271,7 @@ def offer_deep(key):
     if "ai" in d: sec(deep_ai(*d["ai"]))
     if "attribution" in d: sec(deep_attr(*d["attribution"]))
     if d.get("replaces"): sec(replaces())
-    if d.get("speed"): sec('<div class="section-head reveal"><span class="eyebrow">Speed</span><h2>Slow sites lose jobs.</h2><p class="lede">This is how our own site scores on Google\'s test. Yours is built the same way.</p></div>' + tech())
+    if d.get("speed"): sec('<div class="section-head reveal"><span class="eyebrow">Speed</span><h2>Slow sites lose jobs.</h2><p class="lede">This is how our own site scores on Google\'s test. Yours is held to the same standard.</p></div>' + tech())
     if "timeline" in d: sec(deep_timeline(*d["timeline"]))
     if d.get("faq"):  # questions sit above the closing report card, keeping the band rhythm
         sec(f'<div style="max-width:900px;margin:0 auto"><div class="section-head"><span class="eyebrow">Questions</span><h2>{OFFER_CONTENT[key]["title"]} questions</h2></div>{faq(d["faq"])}</div>')
