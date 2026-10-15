@@ -17,7 +17,7 @@ export async function collectFacts(input, env = process.env) {
   state = input.state || state;
 
   const sitePromise = fetchHomepage(input.website, trade);
-  const speedPromise = pagespeed(/^https?:/.test(input.website) ? input.website : `https://${input.website}`, env.PAGESPEED_API_KEY, { timeoutMs: 35000 });
+  const speedPromise = pagespeed(/^https?:/.test(input.website) ? input.website : `https://${input.website}`, env.PAGESPEED_API_KEY || env.GOOGLE_PLACES_API_KEY, { timeoutMs: 35000 });
 
   // Google profile and reviews
   let place = null;
