@@ -31,7 +31,9 @@ FOUNDING_SPOTS = 25                   # founding rate: annual price on monthly b
 FOUNDING_LEFT = 25                    # lower this as shops sign; the strip hides at 0
 SHOW_FOUNDING = False                 # Logan, Oct 15: hide the founding strip on the site (reads as a new company); offer it on calls instead
 LEGAL_UPDATED = "October 14, 2026"   # "Last updated" on Privacy and Terms
-NOINDEX = True                       # stays on until forms are tested and Logan says push
+NOINDEX = False                      # Logan said index it, Oct 15 2026. True puts the whole site back behind noindex
+# City and state pages stay out of Google until they carry real local search data (the SEO audit found ~70% shared text).
+HOLD_LOCATIONS = True
 AREA = "Texas"                        # launch market; copy says "starting in Texas"
 
 # Plans: four tiers with a monthly/annual toggle (annual = 20% off). Prices confirmed by Logan Oct 12, 2026.
@@ -164,6 +166,16 @@ def niches_sorted():
     return sorted(NICHES, key=lambda n: NICHE_ORDER.index(n["slug"]) if n["slug"] in NICHE_ORDER else 99)
 
 
+def HOOKS(rc):
+    """Top bar: a few hooks into our best free pages, one at a time. (link, long text, short text for phones)"""
+    return [
+        (rc, "Free report card: see how your shop stacks up against the top 3 near you", "Free report card: how do you stack up?"),
+        (u(guide_path("best-hvac-marketing-agencies")), "New: the best HVAC marketing agencies in 2026, compared and priced", "The best HVAC agencies, compared"),
+        (u("tools/missed-call-cost-calculator"), "What do missed calls cost your shop? Try the free calculator", "What do missed calls cost you?"),
+        (u(guide_path("hvac-website-checklist")), "Free download: the 40-point HVAC online scorecard", "Free 40-point HVAC scorecard"),
+    ]
+
+
 def header(has_form=True):
     def group(label, body, cls, all_slug, all_label):
         return (f'<div class="nav-group"><button type="button" aria-expanded="false">{label}{ICON["chev"]}</button>'
@@ -177,7 +189,10 @@ def header(has_form=True):
            ("compare", "Compare agencies", "Honest side-by-sides, from their own terms"), ("getting-started", "Getting started", "What happens after you sign up"), ("locations", "Locations", "HVAC marketing in your city"), ("about", "About us", "Who we are and how we work")]
     res_links = "".join(f'<a href="{u(k)}">{n}<span>{d}</span></a>' for k, n, d in res)
     rc = "#report-card" if has_form else u("") + "#report-card"
+    hooks = "".join(f'<a class="hook{" on" if n == 0 else ""}" href="{h}"><b>{esc(t)}</b><span class="hook-s">{esc(sh)}</span> <span class="arrow" aria-hidden="true">→</span></a>'
+                    for n, (h, t, sh) in enumerate(HOOKS(rc)))
     return f"""<a class="skip" href="#main">Skip to content</a>
+<div class="hookbar" aria-label="Featured">{hooks}</div>
 <header class="site-head">
   <div class="wrap head-row">
     <a class="brand" href="{u('')}">{MARK}<span>{esc(BRAND_SHORT)}<small>{esc(TAGLINE)}</small></span></a>
@@ -359,8 +374,61 @@ def crumbs_ld(body):
     return ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items})
 
 
+def rhythm(body):
+    """Alternate light section backgrounds (white / tint) so no two neighbouring sections share one.
+    Dark, hero and page-head sections keep their own look; "plain" sections and the report card stay white;
+    a "founder-sec" continues the section above it and shares its background."""
+    tags = list(_re.finditer(r'<section class="([^"]*)"([^>]*)>', body))
+    kinds = []
+    for m in tags:
+        c = m.group(1).split()
+        if "section" not in c:
+            kinds.append("H")
+        elif "dark" in c:
+            kinds.append("D")
+        elif 'id="report-card"' in m.group(2):
+            kinds.append("D")  # the report card band is navy
+        elif "plain" in c:
+            kinds.append("W!")
+        elif "founder-sec" in c:
+            kinds.append("F")
+        else:
+            kinds.append(None)
+    i = 0
+    while i < len(kinds):  # each run of free sections alternates, starting so it clashes least with its neighbours
+        if kinds[i] is not None:
+            if kinds[i] == "F":
+                kinds[i] = (kinds[i - 1] if i else "W").rstrip("!") + "!"
+            i += 1
+            continue
+        j = i
+        while j < len(kinds) and kinds[j] is None:
+            j += 1
+        left = (kinds[i - 1] if i else "H").rstrip("!")
+        right = (kinds[j] if j < len(kinds) else "H").rstrip("!")
+        best = None
+        for start in ("W", "A"):
+            run = [start if n % 2 == 0 else ("A" if start == "W" else "W") for n in range(j - i)]
+            cost = (run[0] == left) + (run[-1] == right) + (start == "A" and left in ("H", "D")) * 0.5
+            if best is None or cost < best[0]:
+                best = (cost, run)
+        kinds[i:j] = best[1]
+        i = j
+    out, last = [], 0
+    for m, k in zip(tags, kinds):
+        k = k.rstrip("!")
+        c = [x for x in m.group(1).split() if x not in ("alt", "ink")] if k in ("A", "W") else m.group(1).split()
+        if k == "A":
+            c.append("alt")
+        out.append(body[last:m.start()] + f'<section class="{" ".join(c)}"{m.group(2)}>')
+        last = m.end()
+    return "".join(out) + body[last:]
+
+
 def page(path, title, desc, body, extra_head="", has_form=True):
-    robots = '<meta name="robots" content="noindex, nofollow">' if NOINDEX else ""
+    body = rhythm(body)
+    held = (HOLD_LOCATIONS and route(path).startswith("locations/")) or path == "404"
+    robots = '<meta name="robots" content="noindex, nofollow">' if NOINDEX else ('<meta name="robots" content="noindex, follow">' if held else "")
     turnstile = "" if PREVIEW or not TURNSTILE_SITEKEY else '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>'
     if len(desc) > 160:  # keep descriptions inside what search results show
         cut = desc[:158]
@@ -1316,7 +1384,7 @@ def guide_page(g):
   <p class="lede">{esc(g['desc'])}</p>
   {byline(__import__("datetime").date.fromisoformat(g["date"]).strftime("%b %-d, %Y") if is_post and g.get("date") else (POSTS_UPDATED if is_post else None))}
 </div></section>
-<section class="section after-head"><div class="wrap g-wrap">
+<section class="section after-head plain"><div class="wrap g-wrap">
   <div class="g-take"><h2>Key takeaways</h2><ul class="ticks">{take}</ul></div>
   <nav class="g-toc" aria-label="In this guide"><b>In this guide</b><ol>{toc}</ol></nav>
   <article class="g-body">{secs}
@@ -1369,14 +1437,15 @@ def niche_page(n):
 
 
 SERVICE_POSTS = {
-    "google-ads": ["how-much-to-spend-on-google-ads-hvac", "google-ads-vs-local-services-ads-hvac"],
-    "local-services-ads": ["google-local-services-ads-hvac", "google-ads-vs-local-services-ads-hvac"],
+    "hq-command-center": ["best-crm-for-hvac", "servicetitan-vs-housecall-pro"],
+    "google-ads": ["how-much-to-spend-on-google-ads-hvac", "google-ads-vs-local-services-ads-hvac", "hvac-advertising"],
+    "local-services-ads": ["google-local-services-ads-hvac", "google-ads-vs-local-services-ads-hvac", "google-guaranteed-hvac"],
     "facebook-ads": ["facebook-ads-for-hvac"],
     "local-seo": ["hvac-seo-what-moves-rankings"],
     "google-business-profile": ["hvac-seo-what-moves-rankings"],
-    "review-requests": ["get-more-google-reviews-hvac"],
+    "review-requests": ["get-more-google-reviews-hvac", "hvac-marketing-ideas"],
     "hvac-website-redesign": ["hvac-website-design"],
-    "hvac-lead-generation": ["hvac-lead-generation-bought-vs-owned"],
+    "hvac-lead-generation": ["hvac-lead-generation-bought-vs-owned", "how-to-get-more-hvac-leads"],
     "missed-call-text-back": ["hvac-lead-generation-bought-vs-owned"],
     "estimate-follow-up": ["hvac-lead-generation-bought-vs-owned"],
 }
@@ -1404,7 +1473,7 @@ HQ_FEATURES = [
 
 def team_band():
     items = "".join(f'<div class="team-pt reveal"><h3>{esc(a_)}</h3><p>{esc(b)}</p></div>' for a_, b in TEAM_POINTS)
-    return f"""<section class="section alt"><div class="wrap">
+    return f"""<section class="section dark"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Your whole team</span><h2>One app. Everyone on the same page.</h2><p class="lede">This runs inside HQ Command Center, the CRM we set up around your shop. Everyone who needs it gets a login.</p></div>
   <div class="team-grid">{items}</div>
 </div></section>"""
@@ -1451,7 +1520,7 @@ def service_page(sv):
 {hq_features() if sv["slug"] == "hq-command-center" else ""}
 {team_band() if sv["slug"] in GHL_SLUGS else ""}
 {calc}
-<section class="section{"" if calc else " alt"}"><div class="wrap">
+<section class="section{"" if sv["slug"] in GHL_SLUGS else " dark"}"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">What's included</span><h2>What you get.</h2><p class="lede">{esc(sv['plan'])} <a class="more" href="{u('plans')}">Compare plans →</a></p></div>
   <div class="get-grid{" solo" if not guide else ""}"><div class="card included"><ul class="ticks">{inc}</ul></div>{guide}</div>{fit_block(sv["slug"], inner=True)}</div></section>
 <section class="section{" alt" if calc else ""}"><div class="wrap g-wrap">
@@ -1614,6 +1683,12 @@ GUIDE_LINKS = {
     "hvac-lead-generation-bought-vs-owned": ["hvac-lead-generation", "missed-call-text-back", "estimate-follow-up"],
     "facebook-ads-for-hvac": ["facebook-ads", "seasonal-campaigns", "google-ads"],
     "best-hvac-marketing-agencies": ["website", "local-seo", "hq-command-center"],
+    "best-crm-for-hvac": ["hq-command-center", "estimate-follow-up", "missed-call-text-back"],
+    "servicetitan-vs-housecall-pro": ["hq-command-center", "review-requests", "estimate-follow-up"],
+    "hvac-marketing-ideas": ["google-business-profile", "review-requests", "seasonal-campaigns"],
+    "how-to-get-more-hvac-leads": ["hvac-lead-generation", "local-seo", "google-ads"],
+    "hvac-advertising": ["google-ads", "local-services-ads", "facebook-ads"],
+    "google-guaranteed-hvac": ["local-services-ads", "google-business-profile", "review-requests"],
 }
 COMPARE_SLUGS = ["websites-for-hvac-alternative", "scorpion-alternative-hvac", "rs-gonzales-alternative", "hook-agency-alternative-hvac", "footbridge-media-alternative-hvac"]
 
@@ -1892,7 +1967,7 @@ def pillar_page():
   <p class="lede">Everything that decides whether a homeowner calls your shop or the next one, in plain words, with a link to the detail on each part.</p>
   {byline()}
 </div></section>
-<section class="section after-head"><div class="wrap g-wrap">
+<section class="section after-head plain"><div class="wrap g-wrap">
   <div class="g-take"><h2>The short version</h2><ul class="ticks"><li>Homeowners pick from the map, so your Google profile and reviews matter most.</li><li>A lead you don't answer is wasted, so answering and following up are marketing too.</li><li>Past customers are the cheapest jobs you'll ever book. Remind them before each season.</li><li>Own everything: your site, domain, profile, reviews and customer list.</li></ul></div>
   <nav class="g-toc" aria-label="In this guide"><b>In this guide</b><ol>{toc_html}</ol></nav>
   <article class="g-body">
@@ -2023,7 +2098,7 @@ def sitemap_xml(paths):
 def home():
     body = f"""<section class="hero"><div class="hero-grid-bg" aria-hidden="true"></div><div class="wrap hero-grid">
   <div>
-    <span class="chip-top"><i>❄</i>The HVAC marketing agency built only for HVAC</span>
+    <span class="chip-top"><i>❄</i>HVAC marketing agency · HVAC only</span>
     <h1 class="hero-h1"><span>Rank higher.</span> <span class="grad">Book every call.</span></h1>
     <p class="lede">An HVAC marketing agency that builds your website, runs your Google profile and SEO, and texts back every missed call in 60 seconds, guaranteed. Start with a free report card on how you stack up locally.</p>
     {url_form()}
@@ -2040,7 +2115,7 @@ def home():
 
 {homeowner_path()}
 
-<section class="section alt"><div class="wrap">
+<section class="section dark"><div class="wrap">
   <div class="section-head center reveal"><span class="eyebrow">What runs behind it</span><h2>One system. Every piece working.</h2><p class="lede">Your site, your Google profile and your lead system, built once and run for you. Your office just answers the texts.</p></div>
   {bento()}
   <p style="margin-top:30px;text-align:center"><a class="btn btn-ghost" href="{u('services')}">See all {SERVICE_COUNT_WORD} services <span class="arrow">→</span></a></p>
@@ -2088,7 +2163,7 @@ def method_page():
   <p class="lede">Most agencies sell you a website, or ads, or software. We run the three jobs that actually fill an HVAC schedule as one system. Every plan starts with all three; higher plans add more tools to each.</p>
 </div></section>
 <section class="section after-head"><div class="wrap"><h2 class="sr-only">The three phases</h2>{method_block(full=True)}</div></section>
-<section class="section"><div class="wrap split">
+<section class="section dark"><div class="wrap split">
   <div><span class="eyebrow">Every plan</span><h2>Watch it work in your HQ Command Center.</h2><p class="lede">Calls, texts, booked jobs and reviews, updated as they happen.</p></div>
   {dashboard()}
 </div></section>
@@ -2790,7 +2865,7 @@ def build(out_dir):
     if not PREVIEW:
         write_grader_towns(os.path.join(out_dir, "api", "_grader", "trades", "us-towns.mjs"))
     skip = {"404", "hvac", "plumbing", "roofing", "your-report"}
-    paths = ["" if n == "index" else route(n) for n in pages if n not in skip]
+    paths = ["" if n == "index" else route(n) for n in pages if n not in skip and not (HOLD_LOCATIONS and route(n).startswith("locations/"))]
     with open(os.path.join(out_dir, "sitemap.xml"), "w") as f:
         f.write(sitemap_xml(sorted(paths, key=lambda x: (x != "", x))))
     with open(os.path.join(out_dir, "robots.txt"), "w") as f:

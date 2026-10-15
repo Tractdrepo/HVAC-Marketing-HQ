@@ -724,4 +724,796 @@ POSTS = [
         ],
         "related": ["questions-to-ask-hvac-marketing-agency", "hvac-marketing-cost", "scorpion-alternative-hvac"],
     },
+    # ------------------------------------------------------------------ Oct 15 batch: CRM, ServiceTitan vs HCP, ideas, leads, advertising, Google Verified
+    {'slug': 'best-crm-for-hvac',
+     'title': 'The best CRM for HVAC companies in 2026: field software vs a marketing CRM',
+     'short': 'Best CRM for HVAC',
+     'desc': 'ServiceTitan, Housecall Pro, Jobber, FieldEdge and HighLevel compared for HVAC: what each does, published prices, and why many shops run two.',
+     'read': 8,
+     'date': '2026-10-15',
+     'takeaways': ['Field service software runs jobs: dispatch, invoices, techs. A marketing CRM works leads: missed calls, follow-up texts, review asks.',
+                   "Housecall Pro, Jobber and HighLevel publish prices. ServiceTitan and FieldEdge don't, so you need a quote.",
+                   'Many HVAC shops run both kinds: field software for the work, a marketing CRM for the leads before and after it.',
+                   'Pick by how you lose money today: missed calls and slow follow-up, or messy dispatch and billing.'],
+     'sections': [('Read this first: we use one of these',
+                   [('note',
+                     'HVAC Marketing HQ wrote this. Our <a href="{u:hq-command-center}">HQ Command Center</a> is the CRM we set up for clients, built on HighLevel, so we have a stake '
+                     "in one of the five tools below. We don't sell or resell ServiceTitan, Housecall Pro, Jobber or FieldEdge. Every price and feature comes from the vendor's own "
+                     'site, linked at the bottom, as checked in October 2026. Where a vendor doesn\'t publish a price, we say "not published" instead of guessing.'),
+                    ('p',
+                     '"CRM" means two different things in HVAC. Owners ask for the best one and get answers that compare tools built for different jobs. So before the list, here\'s '
+                     'the split.')]),
+                  ('Field service software vs a marketing CRM',
+                   [('p',
+                     '<b>Field service software</b> runs the work once a job exists. Think dispatch board, tech mobile app, price book, estimates, invoices, payments and service '
+                     'agreements. ServiceTitan, Housecall Pro, Jobber and FieldEdge all sit here. Most of them also have a customer list, which is why they get called a CRM.'),
+                    ('p',
+                     "<b>A marketing or lead CRM</b> works the person before they're a job, and after. It catches the missed call, texts back, keeps the lead in a pipeline, sends the "
+                     'follow-up when an estimate goes quiet, and asks for the review. HighLevel sits here.'),
+                    ('table',
+                     [['Job to be done', 'Field service software', 'Marketing CRM'],
+                      ['Dispatch techs and route trucks', 'Yes, core job', 'No'],
+                      ['Price book, estimates, invoices', 'Yes, core job', 'Not the focus'],
+                      ['Online booking', 'Yes, in most', 'Yes, calendars and booking links'],
+                      ['Text back a missed call', 'Varies, often an add-on', 'Yes, core job'],
+                      ['Lead pipeline and follow-up', 'Some', 'Yes, core job'],
+                      ['Review requests', 'Yes, in most, sometimes an add-on', 'Yes']]),
+                    ('p',
+                     'The lines blur every year. Field software vendors keep adding marketing tools, and marketing CRMs keep adding booking. But the core job of each is still '
+                     "different, and that's the thing to match to your shop.")]),
+                  ('1. ServiceTitan',
+                   [('p', '<b>What it is:</b> field service software for the trades, sold in three packages: Starter, Essentials and The Works.'),
+                    ('ul',
+                     ["<b>Price:</b> not published. ServiceTitan's pricing page says pricing is per technician and asks you to request pricing.",
+                      '<b>Packages:</b> Starter covers dispatching, scheduling, call booking, invoicing and the price book. Essentials adds mobile estimates and payroll. The Works is '
+                      "the full suite. ServiceTitan's help center says custom reports are only on The Works.",
+                      '<b>Booking:</b> Scheduling Pro, a separate Pro product, lets customers book online or by text based on real-time availability.',
+                      '<b>Marketing and reviews:</b> Marketing Pro is a separate Pro product for email, direct mail and campaigns. Marketing Pro Reputation sends review requests by '
+                      'text or email after a job and pulls Google, Facebook and Yelp reviews into one feed.']),
+                    ('p',
+                     '<b>Worth a look if:</b> you have enough techs that per-technician pricing makes sense, and you want dispatch, payroll and reporting in one system. Get a written '
+                     "quote that lists each Pro product you'd add.")]),
+                  ('2. Housecall Pro',
+                   [('p', '<b>What it is:</b> field service software with published plans: Basic, Essentials and MAX.'),
+                    ('ul',
+                     ['<b>Price:</b> its pricing page lists Basic at $59 a month billed annually or $79 monthly for 1 user, Essentials at $149 annually or $189 monthly for 5 users, '
+                      'and MAX at $299 annually or $329 monthly for 8 users. Extra users on MAX are $35 a month each. Some of its trade pages show higher numbers, so confirm on the '
+                      'pricing page.',
+                      '<b>Booking:</b> online booking is listed in the Basic plan. Customers can book through Google, your website or a shared link.',
+                      '<b>Marketing and reviews:</b> review management is listed in Basic. Its Marketing Center holds email, text and postcard campaigns. A voice add-on with call '
+                      'tracking is sold separately.',
+                      '<b>Trial:</b> 14 days free, no credit card, per its pricing page.']),
+                    ('p',
+                     '<b>Worth a look if:</b> you want to see the price before a sales call and you run a small to mid-size team. See our <a '
+                     'href="{u:post-servicetitan-vs-housecall-pro}">ServiceTitan vs Housecall Pro</a> breakdown.')]),
+                  ('3. Jobber',
+                   [('p', '<b>What it is:</b> field service software for many home service trades, with published plans: Core, Connect, Grow and Plus.'),
+                    ('ul',
+                     ['<b>Price:</b> its pricing page says plans start at $29 a month billed annually. Team plans and monthly billing cost more. Teams of 16 or more are told to '
+                      'contact sales.',
+                      '<b>Booking:</b> customers can request or book work from a form on your website, social profiles or client hub. Jobber says it can schedule the job and assign a '
+                      'team member when a booking comes in.',
+                      '<b>Reviews:</b> Jobber can text or email a review ask after a visit, a closed job or a paid invoice, and it sends one ask per client every six months at most. '
+                      'Its own pages differ on whether Reviews is included or an add-on, so ask.',
+                      '<b>Trial:</b> 14 days free, no credit card, per its pricing page.']),
+                    ('p',
+                     "<b>Worth a look if:</b> you're a smaller shop and want simple quoting, scheduling and invoicing. Jobber serves many trades, not just HVAC, so check the HVAC "
+                     'parts you need, like service agreements and equipment records.')]),
+                  ('4. FieldEdge',
+                   [('p', '<b>What it is:</b> field service software with three tiers: Select, Premier and Elite.'),
+                    ('ul',
+                     ['<b>Price:</b> not published. Its pricing page says tiers can be customized and points you to a demo for a quote.',
+                      '<b>Tiers:</b> Premier adds advanced dispatching, multi-option quotes and advanced service agreements. Elite adds outbound call recording, Proposal Pro and '
+                      'MarketingEdge with 2-way texting.',
+                      '<b>Accounting:</b> FieldEdge says it syncs with QuickBooks to cut out double entry.',
+                      "<b>Booking:</b> we didn't find a customer online booking feature described on its public pages. Ask in the demo."]),
+                    ('p', "<b>Worth a look if:</b> QuickBooks sync and service agreements are at the top of your list, and you're fine getting a quote.")]),
+                  ('5. HighLevel (what our HQ Command Center runs on)',
+                   [('p',
+                     "<b>What it is:</b> a marketing CRM. It isn't built for dispatch or invoicing. It's built for leads: calls, texts, pipelines, follow-up, booking and reviews."),
+                    ('ul',
+                     ['<b>Price:</b> its pricing page lists Starter at $97 a month, Unlimited at $297 and Agency Pro at $497. Text, phone and email usage is billed on top, per its '
+                      'help center.',
+                      '<b>Missed calls:</b> it has a built-in missed-call text-back setting on each phone number, and replies land in one inbox.',
+                      '<b>Reviews:</b> it can send review requests by text and email, and it pulls reviews from connected Google and Facebook accounts into one dashboard.',
+                      '<b>Booking:</b> calendars and booking links, which can go in the missed-call text.']),
+                    ('p',
+                     '<b>The honest catch:</b> HighLevel is a big platform, and most of it is aimed at agencies. Setting up the pipelines, automations, phone numbers and texting '
+                     'rules takes real time. That\'s the work we do for clients inside <a href="{u:hq-command-center}">HQ Command Center</a>, on every <a href="{u:plans}">plan</a>. '
+                     'You can also buy HighLevel direct and set it up yourself.')]),
+                  ('Why many shops run both',
+                   [('p',
+                     "Field software is great once a call is booked. It's weaker at the moments before that: the call you missed at 6:40 pm, the lead that filled out a form and never "
+                     'heard back, the $9,000 estimate nobody followed up on. A marketing CRM is built for those moments, and weak at dispatch and billing.'),
+                    ('p',
+                     'So a common setup is field software for the work and a marketing CRM for the leads. The CRM handles <a href="{u:missed-call-text-back}">missed-call '
+                     'text-back</a>, <a href="{u:estimate-follow-up}">estimate follow-up</a> and <a href="{u:review-requests}">review requests</a>. The field software handles the '
+                     'job. If you go this way, decide which system owns the customer record, and avoid sending two review asks for the same job.')]),
+                  ('How to pick',
+                   [('ol',
+                     ['<b>Find your biggest leak.</b> If calls ring out and leads go cold, start with lead follow-up. Our <a href="{u:tools/missed-call-cost-calculator}">missed call '
+                      'cost calculator</a> puts a number on it. If jobs get lost between the office and the truck, start with field software.',
+                      '<b>Count your techs.</b> ServiceTitan prices per technician. Housecall Pro and Jobber price by plan and users. Know your count before any demo.',
+                      "<b>Get the full price in writing.</b> For tools that don't publish prices, ask for each add-on, setup fee and contract term on paper.",
+                      '<b>Ask who sets it up.</b> Software you never finish setting up does nothing.']),
+                    ('p',
+                     'Not sure where your leaks are? Start with a <a href="{u:report-card}">free report card</a>, or read how we think about <a href="{u:hvac-lead-generation}">HVAC '
+                     'lead generation</a>.'),
+                    ('cta',)])],
+     'faq': [('Is ServiceTitan a CRM?',
+              "It has customer records, but it's mainly field service software: dispatch, estimates, invoices and payroll. Its marketing and online booking tools are separate Pro "
+              'products.'),
+             ('Do I need both field software and a marketing CRM?',
+              'Not always. A small shop can start with one. Many shops add a marketing CRM when missed calls, slow follow-up or review asks become the bottleneck.'),
+             ('Which of these publish prices?',
+              "As checked in October 2026, Housecall Pro, Jobber and HighLevel publish prices. ServiceTitan and FieldEdge don't; you request a quote."),
+             ('What does HQ Command Center cost?', "It's included in every HVAC Marketing HQ plan, with logins for your whole team. See our plans page for prices.")],
+     'sources': [('ServiceTitan: Pricing', 'https://www.servicetitan.com/pricing'),
+                 ('ServiceTitan: Scheduling Pro', 'https://www.servicetitan.com/features/pro/scheduling'),
+                 ('ServiceTitan: Marketing Pro Reputation', 'https://www.servicetitan.com/features/pro/marketing/reputation'),
+                 ('ServiceTitan: Pro products', 'https://www.servicetitan.com/features/pro'),
+                 ('Housecall Pro: Pricing and plans', 'https://www.housecallpro.com/pricing/'),
+                 ('Housecall Pro Help: Marketing Center overview', 'https://help.housecallpro.com/en/articles/11057071-marketing-center-overview'),
+                 ('Jobber: Pricing', 'https://www.getjobber.com/pricing/'),
+                 ('Jobber Help: Online booking', 'https://help.getjobber.com/en/articles/online-booking/'),
+                 ('Jobber Help: Reviews', 'https://help.getjobber.com/en/articles/reviews-marketing-tools/'),
+                 ('FieldEdge: Pricing', 'https://fieldedge.com/pricing/'),
+                 ('FieldEdge: HVAC software', 'https://fieldedge.com/hvac-software/'),
+                 ('HighLevel: Pricing', 'https://www.gohighlevel.com/pricing'),
+                 ('HighLevel Support: Pricing and billing guide', 'https://help.gohighlevel.com/support/solutions/articles/155000001156-highlevel-pricing-guide'),
+                 ('HighLevel: Missed call text back', 'https://www.gohighlevel.com/post/missed-call-text-back'),
+                 ('HighLevel: Reputation management', 'https://www.gohighlevel.com/online-reputation-management-software')],
+     'related': ['servicetitan-vs-housecall-pro', 'missed-call-text-back-hvac', 'hvac-lead-generation-bought-vs-owned', 'get-more-google-reviews-hvac']},
+    {'slug': 'servicetitan-vs-housecall-pro',
+     'title': 'ServiceTitan vs Housecall Pro for HVAC: pricing, fit and features compared',
+     'short': 'ServiceTitan vs Housecall Pro',
+     'desc': 'ServiceTitan vs Housecall Pro for HVAC shops: how each prices, which size of shop each fits, and how booking, marketing and reviews compare.',
+     'read': 7,
+     'date': '2026-10-15',
+     'takeaways': ["Housecall Pro publishes its prices. ServiceTitan doesn't; it prices per technician and you request a quote.",
+                   'Housecall Pro lists online booking and review management in its lowest plan. ServiceTitan sells online booking and reviews as separate Pro products.',
+                   'ServiceTitan splits its core software into Starter, Essentials and The Works. Housecall Pro has Basic, Essentials and MAX.',
+                   'Neither replaces lead follow-up on its own. Check how each handles missed calls before you sign.'],
+     'sections': [('Who wrote this, and how',
+                   [('note',
+                     "HVAC Marketing HQ wrote this. We don't sell, resell or get paid by ServiceTitan or Housecall Pro, . Every price and feature below comes from each company's own "
+                     "website, linked at the bottom, as checked in October 2026. Where something isn't published, we say so. Software prices change often, so confirm before you "
+                     'sign.'),
+                    ('p',
+                     'ServiceTitan and Housecall Pro are both field service software. They run the job: booking, dispatch, estimates, invoices and payments. The big differences for '
+                     'an HVAC owner are how you pay, how much of the system you need, and which marketing pieces come in the box.')]),
+                  ('At a glance',
+                   [('table',
+                     [['', 'ServiceTitan', 'Housecall Pro'],
+                      ['Published price', 'Not published', 'Yes, on its pricing page'],
+                      ["How it's priced", 'Per technician, by quote', 'By plan, with users included'],
+                      ['Plans', 'Starter, Essentials, The Works', 'Basic, Essentials, MAX'],
+                      ['Online booking', 'Scheduling Pro, a separate Pro product', 'Listed in Basic'],
+                      ['Review requests', 'Marketing Pro Reputation, a separate Pro product', 'Review management listed in Basic'],
+                      ['Email and mail campaigns', 'Marketing Pro, a separate Pro product', 'Marketing Center: email, text, postcards'],
+                      ['Free trial', 'Not published', '14 days, no credit card']])]),
+                  ('Pricing model',
+                   [('p', '<b>Housecall Pro</b> lists three plans on its pricing page:'),
+                    ('ul',
+                     ['<b>Basic:</b> $59 a month billed annually, or $79 billed monthly. 1 user.',
+                      '<b>Essentials:</b> $149 a month billed annually, or $189 billed monthly. 5 users.',
+                      '<b>MAX:</b> $299 a month billed annually, or $329 billed monthly. 8 users, with extra users at $35 a month each.']),
+                    ('p',
+                     'Some Housecall Pro trade pages show higher numbers than the main pricing page, so check the pricing page itself and ask what your quote includes. Its voice '
+                     'add-on, with call tracking, is sold separately and priced on request.'),
+                    ('p',
+                     "<b>ServiceTitan</b> doesn't publish prices. Its pricing page says pricing is per technician and asks you to request pricing. Third-party sites post estimates, "
+                     "but they don't agree with each other, so we don't repeat them here. The Pro products, such as Scheduling Pro and Marketing Pro, are sold on top of the core "
+                     'package.'),
+                    ('p',
+                     'What that means for you: with Housecall Pro you can work out the software cost before a call. With ServiceTitan, your bill moves with your tech count and the '
+                     'Pro products you add. Ask for a written quote with every line on it, plus any setup or implementation fee and the contract term.')]),
+                  ('Who each fits',
+                   [('p',
+                     "Neither vendor sets a minimum size on its public pages. ServiceTitan's pricing page says its plans fit businesses at any size. But the way each one prices "
+                     'points to a natural fit.'),
+                    ('ul',
+                     ['<b>Housecall Pro fits</b> owner-run shops and small to mid-size teams that want a known monthly price, a quick start and booking and reviews in the lowest '
+                      "plan. The user counts in each plan (1, 5 and 8) tell you who it's built around.",
+                      "<b>ServiceTitan fits</b> shops with enough techs and office staff to use the deeper parts: payroll, advanced reporting and custom reports. ServiceTitan's help "
+                      "center says custom reports are only on The Works package. If you'll use those, per-technician pricing can make sense. If you won't, you may pay for depth you "
+                      "don't need."]),
+                    ('p',
+                     "A simple test: list the five things you'd use every week. If they're booking, dispatch, invoices, payments and review asks, both tools do that. If your list "
+                     'includes payroll, commissions and custom reports, look harder at ServiceTitan.')]),
+                  ('Booking',
+                   [('p',
+                     '<b>Housecall Pro</b> lists online booking in its Basic plan. Its pages say customers can book through Google, your website or a shared link, and the booking '
+                     'page can show services, prices and service areas.'),
+                    ('p',
+                     '<b>ServiceTitan</b> handles online booking with Scheduling Pro. It lets customers book online or by text based on real-time availability, and can take payment '
+                     'and sign up members at booking. Call booking for your CSRs is part of the core Starter package.'),
+                    ('note',
+                     'Online booking doesn\'t help the caller who rings out. If you miss calls after hours or on busy days, look at <a href="{u:missed-call-text-back}">missed-call '
+                     'text-back</a> as well. Our <a href="{u:tools/missed-call-cost-calculator}">missed call cost calculator</a> shows what those calls may be worth.')]),
+                  ('Marketing',
+                   [('p',
+                     "<b>Housecall Pro's</b> Marketing Center puts email, text and postcard campaigns in one place. Its help center says campaigns can be one-time blasts or triggered "
+                     'flows, with triggers such as Job Completed and Estimate Declined. Email campaigns need customer consent.'),
+                    ('p',
+                     "<b>ServiceTitan's</b> Marketing Pro covers email, direct mail and campaigns tied to your customer and job data. It's a separate Pro product, so price it with "
+                     'your quote.'),
+                    ('p',
+                     "Both work from the customers already in your system. That's useful for tune-up reminders and past customers. Neither one is a full lead engine on its own: they "
+                     'don\'t build your website, rank you on Google or run your ads. For how those pieces fit together, see our guide to <a href="{u:hvac-marketing}">HVAC '
+                     'marketing</a>.')]),
+                  ('Reviews',
+                   [('p',
+                     '<b>Housecall Pro</b> lists review management in Basic. Its pages say review requests go out by text or email after each job, and you can track and reply to '
+                     'reviews from a dashboard.'),
+                    ('p',
+                     "<b>ServiceTitan's</b> Marketing Pro Reputation sends review requests by text or email after a job, pulls Google, Facebook and Yelp reviews into one feed, and "
+                     'links each review to the customer, job and tech. It also says it keeps business listings consistent across 60+ sites.'),
+                    ('p',
+                     'With either tool, the ask only works if it goes out every time, soon after the job. Our guide to <a href="{u:guide-google-reviews-hvac}">Google reviews for '
+                     'HVAC</a> covers timing and wording, and the <a href="{u:tools/google-review-gap-calculator}">review gap calculator</a> shows how long it may take to catch the '
+                     'top shop near you.')]),
+                  ('Questions to ask in either demo',
+                   [('p', 'Sales demos show the best parts. These questions get you to the parts that decide your monthly bill and your daily work.'),
+                    ('ol',
+                     ["<b>What's the total monthly cost for my team?</b> Give them your tech count and office count, and ask for every add-on on paper.",
+                      "<b>Is there a setup or onboarding fee?</b> And how long until we're live?",
+                      "<b>What's the contract term?</b> Can we go month to month, and what does it cost to leave early?",
+                      "<b>Which plan has online booking and review requests?</b> Ask them to show it in the plan you'd buy, not the top one.",
+                      '<b>What happens to a call we miss?</b> Ask whether the caller gets a text back, and whether that costs extra.',
+                      '<b>Can we export our customers and job history if we leave?</b> Your customer list is yours. Make sure you can take it with you.']),
+                    ('p',
+                     "Write the answers down side by side. The cheaper tool on paper isn't always cheaper once add-ons are in, and the bigger tool isn't always better if your team "
+                     "won't use half of it.")]),
+                  ('Where we fit in',
+                   [('p',
+                     'We don\'t replace either one. A shop can keep its field software for the job and use our <a href="{u:hq-command-center}">HQ Command Center</a>, the CRM we set '
+                     'up for clients, built on HighLevel, for the leads: <a href="{u:missed-call-text-back}">missed calls</a>, <a href="{u:estimate-follow-up}">estimate follow-up</a> '
+                     'and <a href="{u:review-requests}">review requests</a>. If you already send review asks from ServiceTitan or Housecall Pro, we\'d set things up so customers '
+                     "don't get two."),
+                    ('p', 'For a wider look at five tools, read <a href="{u:post-best-crm-for-hvac}">the best CRM for HVAC companies</a>. Or see our <a href="{u:plans}">plans</a>.'),
+                    ('cta',)])],
+     'faq': [('Is Housecall Pro cheaper than ServiceTitan?',
+              "We can't say for sure, because ServiceTitan doesn't publish prices. Housecall Pro lists plans from $59 a month billed annually. Get a written ServiceTitan quote for "
+              'your tech count to compare.'),
+             ('Does ServiceTitan include online booking?',
+              'Online booking is Scheduling Pro, which ServiceTitan lists as a separate Pro product. Call booking for your office staff is in the core Starter package.'),
+             ('Can I switch from Housecall Pro to ServiceTitan later?',
+              'You can. Ask each vendor what data they can import, what setup costs, and how long it takes before you commit.'),
+             ('Do either of them text back missed calls?',
+              'Not as a core feature on the pages we checked. Housecall Pro sells a voice add-on separately. Ask each vendor directly, or use a marketing CRM for missed-call '
+              'text-back.')],
+     'sources': [('ServiceTitan: Pricing', 'https://www.servicetitan.com/pricing'),
+                 ('ServiceTitan: Scheduling Pro', 'https://www.servicetitan.com/features/pro/scheduling'),
+                 ('ServiceTitan: Marketing Pro Reputation', 'https://www.servicetitan.com/features/pro/marketing/reputation'),
+                 ('ServiceTitan: Pro products', 'https://www.servicetitan.com/features/pro'),
+                 ('Housecall Pro: Pricing and plans', 'https://www.housecallpro.com/pricing/'),
+                 ('Housecall Pro: LLM info page (plans and users)', 'https://www.housecallpro.com/llm-info/'),
+                 ('Housecall Pro Help: Marketing Center overview', 'https://help.housecallpro.com/en/articles/11057071-marketing-center-overview'),
+                 ('Housecall Pro Help: Campaigns step-by-step guide', 'https://help.housecallpro.com/en/articles/8832769-campaigns-step-by-step-guide'),
+                 ('Housecall Pro: Automated marketing', 'https://www.housecallpro.com/features/automated-marketing/')],
+     'related': ['best-crm-for-hvac', 'google-reviews-hvac', 'missed-call-text-back-hvac', 'hvac-marketing-cost']},
+    {'slug': 'hvac-marketing-ideas',
+     'title': 'HVAC marketing ideas that book jobs: 21 ideas sorted by cost',
+     'short': 'HVAC marketing ideas',
+     'desc': '21 HVAC marketing ideas that book jobs, sorted into free, low cost and paid. Each one is short, practical and fair to your customers.',
+     'read': 8,
+     'date': '2026-10-15',
+     'takeaways': ['Start with the free ideas: your Google profile, reviews and past customers cost time, not money.',
+                   "Google says you can't pay for a better map ranking, so the free work on your profile matters.",
+                   "Ask every customer for a review. Google's rules ban picking only the happy ones.",
+                   'Add paid ads once the phone is answered every time and you can track which calls book.'],
+     'sections': [('How to use this list',
+                   [('p',
+                     'Most HVAC marketing lists are long and vague. This one is short and sorted by what it costs. The free ideas cost you time. The low cost ideas need a tool or a '
+                     'small spend. The paid ideas need an ad budget.'),
+                    ('p',
+                     'Do them roughly in order. Paid ads send more calls, but if calls go to voicemail or quotes never get a follow-up, more calls just means more waste. Fix the '
+                     'leaks first, then turn up the volume.'),
+                    ('note',
+                     "We left out cold calling and cold texting on purpose. Texas SB 140 took effect on September 1, 2025 and brings marketing texts under the state's telemarketing "
+                     'law. Market to people who asked to hear from you.')]),
+                  ('Free ideas (cost: your time)',
+                   [('ul',
+                     ['<b>1. Fill in every part of your Google Business Profile.</b> Google says local results are based mainly on relevance, distance and prominence, and that '
+                      'complete, detailed info helps you match searches. Set your category, services, hours and photos. See our <a href="{u:google-business-profile}">Google Business '
+                      'Profile</a> service.',
+                      '<b>2. Set a service area instead of showing a home address.</b> Google lets a business that travels to customers hide its address and show only the area it '
+                      'serves. Most HVAC shops fit that description.',
+                      '<b>3. Post offers and updates on your profile.</b> Google Business Profile has Updates, Offers and Events posts. Google archives posts older than 6 months '
+                      'unless you set a date range, so post a fresh tune-up offer each season.',
+                      "<b>4. Ask every customer for a Google review.</b> Your profile has a Get more reviews option that gives you a link or a QR code. Google's policy bans asking "
+                      'only happy customers, so ask everyone. Our <a href="{u:tools/google-review-gap-calculator}">review gap calculator</a> shows how long it takes to catch the top '
+                      'shop.',
+                      '<b>5. Reply to every review, good or bad.</b> A short, calm reply shows the next homeowner that a real person runs the shop. Read our <a '
+                      'href="{u:guide-google-reviews-hvac}">Google reviews guide</a> for how to reply.',
+                      '<b>6. Call back every missed call the same day.</b> A missed call is often a job that went to the next shop. Run your own numbers in the <a '
+                      'href="{u:tools/missed-call-cost-calculator}">missed call cost calculator</a>.',
+                      '<b>7. Remind past customers about tune-ups before the season.</b> ENERGY STAR suggests a cooling check in spring and a heating check in fall, before '
+                      'contractors get busy. Email or call past customers who agreed to hear from you.',
+                      "<b>8. Ask every caller how they found you.</b> Write it on the job. After a month you'll know which channel books jobs and which just rings."])]),
+                  ('Low cost ideas (cost: a tool or a small spend)',
+                   [('ul',
+                     ["<b>9. Text back missed calls automatically.</b> When you can't pick up, the caller gets a text in about a minute and can reply with the problem. They called "
+                      'you first, so you\'re answering them, not cold texting. See <a href="{u:missed-call-text-back}">missed-call text-back</a>.',
+                      '<b>10. Send a review request after every job.</b> Automate the ask so it goes out to every customer, every time, right after the work is done. See <a '
+                      'href="{u:review-requests}">review requests</a>.',
+                      '<b>11. Follow up on every open quote.</b> A replacement quote that never gets a second touch is easy to lose. Use the <a '
+                      'href="{u:tools/hvac-estimate-follow-up-calculator}">estimate follow-up calculator</a> to see what one extra close is worth, then set up <a '
+                      'href="{u:estimate-follow-up}">estimate follow-up</a>.',
+                      '<b>12. Sell a maintenance plan.</b> Plan members come back twice a year, and those visits often turn into repairs and replacements. Price yours with the <a '
+                      'href="{u:tools/hvac-maintenance-plan-calculator}">maintenance plan calculator</a>.',
+                      '<b>13. Put your review QR code on invoices and leave-behinds.</b> Google suggests places like receipts and thank you emails. Note that Google says the reviews '
+                      'QR code can only be made on a computer browser.',
+                      "<b>14. Build a page for each service and each town.</b> Google's own SEO guide says useful, people-first content is likely to matter more than any other tip in "
+                      'it. One clear page per service and town beats one page that lists everything. See <a href="{u:website}">HVAC websites</a> and <a href="{u:local-seo}">local '
+                      'SEO</a>.',
+                      '<b>15. Answer website visitors after hours.</b> Chat can take the address and the problem at night so you can call back first thing. See <a '
+                      'href="{u:ai-web-chat}">AI web chat</a> and the <a href="{u:tools/after-hours-call-calculator}">after-hours call calculator</a>.',
+                      '<b>16. Thank customers who send referrals.</b> A thank-you card or a credit on their next tune-up for a referral is fine. Just never offer anything in exchange '
+                      'for a review, which Google bans.'])]),
+                  ('Paid ideas (cost: an ad budget)',
+                   [('ul',
+                     ["<b>17. Run Local Services Ads.</b> Google charges per valid lead, not per click, and says leads it finds invalid aren't charged. Estimate a budget with the <a "
+                      'href="{u:tools/lsa-cost-calculator}">LSA cost calculator</a> and see <a href="{u:local-services-ads}">Local Services Ads</a>.',
+                      '<b>18. Run Google Ads with a call button.</b> You pay per click. Google says a click on a call asset on mobile costs the same as a click on the headline. Plan '
+                      'spend with the <a href="{u:tools/google-ads-budget-calculator-hvac}">Google Ads budget calculator</a> and see <a href="{u:google-ads}">Google Ads</a>.',
+                      "<b>19. Remind past website visitors on Facebook before the season.</b> Meta's Pixel lets you build a custom audience of people who visited your site. A tune-up "
+                      'reminder to them works better than a cold ad. See <a href="{u:facebook-ads}">Facebook ads</a>.',
+                      '<b>20. Plan spring and fall campaigns ahead of time.</b> Line up your tune-up offer, profile post, email and ads before the first hot or cold week, not during '
+                      'it. See <a href="{u:seasonal-campaigns}">seasonal campaigns</a>.',
+                      '<b>21. Answer every call, even at peak.</b> On the busiest days the phone rings while every tech and CSR is busy. An AI answering line can book or take a '
+                      'message so no caller hits voicemail. See <a href="{u:ai-phone-answering}">AI phone answering</a>.'])]),
+                  ('What not to do',
+                   [('p', 'Some "ideas" you\'ll see online can cost you your profile or worse. Skip these:'),
+                    ('ul',
+                     ["<b>Review gating.</b> Sending only happy customers to Google, and the rest to a private form, is selective asking. Google's policy lists it as fake engagement "
+                      'and removes those reviews.',
+                      "<b>Paying for reviews.</b> Google bans offering discounts or gifts for reviews. The FTC's rule on fake reviews, in effect since October 21, 2024, bans buying "
+                      'positive or negative reviews and fake reviews outright.',
+                      '<b>Cold texting and cold calling lists.</b> In Texas, SB 140 puts marketing texts under the telemarketing law. Stick to people who reached out to you or agreed '
+                      'to hear from you.'])]),
+                  ('Where to start this week',
+                   [('ol',
+                     ['Fix your Google profile (ideas 1 to 3).',
+                      'Start asking every customer for a review (ideas 4 and 10).',
+                      'Stop losing calls (ideas 6, 9 and 21).',
+                      'Then add one paid channel and track booked jobs from it (ideas 17 or 18).']),
+                    ('p',
+                     'Want to see how your shop stacks up first? Get a free <a href="{u:report-card}">report card</a>, check what a plan costs on our <a href="{u:plans}">plans '
+                     'page</a>, or read the full <a href="{u:hvac-marketing}">HVAC marketing guide</a>.'),
+                    ('cta',)])],
+     'faq': [("What's the cheapest HVAC marketing that works?",
+              "Your Google Business Profile, reviews and past customers. They cost time, not ad money, and Google says you can't pay for a better map ranking anyway."),
+             ('Can I text past customers about a tune-up?',
+              "Only people who agreed to hear from you. In Texas, SB 140 brings marketing texts under the state's telemarketing law, so don't text lists of people who never asked."),
+             ('Can I ask only happy customers for reviews?', "No. Google's policy bans selectively asking for positive reviews. Ask every customer, the same way, every time."),
+             ('When should I start paid ads?', "Once every call gets answered or called back and you can tell which calls became jobs. Otherwise you can't tell if the ads pay.")],
+     'sources': [('Google Business Profile Help: Tips to improve your local ranking', 'https://support.google.com/business/answer/7091'),
+                 ('Google Business Profile Help: Manage your service area', 'https://support.google.com/business/answer/10514137'),
+                 ('Google Business Profile Help: About posts', 'https://support.google.com/business/answer/7662907'),
+                 ('Google Business Profile Help: Create a link or QR code to request reviews', 'https://support.google.com/business/answer/16816815'),
+                 ('Google Business Profile Help: Tips to get more reviews', 'https://support.google.com/business/answer/3474122'),
+                 ('Google Maps user contributed content policy: Prohibited and restricted content', 'https://support.google.com/contributionpolicy/answer/7400114'),
+                 ('FTC: Final rule banning fake reviews and testimonials (Aug 2024)',
+                  'https://www.ftc.gov/news-events/news/press-releases/2024/08/federal-trade-commission-announces-final-rule-banning-fake-reviews-testimonials'),
+                 ('ENERGY STAR: Heating and cooling maintenance checklist', 'https://www.energystar.gov/saveathome/heating-cooling/maintenance-checklist'),
+                 ('Google Search Central: SEO Starter Guide', 'https://developers.google.com/search/docs/fundamentals/seo-starter-guide'),
+                 ('Google Local Services Help: How leads work', 'https://support.google.com/adwords/answer/7195435'),
+                 ('Google Ads Help: About call assets', 'https://support.google.com/google-ads/answer/2453991'),
+                 ('Meta for Developers: Website custom audiences', 'https://developers.facebook.com/docs/marketing-api/audiences/guides/website-custom-audiences'),
+                 ('Texas Legislature: SB 140 (89th Legislature, 2025)', 'https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=SB140'),
+                 ('Paul Hastings: Texas SB 140 broadens state telemarketing rules to marketing texts',
+                  'https://www.paulhastings.com/insights/ph-privacy/marketing-texts-in-texas-sb-140-broadens-state-telemarketing-regulations')],
+     'related': ['how-to-get-more-hvac-leads', 'get-more-google-reviews-hvac', 'missed-call-text-back-hvac', 'hvac-marketing-cost']},
+    {'slug': 'how-to-get-more-hvac-leads',
+     'title': 'How to get more HVAC leads: every channel compared',
+     'short': 'Get more HVAC leads',
+     'desc': 'Ten ways to get more HVAC leads, compared by speed, how you pay and who owns the lead. From your Google profile to Angi, Thumbtack and missed calls.',
+     'read': 8,
+     'date': '2026-10-15',
+     'takeaways': ['Fix the leaks first: missed calls and unasked reviews cost leads you already earned.',
+                   'Google Ads charge per click, Local Services Ads per valid lead, and Meta by impressions, clicks or actions.',
+                   'Lead sites sell you a contact, but the homeowner may also be talking to other pros.',
+                   'Judge every channel by cost per booked job and by whether you keep the customer.'],
+     'sections': [('Three questions for every channel',
+                   [('p', 'There are only so many ways for a homeowner to find an HVAC company. Each one is worth asking three questions about:'),
+                    ('ul',
+                     ['<b>How fast does it work?</b> Some channels can ring the phone this week. Others take months to build.',
+                      '<b>How do you pay?</b> Per click, per lead, a flat fee, or just your time.',
+                      '<b>Who owns the lead?</b> Does the customer end up on your list, or does the platform keep the relationship?']),
+                    ('p',
+                     "We don't quote cost-per-lead numbers in this post. Prices change by town, season and job type, and the platforms set them. Instead we link to how each platform "
+                     'says it charges. Use our <a href="{u:tools/hvac-cost-per-lead-calculator}">cost per lead calculator</a> with your own numbers.')]),
+                  ('Every channel side by side',
+                   [('table',
+                     [['Channel', 'Speed', 'Cost model', 'Who owns the lead'],
+                      ['Google Business Profile', 'Builds over weeks and months', 'Free (your time)', 'You'],
+                      ['SEO and your website', 'Slow, builds over months', 'Your time or a flat monthly fee', 'You'],
+                      ['Google Ads', 'Fast, once ads go live', 'Per click', 'You'],
+                      ['Local Services Ads', "Fast, once you're approved", 'Per valid lead', 'You, once they contact you'],
+                      ['Facebook ads', 'Fast for reminders, weak for urgent repairs', 'Impressions, clicks or actions you choose', 'You'],
+                      ['Referrals', 'Slow, steady', 'Free, or a thank-you', 'You'],
+                      ['Review requests', 'Builds with every job', 'Free, or a tool', 'You'],
+                      ['Past customers', 'Fast', 'Free, or a tool', 'You'],
+                      ['Lead sites (Angi, Thumbtack)', 'Fast', 'Per lead (read the terms)', 'Shared: other pros may get the same request'],
+                      ['Missed-call recovery', 'Same day', 'A tool or your time', 'You']])]),
+                  ('Channels you own',
+                   [('p',
+                     "<b>Google Business Profile.</b> This is the map listing. Google says local results are based mainly on relevance, distance and prominence, and that there's no "
+                     'way to request or pay for a better local ranking. Prominence includes how many reviews you have and how many sites link to you. See <a '
+                     'href="{u:google-business-profile}">Google Business Profile</a> and our <a href="{u:guide-google-map-pack-hvac}">map pack guide</a>.'),
+                    ('p',
+                     "<b>SEO and your website.</b> Your site is where Google Ads, Local Services Ads and your profile all send people. Google's SEO guide says helpful, people-first "
+                     'content is likely to matter more than any other tip in it. Build one clear page per service and town. See <a href="{u:local-seo}">local SEO</a> and <a '
+                     'href="{u:website}">websites</a>, and check the payback with the <a href="{u:tools/hvac-seo-roi-calculator}">SEO ROI calculator</a>.'),
+                    ('p',
+                     '<b>Referrals.</b> Happy customers tell neighbors. Make it easy: a card with your number, a thank-you when a referral books. Never tie a reward to a review.'),
+                    ('p',
+                     '<b>Review requests.</b> Reviews help you rank and help callers pick you. Google gives you a review link and QR code under Get more reviews. Its policy bans '
+                     'asking only happy customers and bans incentives for reviews. Ask everyone with <a href="{u:review-requests}">review requests</a>.'),
+                    ('p',
+                     '<b>Past customers.</b> The people who already paid you are the easiest to book again. ENERGY STAR suggests a cooling check in spring and a heating check in '
+                     'fall. Remind customers who agreed to hear from you, and offer a <a href="{u:tools/hvac-maintenance-plan-calculator}">maintenance plan</a>. Our <a '
+                     'href="{u:seasonal-campaigns}">seasonal campaigns</a> handle the timing.')]),
+                  ('Channels you pay for',
+                   [('p',
+                     '<b>Google Ads.</b> You pay per click, and you pick the keywords, the ad and the landing page. Google says a click on a call asset on mobile costs the same as a '
+                     'click on the headline, and call reporting can count calls as conversions using Google forwarding numbers. See <a href="{u:google-ads}">Google Ads</a> and the <a '
+                     'href="{u:tools/google-ads-budget-calculator-hvac}">Google Ads budget calculator</a>.'),
+                    ('p',
+                     "<b>Local Services Ads.</b> Google charges per valid lead, not per click. It says leads it judges invalid at first contact aren't charged, and that message leads "
+                     'cost half of a phone lead in the US and Canada. You set an average weekly budget. See <a href="{u:local-services-ads}">Local Services Ads</a> and the <a '
+                     'href="{u:tools/lsa-cost-calculator}">LSA cost calculator</a>.'),
+                    ('p',
+                     "<b>Facebook ads.</b> Meta's docs say the billing event can be impressions, clicks or other actions. Facebook is weak for an urgent no-heat call, because people "
+                     "search Google for that. It's better for tune-up reminders to people who visited your site, using a Pixel custom audience. See <a "
+                     'href="{u:facebook-ads}">Facebook ads</a>.'),
+                    ('p',
+                     "<b>Lead sites like Angi and Thumbtack.</b> These sites sell you the contact details of a homeowner who asked for help. Thumbtack says there's no charge to join "
+                     'and no membership fee, and that you control your budget for leads. Before you buy from any lead site, read how a lead is priced and credited, and ask whether '
+                     'other pros get the same request. In 2023 the FTC ordered HomeAdvisor, a company affiliated with Angi, to pay up to $7.2 million over claims about the leads it '
+                     'sold to service providers.'),
+                    ('note',
+                     'Lead sites can fill a slow week, but the customer found the site, not you. Our post on <a href="{u:post-hvac-lead-generation-bought-vs-owned}">bought vs owned '
+                     'leads</a> covers what to ask any lead seller.')]),
+                  ('Missed-call recovery: the lead you already paid for',
+                   [('p',
+                     "Every channel above ends with a phone ringing. If no one answers, you paid for a lead and got nothing. This matters more for Local Services Ads now. Google's "
+                     'lead charging page says that from October 1, 2026, a missed call during business hours can be charged if the caller stays on the line for more than 20 seconds.'),
+                    ('p', 'Three fixes, in order of cost:'),
+                    ('ol',
+                     ['Call back every missed call the same day.',
+                      'Text back missed calls automatically with <a href="{u:missed-call-text-back}">missed-call text-back</a>. The caller reached out first, so this isn\'t cold '
+                      'texting.',
+                      'Have every call answered with <a href="{u:ai-phone-answering}">AI phone answering</a>, and catch site visitors at night with <a href="{u:ai-web-chat}">AI web '
+                      'chat</a>.']),
+                    ('p', 'See what it\'s costing you with the <a href="{u:tools/missed-call-cost-calculator}">missed call cost calculator</a>.')]),
+                  ('Which order to do it in',
+                   [('p',
+                     "Before you add any channel, decide how you'll measure it. Ask every caller how they found you, and give each paid channel its own tracked number where the "
+                     'platform allows it. Then compare channels by booked jobs and revenue, not by clicks or raw leads. A cheap lead that never books costs more than a pricey one '
+                     'that does.'),
+                    ('ol',
+                     ['Stop the leaks: answer or call back every call, and follow up on every quote with <a href="{u:estimate-follow-up}">estimate follow-up</a>.',
+                      'Fix your Google profile and ask every customer for a review.',
+                      'Remind past customers before each season.',
+                      'Add Local Services Ads or Google Ads for fast calls, and track booked jobs from each.',
+                      'Build your website and SEO so the calls keep coming when ads pause.',
+                      'Use lead sites only to fill gaps, and only after reading the terms.']),
+                    ('p',
+                     'Want it all in one place? See <a href="{u:hvac-lead-generation}">HVAC lead generation</a>, the <a href="{u:hq-command-center}">HQ Command Center</a> or our <a '
+                     'href="{u:plans}">plans</a>. Or start with a free <a href="{u:report-card}">report card</a> to see who\'s getting the calls near you.'),
+                    ('cta',)])],
+     'faq': [("What's the fastest way to get more HVAC leads?",
+              'Stop losing the ones you have: answer or text back every missed call and follow up on quotes. For new calls, Google Ads and Local Services Ads can start once they go '
+              'live.'),
+             ('Are Angi and Thumbtack leads worth it?',
+              'It depends on your close rate and the terms. Read how a lead is priced and credited, ask if other pros get the same request, and compare cost per booked job with your '
+              'other channels.'),
+             ('How do Local Services Ads charge?',
+              "Per valid lead, not per click. Google says invalid leads aren't charged and message leads cost half of a phone lead in the US and Canada."),
+             ('Can I pay to rank higher on Google Maps?',
+              "No. Google says there's no way to request or pay for a better local ranking. Your profile, reviews and website are what move it.")],
+     'sources': [('Google Business Profile Help: Tips to improve your local ranking', 'https://support.google.com/business/answer/7091'),
+                 ('Google Search Central: SEO Starter Guide', 'https://developers.google.com/search/docs/fundamentals/seo-starter-guide'),
+                 ('Google Business Profile Help: Create a link or QR code to request reviews', 'https://support.google.com/business/answer/16816815'),
+                 ('Google Maps user contributed content policy: Prohibited and restricted content', 'https://support.google.com/contributionpolicy/answer/7400114'),
+                 ('ENERGY STAR: Heating and cooling maintenance checklist', 'https://www.energystar.gov/saveathome/heating-cooling/maintenance-checklist'),
+                 ('Google Ads Help: About call assets', 'https://support.google.com/google-ads/answer/2453991'),
+                 ('Google Local Services Help: How leads work', 'https://support.google.com/adwords/answer/7195435'),
+                 ('Meta for Developers: Billing events', 'https://developers.facebook.com/docs/marketing-api/bidding/overview/billing-events'),
+                 ('Meta for Developers: Website custom audiences', 'https://developers.facebook.com/docs/marketing-api/audiences/guides/website-custom-audiences'),
+                 ('Thumbtack: How Thumbtack works for pros', 'https://www.thumbtack.com/postservice'),
+                 ('FTC: HomeAdvisor matter', 'https://www.ftc.gov/legal-library/browse/cases-proceedings/1923106-homeadvisor-matter')],
+     'related': ['hvac-marketing-ideas', 'hvac-lead-generation-bought-vs-owned', 'google-ads-vs-local-services-ads-hvac', 'google-map-pack-hvac']},
+    {'slug': 'hvac-advertising',
+     'title': 'HVAC advertising: where to spend first, online and offline',
+     'short': 'HVAC advertising',
+     'desc': 'Google Ads, Local Services Ads, Facebook, Nextdoor, YouTube, signs, truck wraps, EDDM and radio: how each charges and how to track it.',
+     'read': 7,
+     'date': '2026-10-15',
+     'takeaways': ['Spend first where people are already looking for a repair: Google search ads and Local Services Ads.',
+                   'Facebook, Instagram, Nextdoor and YouTube reach people before they need you. They suit tune-ups and maintenance plans.',
+                   'Yard signs, truck wraps, mailers and radio can work, but only count if you give each one its own phone number or QR code.',
+                   'Each channel charges a different way: per click, per lead, per 1,000 views, per view, per piece or per spot.'],
+     'sections': [('Start with where the calls already are',
+                   [('p',
+                     "Most HVAC calls start with a problem. The AC quits. The furnace won't light. The homeowner grabs a phone and searches. So the first money should go where people "
+                     "are already searching, not where you'd most like to be seen."),
+                    ('p',
+                     "That's why this list starts with Google. The other channels come after, in rough order of how close each one is to a call. We won't give you cost or return "
+                     "numbers for any of them. They change from town to town and month to month. We'll show how each one charges, what it's good for, and how to tell if it's "
+                     'working.'),
+                    ('table',
+                     [['Channel', 'How it charges', 'Best for'],
+                      ['Google search ads', 'Per click', 'People searching for a repair now'],
+                      ['Local Services Ads', 'Per valid lead', 'Calls from the top of Google'],
+                      ['Facebook and Instagram', 'Per 1,000 views or per click, by auction', 'Tune-ups, plans, retargeting'],
+                      ['Nextdoor', 'Per 1,000 views or per click, by bid', 'Being seen in set neighborhoods'],
+                      ['YouTube', 'Per view (30 seconds or a click)', 'Name recognition in your area'],
+                      ['EDDM mailers', 'Postage per piece, plus printing', 'Whole mail routes near your jobs'],
+                      ['Yard signs and truck wraps', 'One-time cost', 'Being seen where you already work'],
+                      ['Radio', 'Per spot, set by the station', 'Name recognition over months']])]),
+                  ('1. Google search ads',
+                   [('p',
+                     "With Google Ads you pay per click. Google says your actual cost per click is the final amount you're charged, and it's often less than your maximum bid. You pay "
+                     'only what it takes to beat the ad just below yours. If 500 people see your ad and 23 click, you pay for those 23 clicks.'),
+                    ('p',
+                     'This is the channel closest to a booked job, because the person typed "AC repair near me" a second ago. It\'s also where you control the most: which searches, '
+                     'which towns, which hours.'),
+                    ('p',
+                     "<b>How to track it:</b> turn on call reporting. Google shows a Google forwarding number in your ads and records each call's time, length and campaign, then "
+                     'sends the call to your real line. Google says not to print or reuse that number anywhere else, because it can change. Then count calls as conversions, with a '
+                     'minimum call length you choose.'),
+                    ('p',
+                     'How much to spend is its own question. We cover it in <a href="{u:post-how-much-to-spend-on-google-ads-hvac}">how much to spend on Google Ads</a>, and our <a '
+                     'href="{u:tools/google-ads-budget-calculator-hvac}">Google Ads budget calculator</a> runs the math with your numbers.')]),
+                  ('2. Local Services Ads',
+                   [('p',
+                     'Local Services Ads are the listings with the Google Verified badge at the very top of the page. You pay per valid lead (a call, message or booking), not per '
+                     'click. Your business has to pass Google\'s screening first. We explain the charges in <a href="{u:post-google-local-services-ads-hvac}">our Local Services Ads '
+                     'guide</a> and the badge in <a href="{u:post-google-guaranteed-hvac}">Google Guaranteed and Google Verified for HVAC</a>.'),
+                    ('p',
+                     "One thing is new. Google says it's moving Local Services Ads into Performance Max campaigns with pay-per-lead goals. The first phase started in August 2026 for "
+                     'select US home service providers, and Google names HVAC as one of them. You still pay for valid leads, not clicks. Phone call leads are required. Keywords '
+                     "aren't used, and manual bids are no longer supported."),
+                    ('p',
+                     "<b>How to track it:</b> leads show in your account. In the new setup Google says they're on the Leads page under Conversions in Google Ads. Google also says "
+                     "your old Local Services reports don't carry over, so save copies before you move."),
+                    ('p',
+                     'Not sure which of the two Google channels comes first? Read <a href="{u:post-google-ads-vs-local-services-ads-hvac}">Google Ads vs Local Services Ads</a>.')]),
+                  ('3. Facebook and Instagram',
+                   [('p',
+                     "Meta runs one ad system for both apps. Ads compete in an auction, and Meta says you're only charged the bid needed to win. Depending on your goal, you pay for "
+                     "impressions (shown as cost per 1,000 views) or for clicks. Meta says there's no minimum budget, and you can set a daily budget or one total budget for the whole "
+                     'run.'),
+                    ('p',
+                     "People on Facebook aren't searching for a repair. They're scrolling. So these ads work best before the season: a fall furnace tune-up, a spring AC check, a "
+                     'maintenance plan, or a reminder to people who already visited your site. We go deeper in <a href="{u:post-facebook-ads-for-hvac}">Facebook ads for HVAC</a>.'),
+                    ('p', '<b>How to track it:</b> send each ad to a page with its own tracked link (see the tracking section below), and use a call tracking number on that page.')]),
+                  ('4. Nextdoor',
+                   [('p',
+                     "Nextdoor is built around neighborhoods, which fits a business with a service area. Nextdoor's help pages describe bids by cost per 1,000 impressions (CPM) or by "
+                     'click (CPC). With a fixed CPM you pay a set amount for every 1,000 times your ad is shown. Nextdoor offers pay-as-you-go billing against a daily budget, and a '
+                     'monthly subscription that charges your daily budget times 30 up front.'),
+                    ('p',
+                     "<b>Good for:</b> being seen in the exact neighborhoods you want more work in, with a seasonal offer. Like Facebook, it's not where people search for an "
+                     'emergency repair.'),
+                    ('p', '<b>How to track it:</b> a tracked link and a separate call tracking number, the same as Facebook.')]),
+                  ('5. YouTube',
+                   [('p',
+                     'YouTube ads are bought in Google Ads. For skippable ads using cost-per-view bidding, Google says you pay when someone watches 30 seconds (or the whole ad, if '
+                     "it's shorter) or interacts with it, whichever comes first. If they skip early, you don't pay for that view. Google says the average cost per view moves with ad "
+                     'length, quality, targeting and the auction.'),
+                    ('p',
+                     "<b>Good for:</b> putting your face and your trucks in front of homeowners in your area, so your name feels familiar when they do search. It's a slower, "
+                     "name-building channel. Don't expect calls the first week."),
+                    ('p',
+                     '<b>How to track it:</b> watch for more searches of your company name and more calls on your other tracked numbers. Put a tracked link or a unique number in the '
+                     'video itself.')]),
+                  ('6. Direct mail with EDDM',
+                   [('p',
+                     'Every Door Direct Mail (EDDM) is a USPS service. You pick mail routes on a USPS map instead of buying a mailing list. Pieces are addressed to "Postal Customer". '
+                     "With EDDM Retail you don't need a postage permit, and USPS says there are no annual fees."),
+                    ('p',
+                     'USPS lists EDDM Retail flats at $0.26 per piece for postage, before printing. USPS rules say an EDDM Retail mailing has to be at least 200 pieces and no more '
+                     'than 5,000 pieces per ZIP Code per day. You have to take whole routes, not part of one, and drop them off at the Post Office that serves those routes.'),
+                    ('p',
+                     "<b>Good for:</b> the streets around jobs you've already done, a new subdivision, or a pre-season tune-up offer. The SBA also points to EDDM as a low-cost way to "
+                     'reach a neighborhood.'),
+                    ('p',
+                     '<b>How to track it:</b> print a phone number used only on this mailer, and a QR code with a tracked link. Then every call or visit from that number or link came '
+                     'from the mailer.')]),
+                  ('7. Yard signs and truck wraps',
+                   [('p',
+                     'These cost money once, then keep working. The SBA lists vehicle wraps as a form of out-of-home advertising and says it can be a great addition if you serve '
+                     'local customers. Every truck in a driveway and every yard sign after an install is seen by the neighbors.'),
+                    ('ul',
+                     ['<b>Yard signs:</b> ask the homeowner first, and check your city or HOA rules on signs.',
+                      '<b>Truck wraps:</b> keep it readable from a car. Name, what you do, one phone number, one web address.',
+                      '<b>Both:</b> the SBA suggests adding a web address or QR code so people can follow up on their phone.']),
+                    ('p',
+                     '<b>How to track it:</b> give the wraps one call tracking number and the yard signs another. Ask every new caller how they heard about you, and write it down.')]),
+                  ('8. Radio',
+                   [('p',
+                     "Stations sell air time in spots, and the price depends on the station and the time of day. The SBA's radio guide splits the day into parts like morning drive "
+                     "and afternoon drive, and says the station's sales staff can help match a time slot to the listeners you want. It suggests short ads run often, in the same slot "
+                     'each day, and says to give radio three to six months before you judge it.'),
+                    ('p', '<b>Good for:</b> shops that want their name known across a whole metro, with a budget that can wait months for results.'),
+                    ('p', '<b>How to track it:</b> a phone number read only on the radio, and an easy web address that points to a tracked link.')]),
+                  ('How to track every channel the same way',
+                   [('p', "If you can't tell which channel made the phone ring, you can't tell where to put more money. Two simple tools cover almost everything:"),
+                    ('ol',
+                     ['<b>Call tracking numbers.</b> A separate number for each channel: mailer, wrap, yard sign, radio, Facebook, Nextdoor. Calls forward to your main line, and each '
+                      "call is logged to the right source. For Google Ads, use Google's own call reporting.",
+                      '<b>Tracked links and QR codes.</b> Google Analytics reads three tags on a link: utm_source, utm_medium and utm_campaign. For example: utm_source=eddm, '
+                      'utm_medium=mail, utm_campaign=fall-tuneup. Google says to use lowercase and keep names the same each time, because "FallTuneup" and "fall-tuneup" count as two '
+                      'campaigns. Turn that link into a QR code for print.']),
+                    ('p',
+                     'Then look at booked jobs, not just calls. Our <a href="{u:tools/hvac-cost-per-lead-calculator}">cost per lead calculator</a> shows what each lead and each '
+                     'booked job costs by channel. And every channel works better if the phone gets answered. <a href="{u:missed-call-text-back}">Missed-call text-back</a> catches '
+                     "the ones you can't pick up.")]),
+                  ("Where we'd spend first",
+                   [('ol',
+                     ['Google search ads and Local Services Ads, with call tracking on from day one.',
+                      'A full, current <a href="{u:google-business-profile}">Google Business Profile</a> and steady <a href="{u:review-requests}">review requests</a>, because both '
+                      'Google channels show your rating.',
+                      'Seasonal offers on Facebook, Instagram or Nextdoor, aimed at past customers and site visitors. See <a href="{u:seasonal-campaigns}">seasonal campaigns</a>.',
+                      'Wraps and yard signs, since your trucks are out there anyway.',
+                      'EDDM, YouTube and radio once the first steps are tracked and paying off.']),
+                    ('p',
+                     'Want a budget to start from? Try the <a href="{u:tools/hvac-marketing-budget-calculator}">marketing budget calculator</a>, or see our <a '
+                     'href="{u:plans}">plans</a>.'),
+                    ('cta',)])],
+     'faq': [("What's the best advertising for an HVAC company?",
+              'Start where people already search for a repair: Google search ads and Local Services Ads. Add other channels once you can track calls from each one.'),
+             ('How do I know if a mailer or truck wrap is working?',
+              'Give it its own call tracking number and a QR code with a tracked link. Calls and visits on those come only from that piece.'),
+             ('Do I need a permit to send EDDM mailers?',
+              'Not for EDDM Retail. USPS says no permit or annual fee is needed. You pay postage per piece and drop the mail off at the Post Office that serves your routes.'),
+             ('How do YouTube ads charge?',
+              'For skippable ads with cost-per-view bidding, Google charges when someone watches 30 seconds, the whole ad if shorter, or interacts with it.')],
+     'sources': [('Google Ads Help: Actual cost-per-click', 'https://support.google.com/google-ads/answer/6297'),
+                 ('Google Ads Help: Google forwarding number', 'https://support.google.com/google-ads/answer/2382961'),
+                 ('Google Ads Help: About phone call conversion tracking', 'https://support.google.com/google-ads/answer/6100664'),
+                 ('Google Ads Help: Local Services Ads transition to Performance Max campaigns with pay-per-lead goals', 'https://support.google.com/google-ads/answer/17213585'),
+                 ('Google Ads Help: About pay-per-lead goals for Performance Max campaigns', 'https://support.google.com/google-ads/answer/17325249'),
+                 ("Google Ads Help: About YouTube's cost-per-view (CPV) bidding", 'https://support.google.com/google-ads/answer/2472735'),
+                 ('Meta: How much it costs to advertise on Facebook', 'https://www.facebook.com/business/help/201828586525529'),
+                 ('Meta: Facebook and Instagram ads pricing overview', 'https://www.facebook.com/business/ads/pricing'),
+                 ('Nextdoor Help: Setting your spend using budget and bids', 'https://help.nextdoor.com/s/article/Ads-Manager-Setting-Your-Spend-Using-Budget-Bids?language=en_US'),
+                 ('Nextdoor Help: Advertise on Nextdoor with a monthly subscription',
+                  'https://help.nextdoor.com/s/article/Advertise-on-Nextdoor-with-a-Monthly-Subscription?language=en_US'),
+                 ('USPS: Every Door Direct Mail', 'https://www.usps.com/business/every-door-direct-mail.htm'),
+                 ('USPS Postal Explorer: Quick Service Guide 140, EDDM-Retail', 'https://pe.usps.com/text/qsg300/q140.htm'),
+                 ('SBA: Is out of home marketing right for you?', 'https://legacy.sba.gov/blog/out-home-marketing-right-you'),
+                 ('SBA: Should you advertise on local radio?', 'https://www.sba.gov/blog/should-you-advertise-local-radio'),
+                 ('SBA: Direct mail is hot again', 'https://www.sba.gov/blog/2019/2019-04/direct-mail-hot-again-heres-how-use-it/'),
+                 ('Google Analytics Help: URL builders, collect campaign data with custom URLs', 'https://support.google.com/analytics/answer/10917952')],
+     'related': ['how-much-to-spend-on-google-ads-hvac', 'google-ads-vs-local-services-ads-hvac', 'facebook-ads-for-hvac', 'hvac-marketing-cost']},
+    {'slug': 'google-guaranteed-hvac',
+     'title': 'Google Guaranteed for HVAC companies: what changed and how to get the Google Verified badge',
+     'short': 'Google Guaranteed',
+     'desc': 'Google retired the Google Guaranteed badge and its money back guarantee. What the Google Verified badge means for HVAC shops, and the checks to get it.',
+     'read': 6,
+     'date': '2026-10-15',
+     'takeaways': ['Google Guaranteed and Google Screened are gone. Google folded them into one Google Verified badge in late 2025.',
+                   'The money back guarantee for homeowners ended with it. Old claims had to be about jobs booked before December 7, 2025.',
+                   "For HVAC in the US, Google's screening lists background checks, liability insurance and state licenses.",
+                   'Ads moving to Performance Max with pay-per-lead goals keep the badge automatically, but Google can ask for checks again.'],
+     'sections': [('The short answer: Google Guaranteed is now Google Verified',
+                   [('p',
+                     "If you're searching for how to get Google Guaranteed, here's the news first. Google has retired it. Google's help pages say it launched a single Google Verified "
+                     "badge for all Local Services advertisers, and that the Google Guarantee badge and its money back guarantee were discontinued. Google's Local Services page gives "
+                     'the date as October 20, 2025. Another copy of the same Google page says November 7, 2025.'),
+                    ('p',
+                     'Google says Google Verified replaces the older badges and programs: Google Guaranteed, Google Screened, License Verified by Google and the Money Back Guarantee. '
+                     'If you already had a badge, Google says you got the new one automatically and your ads kept running. New advertisers get it by passing Local Services screening '
+                     'and verification.'),
+                    ('note',
+                     'You\'ll still see "Google Guaranteed" in old blog posts, agency pitches and even some older Google pages. When someone sells you on the guarantee, ask what they '
+                     'mean. The badge homeowners see today is Google Verified.')]),
+                  ('What the old guarantee covered',
+                   [('p',
+                     "It helps to know what went away, because homeowners may still ask. Under the old Google Guarantee, if a customer who found you through Local Services Ads wasn't "
+                     'happy with the quality of the work, Google could, at its sole discretion, pay them back up to the amount paid for the first service. In the US there was a '
+                     'lifetime limit of $2,000 per customer.'),
+                    ('p', "Google's page listed what it didn't cover:"),
+                    ('ul', ['Add-on or future projects', 'Damage to property', 'Unhappiness with the price or with how fast the provider responded', 'Cancellations']),
+                    ('p',
+                     'When it ended, Google said eligible customers could still ask for money back on services booked through Local Services Ads before December 7, 2025, as long as '
+                     'they asked within 30 days of the job being finished. That window has now closed.')]),
+                  ('Google Screened vs Google Guaranteed',
+                   [('p', 'Before the change there were two main badges, and people mixed them up all the time.'),
+                    ('table',
+                     [['Badge', 'Who it was for', 'What it meant'],
+                      ['Google Guaranteed', 'Home service providers, like HVAC, plumbing and electrical', "Passed Google's checks, plus the money back guarantee for customers"],
+                      ['Google Screened',
+                       'Professional services like law, financial planning and real estate, plus some other categories',
+                       'Passed background and license checks. No money back guarantee'],
+                      ['Google Verified (now)',
+                       'All Local Services advertisers who pass screening',
+                       "Passed Google's screening for that category and location. No money back guarantee"]]),
+                    ('p', 'So for an HVAC company, the question "Screened or Guaranteed?" no longer applies. There\'s one badge.')]),
+                  ('What Google checks for HVAC companies',
+                   [('p', "Google says screening depends on your business category and where you are. For HVAC in the US, Google's requirements table lists these checks:"),
+                    ('ul',
+                     ['<b>Background checks.</b> A business check, an owner check and a service professional check. Google says all owners must pass a criminal background check, and '
+                      "so must every worker who does the core work for customers, including employees and contractors. Google says the background check doesn't pull your credit.",
+                      '<b>Insurance.</b> General liability and professional liability. You upload your certificate of insurance. Google says the minimum amount depends on the '
+                      "category and location, and the name on the policy must match the name you signed up with. If it doesn't, you need a DBA (doing business as) document.",
+                      '<b>Licenses.</b> Google says it checks the state licenses your business and its owners or managers need, against state databases, to the extent possible.']),
+                    ('p',
+                     'Google also says some businesses can apply for background check equivalency. If Google approves your own background check process, your techs can answer leads '
+                     "without a separate check by Google's providers.")]),
+                  ('How to get the Google Verified badge',
+                   [('ol',
+                     ['<b>Sign up for Local Services Ads</b> and pick HVAC as your category, with the services and areas you actually want.',
+                      '<b>Get your papers ready.</b> Certificate of insurance with a policy number, in the same business name you sign up with. Your state HVAC license numbers for '
+                      'the business and owners.',
+                      '<b>Finish the background checks</b> for owners and the techs who go into homes, or apply for equivalency if you already run your own.',
+                      '<b>Keep it current.</b> Update insurance and licenses before they expire, and add new techs as you hire them.']),
+                    ('p', "Google says a listing that hasn't finished every onboarding step is placed below providers who have. So a half-done profile costs you spots at the top.")]),
+                  ('Where screening usually gets stuck',
+                   [('p', "Most delays come from paperwork that doesn't line up with what Google asked for. Based on Google's own rules, check these before you upload anything:"),
+                    ('ul',
+                     ["<b>Names that don't match.</b> Google says the name on your insurance must match the name you signed up with. If your policy is under your LLC and your listing "
+                      'uses a trade name, have the DBA document ready.',
+                      '<b>Documents that can be edited.</b> Google asks for a real, non-editable certificate of insurance with a policy number on it. A screenshot or a typed list '
+                      "won't do.",
+                      '<b>Missing people.</b> Every owner needs a background check, not just the one filling out the form. So does each tech who goes into homes.',
+                      "<b>New hires.</b> A tech who joins after you're verified still needs to be checked before they work your Local Services leads."]),
+                    ('p', "If you run more than one location or brand, give each its own clean set of papers. It's easier to keep track of what expires when."),
+                    ('note',
+                     "Google's exact requirements change by category, state and over time. The table in your Local Services or Google Ads account is the final word for your "
+                     'business.')]),
+                  ("What's changing in 2026",
+                   [('p',
+                     'Google is moving Local Services Ads into Performance Max campaigns with pay-per-lead goals inside Google Ads. Google says the first phase began in August 2026 '
+                     'for select US home service providers, including HVAC.'),
+                    ('p', 'For the badge, Google says:'),
+                    ('ul',
+                     ['If you already passed verification, your verified status and badge move to Google Ads automatically.',
+                      "Insurance and license reverification are no longer required for campaigns that move over. If more checks are needed, you'll see a notice in your Google Ads "
+                      'account.',
+                      'Eligible businesses show the badge after passing business registration and representative checks.',
+                      'You may be asked to repeat checks. Not finishing them may lead to losing the badge, paused ads or a suspended account.']),
+                    ('p',
+                     'Google also updated its Local Services policies in 2026. It renamed them "Local Services Ads requirements", with the new version taking effect July 31, 2026, '
+                     'and said the change lines the rules up with the new badge.')]),
+                  ('Does the badge matter without the guarantee?',
+                   [('p',
+                     "It still tells a homeowner that Google checked you before showing you at the top of the page. But it's not the only thing they see. Google lists your rating, "
+                     'review count, response time and finished verification as part of your profile quality for Local Services rankings.'),
+                    ('p',
+                     'So the badge gets you in. Fast answers and good reviews decide how often the phone rings. <a href="{u:review-requests}">Review requests</a> after every job and '
+                     '<a href="{u:missed-call-text-back}">missed-call text-back</a> help with both. For how leads are charged and credited, see <a '
+                     'href="{u:post-google-local-services-ads-hvac}">Local Services Ads for HVAC</a>. To see what a lead may cost you, try the <a '
+                     'href="{u:tools/lsa-cost-calculator}">Local Services Ads cost calculator</a>.'),
+                    ('p', 'Want someone to handle the setup and screening? See our <a href="{u:local-services-ads}">Local Services Ads management</a>.'),
+                    ('cta',)])],
+     'faq': [('Can I still get Google Guaranteed?',
+              'No. Google retired it in late 2025. The badge now is Google Verified, which you get by passing Local Services screening and verification.'),
+             ('Does Google still pay homeowners back if a job goes wrong?',
+              'No. The money back guarantee ended with the Google Guarantee badge. Claims were only open for jobs booked before December 7, 2025, filed within 30 days of the job.'),
+             ("What's the difference between Google Screened and Google Guaranteed?",
+              'Google Screened was mainly for professional services like law and real estate. Google Guaranteed was for home services and came with the money back guarantee. Both are '
+              'now one Google Verified badge.'),
+             ('Do I need a background check for every tech?',
+              'Google says every worker who does the core work for customers needs one, unless Google approves your own background check process as equivalent.')],
+     'sources': [('Google Local Services Help: About Google Verified badge', 'https://support.google.com/localservices/answer/16498018'),
+                 ('Google Local Services Help: The Google Guarantee', 'https://support.google.com/localservices/answer/7549288'),
+                 ('Google Business Profile Community: Upcoming changes to Local Services Ads Google Guarantee badges',
+                  'https://support.google.com/business/community-guide/366556199/upcoming-changes-to-local-services-ads-google-guarantee-badges?hl=en'),
+                 ('Google Local Services Help: About Google Screened', 'https://support.google.com/localservices/answer/9376654'),
+                 ('Google Local Services Help: Business screening and verification requirements, United States',
+                  'https://support.google.com/localservices/answer/12174778?hl=en&co=GENIE.CountryCode%3DUS'),
+                 ('Google Local Services Help: Understand the screening and verification process', 'https://support.google.com/localservices/answer/6226575'),
+                 ('Google Local Services Help: Getting started with Local Services Ads', 'https://support.google.com/localservices/answer/6224841'),
+                 ('Google Local Services Help: About ad rankings', 'https://support.google.com/localservices/answer/7527305'),
+                 ('Google Ads Help: Local Services Ads transition to Performance Max campaigns with pay-per-lead goals', 'https://support.google.com/google-ads/answer/17213585'),
+                 ('Google Ads Help: Business screening and verification for campaigns with pay-per-lead goals', 'https://support.google.com/google-ads/answer/18260066'),
+                 ('Google Advertising Policies Help: Local Services Ads policy update (June 2026)', 'https://support.google.com/adspolicy/answer/17083421')],
+     'related': ['google-local-services-ads-hvac', 'google-ads-vs-local-services-ads-hvac', 'google-reviews-hvac', 'google-map-pack-hvac']},
 ]
