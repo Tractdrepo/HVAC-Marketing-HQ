@@ -1053,7 +1053,7 @@ def city_page(c):
   <p class="lede">{city_hook(c)} We make sure that's you: a fast site, a Google profile that's actually run, and every missed call texted back in 60 seconds.</p>
   {url_form()}
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
+<section class="section after-head"><div class="wrap">
   <div class="cfacts reveal">{fact_html}</div>
   <p class="csrc">Population: 2020 U.S. Census. Climate: {esc(station)}{" normals" if c.get("climate_period") else ""}. Both as published on Wikipedia.</p>
 </div></section>
@@ -1085,7 +1085,7 @@ def local_links(where, more=""):
 
 
 def city_cards(cities):
-    return "".join(f'<a class="city-card" href="{u(city_path(c))}"><b>{esc(c["name"])}</b><span>{deg(c["july_high_f"])} July high · pop. {fnum(c["population_2020"])}</span></a>' for c in cities)
+    return "".join(f'<a class="city-card" href="{u(city_path(c))}"><b>{esc(c["name"])}</b><span>{deg(c["july_high_f"])} July high<i aria-hidden="true"> · </i><br class="m-br">Pop. {fnum(c["population_2020"])}</span></a>' for c in cities)
 
 
 def texas_page():
@@ -1153,9 +1153,10 @@ def state_page(st):
 
 
 def locations_page():
-    blocks = "".join(f"""<div class="loc-state reveal"><div><h2><a href="{u(state_key(st))}">{esc(st['name'])}</a></h2><p class="muted">{len(st['cities'])} markets · {fnum(st['population_2020'])} people</p></div>
+    blocks = "".join(f"""<div class="group loc-state" id="{esc(st['slug'])}"><div class="group-head"><h2><a href="{u(state_key(st))}">{esc(st['name'])}</a></h2><span class="muted">{len(st['cities'])} market{'' if len(st['cities']) == 1 else 's'} · {fnum(st['population_2020'])} people</span><a class="group-more" href="{u(state_key(st))}">{esc(st['name'])} overview →</a></div>
   <div class="city-grid">{city_cards(st['cities'])}</div></div>
   """ for st in STATES)
+    jump = "".join(f'<a href="#{esc(st["slug"])}">{esc(st["name"])}</a>' for st in sorted(STATES, key=lambda x: x["name"]))
     body = f"""<section class="page-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / Locations</div>
   <span class="eyebrow">Markets</span>
@@ -1163,7 +1164,8 @@ def locations_page():
   <p class="lede">Everything we do works from anywhere: your site, your Google profile and your lead system. We started in Texas and add local market pages state by state. {len(ALL_CITIES)} markets in {len(STATES)} states so far.</p>
   {url_form()}
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
+<section class="section after-head"><div class="wrap">
+  <nav class="state-jump" aria-label="Jump to a state"><span class="foot-h">Jump to a state</span><div>{jump}</div></nav>
   {blocks}<div class="loc-next reveal"><h3>Don't see your state?</h3><p>We work with HVAC companies in any state. Local market pages for more states are on the way; the report card works for any town today.</p><a class="btn btn-ghost btn-small" href="#report-card">Grade my shop</a></div>
 </div></section>
 {report_card()}
@@ -1273,7 +1275,7 @@ def guide_page(g):
   <p class="lede">{esc(g['desc'])}</p>
   {byline(POSTS_UPDATED if is_post else None)}
 </div></section>
-<section class="section" style="padding-top:0"><div class="wrap g-wrap">
+<section class="section after-head"><div class="wrap g-wrap">
   <div class="g-take"><h2>Key takeaways</h2><ul class="ticks">{take}</ul></div>
   <nav class="g-toc" aria-label="In this guide"><b>In this guide</b><ol>{toc}</ol></nav>
   <article class="g-body">{secs}
@@ -1399,7 +1401,7 @@ def getting_started_page():
   <h1 style="max-width:20ch">What happens after you sign up.</h1>
   <p class="lede">No mystery and no long onboarding. Here's exactly what happens, what we do and what we need from you.</p>
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
+<section class="section after-head"><div class="wrap">
   {terms_strip()}
   <div class="section-head reveal" style="margin-top:32px"><span class="eyebrow">The first 90 days</span><h2>Live in 14 days. A plan for the next 90.</h2></div>
   {first_90()}
@@ -1419,13 +1421,22 @@ def getting_started_page():
     return page("getting-started", "What happens after you sign up", "Exactly what happens after an HVAC shop signs up with HVAC Marketing HQ: the 14-day build, the first 90 days, who does what, and what happens if you leave.", body, extra_head=faq_ld(GETTING_STARTED_FAQ))
 
 
-def services_overview():
+_NUM_WORDS = {12: "twelve", 13: "thirteen", 14: "fourteen", 15: "fifteen", 16: "sixteen", 17: "seventeen", 18: "eighteen"}
+SERVICE_COUNT_WORD = _NUM_WORDS.get(sum(len(x[2]) for x in SERVICE_GROUPS), str(sum(len(x[2]) for x in SERVICE_GROUPS)))
+
+
+def services_overview(hub=False):
     cols = ""
     for g, icon, slugs in SERVICE_GROUPS:
         links = "".join(f'<li><a href="{u(k)}"><b>{esc(svc_info(k)[0])}</b><span>{esc(svc_info(k)[1])}</span></a></li>' for k in slugs)
         cols += f'<div class="card svc-group reveal"><div class="icon">{ICON[icon]}</div><h3>{esc(g)}</h3><ul>{links}</ul></div>'
+    if hub:
+        return f"""<section class="section after-head"><div class="wrap">
+  <h2 class="sr-only">All services</h2>
+  <div class="grid two svc-groups">{cols}</div>
+</div></section>"""
     return f"""<section class="section"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">What we do</span><h2>Everything an HVAC shop needs to get found and booked.</h2><p class="lede">Twelve services, one system, run for you. No ad management and no photo shoots, so the price stays fair.</p></div>
+  <div class="section-head reveal"><span class="eyebrow">What we do</span><h2>Everything an HVAC shop needs to get found and booked.</h2><p class="lede">{SERVICE_COUNT_WORD.capitalize()} services, one system, run for you. No photo shoots and no ad spend markup, so the price stays fair.</p></div>
   <div class="grid two svc-groups">{cols}</div>
   <p style="margin-top:24px"><a class="more" href="{u('services')}">See all services →</a></p>
 </div></section>"""
@@ -1438,7 +1449,7 @@ def services_hub():
   <h1 style="max-width:20ch">HVAC marketing services, run for you.</h1>
   <p class="lede">Your website, your Google profile and your lead system, built once and run every day. Every plan includes the core of each. Higher plans add more pages, more towns and more of our time.</p>
 </div></section>
-{services_overview().replace('<section class="section">', '<section class="section" style="padding-top:12px">', 1)}
+{services_overview(hub=True)}
 <section class="section alt"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">How it fits together</span><h2>Rank. Book. Repeat.</h2></div>
   {method_block()}
@@ -1456,7 +1467,7 @@ def specialties_hub():
   <h1 style="max-width:20ch">Marketing for every kind of HVAC work.</h1>
   <p class="lede">We only work with HVAC companies, so every page we build speaks to the job your customer needs done. Pick the work you want more of.</p>
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
+<section class="section after-head"><div class="wrap">
   <h2 class="sr-only">HVAC specialties</h2>
   <div class="grid two">{cards}</div>
 </div></section>
@@ -1523,7 +1534,7 @@ def compare_hub():
   <h1 style="max-width:22ch">How we compare with other HVAC marketing companies.</h1>
   <p class="lede">Honest side-by-sides built from each company's own published prices and terms, with the date we read them. Where they do something better, we say so.</p>
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
+<section class="section after-head"><div class="wrap">
   <h2 class="sr-only">Comparisons</h2>
   <div class="grid two">{cards}</div>
   <div style="margin-top:32px">{compare()}</div>
@@ -1616,7 +1627,7 @@ def tool_page(t):
   <h1 style="max-width:22ch">{esc(t['title'])}</h1>
   <p class="lede">{esc(t['lede'])}</p>
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
+<section class="section after-head"><div class="wrap">
   <h2 class="sr-only">Calculator</h2>
   {tool_widget(t['slug'])}
 </div></section>
@@ -1648,15 +1659,15 @@ TOOL_GROUPS = [
 
 def tools_hub():
     tb = {t["slug"]: t for t in TOOLS}
-    cards = "".join(f'<div class="section-head" style="margin-top:28px"><h2>{esc(g)}</h2></div><div class="grid three">' + "".join(
-        f'<a class="card guide-card reveal" href="{u("tools/" + tb[k]["slug"])}"><span class="eyebrow">Free tool</span><h3>{esc(tb[k]["name"])}</h3><p>{esc(tb[k]["line"])}</p></a>' for k in ks if k in tb) + "</div>" for g, ks in TOOL_GROUPS)
+    cards = "".join(f'<div class="group"><div class="group-head"><h2>{esc(g)}</h2><span class="muted">{sum(k in tb for k in ks)} calculators</span></div><div class="grid three">' + "".join(
+        f'<a class="card guide-card reveal" href="{u("tools/" + tb[k]["slug"])}"><span class="eyebrow">Free tool</span><h3>{esc(tb[k]["name"])}</h3><p>{esc(tb[k]["line"])}</p></a>' for k in ks if k in tb) + "</div></div>" for g, ks in TOOL_GROUPS)
     body = f"""<section class="page-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / Free tools</div>
   <span class="eyebrow">Free tools</span>
   <h1 style="max-width:20ch">Free calculators for HVAC owners.</h1>
   <p class="lede">Check the math on ads, missed calls, marketing spend and reviews with your own numbers. No email, no sign-up, and nothing you type leaves your browser.</p>
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
+<section class="section after-head"><div class="wrap">
   <h2 class="sr-only">All tools</h2>
   {cards}
 </div></section>
@@ -1672,7 +1683,7 @@ def contact_page():
   <h1 style="max-width:20ch">Talk to a person who only does HVAC.</h1>
   <p class="lede">Ask a question, book a short call, or start with the free report card. No pressure and no long sales process.</p>
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
+<section class="section after-head"><div class="wrap">
   <h2 class="sr-only">Ways to reach us</h2>
   <div class="grid three">
     <div class="card reveal"><div class="icon">{ICON['chat']}</div><h3>Email us</h3><p>Questions about plans, your site or how it works.</p><p><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
@@ -1783,7 +1794,7 @@ def pillar_page():
   <p class="lede">Everything that decides whether a homeowner calls your shop or the next one, in plain words, with a link to the detail on each part.</p>
   {byline()}
 </div></section>
-<section class="section" style="padding-top:0"><div class="wrap g-wrap">
+<section class="section after-head"><div class="wrap g-wrap">
   <div class="g-take"><h2>The short version</h2><ul class="ticks"><li>Homeowners pick from the map, so your Google profile and reviews matter most.</li><li>A lead you don't answer is wasted, so answering and following up are marketing too.</li><li>Past customers are the cheapest jobs you'll ever book. Remind them before each season.</li><li>Own everything: your site, domain, profile, reviews and customer list.</li></ul></div>
   <nav class="g-toc" aria-label="In this guide"><b>In this guide</b><ol>{toc_html}</ol></nav>
   <article class="g-body">
@@ -1836,7 +1847,7 @@ def guides_page():
   <h1 style="max-width:20ch">Straight answers for HVAC owners.</h1>
   <p class="lede">How the map works, how to get reviews the right way, what marketing really costs. Every number has a source. No email needed to read any of it.</p>
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
+<section class="section after-head"><div class="wrap">
   <h2 class="sr-only">All guides</h2>
   <div class="grid two">{cards}</div>
 </div></section>
@@ -1853,7 +1864,7 @@ def blog_page():
   <h1 style="max-width:20ch">HVAC marketing, one question at a time.</h1>
   <p class="lede">Short, sourced answers to the questions HVAC owners ask about ads, SEO, reviews and leads. For the deep dives, see our <a href="{u('guides')}">guides</a>.</p>
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
+<section class="section after-head"><div class="wrap">
   <h2 class="sr-only">All posts</h2>
   <div class="grid two">{cards}</div>
 </div></section>
@@ -1933,7 +1944,7 @@ def home():
 <section class="section alt"><div class="wrap">
   <div class="section-head center reveal"><span class="eyebrow">What runs behind it</span><h2>One system. Every piece working.</h2><p class="lede">Your site, your Google profile and your lead system, built once and run for you. Your office just answers the texts.</p></div>
   {bento()}
-  <p style="margin-top:30px;text-align:center"><a class="btn btn-ghost" href="{u('services')}">See all twelve services <span class="arrow">→</span></a></p>
+  <p style="margin-top:30px;text-align:center"><a class="btn btn-ghost" href="{u('services')}">See all {SERVICE_COUNT_WORD} services <span class="arrow">→</span></a></p>
 </div></section>
 
 <section class="section" id="tech"><div class="wrap">
@@ -1988,7 +1999,7 @@ def method_page():
   <h1>Rank. Book. Repeat.</h1>
   <p class="lede">Most agencies sell you a website, or ads, or software. We run the three jobs that actually fill an HVAC schedule as one system. Every plan starts with all three; higher plans add more tools to each.</p>
 </div></section>
-<section class="section" style="padding-top:0"><div class="wrap"><h2 class="sr-only">The three phases</h2>{method_block()}</div></section>
+<section class="section after-head"><div class="wrap"><h2 class="sr-only">The three phases</h2>{method_block()}</div></section>
 {"".join(phases)}
 <section class="section"><div class="wrap split">
   <div><span class="eyebrow">Every plan</span><h2>Watch it work in your HQ Command Center.</h2><p class="lede">Calls, texts, booked jobs and reviews, updated as they happen.</p></div>
@@ -2065,7 +2076,7 @@ def trade_page(key):
   <div class="scenario"><span class="eyebrow">What it looks like</span><p style="margin:0">{esc(t['scenario'])}</p></div>
 </div></section>
 
-<section class="section" style="padding-top:24px"><div class="wrap split">
+<section class="section after-head"><div class="wrap split">
   <div><span class="eyebrow">Where you lose jobs</span><h2>What we fix for {t['plural']}</h2><p class="lede">The same few gaps cost most shops the most work.</p></div>
   <div class="pains">{pains}</div>
 </div></section>
@@ -2292,7 +2303,7 @@ def offer_page(key):
   <h1 style="max-width:18ch">{esc(o['h1'])}</h1>
   <p class="lede">{esc(o['lede'])}</p>
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
+<section class="section after-head"><div class="wrap">
   {terms_strip()}
   <h2 class="sr-only">What's included</h2>
   <div class="grid three">{cards}</div>
@@ -2354,7 +2365,7 @@ def report_card_page():
   <p class="lede">We grade your Google profile, reviews, website and listings against the HVAC shops people find near you. Free, in your inbox in about five minutes, and nobody will call you.</p>
   <p style="margin-top:26px"><a class="btn btn-primary" href="#report-card">Get my report card <span class="arrow">→</span></a> <a class="btn btn-ghost" href="#sample">See a sample</a></p>
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
+<section class="section after-head"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">What you'll learn</span><h2>Four grades. One list of what to fix first.</h2></div>
   {rc_learn()}
 </div></section>
@@ -2382,7 +2393,7 @@ def plans_page():
   <h1>Simple pricing. Pick a plan and go live in 14 days.</h1>
   <p class="lede">Every plan texts back every missed call. Bigger plans add pages, towns and campaigns. Monthly billing starts at launch, not at signing.</p>
 </div></section>
-<section class="section" style="padding-top:12px"><div class="wrap">
+<section class="section after-head"><div class="wrap">
   {terms_strip()}
   {plans_cards()}
   <p class="muted" style="margin-top:18px;font-size:.9rem">Normal texting, calling and AI use is included; large campaigns beyond your plan are billed at cost.</p>
@@ -2484,7 +2495,7 @@ def legal_page(key):
   <div class="crumbs"><a href="{u('')}">Home</a> / {title}</div>
   <h1>{title}</h1>
 </div></section>
-<section class="section" style="padding-top:0"><div class="wrap legal">
+<section class="section after-head"><div class="wrap legal">
   <div class="draft-note">Draft for lawyer review before launch. Written to meet A2P 10DLC texting verification.</div>
   {content}
 </div></section>"""
