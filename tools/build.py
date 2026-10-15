@@ -445,6 +445,7 @@ def page(path, title, desc, body, extra_head="", has_form=True):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="msvalidate.01" content="49487A56D33E168BE702418F3AEBDEC0">
 <title>{esc(full_title)}</title>
 <meta name="description" content="{esc(desc)}">
 {robots}
@@ -2711,20 +2712,23 @@ HVAC shops that do good work, miss calls when the crew is busy, and want to own 
 Shops that can't take on more work, want ads with nobody answering the calls, or want a one-time website with nothing after.
 
 ## Pages
-- Home: https://{DOMAIN}/
-- The method: https://{DOMAIN}/method
-- Pricing: https://{DOMAIN}/plans ({'; '.join(f"{p_['name']} ${p_['monthly']:,}/mo" for p_ in PLANS)}, 20% off annual)
-- Free report card: https://{DOMAIN}/report-card
-- HVAC marketing guide: https://{DOMAIN}/{route('hvac-marketing')}
-- All services: https://{DOMAIN}/{route('services')}
-- Compare agencies: https://{DOMAIN}/{route('compare')}
-- Free tools: https://{DOMAIN}/{route('tools')}
-- Blog: https://{DOMAIN}/blog
-- Guides: https://{DOMAIN}/guides ({guide_names})
+- [Home](https://{DOMAIN}/): what we do and the free report card
+- [The method](https://{DOMAIN}/method): Rank, Book, Repeat
+- [Pricing](https://{DOMAIN}/plans): {'; '.join(f"{p_['name']} ${p_['monthly']:,}/mo" for p_ in PLANS)}, 20% off annual
+- [Free report card](https://{DOMAIN}/report-card): grade a shop against the top 3 nearby
+- [HVAC marketing guide](https://{DOMAIN}/{route('hvac-marketing')}): the full playbook
+- [All services](https://{DOMAIN}/{route('services')})
+- [Compare agencies](https://{DOMAIN}/{route('compare')})
+- [Free tools](https://{DOMAIN}/{route('tools')}): HVAC marketing calculators
+- [Blog](https://{DOMAIN}/blog)
+- [Guides](https://{DOMAIN}/guides)
+- [Locations](https://{DOMAIN}/locations): {city_names}
 
 ## Services
-{chr(10).join(f"- {svc_info(k)[0]}: https://{DOMAIN}/{route(k)} ({svc_info(k)[1]})" for _, _, keys in SERVICE_GROUPS for k in keys)}
-- Locations: https://{DOMAIN}/locations ({city_names})
+{chr(10).join(f"- [{svc_info(k)[0]}](https://{DOMAIN}/{route(k)}): {svc_info(k)[1]}" for _, _, keys in SERVICE_GROUPS for k in keys)}
+
+## Guides
+{chr(10).join(f"- [{g['title']}](https://{DOMAIN}/{route(guide_path(g['slug']))})" for g in GUIDES)}
 """
 
 
