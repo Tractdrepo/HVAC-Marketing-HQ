@@ -81,7 +81,7 @@ POSTS = [
             ("Google Ads Help: Phone call conversion tracking", "https://support.google.com/google-ads/answer/6100664"),
             ("U.S. Bureau of Labor Statistics: HVAC mechanics and installers", "https://www.bls.gov/ooh/installation-maintenance-and-repair/heating-air-conditioning-and-refrigeration-mechanics-and-installers.htm"),
         ],
-        "related": ["google-ads-vs-local-services-ads-hvac", "hvac-marketing-cost"],
+        "related": ["google-ads-vs-local-services-ads-hvac", "hvac-marketing-cost", "facebook-ads-for-hvac"],
     },
     # ------------------------------------------------------------------ 2. Local Services Ads
     {
@@ -566,5 +566,162 @@ POSTS = [
             ("U.S. Bureau of Labor Statistics: HVAC mechanics and installers", "https://www.bls.gov/ooh/installation-maintenance-and-repair/heating-air-conditioning-and-refrigeration-mechanics-and-installers.htm"),
         ],
         "related": ["how-much-to-spend-on-google-ads-hvac", "hvac-lead-generation-bought-vs-owned"],
+    },
+
+    # ------------------------------------------------------------------ 9. Best agencies listicle
+    {
+        "slug": "best-hvac-marketing-agencies",
+        "title": "The best HVAC marketing agencies in 2026, compared and priced",
+        "short": "Best HVAC marketing agencies",
+        "desc": "Eight HVAC marketing agencies compared on published price, contract, website ownership and fit, with sources. We're on the list, and we say so.",
+        "read": 11,
+        "date": "2026-10-15",
+        "takeaways": [
+            "Only three of the eight agencies here publish real prices: us, Websites for HVAC and Footbridge Media. RS Gonzales and Hook Agency publish starting prices.",
+            "The big home-service agencies (Scorpion, Blue Corona and RYNO, Valve+Meter) don't publish prices and mostly serve larger shops.",
+            "\"You own your website\" means little unless the contract says so. Read the terms, not the sales page.",
+            "Pick by your size and budget first. The right agency for a $5M shop is the wrong one for a three-truck shop.",
+        ],
+        "sections": [
+            ("Read this first: we're on this list", [
+                ("note", "HVAC Marketing HQ wrote this, and we put ourselves first. Every agency on it sells HVAC marketing, so we have a stake. To keep it fair, every price and term below comes from the agency's own website, linked at the bottom, as published in October 2026. Where an agency doesn't publish something, we say so instead of guessing. If you spot something out of date, <a href=\"{u:contact}\">tell us</a> and we'll fix it."),
+                ("p", "Most \"best agencies\" lists are written by an agency that ranks itself first and keeps the criteria vague. We'd rather show our work. Here's how we compared them."),
+                ("ul", [
+                    "<b>HVAC focus.</b> Does the agency work only with HVAC companies, or with dozens of trades?",
+                    "<b>Published pricing.</b> Can you see what it costs before you get on a sales call?",
+                    "<b>Contract.</b> How long are you locked in, and what does it take to leave?",
+                    "<b>Website ownership.</b> Do you keep a working site if you leave, and is that in the terms?",
+                    "<b>Follow-up built in.</b> Are missed-call text-back and review requests part of the plan, or extras?",
+                    "<b>Fit for owner-run shops.</b> Does the agency take shops under $1M a year?",
+                ]),
+            ]),
+            ("Quick picks", [
+                ("table", [
+                    ["#", "Agency", "Best for", "Published price"],
+                    ["1", "HVAC Marketing HQ", "Owner-run HVAC shops that want the whole system for a flat monthly price", "$499 to $2,499/mo, build $1,995 to $4,500"],
+                    ["2", "Websites for HVAC", "HVAC shops that want one company per area", "$499 to $2,499/mo, build $1,995 to $4,499"],
+                    ["3", "Footbridge Media", "The lowest monthly price, especially for Nexstar and CertainPath members", "$249/mo, no setup fee"],
+                    ["4", "RS Gonzales", "Shops ready to spend $3,000+ a month on ads", "$2,200 to $5,000/mo plus ad spend"],
+                    ["5", "Hook Agency", "Shops over $2M a year that want SEO, ads and video", "SEO from $2,800/mo; bundles $3,500 to $15,000+/mo"],
+                    ["6", "Scorpion", "Large shops that want a big team and many products", "Not published"],
+                    ["7", "Blue Corona and RYNO", "Larger home-service companies with big budgets", "Not published"],
+                    ["8", "Valve+Meter", "Shops that want an assessment-led plan tied to job data", "Not published"],
+                ]),
+            ]),
+            ("1. HVAC Marketing HQ (that's us)", [
+                ("p", "<b>Best for:</b> owner-run HVAC shops, from one truck to several locations, that want their website, Google profile, SEO and lead follow-up run by one HVAC-only team."),
+                ("ul", [
+                    "<b>Price:</b> Starter $499, Growth $799, Dominate $1,299 and Multi-location $2,499 a month, 20% off billed annually. One-time build fee of $1,995 to $4,500. Google Ads, Local Services Ads and Facebook ads are $299 a month each, with ad spend billed to you and never marked up. See <a href=\"{u:plans}\">plans</a>.",
+                    "<b>Contract:</b> 6-month first term, then month to month. First month refunded if you're not happy within 30 days of launch.",
+                    "<b>Ownership:</b> your site, domain, Google profile and reviews are yours.",
+                    "<b>Built in:</b> missed-call text-back within 60 seconds and review requests on every plan, plus <a href=\"{u:hq-command-center}\">HQ Command Center</a>, a CRM with unlimited logins for your team.",
+                ]),
+                ("p", "<b>Not the right fit if:</b> you want photo and video shoots, you need a big in-house team on weekly calls, or you can't take on more work right now. We're also new, so we can't show you years of case studies yet. Start with the <a href=\"{u:report-card}\">free report card</a> and judge the work yourself."),
+            ]),
+            ("2. Websites for HVAC", [
+                ("p", "<b>Best for:</b> HVAC shops that want one company per area. Their monthly prices match ours at every plan level."),
+                ("ul", [
+                    "<b>Price:</b> $499 to $2,499 a month billed monthly, or $399 to $1,999 billed annually, plus a build fee of $1,995 to $4,499.",
+                    "<b>Contract:</b> month to month.",
+                    "<b>Ownership:</b> their terms say the site goes offline if you leave. Ask what you keep.",
+                    "<b>Strengths:</b> HVAC only, clear published pricing, and an exclusive territory offer.",
+                ]),
+                ("p", "<b>Not the right fit if:</b> keeping a working website after you leave matters to you. Our <a href=\"{u:guide-websites-for-hvac-alternative}\">side-by-side comparison</a> has the 12-month math."),
+            ]),
+            ("3. Footbridge Media", [
+                ("p", "<b>Best for:</b> the lowest monthly price with no setup fee, especially if you're a Nexstar or CertainPath member."),
+                ("ul", [
+                    "<b>Price:</b> $249 a month, $0 setup. Member rates are $194 a month for Nexstar and CertainPath, $223 for Praxis S-10. Google Ads management is $249 a month after the first month, plus spend.",
+                    "<b>Contract:</b> none; either side can end it with written notice. 90-day money-back guarantee.",
+                    "<b>Ownership:</b> their terms cover handing over files after 90 days.",
+                    "<b>Strengths:</b> low price, priced add-ons you can buy online, and review requests included.",
+                ]),
+                ("p", "<b>Not the right fit if:</b> you want an HVAC-only team (they serve about 15 trades) or missed-call text-back in the plan. See the <a href=\"{u:guide-footbridge-media-alternative-hvac}\">full comparison</a>."),
+            ]),
+            ("4. RS Gonzales", [
+                ("p", "<b>Best for:</b> HVAC-focused shops ready to spend at least $3,000 a month on ads and hand marketing to a larger team."),
+                ("ul", [
+                    "<b>Price:</b> Grow $2,200, Accelerate $3,500 and Dominate $5,000 a month, plus ad spend with a $3,000 monthly minimum. A $500 onboarding deposit.",
+                    "<b>Contract:</b> 12 months on their pricing page. 30-day money-back on the first month.",
+                    "<b>Ownership:</b> the website is yours after 12 months, or with a $4,500 buyout.",
+                    "<b>Strengths:</b> deep HVAC content, a CRM that syncs with field software, and a website included in the plan.",
+                ]),
+                ("p", "<b>Not the right fit if:</b> your all-in budget is under about $1,500 a month. The <a href=\"{u:guide-rs-gonzales-alternative}\">comparison</a> works out the 12-month cost."),
+            ]),
+            ("5. Hook Agency", [
+                ("p", "<b>Best for:</b> shops doing over $2M a year that want SEO, ads, Meta ads with video and a custom website from one partner."),
+                ("ul", [
+                    "<b>Price:</b> local SEO from $2,800 a month, Google Ads from $2,000, Meta ads from $3,000, websites $12,000 to $24,000 paid over 12 months. Bundles from $3,500 to $15,000+ a month.",
+                    "<b>Contract:</b> their pages differ on whether terms are yearly or month to month. Ask.",
+                    "<b>Ownership:</b> they say you own your website 100%.",
+                    "<b>Strengths:</b> a large content library and a long track record across trades.",
+                ]),
+                ("p", "<b>Not the right fit if:</b> your shop does under $1M a year; their own forms say that's not a fit. They also serve over 30 trades. See the <a href=\"{u:guide-hook-agency-alternative-hvac}\">comparison</a>."),
+            ]),
+            ("6. Scorpion", [
+                ("p", "<b>Best for:</b> large shops that want a big agency with its own software and many add-on products."),
+                ("ul", [
+                    "<b>Price:</b> not published. Their FAQ says it depends on your goals, and the next step is a meeting.",
+                    "<b>Contract:</b> their FAQ describes a 12-month term for website and SEO; ads are month to month.",
+                    "<b>Ownership:</b> their FAQ says the site is built on their own platform, so leaving means a rebuild.",
+                    "<b>Strengths:</b> scale, many products and a large team.",
+                ]),
+                ("p", "<b>Not the right fit if:</b> you want to see a price before a sales call, or keep your site if you leave. Our <a href=\"{u:guide-scorpion-alternative-hvac}\">Scorpion guide</a> quotes their FAQ."),
+            ]),
+            ("7. Blue Corona and RYNO", [
+                ("p", "<b>Best for:</b> larger home-service companies with big budgets. Blue Corona now operates as part of RYNO, and the two sites share the same terms."),
+                ("ul", [
+                    "<b>Price:</b> no pricing page. RYNO's plumbing FAQ says clients \"typically invest $5,000 or more\". Older Blue Corona pages put ongoing SEO at $1,500 to $20,000 a month.",
+                    "<b>Contract:</b> Blue Corona's copy says no long-term contracts, but the published terms point to an agreement that isn't public.",
+                    "<b>Ownership:</b> \"You own 100% of everything we create\" in their sales copy; there's no ownership clause in the published terms.",
+                    "<b>Strengths:</b> a big service menu, from SEO and ads to direct mail and call tracking.",
+                ]),
+                ("p", "<b>Not the right fit if:</b> you're an owner-run shop with a budget under a few thousand a month."),
+            ]),
+            ("8. Valve+Meter", [
+                ("p", "<b>Best for:</b> shops that want a plan built from their own job and invoice data, starting with an assessment."),
+                ("ul", [
+                    "<b>Price:</b> not published. The only offer is a free marketing assessment.",
+                    "<b>Contract:</b> not published.",
+                    "<b>Ownership:</b> they say clients keep their website and data.",
+                    "<b>Strengths:</b> a clear \"Math Before Marketing\" approach that ties spend to booked jobs. Most of their case studies are HVAC, though they serve 15 trades.",
+                ]),
+                ("p", "<b>Not the right fit if:</b> you want to know the price before you talk to anyone."),
+            ]),
+            ("How to choose", [
+                ("ol", [
+                    "<b>Start with your budget, all in.</b> Add the monthly fee, any build fee and ad spend for 12 months. Our <a href=\"{u:tools/hvac-marketing-budget-calculator}\">marketing budget calculator</a> helps.",
+                    "<b>Read the terms, not the sales page.</b> Look for the contract length, the cancellation notice and what happens to your website when you leave.",
+                    "<b>Ask who does the work.</b> An HVAC-only team won't need you to explain what a tune-up is.",
+                    "<b>Ask what they'll report.</b> Booked jobs and answered calls beat clicks and impressions. See our <a href=\"{u:guide-questions-to-ask-hvac-marketing-agency}\">seven questions to ask any agency</a>.",
+                    "<b>Check your own numbers first.</b> The <a href=\"{u:report-card}\">free report card</a> shows where you stand before anyone pitches you.",
+                ]),
+                ("p", "Want everything side by side? See <a href=\"{u:compare}\">how HVAC marketing companies compare</a>, or read the <a href=\"{u:hvac-marketing}\">complete HVAC marketing guide</a>."),
+                ("cta",),
+            ]),
+        ],
+        "faq": [
+            ("How much does an HVAC marketing agency cost?", "Of the agencies here that publish prices, monthly fees run from $249 (Footbridge Media) to $5,000 (RS Gonzales) before ad spend. The larger agencies don't publish prices; one says its clients typically invest $5,000 or more a month."),
+            ("Why do you rank yourselves first?", "Because we built what we think an owner-run HVAC shop needs, at a price it can see up front. We say so at the top, and every other agency's facts come from its own site so you can check them."),
+            ("Should I pick an HVAC-only agency?", "It helps. An HVAC-only team already knows your services, seasons and customers, so you spend less time explaining your business."),
+            ("Do I own my website with these agencies?", "It varies. Several say you do in their sales copy but not in their terms. Ask for the contract and read the section on what happens when you leave."),
+        ],
+        "sources": [
+            ("Websites for HVAC: Pricing", "https://websitesforhvac.com/pricing"),
+            ("Websites for HVAC: Terms", "https://websitesforhvac.com/terms"),
+            ("Footbridge Media: HVAC marketing", "https://www.footbridgemedia.com/who-we-help/hvac-marketing-seo"),
+            ("Footbridge Media: Terms", "https://www.footbridgemedia.com/terms"),
+            ("Footbridge Media: Nexstar members", "https://www.footbridgemedia.com/nexstar"),
+            ("RS Gonzales: Pricing", "https://rsgonzales.com/pricing/"),
+            ("RS Gonzales: Terms and conditions", "https://rsgonzales.com/terms-and-conditions/"),
+            ("Hook Agency: Pricing", "https://hookagency.com/pricing/"),
+            ("Hook Agency: Contact (fit by revenue)", "https://hookagency.com/contact-us/"),
+            ("Scorpion: FAQ", "https://www.scorpion.co/faq/"),
+            ("RYNO: Plumbing industry FAQ", "https://www.rynoss.com/industries/plumbing/"),
+            ("Blue Corona: Digital marketing", "https://www.bluecorona.com/digital-marketing/"),
+            ("Valve+Meter: HVAC", "https://valveandmeter.com/trades/hvac/"),
+            ("Valve+Meter: Free marketing assessment", "https://valveandmeter.com/request-marketing-assessment/"),
+        ],
+        "related": ["questions-to-ask-hvac-marketing-agency", "hvac-marketing-cost", "scorpion-alternative-hvac"],
     },
 ]

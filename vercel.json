@@ -276,6 +276,11 @@
       "permanent": true
     },
     {
+      "source": "/post-best-hvac-marketing-agencies",
+      "destination": "/blog/best-hvac-marketing-agencies",
+      "permanent": true
+    },
+    {
       "source": "/hvac-marketing-texas",
       "destination": "/locations/texas",
       "permanent": true

@@ -41,12 +41,12 @@ PLANS = [
     {
         "name": "Starter", "monthly": 499, "build": 1995, "scope": "5 pages · 1 city", "stage": "1 to 2 trucks",
         "for": "A fast site and a complete Google profile, with every missed call texted back.",
-        "items": ["Custom 5-page website", "Missed-call text-back in 60 seconds", "Review requests after every job", "Google profile setup", "HQ Command Center CRM and app", "Unlimited logins for your whole team"],
+        "items": ["Custom 5-page website", "Missed-call text-back in 60 seconds", "Review requests after every job", "Google profile setup", "HQ Command Center CRM and app", "Unlimited logins for your whole team", "Monthly recap, strategy call twice a year"],
     },
     {
         "name": "Growth", "monthly": 799, "build": 2495, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
         "for": "The full Rank, Book, Repeat system for an owner-run shop.",
-        "items": ["Everything in Starter", "12 pages, including 3 city pages", "Google profile managed, posting the job photos you text us", "Estimate follow-up until booked or lost", "Review replies and AI web chat", "Win-back texts to past customers each season", "1 new article a month"],
+        "items": ["Everything in Starter", "12 pages, including 3 city pages", "Google profile managed, posting the job photos you text us", "Estimate follow-up until booked or lost", "Review replies and AI web chat", "Win-back texts to past customers each season", "1 new article a month", "Quarterly strategy call"],
     },
     {
         "name": "Dominate", "monthly": 1299, "build": 2995, "scope": "25 pages · 10 cities", "stage": "8+ trucks or a wide area",
@@ -206,7 +206,7 @@ def footer(has_form=True):
         <a class="brand" href="{u('')}">{MARK}<span>{esc(BRAND)}<small>{esc(TAGLINE)}</small></span></a>
         <p style="margin-top:16px;max-width:36ch">Websites, Google profiles and lead systems for HVAC companies.</p>
       </div>
-      <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('getting-started')}">Getting started</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li>{f'<li><a href="{u("blog")}">Blog</a></li>' if POSTS else ''}<li><a href="{u('tools')}">Free tools</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li></ul></div>
+      <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('getting-started')}">Getting started</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li>{f'<li><a href="{u("blog")}">Blog</a></li>' if POSTS else ''}<li><a href="{u('tools')}">Free tools</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li>{f'<li><a href="{u("post-best-hvac-marketing-agencies")}">Best HVAC agencies</a></li>' if "best-hvac-marketing-agencies" in POST_SLUGS else ''}</ul></div>
       <div><h2 class="foot-h">Services</h2><ul>{offers}</ul></div>
       <div><h2 class="foot-h">For HVAC</h2><ul>{niches}</ul></div>
       <div><h2 class="foot-h">Locations</h2><ul><li><a href="{u('hvac-marketing-texas')}">Texas</a></li><li><a href="{u('hvac-marketing-houston-tx')}">Houston</a></li><li><a href="{u('hvac-marketing-dallas-tx')}">Dallas</a></li><li><a href="{u('hvac-marketing-austin-tx')}">Austin</a></li><li><a href="{u('hvac-marketing-waco-tx')}">Waco</a></li><li><a href="{u('locations')}">All locations</a></li></ul></div>
@@ -903,6 +903,7 @@ COMMON_FAQ = [
     ("How soon will I see more calls?", "Missed-call text-back works the day your line is connected, so you see texted-back calls in week one. Google rankings and reviews take longer: months, not weeks. That's why the first term is six months, and why your HQ Command Center shows what's moving along the way."),
     ("What do I have to do?", "One kickoff call, sharing access to your domain, Google profile and phone line, approving your site before it goes live, and answering the texts. We do the rest."),
     ("Do I own my website?", "Yes. Your domain, Google profile, reviews and site content are yours. If you leave, we hand over the site files and help move your number. It's written into the agreement."),
+    ("How often do we meet?", "Not often, on purpose. You're running jobs, not sitting in meetings. Every month you get a short recap and your statement to read when it suits you. We get on a strategy call twice a year on Starter and every quarter on Growth and up. In between, text or email us anytime and we answer in the shared inbox."),
     ("How long is the contract?", "Six months to start, then month to month. Six months gives the Google profile and reviews time to move. After that you stay because it's working. And if you're not happy in the first 30 days after launch, we refund your first month."),
     ("What if I already have a website I like?", "Keep it. We can add the booking form and lead system to your current site, and the build fee is lower or waived."),
     ("Is there a money-back guarantee?", "Yes. If you're not happy in your first 30 days after launch, tell us and we refund your first month. You keep your domain, Google profile and reviews either way."),
@@ -1108,7 +1109,7 @@ def local_links(where, more=""):
     svc = ["website", "local-seo", "google-business-profile", "missed-call-text-back", "google-ads", "local-services-ads", "hvac-lead-generation"]
     svc_h = "".join(f'<a href="{u(k)}">{esc(svc_info(k)[0])}</a>' for k in svc)
     reads = [(guide_path("google-map-pack-hvac"), "How HVAC shops get into the map pack"), ("local-seo", "HVAC SEO: what we do and what it costs"), ("hvac-marketing", "HVAC marketing: the complete guide"),
-             ("tools/missed-call-cost-calculator", "Missed call cost calculator"), ("tools/lsa-cost-calculator", "Local Services Ads cost calculator"), ("plans", "Plans and pricing")]
+             (guide_path("best-hvac-marketing-agencies"), "The best HVAC marketing agencies, compared"), ("tools/missed-call-cost-calculator", "Missed call cost calculator"), ("tools/lsa-cost-calculator", "Local Services Ads cost calculator"), ("plans", "Plans and pricing")]
     rd = "".join(f'<li><a href="{u(k)}">{esc(t)}</a></li>' for k, t in reads if k in ROUTES or k in ("plans", "hvac-marketing"))
     return f"""<section class="section alt"><div class="wrap"><div class="split">
   <div><span class="eyebrow">For {esc(where)} shops</span><h2>What we run for you.</h2><p class="lede">One system: Rank, Book, Repeat. <a class="more" href="{u('method')}">How it works →</a></p><div class="city-links" style="margin-top:18px">{svc_h}</div></div>
@@ -1266,7 +1267,7 @@ def org_ld():
 
 
 def _links(text):
-    return _re.sub(r"\{u:([a-z0-9-]*)\}", lambda m: u(m.group(1)), text)
+    return _re.sub(r"\{u:([a-z0-9/-]*)\}", lambda m: u(m.group(1)), text)
 
 
 def guide_block(b):
@@ -1301,7 +1302,7 @@ MAGNET_GUIDES = {"hvac-website-checklist", "google-map-pack-hvac", "google-revie
 
 
 def guide_page(g):
-    toc = "".join(f'<li><a href="#s{n}">{esc(h)}</a></li>' for n, (h, _) in enumerate(g["sections"]))
+    toc = "".join(f'<li><a href="#s{n}">{esc(_re.sub(r"^[0-9]+[.] ", "", h))}</a></li>' for n, (h, _) in enumerate(g["sections"]))
     secs = "".join(f'<h2 id="s{n}">{esc(h)}</h2>' + "".join(guide_block(b) for b in blocks) for n, (h, blocks) in enumerate(g["sections"]))
     take = "".join(f"<li>{esc(t)}</li>" for t in g["takeaways"])
     src = "".join(f'<li><a href="{esc(url)}" rel="noopener">{esc(lbl)}</a></li>' for lbl, url in g["sources"])
@@ -1313,7 +1314,7 @@ def guide_page(g):
   <span class="eyebrow">{'Blog' if is_post else 'Guide'} · {g['read']} min read</span>
   <h1>{esc(g['title'])}</h1>
   <p class="lede">{esc(g['desc'])}</p>
-  {byline(POSTS_UPDATED if is_post else None)}
+  {byline(__import__("datetime").date.fromisoformat(g["date"]).strftime("%b %-d, %Y") if is_post and g.get("date") else (POSTS_UPDATED if is_post else None))}
 </div></section>
 <section class="section after-head"><div class="wrap g-wrap">
   <div class="g-take"><h2>Key takeaways</h2><ul class="ticks">{take}</ul></div>
@@ -1429,6 +1430,7 @@ def service_page(sv):
     extra += [("tools/" + t["slug"], t["title"]) for t in TOOLS if t["service"] == sv["slug"]]
     if g:
         extra.insert(0, (guide_path(g["slug"]), g["title"]))
+    extra.append(("hvac-marketing", "HVAC marketing: the complete guide"))
     guide = ('<div class="card related"><h3>Read before you decide</h3><ul>' + "".join(f'<li><a href="{u(k)}">{esc(t)}</a></li>' for k, t in extra) + "</ul></div>") if extra else ""
     calc = f"""<section class="section alt"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">The math</span><h2>What missed calls cost you.</h2><p class="lede">Put in your own numbers.</p></div>
@@ -1603,12 +1605,22 @@ GUIDE_LINKS = {
     "rs-gonzales-alternative": ["local-seo", "google-business-profile", "hq-command-center"],
     "hook-agency-alternative-hvac": ["local-seo", "website", "hq-command-center"],
     "footbridge-media-alternative-hvac": ["website", "missed-call-text-back", "review-requests"],
+    "how-much-to-spend-on-google-ads-hvac": ["google-ads", "local-services-ads", "missed-call-text-back"],
+    "google-local-services-ads-hvac": ["local-services-ads", "google-ads", "review-requests"],
+    "google-ads-vs-local-services-ads-hvac": ["google-ads", "local-services-ads", "hvac-lead-generation"],
+    "hvac-seo-what-moves-rankings": ["local-seo", "google-business-profile", "review-requests"],
+    "get-more-google-reviews-hvac": ["review-requests", "google-business-profile", "hq-command-center"],
+    "hvac-website-design": ["website", "hvac-website-redesign", "ai-web-chat"],
+    "hvac-lead-generation-bought-vs-owned": ["hvac-lead-generation", "missed-call-text-back", "estimate-follow-up"],
+    "facebook-ads-for-hvac": ["facebook-ads", "seasonal-campaigns", "google-ads"],
+    "best-hvac-marketing-agencies": ["website", "local-seo", "hq-command-center"],
 }
 COMPARE_SLUGS = ["websites-for-hvac-alternative", "scorpion-alternative-hvac", "rs-gonzales-alternative", "hook-agency-alternative-hvac", "footbridge-media-alternative-hvac"]
 
 
 def compare_hub():
-    cards = "".join(f'<a class="card guide-card reveal" href="{u(guide_path(g["slug"]))}"><span class="eyebrow">Comparison</span><h3>{esc(g["title"])}</h3><p>{esc(g["desc"])}</p></a>' for slug in COMPARE_SLUGS for g in GUIDES if g["slug"] == slug)
+    cards = "".join(f'<a class="card guide-card reveal" href="{u(guide_path(g["slug"]))}"><span class="eyebrow">Ranked list</span><h3>{esc(g["title"])}</h3><p>{esc(g["desc"])}</p></a>' for g in POSTS if g["slug"] == "best-hvac-marketing-agencies")
+    cards += "".join(f'<a class="card guide-card reveal" href="{u(guide_path(g["slug"]))}"><span class="eyebrow">Comparison</span><h3>{esc(g["title"])}</h3><p>{esc(g["desc"])}</p></a>' for slug in COMPARE_SLUGS for g in GUIDES if g["slug"] == slug)
     body = f"""<section class="page-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / Compare agencies</div>
   <span class="eyebrow">Compare</span>
@@ -1630,7 +1642,10 @@ def guide_links(slug):
     if not keys:
         return ""
     cards = "".join(f'<li><a href="{u(k)}"><b>{esc(svc_info(k)[0])}</b><span>{esc(svc_info(k)[1])}</span></a></li>' for k in keys)
-    return f"""<div><span class="eyebrow">Put it to work</span><h2>We can run this for you</h2><ul class="link-list">{cards}</ul></div>"""
+    tools_ = [t for t in TOOLS if t.get("guide") == slug] + [t for t in TOOLS if t["service"] in keys and t.get("guide") != slug]
+    more = "".join(f'<a href="{u("tools/" + t["slug"])}">{esc(t["name"])}</a>' for t in tools_[:2])
+    more += f'<a href="{u("hvac-marketing")}">The complete HVAC marketing guide</a>' if slug != "hvac-marketing" else ""
+    return f"""<div><span class="eyebrow">Put it to work</span><h2>We can run this for you</h2><ul class="link-list">{cards}</ul><div class="city-links" style="margin-top:16px">{more}</div></div>"""
 
 
 TOOLS = [
