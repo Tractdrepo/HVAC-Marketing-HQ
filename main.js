@@ -112,7 +112,8 @@
       var perCall = ticket * margin, perJob = job * margin;
       calc.querySelector("[data-out=calls]").textContent = perCall > 0 ? fmt(Math.ceil(plan / perCall)) : "–";
       calc.querySelector("[data-out=leads]").textContent = lead > 0 ? fmt(Math.floor(plan / lead)) : "–";
-      calc.querySelector("[data-out=jobs]").textContent = perJob > 0 ? fmt(Math.round((plan / perJob) * 10) / 10) : "–";
+      var months = plan > 0 ? perJob / plan : 0;
+      calc.querySelector("[data-out=jobs]").textContent = months > 0 ? (months >= 10 ? fmt(Math.floor(months)) : String(Math.floor(months * 10) / 10)) : "–";
     };
     calc.addEventListener("input", update);
     update();

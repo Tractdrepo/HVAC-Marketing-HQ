@@ -423,7 +423,7 @@ GUIDES = [
                     ["Total monthly cost", "$499 to $2,499 a month plus a one-time build fee, all on our <a href=\"{u:plans}\">pricing page</a>. Ads are an optional add-on; ad spend is billed by Google or Meta to you, never marked up."],
                     ["Guarantees", "Missed calls texted back in 60 seconds, launch in 14 days, and your first month back if you're not happy within 30 days of launch. We don't guarantee rankings."],
                     ["Results", "Your HQ Command Center shows calls, texts, booked jobs and reviews, anytime."],
-                    ["Who does the work", "A small team that only works with HVAC companies."],
+                    ["Who does the work", "A team that works only with HVAC companies."],
                 ]),
             ]),
         ],
