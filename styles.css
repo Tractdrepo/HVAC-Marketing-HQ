@@ -197,7 +197,7 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .float span { color: var(--muted); font-size: .76rem; }
 .float.f1 { left: -18px; bottom: 0; }
 .float.f1 .ic { background: rgba(61, 220, 151, .14); color: var(--go); }
-.float.f2 { right: -14px; top: -58px; animation-delay: -3s; }
+.float.f2 { right: 22%; top: -46px; animation-delay: -3s; }
 .float.f2 .ic { background: rgba(71, 184, 255, .14); color: var(--cool); }
 @media (max-width: 600px) { .float.f1 { left: 4px; } .float.f2 { right: 4px; top: -44px; } }
 @keyframes bob { 50% { transform: translateY(-8px); } }
@@ -271,7 +271,8 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .tile p { margin: 0; color: var(--muted); font-size: .94rem; }
 .tile .mock { margin-top: auto; }
 .tile-label { font: 500 .68rem/1 var(--mono); text-transform: uppercase; letter-spacing: .12em; color: var(--cool); margin-bottom: 10px; display: block; }
-.tile.b-tall .demo { margin-block: auto; }
+.tile.b-tall .demo { margin-top: 6px; }
+@media (min-width: 900px) { .tile.b-tall .demo { flex: 1; display: flex; flex-direction: column; } .tile.b-tall .phone { flex: 1; display: flex; } .tile.b-tall .screen { flex: 1; height: auto; min-height: 470px; } }
 
 /* Map pack mock */
 .mappack { background: #f6f7f9; color: #1f2937; border-radius: 14px; overflow: hidden; font-size: .8rem; }
@@ -550,8 +551,10 @@ input:focus, select:focus { border-color: var(--cool); outline: none; }
 /* Footer */
 .site-foot { border-top: 1px solid var(--line); color: var(--muted); padding: 64px 0 32px; font-size: .92rem; background: var(--bg); }
 .foot-grid { display: grid; gap: 32px; }
-@media (min-width: 600px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1000px) { .foot-grid { grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr 1fr; } }
+.foot-grid { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+.foot-grid > :first-child { grid-column: 1 / -1; }
+@media (min-width: 720px) { .foot-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1000px) { .foot-grid { grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr 1fr; } .foot-grid > :first-child { grid-column: auto; } }
 .site-foot .brand { color: var(--text); }
 .site-foot .foot-h { color: var(--text); font: 600 .72rem/1 var(--mono); text-transform: uppercase; letter-spacing: .14em; margin-bottom: 16px; }
 .site-foot ul { list-style: none; padding: 0; margin: 0; }
@@ -731,7 +734,6 @@ input:focus, select:focus { border-color: var(--cool); outline: none; }
 .city-card:hover { border-color: var(--cool); }
 .city-card b { display: block; font-size: 1.02rem; }
 .city-card span { font-size: .8rem; color: var(--muted); }
-.loc-state { display: grid; gap: 20px; }
 .loc-state h2 a { color: inherit; text-decoration: none; }
 .loc-next { margin-top: 28px; padding: 26px; border: 1px dashed var(--line-2); border-radius: var(--radius); }
 .loc-next p { color: var(--muted); max-width: 60ch; }
@@ -1037,3 +1039,40 @@ main > .section.dark::before { display: none; }
 .founder-q { margin: 0 0 8px; font-size: 1.05rem; line-height: 1.5; }
 .founder-by { margin: 0; color: var(--muted); font-size: .9rem; }
 @media (max-width: 600px) { .founder { flex-direction: column; text-align: center; } }
+
+/* Design pass, Oct 15 2026: spacing rhythm, group headings, locations jump nav */
+.section.after-head { padding-top: 56px; }
+@media (max-width: 720px) {
+  .section { padding: 64px 0; }
+  .section.tight { padding: 44px 0; }
+  .section.after-head { padding-top: 40px; }
+  .section-head { margin-bottom: 36px; }
+}
+/* A labelled group of cards inside one section (states, tool groups): space above, tight to its own cards */
+.group + .group, .group + .loc-next { margin-top: 72px; }
+.group-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; padding-bottom: 14px; margin-bottom: 22px; border-bottom: 1px solid var(--line); }
+.group-head h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); margin: 0; }
+.group-head h2 a { color: inherit; text-decoration: none; }
+.group-head h2 a:hover { color: var(--cool); }
+.group-head .muted { font-size: .92rem; }
+.group-head .group-more { margin-left: auto; font-size: .9rem; font-weight: 600; color: var(--cool); text-decoration: none; }
+@media (max-width: 720px) { .group + .group, .group + .loc-next { margin-top: 52px; } .group-head .group-more { margin-left: 0; flex-basis: 100%; } }
+.loc-state { scroll-margin-top: 96px; }
+.state-jump { margin-bottom: 56px; padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.state-jump .foot-h { display: block; font: 600 .72rem/1 var(--mono); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); margin-bottom: 14px; }
+.state-jump div { display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.state-jump a { font-size: .86rem; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; color: var(--text); background: var(--bg); }
+.state-jump a:hover { border-color: var(--cool); color: var(--cool); }
+/* Service groups: an odd last card spans the row instead of sitting alone */
+@media (min-width: 720px) { .svc-groups > .svc-group:last-child:nth-child(odd) { grid-column: 1 / -1; } }
+/* Report card band: headline sized for its half-width column */
+.rc h2 { font-size: clamp(2rem, 3.4vw, 2.9rem); }
+/* Home demo step labels: two rows of two on narrow phones instead of four cramped columns */
+@media (max-width: 420px) { .demo-steps { flex-wrap: wrap; row-gap: 10px; } .demo-steps button { flex: 1 1 calc(50% - 6px); } }
+@media (min-width: 720px) { .svc-groups > .svc-group:last-child:nth-child(odd) ul { grid-template-columns: repeat(3, 1fr); column-gap: 28px; } }
+.city-card .m-br { display: none; }
+.city-card i { font-style: normal; }
+@media (max-width: 520px) { .city-card .m-br { display: inline; } .city-card i { display: none; } }
+@media (max-width: 720px) { .state-jump div { flex-wrap: nowrap; overflow-x: auto; margin: 0 -22px; padding: 0 22px 4px; scrollbar-width: none; } .state-jump a { flex: none; } .state-jump { margin-bottom: 40px; } }
+.city-card span { display: block; line-height: 1.5; margin-top: 2px; }
+@media (max-width: 720px) { .state-jump { overflow: hidden; } }
