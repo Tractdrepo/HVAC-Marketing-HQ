@@ -1,0 +1,352 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair colorado springs",
+   "monthly_searches": 590,
+   "cpc_usd": 77.23,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     390
+    ],
+    [
+     2026,
+     8,
+     480
+    ],
+    [
+     2026,
+     7,
+     880
+    ],
+    [
+     2026,
+     6,
+     880
+    ],
+    [
+     2026,
+     5,
+     720
+    ],
+    [
+     2026,
+     4,
+     590
+    ],
+    [
+     2026,
+     3,
+     880
+    ],
+    [
+     2026,
+     2,
+     260
+    ],
+    [
+     2026,
+     1,
+     260
+    ],
+    [
+     2025,
+     12,
+     320
+    ],
+    [
+     2025,
+     11,
+     480
+    ],
+    [
+     2025,
+     10,
+     880
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair colorado springs",
+   "monthly_searches": 590,
+   "cpc_usd": 77.23,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     390
+    ],
+    [
+     2026,
+     8,
+     480
+    ],
+    [
+     2026,
+     7,
+     880
+    ],
+    [
+     2026,
+     6,
+     880
+    ],
+    [
+     2026,
+     5,
+     720
+    ],
+    [
+     2026,
+     4,
+     590
+    ],
+    [
+     2026,
+     3,
+     880
+    ],
+    [
+     2026,
+     2,
+     260
+    ],
+    [
+     2026,
+     1,
+     260
+    ],
+    [
+     2025,
+     12,
+     320
+    ],
+    [
+     2025,
+     11,
+     480
+    ],
+    [
+     2025,
+     10,
+     880
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair colorado springs",
+   "monthly_searches": 260,
+   "cpc_usd": 13.26,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     140
+    ],
+    [
+     2026,
+     8,
+     140
+    ],
+    [
+     2026,
+     7,
+     90
+    ],
+    [
+     2026,
+     6,
+     90
+    ],
+    [
+     2026,
+     5,
+     210
+    ],
+    [
+     2026,
+     4,
+     170
+    ],
+    [
+     2026,
+     3,
+     390
+    ],
+    [
+     2026,
+     2,
+     320
+    ],
+    [
+     2026,
+     1,
+     590
+    ],
+    [
+     2025,
+     12,
+     320
+    ],
+    [
+     2025,
+     11,
+     390
+    ],
+    [
+     2025,
+     10,
+     480
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company colorado springs",
+   "monthly_searches": 390,
+   "cpc_usd": 14.73,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     320
+    ],
+    [
+     2026,
+     8,
+     480
+    ],
+    [
+     2026,
+     7,
+     390
+    ],
+    [
+     2026,
+     6,
+     480
+    ],
+    [
+     2026,
+     5,
+     390
+    ],
+    [
+     2026,
+     4,
+     390
+    ],
+    [
+     2026,
+     3,
+     590
+    ],
+    [
+     2026,
+     2,
+     480
+    ],
+    [
+     2026,
+     1,
+     390
+    ],
+    [
+     2025,
+     12,
+     260
+    ],
+    [
+     2025,
+     11,
+     320
+    ],
+    [
+     2025,
+     10,
+     480
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation colorado springs",
+   "monthly_searches": 170,
+   "cpc_usd": 8.63,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     110
+    ],
+    [
+     2026,
+     8,
+     170
+    ],
+    [
+     2026,
+     7,
+     260
+    ],
+    [
+     2026,
+     6,
+     140
+    ],
+    [
+     2026,
+     5,
+     210
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     390
+    ],
+    [
+     2026,
+     2,
+     70
+    ],
+    [
+     2026,
+     1,
+     140
+    ],
+    [
+     2025,
+     12,
+     40
+    ],
+    [
+     2025,
+     11,
+     50
+    ],
+    [
+     2025,
+     10,
+     260
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair colorado springs",
+ "top_monthly_searches": 590,
+ "max_cpc_usd": 77.23
+}

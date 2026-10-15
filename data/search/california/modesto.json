@@ -1,0 +1,291 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair modesto",
+   "monthly_searches": 1000,
+   "cpc_usd": 29.48,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     1000
+    ],
+    [
+     2026,
+     8,
+     880
+    ],
+    [
+     2026,
+     7,
+     1600
+    ],
+    [
+     2026,
+     6,
+     1900
+    ],
+    [
+     2026,
+     5,
+     1900
+    ],
+    [
+     2026,
+     4,
+     720
+    ],
+    [
+     2026,
+     3,
+     390
+    ],
+    [
+     2026,
+     2,
+     390
+    ],
+    [
+     2026,
+     1,
+     590
+    ],
+    [
+     2025,
+     12,
+     880
+    ],
+    [
+     2025,
+     11,
+     720
+    ],
+    [
+     2025,
+     10,
+     1600
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair modesto",
+   "monthly_searches": 90,
+   "cpc_usd": 7.89,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     20
+    ],
+    [
+     2026,
+     8,
+     30
+    ],
+    [
+     2026,
+     7,
+     50
+    ],
+    [
+     2026,
+     6,
+     90
+    ],
+    [
+     2026,
+     5,
+     110
+    ],
+    [
+     2026,
+     4,
+     70
+    ],
+    [
+     2026,
+     3,
+     170
+    ],
+    [
+     2026,
+     2,
+     40
+    ],
+    [
+     2026,
+     1,
+     50
+    ],
+    [
+     2025,
+     12,
+     90
+    ],
+    [
+     2025,
+     11,
+     210
+    ],
+    [
+     2025,
+     10,
+     210
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair modesto",
+   "monthly_searches": 260,
+   "cpc_usd": 143.53,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     210
+    ],
+    [
+     2026,
+     8,
+     90
+    ],
+    [
+     2026,
+     7,
+     170
+    ],
+    [
+     2026,
+     6,
+     170
+    ],
+    [
+     2026,
+     5,
+     110
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     140
+    ],
+    [
+     2026,
+     2,
+     320
+    ],
+    [
+     2026,
+     1,
+     140
+    ],
+    [
+     2025,
+     12,
+     480
+    ],
+    [
+     2025,
+     11,
+     720
+    ],
+    [
+     2025,
+     10,
+     590
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company modesto",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "ac installation modesto",
+   "monthly_searches": 140,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     40
+    ],
+    [
+     2026,
+     8,
+     50
+    ],
+    [
+     2026,
+     7,
+     70
+    ],
+    [
+     2026,
+     6,
+     110
+    ],
+    [
+     2026,
+     5,
+     70
+    ],
+    [
+     2026,
+     4,
+     50
+    ],
+    [
+     2026,
+     3,
+     90
+    ],
+    [
+     2026,
+     2,
+     140
+    ],
+    [
+     2026,
+     1,
+     70
+    ],
+    [
+     2025,
+     12,
+     140
+    ],
+    [
+     2025,
+     11,
+     480
+    ],
+    [
+     2025,
+     10,
+     320
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair modesto",
+ "top_monthly_searches": 1000,
+ "max_cpc_usd": 143.53
+}
