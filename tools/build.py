@@ -127,10 +127,11 @@ ICON = {
 }
 
 MARK = ('<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">'
-        '<defs><linearGradient id="mk" x1="0" x2="1"><stop offset="0" stop-color="#47b8ff"/><stop offset="1" stop-color="#ff6a2b"/></linearGradient></defs>'
+        '<defs><linearGradient id="mk" gradientUnits="userSpaceOnUse" x1="5" y1="0" x2="27" y2="0"><stop offset="0" stop-color="#47b8ff"/><stop offset=".5" stop-color="#8f7cff"/><stop offset="1" stop-color="#ff6a2b"/></linearGradient></defs>'
         '<rect width="32" height="32" rx="9" fill="#101826" stroke="rgba(255,255,255,.14)"/>'
-        '<path d="M8 21l8-11 8 11" fill="none" stroke="url(#mk)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'
-        '<circle cx="16" cy="23" r="2" fill="#eef2f7"/></svg>')
+        # Airflow mark: cold-to-hot air blowing left, away from the name
+        '<g fill="none" stroke="url(#mk)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">'
+        '<path d="M26 11.5H11.5a3.4 3.4 0 1 1 3.4-3.4"/><path d="M27 16H6"/><path d="M24 20.5H13.5a3.4 3.4 0 1 0 3.4 3.4"/></g></svg>')
 
 ALL_TRADES = [("hvac", "HVAC", "Heating and air"), ("plumbing", "Plumbing", "Plumbers and drain"), ("roofing", "Roofing", "Roofers and storm work")]
 # Trades shown in the nav and on the home page. Roofing is built but parked (see research/trade-choice.md).
