@@ -38,7 +38,7 @@ NICHES = [
         "nav": "Repair, replacement and tune-ups for homes",
         "title": "Marketing for residential HVAC repair and replacement",
         "h1": "Marketing for residential repair and replacement shops.",
-        "desc": "For HVAC shops that live on repair calls, system replacements and maintenance plans. How to win the emergency call and turn it into the replacement and the tune-up plan.",
+        "desc": "Marketing for HVAC shops that live on repairs, replacements and maintenance plans: win the emergency call and turn it into the replacement.",
         "lede": "Most of your work starts with a homeowner whose system just quit. The shop that answers first gets the repair, and the shop that does the repair well is first in line for the replacement and the yearly tune-up. We build the whole chain.",
         "pains": [
             ("The emergency call goes to whoever answers", "In a heat wave, homeowners call down the list until someone picks up. A missed call is usually a lost job."),
@@ -68,7 +68,7 @@ NICHES = [
         "nav": "Offices, retail, restaurants, small buildings",
         "title": "Marketing for light commercial HVAC companies",
         "h1": "Marketing for light commercial HVAC.",
-        "desc": "For HVAC shops that service offices, retail, restaurants and small buildings. How to look credible to property managers and business owners and win service agreements.",
+        "desc": "Marketing for HVAC shops that service offices, retail, restaurants and small buildings: look credible to property managers and win service contracts.",
         "lede": "A restaurant with no AC at lunch, or an office manager with a hot conference room, needs a shop that answers and shows up. Business buyers check you out differently than homeowners, so your site and profile need to speak to them too.",
         "pains": [
             ("Your site only talks to homeowners", "A property manager looking for rooftop unit service leaves if every page is about home tune-ups."),
@@ -98,7 +98,7 @@ NICHES = [
         "nav": "Win the no-cool call before the next shop does",
         "title": "Marketing for AC repair companies",
         "h1": "Marketing for AC repair companies.",
-        "desc": "How AC repair shops win the emergency no-cool call: show up on the map when it's hot, answer every call, and turn the repair into reviews, tune-ups and the next replacement.",
+        "desc": "How AC repair shops win the emergency no-cool call: show up on the map when it's hot, answer every call, and turn repairs into reviews and tune-ups.",
         "lede": "When the AC quits in July, the homeowner searches, taps the first shop with good stars and calls. If nobody picks up, they call the next one. AC repair is won in the first few minutes, so everything we build is about being found and answering fast.",
         "pains": [
             ("The heat wave fills your phone and your schedule at once", "The days you get the most calls are the days nobody is free to answer them."),
@@ -128,7 +128,7 @@ NICHES = [
         "nav": "Furnace, heat pump and no-heat calls",
         "title": "Marketing for heating and furnace companies",
         "h1": "Marketing for heating and furnace companies.",
-        "desc": "How heating contractors win furnace repair, heat pump and no-heat calls: pages that match the search, a profile that shows up in the first cold snap, and follow-up that fills the fall.",
+        "desc": "How heating contractors win furnace, heat pump and no-heat calls: pages that match the search and a Google profile that shows up in the first cold snap.",
         "lede": "The first cold night of the year, everyone with a furnace that won't light searches at once. Shops that show up and answer get a season's worth of work. Shops that don't are waiting for summer.",
         "pains": [
             ("Heating searches come in a rush", "Demand jumps with the first cold snap. If your profile and site aren't ready before then, you miss the spike."),
@@ -158,7 +158,7 @@ NICHES = [
         "nav": "Duct, IAQ and comfort work",
         "title": "Marketing for ductwork and indoor air quality",
         "h1": "Marketing for ductwork and indoor air quality work.",
-        "desc": "How HVAC shops sell more duct repair, duct replacement and indoor air quality work: explain the problem in plain words, show up for the search, and follow up on the quote.",
+        "desc": "How HVAC shops sell more duct and indoor air quality work: explain the problem in plain words, show up for the search, and follow up on every quote.",
         "lede": "Hot rooms, dusty vents, allergies and high bills bring people to ductwork and air quality. They usually don't know what's wrong, so they search for the symptom. The shop that explains it plainly gets the call and the quote.",
         "pains": [
             ("People search for the symptom, not the fix", "\"One room is always hot\" or \"dust from vents\". If your pages only say \"ductwork\", you miss them."),
@@ -188,7 +188,7 @@ NICHES = [
         "nav": "Win the big-ticket system quote",
         "title": "Marketing for HVAC installation and replacement",
         "h1": "Marketing for HVAC installation and replacement.",
-        "desc": "How HVAC shops win more system replacements and new installs: replacement pages that answer the money questions, financing up front, reviews and quote follow-up.",
+        "desc": "How HVAC shops win more system replacements: pages that answer the money questions, financing up front, real reviews and follow-up on every quote.",
         "lede": "A new system is one of the bigger checks a homeowner writes. They compare a few shops, read reviews and look at your site before they sign. We make sure your shop looks like the safe choice at every step.",
         "pains": [
             ("Homeowners shop around", "They get two or three quotes. The shop that looks most trustworthy online starts with an edge."),

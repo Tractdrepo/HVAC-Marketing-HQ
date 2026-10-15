@@ -139,7 +139,7 @@ OFFERINGS = [("website", "HVAC websites", "Fast sites built to book service call
 SERVICE_GROUPS = [
     ("Your website", "web", ["website", "hvac-website-redesign", "ai-web-chat"]),
     ("Get found online", "pin", ["local-seo", "google-business-profile", "ai-search"]),
-    ("Get more calls", "chat", ["missed-call-text-back", "ai-phone-answering", "estimate-follow-up", "app"]),
+    ("Get more calls", "chat", ["hvac-lead-generation", "missed-call-text-back", "ai-phone-answering", "estimate-follow-up", "app"]),
     ("Paid ads", "search", ["google-ads", "local-services-ads", "facebook-ads"]),
     ("Keep customers coming", "star", ["review-requests", "seasonal-campaigns", "hq-command-center"]),
 ]
@@ -1101,15 +1101,15 @@ def city_page(c):
 </div></section>
 {local_links(c['name'], other_html)}
 {report_card(f"How does your shop stack up in {c['name']}?")}"""
-    return page(city_path(c), f"HVAC marketing in {c['name']}, {st['abbr']}", f"Websites, Google profiles and missed-call text-back for {place(c)} HVAC companies. July highs average {deg(c['july_high_f'])}; here's what that means for your marketing.", body)
+    return page(city_path(c), f"HVAC marketing in {c['name']}, {st['abbr']}", f"HVAC marketing in {c['name']}, {st['abbr']}: a fast website, a Google profile that wins the map and every missed call texted back. July highs average {deg(c['july_high_f'])}.", body)
 
 
 def local_links(where, more=""):
-    svc = ["website", "local-seo", "google-business-profile", "missed-call-text-back", "google-ads", "local-services-ads"]
+    svc = ["website", "local-seo", "google-business-profile", "missed-call-text-back", "google-ads", "local-services-ads", "hvac-lead-generation"]
     svc_h = "".join(f'<a href="{u(k)}">{esc(svc_info(k)[0])}</a>' for k in svc)
-    reads = [(guide_path("google-map-pack-hvac"), "How HVAC shops get into the map pack"), (guide_path("hvac-seo-what-moves-rankings"), "HVAC SEO: what moves rankings"),
+    reads = [(guide_path("google-map-pack-hvac"), "How HVAC shops get into the map pack"), ("local-seo", "HVAC SEO: what we do and what it costs"), ("hvac-marketing", "HVAC marketing: the complete guide"),
              ("tools/missed-call-cost-calculator", "Missed call cost calculator"), ("tools/lsa-cost-calculator", "Local Services Ads cost calculator"), ("plans", "Plans and pricing")]
-    rd = "".join(f'<li><a href="{u(k)}">{esc(t)}</a></li>' for k, t in reads if k in ROUTES or k == "plans")
+    rd = "".join(f'<li><a href="{u(k)}">{esc(t)}</a></li>' for k, t in reads if k in ROUTES or k in ("plans", "hvac-marketing"))
     return f"""<section class="section alt"><div class="wrap"><div class="split">
   <div><span class="eyebrow">For {esc(where)} shops</span><h2>What we run for you.</h2><p class="lede">One system: Rank, Book, Repeat. <a class="more" href="{u('method')}">How it works →</a></p><div class="city-links" style="margin-top:18px">{svc_h}</div></div>
   <div class="card"><h3>Read before you hire anyone</h3><ul class="ticks">{rd}</ul></div>
@@ -1181,7 +1181,7 @@ def state_page(st):
 {report_card(f"See how your shop stacks up in your {n} town.")}
 """
     names = [c["name"] for c in sorted(cs, key=lambda c: -(c["population_2020"] or 0))]
-    return page(state_key(st), f"HVAC marketing in {n}", f"Websites, Google profiles and missed-call text-back for {n} HVAC contractors in " + (f"{', '.join(names[:-1])} and {names[-1]}." if len(names) > 1 else f"{names[0]}."), body)
+    return page(state_key(st), f"HVAC marketing in {n}", f"HVAC marketing for {n} contractors in " + (f"{', '.join(names[:3])} and more" if len(names) > 3 else (f"{', '.join(names[:-1])} and {names[-1]}" if len(names) > 1 else names[0])) + ": websites, Google profiles, SEO and missed-call text-back.", body)
 
 
 def locations_page():
@@ -1202,7 +1202,7 @@ def locations_page():
 </div></section>
 {report_card()}
 """
-    return page("locations", "HVAC marketing locations", f"HVAC marketing for contractors across the U.S.: {len(ALL_CITIES)} markets in {', '.join(st['name'] for st in STATES[:-1])} and {STATES[-1]['name']}." if len(STATES) > 1 else "HVAC marketing for contractors across the U.S., starting with Texas markets from Houston to El Paso.", body)
+    return page("locations", "HVAC marketing locations", f"HVAC marketing for contractors in 161 markets across 36 states: websites, Google profiles, SEO and missed-call text-back, with real local data." if len(STATES) > 1 else "HVAC marketing for contractors across the U.S., starting with Texas markets from Houston to El Paso.", body)
 
 
 BAND = [("houston", "TX"), ("dallas", "TX"), ("san-antonio", "TX"), ("austin", "TX"), ("waco", "TX"), ("phoenix", "AZ"), ("tucson", "AZ"),
@@ -1222,6 +1222,7 @@ def locations_band():
 # ---- Guides ---------------------------------------------------------------------
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from guides import GUIDES, UPDATED as GUIDES_UPDATED, AUTHOR as GUIDES_AUTHOR
+GUIDES_UPDATED_ISO = __import__("datetime").datetime.strptime(GUIDES_UPDATED, "%b %d, %Y").date().isoformat()
 from vs_guides import VS_GUIDES
 GUIDES = GUIDES + VS_GUIDES
 try:
@@ -1260,7 +1261,8 @@ def org_ld():
                "address": {"@type": "PostalAddress", "addressLocality": "Waco", "addressRegion": "TX", "addressCountry": "US"},
                "areaServed": "US", "slogan": TAGLINE,
                "founder": {"@type": "Person", "name": "Logan", "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg"},
-               **({"sameAs": SAME_AS} if SAME_AS else {})})
+               "logo": f"https://{DOMAIN}/apple-touch-icon-180.png", "image": f"https://{DOMAIN}/og-image.png",
+               **({"sameAs": SAME_AS} if SAME_AS else {})}) + ld({"@context": "https://schema.org", "@type": "WebSite", "name": BRAND, "url": f"https://{DOMAIN}/"})
 
 
 def _links(text):
@@ -1330,8 +1332,8 @@ def guide_page(g):
 {next_step()}
 """
     art = ld({"@context": "https://schema.org", "@type": "Article", "headline": g["title"], "description": g["desc"],
-              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND},
-              "dateModified": g.get("date", "2026-10-12"), "mainEntityOfPage": f"https://{DOMAIN}/{route(guide_path(g['slug']))}"})
+              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": f"https://{DOMAIN}/apple-touch-icon-180.png"}}, "image": f"https://{DOMAIN}/og-image.png",
+              "datePublished": g.get("date", GUIDES_UPDATED_ISO), "dateModified": g.get("date", GUIDES_UPDATED_ISO), "mainEntityOfPage": f"https://{DOMAIN}/{route(guide_path(g['slug']))}"})
     return page(guide_path(g["slug"]), g["title"], g["desc"], body, extra_head=art + faq_ld(g["faq"]), has_form=False)
 
 
@@ -1373,6 +1375,7 @@ SERVICE_POSTS = {
     "google-business-profile": ["hvac-seo-what-moves-rankings"],
     "review-requests": ["get-more-google-reviews-hvac"],
     "hvac-website-redesign": ["hvac-website-design"],
+    "hvac-lead-generation": ["hvac-lead-generation-bought-vs-owned"],
     "missed-call-text-back": ["hvac-lead-generation-bought-vs-owned"],
     "estimate-follow-up": ["hvac-lead-generation-bought-vs-owned"],
 }
@@ -1462,7 +1465,7 @@ def service_page(sv):
 
 
 GETTING_STARTED_FAQ = [
-    ("Why do you cost less than Scorpion or the big agencies?", "We only do HVAC, ads are an add-on you only pay for if you want them, and we don't do photo or video shoots. Every client gets the same proven system, set up for their shop, instead of a custom project. That keeps our costs, and your price, down."),
+    ("Why do you cost less than Scorpion or the big agencies?", "We only do HVAC, ads are an add-on you only pay for if you want them, and we don't do photo or video shoots. Your site and system are built for your shop, on a process we've already worked out for HVAC, so you don't pay for us to figure it out. That keeps our costs, and your price, down."),
     ("What happens if I leave?", "Your website, domain, Google profile, reviews and phone number are yours. We hand over the site and your data, and your number is ported back to you."),
     ("Will I actually get more calls?", "We can't promise a number, and nobody honest can. We guarantee what we control: missed calls texted back in 60 seconds, review requests after every job, and launch in 14 days. Your HQ Command Center shows what's working."),
     ("How much of my time does it take?", "One kickoff call, sharing access, and a review of your site before launch. After that, answering the texts and booking the work, which you're doing already."),
@@ -1530,7 +1533,7 @@ def services_hub():
 </div></section>
 {report_card()}
 """
-    return page("services", "HVAC Digital Marketing Services", "HVAC digital marketing services: websites, SEO, Google Business Profile, Google Ads, Local Services Ads, Facebook ads, missed-call text-back, AI phone answering and review requests, run for you.", body)
+    return page("services", "HVAC Digital Marketing Services", "HVAC digital marketing services run for you: websites, SEO, Google Business Profile, Google and Facebook ads, missed-call text-back and reviews.", body)
 
 
 def specialties_hub():
@@ -1619,7 +1622,7 @@ def compare_hub():
 </div></section>
 {report_card()}
 """
-    return page("compare", "Compare HVAC marketing companies", "Honest comparisons of HVAC Marketing HQ with Scorpion, Websites for HVAC, RS Gonzales, Hook Agency and Footbridge Media, from their own published prices and terms.", body)
+    return page("compare", "Compare HVAC marketing companies", "Honest comparisons of HVAC Marketing HQ with Scorpion, Websites for HVAC, RS Gonzales, Hook Agency and Footbridge Media, from their published prices.", body)
 
 
 def guide_links(slug):
@@ -1647,7 +1650,7 @@ TOOLS = [
      "service": "hq-command-center", "guide": "hvac-marketing-cost"},
     {"slug": "google-review-gap-calculator", "name": "Review gap calculator", "line": "How long to catch the top shop's reviews",
      "title": "Google review gap calculator for HVAC companies",
-     "desc": "Free calculator: how many months it takes your HVAC company to catch a competitor's Google review count, based on your jobs a month and how many customers leave a review.",
+     "desc": "Free calculator: how many months it takes your HVAC company to catch a competitor's Google review count, from your jobs a month and ask rate.",
      "lede": "Homeowners compare review counts on the map. Put in your count, the top shop's count, your jobs a month and how many customers leave a review to see how long it takes to catch up.",
      "formula": ["Reviews a month = finished jobs a month x share who leave a review", "Months to catch up = (their reviews - your reviews) / (your reviews a month - their reviews a month)", "If they add reviews as fast as you, you never catch up, so the tool says so"],
      "improve": [("Ask after every job", "A text right after the job, while the customer is happy, gets far more reviews than asking now and then."), ("Ask everyone", "Google's rules say don't pick and choose who gets asked. Asking everyone is also how the count grows."), ("Reply to every review", "Replies show the next homeowner that a real owner is paying attention.")],
@@ -1915,7 +1918,8 @@ def pillar_page():
 {report_card()}
 """
     art = ld({"@context": "https://schema.org", "@type": "Article", "headline": "HVAC marketing: how owner-run shops get found and booked",
-              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND}, "dateModified": BUILD_DATE})
+              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": f"https://{DOMAIN}/apple-touch-icon-180.png"}}, "image": f"https://{DOMAIN}/og-image.png", "datePublished": GUIDES_UPDATED_ISO, "dateModified": GUIDES_UPDATED_ISO,
+              "mainEntityOfPage": f"https://{DOMAIN}/{route('hvac-marketing')}"})
     return page("hvac-marketing", "HVAC Marketing: The Complete Guide for Owner-Run Shops", "HVAC marketing explained: how to get found on Google and the map, answer and book every call, and turn jobs into reviews and repeat work. With costs, tools and FAQs.", body, extra_head=art + faq_ld(PILLAR_FAQ))
 
 
@@ -1995,7 +1999,8 @@ def write_grader_towns(dest):
 
 
 def sitemap_xml(paths):
-    urls = "".join(f"<url><loc>https://{DOMAIN}/{p_}</loc><lastmod>{BUILD_DATE}</lastmod></url>" for p_ in paths)
+    dated = {route(guide_path(g["slug"])): g.get("date", GUIDES_UPDATED_ISO) for g in GUIDES + POSTS}
+    urls = "".join(f"<url><loc>https://{DOMAIN}/{p_}</loc>" + (f"<lastmod>{dated[p_]}</lastmod>" if dated.get(p_) else "") + "</url>" for p_ in paths)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n'
 
 
@@ -2003,9 +2008,9 @@ def sitemap_xml(paths):
 def home():
     body = f"""<section class="hero"><div class="hero-grid-bg" aria-hidden="true"></div><div class="wrap hero-grid">
   <div>
-    <span class="chip-top"><i>❄</i>Built only for HVAC contractors</span>
+    <span class="chip-top"><i>❄</i>The HVAC marketing agency built only for HVAC</span>
     <h1 class="hero-h1"><span>Rank higher.</span> <span class="grad">Book every call.</span></h1>
-    <p class="lede">We build your website, run your Google profile and text back every missed call in 60 seconds, guaranteed. Start with a free report card on how you stack up locally.</p>
+    <p class="lede">An HVAC marketing agency that builds your website, runs your Google profile and SEO, and texts back every missed call in 60 seconds, guaranteed. Start with a free report card on how you stack up locally.</p>
     {url_form()}
     <p class="hero-alt">Rather talk first? <a href="{esc(call_link())}">Book a 15-minute call</a></p>
   </div>
@@ -2055,8 +2060,8 @@ def home():
 
 {report_card("See where you stand before you spend a dollar.")}
 """
-    return page("", f"Web Design & SEO for HVAC Businesses | {BRAND}",
-                "Websites, Google profiles and missed-call text-back for HVAC companies. Every missed call texted back in 60 seconds, guaranteed.", body,
+    return page("", f"HVAC Marketing Agency for Owner-Run Shops | {BRAND}",
+                "HVAC marketing agency for owner-run shops: websites, SEO, Google profiles and ads, plus every missed call texted back in 60 seconds, guaranteed.", body,
                 extra_head=org_ld() + faq_ld(COMMON_FAQ[:6]))
 
 
@@ -2170,7 +2175,7 @@ def trade_page(key):
 
 OFFER_CONTENT = {
     "website": {
-        "title": "Website", "seo_title": "HVAC Web Design: Websites Built to Book Calls", "h1": "HVAC web design built to book service calls.",
+        "title": "Website", "seo_title": "HVAC Website Design That Books Service Calls", "h1": "HVAC website design built to book service calls.",
         "lede": "Not a brochure. Every page is built around a job people search for, with a clear way to book on every screen.",
         "cards": [
             ("web", "Service pages", "A page for each service you want more of, written for how homeowners search."),
@@ -2196,7 +2201,7 @@ OFFER_CONTENT = {
         "list": ["We ask every customer for a review and never filter out unhappy ones (Google doesn't allow it)", "Map spam reports on fake competitor listings", "Call tracking by source", "Google Ads, Local Services Ads and Facebook ads available as add-ons", "No promises of rankings, only of the work"],
     },
     "app": {
-        "title": "Lead system", "seo_title": "HVAC Lead Generation System: Every Lead in One Inbox", "h1": "Every call, text and form in one inbox.",
+        "title": "Lead system", "seo_title": "HVAC Lead System: Every Call, Text and Form in One Inbox", "h1": "Every call, text and form in one inbox.",
         "lede": "The lead system behind it all. It texts back missed calls, follows up on estimates and keeps your whole team on the same page.",
         "cards": [
             ("phone", "Missed-call text-back", "Every call you can't pick up gets a text in seconds, with your name on it."),
@@ -2383,7 +2388,9 @@ def offer_page(key):
 {report_card()}
 """
     items = OFFER_DEEP.get(key, {}).get("faq")
-    return page(key, o.get("seo_title", f"{_strip(o['title'])} for HVAC companies"), o["lede"], body, extra_head=faq_ld(items) if items else "")
+    svc = ld({"@context": "https://schema.org", "@type": "Service", "name": o.get("seo_title", _strip(o["title"])), "description": o["lede"], "serviceType": _strip(o["title"]),
+              "provider": {"@type": "ProfessionalService", "name": BRAND, "url": f"https://{DOMAIN}/"}, "areaServed": "US", "audience": {"@type": "BusinessAudience", "name": "HVAC contractors"}})
+    return page(key, o.get("seo_title", f"{_strip(o['title'])} for HVAC companies"), o["lede"], body, extra_head=svc + (faq_ld(items) if items else ""))
 
 
 def rc_samples():
@@ -2485,10 +2492,11 @@ def plans_page():
 <section class="section alt" id="faq"><div class="wrap" style="max-width:860px">
   <div class="section-head"><span class="eyebrow">Questions</span><h2>Pricing questions</h2></div>
   {faq(COMMON_FAQ)}
+  <p style="margin-top:24px">Weighing us against another agency? <a class="more" href="{u('compare')}">See how HVAC marketing companies compare →</a></p>
 </div></section>
 {report_card("Not sure which plan? Start with the report card.")}
 """
-    return page("plans", "Pricing", "HVAC website, Google profile and missed-call text-back plans, billed monthly or annually.", body, extra_head=faq_ld(COMMON_FAQ))
+    return page("plans", "HVAC Marketing Pricing: Plans from $499 a Month", "HVAC marketing plans from $499 a month: website, Google profile, SEO, missed-call text-back and review requests. 20% off when billed annually.", body, extra_head=faq_ld(COMMON_FAQ))
 
 
 def legal_page(key):
@@ -2590,7 +2598,7 @@ def llms_txt():
     methods = "\n".join(f"- {n}: {line} " + "; ".join(items) + "." for n, line, items, _ in METHOD)
     return f"""# {BRAND}
 
-> {BRAND} builds websites, runs Google Business Profiles and sets up missed-call text-back and review requests for HVAC contractors. HVAC only, serving HVAC companies nationally.
+> {BRAND} is an HVAC marketing agency. It builds websites, runs Google Business Profiles and local SEO, manages Google Ads, Local Services Ads and Facebook ads, and sets up missed-call text-back, review requests and a shared CRM for HVAC contractors. HVAC only, serving HVAC companies nationally.
 
 ## Quick facts
 - Website: https://{DOMAIN}
@@ -2620,13 +2628,23 @@ Shops that can't take on more work, want ads with nobody answering the calls, or
 - The method: https://{DOMAIN}/method
 - Pricing: https://{DOMAIN}/plans ({'; '.join(f"{p_['name']} ${p_['monthly']:,}/mo" for p_ in PLANS)}, 20% off annual)
 - Free report card: https://{DOMAIN}/report-card
+- HVAC marketing guide: https://{DOMAIN}/{route('hvac-marketing')}
+- All services: https://{DOMAIN}/{route('services')}
+- Compare agencies: https://{DOMAIN}/{route('compare')}
+- Free tools: https://{DOMAIN}/{route('tools')}
+- Blog: https://{DOMAIN}/blog
 - Guides: https://{DOMAIN}/guides ({guide_names})
+
+## Services
+{chr(10).join(f"- {svc_info(k)[0]}: https://{DOMAIN}/{route(k)} ({svc_info(k)[1]})" for _, _, keys in SERVICE_GROUPS for k in keys)}
 - Locations: https://{DOMAIN}/locations ({city_names})
 """
 
 
 NICHE_URL = {"hvac-marketing-residential-replacement": "residential", "hvac-marketing-light-commercial": "commercial"}
 OFFER_URL = {"website": "hvac-websites", "app": "lead-system"}
+# Keyword landing pages at the root (Oct 15 SEO pass). The old /services/ URL 301s to each.
+ROOT_URL = {"website": "hvac-website-design", "local-seo": "hvac-seo", "google-ads": "hvac-google-ads", "hvac-lead-generation": "hvac-lead-generation"}
 OLD_REDIRECTS = {"examples": "", "marketing": "google-business-profile", "hvac": "", "plumbing": "", "roofing": ""}  # pages removed Oct 13
 
 
@@ -2650,6 +2668,7 @@ def build_routes():
         ROUTES[state_key(st)] = f"locations/{st['slug']}"
         for c in st["cities"]:
             ROUTES[city_path(c)] = f"locations/{st['slug']}/{c['slug']}"
+    ROUTES.update(ROOT_URL)
 
 
 def write_redirects(site_dir):
@@ -2657,8 +2676,10 @@ def write_redirects(site_dir):
     p_ = os.path.join(site_dir, "vercel.json")
     with open(p_) as f:
         cfg = json.load(f)
-    reds = [{"source": "/" + old, "destination": "/" + new, "permanent": True} for old, new in ROUTES.items() if not old.startswith("tools")]
+    reds = [{"source": "/" + old, "destination": "/" + new, "permanent": True} for old, new in ROUTES.items() if not old.startswith("tools") and old != new]
     reds += [{"source": "/" + old, "destination": "/" + route(new), "permanent": True} for old, new in OLD_REDIRECTS.items()]
+    moved = {"services/" + OFFER_URL.get(k, k): k for k in ROOT_URL if k in OFFER_URL or any(sv["slug"] == k for sv in SERVICES)}
+    reds += [{"source": "/" + old, "destination": "/" + route(k), "permanent": True} for old, k in moved.items() if old != route(k)]
     # One short link on our own domain for the report email; the calendar can change without touching the email.
     reds.append({"source": "/book", "destination": call_link(), "permanent": False})
     cfg["redirects"] = reds
@@ -2733,6 +2754,10 @@ def build(out_dir):
         for c in st["cities"]:
             pages[city_path(c)] = city_page(c)
     os.makedirs(out_dir, exist_ok=True)
+    for k in ROOT_URL:  # pages that moved to a root keyword URL leave no stale copy behind
+        old = os.path.join(out_dir, "services", OFFER_URL.get(k, k) + ".html")
+        if os.path.exists(old):
+            os.remove(old)
     for name, content in pages.items():
         dest = os.path.join(out_dir, route(name) + ".html")
         os.makedirs(os.path.dirname(dest), exist_ok=True)

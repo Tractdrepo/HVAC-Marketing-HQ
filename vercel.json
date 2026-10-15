@@ -62,7 +62,7 @@
   "redirects": [
     {
       "source": "/website",
-      "destination": "/services/hvac-websites",
+      "destination": "/hvac-website-design",
       "permanent": true
     },
     {
@@ -87,7 +87,7 @@
     },
     {
       "source": "/local-seo",
-      "destination": "/services/local-seo",
+      "destination": "/hvac-seo",
       "permanent": true
     },
     {
@@ -122,7 +122,7 @@
     },
     {
       "source": "/google-ads",
-      "destination": "/services/google-ads",
+      "destination": "/hvac-google-ads",
       "permanent": true
     },
     {
@@ -1283,6 +1283,26 @@
     {
       "source": "/roofing",
       "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/services/hvac-websites",
+      "destination": "/hvac-website-design",
+      "permanent": true
+    },
+    {
+      "source": "/services/local-seo",
+      "destination": "/hvac-seo",
+      "permanent": true
+    },
+    {
+      "source": "/services/google-ads",
+      "destination": "/hvac-google-ads",
+      "permanent": true
+    },
+    {
+      "source": "/services/hvac-lead-generation",
+      "destination": "/hvac-lead-generation",
       "permanent": true
     },
     {

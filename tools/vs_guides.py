@@ -10,7 +10,7 @@ VS_GUIDES = [
         "slug": "websites-for-hvac-alternative",
         "title": "Websites for HVAC alternative: an honest comparison",
         "short": "Websites for HVAC alternative",
-        "desc": "Websites for HVAC and HVAC Marketing HQ side by side: published prices, a 12-month cost example with the math, what happens to your site if you cancel, where they're strong, and questions to ask on their sales call.",
+        "desc": "Websites for HVAC vs HVAC Marketing HQ: published prices, a 12-month cost example, what happens to your site if you cancel, and where each fits.",
         "read": 6,
         "takeaways": [
             "Both companies are HVAC only and both publish prices. At the Starter level, paid monthly, the 12-month cost comes out the same: $7,983.",
@@ -109,7 +109,7 @@ VS_GUIDES = [
         "slug": "rs-gonzales-alternative",
         "title": "RS Gonzales alternative for HVAC: an honest comparison",
         "short": "RS Gonzales alternative",
-        "desc": "RS Gonzales and HVAC Marketing HQ side by side: published prices, a 12-month cost example with the math, contract and website terms, where they're strong, and questions to ask on their sales call.",
+        "desc": "RS Gonzales vs HVAC Marketing HQ: published prices, a 12-month cost example with the math, contract and website terms, and where each fits.",
         "read": 6,
         "takeaways": [
             "RS Gonzales is a full-service agency that leads with HVAC and runs ads. Its plans are $2,200, $3,500 and $5,000 a month, plus ad spend, as published in Oct 2026.",
@@ -209,7 +209,7 @@ VS_GUIDES = [
         "slug": "hook-agency-alternative-hvac",
         "title": "Hook Agency alternative for HVAC: an honest comparison",
         "short": "Hook Agency alternative",
-        "desc": "Hook Agency and HVAC Marketing HQ side by side: published prices, a 12-month cost example with the math, contracts and ownership, where Hook is strong, and questions to ask on their sales call.",
+        "desc": "Hook Agency vs HVAC Marketing HQ: published prices, a 12-month cost example with the math, contracts, ownership and where each one fits.",
         "read": 6,
         "takeaways": [
             "Hook Agency is a home-services agency for many trades, with HVAC one of them. Its forms list under $1M in revenue as not a fit, as published in Oct 2026.",
@@ -304,7 +304,7 @@ VS_GUIDES = [
         "slug": "footbridge-media-alternative-hvac",
         "title": "Footbridge Media alternative for HVAC: honest comparison",
         "short": "Footbridge Media alternative",
-        "desc": "Footbridge Media and HVAC Marketing HQ side by side: published prices, a 12-month cost example with the math, guarantees and website terms, where Footbridge is strong, and questions to ask on their sales call.",
+        "desc": "Footbridge Media vs HVAC Marketing HQ: published prices, a 12-month cost example with the math, guarantees, website terms and where each fits.",
         "read": 6,
         "takeaways": [
             "Footbridge Media costs much less than we do: $249 a month with no setup fee, as published in Oct 2026. That's $2,988 for 12 months, against $7,983 for our Starter plan.",
