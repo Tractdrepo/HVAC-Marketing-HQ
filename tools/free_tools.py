@@ -231,6 +231,7 @@ def gcalc_widget(t):
   <div class="calc-out" aria-live="polite">
 {outs}
     <p style="font-size:.85rem">Your numbers; this is math, not a promise of results.</p>
+    <a class="calc-next" href="#report-card">See which shops near you are getting these calls: free report card &rarr;</a>
   </div>
   <script type="application/json" class="gcalc-spec">{spec_json}</script>
 </div>"""

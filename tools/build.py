@@ -676,7 +676,7 @@ def calculator(ticket=350, job=9000, job_label="system replacement"):
   </div>
   <div class="calc-out" aria-live="polite">
     <div class="row"><span class="big" data-out="calls">–</span><p>extra service calls a month pay for the plan</p></div>
-    <div class="row"><span class="big" data-out="jobs">–</span><p>{esc(job_label)}s a month pay for it, on their own</p></div>
+    <div class="row"><span class="big" data-out="jobs">–</span><p>months of the plan paid for by one {esc(job_label)}</p></div>
     <div class="row"><span class="big" data-out="leads">–</span><p>bought leads cost the same, and those are shared with other shops</p></div>
     <p style="font-size:.85rem">Your numbers, your margin. This is math, not a promise of results.</p>
   </div>
@@ -730,7 +730,7 @@ def compare():
         ("Time to launch", "Varies, often months", "Whenever you get to it", "14 days, guaranteed"),
         ("If it's not working", "Locked in until the term ends", "Cancel the tools", "First month back within 30 days"),
         ("What they promise", "Often page-one rankings", "Nothing", "Only what we control, in writing"),
-        ("Who does the work", "An account manager with dozens of clients", "You", "A small team that only works with HVAC"),
+        ("Who does the work", "An account manager with dozens of clients", "You", "An HVAC-only team with a direct line to you"),
     ]
     body = "".join(f"<tr><th scope=\"row\">{esc(a_)}</th><td>{esc(b)}</td><td>{esc(c)}</td><td>{esc(d)}</td></tr>" for a_, b, c, d in rows)
     return f'''<div class="compare"><h3>Compared with a big agency, or doing it yourself</h3>
@@ -759,6 +759,7 @@ def missed_call_calc():
     <div class="row"><span class="big" data-out="month">–</span><p>at risk each month</p></div>
     <div class="row"><span class="big" data-out="year">–</span><p>at risk each year</p></div>
     <p style="font-size:.85rem">Missed calls x job value x the share you'd book. Your numbers; this is math, not a promise of results.</p>
+    <a class="calc-next" href="#report-card">See which shops near you are getting these calls: free report card &rarr;</a>
   </div>
 </div>"""
 
@@ -854,7 +855,7 @@ def fit():
 
 
 def replaces():
-    tools = [("Website builder and hosting", "Website"), ("Call tracking", "Book"), ("Texting app", "Book"), ("Online booking", "Book"), ("Review software", "Repeat"), ("Reporting", "Repeat")]
+    tools = [("Website builder and hosting", "Rank"), ("Call tracking", "Book"), ("Texting app", "Book"), ("Online booking", "Book"), ("Review software", "Repeat"), ("Reporting", "Repeat")]
     rows = "".join(f'<li><span>{esc(t)}</span><b>{esc(k)}</b></li>' for t, k in tools)
     return f"""<div class="replaces">
   <div><span class="eyebrow">One login instead of six</span><h2>What your plan replaces.</h2><p class="lede">Most shops pay for these separately and still can't see what's booking. Every plan runs them as one system, set up and managed for you.</p></div>
@@ -882,7 +883,7 @@ COMMON_FAQ = [
     ("How many Google reviews do I need?", "There's no magic number. Steady, recent reviews beat a big pile of old ones, which is why every plan asks every finished job for one."),
     ("Can you get my shop recommended by ChatGPT?", "We build what AI tools read: a complete Google profile, consistent listings, clear service pages and recent reviews. Nobody can honestly guarantee an AI answer, and we won't."),
     ("What if we can't handle more calls yet?", "Tell us on the call. We'd rather wait, or start with text-back only, than send you work your crew can't get to."),
-    ("Who will I talk to?", "A small team that only works with HVAC companies. You get a direct line, not a ticket queue."),
+    ("Who will I talk to?", "A team that works only with HVAC companies. You get a direct line, not a ticket queue."),
     ("What's the build fee for?", "Building your site, setting up your Google profile, forwarding your line through the text-back system and importing your past customers. Monthly billing starts when you go live, not when you sign."),
 ]
 
@@ -1411,8 +1412,6 @@ def getting_started_page():
   <div class="section-head reveal"><span class="eyebrow">Who does what</span><h2>We do the work. You run the jobs.</h2></div>
   {roles_split()}
 </div></section>
-<section class="section"><div class="wrap">{compare()}</div></section>
-<section class="section alt"><div class="wrap">{report_vs_track()}</div></section>
 <section class="section"><div class="wrap g-wrap">
   <div class="section-head"><span class="eyebrow">Questions</span><h2>The questions owners ask first</h2></div>
   {faq(GETTING_STARTED_FAQ)}
@@ -1594,6 +1593,7 @@ def review_gap_calc():
     <div class="row"><span class="big" data-out="mine">–</span><p>new reviews a month for you</p></div>
     <div class="row"><span class="big" data-out="months">–</span><p>months to catch the top shop</p></div>
     <p style="font-size:.85rem">Your numbers; this is math, not a promise of results.</p>
+    <a class="calc-next" href="#report-card">See which shops near you are getting these calls: free report card &rarr;</a>
   </div>
 </div>"""
 
