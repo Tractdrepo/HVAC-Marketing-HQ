@@ -423,6 +423,33 @@ def next_step(title="Know where your shop stands.", sub="The free report card gr
 </div></div></section>"""
 
 
+def map_svg(pins=((0.24, 0.4), (0.74, 0.62), (0.84, 0.26)), you=(0.5, 0.36)):
+    # A quiet, Google-style street map: grey blocks, white streets, one arterial, a park and a creek.
+    def pin(x, y, big=False):
+        w = 22 if big else 15
+        c, d = ("#ea4335", "#a52714") if big else ("#9aa0a6", "#5f6368")
+        return (f'<g transform="translate({x*320:.0f},{y*160:.0f})"><path d="M0 0c-{w*.42:.1f}-{w*.55:.1f}-{w*.5:.1f}-{w*.78:.1f}-{w*.5:.1f}-{w*1.08:.1f}a{w*.5:.1f} {w*.5:.1f} 0 1 1 {w:.1f} 0c0 {w*.3:.1f}-{w*.08:.1f} {w*.53:.1f}-{w*.5:.1f} {w*1.08:.1f}z" fill="{c}" stroke="{d}" stroke-width=".8"/>'
+                f'<circle cy="-{w*1.08:.1f}" r="{w*.18:.1f}" fill="{d}"/></g>')
+    pins_svg = "".join(pin(x, y) for x, y in pins) + pin(*you, big=True)
+    return f"""<svg class="gmap" viewBox="0 0 320 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <rect width="320" height="160" fill="#eef0f3"/>
+  <path d="M-10 128 C 60 112, 110 140, 180 122 S 280 100, 330 112" fill="none" stroke="#aadaff" stroke-width="9"/>
+  <rect x="196" y="18" width="70" height="44" rx="6" fill="#ceead6"/>
+  <g stroke="#fff" stroke-width="5"><path d="M0 40H320M0 86H320M40 0V160M120 0V160M250 0V160"/></g>
+  <g stroke="#fff" stroke-width="2.5"><path d="M0 18H320M0 62H320M0 108H320M80 0V160M160 0V160M290 0V160M200 0V160"/></g>
+  <path d="M-10 150 L 330 10" stroke="#fde293" stroke-width="7"/><path d="M-10 150 L 330 10" stroke="#f9ce5b" stroke-width="1"/>
+  {pins_svg}
+</svg>"""
+
+
+def lp_item(name, rating, reviews, status, open_now=True, you=False):
+    stars = "★★★★★" if rating >= 4.5 else "★★★★☆"
+    cls = " you" if you else ""
+    st = f'<span class="{"open" if open_now else "closed"}">{status}</span>'
+    return (f'<div class="lp-item{cls}"><div><b>{name}</b><span class="lp-meta">{rating} <i>{stars}</i> ({reviews}) · HVAC contractor</span>'
+            f'<span class="lp-meta">{st}</span></div><div class="lp-acts"><span>{ICON["web"]}</span><span>{ICON["pin"]}</span></div></div>')
+
+
 def demo():
     return f"""<div class="demo" aria-label="How a service call gets booked">
   <div class="demo-steps">
@@ -432,16 +459,16 @@ def demo():
     <button type="button">Review asked for</button>
   </div>
   <div class="phone"><div class="screen">
-    <div class="screen-bar"><span>4:52</span><span>●●● 5G</span></div>
+    <div class="island" aria-hidden="true"></div>
+    <div class="screen-bar"><span>4:52</span><span class="sb-icons" aria-hidden="true"><i class="sig"></i><i class="bat"></i></span></div>
     <div class="scene">
       <div class="search-box">{ICON["search"]}<span>ac repair near me</span></div>
-      <div class="map"><i class="pin" style="left:18%;top:30%"></i><i class="pin" style="left:70%;top:58%"></i><i class="pin you" style="left:46%;top:36%"></i><i class="pin" style="left:80%;top:20%"></i></div>
-      <div class="result you"><b>Your Shop Heating &amp; Air</b><span class="stars">★★★★★</span> <span class="faint">Open 24 hours · Book online</span></div>
-      <div class="result dim"><b>Another AC Company</b><span class="faint">Closes 5 PM</span></div>
-      <div class="result dim"><b>Big Franchise Air</b><span class="faint">Website</span></div>
+      <div class="map">{map_svg()}</div>
+      {lp_item("Your Shop Heating &amp; Air", 4.9, 312, "Open 24 hours", True, True)}
+      {lp_item("Another AC Company", 4.6, 128, "Closes 5 PM")}
     </div>
     <div class="scene">
-      <div class="call-card"><div class="ring">{ICON["phone"]}</div><b>(254) 555-0142</b><small>Missed call · 4:52 PM</small></div>
+      <div class="call-card"><div class="ring">{ICON["phone"]}</div><b>(214) 555-0142</b><small>Missed call · 4:52 PM</small></div>
       <div class="bubble out">Hi, this is Your Shop Heating &amp; Air. Sorry we missed your call. What's going on with your system?</div>
       <div class="bubble-meta">Sent automatically · 0:08</div>
       <div class="bubble in">AC is running but blowing warm air. House is 84.</div>
@@ -451,7 +478,7 @@ def demo():
       <div class="bubble in">Yes please, 8 to 10 works</div>
       <div class="booked">
         <span class="tag">Service call booked</span>
-        <dl><dt>When</dt><dd>Tomorrow, 8 to 10 AM</dd><dt>Job</dt><dd>AC not cooling</dd><dt>Where</dt><dd>Woodway, TX</dd><dt>Tech</dt><dd>Assigned</dd></dl>
+        <dl><dt>When</dt><dd>Tomorrow, 8 to 10 AM</dd><dt>Job</dt><dd>AC not cooling</dd><dt>Where</dt><dd>Plano, TX</dd><dt>Tech</dt><dd>Assigned</dd></dl>
       </div>
       <div class="bubble out" style="margin-top:12px">You're booked. We'll text when your tech is on the way.</div>
     </div>
@@ -461,9 +488,7 @@ def demo():
       <div class="review-card"><span class="stars">★★★★★</span><br>Texted me back in seconds and had it fixed by 10. Great tech.<div class="reply"><b>Reply from the owner:</b> Thank you! Glad we got you cool again.</div></div>
     </div>
   </div></div>
-  <p class="demo-caption">Illustration of the system. Your name, your number, your customers.</p>
 </div>"""
-
 
 METHOD = [
     ("Rank", "Show up first when someone searches.", [
@@ -575,7 +600,7 @@ def hero_visual():
 def pillars():
     cal = "".join(f'<i class="{c}"></i>' for c in ["", "on", "on2", "on", "", "on", "", "on2", "on", "on", "on", "on2", "on", "", "on", "on", "on2", "on", "on", "on", "on"])
     return f"""<div class="pillars">
-  <div class="pillar reveal"><div class="vis"><div class="speed-bar"><i></i></div><span class="big" style="margin-top:22px">{LIGHTHOUSE_LCP_DESKTOP}</span><small>this site, desktop load</small></div><h3>Fast</h3><p>Pre-built pages that open almost instantly on a phone, so nobody bounces to the next shop.</p></div>
+  <div class="pillar reveal"><div class="vis"><div class="speed-bar"><i></i></div><span class="big" style="margin-top:22px">{LIGHTHOUSE_LCP_DESKTOP}</span><small>this site, desktop load</small></div><h3>Fast</h3><p>Pages that open almost instantly on a phone, so nobody bounces to the next shop.</p></div>
   <div class="pillar reveal"><div class="vis"><div class="rank-pin"><div class="you"><b>1</b> Your Shop Heating &amp; Air</div><div><b>2</b> Another AC Company</div><div><b>3</b> Big Franchise Air</div></div></div><h3>Found</h3><p>Service pages, town pages and a Google profile that's complete, active and full of fresh reviews.</p></div>
   <div class="pillar reveal"><div class="vis"><div class="cal-vis">{cal}</div></div><h3>Booked</h3><p>Every missed call texted back in 60 seconds, every estimate followed up, every finished job asked for a review.</p></div>
 </div>"""
@@ -621,18 +646,19 @@ def method_block(full=False):
 def mappack():
     return f"""<div class="mappack">
   <div class="q">{ICON["search"]}<span>ac repair near me</span></div>
-  <div class="mp-map"><i class="mp-pin" style="left:20%;top:34%"></i><i class="mp-pin you" style="left:48%;top:30%"></i><i class="mp-pin" style="left:74%;top:55%"></i></div>
-  <div class="mp-item you"><div><b>Your Shop Heating &amp; Air</b><span class="stars">★★★★★</span> <span class="sub">Open 24 hours</span></div><span class="rank">#1</span></div>
-  <div class="mp-item"><div><b>Another AC Company</b><span class="sub">Closes 5 PM</span></div></div>
+  <div class="mp-map">{map_svg(((0.2, 0.42), (0.72, 0.66), (0.86, 0.3)), (0.46, 0.4))}</div>
+  {lp_item("Your Shop Heating &amp; Air", 4.9, 312, "Open 24 hours", True, True)}
+  {lp_item("Another AC Company", 4.6, 128, "Closes 5 PM")}
+  {lp_item("Big Franchise Air", 4.2, 86, "Closed · Opens 8 AM", False)}
 </div>"""
 
 
 def bento():
     return f"""<div class="bento">
-  <div class="tile b-2 b-tall reveal"><div><span class="tile-label">Book</span><h3>Missed-call text-back</h3><p>Every call you miss gets a text in seconds, with your name on it.</p></div>{demo()}</div>
-  <div class="tile b-2 reveal"><div><span class="tile-label">Rank</span><h3>Top of the map pack</h3><p>A complete, active Google profile and real town pages.</p></div><div class="mock">{mappack()}</div></div>
-  <div class="tile b-2 reveal"><div><span class="tile-label">Book</span><h3>AI web chat</h3><p>Answers questions and captures the lead after hours.</p></div><div class="mock chat"><div class="chat-head"><i></i>Your Shop assistant</div><div class="msg user">Do you do weekend AC repair?</div><div class="msg bot">Yes, Saturdays 8 to 4. Want me to book a time? What's your address?</div><div class="msg user">1412 Oak St, Waco</div><div class="msg bot">You're set for Saturday, 10 to 12. We'll text when the tech is on the way.</div></div></div>
-  <div class="tile b-4 reveal"><div><span class="tile-label">Repeat</span><h3>HQ Command Center</h3><p>Calls, texts, booked jobs and reviews, updated as they happen. No monthly PDF.</p></div><div class="mock">{dashboard()}</div></div>
+  <div class="tile b-3 b-phone reveal"><div class="b-phone-copy"><span class="tile-label">Book</span><h3>Missed-call text-back</h3><p>Every call you miss gets a text in seconds, with your name on it. The caller books with you instead of the next shop.</p><p class="demo-caption">Illustration. Your name, your number, your customers.</p></div>{demo()}</div>
+  <div class="tile b-3 b-map reveal"><div><span class="tile-label">Rank</span><h3>Top of the map pack</h3><p>A complete, active Google profile and real town pages.</p></div><div class="mock">{mappack()}</div></div>
+  <div class="tile b-2 reveal"><div><span class="tile-label">Book</span><h3>AI web chat</h3><p>Answers questions and captures the lead after hours.</p></div><div class="mock chat"><div class="chat-head"><i></i>Your Shop assistant</div><div class="msg user">Do you do weekend AC repair?</div><div class="msg bot">Yes, Saturdays 8 to 4. Want me to book a time? What's your address?</div><div class="msg user">1412 Oak Lawn Ave, Dallas</div><div class="msg bot">You're set for Saturday, 10 to 12. We'll text when the tech is on the way.</div></div></div>
+  <div class="tile b-4 reveal"><div><span class="tile-label">Repeat</span><h3>HQ Command Center</h3><p>Your CRM, set up around your shop. Every lead, call, text, job and review in one place, live. No monthly PDF.</p></div><div class="mock">{dashboard()}</div></div>
   <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Reviews on autopilot</h3><p>A request after every finished job, and a reply to every review.</p></div><div class="mock review"><div class="req"><span class="tag">Sent</span>Review request · job marked done 2:14 PM</div><span class="stars">★★★★★</span> Texted me back in seconds and had it fixed by 10.<div class="reply"><b>Owner reply:</b> Thank you! Glad we got you cool again.</div></div></div>
   <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Seasonal campaigns</h3><p>Spring and fall tune-up texts to past customers, and maintenance plan reminders before they lapse.</p></div><div class="mock chat"><div class="msg bot">Hi Maria, it's Your Shop Heating &amp; Air. Summer's coming. Book your AC tune-up this month? Reply YES and we'll find a time.</div><div class="msg user">YES</div></div></div>
 </div>"""
@@ -687,6 +713,14 @@ def money(n):
     return "$X" if n is None else f"${n:,.0f}"
 
 
+def plans_teaser():
+    cards = "".join(
+        f'<a class="pt-card reveal{" featured" if pl.get("featured") else ""}" href="{u("plans")}"><span class="pt-name">{pl["name"]}</span>'
+        f'<span class="pt-price">${round(pl["monthly"] * (1 - ANNUAL_DISCOUNT)):,}<small>/mo</small></span><span class="pt-stage">Best for {esc(pl["stage"])}</span></a>'
+        for pl in PLANS)
+    return f'<div class="pt-grid">{cards}</div><p class="pt-note">Billed yearly, or ${PLANS[0]["monthly"]:,}/mo and up billed monthly. One-time build from ${PLANS[0]["build"]:,}. Billing starts at launch.</p>'
+
+
 def plans_cards():
     out = []
     for p in PLANS:
@@ -713,11 +747,6 @@ def plans_cards():
   <button type="button" data-bill="annual" aria-pressed="true">Annual <span class="save">Save {int(ANNUAL_DISCOUNT*100)}%</span></button>
 </div>"""
     return f'<div class="pricing" data-billing="annual"><h2 class="sr-only">Plans</h2>{founding_strip()}{toggle}<div class="plans">' + "".join(out) + "</div></div>"
-
-
-def plans_teaser():
-    cards = "".join(f'<a class="card teaser" href="{u("plans")}"><h3>{p["name"]}</h3><p class="scope">{esc(p["scope"])}</p><b>from {money(None if p["monthly"] is None else round(p["monthly"]*(1-ANNUAL_DISCOUNT)))}/mo</b></a>' for p in PLANS)
-    return f'<div class="grid four">{cards}</div>'
 
 
 def compare():
@@ -788,7 +817,7 @@ def founding_strip():
 
 
 def terms_strip():
-    items = ["30-day money-back guarantee", "Prices on the website", "You own your site and domain", "Billing starts at launch"]
+    items = ["30-day money-back guarantee", "Live in 14 days", "You own your site and domain", "Billing starts at launch"]
     return '<ul class="terms-strip">' + "".join(f"<li>{esc(x)}</li>" for x in items) + "</ul>"
 
 
@@ -1202,6 +1231,8 @@ POST_SLUGS = {p_["slug"] for p_ in POSTS}
 from niches import NICHES
 from services import SERVICES
 from free_tools import NEW_TOOLS, gcalc_widget
+from magnets import magnet_box as _magnet_box, scorecard_print_html
+magnet_box = lambda key="scorecard", heading=None: _magnet_box(u, key, heading)
 import re as _re
 
 
@@ -1263,6 +1294,9 @@ def byline(updated=None):
     return f'<p class="g-meta g-by"><img src="{a("img/logan-320.webp")}" width="28" height="28" alt="">By {esc(GUIDES_AUTHOR)} · Updated {updated or GUIDES_UPDATED}</p>'
 
 
+MAGNET_GUIDES = {"hvac-website-checklist", "google-map-pack-hvac", "google-reviews-hvac", "missed-call-text-back-hvac", "questions-to-ask-hvac-marketing-agency"}
+
+
 def guide_page(g):
     toc = "".join(f'<li><a href="#s{n}">{esc(h)}</a></li>' for n, (h, _) in enumerate(g["sections"]))
     secs = "".join(f'<h2 id="s{n}">{esc(h)}</h2>' + "".join(guide_block(b) for b in blocks) for n, (h, blocks) in enumerate(g["sections"]))
@@ -1282,6 +1316,7 @@ def guide_page(g):
   <div class="g-take"><h2>Key takeaways</h2><ul class="ticks">{take}</ul></div>
   <nav class="g-toc" aria-label="In this guide"><b>In this guide</b><ol>{toc}</ol></nav>
   <article class="g-body">{secs}
+    {magnet_box() if g["slug"] in MAGNET_GUIDES else ""}
     <h2>Questions</h2>{faq(g['faq'])}
     <h2>Sources</h2><ul class="g-src">{src}</ul>
     {author_box()}
@@ -1671,6 +1706,7 @@ def tools_hub():
 <section class="section after-head"><div class="wrap">
   <h2 class="sr-only">All tools</h2>
   {cards}
+  <div style="margin-top:48px">{magnet_box()}</div>
 </div></section>
 {report_card("Want the full picture? Get your report card")}
 """
@@ -1928,7 +1964,6 @@ def home():
     <h1 class="hero-h1"><span>Rank higher.</span> <span class="grad">Book every call.</span></h1>
     <p class="lede">We build your website, run your Google profile and text back every missed call in 60 seconds, guaranteed. Start with a free report card on how you stack up locally.</p>
     {url_form()}
-    <div class="hero-points"><span>Live in 14 days</span><span>We run it for you</span><span>You own everything</span></div>
     <p class="hero-alt">Rather talk first? <a href="{esc(call_link())}">Book a 15-minute call</a></p>
   </div>
   {hero_visual()}
@@ -1966,9 +2001,11 @@ def home():
 
 <section class="section" id="pricing"><div class="wrap">
   <div class="section-head center reveal"><span class="eyebrow">Pricing</span><h2>Pick a plan. Go live in 14 days.</h2><p class="lede">Every plan texts back every missed call. Monthly billing starts at launch, not at signing.</p></div>
-  {plans_cards()}
-  <p style="margin-top:24px;text-align:center"><a class="more" href="{u('plans')}">Compare plans side by side, with add-ons →</a></p>
+  {plans_teaser()}
+  <p style="margin-top:24px;text-align:center"><a class="btn btn-ghost" href="{u('plans')}">See every plan and what's included <span class="arrow">→</span></a></p>
 </div></section>
+
+<section class="section"><div class="wrap">{magnet_box(heading="Score your own shop in 10 minutes")}</div></section>
 
 <section class="section alt"><div class="wrap" style="max-width:900px">
   <div class="section-head reveal"><span class="eyebrow">Questions</span><h2>Straight answers.</h2></div>
@@ -2316,13 +2353,13 @@ def rc_samples():
     return """<div class="rcs">
   <div class="rcs-card rcs-wide reveal">
     <div class="rcs-top"><span>Overall</span><span class="sample-tag" style="position:static">Sample</span></div>
-    <div class="rcs-grade"><div class="overall">C</div><div><b>Your Shop Heating &amp; Air · Waco, TX</b><p>Your reviews are strong, but your website is holding you back. Start by adding pages for AC repair and installs so Google has something to rank.</p></div></div>
+    <div class="rcs-grade"><div class="overall">C</div><div><b>Your Shop Heating &amp; Air · Dallas, TX</b><p>Your reviews are strong, but your website is holding you back. Start by adding pages for AC repair and installs so Google has something to rank.</p></div></div>
     <div class="rcs-areas"><span>Google profile <b class="g-b">B</b></span><span>Reviews <b class="g-b">B−</b></span><span>Website <b class="g-d">D</b></span><span>Listings <b class="g-c">C</b></span></div>
   </div>
   <div class="rcs-card reveal">
     <div class="rcs-top"><span>Google profile</span><b class="g-b">B</b></div>
     <p class="rcs-sub">Where you show up in two real searches</p>
-    <ul class="rcs-rows"><li><span>"HVAC near Waco, TX"</span><b>#7</b></li><li><span>"AC repair Waco, TX"</span><b>#4</b></li><li><span>Photos added by you</span><b>3</b></li><li><span>Main category</span><b class="ok">HVAC contractor</b></li></ul>
+    <ul class="rcs-rows"><li><span>"HVAC near Dallas, TX"</span><b>#7</b></li><li><span>"AC repair Dallas, TX"</span><b>#4</b></li><li><span>Photos added by you</span><b>3</b></li><li><span>Main category</span><b class="ok">HVAC contractor</b></li></ul>
     <p class="rcs-fix"><b>Fix first:</b> add at least 10 photos of your crew and jobs.</p>
   </div>
   <div class="rcs-card reveal">
@@ -2658,6 +2695,9 @@ def build(out_dir):
             os.remove(os.path.join(out_dir, name + ".html"))  # old flat file, now redirected
         with open(dest, "w") as f:
             f.write(content)
+    os.makedirs(os.path.join(out_dir, "downloads"), exist_ok=True)
+    with open(os.path.join(out_dir, "downloads", "hvac-online-scorecard-print.html"), "w") as f:
+        f.write(scorecard_print_html(BRAND, DOMAIN))
     with open(os.path.join(out_dir, "llms.txt"), "w") as f:
         f.write(llms_txt())
     with open(os.path.join(out_dir, "towns.json"), "w") as f:
