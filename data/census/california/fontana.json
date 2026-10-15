@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Fontana city, California",
+ "geo": "0624680",
+ "median_year_built": 1989,
+ "households": 58362,
+ "owner_occupied": 38997,
+ "owner_occupied_share": 0.668,
+ "housing_units": 59522,
+ "median_home_value": 586800,
+ "share_built_before_2000": 0.68,
+ "year_built": [
+  [
+   "2020 or later",
+   2301
+  ],
+  [
+   "2010-2019",
+   4502
+  ],
+  [
+   "2000-2009",
+   12249
+  ],
+  [
+   "1990-1999",
+   9266
+  ],
+  [
+   "1980-1989",
+   14452
+  ],
+  [
+   "1970-1979",
+   5461
+  ],
+  [
+   "1960-1969",
+   3591
+  ],
+  [
+   "1950-1959",
+   5209
+  ],
+  [
+   "1940-1949",
+   1630
+  ],
+  [
+   "1939 or earlier",
+   861
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.745,
+  "electricity": 0.204
+ }
+}

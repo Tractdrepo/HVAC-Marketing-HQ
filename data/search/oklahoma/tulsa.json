@@ -1,0 +1,352 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair tulsa",
+   "monthly_searches": 1000,
+   "cpc_usd": 82.38,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     720
+    ],
+    [
+     2026,
+     8,
+     880
+    ],
+    [
+     2026,
+     7,
+     1300
+    ],
+    [
+     2026,
+     6,
+     880
+    ],
+    [
+     2026,
+     5,
+     880
+    ],
+    [
+     2026,
+     4,
+     480
+    ],
+    [
+     2026,
+     3,
+     1600
+    ],
+    [
+     2026,
+     2,
+     1300
+    ],
+    [
+     2026,
+     1,
+     2900
+    ],
+    [
+     2025,
+     12,
+     390
+    ],
+    [
+     2025,
+     11,
+     320
+    ],
+    [
+     2025,
+     10,
+     590
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair tulsa",
+   "monthly_searches": 170,
+   "cpc_usd": 108.91,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     110
+    ],
+    [
+     2026,
+     8,
+     90
+    ],
+    [
+     2026,
+     7,
+     170
+    ],
+    [
+     2026,
+     6,
+     320
+    ],
+    [
+     2026,
+     5,
+     110
+    ],
+    [
+     2026,
+     4,
+     110
+    ],
+    [
+     2026,
+     3,
+     210
+    ],
+    [
+     2026,
+     2,
+     210
+    ],
+    [
+     2026,
+     1,
+     210
+    ],
+    [
+     2025,
+     12,
+     140
+    ],
+    [
+     2025,
+     11,
+     110
+    ],
+    [
+     2025,
+     10,
+     90
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair tulsa",
+   "monthly_searches": 50,
+   "cpc_usd": 166.02,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     20
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     90
+    ],
+    [
+     2026,
+     6,
+     40
+    ],
+    [
+     2026,
+     5,
+     210
+    ],
+    [
+     2026,
+     4,
+     20
+    ],
+    [
+     2026,
+     3,
+     50
+    ],
+    [
+     2026,
+     2,
+     30
+    ],
+    [
+     2026,
+     1,
+     70
+    ],
+    [
+     2025,
+     12,
+     40
+    ],
+    [
+     2025,
+     11,
+     40
+    ],
+    [
+     2025,
+     10,
+     70
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company tulsa",
+   "monthly_searches": 480,
+   "cpc_usd": 45.19,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     480
+    ],
+    [
+     2026,
+     8,
+     480
+    ],
+    [
+     2026,
+     7,
+     880
+    ],
+    [
+     2026,
+     6,
+     590
+    ],
+    [
+     2026,
+     5,
+     590
+    ],
+    [
+     2026,
+     4,
+     390
+    ],
+    [
+     2026,
+     3,
+     480
+    ],
+    [
+     2026,
+     2,
+     390
+    ],
+    [
+     2026,
+     1,
+     390
+    ],
+    [
+     2025,
+     12,
+     390
+    ],
+    [
+     2025,
+     11,
+     320
+    ],
+    [
+     2025,
+     10,
+     390
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation tulsa",
+   "monthly_searches": 40,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     50
+    ],
+    [
+     2026,
+     6,
+     20
+    ],
+    [
+     2026,
+     5,
+     40
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     50
+    ],
+    [
+     2026,
+     2,
+     140
+    ],
+    [
+     2026,
+     1,
+     90
+    ],
+    [
+     2025,
+     12,
+     70
+    ],
+    [
+     2025,
+     11,
+     40
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair tulsa",
+ "top_monthly_searches": 1000,
+ "max_cpc_usd": 166.02
+}

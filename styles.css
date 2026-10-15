@@ -1288,3 +1288,4 @@ main > .section.dark::before { display: none; }
 .hook:hover b { text-decoration: underline; text-underline-offset: 3px; }
 .hook-s { display: none; font-weight: 500; }
 @media (max-width: 700px) { .hook b { display: none; } .hook-s { display: inline; } }
+.mtable-h { margin: 32px 0 16px; }

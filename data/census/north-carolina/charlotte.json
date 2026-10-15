@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Charlotte city, North Carolina",
+ "geo": "3712000",
+ "median_year_built": 1995,
+ "households": 368788,
+ "owner_occupied": 188109,
+ "owner_occupied_share": 0.51,
+ "housing_units": 399305,
+ "median_home_value": 385700,
+ "share_built_before_2000": 0.574,
+ "year_built": [
+  [
+   "2020 or later",
+   13997
+  ],
+  [
+   "2010-2019",
+   71816
+  ],
+  [
+   "2000-2009",
+   84157
+  ],
+  [
+   "1990-1999",
+   65610
+  ],
+  [
+   "1980-1989",
+   52285
+  ],
+  [
+   "1970-1979",
+   38752
+  ],
+  [
+   "1960-1969",
+   31055
+  ],
+  [
+   "1950-1959",
+   21717
+  ],
+  [
+   "1940-1949",
+   9739
+  ],
+  [
+   "1939 or earlier",
+   10177
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.436,
+  "electricity": 0.543
+ }
+}

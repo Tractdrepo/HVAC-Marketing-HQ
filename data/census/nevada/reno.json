@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Reno city, Nevada",
+ "geo": "3260600",
+ "median_year_built": 1990,
+ "households": 114322,
+ "owner_occupied": 56957,
+ "owner_occupied_share": 0.498,
+ "housing_units": 123756,
+ "median_home_value": 548300,
+ "share_built_before_2000": 0.644,
+ "year_built": [
+  [
+   "2020 or later",
+   5796
+  ],
+  [
+   "2010-2019",
+   15309
+  ],
+  [
+   "2000-2009",
+   22959
+  ],
+  [
+   "1990-1999",
+   17416
+  ],
+  [
+   "1980-1989",
+   15980
+  ],
+  [
+   "1970-1979",
+   21411
+  ],
+  [
+   "1960-1969",
+   10385
+  ],
+  [
+   "1950-1959",
+   7228
+  ],
+  [
+   "1940-1949",
+   3700
+  ],
+  [
+   "1939 or earlier",
+   3572
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.572,
+  "electricity": 0.381
+ }
+}

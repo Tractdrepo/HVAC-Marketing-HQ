@@ -1,0 +1,291 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair macon",
+   "monthly_searches": 140,
+   "cpc_usd": 46.1,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     90
+    ],
+    [
+     2026,
+     8,
+     170
+    ],
+    [
+     2026,
+     7,
+     260
+    ],
+    [
+     2026,
+     6,
+     210
+    ],
+    [
+     2026,
+     5,
+     170
+    ],
+    [
+     2026,
+     4,
+     170
+    ],
+    [
+     2026,
+     3,
+     110
+    ],
+    [
+     2026,
+     2,
+     90
+    ],
+    [
+     2026,
+     1,
+     110
+    ],
+    [
+     2025,
+     12,
+     140
+    ],
+    [
+     2025,
+     11,
+     110
+    ],
+    [
+     2025,
+     10,
+     110
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair macon",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "furnace repair macon",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": [
+    [
+     2026,
+     9,
+     0
+    ],
+    [
+     2026,
+     8,
+     0
+    ],
+    [
+     2026,
+     7,
+     0
+    ],
+    [
+     2026,
+     6,
+     0
+    ],
+    [
+     2026,
+     5,
+     0
+    ],
+    [
+     2026,
+     4,
+     0
+    ],
+    [
+     2026,
+     3,
+     0
+    ],
+    [
+     2026,
+     2,
+     0
+    ],
+    [
+     2026,
+     1,
+     0
+    ],
+    [
+     2025,
+     12,
+     0
+    ],
+    [
+     2025,
+     11,
+     0
+    ],
+    [
+     2025,
+     10,
+     50
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company macon",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     0
+    ],
+    [
+     2026,
+     5,
+     0
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     10
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     0
+    ],
+    [
+     2025,
+     12,
+     0
+    ],
+    [
+     2025,
+     11,
+     0
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation macon",
+   "monthly_searches": 0,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": [
+    [
+     2026,
+     9,
+     0
+    ],
+    [
+     2026,
+     8,
+     0
+    ],
+    [
+     2026,
+     7,
+     0
+    ],
+    [
+     2026,
+     6,
+     0
+    ],
+    [
+     2026,
+     5,
+     0
+    ],
+    [
+     2026,
+     4,
+     0
+    ],
+    [
+     2026,
+     3,
+     0
+    ],
+    [
+     2026,
+     2,
+     0
+    ],
+    [
+     2026,
+     1,
+     0
+    ],
+    [
+     2025,
+     12,
+     0
+    ],
+    [
+     2025,
+     11,
+     0
+    ],
+    [
+     2025,
+     10,
+     0
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair macon",
+ "top_monthly_searches": 140,
+ "max_cpc_usd": 46.1
+}

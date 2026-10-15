@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Springfield city, Massachusetts",
+ "geo": "2567000",
+ "median_year_built": 1952,
+ "households": 57772,
+ "owner_occupied": 28679,
+ "owner_occupied_share": 0.496,
+ "housing_units": 62217,
+ "median_home_value": 245000,
+ "share_built_before_2000": 0.939,
+ "year_built": [
+  [
+   "2020 or later",
+   118
+  ],
+  [
+   "2010-2019",
+   1878
+  ],
+  [
+   "2000-2009",
+   1796
+  ],
+  [
+   "1990-1999",
+   2744
+  ],
+  [
+   "1980-1989",
+   4300
+  ],
+  [
+   "1970-1979",
+   6248
+  ],
+  [
+   "1960-1969",
+   5566
+  ],
+  [
+   "1950-1959",
+   10563
+  ],
+  [
+   "1940-1949",
+   6179
+  ],
+  [
+   "1939 or earlier",
+   22825
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.581,
+  "electricity": 0.199
+ }
+}

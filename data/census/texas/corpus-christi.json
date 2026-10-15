@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Corpus Christi city, Texas",
+ "geo": "4817000",
+ "median_year_built": 1982,
+ "households": 118741,
+ "owner_occupied": 68774,
+ "owner_occupied_share": 0.579,
+ "housing_units": 136279,
+ "median_home_value": 210400,
+ "share_built_before_2000": 0.74,
+ "year_built": [
+  [
+   "2020 or later",
+   2360
+  ],
+  [
+   "2010-2019",
+   16134
+  ],
+  [
+   "2000-2009",
+   16886
+  ],
+  [
+   "1990-1999",
+   14810
+  ],
+  [
+   "1980-1989",
+   23226
+  ],
+  [
+   "1970-1979",
+   17641
+  ],
+  [
+   "1960-1969",
+   15144
+  ],
+  [
+   "1950-1959",
+   19261
+  ],
+  [
+   "1940-1949",
+   7439
+  ],
+  [
+   "1939 or earlier",
+   3378
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.19,
+  "electricity": 0.794
+ }
+}

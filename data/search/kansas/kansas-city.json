@@ -1,0 +1,324 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair kansas city ks",
+   "monthly_searches": 10,
+   "cpc_usd": 32.17,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     20
+    ],
+    [
+     2026,
+     3,
+     40
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     20
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair kansas city ks",
+   "monthly_searches": 10,
+   "cpc_usd": 140.56,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     0
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     10
+    ],
+    [
+     2026,
+     2,
+     0
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     0
+    ],
+    [
+     2025,
+     10,
+     0
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair kansas city ks",
+   "monthly_searches": 70,
+   "cpc_usd": 35.06,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     90
+    ],
+    [
+     2026,
+     8,
+     110
+    ],
+    [
+     2026,
+     7,
+     20
+    ],
+    [
+     2026,
+     6,
+     30
+    ],
+    [
+     2026,
+     5,
+     40
+    ],
+    [
+     2026,
+     4,
+     90
+    ],
+    [
+     2026,
+     3,
+     70
+    ],
+    [
+     2026,
+     2,
+     90
+    ],
+    [
+     2026,
+     1,
+     170
+    ],
+    [
+     2025,
+     12,
+     50
+    ],
+    [
+     2025,
+     11,
+     30
+    ],
+    [
+     2025,
+     10,
+     40
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company kansas city ks",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "ac installation kansas city ks",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     30
+    ],
+    [
+     2026,
+     3,
+     30
+    ],
+    [
+     2026,
+     2,
+     20
+    ],
+    [
+     2026,
+     1,
+     30
+    ],
+    [
+     2025,
+     12,
+     30
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     0
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "furnace repair kansas city ks",
+ "top_monthly_searches": 70,
+ "max_cpc_usd": 140.56,
+ "shared_city_name": {
+  "other_states": [
+   "MO"
+  ],
+  "unqualified": [
+   {
+    "keyword": "ac repair kansas city",
+    "monthly_searches": 260,
+    "cpc_usd": 83.47
+   },
+   {
+    "keyword": "hvac repair kansas city",
+    "monthly_searches": 110,
+    "cpc_usd": 45.19
+   },
+   {
+    "keyword": "furnace repair kansas city",
+    "monthly_searches": 70,
+    "cpc_usd": 35.06
+   },
+   {
+    "keyword": "hvac company kansas city",
+    "monthly_searches": 260,
+    "cpc_usd": 14.23
+   },
+   {
+    "keyword": "ac installation kansas city",
+    "monthly_searches": 40,
+    "cpc_usd": null
+   }
+  ],
+  "note": "Same city name exists in another state on our site. Keywords above include the state; the unqualified searches are split between both."
+ }
+}

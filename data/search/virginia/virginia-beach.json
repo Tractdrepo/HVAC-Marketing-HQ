@@ -1,0 +1,352 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair virginia beach",
+   "monthly_searches": 260,
+   "cpc_usd": 56.89,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     110
+    ],
+    [
+     2026,
+     8,
+     170
+    ],
+    [
+     2026,
+     7,
+     390
+    ],
+    [
+     2026,
+     6,
+     320
+    ],
+    [
+     2026,
+     5,
+     210
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     170
+    ],
+    [
+     2026,
+     2,
+     480
+    ],
+    [
+     2026,
+     1,
+     480
+    ],
+    [
+     2025,
+     12,
+     260
+    ],
+    [
+     2025,
+     11,
+     210
+    ],
+    [
+     2025,
+     10,
+     210
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair virginia beach",
+   "monthly_searches": 390,
+   "cpc_usd": 83.45,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     90
+    ],
+    [
+     2026,
+     8,
+     110
+    ],
+    [
+     2026,
+     7,
+     170
+    ],
+    [
+     2026,
+     6,
+     210
+    ],
+    [
+     2026,
+     5,
+     170
+    ],
+    [
+     2026,
+     4,
+     170
+    ],
+    [
+     2026,
+     3,
+     260
+    ],
+    [
+     2026,
+     2,
+     590
+    ],
+    [
+     2026,
+     1,
+     590
+    ],
+    [
+     2025,
+     12,
+     590
+    ],
+    [
+     2025,
+     11,
+     720
+    ],
+    [
+     2025,
+     10,
+     720
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair virginia beach",
+   "monthly_searches": 210,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     30
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     40
+    ],
+    [
+     2026,
+     6,
+     50
+    ],
+    [
+     2026,
+     5,
+     40
+    ],
+    [
+     2026,
+     4,
+     40
+    ],
+    [
+     2026,
+     3,
+     140
+    ],
+    [
+     2026,
+     2,
+     320
+    ],
+    [
+     2026,
+     1,
+     260
+    ],
+    [
+     2025,
+     12,
+     390
+    ],
+    [
+     2025,
+     11,
+     590
+    ],
+    [
+     2025,
+     10,
+     480
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company virginia beach",
+   "monthly_searches": 390,
+   "cpc_usd": 24.78,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     260
+    ],
+    [
+     2026,
+     8,
+     320
+    ],
+    [
+     2026,
+     7,
+     320
+    ],
+    [
+     2026,
+     6,
+     390
+    ],
+    [
+     2026,
+     5,
+     320
+    ],
+    [
+     2026,
+     4,
+     480
+    ],
+    [
+     2026,
+     3,
+     320
+    ],
+    [
+     2026,
+     2,
+     480
+    ],
+    [
+     2026,
+     1,
+     590
+    ],
+    [
+     2025,
+     12,
+     480
+    ],
+    [
+     2025,
+     11,
+     590
+    ],
+    [
+     2025,
+     10,
+     590
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation virginia beach",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     10
+    ],
+    [
+     2026,
+     2,
+     0
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     20
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "hvac repair virginia beach",
+ "top_monthly_searches": 390,
+ "max_cpc_usd": 83.45
+}

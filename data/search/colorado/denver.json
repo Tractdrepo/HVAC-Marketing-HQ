@@ -1,0 +1,352 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair denver",
+   "monthly_searches": 720,
+   "cpc_usd": 38.17,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     720
+    ],
+    [
+     2026,
+     8,
+     720
+    ],
+    [
+     2026,
+     7,
+     1600
+    ],
+    [
+     2026,
+     6,
+     880
+    ],
+    [
+     2026,
+     5,
+     880
+    ],
+    [
+     2026,
+     4,
+     590
+    ],
+    [
+     2026,
+     3,
+     720
+    ],
+    [
+     2026,
+     2,
+     720
+    ],
+    [
+     2026,
+     1,
+     590
+    ],
+    [
+     2025,
+     12,
+     590
+    ],
+    [
+     2025,
+     11,
+     210
+    ],
+    [
+     2025,
+     10,
+     480
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair denver",
+   "monthly_searches": 320,
+   "cpc_usd": 79.96,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     390
+    ],
+    [
+     2026,
+     8,
+     260
+    ],
+    [
+     2026,
+     7,
+     480
+    ],
+    [
+     2026,
+     6,
+     320
+    ],
+    [
+     2026,
+     5,
+     390
+    ],
+    [
+     2026,
+     4,
+     260
+    ],
+    [
+     2026,
+     3,
+     480
+    ],
+    [
+     2026,
+     2,
+     260
+    ],
+    [
+     2026,
+     1,
+     480
+    ],
+    [
+     2025,
+     12,
+     390
+    ],
+    [
+     2025,
+     11,
+     170
+    ],
+    [
+     2025,
+     10,
+     210
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair denver",
+   "monthly_searches": 390,
+   "cpc_usd": 1.27,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     390
+    ],
+    [
+     2026,
+     8,
+     170
+    ],
+    [
+     2026,
+     7,
+     320
+    ],
+    [
+     2026,
+     6,
+     260
+    ],
+    [
+     2026,
+     5,
+     320
+    ],
+    [
+     2026,
+     4,
+     260
+    ],
+    [
+     2026,
+     3,
+     480
+    ],
+    [
+     2026,
+     2,
+     720
+    ],
+    [
+     2026,
+     1,
+     880
+    ],
+    [
+     2025,
+     12,
+     480
+    ],
+    [
+     2025,
+     11,
+     260
+    ],
+    [
+     2025,
+     10,
+     480
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company denver",
+   "monthly_searches": 880,
+   "cpc_usd": 12.54,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     880
+    ],
+    [
+     2026,
+     8,
+     590
+    ],
+    [
+     2026,
+     7,
+     880
+    ],
+    [
+     2026,
+     6,
+     720
+    ],
+    [
+     2026,
+     5,
+     720
+    ],
+    [
+     2026,
+     4,
+     720
+    ],
+    [
+     2026,
+     3,
+     1000
+    ],
+    [
+     2026,
+     2,
+     880
+    ],
+    [
+     2026,
+     1,
+     1000
+    ],
+    [
+     2025,
+     12,
+     880
+    ],
+    [
+     2025,
+     11,
+     720
+    ],
+    [
+     2025,
+     10,
+     720
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation denver",
+   "monthly_searches": 320,
+   "cpc_usd": 30.32,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     210
+    ],
+    [
+     2026,
+     8,
+     170
+    ],
+    [
+     2026,
+     7,
+     320
+    ],
+    [
+     2026,
+     6,
+     260
+    ],
+    [
+     2026,
+     5,
+     260
+    ],
+    [
+     2026,
+     4,
+     260
+    ],
+    [
+     2026,
+     3,
+     720
+    ],
+    [
+     2026,
+     2,
+     320
+    ],
+    [
+     2026,
+     1,
+     480
+    ],
+    [
+     2025,
+     12,
+     320
+    ],
+    [
+     2025,
+     11,
+     170
+    ],
+    [
+     2025,
+     10,
+     70
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "hvac company denver",
+ "top_monthly_searches": 880,
+ "max_cpc_usd": 79.96
+}

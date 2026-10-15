@@ -1,0 +1,230 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair toledo",
+   "monthly_searches": 140,
+   "cpc_usd": 9.17,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     110
+    ],
+    [
+     2026,
+     8,
+     170
+    ],
+    [
+     2026,
+     7,
+     170
+    ],
+    [
+     2026,
+     6,
+     140
+    ],
+    [
+     2026,
+     5,
+     210
+    ],
+    [
+     2026,
+     4,
+     170
+    ],
+    [
+     2026,
+     3,
+     90
+    ],
+    [
+     2026,
+     2,
+     390
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     90
+    ],
+    [
+     2025,
+     10,
+     30
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair toledo",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     10
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     20
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair toledo",
+   "monthly_searches": 170,
+   "cpc_usd": 8.09,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     50
+    ],
+    [
+     2026,
+     8,
+     110
+    ],
+    [
+     2026,
+     7,
+     30
+    ],
+    [
+     2026,
+     6,
+     50
+    ],
+    [
+     2026,
+     5,
+     50
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     110
+    ],
+    [
+     2026,
+     2,
+     390
+    ],
+    [
+     2026,
+     1,
+     320
+    ],
+    [
+     2025,
+     12,
+     260
+    ],
+    [
+     2025,
+     11,
+     320
+    ],
+    [
+     2025,
+     10,
+     110
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company toledo",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "ac installation toledo",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  }
+ ],
+ "top_keyword": "furnace repair toledo",
+ "top_monthly_searches": 170,
+ "max_cpc_usd": 9.17
+}

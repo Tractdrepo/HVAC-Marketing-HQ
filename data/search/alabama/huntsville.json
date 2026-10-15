@@ -1,0 +1,352 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair huntsville",
+   "monthly_searches": 50,
+   "cpc_usd": 30.61,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     40
+    ],
+    [
+     2026,
+     8,
+     140
+    ],
+    [
+     2026,
+     7,
+     70
+    ],
+    [
+     2026,
+     6,
+     70
+    ],
+    [
+     2026,
+     5,
+     40
+    ],
+    [
+     2026,
+     4,
+     70
+    ],
+    [
+     2026,
+     3,
+     50
+    ],
+    [
+     2026,
+     2,
+     20
+    ],
+    [
+     2026,
+     1,
+     20
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     20
+    ],
+    [
+     2025,
+     10,
+     70
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair huntsville",
+   "monthly_searches": 390,
+   "cpc_usd": 32.06,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     390
+    ],
+    [
+     2026,
+     8,
+     590
+    ],
+    [
+     2026,
+     7,
+     480
+    ],
+    [
+     2026,
+     6,
+     480
+    ],
+    [
+     2026,
+     5,
+     390
+    ],
+    [
+     2026,
+     4,
+     320
+    ],
+    [
+     2026,
+     3,
+     320
+    ],
+    [
+     2026,
+     2,
+     170
+    ],
+    [
+     2026,
+     1,
+     210
+    ],
+    [
+     2025,
+     12,
+     170
+    ],
+    [
+     2025,
+     11,
+     390
+    ],
+    [
+     2025,
+     10,
+     320
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair huntsville",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     20
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     20
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     0
+    ],
+    [
+     2025,
+     10,
+     20
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company huntsville",
+   "monthly_searches": 210,
+   "cpc_usd": 10.86,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     260
+    ],
+    [
+     2026,
+     8,
+     210
+    ],
+    [
+     2026,
+     7,
+     260
+    ],
+    [
+     2026,
+     6,
+     260
+    ],
+    [
+     2026,
+     5,
+     140
+    ],
+    [
+     2026,
+     4,
+     170
+    ],
+    [
+     2026,
+     3,
+     260
+    ],
+    [
+     2026,
+     2,
+     260
+    ],
+    [
+     2026,
+     1,
+     320
+    ],
+    [
+     2025,
+     12,
+     210
+    ],
+    [
+     2025,
+     11,
+     210
+    ],
+    [
+     2025,
+     10,
+     140
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation huntsville",
+   "monthly_searches": 20,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     20
+    ],
+    [
+     2026,
+     8,
+     70
+    ],
+    [
+     2026,
+     7,
+     20
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     20
+    ],
+    [
+     2026,
+     3,
+     20
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     20
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     50
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "hvac repair huntsville",
+ "top_monthly_searches": 390,
+ "max_cpc_usd": 32.06
+}

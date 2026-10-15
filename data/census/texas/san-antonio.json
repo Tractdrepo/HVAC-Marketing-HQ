@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "San Antonio city, Texas",
+ "geo": "4865000",
+ "median_year_built": 1985,
+ "households": 554581,
+ "owner_occupied": 289380,
+ "owner_occupied_share": 0.522,
+ "housing_units": 612901,
+ "median_home_value": 235700,
+ "share_built_before_2000": 0.694,
+ "year_built": [
+  [
+   "2020 or later",
+   15493
+  ],
+  [
+   "2010-2019",
+   77097
+  ],
+  [
+   "2000-2009",
+   94989
+  ],
+  [
+   "1990-1999",
+   65798
+  ],
+  [
+   "1980-1989",
+   98896
+  ],
+  [
+   "1970-1979",
+   81641
+  ],
+  [
+   "1960-1969",
+   60358
+  ],
+  [
+   "1950-1959",
+   56712
+  ],
+  [
+   "1940-1949",
+   30759
+  ],
+  [
+   "1939 or earlier",
+   31158
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.278,
+  "electricity": 0.702
+ }
+}

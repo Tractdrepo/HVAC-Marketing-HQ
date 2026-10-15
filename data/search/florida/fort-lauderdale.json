@@ -1,0 +1,352 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair fort lauderdale",
+   "monthly_searches": 720,
+   "cpc_usd": 50.99,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     720
+    ],
+    [
+     2026,
+     8,
+     1000
+    ],
+    [
+     2026,
+     7,
+     880
+    ],
+    [
+     2026,
+     6,
+     880
+    ],
+    [
+     2026,
+     5,
+     720
+    ],
+    [
+     2026,
+     4,
+     1000
+    ],
+    [
+     2026,
+     3,
+     1000
+    ],
+    [
+     2026,
+     2,
+     590
+    ],
+    [
+     2026,
+     1,
+     590
+    ],
+    [
+     2025,
+     12,
+     590
+    ],
+    [
+     2025,
+     11,
+     390
+    ],
+    [
+     2025,
+     10,
+     590
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair fort lauderdale",
+   "monthly_searches": 40,
+   "cpc_usd": 4.13,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     40
+    ],
+    [
+     2026,
+     8,
+     20
+    ],
+    [
+     2026,
+     7,
+     40
+    ],
+    [
+     2026,
+     6,
+     50
+    ],
+    [
+     2026,
+     5,
+     40
+    ],
+    [
+     2026,
+     4,
+     30
+    ],
+    [
+     2026,
+     3,
+     50
+    ],
+    [
+     2026,
+     2,
+     20
+    ],
+    [
+     2026,
+     1,
+     30
+    ],
+    [
+     2025,
+     12,
+     170
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     20
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair fort lauderdale",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     20
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     10
+    ],
+    [
+     2026,
+     2,
+     0
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     0
+    ],
+    [
+     2025,
+     11,
+     0
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company fort lauderdale",
+   "monthly_searches": 110,
+   "cpc_usd": 13.25,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     260
+    ],
+    [
+     2026,
+     8,
+     110
+    ],
+    [
+     2026,
+     7,
+     140
+    ],
+    [
+     2026,
+     6,
+     70
+    ],
+    [
+     2026,
+     5,
+     140
+    ],
+    [
+     2026,
+     4,
+     110
+    ],
+    [
+     2026,
+     3,
+     110
+    ],
+    [
+     2026,
+     2,
+     170
+    ],
+    [
+     2026,
+     1,
+     140
+    ],
+    [
+     2025,
+     12,
+     30
+    ],
+    [
+     2025,
+     11,
+     50
+    ],
+    [
+     2025,
+     10,
+     70
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation fort lauderdale",
+   "monthly_searches": 50,
+   "cpc_usd": 14.09,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     70
+    ],
+    [
+     2026,
+     8,
+     110
+    ],
+    [
+     2026,
+     7,
+     40
+    ],
+    [
+     2026,
+     6,
+     90
+    ],
+    [
+     2026,
+     5,
+     40
+    ],
+    [
+     2026,
+     4,
+     70
+    ],
+    [
+     2026,
+     3,
+     50
+    ],
+    [
+     2026,
+     2,
+     20
+    ],
+    [
+     2026,
+     1,
+     50
+    ],
+    [
+     2025,
+     12,
+     20
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     30
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair fort lauderdale",
+ "top_monthly_searches": 720,
+ "max_cpc_usd": 50.99
+}

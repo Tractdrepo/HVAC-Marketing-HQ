@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Austin city, Texas",
+ "geo": "4805000",
+ "median_year_built": 1994,
+ "households": 456113,
+ "owner_occupied": 198180,
+ "owner_occupied_share": 0.434,
+ "housing_units": 483071,
+ "median_home_value": 555300,
+ "share_built_before_2000": 0.567,
+ "year_built": [
+  [
+   "2020 or later",
+   23292
+  ],
+  [
+   "2010-2019",
+   103591
+  ],
+  [
+   "2000-2009",
+   82134
+  ],
+  [
+   "1990-1999",
+   57387
+  ],
+  [
+   "1980-1989",
+   80087
+  ],
+  [
+   "1970-1979",
+   64313
+  ],
+  [
+   "1960-1969",
+   33357
+  ],
+  [
+   "1950-1959",
+   19298
+  ],
+  [
+   "1940-1949",
+   8780
+  ],
+  [
+   "1939 or earlier",
+   10832
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.405,
+  "electricity": 0.57
+ }
+}

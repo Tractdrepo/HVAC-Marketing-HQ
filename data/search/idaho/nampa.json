@@ -1,0 +1,291 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair nampa",
+   "monthly_searches": 70,
+   "cpc_usd": 215.69,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     50
+    ],
+    [
+     2026,
+     8,
+     110
+    ],
+    [
+     2026,
+     7,
+     110
+    ],
+    [
+     2026,
+     6,
+     90
+    ],
+    [
+     2026,
+     5,
+     70
+    ],
+    [
+     2026,
+     4,
+     40
+    ],
+    [
+     2026,
+     3,
+     40
+    ],
+    [
+     2026,
+     2,
+     70
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     170
+    ],
+    [
+     2025,
+     11,
+     50
+    ],
+    [
+     2025,
+     10,
+     30
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair nampa",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": [
+    [
+     2026,
+     9,
+     0
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     10
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     0
+    ],
+    [
+     2025,
+     12,
+     0
+    ],
+    [
+     2025,
+     11,
+     0
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair nampa",
+   "monthly_searches": 40,
+   "cpc_usd": 56.49,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     40
+    ],
+    [
+     2026,
+     3,
+     70
+    ],
+    [
+     2026,
+     2,
+     170
+    ],
+    [
+     2026,
+     1,
+     50
+    ],
+    [
+     2025,
+     12,
+     90
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     20
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company nampa",
+   "monthly_searches": 40,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     210
+    ],
+    [
+     2026,
+     8,
+     30
+    ],
+    [
+     2026,
+     7,
+     40
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     20
+    ],
+    [
+     2026,
+     2,
+     30
+    ],
+    [
+     2026,
+     1,
+     20
+    ],
+    [
+     2025,
+     12,
+     50
+    ],
+    [
+     2025,
+     11,
+     0
+    ],
+    [
+     2025,
+     10,
+     0
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation nampa",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  }
+ ],
+ "top_keyword": "ac repair nampa",
+ "top_monthly_searches": 70,
+ "max_cpc_usd": 215.69
+}

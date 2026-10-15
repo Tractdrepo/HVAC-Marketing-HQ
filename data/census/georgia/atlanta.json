@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Atlanta city, Georgia",
+ "geo": "1304000",
+ "median_year_built": 1989,
+ "households": 236468,
+ "owner_occupied": 109792,
+ "owner_occupied_share": 0.464,
+ "housing_units": 265899,
+ "median_home_value": 439600,
+ "share_built_before_2000": 0.586,
+ "year_built": [
+  [
+   "2020 or later",
+   10692
+  ],
+  [
+   "2010-2019",
+   45252
+  ],
+  [
+   "2000-2009",
+   54067
+  ],
+  [
+   "1990-1999",
+   21651
+  ],
+  [
+   "1980-1989",
+   20778
+  ],
+  [
+   "1970-1979",
+   20064
+  ],
+  [
+   "1960-1969",
+   26064
+  ],
+  [
+   "1950-1959",
+   22299
+  ],
+  [
+   "1940-1949",
+   13423
+  ],
+  [
+   "1939 or earlier",
+   31609
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.401,
+  "electricity": 0.578
+ }
+}

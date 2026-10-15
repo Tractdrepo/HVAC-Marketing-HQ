@@ -1,0 +1,352 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair irvine",
+   "monthly_searches": 260,
+   "cpc_usd": 48.9,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     320
+    ],
+    [
+     2026,
+     8,
+     390
+    ],
+    [
+     2026,
+     7,
+     390
+    ],
+    [
+     2026,
+     6,
+     170
+    ],
+    [
+     2026,
+     5,
+     260
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     590
+    ],
+    [
+     2026,
+     2,
+     390
+    ],
+    [
+     2026,
+     1,
+     210
+    ],
+    [
+     2025,
+     12,
+     210
+    ],
+    [
+     2025,
+     11,
+     70
+    ],
+    [
+     2025,
+     10,
+     170
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair irvine",
+   "monthly_searches": 170,
+   "cpc_usd": 62.55,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     90
+    ],
+    [
+     2026,
+     8,
+     140
+    ],
+    [
+     2026,
+     7,
+     90
+    ],
+    [
+     2026,
+     6,
+     110
+    ],
+    [
+     2026,
+     5,
+     110
+    ],
+    [
+     2026,
+     4,
+     140
+    ],
+    [
+     2026,
+     3,
+     210
+    ],
+    [
+     2026,
+     2,
+     140
+    ],
+    [
+     2026,
+     1,
+     260
+    ],
+    [
+     2025,
+     12,
+     390
+    ],
+    [
+     2025,
+     11,
+     140
+    ],
+    [
+     2025,
+     10,
+     170
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair irvine",
+   "monthly_searches": 40,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     110
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     30
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     40
+    ],
+    [
+     2026,
+     3,
+     40
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     30
+    ],
+    [
+     2025,
+     12,
+     170
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     30
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company irvine",
+   "monthly_searches": 40,
+   "cpc_usd": 6.86,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     20
+    ],
+    [
+     2026,
+     8,
+     30
+    ],
+    [
+     2026,
+     7,
+     20
+    ],
+    [
+     2026,
+     6,
+     20
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     90
+    ],
+    [
+     2026,
+     2,
+     140
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     170
+    ],
+    [
+     2025,
+     11,
+     30
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation irvine",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     20
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     20
+    ],
+    [
+     2026,
+     4,
+     20
+    ],
+    [
+     2026,
+     3,
+     20
+    ],
+    [
+     2026,
+     2,
+     20
+    ],
+    [
+     2026,
+     1,
+     30
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair irvine",
+ "top_monthly_searches": 260,
+ "max_cpc_usd": 62.55
+}

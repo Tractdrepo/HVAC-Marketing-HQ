@@ -1,0 +1,291 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair des moines",
+   "monthly_searches": 210,
+   "cpc_usd": 27.29,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     170
+    ],
+    [
+     2026,
+     8,
+     170
+    ],
+    [
+     2026,
+     7,
+     320
+    ],
+    [
+     2026,
+     6,
+     170
+    ],
+    [
+     2026,
+     5,
+     140
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     210
+    ],
+    [
+     2026,
+     2,
+     110
+    ],
+    [
+     2026,
+     1,
+     210
+    ],
+    [
+     2025,
+     12,
+     170
+    ],
+    [
+     2025,
+     11,
+     210
+    ],
+    [
+     2025,
+     10,
+     480
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair des moines",
+   "monthly_searches": 210,
+   "cpc_usd": 27.29,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     170
+    ],
+    [
+     2026,
+     8,
+     170
+    ],
+    [
+     2026,
+     7,
+     320
+    ],
+    [
+     2026,
+     6,
+     170
+    ],
+    [
+     2026,
+     5,
+     140
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     210
+    ],
+    [
+     2026,
+     2,
+     110
+    ],
+    [
+     2026,
+     1,
+     210
+    ],
+    [
+     2025,
+     12,
+     170
+    ],
+    [
+     2025,
+     11,
+     210
+    ],
+    [
+     2025,
+     10,
+     480
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair des moines",
+   "monthly_searches": 140,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     90
+    ],
+    [
+     2026,
+     8,
+     70
+    ],
+    [
+     2026,
+     7,
+     90
+    ],
+    [
+     2026,
+     6,
+     110
+    ],
+    [
+     2026,
+     5,
+     50
+    ],
+    [
+     2026,
+     4,
+     110
+    ],
+    [
+     2026,
+     3,
+     90
+    ],
+    [
+     2026,
+     2,
+     110
+    ],
+    [
+     2026,
+     1,
+     260
+    ],
+    [
+     2025,
+     12,
+     170
+    ],
+    [
+     2025,
+     11,
+     260
+    ],
+    [
+     2025,
+     10,
+     170
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company des moines",
+   "monthly_searches": 170,
+   "cpc_usd": 9.98,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     140
+    ],
+    [
+     2026,
+     8,
+     210
+    ],
+    [
+     2026,
+     7,
+     260
+    ],
+    [
+     2026,
+     6,
+     170
+    ],
+    [
+     2026,
+     5,
+     390
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     140
+    ],
+    [
+     2026,
+     2,
+     140
+    ],
+    [
+     2026,
+     1,
+     170
+    ],
+    [
+     2025,
+     12,
+     110
+    ],
+    [
+     2025,
+     11,
+     110
+    ],
+    [
+     2025,
+     10,
+     170
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation des moines",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  }
+ ],
+ "top_keyword": "ac repair des moines",
+ "top_monthly_searches": 210,
+ "max_cpc_usd": 27.29
+}

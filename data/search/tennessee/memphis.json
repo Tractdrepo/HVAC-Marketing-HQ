@@ -1,0 +1,352 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair memphis",
+   "monthly_searches": 320,
+   "cpc_usd": 41.91,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     390
+    ],
+    [
+     2026,
+     8,
+     390
+    ],
+    [
+     2026,
+     7,
+     590
+    ],
+    [
+     2026,
+     6,
+     390
+    ],
+    [
+     2026,
+     5,
+     210
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     480
+    ],
+    [
+     2026,
+     2,
+     320
+    ],
+    [
+     2026,
+     1,
+     170
+    ],
+    [
+     2025,
+     12,
+     260
+    ],
+    [
+     2025,
+     11,
+     260
+    ],
+    [
+     2025,
+     10,
+     480
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair memphis",
+   "monthly_searches": 70,
+   "cpc_usd": 35.71,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     110
+    ],
+    [
+     2026,
+     8,
+     110
+    ],
+    [
+     2026,
+     7,
+     90
+    ],
+    [
+     2026,
+     6,
+     110
+    ],
+    [
+     2026,
+     5,
+     50
+    ],
+    [
+     2026,
+     4,
+     70
+    ],
+    [
+     2026,
+     3,
+     90
+    ],
+    [
+     2026,
+     2,
+     30
+    ],
+    [
+     2026,
+     1,
+     70
+    ],
+    [
+     2025,
+     12,
+     70
+    ],
+    [
+     2025,
+     11,
+     50
+    ],
+    [
+     2025,
+     10,
+     90
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair memphis",
+   "monthly_searches": 90,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     40
+    ],
+    [
+     2026,
+     8,
+     20
+    ],
+    [
+     2026,
+     7,
+     30
+    ],
+    [
+     2026,
+     6,
+     20
+    ],
+    [
+     2026,
+     5,
+     20
+    ],
+    [
+     2026,
+     4,
+     20
+    ],
+    [
+     2026,
+     3,
+     50
+    ],
+    [
+     2026,
+     2,
+     390
+    ],
+    [
+     2026,
+     1,
+     170
+    ],
+    [
+     2025,
+     12,
+     110
+    ],
+    [
+     2025,
+     11,
+     20
+    ],
+    [
+     2025,
+     10,
+     140
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company memphis",
+   "monthly_searches": 320,
+   "cpc_usd": 13.43,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     480
+    ],
+    [
+     2026,
+     8,
+     320
+    ],
+    [
+     2026,
+     7,
+     390
+    ],
+    [
+     2026,
+     6,
+     260
+    ],
+    [
+     2026,
+     5,
+     260
+    ],
+    [
+     2026,
+     4,
+     320
+    ],
+    [
+     2026,
+     3,
+     320
+    ],
+    [
+     2026,
+     2,
+     260
+    ],
+    [
+     2026,
+     1,
+     320
+    ],
+    [
+     2025,
+     12,
+     260
+    ],
+    [
+     2025,
+     11,
+     140
+    ],
+    [
+     2025,
+     10,
+     320
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation memphis",
+   "monthly_searches": 30,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     140
+    ],
+    [
+     2026,
+     8,
+     110
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     20
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     30
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     30
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair memphis",
+ "top_monthly_searches": 320,
+ "max_cpc_usd": 41.91
+}

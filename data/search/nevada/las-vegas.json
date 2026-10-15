@@ -1,0 +1,352 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair las vegas",
+   "monthly_searches": 5400,
+   "cpc_usd": 68.33,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     4400
+    ],
+    [
+     2026,
+     8,
+     4400
+    ],
+    [
+     2026,
+     7,
+     5400
+    ],
+    [
+     2026,
+     6,
+     6600
+    ],
+    [
+     2026,
+     5,
+     5400
+    ],
+    [
+     2026,
+     4,
+     5400
+    ],
+    [
+     2026,
+     3,
+     6600
+    ],
+    [
+     2026,
+     2,
+     5400
+    ],
+    [
+     2026,
+     1,
+     6600
+    ],
+    [
+     2025,
+     12,
+     6600
+    ],
+    [
+     2025,
+     11,
+     5400
+    ],
+    [
+     2025,
+     10,
+     6600
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair las vegas",
+   "monthly_searches": 320,
+   "cpc_usd": 63.64,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     480
+    ],
+    [
+     2026,
+     8,
+     320
+    ],
+    [
+     2026,
+     7,
+     320
+    ],
+    [
+     2026,
+     6,
+     390
+    ],
+    [
+     2026,
+     5,
+     390
+    ],
+    [
+     2026,
+     4,
+     260
+    ],
+    [
+     2026,
+     3,
+     390
+    ],
+    [
+     2026,
+     2,
+     210
+    ],
+    [
+     2026,
+     1,
+     320
+    ],
+    [
+     2025,
+     12,
+     320
+    ],
+    [
+     2025,
+     11,
+     390
+    ],
+    [
+     2025,
+     10,
+     480
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair las vegas",
+   "monthly_searches": 720,
+   "cpc_usd": 6.11,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     590
+    ],
+    [
+     2026,
+     8,
+     480
+    ],
+    [
+     2026,
+     7,
+     390
+    ],
+    [
+     2026,
+     6,
+     880
+    ],
+    [
+     2026,
+     5,
+     480
+    ],
+    [
+     2026,
+     4,
+     480
+    ],
+    [
+     2026,
+     3,
+     720
+    ],
+    [
+     2026,
+     2,
+     720
+    ],
+    [
+     2026,
+     1,
+     1000
+    ],
+    [
+     2025,
+     12,
+     1000
+    ],
+    [
+     2025,
+     11,
+     880
+    ],
+    [
+     2025,
+     10,
+     720
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company las vegas",
+   "monthly_searches": 1000,
+   "cpc_usd": 13.27,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     880
+    ],
+    [
+     2026,
+     8,
+     720
+    ],
+    [
+     2026,
+     7,
+     1000
+    ],
+    [
+     2026,
+     6,
+     880
+    ],
+    [
+     2026,
+     5,
+     880
+    ],
+    [
+     2026,
+     4,
+     1000
+    ],
+    [
+     2026,
+     3,
+     1300
+    ],
+    [
+     2026,
+     2,
+     1000
+    ],
+    [
+     2026,
+     1,
+     1000
+    ],
+    [
+     2025,
+     12,
+     1000
+    ],
+    [
+     2025,
+     11,
+     880
+    ],
+    [
+     2025,
+     10,
+     1000
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation las vegas",
+   "monthly_searches": 1900,
+   "cpc_usd": 46.55,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     1300
+    ],
+    [
+     2026,
+     8,
+     1300
+    ],
+    [
+     2026,
+     7,
+     1600
+    ],
+    [
+     2026,
+     6,
+     1900
+    ],
+    [
+     2026,
+     5,
+     1900
+    ],
+    [
+     2026,
+     4,
+     1600
+    ],
+    [
+     2026,
+     3,
+     1900
+    ],
+    [
+     2026,
+     2,
+     2400
+    ],
+    [
+     2026,
+     1,
+     2400
+    ],
+    [
+     2025,
+     12,
+     2400
+    ],
+    [
+     2025,
+     11,
+     1900
+    ],
+    [
+     2025,
+     10,
+     2400
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair las vegas",
+ "top_monthly_searches": 5400,
+ "max_cpc_usd": 68.33
+}

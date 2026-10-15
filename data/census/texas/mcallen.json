@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "McAllen city, Texas",
+ "geo": "4845384",
+ "median_year_built": 1995,
+ "households": 48905,
+ "owner_occupied": 29096,
+ "owner_occupied_share": 0.595,
+ "housing_units": 55385,
+ "median_home_value": 190400,
+ "share_built_before_2000": 0.582,
+ "year_built": [
+  [
+   "2020 or later",
+   1521
+  ],
+  [
+   "2010-2019",
+   8421
+  ],
+  [
+   "2000-2009",
+   13229
+  ],
+  [
+   "1990-1999",
+   8424
+  ],
+  [
+   "1980-1989",
+   9741
+  ],
+  [
+   "1970-1979",
+   8420
+  ],
+  [
+   "1960-1969",
+   2703
+  ],
+  [
+   "1950-1959",
+   1354
+  ],
+  [
+   "1940-1949",
+   605
+  ],
+  [
+   "1939 or earlier",
+   967
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.064,
+  "electricity": 0.916
+ }
+}

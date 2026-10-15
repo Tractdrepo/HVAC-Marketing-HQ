@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Fremont city, California",
+ "geo": "0626000",
+ "median_year_built": 1979,
+ "households": 78054,
+ "owner_occupied": 47484,
+ "owner_occupied_share": 0.608,
+ "housing_units": 81579,
+ "median_home_value": 1403800,
+ "share_built_before_2000": 0.853,
+ "year_built": [
+  [
+   "2020 or later",
+   2178
+  ],
+  [
+   "2010-2019",
+   5070
+  ],
+  [
+   "2000-2009",
+   4766
+  ],
+  [
+   "1990-1999",
+   8178
+  ],
+  [
+   "1980-1989",
+   18291
+  ],
+  [
+   "1970-1979",
+   18572
+  ],
+  [
+   "1960-1969",
+   13824
+  ],
+  [
+   "1950-1959",
+   8974
+  ],
+  [
+   "1940-1949",
+   749
+  ],
+  [
+   "1939 or earlier",
+   977
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.72,
+  "electricity": 0.245
+ }
+}

@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Mesa city, Arizona",
+ "geo": "0446000",
+ "median_year_built": 1989,
+ "households": 198498,
+ "owner_occupied": 127839,
+ "owner_occupied_share": 0.644,
+ "housing_units": 222992,
+ "median_home_value": 408000,
+ "share_built_before_2000": 0.704,
+ "year_built": [
+  [
+   "2020 or later",
+   5230
+  ],
+  [
+   "2010-2019",
+   24504
+  ],
+  [
+   "2000-2009",
+   36173
+  ],
+  [
+   "1990-1999",
+   39063
+  ],
+  [
+   "1980-1989",
+   53402
+  ],
+  [
+   "1970-1979",
+   42874
+  ],
+  [
+   "1960-1969",
+   11782
+  ],
+  [
+   "1950-1959",
+   6855
+  ],
+  [
+   "1940-1949",
+   1670
+  ],
+  [
+   "1939 or earlier",
+   1439
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.208,
+  "electricity": 0.765
+ }
+}

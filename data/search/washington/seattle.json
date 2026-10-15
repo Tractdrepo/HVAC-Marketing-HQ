@@ -1,0 +1,352 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair seattle",
+   "monthly_searches": 390,
+   "cpc_usd": 54.89,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     140
+    ],
+    [
+     2026,
+     8,
+     210
+    ],
+    [
+     2026,
+     7,
+     320
+    ],
+    [
+     2026,
+     6,
+     590
+    ],
+    [
+     2026,
+     5,
+     480
+    ],
+    [
+     2026,
+     4,
+     260
+    ],
+    [
+     2026,
+     3,
+     390
+    ],
+    [
+     2026,
+     2,
+     590
+    ],
+    [
+     2026,
+     1,
+     590
+    ],
+    [
+     2025,
+     12,
+     590
+    ],
+    [
+     2025,
+     11,
+     320
+    ],
+    [
+     2025,
+     10,
+     590
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair seattle",
+   "monthly_searches": 390,
+   "cpc_usd": 54.89,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     140
+    ],
+    [
+     2026,
+     8,
+     210
+    ],
+    [
+     2026,
+     7,
+     320
+    ],
+    [
+     2026,
+     6,
+     590
+    ],
+    [
+     2026,
+     5,
+     480
+    ],
+    [
+     2026,
+     4,
+     260
+    ],
+    [
+     2026,
+     3,
+     390
+    ],
+    [
+     2026,
+     2,
+     590
+    ],
+    [
+     2026,
+     1,
+     590
+    ],
+    [
+     2025,
+     12,
+     590
+    ],
+    [
+     2025,
+     11,
+     320
+    ],
+    [
+     2025,
+     10,
+     590
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair seattle",
+   "monthly_searches": 320,
+   "cpc_usd": 69.57,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     140
+    ],
+    [
+     2026,
+     8,
+     110
+    ],
+    [
+     2026,
+     7,
+     170
+    ],
+    [
+     2026,
+     6,
+     170
+    ],
+    [
+     2026,
+     5,
+     210
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     320
+    ],
+    [
+     2026,
+     2,
+     390
+    ],
+    [
+     2026,
+     1,
+     480
+    ],
+    [
+     2025,
+     12,
+     390
+    ],
+    [
+     2025,
+     11,
+     390
+    ],
+    [
+     2025,
+     10,
+     480
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company seattle",
+   "monthly_searches": 320,
+   "cpc_usd": 14.41,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     260
+    ],
+    [
+     2026,
+     8,
+     320
+    ],
+    [
+     2026,
+     7,
+     390
+    ],
+    [
+     2026,
+     6,
+     390
+    ],
+    [
+     2026,
+     5,
+     390
+    ],
+    [
+     2026,
+     4,
+     320
+    ],
+    [
+     2026,
+     3,
+     320
+    ],
+    [
+     2026,
+     2,
+     260
+    ],
+    [
+     2026,
+     1,
+     260
+    ],
+    [
+     2025,
+     12,
+     210
+    ],
+    [
+     2025,
+     11,
+     210
+    ],
+    [
+     2025,
+     10,
+     480
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation seattle",
+   "monthly_searches": 170,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     50
+    ],
+    [
+     2026,
+     8,
+     50
+    ],
+    [
+     2026,
+     7,
+     90
+    ],
+    [
+     2026,
+     6,
+     210
+    ],
+    [
+     2026,
+     5,
+     170
+    ],
+    [
+     2026,
+     4,
+     140
+    ],
+    [
+     2026,
+     3,
+     260
+    ],
+    [
+     2026,
+     2,
+     210
+    ],
+    [
+     2026,
+     1,
+     210
+    ],
+    [
+     2025,
+     12,
+     210
+    ],
+    [
+     2025,
+     11,
+     210
+    ],
+    [
+     2025,
+     10,
+     260
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair seattle",
+ "top_monthly_searches": 390,
+ "max_cpc_usd": 69.57
+}

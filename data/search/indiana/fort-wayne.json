@@ -1,0 +1,352 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair fort wayne",
+   "monthly_searches": 110,
+   "cpc_usd": 55.59,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     70
+    ],
+    [
+     2026,
+     8,
+     40
+    ],
+    [
+     2026,
+     7,
+     140
+    ],
+    [
+     2026,
+     6,
+     90
+    ],
+    [
+     2026,
+     5,
+     90
+    ],
+    [
+     2026,
+     4,
+     70
+    ],
+    [
+     2026,
+     3,
+     70
+    ],
+    [
+     2026,
+     2,
+     50
+    ],
+    [
+     2026,
+     1,
+     20
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     390
+    ],
+    [
+     2025,
+     10,
+     320
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair fort wayne",
+   "monthly_searches": 70,
+   "cpc_usd": 49.98,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     20
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     20
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     260
+    ],
+    [
+     2025,
+     12,
+     20
+    ],
+    [
+     2025,
+     11,
+     210
+    ],
+    [
+     2025,
+     10,
+     210
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair fort wayne",
+   "monthly_searches": 110,
+   "cpc_usd": 17.04,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     20
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     20
+    ],
+    [
+     2026,
+     6,
+     20
+    ],
+    [
+     2026,
+     5,
+     40
+    ],
+    [
+     2026,
+     4,
+     70
+    ],
+    [
+     2026,
+     3,
+     170
+    ],
+    [
+     2026,
+     2,
+     110
+    ],
+    [
+     2026,
+     1,
+     140
+    ],
+    [
+     2025,
+     12,
+     140
+    ],
+    [
+     2025,
+     11,
+     390
+    ],
+    [
+     2025,
+     10,
+     260
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company fort wayne",
+   "monthly_searches": 50,
+   "cpc_usd": 24.19,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     30
+    ],
+    [
+     2026,
+     8,
+     50
+    ],
+    [
+     2026,
+     7,
+     90
+    ],
+    [
+     2026,
+     6,
+     90
+    ],
+    [
+     2026,
+     5,
+     50
+    ],
+    [
+     2026,
+     4,
+     40
+    ],
+    [
+     2026,
+     3,
+     70
+    ],
+    [
+     2026,
+     2,
+     70
+    ],
+    [
+     2026,
+     1,
+     40
+    ],
+    [
+     2025,
+     12,
+     70
+    ],
+    [
+     2025,
+     11,
+     50
+    ],
+    [
+     2025,
+     10,
+     50
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation fort wayne",
+   "monthly_searches": 30,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": [
+    [
+     2026,
+     9,
+     0
+    ],
+    [
+     2026,
+     8,
+     0
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     10
+    ],
+    [
+     2026,
+     2,
+     20
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     0
+    ],
+    [
+     2025,
+     11,
+     170
+    ],
+    [
+     2025,
+     10,
+     170
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair fort wayne",
+ "top_monthly_searches": 110,
+ "max_cpc_usd": 55.59
+}

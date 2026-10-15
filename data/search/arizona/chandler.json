@@ -1,0 +1,291 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair chandler",
+   "monthly_searches": 480,
+   "cpc_usd": 58.77,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     390
+    ],
+    [
+     2026,
+     8,
+     320
+    ],
+    [
+     2026,
+     7,
+     480
+    ],
+    [
+     2026,
+     6,
+     390
+    ],
+    [
+     2026,
+     5,
+     320
+    ],
+    [
+     2026,
+     4,
+     480
+    ],
+    [
+     2026,
+     3,
+     590
+    ],
+    [
+     2026,
+     2,
+     390
+    ],
+    [
+     2026,
+     1,
+     480
+    ],
+    [
+     2025,
+     12,
+     260
+    ],
+    [
+     2025,
+     11,
+     320
+    ],
+    [
+     2025,
+     10,
+     720
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair chandler",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     30
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     20
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair chandler",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     40
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     10
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     30
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company chandler",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "ac installation chandler",
+   "monthly_searches": 30,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     70
+    ],
+    [
+     2026,
+     8,
+     20
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     30
+    ],
+    [
+     2026,
+     3,
+     40
+    ],
+    [
+     2026,
+     2,
+     20
+    ],
+    [
+     2026,
+     1,
+     20
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     90
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair chandler",
+ "top_monthly_searches": 480,
+ "max_cpc_usd": 58.77
+}

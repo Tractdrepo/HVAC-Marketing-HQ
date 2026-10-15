@@ -1,0 +1,324 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair aurora il",
+   "monthly_searches": 70,
+   "cpc_usd": 52.27,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     110
+    ],
+    [
+     2026,
+     8,
+     70
+    ],
+    [
+     2026,
+     7,
+     140
+    ],
+    [
+     2026,
+     6,
+     140
+    ],
+    [
+     2026,
+     5,
+     110
+    ],
+    [
+     2026,
+     4,
+     110
+    ],
+    [
+     2026,
+     3,
+     70
+    ],
+    [
+     2026,
+     2,
+     20
+    ],
+    [
+     2026,
+     1,
+     40
+    ],
+    [
+     2025,
+     12,
+     30
+    ],
+    [
+     2025,
+     11,
+     20
+    ],
+    [
+     2025,
+     10,
+     40
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair aurora il",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     30
+    ],
+    [
+     2026,
+     5,
+     30
+    ],
+    [
+     2026,
+     4,
+     20
+    ],
+    [
+     2026,
+     3,
+     10
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     20
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair aurora il",
+   "monthly_searches": 40,
+   "cpc_usd": 27.82,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     50
+    ],
+    [
+     2026,
+     8,
+     20
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     30
+    ],
+    [
+     2026,
+     5,
+     20
+    ],
+    [
+     2026,
+     4,
+     40
+    ],
+    [
+     2026,
+     3,
+     70
+    ],
+    [
+     2026,
+     2,
+     40
+    ],
+    [
+     2026,
+     1,
+     50
+    ],
+    [
+     2025,
+     12,
+     70
+    ],
+    [
+     2025,
+     11,
+     20
+    ],
+    [
+     2025,
+     10,
+     40
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company aurora il",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "ac installation aurora il",
+   "monthly_searches": 20,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     20
+    ],
+    [
+     2026,
+     8,
+     30
+    ],
+    [
+     2026,
+     7,
+     40
+    ],
+    [
+     2026,
+     6,
+     30
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     30
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     20
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair aurora il",
+ "top_monthly_searches": 70,
+ "max_cpc_usd": 52.27,
+ "shared_city_name": {
+  "other_states": [
+   "CO"
+  ],
+  "unqualified": [
+   {
+    "keyword": "ac repair aurora",
+    "monthly_searches": 90,
+    "cpc_usd": 9.45
+   },
+   {
+    "keyword": "hvac repair aurora",
+    "monthly_searches": 320,
+    "cpc_usd": 80.31
+   },
+   {
+    "keyword": "furnace repair aurora",
+    "monthly_searches": 210,
+    "cpc_usd": null
+   },
+   {
+    "keyword": "hvac company aurora",
+    "monthly_searches": 140,
+    "cpc_usd": 28.35
+   },
+   {
+    "keyword": "ac installation aurora",
+    "monthly_searches": 140,
+    "cpc_usd": null
+   }
+  ],
+  "note": "Same city name exists in another state on our site. Keywords above include the state; the unqualified searches are split between both."
+ }
+}

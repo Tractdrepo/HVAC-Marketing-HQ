@@ -1,0 +1,352 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair miami",
+   "monthly_searches": 1900,
+   "cpc_usd": 27.74,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     8100
+    ],
+    [
+     2026,
+     8,
+     1600
+    ],
+    [
+     2026,
+     7,
+     1600
+    ],
+    [
+     2026,
+     6,
+     2400
+    ],
+    [
+     2026,
+     5,
+     1600
+    ],
+    [
+     2026,
+     4,
+     1600
+    ],
+    [
+     2026,
+     3,
+     1900
+    ],
+    [
+     2026,
+     2,
+     1300
+    ],
+    [
+     2026,
+     1,
+     1900
+    ],
+    [
+     2025,
+     12,
+     1600
+    ],
+    [
+     2025,
+     11,
+     1000
+    ],
+    [
+     2025,
+     10,
+     1900
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair miami",
+   "monthly_searches": 90,
+   "cpc_usd": null,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     70
+    ],
+    [
+     2026,
+     8,
+     50
+    ],
+    [
+     2026,
+     7,
+     70
+    ],
+    [
+     2026,
+     6,
+     40
+    ],
+    [
+     2026,
+     5,
+     70
+    ],
+    [
+     2026,
+     4,
+     90
+    ],
+    [
+     2026,
+     3,
+     70
+    ],
+    [
+     2026,
+     2,
+     210
+    ],
+    [
+     2026,
+     1,
+     90
+    ],
+    [
+     2025,
+     12,
+     30
+    ],
+    [
+     2025,
+     11,
+     50
+    ],
+    [
+     2025,
+     10,
+     170
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair miami",
+   "monthly_searches": 30,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     20
+    ],
+    [
+     2026,
+     8,
+     40
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     140
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     20
+    ],
+    [
+     2026,
+     3,
+     30
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     20
+    ],
+    [
+     2025,
+     10,
+     20
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company miami",
+   "monthly_searches": 320,
+   "cpc_usd": 15.47,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     210
+    ],
+    [
+     2026,
+     8,
+     210
+    ],
+    [
+     2026,
+     7,
+     170
+    ],
+    [
+     2026,
+     6,
+     480
+    ],
+    [
+     2026,
+     5,
+     210
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     260
+    ],
+    [
+     2026,
+     2,
+     210
+    ],
+    [
+     2026,
+     1,
+     480
+    ],
+    [
+     2025,
+     12,
+     590
+    ],
+    [
+     2025,
+     11,
+     140
+    ],
+    [
+     2025,
+     10,
+     210
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation miami",
+   "monthly_searches": 320,
+   "cpc_usd": 72.26,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     2400
+    ],
+    [
+     2026,
+     8,
+     210
+    ],
+    [
+     2026,
+     7,
+     110
+    ],
+    [
+     2026,
+     6,
+     140
+    ],
+    [
+     2026,
+     5,
+     110
+    ],
+    [
+     2026,
+     4,
+     90
+    ],
+    [
+     2026,
+     3,
+     140
+    ],
+    [
+     2026,
+     2,
+     50
+    ],
+    [
+     2026,
+     1,
+     170
+    ],
+    [
+     2025,
+     12,
+     70
+    ],
+    [
+     2025,
+     11,
+     90
+    ],
+    [
+     2025,
+     10,
+     170
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair miami",
+ "top_monthly_searches": 1900,
+ "max_cpc_usd": 72.26
+}

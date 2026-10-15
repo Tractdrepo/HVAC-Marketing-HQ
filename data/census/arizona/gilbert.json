@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Gilbert town, Arizona",
+ "geo": "0427400",
+ "median_year_built": 2003,
+ "households": 96363,
+ "owner_occupied": 70398,
+ "owner_occupied_share": 0.731,
+ "housing_units": 100336,
+ "median_home_value": 575100,
+ "share_built_before_2000": 0.404,
+ "year_built": [
+  [
+   "2020 or later",
+   3157
+  ],
+  [
+   "2010-2019",
+   21296
+  ],
+  [
+   "2000-2009",
+   35366
+  ],
+  [
+   "1990-1999",
+   26881
+  ],
+  [
+   "1980-1989",
+   9513
+  ],
+  [
+   "1970-1979",
+   2978
+  ],
+  [
+   "1960-1969",
+   412
+  ],
+  [
+   "1950-1959",
+   403
+  ],
+  [
+   "1940-1949",
+   103
+  ],
+  [
+   "1939 or earlier",
+   227
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.433,
+  "electricity": 0.545
+ }
+}

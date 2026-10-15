@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Aurora city, Colorado",
+ "geo": "0804000",
+ "median_year_built": 1985,
+ "households": 145310,
+ "owner_occupied": 90683,
+ "owner_occupied_share": 0.624,
+ "housing_units": 152377,
+ "median_home_value": 469100,
+ "share_built_before_2000": 0.707,
+ "year_built": [
+  [
+   "2020 or later",
+   4950
+  ],
+  [
+   "2010-2019",
+   17626
+  ],
+  [
+   "2000-2009",
+   22087
+  ],
+  [
+   "1990-1999",
+   15026
+  ],
+  [
+   "1980-1989",
+   36466
+  ],
+  [
+   "1970-1979",
+   35477
+  ],
+  [
+   "1960-1969",
+   9374
+  ],
+  [
+   "1950-1959",
+   8115
+  ],
+  [
+   "1940-1949",
+   1808
+  ],
+  [
+   "1939 or earlier",
+   1448
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.621,
+  "electricity": 0.341
+ }
+}

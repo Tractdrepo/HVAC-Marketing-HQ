@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Portland city, Oregon",
+ "geo": "4159000",
+ "median_year_built": 1966,
+ "households": 289705,
+ "owner_occupied": 150646,
+ "owner_occupied_share": 0.52,
+ "housing_units": 307719,
+ "median_home_value": 581500,
+ "share_built_before_2000": 0.764,
+ "year_built": [
+  [
+   "2020 or later",
+   4996
+  ],
+  [
+   "2010-2019",
+   36259
+  ],
+  [
+   "2000-2009",
+   31285
+  ],
+  [
+   "1990-1999",
+   20980
+  ],
+  [
+   "1980-1989",
+   19054
+  ],
+  [
+   "1970-1979",
+   31154
+  ],
+  [
+   "1960-1969",
+   24840
+  ],
+  [
+   "1950-1959",
+   33856
+  ],
+  [
+   "1940-1949",
+   22750
+  ],
+  [
+   "1939 or earlier",
+   82545
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.468,
+  "electricity": 0.487
+ }
+}

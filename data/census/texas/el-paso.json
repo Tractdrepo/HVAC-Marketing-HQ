@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "El Paso city, Texas",
+ "geo": "4824000",
+ "median_year_built": 1984,
+ "households": 245346,
+ "owner_occupied": 149169,
+ "owner_occupied_share": 0.608,
+ "housing_units": 265320,
+ "median_home_value": 184500,
+ "share_built_before_2000": 0.704,
+ "year_built": [
+  [
+   "2020 or later",
+   3444
+  ],
+  [
+   "2010-2019",
+   39213
+  ],
+  [
+   "2000-2009",
+   35774
+  ],
+  [
+   "1990-1999",
+   31382
+  ],
+  [
+   "1980-1989",
+   38477
+  ],
+  [
+   "1970-1979",
+   41307
+  ],
+  [
+   "1960-1969",
+   26279
+  ],
+  [
+   "1950-1959",
+   28195
+  ],
+  [
+   "1940-1949",
+   8879
+  ],
+  [
+   "1939 or earlier",
+   12370
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.718,
+  "electricity": 0.26
+ }
+}

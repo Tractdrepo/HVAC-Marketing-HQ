@@ -32,8 +32,8 @@ FOUNDING_LEFT = 25                    # lower this as shops sign; the strip hide
 SHOW_FOUNDING = False                 # Logan, Oct 15: hide the founding strip on the site (reads as a new company); offer it on calls instead
 LEGAL_UPDATED = "October 14, 2026"   # "Last updated" on Privacy and Terms
 NOINDEX = False                      # Logan said index it, Oct 15 2026. True puts the whole site back behind noindex
-# City and state pages stay out of Google until they carry real local search data (the SEO audit found ~70% shared text).
-HOLD_LOCATIONS = True
+# City pages now carry local search, map and Census data (Logan said index them, Oct 15). Cities with none stay out (THIN_PAGES).
+HOLD_LOCATIONS = False
 AREA = "Texas"                        # launch market; copy says "starting in Texas"
 
 # Plans: four tiers with a monthly/annual toggle (annual = 20% off). Prices confirmed by Logan Oct 12, 2026.
@@ -422,9 +422,12 @@ def rhythm(body):
     return "".join(out) + body[last:]
 
 
+THIN_PAGES = set()
+
+
 def page(path, title, desc, body, extra_head="", has_form=True):
     body = rhythm(body)
-    held = (HOLD_LOCATIONS and route(path).startswith("locations/")) or path == "404"
+    held = (HOLD_LOCATIONS and route(path).startswith("locations/")) or path == "404" or path in THIN_PAGES
     robots = '<meta name="robots" content="noindex, nofollow">' if NOINDEX else ('<meta name="robots" content="noindex, follow">' if held else "")
     turnstile = "" if PREVIEW or not TURNSTILE_SITEKEY else '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>'
     if len(desc) > 160:  # keep descriptions inside what search results show
@@ -1103,6 +1106,93 @@ def dedupe_shops(top):
     return out
 
 
+def search_data(c):
+    """Google Ads search volumes for searches that name the city (data/search/<state>/<city>.json). Refreshed yearly."""
+    p_ = os.path.join(os.path.dirname(_DATA), "search", c["_st"]["slug"], c["slug"] + ".json")
+    try:
+        with open(p_) as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return None
+
+
+MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+
+def search_block(c):
+    """What people type into Google for HVAC help in this city. Close variants share one number, so never add keywords up."""
+    d = search_data(c)
+    if not d or not d.get("top_keyword"):
+        return ""
+    kws = [k for k in d.get("keywords", []) if k.get("monthly_searches")]
+    top = next((k for k in kws if k["keyword"] == d["top_keyword"]), None)
+    stats = [("Top search", f'"{esc(d["top_keyword"])}"', "typed into Google"),
+             ("Searches a month", fnum(d["top_monthly_searches"]), "for that phrase, 12-month average")]
+    if top and top.get("monthly"):
+        y, m, v = max(top["monthly"], key=lambda r: r[2])
+        stats.append(("Busiest month", MONTHS[m - 1], f"{fnum(v)} searches, {y}"))
+    if d.get("max_cpc_usd"):
+        stats.append(("One ad click", f'${d["max_cpc_usd"]:,.2f}', "Google's estimate, priciest search here"))
+    st_html = "".join(f'<div class="cfact"><span>{a_}</span><b>{b}</b><small>{c_}</small></div>' for a_, b, c_ in stats)
+    money_ = lambda v: f"${v:,.2f}" if v else "–"
+    rows = "".join(f'<tr><td>{esc(k["keyword"])}</td><td>{fnum(k["monthly_searches"])}</td><td>{money_(k.get("cpc_usd"))}</td></tr>' for k in kws)
+    table = f'<table class="mtable search-table"><thead><tr><th>Search</th><th>Per month</th><th>Ad click</th></tr></thead><tbody>{rows}</tbody></table>' if rows else ""
+    shared = d.get("shared_city_name")
+    shared_note = ""
+    if shared:
+        others = " and ".join(shared.get("other_states", []))
+        shared_note = f' There is also a {esc(c["name"])} in {esc(others)}, so these are searches that include "{esc(c["_st"]["abbr"].lower())}"; plain "{esc(c["name"].lower())}" searches are split between both.'
+    return f"""<section class="section"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">{esc(c['name'])} on Google search</span><h2>What {esc(c['name'])} types into Google.</h2><p class="lede">Every one of these searches is a homeowner with a problem, looking for a shop to call.{shared_note}</p></div>
+  <div class="cfacts reveal">{st_html}</div>
+  <h3 class="mtable-h">HVAC searches that name {esc(c['name'])}</h3>
+  {table}
+  <p class="csrc">Google Ads search data via DataForSEO, pulled {esc(d.get("pulled", ""))}. Monthly averages over the last 12 months. Google groups close variants, so two searches can show the same number; don't add them together. Ad click is Google's estimated cost per click for that search.</p>
+</div></section>"""
+
+
+def census_data(c):
+    """American Community Survey housing figures for the city (data/census/<state>/<city>.json). Refreshed yearly."""
+    p_ = os.path.join(os.path.dirname(_DATA), "census", c["_st"]["slug"], c["slug"] + ".json")
+    try:
+        with open(p_) as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return None
+
+
+def housing_block(c):
+    d = census_data(c)
+    if not d or not d.get("households"):
+        return ""
+    stats = []
+    if d.get("median_year_built"):
+        y = d["median_year_built"]
+        stats.append(("Median home built", "1939 or earlier" if y <= 1939 else str(y), "half the homes are older"))
+    if d.get("share_built_before_2000") is not None:
+        stats.append(("Built before 2000", f'{round(d["share_built_before_2000"] * 100)}%', "of all homes"))
+    stats.append(("Households", fnum(d["households"]), f'{round(d["owner_occupied_share"] * 100)}% owner-occupied' if d.get("owner_occupied_share") is not None else "in the city"))
+    fuel = d.get("heating_fuel_share") or {}
+    if fuel.get("utility_gas") is not None and fuel.get("electricity") is not None:
+        gas, el = round(fuel["utility_gas"] * 100), round(fuel["electricity"] * 100)
+        stats.append(("Heat with gas", f"{gas}%", f"{el}% heat with electricity"))
+    else:
+        gas = el = None
+    st_html = "".join(f'<div class="cfact"><span>{a_}</span><b>{b}</b><small>{c_}</small></div>' for a_, b, c_ in stats)
+    lede = []
+    if d.get("share_built_before_2000") is not None:
+        lede.append(f'{round(d["share_built_before_2000"] * 100)}% of homes in {c["name"]} were built before 2000. Older homes mean replacements, duct work and repair calls.')
+    if gas is not None:
+        lede.append("Most homes heat with gas, so furnace work matters here." if gas > el else "Most homes heat with electricity, so heat pumps and electric furnaces lead the winter work.")
+    if d.get("owner_occupied"):
+        lede.append(f'{fnum(d["owner_occupied"])} households own their home, and owners are the ones who buy new systems.')
+    return f"""<section class="section"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">{esc(c['name'])} homes</span><h2>The homes your techs walk into.</h2><p class="lede">{esc(" ".join(lede))}</p></div>
+  <div class="cfacts reveal">{st_html}</div>
+  <p class="csrc">U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates ({esc(d.get("census_place", c["name"]))}).</p>
+</div></section>"""
+
+
 def market_block(c):
     d = places_data(c)
     # Under 20 results means Google stopped the search early; the numbers would mislead, so skip the block.
@@ -1122,7 +1212,7 @@ def market_block(c):
     return f"""<section class="section dark"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">{esc(c['name'])} on Google</span><h2>The {esc(c['name'])} HVAC map, in numbers.</h2><p class="lede">What a homeowner sees when they search for HVAC help in {esc(c['name'])}. {esc(gap)}</p></div>
   <div class="cfacts reveal">{st_html}</div>
-  <h3 style="margin-top:34px">Most-reviewed HVAC shops around {esc(c['name'])}</h3>
+  <h3 class="mtable-h">Most-reviewed HVAC shops around {esc(c['name'])}</h3>
   {table}
   <p class="csrc">Data from Google, pulled {esc(d.get("pulled", ""))}. Search: "{esc(d.get("query", ""))}". Refreshed monthly. Google includes shops from nearby towns. Listed for context only; these shops are not our clients.</p>
 </div></section>"""
@@ -1145,6 +1235,10 @@ def city_page(c):
     near = "".join(f'<a href="{u(city_path(o))}">{esc(o["name"])}</a>' for o in others)
     other_html = f"""<div class="more-row"><h3>Other {esc(st['name'])} markets</h3><div class="city-links">{near}</div></div>""" if others else ""
     mk = market_block(c)
+    sk = search_block(c)
+    hk = housing_block(c)
+    if not mk and not sk and not hk:
+        THIN_PAGES.add(city_path(c))  # no local Google data yet: keep it out of the index
     body = f"""<section class="page-head city-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('locations')}">Locations</a> / {"" if st["abbr"] == "DC" else f'<a href="{u(state_key(st))}">{esc(st["name"])}</a> / '}{esc(c['name'])}</div>
   <span class="eyebrow">{esc(c['county'])} · {esc(c['metro'])}</span>
@@ -1157,6 +1251,8 @@ def city_page(c):
   <p class="csrc">Population: 2020 U.S. Census. Climate: {esc(station)}{" normals" if c.get("climate_period") else ""}. Both as published on Wikipedia.</p>
 </div></section>
 {mk}
+{sk}
+{hk}
 <section class="section {"alt" if mk else "dark"}"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">{esc(c['name'])} market</span><h2>What {esc(c['name'])}'s weather means for your marketing.</h2><p class="lede">{esc(c['one_fact'])}</p></div>
   <div class="grid two">{ins}</div>
@@ -2866,7 +2962,7 @@ def build(out_dir):
     if not PREVIEW:
         write_grader_towns(os.path.join(out_dir, "api", "_grader", "trades", "us-towns.mjs"))
     skip = {"404", "hvac", "plumbing", "roofing", "your-report"}
-    paths = ["" if n == "index" else route(n) for n in pages if n not in skip and not (HOLD_LOCATIONS and route(n).startswith("locations/"))]
+    paths = ["" if n == "index" else route(n) for n in pages if n not in skip and n not in THIN_PAGES and not (HOLD_LOCATIONS and route(n).startswith("locations/"))]
     with open(os.path.join(out_dir, "sitemap.xml"), "w") as f:
         f.write(sitemap_xml(sorted(paths, key=lambda x: (x != "", x))))
     with open(os.path.join(out_dir, "robots.txt"), "w") as f:

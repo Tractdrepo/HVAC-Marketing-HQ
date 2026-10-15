@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Toledo city, Ohio",
+ "geo": "3977000",
+ "median_year_built": 1955,
+ "households": 118662,
+ "owner_occupied": 63199,
+ "owner_occupied_share": 0.533,
+ "housing_units": 132728,
+ "median_home_value": 114500,
+ "share_built_before_2000": 0.944,
+ "year_built": [
+  [
+   "2020 or later",
+   346
+  ],
+  [
+   "2010-2019",
+   3108
+  ],
+  [
+   "2000-2009",
+   4028
+  ],
+  [
+   "1990-1999",
+   6313
+  ],
+  [
+   "1980-1989",
+   7674
+  ],
+  [
+   "1970-1979",
+   17575
+  ],
+  [
+   "1960-1969",
+   16267
+  ],
+  [
+   "1950-1959",
+   23697
+  ],
+  [
+   "1940-1949",
+   12519
+  ],
+  [
+   "1939 or earlier",
+   41201
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.74,
+  "electricity": 0.237
+ }
+}

@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Jersey City city, New Jersey",
+ "geo": "3436000",
+ "median_year_built": 1971,
+ "households": 125223,
+ "owner_occupied": 34967,
+ "owner_occupied_share": 0.279,
+ "housing_units": 135231,
+ "median_home_value": 566900,
+ "share_built_before_2000": 0.702,
+ "year_built": [
+  [
+   "2020 or later",
+   3392
+  ],
+  [
+   "2010-2019",
+   20364
+  ],
+  [
+   "2000-2009",
+   16482
+  ],
+  [
+   "1990-1999",
+   9757
+  ],
+  [
+   "1980-1989",
+   9698
+  ],
+  [
+   "1970-1979",
+   8906
+  ],
+  [
+   "1960-1969",
+   10263
+  ],
+  [
+   "1950-1959",
+   10207
+  ],
+  [
+   "1940-1949",
+   6653
+  ],
+  [
+   "1939 or earlier",
+   39509
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.609,
+  "electricity": 0.317
+ }
+}

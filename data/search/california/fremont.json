@@ -1,0 +1,230 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair fremont",
+   "monthly_searches": 110,
+   "cpc_usd": 54,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     50
+    ],
+    [
+     2026,
+     8,
+     110
+    ],
+    [
+     2026,
+     7,
+     90
+    ],
+    [
+     2026,
+     6,
+     140
+    ],
+    [
+     2026,
+     5,
+     70
+    ],
+    [
+     2026,
+     4,
+     70
+    ],
+    [
+     2026,
+     3,
+     90
+    ],
+    [
+     2026,
+     2,
+     110
+    ],
+    [
+     2026,
+     1,
+     90
+    ],
+    [
+     2025,
+     12,
+     140
+    ],
+    [
+     2025,
+     11,
+     210
+    ],
+    [
+     2025,
+     10,
+     140
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair fremont",
+   "monthly_searches": 30,
+   "cpc_usd": 5.28,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     30
+    ],
+    [
+     2026,
+     6,
+     30
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     20
+    ],
+    [
+     2026,
+     3,
+     30
+    ],
+    [
+     2026,
+     2,
+     20
+    ],
+    [
+     2026,
+     1,
+     40
+    ],
+    [
+     2025,
+     12,
+     50
+    ],
+    [
+     2025,
+     11,
+     50
+    ],
+    [
+     2025,
+     10,
+     70
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair fremont",
+   "monthly_searches": 50,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     20
+    ],
+    [
+     2026,
+     7,
+     20
+    ],
+    [
+     2026,
+     6,
+     20
+    ],
+    [
+     2026,
+     5,
+     20
+    ],
+    [
+     2026,
+     4,
+     20
+    ],
+    [
+     2026,
+     3,
+     50
+    ],
+    [
+     2026,
+     2,
+     30
+    ],
+    [
+     2026,
+     1,
+     90
+    ],
+    [
+     2025,
+     12,
+     90
+    ],
+    [
+     2025,
+     11,
+     140
+    ],
+    [
+     2025,
+     10,
+     70
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company fremont",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "ac installation fremont",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  }
+ ],
+ "top_keyword": "ac repair fremont",
+ "top_monthly_searches": 110,
+ "max_cpc_usd": 54
+}

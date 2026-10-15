@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Fresno city, California",
+ "geo": "0627000",
+ "median_year_built": 1980,
+ "households": 180450,
+ "owner_occupied": 90465,
+ "owner_occupied_share": 0.501,
+ "housing_units": 189098,
+ "median_home_value": 374800,
+ "share_built_before_2000": 0.769,
+ "year_built": [
+  [
+   "2020 or later",
+   3498
+  ],
+  [
+   "2010-2019",
+   14767
+  ],
+  [
+   "2000-2009",
+   25455
+  ],
+  [
+   "1990-1999",
+   25765
+  ],
+  [
+   "1980-1989",
+   26227
+  ],
+  [
+   "1970-1979",
+   32680
+  ],
+  [
+   "1960-1969",
+   20747
+  ],
+  [
+   "1950-1959",
+   19611
+  ],
+  [
+   "1940-1949",
+   9419
+  ],
+  [
+   "1939 or earlier",
+   10929
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.542,
+  "electricity": 0.396
+ }
+}

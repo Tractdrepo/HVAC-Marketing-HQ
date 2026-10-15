@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Albuquerque city, New Mexico",
+ "geo": "3502000",
+ "median_year_built": 1982,
+ "households": 243733,
+ "owner_occupied": 150676,
+ "owner_occupied_share": 0.618,
+ "housing_units": 258178,
+ "median_home_value": 291500,
+ "share_built_before_2000": 0.754,
+ "year_built": [
+  [
+   "2020 or later",
+   2618
+  ],
+  [
+   "2010-2019",
+   18378
+  ],
+  [
+   "2000-2009",
+   42602
+  ],
+  [
+   "1990-1999",
+   34952
+  ],
+  [
+   "1980-1989",
+   38245
+  ],
+  [
+   "1970-1979",
+   48204
+  ],
+  [
+   "1960-1969",
+   24720
+  ],
+  [
+   "1950-1959",
+   30968
+  ],
+  [
+   "1940-1949",
+   9840
+  ],
+  [
+   "1939 or earlier",
+   7651
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.764,
+  "electricity": 0.206
+ }
+}

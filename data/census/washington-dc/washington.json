@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Washington city, District of Columbia",
+ "geo": "1150000",
+ "median_year_built": 1958,
+ "households": 324491,
+ "owner_occupied": 134683,
+ "owner_occupied_share": 0.415,
+ "housing_units": 361014,
+ "median_home_value": 737100,
+ "share_built_before_2000": 0.761,
+ "year_built": [
+  [
+   "2020 or later",
+   10380
+  ],
+  [
+   "2010-2019",
+   49156
+  ],
+  [
+   "2000-2009",
+   26843
+  ],
+  [
+   "1990-1999",
+   9933
+  ],
+  [
+   "1980-1989",
+   15690
+  ],
+  [
+   "1970-1979",
+   24214
+  ],
+  [
+   "1960-1969",
+   36294
+  ],
+  [
+   "1950-1959",
+   40226
+  ],
+  [
+   "1940-1949",
+   34585
+  ],
+  [
+   "1939 or earlier",
+   113693
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.479,
+  "electricity": 0.469
+ }
+}

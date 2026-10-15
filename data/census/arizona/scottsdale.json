@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Scottsdale city, Arizona",
+ "geo": "0465000",
+ "median_year_built": 1991,
+ "households": 118637,
+ "owner_occupied": 79513,
+ "owner_occupied_share": 0.67,
+ "housing_units": 139168,
+ "median_home_value": 789800,
+ "share_built_before_2000": 0.726,
+ "year_built": [
+  [
+   "2020 or later",
+   2656
+  ],
+  [
+   "2010-2019",
+   13767
+  ],
+  [
+   "2000-2009",
+   21720
+  ],
+  [
+   "1990-1999",
+   33209
+  ],
+  [
+   "1980-1989",
+   27797
+  ],
+  [
+   "1970-1979",
+   18905
+  ],
+  [
+   "1960-1969",
+   12814
+  ],
+  [
+   "1950-1959",
+   7305
+  ],
+  [
+   "1940-1949",
+   340
+  ],
+  [
+   "1939 or earlier",
+   655
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.314,
+  "electricity": 0.657
+ }
+}

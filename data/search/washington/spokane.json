@@ -1,0 +1,291 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair spokane",
+   "monthly_searches": 590,
+   "cpc_usd": 4.33,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     40
+    ],
+    [
+     2026,
+     8,
+     140
+    ],
+    [
+     2026,
+     7,
+     320
+    ],
+    [
+     2026,
+     6,
+     210
+    ],
+    [
+     2026,
+     5,
+     210
+    ],
+    [
+     2026,
+     4,
+     140
+    ],
+    [
+     2026,
+     3,
+     260
+    ],
+    [
+     2026,
+     2,
+     1600
+    ],
+    [
+     2026,
+     1,
+     1600
+    ],
+    [
+     2025,
+     12,
+     1600
+    ],
+    [
+     2025,
+     11,
+     390
+    ],
+    [
+     2025,
+     10,
+     1300
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair spokane",
+   "monthly_searches": 590,
+   "cpc_usd": 4.33,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     40
+    ],
+    [
+     2026,
+     8,
+     140
+    ],
+    [
+     2026,
+     7,
+     320
+    ],
+    [
+     2026,
+     6,
+     210
+    ],
+    [
+     2026,
+     5,
+     210
+    ],
+    [
+     2026,
+     4,
+     140
+    ],
+    [
+     2026,
+     3,
+     260
+    ],
+    [
+     2026,
+     2,
+     1600
+    ],
+    [
+     2026,
+     1,
+     1600
+    ],
+    [
+     2025,
+     12,
+     1600
+    ],
+    [
+     2025,
+     11,
+     390
+    ],
+    [
+     2025,
+     10,
+     1300
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair spokane",
+   "monthly_searches": 210,
+   "cpc_usd": 35.57,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     110
+    ],
+    [
+     2026,
+     8,
+     90
+    ],
+    [
+     2026,
+     7,
+     70
+    ],
+    [
+     2026,
+     6,
+     70
+    ],
+    [
+     2026,
+     5,
+     70
+    ],
+    [
+     2026,
+     4,
+     170
+    ],
+    [
+     2026,
+     3,
+     170
+    ],
+    [
+     2026,
+     2,
+     210
+    ],
+    [
+     2026,
+     1,
+     320
+    ],
+    [
+     2025,
+     12,
+     480
+    ],
+    [
+     2025,
+     11,
+     320
+    ],
+    [
+     2025,
+     10,
+     590
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company spokane",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "ac installation spokane",
+   "monthly_searches": 70,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     40
+    ],
+    [
+     2026,
+     8,
+     40
+    ],
+    [
+     2026,
+     7,
+     50
+    ],
+    [
+     2026,
+     6,
+     70
+    ],
+    [
+     2026,
+     5,
+     30
+    ],
+    [
+     2026,
+     4,
+     50
+    ],
+    [
+     2026,
+     3,
+     40
+    ],
+    [
+     2026,
+     2,
+     40
+    ],
+    [
+     2026,
+     1,
+     40
+    ],
+    [
+     2025,
+     12,
+     140
+    ],
+    [
+     2025,
+     11,
+     170
+    ],
+    [
+     2025,
+     10,
+     140
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair spokane",
+ "top_monthly_searches": 590,
+ "max_cpc_usd": 35.57
+}

@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Tulsa city, Oklahoma",
+ "geo": "4075000",
+ "median_year_built": 1973,
+ "households": 172909,
+ "owner_occupied": 89772,
+ "owner_occupied_share": 0.519,
+ "housing_units": 192797,
+ "median_home_value": 205300,
+ "share_built_before_2000": 0.864,
+ "year_built": [
+  [
+   "2020 or later",
+   1327
+  ],
+  [
+   "2010-2019",
+   11845
+  ],
+  [
+   "2000-2009",
+   13024
+  ],
+  [
+   "1990-1999",
+   14738
+  ],
+  [
+   "1980-1989",
+   26698
+  ],
+  [
+   "1970-1979",
+   38542
+  ],
+  [
+   "1960-1969",
+   27925
+  ],
+  [
+   "1950-1959",
+   29475
+  ],
+  [
+   "1940-1949",
+   11926
+  ],
+  [
+   "1939 or earlier",
+   17297
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.577,
+  "electricity": 0.403
+ }
+}

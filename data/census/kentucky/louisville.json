@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Louisville/Jefferson County metro government (balance), Kentucky",
+ "geo": "2148006",
+ "median_year_built": 1971,
+ "households": 264505,
+ "owner_occupied": 160645,
+ "owner_occupied_share": 0.607,
+ "housing_units": 289095,
+ "median_home_value": 233900,
+ "share_built_before_2000": 0.787,
+ "year_built": [
+  [
+   "2020 or later",
+   4165
+  ],
+  [
+   "2010-2019",
+   24027
+  ],
+  [
+   "2000-2009",
+   33488
+  ],
+  [
+   "1990-1999",
+   29398
+  ],
+  [
+   "1980-1989",
+   20594
+  ],
+  [
+   "1970-1979",
+   36339
+  ],
+  [
+   "1960-1969",
+   35670
+  ],
+  [
+   "1950-1959",
+   42066
+  ],
+  [
+   "1940-1949",
+   18120
+  ],
+  [
+   "1939 or earlier",
+   45228
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.588,
+  "electricity": 0.388
+ }
+}

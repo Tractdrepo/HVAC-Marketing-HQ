@@ -1,0 +1,263 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair fayetteville ar",
+   "monthly_searches": 70,
+   "cpc_usd": 27,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     170
+    ],
+    [
+     2026,
+     8,
+     170
+    ],
+    [
+     2026,
+     7,
+     110
+    ],
+    [
+     2026,
+     6,
+     70
+    ],
+    [
+     2026,
+     5,
+     90
+    ],
+    [
+     2026,
+     4,
+     40
+    ],
+    [
+     2026,
+     3,
+     40
+    ],
+    [
+     2026,
+     2,
+     20
+    ],
+    [
+     2026,
+     1,
+     30
+    ],
+    [
+     2025,
+     12,
+     40
+    ],
+    [
+     2025,
+     11,
+     40
+    ],
+    [
+     2025,
+     10,
+     50
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair fayetteville ar",
+   "monthly_searches": 70,
+   "cpc_usd": 27,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     170
+    ],
+    [
+     2026,
+     8,
+     170
+    ],
+    [
+     2026,
+     7,
+     110
+    ],
+    [
+     2026,
+     6,
+     70
+    ],
+    [
+     2026,
+     5,
+     90
+    ],
+    [
+     2026,
+     4,
+     40
+    ],
+    [
+     2026,
+     3,
+     40
+    ],
+    [
+     2026,
+     2,
+     20
+    ],
+    [
+     2026,
+     1,
+     30
+    ],
+    [
+     2025,
+     12,
+     40
+    ],
+    [
+     2025,
+     11,
+     40
+    ],
+    [
+     2025,
+     10,
+     50
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair fayetteville ar",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     0
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     10
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company fayetteville ar",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "ac installation fayetteville ar",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  }
+ ],
+ "top_keyword": "ac repair fayetteville ar",
+ "top_monthly_searches": 70,
+ "max_cpc_usd": 27,
+ "shared_city_name": {
+  "other_states": [
+   "NC"
+  ],
+  "unqualified": [
+   {
+    "keyword": "ac repair fayetteville",
+    "monthly_searches": 390,
+    "cpc_usd": 38.34
+   },
+   {
+    "keyword": "hvac repair fayetteville",
+    "monthly_searches": 20,
+    "cpc_usd": 128.32
+   },
+   {
+    "keyword": "furnace repair fayetteville",
+    "monthly_searches": 10,
+    "cpc_usd": null
+   },
+   {
+    "keyword": "hvac company fayetteville",
+    "monthly_searches": 10,
+    "cpc_usd": null
+   },
+   {
+    "keyword": "ac installation fayetteville",
+    "monthly_searches": 10,
+    "cpc_usd": null
+   }
+  ],
+  "note": "Same city name exists in another state on our site. Keywords above include the state; the unqualified searches are split between both."
+ }
+}

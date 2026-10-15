@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Detroit city, Michigan",
+ "geo": "2622000",
+ "median_year_built": 1947,
+ "households": 257998,
+ "owner_occupied": 129895,
+ "owner_occupied_share": 0.503,
+ "housing_units": 329393,
+ "median_home_value": 83900,
+ "share_built_before_2000": 0.955,
+ "year_built": [
+  [
+   "2020 or later",
+   769
+  ],
+  [
+   "2010-2019",
+   5435
+  ],
+  [
+   "2000-2009",
+   8578
+  ],
+  [
+   "1990-1999",
+   7037
+  ],
+  [
+   "1980-1989",
+   10294
+  ],
+  [
+   "1970-1979",
+   15447
+  ],
+  [
+   "1960-1969",
+   25657
+  ],
+  [
+   "1950-1959",
+   69830
+  ],
+  [
+   "1940-1949",
+   66903
+  ],
+  [
+   "1939 or earlier",
+   119443
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.805,
+  "electricity": 0.167
+ }
+}

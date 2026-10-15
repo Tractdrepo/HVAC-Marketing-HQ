@@ -1,0 +1,108 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair laredo",
+   "monthly_searches": 320,
+   "cpc_usd": 7.07,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     390
+    ],
+    [
+     2026,
+     8,
+     590
+    ],
+    [
+     2026,
+     7,
+     390
+    ],
+    [
+     2026,
+     6,
+     480
+    ],
+    [
+     2026,
+     5,
+     320
+    ],
+    [
+     2026,
+     4,
+     320
+    ],
+    [
+     2026,
+     3,
+     320
+    ],
+    [
+     2026,
+     2,
+     260
+    ],
+    [
+     2026,
+     1,
+     140
+    ],
+    [
+     2025,
+     12,
+     110
+    ],
+    [
+     2025,
+     11,
+     260
+    ],
+    [
+     2025,
+     10,
+     320
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair laredo",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "furnace repair laredo",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "hvac company laredo",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "ac installation laredo",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  }
+ ],
+ "top_keyword": "ac repair laredo",
+ "top_monthly_searches": 320,
+ "max_cpc_usd": 7.07
+}

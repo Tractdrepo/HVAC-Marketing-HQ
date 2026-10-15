@@ -1,0 +1,230 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair detroit",
+   "monthly_searches": 90,
+   "cpc_usd": 20.07,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     50
+    ],
+    [
+     2026,
+     8,
+     50
+    ],
+    [
+     2026,
+     7,
+     140
+    ],
+    [
+     2026,
+     6,
+     90
+    ],
+    [
+     2026,
+     5,
+     50
+    ],
+    [
+     2026,
+     4,
+     30
+    ],
+    [
+     2026,
+     3,
+     90
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     70
+    ],
+    [
+     2025,
+     12,
+     50
+    ],
+    [
+     2025,
+     11,
+     140
+    ],
+    [
+     2025,
+     10,
+     210
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair detroit",
+   "monthly_searches": 30,
+   "cpc_usd": 2.05,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     20
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     20
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     70
+    ],
+    [
+     2026,
+     2,
+     70
+    ],
+    [
+     2026,
+     1,
+     50
+    ],
+    [
+     2025,
+     12,
+     30
+    ],
+    [
+     2025,
+     11,
+     50
+    ],
+    [
+     2025,
+     10,
+     20
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair detroit",
+   "monthly_searches": 170,
+   "cpc_usd": 29,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     50
+    ],
+    [
+     2026,
+     8,
+     50
+    ],
+    [
+     2026,
+     7,
+     50
+    ],
+    [
+     2026,
+     6,
+     50
+    ],
+    [
+     2026,
+     5,
+     50
+    ],
+    [
+     2026,
+     4,
+     110
+    ],
+    [
+     2026,
+     3,
+     170
+    ],
+    [
+     2026,
+     2,
+     170
+    ],
+    [
+     2026,
+     1,
+     320
+    ],
+    [
+     2025,
+     12,
+     480
+    ],
+    [
+     2025,
+     11,
+     390
+    ],
+    [
+     2025,
+     10,
+     210
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company detroit",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "ac installation detroit",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  }
+ ],
+ "top_keyword": "furnace repair detroit",
+ "top_monthly_searches": 170,
+ "max_cpc_usd": 29
+}

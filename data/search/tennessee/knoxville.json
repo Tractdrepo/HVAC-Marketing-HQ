@@ -1,0 +1,291 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair knoxville",
+   "monthly_searches": 260,
+   "cpc_usd": 15.94,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     70
+    ],
+    [
+     2026,
+     8,
+     90
+    ],
+    [
+     2026,
+     7,
+     140
+    ],
+    [
+     2026,
+     6,
+     90
+    ],
+    [
+     2026,
+     5,
+     110
+    ],
+    [
+     2026,
+     4,
+     70
+    ],
+    [
+     2026,
+     3,
+     70
+    ],
+    [
+     2026,
+     2,
+     140
+    ],
+    [
+     2026,
+     1,
+     90
+    ],
+    [
+     2025,
+     12,
+     90
+    ],
+    [
+     2025,
+     11,
+     110
+    ],
+    [
+     2025,
+     10,
+     1900
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair knoxville",
+   "monthly_searches": 260,
+   "cpc_usd": 28.63,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     320
+    ],
+    [
+     2026,
+     8,
+     390
+    ],
+    [
+     2026,
+     7,
+     480
+    ],
+    [
+     2026,
+     6,
+     390
+    ],
+    [
+     2026,
+     5,
+     390
+    ],
+    [
+     2026,
+     4,
+     320
+    ],
+    [
+     2026,
+     3,
+     390
+    ],
+    [
+     2026,
+     2,
+     140
+    ],
+    [
+     2026,
+     1,
+     140
+    ],
+    [
+     2025,
+     12,
+     110
+    ],
+    [
+     2025,
+     11,
+     110
+    ],
+    [
+     2025,
+     10,
+     210
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair knoxville",
+   "monthly_searches": 20,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     0
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     10
+    ],
+    [
+     2026,
+     2,
+     110
+    ],
+    [
+     2026,
+     1,
+     20
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     20
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company knoxville",
+   "monthly_searches": 320,
+   "cpc_usd": 10.16,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     390
+    ],
+    [
+     2026,
+     8,
+     390
+    ],
+    [
+     2026,
+     7,
+     590
+    ],
+    [
+     2026,
+     6,
+     320
+    ],
+    [
+     2026,
+     5,
+     260
+    ],
+    [
+     2026,
+     4,
+     320
+    ],
+    [
+     2026,
+     3,
+     260
+    ],
+    [
+     2026,
+     2,
+     320
+    ],
+    [
+     2026,
+     1,
+     260
+    ],
+    [
+     2025,
+     12,
+     170
+    ],
+    [
+     2025,
+     11,
+     260
+    ],
+    [
+     2025,
+     10,
+     390
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation knoxville",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  }
+ ],
+ "top_keyword": "hvac company knoxville",
+ "top_monthly_searches": 320,
+ "max_cpc_usd": 28.63
+}

@@ -1,0 +1,291 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair tallahassee",
+   "monthly_searches": 720,
+   "cpc_usd": 30.42,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     480
+    ],
+    [
+     2026,
+     8,
+     720
+    ],
+    [
+     2026,
+     7,
+     720
+    ],
+    [
+     2026,
+     6,
+     720
+    ],
+    [
+     2026,
+     5,
+     720
+    ],
+    [
+     2026,
+     4,
+     590
+    ],
+    [
+     2026,
+     3,
+     720
+    ],
+    [
+     2026,
+     2,
+     880
+    ],
+    [
+     2026,
+     1,
+     880
+    ],
+    [
+     2025,
+     12,
+     590
+    ],
+    [
+     2025,
+     11,
+     320
+    ],
+    [
+     2025,
+     10,
+     390
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair tallahassee",
+   "monthly_searches": 90,
+   "cpc_usd": 33.34,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     90
+    ],
+    [
+     2026,
+     8,
+     170
+    ],
+    [
+     2026,
+     7,
+     140
+    ],
+    [
+     2026,
+     6,
+     170
+    ],
+    [
+     2026,
+     5,
+     210
+    ],
+    [
+     2026,
+     4,
+     90
+    ],
+    [
+     2026,
+     3,
+     30
+    ],
+    [
+     2026,
+     2,
+     30
+    ],
+    [
+     2026,
+     1,
+     30
+    ],
+    [
+     2025,
+     12,
+     20
+    ],
+    [
+     2025,
+     11,
+     20
+    ],
+    [
+     2025,
+     10,
+     50
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair tallahassee",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": [
+    [
+     2026,
+     9,
+     0
+    ],
+    [
+     2026,
+     8,
+     0
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     0
+    ],
+    [
+     2026,
+     5,
+     20
+    ],
+    [
+     2026,
+     4,
+     0
+    ],
+    [
+     2026,
+     3,
+     0
+    ],
+    [
+     2026,
+     2,
+     0
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     0
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company tallahassee",
+   "monthly_searches": 90,
+   "cpc_usd": 33.27,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     90
+    ],
+    [
+     2026,
+     8,
+     140
+    ],
+    [
+     2026,
+     7,
+     90
+    ],
+    [
+     2026,
+     6,
+     110
+    ],
+    [
+     2026,
+     5,
+     110
+    ],
+    [
+     2026,
+     4,
+     70
+    ],
+    [
+     2026,
+     3,
+     110
+    ],
+    [
+     2026,
+     2,
+     70
+    ],
+    [
+     2026,
+     1,
+     90
+    ],
+    [
+     2025,
+     12,
+     90
+    ],
+    [
+     2025,
+     11,
+     50
+    ],
+    [
+     2025,
+     10,
+     90
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation tallahassee",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  }
+ ],
+ "top_keyword": "ac repair tallahassee",
+ "top_monthly_searches": 720,
+ "max_cpc_usd": 33.34
+}

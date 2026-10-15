@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Chesapeake city, Virginia",
+ "geo": "5116000",
+ "median_year_built": 1989,
+ "households": 93626,
+ "owner_occupied": 69615,
+ "owner_occupied_share": 0.744,
+ "housing_units": 96816,
+ "median_home_value": 378400,
+ "share_built_before_2000": 0.71,
+ "year_built": [
+  [
+   "2020 or later",
+   1848
+  ],
+  [
+   "2010-2019",
+   13219
+  ],
+  [
+   "2000-2009",
+   13030
+  ],
+  [
+   "1990-1999",
+   18508
+  ],
+  [
+   "1980-1989",
+   19556
+  ],
+  [
+   "1970-1979",
+   12083
+  ],
+  [
+   "1960-1969",
+   8825
+  ],
+  [
+   "1950-1959",
+   5605
+  ],
+  [
+   "1940-1949",
+   1701
+  ],
+  [
+   "1939 or earlier",
+   2441
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.417,
+  "electricity": 0.537
+ }
+}

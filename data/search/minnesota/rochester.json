@@ -1,0 +1,324 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair rochester mn",
+   "monthly_searches": 40,
+   "cpc_usd": 41.55,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     20
+    ],
+    [
+     2026,
+     8,
+     50
+    ],
+    [
+     2026,
+     7,
+     140
+    ],
+    [
+     2026,
+     6,
+     50
+    ],
+    [
+     2026,
+     5,
+     50
+    ],
+    [
+     2026,
+     4,
+     30
+    ],
+    [
+     2026,
+     3,
+     50
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     40
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair rochester mn",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     0
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair rochester mn",
+   "monthly_searches": 40,
+   "cpc_usd": 8.3,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     30
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     20
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     20
+    ],
+    [
+     2026,
+     3,
+     50
+    ],
+    [
+     2026,
+     2,
+     40
+    ],
+    [
+     2026,
+     1,
+     70
+    ],
+    [
+     2025,
+     12,
+     70
+    ],
+    [
+     2025,
+     11,
+     70
+    ],
+    [
+     2025,
+     10,
+     70
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company rochester mn",
+   "monthly_searches": 20,
+   "cpc_usd": null,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     30
+    ],
+    [
+     2026,
+     7,
+     50
+    ],
+    [
+     2026,
+     6,
+     30
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     20
+    ],
+    [
+     2026,
+     3,
+     10
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     20
+    ],
+    [
+     2025,
+     11,
+     20
+    ],
+    [
+     2025,
+     10,
+     30
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation rochester mn",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  }
+ ],
+ "top_keyword": "ac repair rochester mn",
+ "top_monthly_searches": 40,
+ "max_cpc_usd": 41.55,
+ "shared_city_name": {
+  "other_states": [
+   "NY"
+  ],
+  "unqualified": [
+   {
+    "keyword": "ac repair rochester",
+    "monthly_searches": 110,
+    "cpc_usd": null
+   },
+   {
+    "keyword": "hvac repair rochester",
+    "monthly_searches": 90,
+    "cpc_usd": 12.54
+   },
+   {
+    "keyword": "furnace repair rochester",
+    "monthly_searches": 110,
+    "cpc_usd": 35.38
+   },
+   {
+    "keyword": "hvac company rochester",
+    "monthly_searches": null,
+    "cpc_usd": null
+   },
+   {
+    "keyword": "ac installation rochester",
+    "monthly_searches": 30,
+    "cpc_usd": 1.51
+   }
+  ],
+  "note": "Same city name exists in another state on our site. Keywords above include the state; the unqualified searches are split between both."
+ }
+}

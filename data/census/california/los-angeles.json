@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Los Angeles city, California",
+ "geo": "0644000",
+ "median_year_built": 1965,
+ "households": 1439097,
+ "owner_occupied": 518423,
+ "owner_occupied_share": 0.36,
+ "housing_units": 1554332,
+ "median_home_value": 921200,
+ "share_built_before_2000": 0.864,
+ "year_built": [
+  [
+   "2020 or later",
+   20740
+  ],
+  [
+   "2010-2019",
+   101205
+  ],
+  [
+   "2000-2009",
+   90157
+  ],
+  [
+   "1990-1999",
+   86326
+  ],
+  [
+   "1980-1989",
+   169218
+  ],
+  [
+   "1970-1979",
+   205748
+  ],
+  [
+   "1960-1969",
+   199427
+  ],
+  [
+   "1950-1959",
+   247983
+  ],
+  [
+   "1940-1949",
+   137305
+  ],
+  [
+   "1939 or earlier",
+   296223
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.573,
+  "electricity": 0.343
+ }
+}

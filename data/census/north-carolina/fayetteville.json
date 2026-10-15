@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Fayetteville city, North Carolina",
+ "geo": "3722920",
+ "median_year_built": 1984,
+ "households": 82689,
+ "owner_occupied": 39197,
+ "owner_occupied_share": 0.474,
+ "housing_units": 91985,
+ "median_home_value": 188000,
+ "share_built_before_2000": 0.751,
+ "year_built": [
+  [
+   "2020 or later",
+   839
+  ],
+  [
+   "2010-2019",
+   8798
+  ],
+  [
+   "2000-2009",
+   13230
+  ],
+  [
+   "1990-1999",
+   13732
+  ],
+  [
+   "1980-1989",
+   14778
+  ],
+  [
+   "1970-1979",
+   17775
+  ],
+  [
+   "1960-1969",
+   12694
+  ],
+  [
+   "1950-1959",
+   6243
+  ],
+  [
+   "1940-1949",
+   2277
+  ],
+  [
+   "1939 or earlier",
+   1619
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.23,
+  "electricity": 0.728
+ }
+}

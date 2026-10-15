@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Long Beach city, California",
+ "geo": "0643000",
+ "median_year_built": 1959,
+ "households": 170927,
+ "owner_occupied": 70363,
+ "owner_occupied_share": 0.412,
+ "housing_units": 181477,
+ "median_home_value": 806600,
+ "share_built_before_2000": 0.936,
+ "year_built": [
+  [
+   "2020 or later",
+   1018
+  ],
+  [
+   "2010-2019",
+   4287
+  ],
+  [
+   "2000-2009",
+   6367
+  ],
+  [
+   "1990-1999",
+   9535
+  ],
+  [
+   "1980-1989",
+   17652
+  ],
+  [
+   "1970-1979",
+   25049
+  ],
+  [
+   "1960-1969",
+   22690
+  ],
+  [
+   "1950-1959",
+   33404
+  ],
+  [
+   "1940-1949",
+   26656
+  ],
+  [
+   "1939 or earlier",
+   34819
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.612,
+  "electricity": 0.298
+ }
+}

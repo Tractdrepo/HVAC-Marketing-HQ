@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Tallahassee city, Florida",
+ "geo": "1270600",
+ "median_year_built": 1988,
+ "households": 85311,
+ "owner_occupied": 34661,
+ "owner_occupied_share": 0.406,
+ "housing_units": 97245,
+ "median_home_value": 294400,
+ "share_built_before_2000": 0.688,
+ "year_built": [
+  [
+   "2020 or later",
+   1123
+  ],
+  [
+   "2010-2019",
+   11437
+  ],
+  [
+   "2000-2009",
+   17772
+  ],
+  [
+   "1990-1999",
+   15085
+  ],
+  [
+   "1980-1989",
+   15865
+  ],
+  [
+   "1970-1979",
+   16504
+  ],
+  [
+   "1960-1969",
+   8491
+  ],
+  [
+   "1950-1959",
+   6631
+  ],
+  [
+   "1940-1949",
+   2568
+  ],
+  [
+   "1939 or earlier",
+   1769
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.125,
+  "electricity": 0.85
+ }
+}

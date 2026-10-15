@@ -1,0 +1,385 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair springfield mo",
+   "monthly_searches": 320,
+   "cpc_usd": 33.81,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     480
+    ],
+    [
+     2026,
+     8,
+     590
+    ],
+    [
+     2026,
+     7,
+     720
+    ],
+    [
+     2026,
+     6,
+     590
+    ],
+    [
+     2026,
+     5,
+     390
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     170
+    ],
+    [
+     2026,
+     2,
+     110
+    ],
+    [
+     2026,
+     1,
+     110
+    ],
+    [
+     2025,
+     12,
+     50
+    ],
+    [
+     2025,
+     11,
+     70
+    ],
+    [
+     2025,
+     10,
+     210
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair springfield mo",
+   "monthly_searches": 90,
+   "cpc_usd": 31.82,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     70
+    ],
+    [
+     2026,
+     8,
+     110
+    ],
+    [
+     2026,
+     7,
+     110
+    ],
+    [
+     2026,
+     6,
+     90
+    ],
+    [
+     2026,
+     5,
+     90
+    ],
+    [
+     2026,
+     4,
+     70
+    ],
+    [
+     2026,
+     3,
+     90
+    ],
+    [
+     2026,
+     2,
+     40
+    ],
+    [
+     2026,
+     1,
+     90
+    ],
+    [
+     2025,
+     12,
+     40
+    ],
+    [
+     2025,
+     11,
+     70
+    ],
+    [
+     2025,
+     10,
+     140
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair springfield mo",
+   "monthly_searches": 110,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     140
+    ],
+    [
+     2026,
+     8,
+     210
+    ],
+    [
+     2026,
+     7,
+     140
+    ],
+    [
+     2026,
+     6,
+     70
+    ],
+    [
+     2026,
+     5,
+     90
+    ],
+    [
+     2026,
+     4,
+     50
+    ],
+    [
+     2026,
+     3,
+     50
+    ],
+    [
+     2026,
+     2,
+     90
+    ],
+    [
+     2026,
+     1,
+     140
+    ],
+    [
+     2025,
+     12,
+     70
+    ],
+    [
+     2025,
+     11,
+     50
+    ],
+    [
+     2025,
+     10,
+     110
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company springfield mo",
+   "monthly_searches": 210,
+   "cpc_usd": 14.06,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     480
+    ],
+    [
+     2026,
+     8,
+     320
+    ],
+    [
+     2026,
+     7,
+     210
+    ],
+    [
+     2026,
+     6,
+     170
+    ],
+    [
+     2026,
+     5,
+     140
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     210
+    ],
+    [
+     2026,
+     2,
+     210
+    ],
+    [
+     2026,
+     1,
+     170
+    ],
+    [
+     2025,
+     12,
+     140
+    ],
+    [
+     2025,
+     11,
+     140
+    ],
+    [
+     2025,
+     10,
+     210
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation springfield mo",
+   "monthly_searches": 10,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     10
+    ],
+    [
+     2026,
+     8,
+     10
+    ],
+    [
+     2026,
+     7,
+     30
+    ],
+    [
+     2026,
+     6,
+     10
+    ],
+    [
+     2026,
+     5,
+     0
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     10
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     10
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     0
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair springfield mo",
+ "top_monthly_searches": 320,
+ "max_cpc_usd": 33.81,
+ "shared_city_name": {
+  "other_states": [
+   "MA"
+  ],
+  "unqualified": [
+   {
+    "keyword": "ac repair springfield",
+    "monthly_searches": 320,
+    "cpc_usd": 33.81
+   },
+   {
+    "keyword": "hvac repair springfield",
+    "monthly_searches": 90,
+    "cpc_usd": 31.82
+   },
+   {
+    "keyword": "furnace repair springfield",
+    "monthly_searches": 110,
+    "cpc_usd": null
+   },
+   {
+    "keyword": "hvac company springfield",
+    "monthly_searches": 210,
+    "cpc_usd": 14.06
+   },
+   {
+    "keyword": "ac installation springfield",
+    "monthly_searches": 20,
+    "cpc_usd": null
+   }
+  ],
+  "note": "Same city name exists in another state on our site. Keywords above include the state; the unqualified searches are split between both."
+ }
+}

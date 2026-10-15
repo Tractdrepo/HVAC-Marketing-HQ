@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Fort Wayne city, Indiana",
+ "geo": "1825000",
+ "median_year_built": 1972,
+ "households": 110929,
+ "owner_occupied": 68641,
+ "owner_occupied_share": 0.619,
+ "housing_units": 118657,
+ "median_home_value": 188900,
+ "share_built_before_2000": 0.878,
+ "year_built": [
+  [
+   "2020 or later",
+   1004
+  ],
+  [
+   "2010-2019",
+   4590
+  ],
+  [
+   "2000-2009",
+   8915
+  ],
+  [
+   "1990-1999",
+   15214
+  ],
+  [
+   "1980-1989",
+   13487
+  ],
+  [
+   "1970-1979",
+   19219
+  ],
+  [
+   "1960-1969",
+   18171
+  ],
+  [
+   "1950-1959",
+   13764
+  ],
+  [
+   "1940-1949",
+   6360
+  ],
+  [
+   "1939 or earlier",
+   17933
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.71,
+  "electricity": 0.265
+ }
+}

@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Chandler city, Arizona",
+ "geo": "0412000",
+ "median_year_built": 1997,
+ "households": 107693,
+ "owner_occupied": 70021,
+ "owner_occupied_share": 0.65,
+ "housing_units": 112800,
+ "median_home_value": 507800,
+ "share_built_before_2000": 0.569,
+ "year_built": [
+  [
+   "2020 or later",
+   2680
+  ],
+  [
+   "2010-2019",
+   16545
+  ],
+  [
+   "2000-2009",
+   29402
+  ],
+  [
+   "1990-1999",
+   30683
+  ],
+  [
+   "1980-1989",
+   22383
+  ],
+  [
+   "1970-1979",
+   7422
+  ],
+  [
+   "1960-1969",
+   1968
+  ],
+  [
+   "1950-1959",
+   1134
+  ],
+  [
+   "1940-1949",
+   502
+  ],
+  [
+   "1939 or earlier",
+   81
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.341,
+  "electricity": 0.639
+ }
+}

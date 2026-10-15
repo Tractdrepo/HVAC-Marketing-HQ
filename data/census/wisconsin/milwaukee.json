@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Milwaukee city, Wisconsin",
+ "geo": "5553000",
+ "median_year_built": 1953,
+ "households": 232520,
+ "owner_occupied": 97223,
+ "owner_occupied_share": 0.418,
+ "housing_units": 259101,
+ "median_home_value": 184000,
+ "share_built_before_2000": 0.916,
+ "year_built": [
+  [
+   "2020 or later",
+   1270
+  ],
+  [
+   "2010-2019",
+   9683
+  ],
+  [
+   "2000-2009",
+   10698
+  ],
+  [
+   "1990-1999",
+   8925
+  ],
+  [
+   "1980-1989",
+   10271
+  ],
+  [
+   "1970-1979",
+   23424
+  ],
+  [
+   "1960-1969",
+   29392
+  ],
+  [
+   "1950-1959",
+   49410
+  ],
+  [
+   "1940-1949",
+   27899
+  ],
+  [
+   "1939 or earlier",
+   88129
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.779,
+  "electricity": 0.185
+ }
+}

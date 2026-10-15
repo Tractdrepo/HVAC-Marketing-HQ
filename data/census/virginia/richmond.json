@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Richmond city, Virginia",
+ "geo": "5167000",
+ "median_year_built": 1959,
+ "households": 104321,
+ "owner_occupied": 45407,
+ "owner_occupied_share": 0.435,
+ "housing_units": 114293,
+ "median_home_value": 353000,
+ "share_built_before_2000": 0.833,
+ "year_built": [
+  [
+   "2020 or later",
+   2268
+  ],
+  [
+   "2010-2019",
+   10338
+  ],
+  [
+   "2000-2009",
+   6439
+  ],
+  [
+   "1990-1999",
+   6226
+  ],
+  [
+   "1980-1989",
+   7971
+  ],
+  [
+   "1970-1979",
+   9400
+  ],
+  [
+   "1960-1969",
+   13175
+  ],
+  [
+   "1950-1959",
+   15374
+  ],
+  [
+   "1940-1949",
+   10657
+  ],
+  [
+   "1939 or earlier",
+   32445
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.342,
+  "electricity": 0.596
+ }
+}

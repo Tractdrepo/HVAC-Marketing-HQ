@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Chicago city, Illinois",
+ "geo": "1714000",
+ "median_year_built": 1953,
+ "households": 1160205,
+ "owner_occupied": 534012,
+ "owner_occupied_share": 0.46,
+ "housing_units": 1277054,
+ "median_home_value": 334100,
+ "share_built_before_2000": 0.851,
+ "year_built": [
+  [
+   "2020 or later",
+   10820
+  ],
+  [
+   "2010-2019",
+   69821
+  ],
+  [
+   "2000-2009",
+   109627
+  ],
+  [
+   "1990-1999",
+   59723
+  ],
+  [
+   "1980-1989",
+   66324
+  ],
+  [
+   "1970-1979",
+   98293
+  ],
+  [
+   "1960-1969",
+   121006
+  ],
+  [
+   "1950-1959",
+   147483
+  ],
+  [
+   "1940-1949",
+   98242
+  ],
+  [
+   "1939 or earlier",
+   495715
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.775,
+  "electricity": 0.18
+ }
+}

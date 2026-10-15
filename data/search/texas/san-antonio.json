@@ -1,0 +1,352 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair san antonio",
+   "monthly_searches": 2400,
+   "cpc_usd": 66.57,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     3600
+    ],
+    [
+     2026,
+     8,
+     2900
+    ],
+    [
+     2026,
+     7,
+     2900
+    ],
+    [
+     2026,
+     6,
+     2900
+    ],
+    [
+     2026,
+     5,
+     2400
+    ],
+    [
+     2026,
+     4,
+     1900
+    ],
+    [
+     2026,
+     3,
+     2400
+    ],
+    [
+     2026,
+     2,
+     1900
+    ],
+    [
+     2026,
+     1,
+     1900
+    ],
+    [
+     2025,
+     12,
+     1900
+    ],
+    [
+     2025,
+     11,
+     2400
+    ],
+    [
+     2025,
+     10,
+     4400
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair san antonio",
+   "monthly_searches": 2400,
+   "cpc_usd": 66.57,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     3600
+    ],
+    [
+     2026,
+     8,
+     2900
+    ],
+    [
+     2026,
+     7,
+     2900
+    ],
+    [
+     2026,
+     6,
+     2900
+    ],
+    [
+     2026,
+     5,
+     2400
+    ],
+    [
+     2026,
+     4,
+     1900
+    ],
+    [
+     2026,
+     3,
+     2400
+    ],
+    [
+     2026,
+     2,
+     1900
+    ],
+    [
+     2026,
+     1,
+     1900
+    ],
+    [
+     2025,
+     12,
+     1900
+    ],
+    [
+     2025,
+     11,
+     2400
+    ],
+    [
+     2025,
+     10,
+     4400
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair san antonio",
+   "monthly_searches": 170,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     210
+    ],
+    [
+     2026,
+     8,
+     170
+    ],
+    [
+     2026,
+     7,
+     90
+    ],
+    [
+     2026,
+     6,
+     110
+    ],
+    [
+     2026,
+     5,
+     40
+    ],
+    [
+     2026,
+     4,
+     70
+    ],
+    [
+     2026,
+     3,
+     140
+    ],
+    [
+     2026,
+     2,
+     170
+    ],
+    [
+     2026,
+     1,
+     210
+    ],
+    [
+     2025,
+     12,
+     170
+    ],
+    [
+     2025,
+     11,
+     210
+    ],
+    [
+     2025,
+     10,
+     260
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company san antonio",
+   "monthly_searches": 720,
+   "cpc_usd": 18.33,
+   "competition": "MEDIUM",
+   "monthly": [
+    [
+     2026,
+     9,
+     590
+    ],
+    [
+     2026,
+     8,
+     590
+    ],
+    [
+     2026,
+     7,
+     720
+    ],
+    [
+     2026,
+     6,
+     590
+    ],
+    [
+     2026,
+     5,
+     720
+    ],
+    [
+     2026,
+     4,
+     480
+    ],
+    [
+     2026,
+     3,
+     480
+    ],
+    [
+     2026,
+     2,
+     480
+    ],
+    [
+     2026,
+     1,
+     880
+    ],
+    [
+     2025,
+     12,
+     590
+    ],
+    [
+     2025,
+     11,
+     1300
+    ],
+    [
+     2025,
+     10,
+     880
+    ]
+   ]
+  },
+  {
+   "keyword": "ac installation san antonio",
+   "monthly_searches": 320,
+   "cpc_usd": 6.79,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     260
+    ],
+    [
+     2026,
+     8,
+     170
+    ],
+    [
+     2026,
+     7,
+     210
+    ],
+    [
+     2026,
+     6,
+     260
+    ],
+    [
+     2026,
+     5,
+     390
+    ],
+    [
+     2026,
+     4,
+     210
+    ],
+    [
+     2026,
+     3,
+     320
+    ],
+    [
+     2026,
+     2,
+     260
+    ],
+    [
+     2026,
+     1,
+     390
+    ],
+    [
+     2025,
+     12,
+     260
+    ],
+    [
+     2025,
+     11,
+     390
+    ],
+    [
+     2025,
+     10,
+     480
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair san antonio",
+ "top_monthly_searches": 2400,
+ "max_cpc_usd": 66.57
+}

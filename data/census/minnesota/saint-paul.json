@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "St. Paul city, Minnesota",
+ "geo": "2758000",
+ "median_year_built": 1952,
+ "households": 125249,
+ "owner_occupied": 66204,
+ "owner_occupied_share": 0.529,
+ "housing_units": 133051,
+ "median_home_value": 294500,
+ "share_built_before_2000": 0.886,
+ "year_built": [
+  [
+   "2020 or later",
+   1786
+  ],
+  [
+   "2010-2019",
+   6729
+  ],
+  [
+   "2000-2009",
+   6644
+  ],
+  [
+   "1990-1999",
+   4432
+  ],
+  [
+   "1980-1989",
+   10171
+  ],
+  [
+   "1970-1979",
+   12301
+  ],
+  [
+   "1960-1969",
+   12149
+  ],
+  [
+   "1950-1959",
+   15300
+  ],
+  [
+   "1940-1949",
+   8227
+  ],
+  [
+   "1939 or earlier",
+   55312
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.669,
+  "electricity": 0.285
+ }
+}

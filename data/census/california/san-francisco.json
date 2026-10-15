@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "San Francisco city, California",
+ "geo": "0667000",
+ "median_year_built": 1946,
+ "households": 363970,
+ "owner_occupied": 139057,
+ "owner_occupied_share": 0.382,
+ "housing_units": 414602,
+ "median_home_value": 1394500,
+ "share_built_before_2000": 0.856,
+ "year_built": [
+  [
+   "2020 or later",
+   4527
+  ],
+  [
+   "2010-2019",
+   28596
+  ],
+  [
+   "2000-2009",
+   26421
+  ],
+  [
+   "1990-1999",
+   16016
+  ],
+  [
+   "1980-1989",
+   22004
+  ],
+  [
+   "1970-1979",
+   29818
+  ],
+  [
+   "1960-1969",
+   32967
+  ],
+  [
+   "1950-1959",
+   31976
+  ],
+  [
+   "1940-1949",
+   34830
+  ],
+  [
+   "1939 or earlier",
+   187447
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.55,
+  "electricity": 0.357
+ }
+}

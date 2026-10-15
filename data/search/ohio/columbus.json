@@ -1,0 +1,324 @@
+{
+ "pulled": "2026-10-15",
+ "source": "Google Ads search volume via DataForSEO",
+ "location": "United States",
+ "language": "en",
+ "note": "Searches that name the city, from anywhere in the US. Google groups close variants (e.g. ac repair / hvac repair) and can report the same number for both, so do not add keywords together.",
+ "keywords": [
+  {
+   "keyword": "ac repair columbus oh",
+   "monthly_searches": 210,
+   "cpc_usd": 64.17,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     260
+    ],
+    [
+     2026,
+     8,
+     320
+    ],
+    [
+     2026,
+     7,
+     480
+    ],
+    [
+     2026,
+     6,
+     260
+    ],
+    [
+     2026,
+     5,
+     140
+    ],
+    [
+     2026,
+     4,
+     170
+    ],
+    [
+     2026,
+     3,
+     210
+    ],
+    [
+     2026,
+     2,
+     210
+    ],
+    [
+     2026,
+     1,
+     110
+    ],
+    [
+     2025,
+     12,
+     70
+    ],
+    [
+     2025,
+     11,
+     90
+    ],
+    [
+     2025,
+     10,
+     140
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac repair columbus oh",
+   "monthly_searches": 210,
+   "cpc_usd": 56.06,
+   "competition": "HIGH",
+   "monthly": [
+    [
+     2026,
+     9,
+     140
+    ],
+    [
+     2026,
+     8,
+     140
+    ],
+    [
+     2026,
+     7,
+     210
+    ],
+    [
+     2026,
+     6,
+     170
+    ],
+    [
+     2026,
+     5,
+     210
+    ],
+    [
+     2026,
+     4,
+     170
+    ],
+    [
+     2026,
+     3,
+     260
+    ],
+    [
+     2026,
+     2,
+     480
+    ],
+    [
+     2026,
+     1,
+     210
+    ],
+    [
+     2025,
+     12,
+     110
+    ],
+    [
+     2025,
+     11,
+     70
+    ],
+    [
+     2025,
+     10,
+     260
+    ]
+   ]
+  },
+  {
+   "keyword": "furnace repair columbus oh",
+   "monthly_searches": 20,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     50
+    ],
+    [
+     2026,
+     8,
+     20
+    ],
+    [
+     2026,
+     7,
+     10
+    ],
+    [
+     2026,
+     6,
+     20
+    ],
+    [
+     2026,
+     5,
+     10
+    ],
+    [
+     2026,
+     4,
+     10
+    ],
+    [
+     2026,
+     3,
+     40
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     30
+    ],
+    [
+     2025,
+     12,
+     10
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     10
+    ]
+   ]
+  },
+  {
+   "keyword": "hvac company columbus oh",
+   "monthly_searches": null,
+   "cpc_usd": null,
+   "competition": null,
+   "monthly": []
+  },
+  {
+   "keyword": "ac installation columbus oh",
+   "monthly_searches": 40,
+   "cpc_usd": null,
+   "competition": "LOW",
+   "monthly": [
+    [
+     2026,
+     9,
+     50
+    ],
+    [
+     2026,
+     8,
+     30
+    ],
+    [
+     2026,
+     7,
+     30
+    ],
+    [
+     2026,
+     6,
+     70
+    ],
+    [
+     2026,
+     5,
+     50
+    ],
+    [
+     2026,
+     4,
+     50
+    ],
+    [
+     2026,
+     3,
+     110
+    ],
+    [
+     2026,
+     2,
+     10
+    ],
+    [
+     2026,
+     1,
+     70
+    ],
+    [
+     2025,
+     12,
+     20
+    ],
+    [
+     2025,
+     11,
+     10
+    ],
+    [
+     2025,
+     10,
+     40
+    ]
+   ]
+  }
+ ],
+ "top_keyword": "ac repair columbus oh",
+ "top_monthly_searches": 210,
+ "max_cpc_usd": 64.17,
+ "shared_city_name": {
+  "other_states": [
+   "GA"
+  ],
+  "unqualified": [
+   {
+    "keyword": "ac repair columbus",
+    "monthly_searches": 170,
+    "cpc_usd": 117.31
+   },
+   {
+    "keyword": "hvac repair columbus",
+    "monthly_searches": 210,
+    "cpc_usd": 56.06
+   },
+   {
+    "keyword": "furnace repair columbus",
+    "monthly_searches": 390,
+    "cpc_usd": 22.7
+   },
+   {
+    "keyword": "hvac company columbus",
+    "monthly_searches": 140,
+    "cpc_usd": 20.89
+   },
+   {
+    "keyword": "ac installation columbus",
+    "monthly_searches": 40,
+    "cpc_usd": null
+   }
+  ],
+  "note": "Same city name exists in another state on our site. Keywords above include the state; the unqualified searches are split between both."
+ }
+}

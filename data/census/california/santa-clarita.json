@@ -1,0 +1,59 @@
+{
+ "pulled": "2026-10-15",
+ "source": "U.S. Census Bureau, American Community Survey 2020-2024 5-year estimates",
+ "census_place": "Santa Clarita city, California",
+ "geo": "0669088",
+ "median_year_built": 1987,
+ "households": 75808,
+ "owner_occupied": 54428,
+ "owner_occupied_share": 0.718,
+ "housing_units": 78081,
+ "median_home_value": 784700,
+ "share_built_before_2000": 0.71,
+ "year_built": [
+  [
+   "2020 or later",
+   1204
+  ],
+  [
+   "2010-2019",
+   6578
+  ],
+  [
+   "2000-2009",
+   14840
+  ],
+  [
+   "1990-1999",
+   11314
+  ],
+  [
+   "1980-1989",
+   20204
+  ],
+  [
+   "1970-1979",
+   11224
+  ],
+  [
+   "1960-1969",
+   9399
+  ],
+  [
+   "1950-1959",
+   1988
+  ],
+  [
+   "1940-1949",
+   562
+  ],
+  [
+   "1939 or earlier",
+   768
+  ]
+ ],
+ "heating_fuel_share": {
+  "utility_gas": 0.781,
+  "electricity": 0.181
+ }
+}
