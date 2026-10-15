@@ -128,9 +128,10 @@ html.js .reveal.in { opacity: 1; transform: none; }
 /* Header */
 .site-head { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
 .head-row { display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 16px; }
-.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font: 800 var(--fs-lg)/1 var(--head); font-stretch: 112%; letter-spacing: -.01em; }
-.brand-mark { width: 32px; height: 32px; flex: none; }
-.brand small { display: block; font: 500 var(--fs-3xs)/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; font: 800 var(--fs-lg)/1 var(--head); font-stretch: 112%; letter-spacing: -.01em; }
+.brand-mark { width: 40px; height: 40px; flex: none; }
+@media (max-width: 700px) { .brand-mark { width: 36px; height: 36px; } }
+.brand small { display: block; font: 500 var(--fs-3xs)/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
 .nav { display: none; }
 .nav-toggle { background: none; border: 1px solid var(--line-2); border-radius: 12px; width: 44px; height: 44px; display: grid; place-items: center; cursor: pointer; color: var(--text); }
 .nav-open .nav { display: flex; flex-direction: column; position: absolute; left: 0; right: 0; top: 70px; background: var(--bg); border-bottom: 1px solid var(--line); padding: 12px 20px 24px; gap: 4px; }
