@@ -30,6 +30,7 @@ LEGAL_NAME = "LT Park Brokerage LLC"                     # the LLC's name exactl
 BUSINESS_PHONE = "+12543827303"                 # the GHL 254 number, e.g. "+12545550123"; shown in the footer and contact page once set
 MAIL_ADDRESS = "3801 N Capital of Texas Hwy, Ste E240-3928, Austin, TX 78746"
 SMS_PROGRAM = "HVAC Marketing HQ Texts"
+GHL_CHAT_WIDGET = "6ad29706cc8a6767ee76d9c4"     # GHL chat widget id (public); its text opt-in is part of A2P. None hides it
 DEMO_PHONE = None                     # demo line for missed-call text-back, e.g. "+12545550123"; block hidden until set
 SAME_AS = []                          # public profiles for schema, e.g. LinkedIn and Facebook URLs; add when Logan shares them
 FOUNDING_SPOTS = 25                   # founding rate: annual price on monthly billing, locked while they stay
@@ -255,18 +256,8 @@ def legal_entity():
     return f"{BRAND} is a DBA of {LEGAL_NAME}" if LEGAL_NAME else BRAND
 
 
-def sms_consent(key):
-    """Two separate, optional, unchecked text consent boxes plus the carrier disclosures (A2P 10DLC)."""
-    return f"""<fieldset class="consent-set">
-          <legend class="sr-only">Text message consent (optional)</legend>
-          <label class="consent"><input type="checkbox" name="sms_service" value="yes" id="sms-service-{key}"><span>Yes, text me about my request: my report card, replies to my questions and appointment reminders from {esc(BRAND)}.</span></label>
-          <label class="consent"><input type="checkbox" name="sms_marketing" value="yes" id="sms-marketing-{key}"><span>Yes, send me marketing texts from {esc(BRAND)}, like offers and tips for HVAC shops.</span></label>
-          <p class="consent-note">Both boxes are optional and not a condition of purchase. {esc(SMS_PROGRAM)}: message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Mobile numbers are never shared with third parties for marketing. <a href="{u('privacy')}">Privacy Policy</a> · <a href="{u('terms')}#texts">Terms</a></p>
-        </fieldset>"""
-
-
 def rc_form(trade="HVAC", key=None, lazy_turnstile=False):
-    """The four-step report card form. key keeps ids unique when a page has two forms; the pop-up's
+    """The three-step report card form (no phone: the GHL chat widget is the site's one text opt-in). key keeps ids unique when a page has two forms; the pop-up's
     Turnstile renders when the pop-up opens (main.js), since it can't render while hidden."""
     key = key or trade
     if PREVIEW or not TURNSTILE_SITEKEY:
@@ -275,7 +266,7 @@ def rc_form(trade="HVAC", key=None, lazy_turnstile=False):
         ts = f'<div class="{"cf-turnstile-lazy" if lazy_turnstile else "cf-turnstile"}" data-sitekey="{TURNSTILE_SITEKEY}" data-theme="light"></div>'
     return f"""    <form class="rc-form" novalidate>
       <div class="rc-body">
-        <div class="rc-progress" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+        <div class="rc-progress" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
         <input class="hp" type="text" name="company_fax" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="trade" value="{esc(trade)}">
         <div class="rc-step on">
@@ -295,13 +286,6 @@ def rc_form(trade="HVAC", key=None, lazy_turnstile=False):
           <h3>Where should we send it?</h3>
           <div class="field"><label for="rc-name-{key}">First name</label><input id="rc-name-{key}" type="text" name="first_name" required data-msg="Add your first name." autocomplete="given-name"></div>
           <div class="field"><label for="rc-email-{key}">Email</label><input id="rc-email-{key}" type="email" name="email" required data-msg="Add a valid email." autocomplete="email"></div>
-          <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="button" class="btn btn-primary" data-next>Next</button></div>
-        </div>
-        <div class="rc-step">
-          <h3>Last one: your phone (optional)</h3>
-          <p class="muted">Only used if you ask us to text you. We don't cold call.</p>
-          <div class="field"><label for="rc-phone-{key}">Mobile phone (optional)</label><input id="rc-phone-{key}" type="tel" name="phone" data-msg="Check your phone number, or leave it blank." autocomplete="tel" pattern="[0-9()+.\\- ]{{10,}}"></div>
-          {sms_consent(key)}
           {ts}
           <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="submit" class="btn btn-primary">Send my report card</button></div>
         </div>
@@ -322,7 +306,7 @@ def rc_modal():
   <div class="rc-modal-in">
     <button type="button" class="rc-modal-x" aria-label="Close">×</button>
     <span class="eyebrow">Free report card</span>
-    <h2 id="rc-modal-h">Grade your shop in four quick steps</h2>
+    <h2 id="rc-modal-h">Grade your shop in three quick steps</h2>
     <p class="muted">Google profile, reviews, website and listings, graded against the shops near you. No sales call.</p>
     {rc_form(key="modal", lazy_turnstile=True)}
   </div>
@@ -502,7 +486,7 @@ def page(path, title, desc, body, extra_head="", has_form=True):
 {footer(has_form, legal=path in LEGAL_FOOTER_PAGES)}
 {founder_video(has_form)}
 {rc_modal() if "data-url-form" in body else ""}
-<script src="{asset_v('main.js')}" defer></script>{"" if PREVIEW else chr(10) + '<script src="/_vercel/insights/script.js" defer></script>'}
+<script src="{asset_v('main.js')}" defer></script>{"" if PREVIEW else chr(10) + '<script src="/_vercel/insights/script.js" defer></script>'}{"" if PREVIEW or not GHL_CHAT_WIDGET else chr(10) + f'<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="{GHL_CHAT_WIDGET}" data-source="WEB_USER" defer></script>'}
 {turnstile}
 </body>
 </html>
@@ -1976,17 +1960,16 @@ def tools_hub():
 
 
 def contact_form():
-    """Visible, upfront contact form: the site's text opt-in form for A2P 10DLC. Phone is optional; both text boxes are optional and unchecked."""
+    """Visible, upfront contact form. Email only: the GHL chat widget is the site's one text opt-in (A2P 10DLC)."""
     ts = "" if PREVIEW or not TURNSTILE_SITEKEY else f'<div class="cf-turnstile" data-sitekey="{TURNSTILE_SITEKEY}" data-theme="light"></div>'
     return f"""<form class="card contact-form" data-contact novalidate>
     <h2>Send us a message</h2>
     <input class="hp" type="text" name="company_fax" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="field"><label for="cf-name">First name</label><input id="cf-name" type="text" name="first_name" autocomplete="given-name"></div>
     <div class="field"><label for="cf-email">Email</label><input id="cf-email" type="email" name="email" autocomplete="email"></div>
-    <div class="field"><label for="cf-phone">Mobile phone (optional)</label><input id="cf-phone" type="tel" name="phone" autocomplete="tel"></div>
     <div class="field"><label for="cf-biz">Business name (optional)</label><input id="cf-biz" type="text" name="business" autocomplete="organization"></div>
     <div class="field"><label for="cf-msg">How can we help?</label><textarea id="cf-msg" name="message" rows="4"></textarea></div>
-    {sms_consent("contact")}
+    <p class="consent-note">Want to text with us instead? Use the chat bubble in the corner of the page.</p>
     {ts}
     <button type="submit" class="btn btn-primary">Send message</button>
     <p class="contact-msg" role="status"></p>
@@ -2763,11 +2746,11 @@ def legal_page(key):
 <ul>
 <li>To create and email your report card and answer your questions.</li>
 <li>To send follow-up emails about your report card. You can unsubscribe at any time.</li>
-<li>To text you, only if you checked a box agreeing to receive texts. Account and service texts and marketing texts each have their own box.</li>
+<li>To text you, only if you agreed to receive texts in the chat on our website.</li>
 <li>To protect the site from spam and abuse (for example with Cloudflare Turnstile).</li>
 </ul>
 <h2>Text messaging</h2>
-<p>If you opt in to text messages, we will text you about your request, your report card and appointments, and, only if you checked the marketing box, about our services. Message frequency varies. Message and data rates may apply. Reply STOP to opt out at any time and HELP for help.</p>
+<p>If you opt in to text messages, we will text you about your request, your report card and appointments, and about our HVAC marketing services. Message frequency varies. Message and data rates may apply. Reply STOP to opt out at any time and HELP for help.</p>
 <p><b>No mobile information will be shared with third parties or affiliates for marketing or promotional purposes.</b> All the categories of sharing in this policy exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.</p>
 <h2>Who we share it with</h2>
 <p>We use service providers to run this site and our services, such as hosting (Vercel), email delivery (Resend), spam protection (Cloudflare), our CRM and messaging platform, and scheduling tools. To build report cards we send your business name, town and website (never your own name, email or phone) to Google for business lookups and site speed tests and to Anthropic for AI that checks listings and writes part of the report. They only use your information to provide services to us. We do not sell or rent your personal information.</p>
@@ -2788,9 +2771,9 @@ def legal_page(key):
 <h2 id="texts">SMS terms: {esc(SMS_PROGRAM)}</h2>
 <ul>
 <li><b>Program:</b> {esc(SMS_PROGRAM)}, sent by {esc(legal_entity())} to people who opt in on this website.</li>
-<li><b>Account and service texts:</b> if you check that box, we text you about your request, your report card, replies to your questions and appointment reminders.</li>
-<li><b>Marketing texts:</b> only if you check that separate box, we text you offers and tips about our HVAC marketing services.</li>
-<li><b>Consent:</b> both boxes are optional and not a condition of purchase.</li>
+<li><b>How you opt in:</b> you give your mobile number and agree to texts in the chat on our website.</li>
+<li><b>What we text:</b> replies to your questions, your report card, appointment reminders, and offers and tips about our HVAC marketing services.</li>
+<li><b>Consent:</b> texting with us is optional and not a condition of purchase.</li>
 <li><b>Frequency:</b> message frequency varies.</li>
 <li><b>Cost:</b> message and data rates may apply.</li>
 <li><b>Opt out:</b> reply STOP to any text at any time. You'll get one final message confirming you're unsubscribed and won't get more texts.</li>
