@@ -25,6 +25,11 @@ TURNSTILE_SITEKEY = "0x4AAAAAAFW5gSyWKqCFU_8y"  # Cloudflare Turnstile site key 
 FOUNDER_NAME = "Logan"
 FOUNDER_VIDEO = None                  # e.g. "video/founder.mp4" once recorded (also add a poster: "video/founder.jpg")
 FOUNDER_POSTER = None
+# Business details shown in the footer and legal pages for A2P 10DLC. Must match the A2P brand registration exactly.
+LEGAL_NAME = None                     # the LLC's name exactly as on the IRS EIN letter; shown as "HVAC Marketing HQ is a DBA of ..."
+BUSINESS_PHONE = None                 # the GHL 254 number, e.g. "+12545550123"; shown in the footer and contact page once set
+MAIL_ADDRESS = "3801 N Capital of Texas Hwy, Ste E240-3928, Austin, TX 78746"
+SMS_PROGRAM = "HVAC Marketing HQ Texts"
 DEMO_PHONE = None                     # demo line for missed-call text-back, e.g. "+12545550123"; block hidden until set
 SAME_AS = []                          # public profiles for schema, e.g. LinkedIn and Facebook URLs; add when Logan shares them
 FOUNDING_SPOTS = 25                   # founding rate: annual price on monthly billing, locked while they stay
@@ -229,12 +234,31 @@ def footer(has_form=True):
     </div>
     <p class="foot-word" aria-hidden="true">{esc(BRAND)}</p>
     <div class="foot-base">
-      <span>© <span data-year>2026</span> {esc(BRAND)}. Waco, Texas.</span>
-      <span><a href="{u('privacy')}">Privacy</a> · <a href="{u('terms')}">Terms</a></span>
+      <span>© <span data-year>2026</span> {esc(legal_entity())}. {esc(MAIL_ADDRESS)}.{f' <a href="tel:{BUSINESS_PHONE}">{fmt_phone(BUSINESS_PHONE)}</a> ·' if BUSINESS_PHONE else ''} <a href="mailto:{EMAIL}">{EMAIL}</a></span>
+      <span><a href="{u('privacy')}">Privacy Policy</a> · <a href="{u('terms')}">Terms of Service</a></span>
     </div>
   </div>
 </footer>
 <a class="m-cta" href="{rc}" data-m-cta>Get my free report card <span class="arrow">→</span></a>"""
+
+
+def fmt_phone(p):
+    d = re.sub(r"\D", "", p or "")[-10:]
+    return f"({d[:3]}) {d[3:6]}-{d[6:]}" if len(d) == 10 else (p or "")
+
+
+def legal_entity():
+    return f"{BRAND} is a DBA of {LEGAL_NAME}" if LEGAL_NAME else BRAND
+
+
+def sms_consent(key):
+    """Two separate, optional, unchecked text consent boxes plus the carrier disclosures (A2P 10DLC)."""
+    return f"""<fieldset class="consent-set">
+          <legend class="sr-only">Text message consent (optional)</legend>
+          <label class="consent"><input type="checkbox" name="sms_service" value="yes" id="sms-service-{key}"><span>Yes, text me about my request: my report card, replies to my questions and appointment reminders from {esc(BRAND)}.</span></label>
+          <label class="consent"><input type="checkbox" name="sms_marketing" value="yes" id="sms-marketing-{key}"><span>Yes, send me marketing texts from {esc(BRAND)}, like offers and tips for HVAC shops.</span></label>
+          <p class="consent-note">Both boxes are optional and not a condition of purchase. {esc(SMS_PROGRAM)}: message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Mobile numbers are never shared with third parties for marketing. <a href="{u('privacy')}">Privacy Policy</a> · <a href="{u('terms')}#texts">Terms</a></p>
+        </fieldset>"""
 
 
 def rc_form(trade="HVAC", key=None, lazy_turnstile=False):
@@ -270,10 +294,10 @@ def rc_form(trade="HVAC", key=None, lazy_turnstile=False):
           <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="button" class="btn btn-primary" data-next>Next</button></div>
         </div>
         <div class="rc-step">
-          <h3>Last one: your phone</h3>
+          <h3>Last one: your phone (optional)</h3>
           <p class="muted">Only used if you ask us to text you. We don't cold call.</p>
-          <div class="field"><label for="rc-phone-{key}">Mobile phone</label><input id="rc-phone-{key}" type="tel" name="phone" required data-msg="Add a phone number." autocomplete="tel" pattern="[0-9()+.\\- ]{{10,}}"></div>
-          <label class="consent"><input type="checkbox" name="sms_consent" value="yes"><span>Text me about my report card. Message and data rates may apply. Message frequency varies. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our <a href="{u('privacy')}">Privacy Policy</a> and <a href="{u('terms')}">Terms</a>.</span></label>
+          <div class="field"><label for="rc-phone-{key}">Mobile phone (optional)</label><input id="rc-phone-{key}" type="tel" name="phone" data-msg="Check your phone number, or leave it blank." autocomplete="tel" pattern="[0-9()+.\\- ]{{10,}}"></div>
+          {sms_consent(key)}
           {ts}
           <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="submit" class="btn btn-primary">Send my report card</button></div>
         </div>
@@ -1947,6 +1971,24 @@ def tools_hub():
     return page("tools", "Free calculators for HVAC companies", f"{len(TOOLS)} free, no-sign-up calculators for HVAC owners: cost per lead, Google Ads and LSA budgets, missed calls, close rate, maintenance plans, reviews and more.", body)
 
 
+def contact_form():
+    """Visible, upfront contact form: the site's text opt-in form for A2P 10DLC. Phone is optional; both text boxes are optional and unchecked."""
+    ts = "" if PREVIEW or not TURNSTILE_SITEKEY else f'<div class="cf-turnstile" data-sitekey="{TURNSTILE_SITEKEY}" data-theme="light"></div>'
+    return f"""<form class="card contact-form" data-contact novalidate>
+    <h2>Send us a message</h2>
+    <input class="hp" type="text" name="company_fax" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="field"><label for="cf-name">First name</label><input id="cf-name" type="text" name="first_name" autocomplete="given-name"></div>
+    <div class="field"><label for="cf-email">Email</label><input id="cf-email" type="email" name="email" autocomplete="email"></div>
+    <div class="field"><label for="cf-phone">Mobile phone (optional)</label><input id="cf-phone" type="tel" name="phone" autocomplete="tel"></div>
+    <div class="field"><label for="cf-biz">Business name (optional)</label><input id="cf-biz" type="text" name="business" autocomplete="organization"></div>
+    <div class="field"><label for="cf-msg">How can we help?</label><textarea id="cf-msg" name="message" rows="4"></textarea></div>
+    {sms_consent("contact")}
+    {ts}
+    <button type="submit" class="btn btn-primary">Send message</button>
+    <p class="contact-msg" role="status"></p>
+  </form>"""
+
+
 def contact_page():
     body = f"""<section class="page-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / Contact</div>
@@ -1954,7 +1996,21 @@ def contact_page():
   <h1 style="max-width:20ch">Talk to a person who only does HVAC.</h1>
   <p class="lede">Ask a question, book a short call, or start with the free report card. No pressure and no long sales process.</p>
 </div></section>
-<section class="section after-head"><div class="wrap">
+<section class="section after-head"><div class="wrap contact-grid">
+  {contact_form()}
+  <div class="contact-side">
+    <h2>Reach us directly</h2>
+    <ul class="contact-facts">
+      <li><b>Business</b>{esc(legal_entity())}</li>
+      <li><b>Mailing address</b>{esc(MAIL_ADDRESS)}</li>
+      {f'<li><b>Phone</b><a href="tel:{BUSINESS_PHONE}">{fmt_phone(BUSINESS_PHONE)}</a></li>' if BUSINESS_PHONE else ''}
+      <li><b>Email</b><a href="mailto:{EMAIL}">{EMAIL}</a></li>
+      <li><b>Service area</b>HVAC contractors across the United States, based in Texas</li>
+      <li><b>Services</b>HVAC websites, Google Business Profile management, local SEO, missed-call text-back, review requests and Google Ads</li>
+    </ul>
+  </div>
+</div></section>
+<section class="section alt"><div class="wrap">
   <h2 class="sr-only">Ways to reach us</h2>
   <div class="grid three">
     <div class="card reveal"><div class="icon">{ICON['chat']}</div><h3>Email us</h3><p>Questions about plans, your site or how it works.</p><p><a href="mailto:{EMAIL}">{EMAIL}</a></p></div>
@@ -2691,7 +2747,7 @@ def legal_page(key):
     if key == "privacy":
         title = "Privacy Policy"
         content = f"""
-<p>This policy explains what {esc(BRAND)} ("we", "us") collects through this website and our services, and how we use it. Last updated: {LEGAL_UPDATED}.</p>
+<p>This policy explains what {esc(legal_entity())} ("{esc(BRAND)}", "we", "us") collects through this website and our services, and how we use it. Last updated: {LEGAL_UPDATED}.</p>
 <h2>What we collect</h2>
 <ul>
 <li><b>Information you give us.</b> When you request a report card or contact us: your website, business name, the town you serve, first name, email address and phone number.</li>
@@ -2703,13 +2759,14 @@ def legal_page(key):
 <ul>
 <li>To create and email your report card and answer your questions.</li>
 <li>To send follow-up emails about your report card. You can unsubscribe at any time.</li>
-<li>To text you, only if you checked the box agreeing to receive texts.</li>
+<li>To text you, only if you checked a box agreeing to receive texts. Account and service texts and marketing texts each have their own box.</li>
 <li>To protect the site from spam and abuse (for example with Cloudflare Turnstile).</li>
 </ul>
 <h2>Text messaging</h2>
-<p>If you opt in to text messages, we will text you about your report card and our services. Message frequency varies. Message and data rates may apply. Reply STOP to opt out at any time and HELP for help. <b>We do not sell, rent or share your mobile number or text messaging opt-in data with third parties or affiliates for their marketing purposes.</b> Opt-in data and consent are not shared with any third parties, except service providers that deliver messages on our behalf.</p>
+<p>If you opt in to text messages, we will text you about your request, your report card and appointments, and, only if you checked the marketing box, about our services. Message frequency varies. Message and data rates may apply. Reply STOP to opt out at any time and HELP for help.</p>
+<p><b>No mobile information will be shared with third parties or affiliates for marketing or promotional purposes.</b> All the categories of sharing in this policy exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.</p>
 <h2>Who we share it with</h2>
-<p>We use service providers to run this site and our services, such as hosting (Vercel), email delivery (Resend), spam protection (Cloudflare), our CRM and messaging platform, and scheduling tools. To build report cards we send your business name, town and website (never your own name, email or phone) to Google for business lookups and site speed tests and to Anthropic for AI that checks listings and writes part of the report. They only use your information to provide services to us. We do not sell your personal information.</p>
+<p>We use service providers to run this site and our services, such as hosting (Vercel), email delivery (Resend), spam protection (Cloudflare), our CRM and messaging platform, and scheduling tools. To build report cards we send your business name, town and website (never your own name, email or phone) to Google for business lookups and site speed tests and to Anthropic for AI that checks listings and writes part of the report. They only use your information to provide services to us. We do not sell or rent your personal information.</p>
 <h2>Client customer data</h2>
 <p>When we provide services to a business, we handle that business's customer data only on its instructions, never sell it, and notify the business of any breach as required by law.</p>
 <h2>How long we keep it</h2>
@@ -2717,22 +2774,26 @@ def legal_page(key):
 <h2>Your choices</h2>
 <p>You can unsubscribe from emails using the link in any email, reply STOP to any text, or email <a href="mailto:{EMAIL}">{EMAIL}</a> to see, correct or delete your information.</p>
 <h2>Contact</h2>
-<p>{esc(BRAND)}, Waco, Texas. <a href="mailto:{EMAIL}">{EMAIL}</a></p>"""
+<p>{esc(legal_entity())}<br>{esc(MAIL_ADDRESS)}<br>{f'<a href="tel:{BUSINESS_PHONE}">{fmt_phone(BUSINESS_PHONE)}</a><br>' if BUSINESS_PHONE else ''}<a href="mailto:{EMAIL}">{EMAIL}</a></p>"""
     else:
         title = "Terms of Service"
         content = f"""
-<p>These terms cover your use of this website and the free report card. Client services are covered by a separate signed service agreement. Last updated: {LEGAL_UPDATED}.</p>
+<p>These terms cover your use of this website, the free report card and our text messages. They are offered by {esc(legal_entity())}. Client services are covered by a separate signed service agreement. Last updated: {LEGAL_UPDATED}.</p>
 <h2>The report card</h2>
 <p>The report card is a free assessment based only on public information about your business. It is an opinion, not a guarantee of any result, ranking or number of jobs.</p>
-<h2>Text messaging program</h2>
+<h2 id="texts">SMS terms: {esc(SMS_PROGRAM)}</h2>
 <ul>
-<li><b>Program:</b> {esc(BRAND)} report card and service updates.</li>
-<li><b>What you'll get:</b> texts about your report card, scheduling a call and our services.</li>
+<li><b>Program:</b> {esc(SMS_PROGRAM)}, sent by {esc(legal_entity())} to people who opt in on this website.</li>
+<li><b>Account and service texts:</b> if you check that box, we text you about your request, your report card, replies to your questions and appointment reminders.</li>
+<li><b>Marketing texts:</b> only if you check that separate box, we text you offers and tips about our HVAC marketing services.</li>
+<li><b>Consent:</b> both boxes are optional and not a condition of purchase.</li>
 <li><b>Frequency:</b> message frequency varies.</li>
 <li><b>Cost:</b> message and data rates may apply.</li>
-<li><b>Opt out:</b> reply STOP at any time. You'll get one final message confirming you're unsubscribed.</li>
-<li><b>Help:</b> reply HELP or email <a href="mailto:{EMAIL}">{EMAIL}</a>.</li>
-<li>Carriers are not liable for delayed or undelivered messages.</li>
+<li><b>Opt out:</b> reply STOP to any text at any time. You'll get one final message confirming you're unsubscribed and won't get more texts.</li>
+<li><b>Rejoin:</b> reply START, or opt in again on our website.</li>
+<li><b>Help:</b> reply HELP, or email <a href="mailto:{EMAIL}">{EMAIL}</a>{f' or call <a href="tel:{BUSINESS_PHONE}">{fmt_phone(BUSINESS_PHONE)}</a>' if BUSINESS_PHONE else ''}.</li>
+<li><b>Carriers:</b> carriers are not liable for delayed or undelivered messages.</li>
+<li><b>Privacy:</b> see our <a href="{u('privacy')}">Privacy Policy</a>. No mobile information is shared with third parties or affiliates for marketing or promotional purposes.</li>
 </ul>
 <h2>What every client agreement includes</h2>
 <p>The promises on this website are written into every client service agreement in the same words:</p>
@@ -2753,13 +2814,12 @@ def legal_page(key):
 <h2>Changes</h2>
 <p>We may update these terms. The date at the top shows the latest version.</p>
 <h2>Contact</h2>
-<p><a href="mailto:{EMAIL}">{EMAIL}</a></p>"""
+<p>{esc(legal_entity())}<br>{esc(MAIL_ADDRESS)}<br>{f'<a href="tel:{BUSINESS_PHONE}">{fmt_phone(BUSINESS_PHONE)}</a><br>' if BUSINESS_PHONE else ''}<a href="mailto:{EMAIL}">{EMAIL}</a></p>"""
     body = f"""<section class="page-head"><div class="wrap legal">
   <div class="crumbs"><a href="{u('')}">Home</a> / {title}</div>
   <h1>{title}</h1>
 </div></section>
 <section class="section after-head"><div class="wrap legal">
-  <div class="draft-note">Draft for lawyer review before launch. Written to meet A2P 10DLC texting verification.</div>
   {content}
 </div></section>"""
     return page(key, title, f"{title} for {BRAND}.", body, has_form=False)

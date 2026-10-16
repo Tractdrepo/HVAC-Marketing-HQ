@@ -10,7 +10,7 @@
 
 <link rel="preload" href="/fonts/Archivo-600-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/IBMPlexSans-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css?v=a6f51474">
+<link rel="stylesheet" href="/styles.css?v=420fd23d">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -98,10 +98,15 @@
           <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="button" class="btn btn-primary" data-next>Next</button></div>
         </div>
         <div class="rc-step">
-          <h3>Last one: your phone</h3>
+          <h3>Last one: your phone (optional)</h3>
           <p class="muted">Only used if you ask us to text you. We don't cold call.</p>
-          <div class="field"><label for="rc-phone-HVAC">Mobile phone</label><input id="rc-phone-HVAC" type="tel" name="phone" required data-msg="Add a phone number." autocomplete="tel" pattern="[0-9()+.\- ]{10,}"></div>
-          <label class="consent"><input type="checkbox" name="sms_consent" value="yes"><span>Text me about my report card. Message and data rates may apply. Message frequency varies. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms</a>.</span></label>
+          <div class="field"><label for="rc-phone-HVAC">Mobile phone (optional)</label><input id="rc-phone-HVAC" type="tel" name="phone" data-msg="Check your phone number, or leave it blank." autocomplete="tel" pattern="[0-9()+.\- ]{10,}"></div>
+          <fieldset class="consent-set">
+          <legend class="sr-only">Text message consent (optional)</legend>
+          <label class="consent"><input type="checkbox" name="sms_service" value="yes" id="sms-service-HVAC"><span>Yes, text me about my request: my report card, replies to my questions and appointment reminders from HVAC Marketing HQ.</span></label>
+          <label class="consent"><input type="checkbox" name="sms_marketing" value="yes" id="sms-marketing-HVAC"><span>Yes, send me marketing texts from HVAC Marketing HQ, like offers and tips for HVAC shops.</span></label>
+          <p class="consent-note">Both boxes are optional and not a condition of purchase. HVAC Marketing HQ Texts: message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Mobile numbers are never shared with third parties for marketing. <a href="/privacy">Privacy Policy</a> · <a href="/terms#texts">Terms</a></p>
+        </fieldset>
           <div class="cf-turnstile" data-sitekey="0x4AAAAAAFW5gSyWKqCFU_8y" data-theme="light"></div>
           <div class="rc-nav"><button type="button" class="rc-back">Back</button><button type="submit" class="btn btn-primary">Send my report card</button></div>
         </div>
@@ -133,15 +138,15 @@
     </div>
     <p class="foot-word" aria-hidden="true">HVAC Marketing HQ</p>
     <div class="foot-base">
-      <span>© <span data-year>2026</span> HVAC Marketing HQ. Waco, Texas.</span>
-      <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
+      <span>© <span data-year>2026</span> HVAC Marketing HQ. 3801 N Capital of Texas Hwy, Ste E240-3928, Austin, TX 78746. <a href="mailto:hello@hvacmarketinghq.com">hello@hvacmarketinghq.com</a></span>
+      <span><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></span>
     </div>
   </div>
 </footer>
 <a class="m-cta" href="#report-card" data-m-cta>Get my free report card <span class="arrow">→</span></a>
 
 
-<script src="/main.js?v=c0466719" defer></script>
+<script src="/main.js?v=dc47ba31" defer></script>
 <script src="/_vercel/insights/script.js" defer></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>

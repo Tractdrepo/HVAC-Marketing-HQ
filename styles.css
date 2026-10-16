@@ -1376,3 +1376,16 @@ main > .section.dark::before { display: none; }
   .m-cta.show { transform: none; }
 }
 @media (max-width: 700px) and (prefers-reduced-motion: reduce) { .m-cta { transition: none; } }
+/* Contact form and text consent (A2P 10DLC) */
+.contact-grid { display: grid; gap: 32px; align-items: start; }
+@media (min-width: 900px) { .contact-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; } }
+.contact-form h2 { font-size: var(--fs-xl); margin: 0 0 16px; }
+.contact-form textarea { width: 100%; font: inherit; padding: 12px; border: 1px solid var(--line-2); border-radius: var(--radius-sm); resize: vertical; }
+.contact-msg { margin: 12px 0 0; font-size: var(--fs-sm); color: var(--muted); }
+.contact-form.sent .field, .contact-form.sent .consent-set, .contact-form.sent .cf-turnstile, .contact-form.sent button { display: none; }
+.contact-side h2 { font-size: var(--fs-xl); margin: 0 0 16px; }
+.contact-facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.contact-facts b { display: block; font: 600 var(--fs-xs)/1.4 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 4px; }
+.consent-set { border: 0; margin: 4px 0 16px; padding: 0; }
+.consent-set .consent { margin: 0 0 8px; }
+.consent-note { margin: 4px 0 0; font-size: var(--fs-xs); color: var(--muted); line-height: 1.45; }

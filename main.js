@@ -262,7 +262,7 @@
       if (f && document.activeElement && form.contains(document.activeElement)) f.focus();
     };
     var valid = function (n) {
-      var inputs = stepsEls[n].querySelectorAll("input[required]");
+      var inputs = stepsEls[n].querySelectorAll("input[required], input[type=tel]");
       for (var k = 0; k < inputs.length; k++) {
         if (!inputs[k].checkValidity()) { err.textContent = inputs[k].dataset.msg || "Please fill this in."; inputs[k].focus(); return false; }
       }
@@ -290,6 +290,8 @@
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!valid(cur)) return;
+      var tel = form.querySelector("[name=phone]");
+      if (tel && !tel.value.trim() && form.querySelector(".consent-set input:checked")) { err.textContent = "Add a mobile number so we can text you, or uncheck the text boxes."; tel.focus(); return; }
       var data = {};
       new FormData(form).forEach(function (v, k) { data[k] = v; });
       data.page = location.pathname;
@@ -357,6 +359,36 @@
         })
         .catch(function (ex) { msg.textContent = ex.message || "Something went wrong. Please try again."; btn.disabled = false; btn.textContent = "Email me the PDF"; });
     });
+  });
+})();
+
+// Contact form (the site's text opt-in form): optional phone, two separate optional text consent boxes.
+(function () {
+  var form = document.querySelector("form[data-contact]");
+  if (!form) return;
+  var msg = form.querySelector(".contact-msg");
+  var btn = form.querySelector("[type=submit]");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var data = { page: location.pathname };
+    new FormData(form).forEach(function (v, k) { data[k] = v; });
+    if (!data.first_name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email || "")) { msg.textContent = "Please add your first name and a valid email."; return; }
+    if (data.phone && data.phone.replace(/\D/g, "").length < 10) { msg.textContent = "Please check your phone number, or leave it blank."; return; }
+    if ((data.sms_service || data.sms_marketing) && !data.phone) { msg.textContent = "Add a mobile number so we can text you, or uncheck the text boxes."; return; }
+    if (!(data.message || "").trim()) { msg.textContent = "Please add a short message."; return; }
+    btn.disabled = true; btn.textContent = "Sending…";
+    fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        if (!res.ok) throw new Error(res.j && res.j.error ? res.j.error : "Something went wrong.");
+        form.classList.add("sent"); msg.textContent = "Thanks. We'll get back to you within one business day.";
+        window.va("event", { name: "contact_sent" });
+      })
+      .catch(function (ex) {
+        msg.textContent = ex.message || "Something went wrong. Please try again.";
+        btn.disabled = false; btn.textContent = "Send message";
+        if (window.turnstile) window.turnstile.reset();
+      });
   });
 })();
 

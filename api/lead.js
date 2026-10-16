@@ -88,13 +88,15 @@ module.exports = async function handler(req, res) {
     first_name: clean(body.first_name, 80),
     email: clean(body.email, 120),
     phone: clean(body.phone, 30),
-    sms_consent: body.sms_consent === "yes" ? "yes" : "no",
+    sms_service: body.sms_service === "yes" || body.sms_consent === "yes" ? "yes" : "no",
+    sms_marketing: body.sms_marketing === "yes" ? "yes" : "no",
     trade: clean(body.trade, 40),
     page: clean(body.page, 120),
   };
   if (!lead.website || !lead.business || !lead.first_name) return res.status(400).json({ error: "Please fill in every step." });
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(lead.email)) return res.status(400).json({ error: "Please check your email address." });
-  if (lead.phone.replace(/\D/g, "").length < 10) return res.status(400).json({ error: "Please check your phone number." });
+  if (lead.phone && lead.phone.replace(/\D/g, "").length < 10) return res.status(400).json({ error: "Please check your phone number, or leave it blank." });
+  if ((lead.sms_service === "yes" || lead.sms_marketing === "yes") && !lead.phone) return res.status(400).json({ error: "Add a mobile number so we can text you, or uncheck the text boxes." });
 
   if (!process.env.RESEND_API_KEY || !process.env.LEAD_TO || !process.env.LEAD_FROM) {
     return res.status(503).json({ error: "Report cards open in a few days. Email hello@hvacmarketinghq.com and we'll send yours." });
