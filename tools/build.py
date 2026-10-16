@@ -215,7 +215,11 @@ def header(has_form=True):
 </header>"""
 
 
-def footer(has_form=True):
+# Pages whose footer names the legal entity (Logan, Oct 16: keep the LLC off the site-wide footer).
+LEGAL_FOOTER_PAGES = {"contact", "privacy", "terms"}
+
+
+def footer(has_form=True, legal=False):
     offers = "".join(f'<li><a href="{u(k)}">{esc(svc_info(k)[0])}</a></li>' for k in FOOTER_SERVICES) + f'<li><a href="{u("services")}">All services</a></li>'
     niches = "".join(f'<li><a href="{u(n["slug"])}">{esc(n["name"])}</a></li>' for n in niches_sorted())
     rc = "#report-card" if has_form else u("") + "#report-card"
@@ -234,7 +238,7 @@ def footer(has_form=True):
     </div>
     <p class="foot-word" aria-hidden="true">{esc(BRAND)}</p>
     <div class="foot-base">
-      <span>© <span data-year>2026</span> {esc(legal_entity())}. {esc(MAIL_ADDRESS)}.{f' <a href="tel:{BUSINESS_PHONE}">{fmt_phone(BUSINESS_PHONE)}</a> ·' if BUSINESS_PHONE else ''} <a href="mailto:{EMAIL}">{EMAIL}</a></span>
+      <span>© <span data-year>2026</span> {esc(legal_entity() if legal else BRAND)}. {esc(MAIL_ADDRESS)}.{f' <a href="tel:{BUSINESS_PHONE}">{fmt_phone(BUSINESS_PHONE)}</a> ·' if BUSINESS_PHONE else ''} <a href="mailto:{EMAIL}">{EMAIL}</a></span>
       <span><a href="{u('privacy')}">Privacy Policy</a> · <a href="{u('terms')}">Terms of Service</a></span>
     </div>
   </div>
@@ -495,7 +499,7 @@ def page(path, title, desc, body, extra_head="", has_form=True):
 <main id="main">
 {body}
 </main>
-{footer(has_form)}
+{footer(has_form, legal=path in LEGAL_FOOTER_PAGES)}
 {founder_video(has_form)}
 {rc_modal() if "data-url-form" in body else ""}
 <script src="{asset_v('main.js')}" defer></script>{"" if PREVIEW else chr(10) + '<script src="/_vercel/insights/script.js" defer></script>'}
