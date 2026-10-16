@@ -26,8 +26,8 @@ FOUNDER_NAME = "Logan"
 FOUNDER_VIDEO = None                  # e.g. "video/founder.mp4" once recorded (also add a poster: "video/founder.jpg")
 FOUNDER_POSTER = None
 # Business details shown in the footer and legal pages for A2P 10DLC. Must match the A2P brand registration exactly.
-LEGAL_NAME = None                     # the LLC's name exactly as on the IRS EIN letter; shown as "HVAC Marketing HQ is a DBA of ..."
-BUSINESS_PHONE = None                 # the GHL 254 number, e.g. "+12545550123"; shown in the footer and contact page once set
+LEGAL_NAME = "LT Park Brokerage LLC"                     # the LLC's name exactly as on the IRS EIN letter; shown as "HVAC Marketing HQ is a DBA of ..."
+BUSINESS_PHONE = "+12543827303"                 # the GHL 254 number, e.g. "+12545550123"; shown in the footer and contact page once set
 MAIL_ADDRESS = "3801 N Capital of Texas Hwy, Ste E240-3928, Austin, TX 78746"
 SMS_PROGRAM = "HVAC Marketing HQ Texts"
 DEMO_PHONE = None                     # demo line for missed-call text-back, e.g. "+12545550123"; block hidden until set
@@ -1450,7 +1450,7 @@ def org_ld():
     return ld({"@context": "https://schema.org", "@type": "ProfessionalService", "name": BRAND, "url": f"https://{DOMAIN}/",
                "email": EMAIL, "description": "Websites, Google Business Profile management, missed-call text-back and review requests for HVAC contractors.",
                "address": {"@type": "PostalAddress", "addressLocality": "Waco", "addressRegion": "TX", "addressCountry": "US"},
-               "areaServed": "US", "slogan": TAGLINE,
+               "areaServed": "US", "slogan": TAGLINE, **({"telephone": BUSINESS_PHONE} if BUSINESS_PHONE else {}), **({"legalName": LEGAL_NAME} if LEGAL_NAME else {}),
                "founder": {"@type": "Person", "name": "Logan", "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg"},
                "logo": f"https://{DOMAIN}/apple-touch-icon-180.png", "image": f"https://{DOMAIN}/og-image.png",
                **({"sameAs": SAME_AS} if SAME_AS else {})}) + ld({"@context": "https://schema.org", "@type": "WebSite", "name": BRAND, "url": f"https://{DOMAIN}/"})
