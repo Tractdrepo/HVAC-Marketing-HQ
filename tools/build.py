@@ -18,6 +18,7 @@ BRAND = "HVAC Marketing HQ"
 BRAND_SHORT = "HVAC Marketing HQ"
 TAGLINE = "Rank · Book · Repeat"
 DOMAIN = "hvacmarketinghq.com"
+SITE_HOST = "www." + DOMAIN           # canonical host; the apex 308-redirects here
 EMAIL = "hello@" + DOMAIN
 CALL_LINK = "https://calendar.app.google/bm89Bh3ot8oEk3VA9"  # Google Calendar booking page (Logan, Oct 14)
 TURNSTILE_SITEKEY = "0x4AAAAAAFW5gSyWKqCFU_8y"  # Cloudflare Turnstile site key (public); secret is TURNSTILE_SECRET in Vercel
@@ -26,7 +27,7 @@ FOUNDER_NAME = "Logan"
 FOUNDER_VIDEO = None                  # e.g. "video/founder.mp4" once recorded (also add a poster: "video/founder.jpg")
 FOUNDER_POSTER = None
 # Business details shown in the footer and legal pages for A2P 10DLC. Must match the A2P brand registration exactly.
-LEGAL_NAME = "LT Park Brokerage LLC"                     # the LLC's name exactly as on the IRS EIN letter; shown as "HVAC Marketing HQ is a DBA of ..."
+LEGAL_NAME = "LT Park Brokerage LLC"                     # the LLC's name exactly as on the IRS EIN letter; shown as "LT Park Brokerage LLC, doing business as HVAC Marketing HQ"
 BUSINESS_PHONE = "+12543827303"                 # the GHL 254 number, e.g. "+12545550123"; shown in the footer and contact page once set
 MAIL_ADDRESS = "3801 N Capital of Texas Hwy, Ste E240-3928, Austin, TX 78746"
 SMS_PROGRAM = "HVAC Marketing HQ Texts"
@@ -253,7 +254,7 @@ def fmt_phone(p):
 
 
 def legal_entity():
-    return f"{BRAND} is a DBA of {LEGAL_NAME}" if LEGAL_NAME else BRAND
+    return f"{LEGAL_NAME}, doing business as {BRAND}" if LEGAL_NAME else BRAND
 
 
 def rc_form(trade="HVAC", key=None, lazy_turnstile=False):
@@ -382,7 +383,7 @@ def crumbs_ld(body):
         name = _strip(lm.group(2) if lm else x)
         item = {"@type": "ListItem", "position": n + 1, "name": name}
         if lm and not PREVIEW:
-            item["item"] = f"https://{DOMAIN}{lm.group(1)}"
+            item["item"] = f"https://{SITE_HOST}{lm.group(1)}"
         items.append(item)
     return ld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items})
 
@@ -453,10 +454,10 @@ def page(path, title, desc, body, extra_head="", has_form=True):
     if len(full_title) > 65 and not title.endswith(BRAND):
         full_title = title  # keep long titles from being cut off in Google
     preview_meta = '<meta name="site-preview" content="1">' if PREVIEW else ""
-    canon = f"https://{DOMAIN}/{route(path)}"
+    canon = f"https://{SITE_HOST}/{route(path)}"
     social = (f'<link rel="canonical" href="{canon}">\n<meta property="og:type" content="website">\n<meta property="og:site_name" content="{esc(BRAND)}">\n'
               f'<meta property="og:title" content="{esc(full_title)}">\n<meta property="og:description" content="{esc(desc)}">\n'
-              f'<meta property="og:url" content="{canon}">\n<meta property="og:image" content="https://{DOMAIN}/og-image.png">\n'
+              f'<meta property="og:url" content="{canon}">\n<meta property="og:image" content="https://{SITE_HOST}/og-image.png">\n'
               f'<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">')
     extra_head = social + "\n" + crumbs_ld(body) + extra_head
     return f"""<!doctype html>
@@ -580,8 +581,8 @@ METHOD = [
         "A fast site built around the jobs you want",
         "A page for each service and each town you really serve",
         "Google profile complete, active and posting the job photos you send",
-        "Directory listings kept consistent",
-        "Map spam reported on fake competitor listings",
+        "Directory listings managed on Dominate, or a $49/mo sync add-on",
+        "Competitor and map spam watch on Dominate",
     ], "More of the right homeowners find you, not a franchise."),
     ("Book", "Every call answered and booked, even when you can't pick up.", [
         "Missed-call text-back in 60 seconds, guaranteed",
@@ -593,8 +594,8 @@ METHOD = [
     ("Repeat", "Turn every job into the next one.", [
         "Review request after every finished job",
         "A reply to every review, in your voice",
-        "Spring and fall tune-up campaigns to past customers",
-        "Maintenance plan reminders before plans lapse",
+        "Win-back texts to past customers each season, Growth and up",
+        "Full spring and fall tune-up campaigns and maintenance plan reminders on Dominate",
         "Your HQ Command Center dashboard and a quarterly re-grade",
     ], "Reviews and repeat customers compound every month."),
 ]
@@ -745,7 +746,7 @@ def bento():
   <div class="tile b-2 reveal"><div><span class="tile-label">Book</span><h3>AI web chat</h3><p>Answers questions and captures the lead after hours.</p></div><div class="mock chat"><div class="chat-head"><i></i>Your Shop Heating &amp; Air</div><div class="msg user">Do you do weekend AC repair?</div><div class="msg bot">Yes, Saturdays 8 to 4. Want me to book a time? What's your address?</div><div class="msg user">1412 Oak Lawn Ave, Dallas</div><div class="msg bot">You're set for Saturday, 10 to 12. We'll text when the tech is on the way.</div></div></div>
   <div class="tile b-4 reveal"><div><span class="tile-label">Repeat</span><h3>HQ Command Center</h3><p>Your CRM, set up around your shop. Every lead, call, text, job and review in one place, with a login for everyone on your team.</p></div><div class="mock">{dashboard()}</div></div>
   <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Reviews on autopilot</h3><p>A request after every finished job, and a reply to every review.</p></div><div class="mock review"><div class="req"><span class="tag">Sent</span>Review request · job marked done 2:14 PM</div><span class="stars">★★★★★</span> Texted me back in seconds and had it fixed by 10.<div class="reply"><b>Owner reply:</b> Thank you! Glad we got you cool again.</div></div></div>
-  <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Seasonal campaigns</h3><p>Spring and fall tune-up texts to past customers, and maintenance plan reminders before they lapse.</p></div><div class="mock chat"><div class="msg bot">Hi Maria, it's Your Shop Heating &amp; Air. Summer's coming. Book your AC tune-up this month? Reply YES and we'll find a time.</div><div class="msg user">YES</div></div></div>
+  <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Seasonal campaigns</h3><p>Win-back texts to past customers each season on Growth, and full spring and fall tune-up campaigns with maintenance plan reminders on Dominate.</p></div><div class="mock chat"><div class="msg bot">Hi Maria, it's Your Shop Heating &amp; Air. Summer's coming. Book your AC tune-up this month? Reply YES and we'll find a time.</div><div class="msg user">YES</div></div></div>
 </div>"""
 
 
@@ -803,7 +804,7 @@ def plans_teaser():
         f'<a class="pt-card reveal{" featured" if pl.get("featured") else ""}" href="{u("plans")}"><span class="pt-name">{pl["name"]}</span>'
         f'<span class="pt-price">${round(pl["monthly"] * (1 - ANNUAL_DISCOUNT)):,}<small>/mo</small></span><span class="pt-stage">Best for {esc(pl["stage"])}</span></a>'
         for pl in PLANS)
-    return f'<div class="pt-grid">{cards}</div><p class="pt-note">Billed yearly, or ${PLANS[0]["monthly"]:,}/mo and up billed monthly. One-time build from ${PLANS[0]["build"]:,}. Billing starts at launch.</p>'
+    return f'<div class="pt-grid">{cards}</div><p class="pt-note">Annual prices shown, billed yearly. Monthly billing is on the pricing page. One-time build from ${PLANS[0]["build"]:,}. Billing starts at launch.</p>'
 
 
 def plans_cards():
@@ -821,11 +822,11 @@ def plans_cards():
   <p class="scope">{esc(p['scope'])}</p>
   <p class="stage">Best for {esc(p['stage'])}</p>
   <div class="price"><span data-monthly="{money(m)}" data-annual="{money(annual)}">{money(annual)}</span><small> /month</small>{tbd}</div>
-  <p class="billing"><span class="when-annual">Billed yearly · <b>{save}</b><br><span class="or-monthly">or {money(m)}/mo billed monthly</span></span><span class="when-monthly">Billed monthly · 6-month first term</span></p>
+  <p class="billing"><span data-monthly="Billed monthly, 6-month first term" data-annual="Billed yearly">Billed yearly</span><span class="when-annual"> · <b>{save}</b></span></p>
   <p class="for">{esc(p['for'])}</p>
   <ul class="ticks">{items}</ul>
   <div class="build">One-time build: {money(p['build'])}</div>
-  <a class="btn {'btn-primary' if feat else 'btn-ghost'}" href="#report-card">Get started</a>
+  <a class="btn {'btn-primary' if feat else 'btn-ghost'}" href="{esc(call_link())}">Book a call</a>
 </div>""")
     toggle = f"""<div class="bill-toggle" role="group" aria-label="Billing">
   <button type="button" data-bill="monthly" aria-pressed="false">Monthly</button>
@@ -890,9 +891,9 @@ def promise():
   <div class="card reveal"><span class="big">14 days</span><p>Your new site is live within 14 days of getting your content.</p></div>
   <div class="card reveal"><span class="big">1 day</span><p>Every change you send us is done, or answered with a date, within one business day.</p></div>
 </div>
-<div class="moneyback reveal"><span class="big">30 days</span><div><h3>Money-back guarantee</h3><p>Not happy in your first 30 days after launch? Tell us and we refund your first month. No form to fill out, no argument. <span class="tbd">Build fee terms TBD</span></p></div></div>
+<div class="moneyback reveal"><span class="big">30 days</span><div><h3>Money-back guarantee</h3><p>Not happy in your first 30 days after launch? Tell us and we refund your first month. No form to fill out, no argument.</p><p style="margin-top:8px">The build fee is due at signing. Work starts once it's paid, and we can split it into 2 payments if needed.</p></div></div>
 {demo_line()}
-<p class="promise-note">We guarantee what we control. Nobody honest can promise a #1 ranking or a set number of calls, so we don't. <span class="tbd">What happens if we miss: TBD</span></p>"""
+<p class="promise-note">We guarantee what we control. Nobody honest can promise a #1 ranking or a set number of calls, so we don't.</p>"""
 
 
 def founding_strip():
@@ -999,6 +1000,7 @@ COMMON_FAQ = [
     ("How many Google reviews do I need?", "There's no magic number. Steady, recent reviews beat a big pile of old ones, which is why every plan asks every finished job for one."),
     ("Can you get my shop recommended by ChatGPT?", "We build what AI tools read: a complete Google profile, consistent listings, clear service pages and recent reviews. Nobody can honestly guarantee an AI answer, and we won't."),
     ("What if we can't handle more calls yet?", "Tell us on the call. We'd rather wait, or start with text-back only, than send you work your crew can't get to."),
+    ("Can I get missed-call text-back on its own?", "Yes. Missed-call text-back is available on its own for $97 a month."),
     ("Who will I talk to?", "A team that works only with HVAC companies. You get a direct line, not a ticket queue."),
     ("What's the build fee for?", "Building your site, setting up your Google profile, forwarding your line through the text-back system and importing your past customers. Monthly billing starts when you go live, not when you sign."),
 ]
@@ -1435,13 +1437,13 @@ def faq_ld(items):
 
 
 def org_ld():
-    return ld({"@context": "https://schema.org", "@type": "ProfessionalService", "name": BRAND, "url": f"https://{DOMAIN}/",
+    return ld({"@context": "https://schema.org", "@type": "ProfessionalService", "name": BRAND, "url": f"https://{SITE_HOST}/",
                "email": EMAIL, "description": "Websites, Google Business Profile management, missed-call text-back and review requests for HVAC contractors.",
                "address": {"@type": "PostalAddress", "addressLocality": "Waco", "addressRegion": "TX", "addressCountry": "US"},
                "areaServed": "US", "slogan": TAGLINE, **({"telephone": BUSINESS_PHONE} if BUSINESS_PHONE else {}), **({"legalName": LEGAL_NAME} if LEGAL_NAME else {}),
-               "founder": {"@type": "Person", "name": "Logan", "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg"},
-               "logo": f"https://{DOMAIN}/apple-touch-icon-180.png", "image": f"https://{DOMAIN}/og-image.png",
-               **({"sameAs": SAME_AS} if SAME_AS else {})}) + ld({"@context": "https://schema.org", "@type": "WebSite", "name": BRAND, "url": f"https://{DOMAIN}/"})
+               "founder": {"@type": "Person", "name": "Logan", "jobTitle": "Founder", "image": f"https://{SITE_HOST}/img/logan-320.jpg"},
+               "logo": f"https://{SITE_HOST}/apple-touch-icon-180.png", "image": f"https://{SITE_HOST}/og-image.png",
+               **({"sameAs": SAME_AS} if SAME_AS else {})}) + ld({"@context": "https://schema.org", "@type": "WebSite", "name": BRAND, "url": f"https://{SITE_HOST}/"})
 
 
 def _links(text):
@@ -1511,8 +1513,8 @@ def guide_page(g):
 {next_step()}
 """
     art = ld({"@context": "https://schema.org", "@type": "Article", "headline": g["title"], "description": g["desc"],
-              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": f"https://{DOMAIN}/apple-touch-icon-180.png"}}, "image": f"https://{DOMAIN}/og-image.png",
-              "datePublished": g.get("date", GUIDES_UPDATED_ISO), "dateModified": g.get("date", GUIDES_UPDATED_ISO), "mainEntityOfPage": f"https://{DOMAIN}/{route(guide_path(g['slug']))}"})
+              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{SITE_HOST}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": f"https://{SITE_HOST}/apple-touch-icon-180.png"}}, "image": f"https://{SITE_HOST}/og-image.png",
+              "datePublished": g.get("date", GUIDES_UPDATED_ISO), "dateModified": g.get("date", GUIDES_UPDATED_ISO), "mainEntityOfPage": f"https://{SITE_HOST}/{route(guide_path(g['slug']))}"})
     return page(guide_path(g["slug"]), g["title"], g["desc"], body, extra_head=art + faq_ld(g["faq"]), has_form=False)
 
 
@@ -1641,7 +1643,7 @@ def service_page(sv):
 {report_card()}
 """
     svc = ld({"@context": "https://schema.org", "@type": "Service", "name": sv["title"], "description": sv["desc"], "serviceType": sv["name"],
-              "provider": {"@type": "ProfessionalService", "name": BRAND, "url": f"https://{DOMAIN}/"}, "areaServed": "US", "audience": {"@type": "BusinessAudience", "name": "HVAC contractors"}})
+              "provider": {"@type": "ProfessionalService", "name": BRAND, "url": f"https://{SITE_HOST}/"}, "areaServed": "US", "audience": {"@type": "BusinessAudience", "name": "HVAC contractors"}})
     return page(sv["slug"], sv["title"], sv["desc"], body, extra_head=svc + faq_ld(sv["faq"]))
 
 
@@ -2051,9 +2053,9 @@ def about_page():
 </div></section>
 {report_card()}
 """
-    ld_ = ld({"@context": "https://schema.org", "@type": "AboutPage", "name": f"About {BRAND}", "url": f"https://{DOMAIN}/about",
-              "mainEntity": {"@type": "Organization", "name": BRAND, "url": f"https://{DOMAIN}/", "email": EMAIL, "address": {"@type": "PostalAddress", "addressLocality": "Waco", "addressRegion": "TX", "addressCountry": "US"},
-                             "founder": {"@type": "Person", "name": "Logan", "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg"}}})
+    ld_ = ld({"@context": "https://schema.org", "@type": "AboutPage", "name": f"About {BRAND}", "url": f"https://{SITE_HOST}/about",
+              "mainEntity": {"@type": "Organization", "name": BRAND, "url": f"https://{SITE_HOST}/", "email": EMAIL, "address": {"@type": "PostalAddress", "addressLocality": "Waco", "addressRegion": "TX", "addressCountry": "US"},
+                             "founder": {"@type": "Person", "name": "Logan", "jobTitle": "Founder", "image": f"https://{SITE_HOST}/img/logan-320.jpg"}}})
     return page("about", f"About {BRAND}", f"About {BRAND}: an HVAC-only marketing company based in Waco, Texas. Meet the founder and how we work.", body, extra_head=ld_)
 
 
@@ -2149,8 +2151,8 @@ def pillar_page():
 {report_card()}
 """
     art = ld({"@context": "https://schema.org", "@type": "Article", "headline": "HVAC marketing: how owner-run shops get found and booked",
-              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{DOMAIN}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": f"https://{DOMAIN}/apple-touch-icon-180.png"}}, "image": f"https://{DOMAIN}/og-image.png", "datePublished": GUIDES_UPDATED_ISO, "dateModified": GUIDES_UPDATED_ISO,
-              "mainEntityOfPage": f"https://{DOMAIN}/{route('hvac-marketing')}"})
+              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{SITE_HOST}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": f"https://{SITE_HOST}/apple-touch-icon-180.png"}}, "image": f"https://{SITE_HOST}/og-image.png", "datePublished": GUIDES_UPDATED_ISO, "dateModified": GUIDES_UPDATED_ISO,
+              "mainEntityOfPage": f"https://{SITE_HOST}/{route('hvac-marketing')}"})
     return page("hvac-marketing", "HVAC Marketing: The Complete Guide for Owner-Run Shops", "HVAC marketing explained: how to get found on Google and the map, answer and book every call, and turn jobs into reviews and repeat work. With costs, tools and FAQs.", body, extra_head=art + faq_ld(PILLAR_FAQ))
 
 
@@ -2231,7 +2233,7 @@ def write_grader_towns(dest):
 
 def sitemap_xml(paths):
     dated = {route(guide_path(g["slug"])): g.get("date", GUIDES_UPDATED_ISO) for g in GUIDES + POSTS}
-    urls = "".join(f"<url><loc>https://{DOMAIN}/{p_}</loc>" + (f"<lastmod>{dated[p_]}</lastmod>" if dated.get(p_) else "") + "</url>" for p_ in paths)
+    urls = "".join(f"<url><loc>https://{SITE_HOST}/{p_}</loc>" + (f"<lastmod>{dated[p_]}</lastmod>" if dated.get(p_) else "") + "</url>" for p_ in paths)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n'
 
 
@@ -2325,8 +2327,8 @@ TRADE_CONTENT = {
         "lede": "When it's 104 in July, the homeowner calls three shops and books the first one that answers. We make sure that's you, even when your techs are in an attic.",
         "pains": [
             ("The summer rush outruns your phones", "Calls stack up on the hottest days of the year, exactly when your office can't keep up. Every missed call gets a text back in seconds."),
-            ("Tune-up season comes and goes", "Spring and fall are when past customers should hear from you. We run the seasonal tune-up campaign so the schedule fills before the rush."),
-            ("Maintenance plans don't renew themselves", "Reminders go out before plans lapse, with a link to renew."),
+            ("Tune-up season comes and goes", "Spring and fall are when past customers should hear from you. Win-back texts go out each season on Growth, and Dominate runs the full tune-up campaign so the schedule fills before the rush."),
+            ("Maintenance plans don't renew themselves", "On Dominate, reminders go out before plans lapse, with a link to renew."),
             ("Big franchises and lead sellers crowd the map", "A complete Google profile, real service-area pages and a steady stream of reviews help a local shop hold its ground."),
             ("Replacement quotes go quiet", "A $9,000 system is a big decision. Estimate follow-up keeps going until the homeowner books or says no, with a financing link if you offer one."),
         ],
@@ -2425,11 +2427,11 @@ OFFER_CONTENT = {
             ("pin", "Google Business Profile", "Right categories, every service listed, current hours, photos and regular posts."),
             ("star", "Review requests", "Sent automatically when a job is marked done, so asking never depends on remembering."),
             ("chat", "Review replies", "Every review gets a reply, good or bad, in your voice."),
-            ("list", "Directory listings", "Your name, address and phone kept the same on Facebook, Yelp, BBB, Angi, Nextdoor and more."),
-            ("cal", "Seasonal campaigns", "Tune-up and reminder campaigns to past customers before the busy season."),
+            ("list", "Directory listings", "Your name, address and phone kept the same on Facebook, Yelp, BBB, Angi, Nextdoor and more. Managed on Dominate, or a $49/mo sync add-on."),
+            ("cal", "Seasonal campaigns", "Win-back texts each season on Growth; full tune-up and reminder campaigns on Dominate."),
             ("chart", "Monthly statement", "Calls, texts, booked jobs and new reviews, in one page each month."),
         ],
-        "list": ["We ask every customer for a review and never filter out unhappy ones (Google doesn't allow it)", "Map spam reports on fake competitor listings", "Call tracking by source", "Google Ads, Local Services Ads and Facebook ads available as add-ons", "No promises of rankings, only of the work"],
+        "list": ["We ask every customer for a review and never filter out unhappy ones (Google doesn't allow it)", "Competitor and map spam watch on Dominate", "Call tracking by source", "Google Ads, Local Services Ads and Facebook ads available as add-ons", "No promises of rankings, only of the work"],
     },
     "app": {
         "title": "Lead system", "seo_title": "HVAC Lead System: Every Call, Text and Form in One Inbox", "h1": "Every call, text and form in one inbox.",
@@ -2440,7 +2442,7 @@ OFFER_CONTENT = {
             ("cal", "Estimate follow-up", "Keeps following up until the job is booked or the customer says no."),
             ("list", "Reminders and on-the-way texts", "Appointment reminders and \"your tech is on the way\" texts."),
             ("star", "E-sign and financing", "Send an estimate, get it signed and share a financing link from the same thread."),
-            ("loop", "Maintenance plan reminders", "Customers hear from you before plans lapse."),
+            ("loop", "Maintenance plan reminders", "On Dominate, customers hear from you before plans lapse."),
         ],
         "list": ["Keep your existing phone number", "Works alongside your field-service software", "Normal texting and calling included", "AI phone answering available as an add-on"],
     },
@@ -2484,7 +2486,7 @@ OFFER_DEEP = {
             ("Distance", "Google favors shops close to the person searching. You can't move your shop, but town pages and a complete profile stretch your reach."),
             ("Relevance", "The wrong main category or missing services means Google doesn't know you do the job. This is the fastest fix."),
             ("Prominence", "Reviews, how recent they are, how often you reply and how active your profile is. This is where steady work wins."),
-            ("Spam listings", "Fake competitor listings crowd the map. We report them."),
+            ("Spam listings", "Fake competitor listings crowd the map. On Dominate, we watch for them and report them."),
         ]),
         "flow": ("Reviews on autopilot", "A steady flow of new reviews beats a big pile of old ones. Here's how every finished job becomes the next one.", [
             ("Job marked done", "In your field software or our app"),
@@ -2513,7 +2515,7 @@ OFFER_DEEP = {
             ("New web lead", "Instant reply and a link to book"),
             ("Appointment booked", "Reminder the day before, on-the-way text"),
             ("Job marked done", "Review request and thank-you"),
-            ("Quiet customer", "Tune-up and maintenance plan reminders"),
+            ("Quiet customer", "Win-back texts (Growth), tune-up and plan reminders (Dominate)"),
         ]),
         "attribution": ("See what's booking your jobs", "Every booked job tagged with where it came from, so you know what to keep paying for.", [("Google map pack", 41), ("Website", 23), ("Repeat customers", 18), ("Referrals", 11), ("Other", 7)]),
         "replaces": True,
@@ -2620,7 +2622,7 @@ def offer_page(key):
 """
     items = OFFER_DEEP.get(key, {}).get("faq")
     svc = ld({"@context": "https://schema.org", "@type": "Service", "name": o.get("seo_title", _strip(o["title"])), "description": o["lede"], "serviceType": _strip(o["title"]),
-              "provider": {"@type": "ProfessionalService", "name": BRAND, "url": f"https://{DOMAIN}/"}, "areaServed": "US", "audience": {"@type": "BusinessAudience", "name": "HVAC contractors"}})
+              "provider": {"@type": "ProfessionalService", "name": BRAND, "url": f"https://{SITE_HOST}/"}, "areaServed": "US", "audience": {"@type": "BusinessAudience", "name": "HVAC contractors"}})
     return page(key, o.get("seo_title", f"{_strip(o['title'])} for HVAC companies"), o["lede"], body, extra_head=svc + (faq_ld(items) if items else ""))
 
 
@@ -2770,7 +2772,7 @@ def legal_page(key):
 <p>The report card is a free assessment based only on public information about your business. It is an opinion, not a guarantee of any result, ranking or number of jobs.</p>
 <h2 id="texts">SMS terms: {esc(SMS_PROGRAM)}</h2>
 <ul>
-<li><b>Program:</b> {esc(SMS_PROGRAM)}, sent by {esc(legal_entity())} to people who opt in on this website.</li>
+<li><b>Program:</b> {esc(SMS_PROGRAM)}, sent by {esc(legal_entity())}, to people who opt in on this website.</li>
 <li><b>How you opt in:</b> you give your mobile number and agree to texts in the chat on our website.</li>
 <li><b>What we text:</b> replies to your questions, your report card, appointment reminders, and offers and tips about our HVAC marketing services.</li>
 <li><b>Consent:</b> texting with us is optional and not a condition of purchase.</li>
@@ -2836,7 +2838,7 @@ def llms_txt():
 > {BRAND} is an HVAC marketing agency. It builds websites, runs Google Business Profiles and local SEO, manages Google Ads, Local Services Ads and Facebook ads, and sets up missed-call text-back, review requests and a shared CRM for HVAC contractors. HVAC only, serving HVAC companies nationally.
 
 ## Quick facts
-- Website: https://{DOMAIN}
+- Website: https://{SITE_HOST}
 - Email: {EMAIL}
 - Who it serves: residential and light commercial HVAC contractors
 - Main offer: a free report card that grades an HVAC company's Google profile, reviews, website and listings against nearby competitors
@@ -2859,23 +2861,23 @@ HVAC shops that do good work, miss calls when the crew is busy, and want to own 
 Shops that can't take on more work, want ads with nobody answering the calls, or want a one-time website with nothing after.
 
 ## Pages
-- [Home](https://{DOMAIN}/): what we do and the free report card
-- [The method](https://{DOMAIN}/method): Rank, Book, Repeat
-- [Pricing](https://{DOMAIN}/plans): {'; '.join(f"{p_['name']} ${p_['monthly']:,}/mo" for p_ in PLANS)}, 20% off annual
-- [Free report card](https://{DOMAIN}/report-card): grade a shop against the top 3 nearby
-- [HVAC marketing guide](https://{DOMAIN}/{route('hvac-marketing')}): the full playbook
-- [All services](https://{DOMAIN}/{route('services')})
-- [Compare agencies](https://{DOMAIN}/{route('compare')})
-- [Free tools](https://{DOMAIN}/{route('tools')}): HVAC marketing calculators
-- [Blog](https://{DOMAIN}/blog)
-- [Guides](https://{DOMAIN}/guides)
-- [Locations](https://{DOMAIN}/locations): {city_names}
+- [Home](https://{SITE_HOST}/): what we do and the free report card
+- [The method](https://{SITE_HOST}/method): Rank, Book, Repeat
+- [Pricing](https://{SITE_HOST}/plans): {'; '.join(f"{p_['name']} ${p_['monthly']:,}/mo" for p_ in PLANS)}, 20% off annual
+- [Free report card](https://{SITE_HOST}/report-card): grade a shop against the top 3 nearby
+- [HVAC marketing guide](https://{SITE_HOST}/{route('hvac-marketing')}): the full playbook
+- [All services](https://{SITE_HOST}/{route('services')})
+- [Compare agencies](https://{SITE_HOST}/{route('compare')})
+- [Free tools](https://{SITE_HOST}/{route('tools')}): HVAC marketing calculators
+- [Blog](https://{SITE_HOST}/blog)
+- [Guides](https://{SITE_HOST}/guides)
+- [Locations](https://{SITE_HOST}/locations): {city_names}
 
 ## Services
-{chr(10).join(f"- [{svc_info(k)[0]}](https://{DOMAIN}/{route(k)}): {svc_info(k)[1]}" for _, _, keys in SERVICE_GROUPS for k in keys)}
+{chr(10).join(f"- [{svc_info(k)[0]}](https://{SITE_HOST}/{route(k)}): {svc_info(k)[1]}" for _, _, keys in SERVICE_GROUPS for k in keys)}
 
 ## Guides
-{chr(10).join(f"- [{g['title']}](https://{DOMAIN}/{route(guide_path(g['slug']))})" for g in GUIDES)}
+{chr(10).join(f"- [{g['title']}](https://{SITE_HOST}/{route(guide_path(g['slug']))})" for g in GUIDES)}
 """
 
 
@@ -3017,7 +3019,7 @@ def build(out_dir):
     with open(os.path.join(out_dir, "sitemap.xml"), "w") as f:
         f.write(sitemap_xml(sorted(paths, key=lambda x: (x != "", x))))
     with open(os.path.join(out_dir, "robots.txt"), "w") as f:
-        f.write(("User-agent: *\nDisallow: /\n" if NOINDEX else "User-agent: *\nAllow: /\n") + f"\nSitemap: https://{DOMAIN}/sitemap.xml\n")
+        f.write(("User-agent: *\nDisallow: /\n" if NOINDEX else "User-agent: *\nAllow: /\n") + f"\nSitemap: https://{SITE_HOST}/sitemap.xml\n")
     return sorted(pages)
 
 
