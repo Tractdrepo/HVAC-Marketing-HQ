@@ -167,18 +167,19 @@ function tellShop(lead) {
 }
 
 // Tell the team the automatic report didn't go out, so it can be sent by hand.
-async function tellTeam(lead, why, { shop = true } = {}) {
+// debug (team only) is extra plain text appended after the ask, e.g. the Google candidates tried.
+async function tellTeam(lead, why, { shop = true, debug = "" } = {}) {
   if (shop) await tellShop(lead);
   return sendEmail({
     to: [process.env.LEAD_TO],
     reply_to: lead.email,
     subject: `NEEDS YOU: report card for ${lead.business}`,
-    text: `The automatic report card for ${lead.business} (${lead.website}) did not go out: ${why}.\nSend it by hand to ${lead.first_name} at ${lead.email}.`,
+    text: `The automatic report card for ${lead.business} (${lead.website}) did not go out: ${why}.\nSend it by hand to ${lead.first_name} at ${lead.email}.${debug ? `\n\n${debug}` : ""}`,
   }).catch((err) => console.error("team notice failed", err));
 }
 
 async function autoReport(lead) {
-  const { gradeWithDeadline, renderReport, isPublicSite, teamNote, holdReason } = await import("./_grader/report.mjs");
+  const { gradeWithDeadline, renderReport, isPublicSite, teamNote, holdReason, lookupDebugText } = await import("./_grader/report.mjs");
   const started = Date.now();
   if (!isPublicSite(lead.website)) return tellTeam(lead, "the website address isn't a public site");
   let result;
@@ -192,7 +193,7 @@ async function autoReport(lead) {
   const hold = holdReason(result);
   if (hold) {
     const graded = result.report.overall != null ? `\nWhat the automatic check got (not sent): ${result.report.grade} (${result.report.overall}), town used: ${[result.facts.town, result.facts.state].filter(Boolean).join(", ") || "none"}` : "";
-    return tellTeam(lead, `${hold}${graded}`);
+    return tellTeam(lead, `${hold}${graded}`, { debug: lookupDebugText(result.facts) });
   }
   const r = renderReport(result, { firstName: lead.first_name, bookingUrl: `${SITE_URL}/book`, siteUrl: SITE_URL });
   try {
