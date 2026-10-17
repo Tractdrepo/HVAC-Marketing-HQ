@@ -19,7 +19,7 @@ async function searchText(textQuery, fields, key, extra = {}) {
       'X-Goog-Api-Key': key,
       'X-Goog-FieldMask': fields.map((f) => `places.${f}`).join(','),
     },
-    body: JSON.stringify({ textQuery, pageSize: 20, languageCode: 'en', regionCode: 'US', ...extra }),
+    body: JSON.stringify({ textQuery, pageSize: 20, languageCode: 'en', regionCode: 'US', includePureServiceAreaBusinesses: true, ...extra }),
   });
   if (!res.ok) throw new Error(`Places ${res.status}: ${(await res.text()).slice(0, 200)}`);
   return (await res.json()).places || [];
