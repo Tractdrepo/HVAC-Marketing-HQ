@@ -7,6 +7,16 @@ import { findBusiness, townOf, stateOf, localRank, areaRank, newestReviewDays, p
 import { splitTown } from './trades/region.mjs';
 import { pagespeed } from './collect/pagespeed.mjs';
 
+// Team note for when we couldn't sort reviews by newest. Only REQUEST_DENIED means the key is missing
+// the older "Places API"; service-area shops (hidden address) and NOT_FOUND are Google's limits, not ours.
+export function newestReviewNote(newest) {
+  const fallback = 'Review age comes from the 5 reviews Google shows, and is left out when those are over 30 days old.';
+  if (newest.serviceArea) return `Newest review not sorted by date: Google only does that for shops with a public address, and this one is a service-area business. ${fallback}`;
+  if (/^NOT_FOUND/.test(newest.error || '')) return `Newest review not sorted by date: Google's older review lookup doesn't know this profile (usual for service-area shops that hide their address). ${fallback}`;
+  if (/^REQUEST_DENIED/.test(newest.error || '')) return `Newest-review lookup failed (${newest.error}); turn on "Places API" for the key to measure it.`;
+  return `Newest-review lookup failed (${newest.error}).`;
+}
+
 // deps.ai stands in for ./ai.mjs (tests pass a stub).
 export async function collectFacts(input, env = process.env, deps = {}) {
   const trade = getTrade(input.trade);
@@ -47,14 +57,16 @@ export async function collectFacts(input, env = process.env, deps = {}) {
               .catch((err) => { fail(`Google area search failed: ${err.message}`); return null; });
             return [own, wide].filter(Boolean);
           })(),
-          newestReviewDays(place.id, google),
+          // The older endpoint can't see service-area shops with a hidden address (Google answers NOT_FOUND),
+          // so don't ask it about them.
+          place.pureServiceAreaBusiness ? Promise.resolve({ days: null, serviceArea: true }) : newestReviewDays(place.id, google),
         ]);
         gp = placeFacts(place, searches, trade, { website: input.website });
         // The five "most relevant" reviews only prove the newest is at least that recent.
         if (newest.days != null) gp.reviews.newestDays = newest.days;
         else {
           if (gp.reviews.newestDays != null && gp.reviews.newestDays > 30) gp.reviews.newestDays = null;
-          notes.push(`Newest-review lookup failed (${newest.error}); turn on "Places API" for the key to measure it.`);
+          notes.push(newestReviewNote(newest));
         }
       } else {
         gp.profile = { found: false };
