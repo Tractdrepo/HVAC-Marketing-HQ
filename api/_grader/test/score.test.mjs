@@ -92,10 +92,18 @@ test('top fix is the costliest failed criterion', () => {
   assert.match(mid.areas.reviews.topFix, /140 Google reviews|4\.6/);
 });
 
-test('listings fall back to consistency when directory search did not run', () => {
+test('listings fall back to consistency when directory search did not run, with no free points', () => {
   const a = scoreListings({ phoneMatch: true, googleLinksSite: true, facebookLinked: false }, hvac);
   assert.equal(a.fallback, true);
-  assert.equal(a.score, 85);
+  assert.deepEqual(a.couldNotCheck, ['directories']);
+  // Phone 35 + link 20 of the 70 points we could check; directories are left out, not given away.
+  assert.equal(a.score, 79);
+  const dir = a.lines.find((l) => l.id === 'directories');
+  assert.equal(dir.measured, false);
+  assert.equal(dir.points, null);
+  assert.ok(!a.lines.some((l) => l.id === 'base'));
+  // A shop that fails every check we could run gets 0, not the old 30-point floor.
+  assert.equal(scoreListings({ phoneMatch: false, googleLinksSite: false, facebookLinked: false }, hvac).score, 0);
 });
 
 test('placeholder number becomes a note, not a deduction', () => {

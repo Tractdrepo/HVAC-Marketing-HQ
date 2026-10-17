@@ -178,7 +178,7 @@ async function tellTeam(lead, why, { shop = true } = {}) {
 }
 
 async function autoReport(lead) {
-  const { gradeWithDeadline, renderReport, isPublicSite, teamNote } = await import("./_grader/report.mjs");
+  const { gradeWithDeadline, renderReport, isPublicSite, teamNote, holdReason } = await import("./_grader/report.mjs");
   const started = Date.now();
   if (!isPublicSite(lead.website)) return tellTeam(lead, "the website address isn't a public site");
   let result;
@@ -187,7 +187,13 @@ async function autoReport(lead) {
   } catch (err) {
     return tellTeam(lead, `grading failed (${err.message})`);
   }
-  if (result.report.overall == null) return tellTeam(lead, `nothing could be measured (${result.facts.notes.join(" ")})`);
+  // A partial run (a failed AI step, a Places error, or no Google profile for a shop that gave its name
+  // and website) or an empty one is not sent: the shop hears a person will send it, the team gets why.
+  const hold = holdReason(result);
+  if (hold) {
+    const graded = result.report.overall != null ? `\nWhat the automatic check got (not sent): ${result.report.grade} (${result.report.overall}), town used: ${[result.facts.town, result.facts.state].filter(Boolean).join(", ") || "none"}` : "";
+    return tellTeam(lead, `${hold}${graded}`);
+  }
   const r = renderReport(result, { firstName: lead.first_name, bookingUrl: `${SITE_URL}/book`, siteUrl: SITE_URL });
   try {
     // From a person, not a brand: REPORT_FROM if set, else "Logan at HVAC Marketing HQ" on the LEAD_FROM address.
