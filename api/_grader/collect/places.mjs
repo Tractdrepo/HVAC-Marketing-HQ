@@ -1,11 +1,13 @@
 // Google Places API (New). Needs GOOGLE_PLACES_API_KEY.
 import { categoryMatches } from '../score.mjs';
-import { nameMatches } from '../names.mjs';
+import { nameMatches, nameWords } from '../names.mjs';
+import { STATES } from '../trades/region.mjs';
 
 const ENDPOINT = 'https://places.googleapis.com/v1/places:searchText';
 const DETAIL_FIELDS = ['id', 'displayName', 'primaryType', 'primaryTypeDisplayName', 'rating', 'userRatingCount',
   'reviews', 'photos', 'regularOpeningHours', 'nationalPhoneNumber', 'websiteUri', 'businessStatus',
-  'paymentOptions', 'accessibilityOptions', 'addressComponents', 'formattedAddress', 'location'];
+  'paymentOptions', 'accessibilityOptions', 'addressComponents', 'formattedAddress', 'shortFormattedAddress',
+  'types', 'pureServiceAreaBusiness', 'location'];
 const RANK_FIELDS = ['id', 'displayName', 'rating', 'userRatingCount', 'websiteUri', 'primaryType'];
 
 async function searchText(textQuery, fields, key, extra = {}) {
@@ -69,21 +71,65 @@ export function sameBusinessName(a, b) {
   return left.every((w) => GENERIC_NAME_WORDS.has(w));
 }
 
+// Google types that say "a trade contractor". A service-area shop with its address hidden still has these.
+const TRADE_TYPES = new Set(['hvac_contractor', 'air_conditioning_contractor', 'heating_contractor',
+  'air_conditioning_repair_service', 'furnace_repair_service', 'plumber', 'electrician', 'general_contractor']);
+function tradeTyped(p, trade) {
+  const types = [p.primaryType, ...(p.types || [])].filter(Boolean).map((t) => String(t).toLowerCase());
+  if (types.some((t) => TRADE_TYPES.has(t) || trade?.categories?.typeIds?.includes(t))) return true;
+  const shown = (p.primaryTypeDisplayName?.text || '').toLowerCase();
+  return Boolean(shown) && (Boolean(trade?.categories?.names?.includes(shown))
+    || /\b(hvac|heating|air conditioning|plumb\w*|electric\w*|general contractor)\b/.test(shown));
+}
+
+// The shop's distinctive name words ("haddix" in "Haddix Heating & Air"), for comparing domain labels.
+function distinctiveWords(businessName, trade, town) {
+  const words = trade ? nameWords(businessName, trade, town) : nameTokens(businessName).filter((w) => !GENERIC_NAME_WORDS.has(w));
+  return words.filter((w) => w.length >= 4);
+}
+
 // Pick the shop out of one set of search results.
 // A website match wins anywhere: the same host, or the same registrable label on another subdomain or
-// path. A name-only match must be in the state the shop gave us.
+// path. A name-only match must be in the state the shop gave us. Service-area shops often hide their
+// address, so Google gives no address or only "Waco, TX" or "Texas": with no state to read, a name
+// match also needs one more sign it's the shop (the typed town in its address, a website on the shop's
+// domain or one carrying the shop's name word like haddixhvac.com, or a trade category with a strict
+// name match). A candidate whose address is clearly in another state is never taken on its name.
 export function pickPlace(all, { businessName, website, town, state }, trade) {
   const label = domainLabel(host(website));
   // A shop whose "website" is a Facebook page or similar shares its host with everyone else there.
   const site = label ? host(website) : null;
   const st = (state || '').trim().toUpperCase();
-  const inState = (p) => !st || !stateOf(p) || stateOf(p).toUpperCase() === st;
-  const results = all.filter(inState);
+  const townN = norm(town);
+  const words = label ? distinctiveWords(businessName, trade, town) : [];
+
+  const strictName = (p) => norm(p.displayName?.text) === norm(businessName) || sameBusinessName(p.displayName?.text, businessName);
+  const looseName = (p) => strictName(p)
+    || Boolean(trade && nameMatches(`${p.displayName?.text} ${host(p.websiteUri) || ''}`, businessName, trade, town, { slugMin: 4 }));
+  // The name on the profile itself, without its website: an alt domain can back this, not stand in for it.
+  const shownName = (p) => strictName(p) || Boolean(trade && nameMatches(p.displayName?.text, businessName, trade, town, { slugMin: 4 }));
+
+  const inTown = (p) => Boolean(townN) && [p.formattedAddress, p.shortFormattedAddress, townOf(p)]
+    .some((a) => ` ${norm(a)} `.includes(` ${townN} `));
+  const sameDomain = (p) => Boolean(label) && domainLabel(host(p.websiteUri)) === label;
+  const altDomain = (p) => {
+    const theirs = domainLabel(host(p.websiteUri));
+    return Boolean(theirs) && words.some((w) => theirs.includes(w) && label.includes(w));
+  };
+  // Name-only candidates: same state (or no state typed) → name is enough; no readable state → name
+  // plus another sign; another state → never.
+  const nameOk = (p, match) => {
+    const theirs = stateOf(p);
+    if (!st || theirs) return (!st || theirs.toUpperCase() === st) && match(p);
+    if (!match(p)) return false;
+    return inTown(p) || sameDomain(p) || (altDomain(p) && shownName(p)) || (tradeTyped(p, trade) && strictName(p));
+  };
+
   return all.find((p) => site && host(p.websiteUri) === site)
     || all.find((p) => label && domainLabel(host(p.websiteUri)) === label)
-    || results.find((p) => norm(p.displayName?.text) === norm(businessName))
-    || results.find((p) => sameBusinessName(p.displayName?.text, businessName))
-    || (trade && results.find((p) => nameMatches(`${p.displayName?.text} ${host(p.websiteUri) || ''}`, businessName, trade, town, { slugMin: 4 })))
+    || all.find((p) => nameOk(p, (q) => norm(q.displayName?.text) === norm(businessName)))
+    || all.find((p) => nameOk(p, (q) => sameBusinessName(q.displayName?.text, businessName)))
+    || (trade && all.find((p) => nameOk(p, looseName)))
     || null;
 }
 
@@ -112,9 +158,28 @@ export async function findBusiness(input, key, trade, { search = searchText } = 
   return null;
 }
 
+// The place's state: from its address parts, else read off the end of its address ("Waco, TX 76701, USA",
+// "Waco, TX" or "Texas, USA"). Null when Google gives no address or none with a state in it.
 export function stateOf(place) {
   const c = (place.addressComponents || []).find((a) => a.types?.includes('administrative_area_level_1'));
-  return c?.shortText || null;
+  if (c?.shortText) return c.shortText;
+  for (const a of [place.formattedAddress, place.shortFormattedAddress]) {
+    const s = addressState(a);
+    if (s) return s;
+  }
+  return null;
+}
+
+const STATE_BY_NAME = new Map(Object.entries(STATES).map(([abbr, name]) => [name.toLowerCase(), abbr]));
+export function addressState(address) {
+  const parts = String(address || '').split(',').map((x) => x.trim()).filter(Boolean);
+  if (parts.length && /^(usa|us|united states( of america)?)$/i.test(parts[parts.length - 1])) parts.pop();
+  const last = parts[parts.length - 1];
+  if (!last) return null;
+  const m = last.match(/^([A-Za-z]{2})(?:\s+\d{5}(?:-\d{4})?)?$/);
+  if (m && STATES[m[1].toUpperCase()]) return m[1].toUpperCase();
+  const named = last.replace(/\s+\d{5}(?:-\d{4})?$/, '').toLowerCase();
+  return STATE_BY_NAME.get(named) || null;
 }
 
 export function townOf(place) {

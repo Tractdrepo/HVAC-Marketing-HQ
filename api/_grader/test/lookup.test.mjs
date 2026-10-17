@@ -71,3 +71,49 @@ test('findBusiness: one Places error does not stop the other searches; an error 
   await assert.rejects(findBusiness(typed, 'key', hvac, { search: down }), /Places 503/);
   assert.equal(await findBusiness(typed, 'key', hvac, { search: async () => [] }), null);
 });
+
+// Service-area shops (address hidden on Google). Places gives no address, or only "Waco, TX" / "Texas".
+const sab = (opts, extra = {}) => ({ ...place(opts), addressComponents: [], pureServiceAreaBusiness: true, ...extra });
+
+test('a service-area shop with no address is found by name plus its trade category', () => {
+  const noAddr = sab({ name: 'Haddix Heating & Air' }, { types: ['hvac_contractor', 'service', 'point_of_interest'] });
+  assert.equal(pickPlace([place({ name: 'Waco Air Pros', state: 'TX' }), noAddr], typed, hvac), noAddr);
+  // Name alone isn't enough with no address: no town, no website, not a trade category.
+  const bare = sab({ name: 'Haddix Heating & Air' }, { primaryType: null, primaryTypeDisplayName: null, types: ['point_of_interest'] });
+  assert.equal(pickPlace([bare], typed, hvac), null);
+  // A trade category only backs a strict name match, not a loose one ("Haddix Bros Plumbing Supply").
+  const loose = sab({ name: 'Haddix Bros' }, { primaryType: 'plumber' });
+  assert.equal(pickPlace([loose], typed, hvac), null);
+});
+
+test('a service-area shop showing only "Waco, TX" (or just the town) is found', () => {
+  const cityOnly = sab({ name: 'Haddix Heating & Air' }, { formattedAddress: 'Waco, TX, USA', shortFormattedAddress: 'Waco, TX', primaryType: null, primaryTypeDisplayName: null });
+  assert.equal(pickPlace([cityOnly], typed, hvac), cityOnly);
+  const townOnly = sab({ name: 'Haddix Heating & Air' }, { shortFormattedAddress: 'Waco', primaryType: null, primaryTypeDisplayName: null });
+  assert.equal(pickPlace([townOnly], typed, hvac), townOnly, 'the typed town in the address backs the name');
+  const regionOnly = sab({ name: 'Haddix Heating & Air' }, { formattedAddress: 'Texas, USA' });
+  assert.equal(pickPlace([regionOnly], typed, hvac), regionOnly);
+});
+
+test('a candidate whose address is in another state is still rejected, even as a service-area shop', () => {
+  const tulsa = sab({ name: 'Haddix Heating & Air', website: 'haddixhvac.com' }, { formattedAddress: '410 S Main St, Tulsa, OK 74103, USA' });
+  assert.equal(pickPlace([tulsa], typed, hvac), null);
+  const okRegion = sab({ name: 'Haddix Heating & Air' }, { formattedAddress: 'Oklahoma, USA' });
+  assert.equal(pickPlace([okRegion], typed, hvac), null);
+  assert.equal(pickPlace([okRegion], { ...typed, state: 'OK' }, hvac), okRegion);
+});
+
+test('an alt domain carrying the shop\'s name word (haddixhvac.com) backs a name match, never replaces one', () => {
+  const alt = sab({ name: 'Haddix Heating & Air', website: 'https://www.haddixhvac.com/' }, { primaryType: null, primaryTypeDisplayName: null });
+  assert.equal(pickPlace([alt], typed, hvac), alt);
+  const other = sab({ name: 'Brazos Comfort Heating & Air', website: 'https://haddixcomfort.com/' });
+  assert.equal(pickPlace([other], typed, hvac), null, 'the domain word alone is not a name match');
+});
+
+test('findBusiness asks Places for what the service-area match needs', async () => {
+  let fields;
+  await findBusiness(typed, 'key', hvac, { search: async (q, f) => { fields = f; return []; } });
+  for (const f of ['types', 'primaryType', 'websiteUri', 'formattedAddress', 'shortFormattedAddress', 'addressComponents', 'pureServiceAreaBusiness']) {
+    assert.ok(fields.includes(f), f);
+  }
+});
