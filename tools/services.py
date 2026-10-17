@@ -321,7 +321,7 @@ SERVICES = [
             "Messages written in your voice",
             "Only past customers, never cold texts",
             "Opt-out on every message",
-            "Maintenance plan renewal reminders",
+            "Maintenance plan renewal reminders (Dominate)",
             "Bookings tracked on your HQ Command Center",
         ],
         "faq": [
