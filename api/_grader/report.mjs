@@ -82,6 +82,7 @@ export function sawLine(key, facts, area) {
       bits.push(l.directoriesFound.length ? `A web search found you on ${list(l.directoriesFound)}` : 'A web search did not find you on the main directories');
       if (missing.length && l.directoriesFound.length) bits.push(`not on ${list(missing.slice(0, 3))}`);
     }
+    else if (area?.couldNotCheck?.includes('directories')) bits.push('We could not check the directories this time');
     if (l.phoneMatch === true) bits.push('Google phone matches the website');
     if (l.phoneMatch === false) bits.push('Google phone does not match the website');
     if (!bits.length) return area?.score == null ? 'We need your Google profile to check your listings.' : 'Checked your phone and links.';
@@ -126,7 +127,7 @@ export const HOW = {
   listings: {
     directories: 'Directory listings are managed on Dominate, or as an add-on to any plan.',
     phone: 'Fixed in setup: one number on Google, your site and every listing.',
-    googleLink: SETUP, facebook: 'We link your Facebook page from the site we build.', base: null,
+    googleLink: SETUP, facebook: 'We link your Facebook page from the site we build.',
   },
 };
 
@@ -267,6 +268,13 @@ export function teamNote(result, lead, ms) {
   return [`Report card sent to ${lead.first_name} <${lead.email}> for ${f.businessName} (${lead.website}).`,
     `Grade ${result.report.grade} (${result.report.overall}). Town used: ${[f.town, f.state].filter(Boolean).join(', ') || 'none'}. AI: ${f.ai ? 'on' : 'off'}. Took ${Math.round(ms / 1000)}s.`,
     f.notes.length ? `Notes:\n- ${f.notes.join('\n- ')}` : 'Notes: none, everything measured.'].join('\n');
+}
+
+// Why a graded result must not go to the shop automatically, or null when it can.
+export function holdReason(result) {
+  if (result.partial) return `some checks failed, so the grade would be built on missing facts:\n- ${(result.failures || []).join('\n- ')}`;
+  if (result.report.overall == null) return `nothing could be measured (${result.facts.notes.join(' ')})`;
+  return null;
 }
 
 // Grade with a hard deadline so the function never runs past its time limit.

@@ -56,6 +56,7 @@ export function positionPoints(rank, marketSize) {
 
 // ---------- 1. Google profile ----------
 export function scoreProfile(p, trade) {
+  // Not found means not measured: the area scores null and is left out of the weighting, never 0.
   if (!p || p.found === false) return area([], 0, { notFound: true });
 
   const searches = (p.searches || []).filter((s) => known(s.rank));
@@ -238,15 +239,17 @@ export function scoreListings(l, trade) {
     ], 0, { found: l.directoriesFound, checked });
   }
 
-  // Directory search failed or was skipped: consistency only.
+  // Directory search failed or was skipped: the directories are marked "couldn't check" (no points
+  // either way) and the area is scored on the consistency checks we could run.
   const scale = (ln, max) => ({ ...ln, max, points: ln.measured ? (ln.points / ln.max) * max : null });
-  if (!phoneLine.measured && !linkLine.measured) return area([], 0, { fallback: true });
+  const dirLine = line('directories', 'Directories (could not check)', 30, null);
+  if (!phoneLine.measured && !linkLine.measured) return area([dirLine], 0, { fallback: true, couldNotCheck: ['directories'] });
   return area([
-    line('base', 'Directory search could not run', 30, 30),
+    dirLine,
     scale(phoneLine, 35), scale(linkLine, 20),
     line('facebook', 'Website links to a Facebook page', 15, known(l.facebookLinked) ? (l.facebookLinked ? 15 : 0) : null,
       'Link your Facebook page from your website.'),
-  ], 0, { fallback: true });
+  ], 0, { fallback: true, couldNotCheck: ['directories'] });
 }
 
 // ---------- Overall ----------

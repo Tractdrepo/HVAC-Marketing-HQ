@@ -7,12 +7,17 @@ import { findBusiness, townOf, stateOf, localRank, areaRank, newestReviewDays, p
 import { splitTown } from './trades/region.mjs';
 import { pagespeed } from './collect/pagespeed.mjs';
 
-export async function collectFacts(input, env = process.env) {
+// deps.ai stands in for ./ai.mjs (tests pass a stub).
+export async function collectFacts(input, env = process.env, deps = {}) {
   const trade = getTrade(input.trade);
   const google = env.GOOGLE_PLACES_API_KEY;
   const useAi = Boolean(env.ANTHROPIC_API_KEY) && input.ai !== false;
-  const ai = useAi ? await import('./ai.mjs') : null;
+  const ai = deps.ai !== undefined ? deps.ai : useAi ? await import('./ai.mjs') : null;
   const notes = [];
+  // Steps that should have worked and didn't. Any failure makes the run partial: the grade would be
+  // built on missing facts, so it goes to the team to check and send by hand, not to the shop.
+  const failures = [];
+  const fail = (msg) => { failures.push(msg); notes.push(msg); };
   let { town, state } = splitTown(input.town);
   state = input.state || state;
 
@@ -34,7 +39,8 @@ export async function collectFacts(input, env = process.env) {
           (async () => {
             const own = town ? await localRank(trade.searchQueries[0].replace('{town}', town).replace(', {state}', state ? `, ${state}` : ''), place, google) : null;
             const wide = await areaRank(trade.areaQuery, place, google, Math.round(trade.areaMiles * 1609))
-              .then((r) => r && { ...r, query: `${trade.areaQuery} within ${trade.areaMiles} miles of ${town || 'you'}` }).catch(() => null);
+              .then((r) => r && { ...r, query: `${trade.areaQuery} within ${trade.areaMiles} miles of ${town || 'you'}` })
+              .catch((err) => { fail(`Google area search failed: ${err.message}`); return null; });
             return [own, wide].filter(Boolean);
           })(),
           newestReviewDays(place.id, google),
@@ -48,10 +54,13 @@ export async function collectFacts(input, env = process.env) {
         }
       } else {
         gp.profile = { found: false };
-        notes.push('No Google profile found for this name and website.');
+        // A shop that gave us its name and website almost always has a profile; not finding one is
+        // far more often our lookup missing it than the shop not having one.
+        if (input.website && input.businessName) fail('No Google profile found for this name and website.');
+        else notes.push('No Google profile found for this name and website.');
       }
     } catch (err) {
-      notes.push(`Google lookup failed: ${err.message}`);
+      fail(`Google lookup failed: ${err.message}`);
     }
   } else {
     notes.push('GOOGLE_PLACES_API_KEY not set: profile and reviews not measured.');
@@ -73,7 +82,7 @@ export async function collectFacts(input, env = process.env) {
   if (site.fetched) {
     // A license number is only checked where the trade's license rule applies.
     if (trade.licenseState && state !== trade.licenseState) website.license = null;
-    website.titleVerdict = ai ? await ai.titleVerdict(site, trade).catch((err) => { notes.push(`AI title check failed: ${err.message}`); return null; }) : null;
+    website.titleVerdict = ai ? await ai.titleVerdict(site, trade).catch((err) => { fail(`AI title check failed: ${err.message}`); return null; }) : null;
     website.titleVerdict ??= ruleTitleVerdict(site, trade, { town, state });
   }
 
@@ -87,7 +96,7 @@ export async function collectFacts(input, env = process.env) {
   };
   if (dirPromise) {
     const d = await dirPromise;
-    if (d.error) notes.push(`Directory search failed (${d.error}); listings use the consistency fallback.`);
+    if (d.error) fail(`AI directory search failed (${d.error}); directories could not be checked.`);
     else {
       listings.directoriesFound = d.found;
       listings.directoriesChecked = d.checked;
@@ -98,12 +107,13 @@ export async function collectFacts(input, env = process.env) {
   }
 
   if (ai && gp.reviews?.shownText?.length) {
-    gp.reviews.themes = await ai.reviewThemes(gp.reviews.shownText).catch((err) => { notes.push(`AI review themes failed: ${err.message}`); return null; });
+    gp.reviews.themes = await ai.reviewThemes(gp.reviews.shownText).catch((err) => { fail(`AI review themes failed: ${err.message}`); return null; });
   }
 
   return {
     trade: trade.id, businessName: gp.profile?.name || input.businessName, siteUrl: input.website, town, state,
     profile: gp.profile, reviews: gp.reviews, website, listings, notes, ai: Boolean(ai),
+    partial: failures.length > 0, failures,
   };
 }
 
@@ -112,15 +122,21 @@ export function scoreFacts(facts) {
   return scoreAll({ profile: facts.profile, reviews: facts.reviews, website: facts.website, listings: facts.listings }, trade);
 }
 
-export async function grade(input, env = process.env) {
-  const facts = await collectFacts(input, env);
+export async function grade(input, env = process.env, deps = {}) {
+  const facts = await collectFacts(input, env, deps);
   const report = scoreFacts(facts);
-  if (facts.ai && report.overall != null) {
-    const { openingParagraph } = await import('./ai.mjs');
+  // A partial run goes to the team, not the shop, so it skips the AI summary.
+  if (facts.ai && report.overall != null && !facts.partial) {
+    const { openingParagraph } = deps.ai || await import('./ai.mjs');
     const { sawLine } = await import('./report.mjs');
     const seen = Object.fromEntries(Object.keys(report.areas).map((k) => [k, sawLine(k, facts, report.areas[k])]));
-    report.opening = await openingParagraph(report, facts.businessName, seen).catch((err) => { facts.notes.push(`AI summary failed: ${err.message}`); return null; });
-    if (!report.opening) facts.notes.push('AI summary was empty or dropped; the plain summary was used.');
+    let summaryError = null;
+    report.opening = await openingParagraph(report, facts.businessName, seen).catch((err) => { summaryError = err; return null; });
+    if (summaryError) {
+      facts.failures.push(`AI summary failed: ${summaryError.message}`);
+      facts.notes.push(`AI summary failed: ${summaryError.message}`);
+      facts.partial = true;
+    } else if (!report.opening) facts.notes.push('AI summary was empty or dropped; the plain summary was used.');
   }
-  return { gradedAt: new Date().toISOString(), facts, report };
+  return { gradedAt: new Date().toISOString(), facts, report, partial: facts.partial, failures: facts.failures };
 }

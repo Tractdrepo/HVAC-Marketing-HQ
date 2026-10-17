@@ -13,7 +13,9 @@ export function nameWords(businessName, trade, town) {
   return norm(businessName).split(' ').filter((w) => w && !stop.has(w) && !townWords.has(w));
 }
 
-export function nameMatches(haystack, businessName, trade, town) {
+// slugMin: shortest name word allowed to match inside run-together text like a domain. Short words
+// hide inside longer ones ("pro" in "airproshvac"), so the Google profile lookup asks for 4.
+export function nameMatches(haystack, businessName, trade, town, { slugMin = 1 } = {}) {
   const h = ` ${norm(haystack)} `;
   const slug = (haystack || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   const words = nameWords(businessName, trade, town);
@@ -22,5 +24,5 @@ export function nameMatches(haystack, businessName, trade, town) {
     const phrase = norm(businessName);
     return h.includes(` ${phrase} `) || slug.includes(phrase.replace(/ /g, ''));
   }
-  return words.every((w) => h.includes(` ${w} `) || slug.includes(w));
+  return words.every((w) => h.includes(` ${w} `) || (w.length >= slugMin && slug.includes(w)));
 }
