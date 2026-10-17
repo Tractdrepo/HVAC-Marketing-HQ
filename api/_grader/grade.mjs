@@ -27,9 +27,13 @@ export async function collectFacts(input, env = process.env, deps = {}) {
   // Google profile and reviews
   let place = null;
   let gp = { profile: null, reviews: null };
+  // The searches tried and what Google returned. Kept only when no profile was matched, for the team's
+  // "NEEDS YOU" email (never the shop's report or page).
+  const lookupTrace = [];
+  let lookupDebug = null;
   if (google) {
     try {
-      place = await findBusiness({ ...input, town, state }, google, trade);
+      place = await findBusiness({ ...input, town, state }, google, trade, { trace: lookupTrace });
       if (place) {
         town = townOf(place) || town;
         state = stateOf(place) || state;
@@ -54,6 +58,7 @@ export async function collectFacts(input, env = process.env, deps = {}) {
         }
       } else {
         gp.profile = { found: false };
+        lookupDebug = lookupTrace;
         // A shop that gave us its name and website almost always has a profile; not finding one is
         // far more often our lookup missing it than the shop not having one.
         if (input.website && input.businessName) fail('No Google profile found for this name and website.');
@@ -61,6 +66,7 @@ export async function collectFacts(input, env = process.env, deps = {}) {
       }
     } catch (err) {
       fail(`Google lookup failed: ${err.message}`);
+      if (!place) lookupDebug = lookupTrace;
     }
   } else {
     notes.push('GOOGLE_PLACES_API_KEY not set: profile and reviews not measured.');
@@ -113,7 +119,7 @@ export async function collectFacts(input, env = process.env, deps = {}) {
   return {
     trade: trade.id, businessName: gp.profile?.name || input.businessName, siteUrl: input.website, town, state,
     profile: gp.profile, reviews: gp.reviews, website, listings, notes, ai: Boolean(ai),
-    partial: failures.length > 0, failures,
+    partial: failures.length > 0, failures, lookupDebug,
   };
 }
 

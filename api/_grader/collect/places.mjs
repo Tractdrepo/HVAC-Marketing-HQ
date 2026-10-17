@@ -95,7 +95,18 @@ function distinctiveWords(businessName, trade, town) {
 // match also needs one more sign it's the shop (the typed town in its address, a website on the shop's
 // domain or one carrying the shop's name word like haddixhvac.com, or a trade category with a strict
 // name match). A candidate whose address is clearly in another state is never taken on its name.
-export function pickPlace(all, { businessName, website, town, state }, trade) {
+export function pickPlace(all, input, trade) {
+  const m = placeMatcher(input, trade);
+  return all.find((p) => m.site && host(p.websiteUri) === m.site)
+    || all.find((p) => m.sameDomain(p))
+    || all.find((p) => m.nameOk(p, (q) => norm(q.displayName?.text) === norm(input.businessName)))
+    || all.find((p) => m.nameOk(p, (q) => sameBusinessName(q.displayName?.text, input.businessName)))
+    || (trade && all.find((p) => m.nameOk(p, m.looseName)))
+    || null;
+}
+
+// The checks pickPlace runs, shared with rejectReason so the team's debug note says why a candidate lost.
+function placeMatcher({ businessName, website, town, state }, trade) {
   const label = domainLabel(host(website));
   // A shop whose "website" is a Facebook page or similar shares its host with everyone else there.
   const site = label ? host(website) : null;
@@ -118,19 +129,41 @@ export function pickPlace(all, { businessName, website, town, state }, trade) {
   };
   // Name-only candidates: same state (or no state typed) → name is enough; no readable state → name
   // plus another sign; another state → never.
+  const extraSign = (p) => inTown(p) || sameDomain(p) || (altDomain(p) && shownName(p)) || (tradeTyped(p, trade) && strictName(p));
   const nameOk = (p, match) => {
     const theirs = stateOf(p);
     if (!st || theirs) return (!st || theirs.toUpperCase() === st) && match(p);
     if (!match(p)) return false;
-    return inTown(p) || sameDomain(p) || (altDomain(p) && shownName(p)) || (tradeTyped(p, trade) && strictName(p));
+    return extraSign(p);
   };
+  return { site, st, strictName, looseName, sameDomain, nameOk, extraSign };
+}
 
-  return all.find((p) => site && host(p.websiteUri) === site)
-    || all.find((p) => label && domainLabel(host(p.websiteUri)) === label)
-    || all.find((p) => nameOk(p, (q) => norm(q.displayName?.text) === norm(businessName)))
-    || all.find((p) => nameOk(p, (q) => sameBusinessName(q.displayName?.text, businessName)))
-    || (trade && all.find((p) => nameOk(p, looseName)))
-    || null;
+// One word for why pickPlace passed over a candidate: "name" (not the shop's name), "state" (named
+// right but its address is in another state), "no-evidence" (named right, no state to read and nothing
+// else backing it), or "match" if it would in fact be picked.
+export function rejectReason(p, input, trade) {
+  const m = placeMatcher(input, trade);
+  if ((m.site && host(p.websiteUri) === m.site) || m.sameDomain(p)) return 'match';
+  const named = trade ? m.looseName(p) : m.strictName(p);
+  if (!named) return 'name';
+  if (m.nameOk(p, trade ? m.looseName : m.strictName)) return 'match';
+  const theirs = stateOf(p);
+  if (m.st && theirs && theirs.toUpperCase() !== m.st) return 'state';
+  return 'no-evidence';
+}
+
+// What the team's debug note shows of one candidate. Only fields Google returned; no keys or URLs.
+export function candidateSummary(p, input, trade) {
+  return {
+    name: p.displayName?.text || null,
+    address: p.formattedAddress || p.shortFormattedAddress || null,
+    host: host(p.websiteUri),
+    type: p.primaryType || null,
+    reviews: p.userRatingCount ?? null,
+    serviceArea: typeof p.pureServiceAreaBusiness === 'boolean' ? p.pureServiceAreaBusiness : null,
+    reason: rejectReason(p, input, trade),
+  };
 }
 
 // The searches we try, in order. "<name> HVAC <town>" finds shops whose typed name is shorter than
@@ -146,12 +179,19 @@ export function lookupQueries({ businessName, website, town, state }, trade) {
 // ("Heating and Air" vs "Heat & Air", or just "Haddix"), and profiles often link a different page or
 // domain, so match on the distinctive name words too. A Places error on one search doesn't stop the
 // others; if nothing matched and a search errored, the error is thrown so the run is marked partial.
-export async function findBusiness(input, key, trade, { search = searchText } = {}) {
+// trace, when given, gets one entry per search tried: { query, count, candidates (top 5), error }, so
+// a run that finds nothing can show the team what Google returned. The error is a one-word kind only.
+export async function findBusiness(input, key, trade, { search = searchText, trace = null } = {}) {
   let error = null;
   for (const q of lookupQueries(input, trade)) {
     let all;
-    try { all = await search(q, DETAIL_FIELDS, key); } catch (err) { error ??= err; continue; }
+    try { all = await search(q, DETAIL_FIELDS, key); } catch (err) {
+      error ??= err;
+      trace?.push({ query: q, count: 0, candidates: [], error: true });
+      continue;
+    }
     const found = pickPlace(all, input, trade);
+    trace?.push({ query: q, count: all.length, candidates: all.slice(0, 5).map((p) => candidateSummary(p, input, trade)), matched: Boolean(found) });
     if (found) return found;
   }
   if (error) throw error;

@@ -277,6 +277,25 @@ export function holdReason(result) {
   return null;
 }
 
+// Team-only: the Google searches tried when no profile was matched, the top candidates each returned,
+// and one word for why each was passed over. Plain text, at most ~25 lines. Never goes to the shop.
+export const DEBUG_MAX_LINES = 25;
+export function lookupDebugText(facts) {
+  const trace = facts?.lookupDebug;
+  if (!Array.isArray(trace) || !trace.length) return '';
+  const cut = (v, n) => { const s = String(v ?? '').replace(/\s+/g, ' ').trim(); return s.length > n ? `${s.slice(0, n - 1)}…` : s; };
+  const lines = ['Google lookup debug (team only): no profile matched.'];
+  trace.forEach((t, i) => {
+    lines.push(`Q${i + 1} "${cut(t.query, 60)}": ${t.error ? 'Places error' : `${t.count} result${t.count === 1 ? '' : 's'}`}`);
+    for (const c of t.candidates || []) {
+      lines.push(`  - ${cut(c.name, 40) || '?'} | ${cut(c.address, 45) || 'no address'} | ${c.host ? cut(c.host, 35) : 'no site'} | ${c.type || 'no type'} | ${c.reviews ?? 0} rev | SAB ${c.serviceArea == null ? '?' : c.serviceArea ? 'yes' : 'no'} -> ${c.reason}`);
+    }
+  });
+  const shown = lines.length > DEBUG_MAX_LINES ? [...lines.slice(0, DEBUG_MAX_LINES - 1), `(${lines.length - DEBUG_MAX_LINES + 1} more lines cut)`] : lines;
+  // Belt and braces: nothing that looks like a key or a keyed URL.
+  return shown.join('\n').replace(/([?&](key|api_key|apikey)=)[^&\s|]+/gi, '$1[redacted]').replace(/AIza[0-9A-Za-z_-]{20,}/g, '[redacted]');
+}
+
 // Grade with a hard deadline so the function never runs past its time limit.
 export async function gradeWithDeadline(input, ms, env = process.env) {
   let timer;
