@@ -580,23 +580,23 @@ METHOD = [
     ("Rank", "Show up first when someone searches.", [
         "A fast site built around the jobs you want",
         "A page for each service and each town you really serve",
-        "Google profile complete, active and posting the job photos you send",
+        "Google profile set up and complete, then posting the job photos you send, Growth and up",
         "Directory listings managed on Dominate, or a $49/mo sync add-on",
         "Competitor and map spam watch on Dominate",
     ], "More of the right homeowners find you, not a franchise."),
     ("Book", "Every call answered and booked, even when you can't pick up.", [
         "Missed-call text-back in 60 seconds, guaranteed",
         "One shared inbox for calls, texts, chats and forms",
-        "AI web chat that captures the lead after hours",
-        "Estimate follow-up until the job is booked or lost",
+        "AI web chat that captures the lead after hours, Growth and up",
+        "Estimate follow-up until the job is booked or lost, Growth and up",
         "Optional AI phone answering during the rush",
     ], "Nobody calls the next shop because you were in an attic."),
     ("Repeat", "Turn every job into the next one.", [
         "Review request after every finished job",
-        "A reply to every review, in your voice",
+        "A reply to every review, in your voice, Growth and up",
         "Win-back texts to past customers each season, Growth and up",
         "Full spring and fall tune-up campaigns and maintenance plan reminders on Dominate",
-        "Your HQ Command Center dashboard and a quarterly re-grade",
+        "Your HQ Command Center dashboard, and a re-grade anytime with the free report card",
     ], "Reviews and repeat customers compound every month."),
 ]
 
@@ -742,7 +742,7 @@ def mappack():
 def bento():
     return f"""<div class="bento">
   <div class="tile b-3 b-phone reveal"><div class="b-phone-copy"><span class="tile-label">Book</span><h3>Missed-call text-back</h3><p>Every call you miss gets a text in seconds, with your name on it. The caller books with you instead of the next shop.</p><p class="demo-caption">Illustration. Your name, your number, your customers.</p></div>{demo()}</div>
-  <div class="tile b-3 b-map reveal"><div><span class="tile-label">Rank</span><h3>Top of the map pack</h3><p>A complete, active Google profile and real town pages.</p></div><div class="mock">{mappack()}</div></div>
+  <div class="tile b-3 b-map reveal"><div><span class="tile-label">Rank</span><h3>Built to climb the map pack</h3><p>A complete, active Google profile and real town pages.</p></div><div class="mock">{mappack()}</div></div>
   <div class="tile b-2 reveal"><div><span class="tile-label">Book</span><h3>AI web chat</h3><p>Answers questions and captures the lead after hours.</p></div><div class="mock chat"><div class="chat-head"><i></i>Your Shop Heating &amp; Air</div><div class="msg user">Do you do weekend AC repair?</div><div class="msg bot">Yes, Saturdays 8 to 4. Want me to book a time? What's your address?</div><div class="msg user">1412 Oak Lawn Ave, Dallas</div><div class="msg bot">You're set for Saturday, 10 to 12. We'll text when the tech is on the way.</div></div></div>
   <div class="tile b-4 reveal"><div><span class="tile-label">Repeat</span><h3>HQ Command Center</h3><p>Your CRM, set up around your shop. Every lead, call, text, job and review in one place, with a login for everyone on your team.</p></div><div class="mock">{dashboard()}</div></div>
   <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Reviews on autopilot</h3><p>A request after every finished job, and a reply to every review.</p></div><div class="mock review"><div class="req"><span class="tag">Sent</span>Review request · job marked done 2:14 PM</div><span class="stars">★★★★★</span> Texted me back in seconds and had it fixed by 10.<div class="reply"><b>Owner reply:</b> Thank you! Glad we got you cool again.</div></div></div>
@@ -937,7 +937,7 @@ FIRST_90 = [
     ("Day 3", "Access", "We walk you through sharing your domain, Google profile and phone line. No passwords over email."),
     ("Day 14", "Live", "Site launched, Google profile cleaned up, missed-call text-back and review requests running."),
     ("Day 30", "First statement", "Calls, texts, booked jobs and new reviews on one page. We fix what's leaking."),
-    ("Day 60", "Rank", "Town pages and steady reviews start moving you up the map. We show you where."),
+    ("Day 60", "Rank", "By around Day 60 the map-ranking work is in place: town pages are live and review requests go out after every job. We show you where you rank."),
     ("Day 90", "Review", "We go over what's booking, what isn't, and agree the plan for the next 90 days."),
 ]
 
@@ -996,7 +996,7 @@ COMMON_FAQ = [
     ("Do I have to change my phone number?", "No. You forward your existing line through the system, so customers keep calling the number they already know. We walk you through it during setup."),
     ("Does it work with ServiceTitan, Housecall Pro or Jobber?", "Yes. Booking can go straight to your field-service software, or into our calendar if you don't use one. Review requests can trigger when a job is marked done."),
     ("Do I have to manage the software?", "No. You and your office use one inbox app on your phones, and you can check your HQ Command Center dashboard anytime. We build and run everything behind it."),
-    ("Do you run Google Ads or Local Services Ads?", "Yes, as an add-on to any plan: Google Ads, Local Services Ads and Facebook ads. Your ad spend is billed by Google or Meta to your own account and never marked up, and every call from an ad is tracked to a booked job."),
+    ("Do you run Google Ads or Local Services Ads?", "Yes, as an add-on to any plan: Google Ads, Local Services Ads and Facebook ads. Your ad spend is billed by Google or Meta to your own account and never marked up, and calls from ads are tracked so you can see which ones turn into booked jobs."),
     ("How many Google reviews do I need?", "There's no magic number. Steady, recent reviews beat a big pile of old ones, which is why every plan asks every finished job for one."),
     ("Can you get my shop recommended by ChatGPT?", "We build what AI tools read: a complete Google profile, consistent listings, clear service pages and recent reviews. Nobody can honestly guarantee an AI answer, and we won't."),
     ("What if we can't handle more calls yet?", "Tell us on the call. We'd rather wait, or start with text-back only, than send you work your crew can't get to."),
@@ -2038,7 +2038,7 @@ def about_page():
   <h2>Why I started {esc(BRAND)}.</h2>
   <div class="about-note">
     <p>Most HVAC owners I talk to are great at the work and stuck with marketing that doesn't add up. They're paying for a site they don't own, leads they share with three other shops, or a report full of clicks that never turned into a job.</p>
-    <p>I started {esc(BRAND)} to do it the other way. One trade. Prices on the site. A fast website, a Google profile that's actually run, every missed call texted back, and reviews coming in after every job, all in your name, all tracked to booked jobs.</p>
+    <p>I started {esc(BRAND)} to do it the other way. One trade. Prices on the site. A fast website, a Google profile that's actually run, every missed call texted back, and reviews coming in after every job, all in your name, all tracked so you can see which ones turn into booked jobs.</p>
     <p>If we're not the right fit for your shop, I'll tell you. If we are, you'll always know exactly what you're paying for and what it's bringing in.</p>
     <p class="about-sign">Logan<br><span>Founder, {esc(BRAND)}</span></p>
   </div>
@@ -2271,7 +2271,7 @@ def home():
 
 <section class="section founder-sec"><div class="wrap"><div class="founder reveal">
   <img src="{a('img/logan-320.webp')}" width="96" height="96" alt="Logan, founder of {esc(BRAND)}" loading="lazy">
-  <div><p class="founder-q">"I started {esc(BRAND)} to do it the other way. One trade. Prices on the site. Everything in your name, tracked to booked jobs. If we're not the right fit for your shop, I'll tell you."</p>
+  <div><p class="founder-q">"I started {esc(BRAND)} to do it the other way. One trade. Prices on the site. Everything in your name, tracked so you can see which turn into booked jobs. If we're not the right fit for your shop, I'll tell you."</p>
   <p class="founder-by"><b>Logan</b>, founder · Waco, Texas · <a href="{u('about')}">Why I started it →</a></p></div>
 </div></div></section>
 <section class="section dark"><div class="wrap">

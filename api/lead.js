@@ -58,7 +58,7 @@ async function autoBlocked(lead) {
 }
 
 const BOOKING_URL = "https://calendar.app.google/bm89Bh3ot8oEk3VA9";
-const SITE_URL = "https://hvacmarketinghq.com";
+const SITE_URL = "https://www.hvacmarketinghq.com";
 const GRADE_MS = 48000; // the function's limit is 60s (vercel.json)
 
 const clean = (v, max = 200) => String(v == null ? "" : v).replace(/[\r\n\t]+/g, " ").trim().slice(0, max);

@@ -5,7 +5,7 @@
 const MAGNETS = {
   scorecard: { title: "The 40-point HVAC online scorecard", file: "/downloads/hvac-online-scorecard.pdf" },
 };
-const SITE_URL = "https://hvacmarketinghq.com";
+const SITE_URL = "https://www.hvacmarketinghq.com";
 const hits = new Map();
 const clean = (v, max = 200) => String(v == null ? "" : v).replace(/[\r\n\t]+/g, " ").trim().slice(0, max);
 const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
