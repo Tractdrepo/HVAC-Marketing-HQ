@@ -742,7 +742,7 @@ def mappack():
 def bento():
     return f"""<div class="bento">
   <div class="tile b-3 b-phone reveal"><div class="b-phone-copy"><span class="tile-label">Book</span><h3>Missed-call text-back</h3><p>Every call you miss gets a text in seconds, with your name on it. The caller books with you instead of the next shop.</p><p class="demo-caption">Illustration. Your name, your number, your customers.</p></div>{demo()}</div>
-  <div class="tile b-3 b-map reveal"><div><span class="tile-label">Rank</span><h3>Top of the map pack</h3><p>A complete, active Google profile and real town pages.</p></div><div class="mock">{mappack()}</div></div>
+  <div class="tile b-3 b-map reveal"><div><span class="tile-label">Rank</span><h3>Built to climb the map pack</h3><p>A complete, active Google profile and real town pages.</p></div><div class="mock">{mappack()}</div></div>
   <div class="tile b-2 reveal"><div><span class="tile-label">Book</span><h3>AI web chat</h3><p>Answers questions and captures the lead after hours.</p></div><div class="mock chat"><div class="chat-head"><i></i>Your Shop Heating &amp; Air</div><div class="msg user">Do you do weekend AC repair?</div><div class="msg bot">Yes, Saturdays 8 to 4. Want me to book a time? What's your address?</div><div class="msg user">1412 Oak Lawn Ave, Dallas</div><div class="msg bot">You're set for Saturday, 10 to 12. We'll text when the tech is on the way.</div></div></div>
   <div class="tile b-4 reveal"><div><span class="tile-label">Repeat</span><h3>HQ Command Center</h3><p>Your CRM, set up around your shop. Every lead, call, text, job and review in one place, with a login for everyone on your team.</p></div><div class="mock">{dashboard()}</div></div>
   <div class="tile b-3 reveal"><div><span class="tile-label">Repeat</span><h3>Reviews on autopilot</h3><p>A request after every finished job, and a reply to every review.</p></div><div class="mock review"><div class="req"><span class="tag">Sent</span>Review request · job marked done 2:14 PM</div><span class="stars">★★★★★</span> Texted me back in seconds and had it fixed by 10.<div class="reply"><b>Owner reply:</b> Thank you! Glad we got you cool again.</div></div></div>
@@ -2038,7 +2038,7 @@ def about_page():
   <h2>Why I started {esc(BRAND)}.</h2>
   <div class="about-note">
     <p>Most HVAC owners I talk to are great at the work and stuck with marketing that doesn't add up. They're paying for a site they don't own, leads they share with three other shops, or a report full of clicks that never turned into a job.</p>
-    <p>I started {esc(BRAND)} to do it the other way. One trade. Prices on the site. A fast website, a Google profile that's actually run, every missed call texted back, and reviews coming in after every job, all in your name, all tracked to booked jobs.</p>
+    <p>I started {esc(BRAND)} to do it the other way. One trade. Prices on the site. A fast website, a Google profile that's actually run, every missed call texted back, and reviews coming in after every job, all in your name, all tracked so you can see which ones turn into booked jobs.</p>
     <p>If we're not the right fit for your shop, I'll tell you. If we are, you'll always know exactly what you're paying for and what it's bringing in.</p>
     <p class="about-sign">Logan<br><span>Founder, {esc(BRAND)}</span></p>
   </div>
@@ -2271,7 +2271,7 @@ def home():
 
 <section class="section founder-sec"><div class="wrap"><div class="founder reveal">
   <img src="{a('img/logan-320.webp')}" width="96" height="96" alt="Logan, founder of {esc(BRAND)}" loading="lazy">
-  <div><p class="founder-q">"I started {esc(BRAND)} to do it the other way. One trade. Prices on the site. Everything in your name, tracked to booked jobs. If we're not the right fit for your shop, I'll tell you."</p>
+  <div><p class="founder-q">"I started {esc(BRAND)} to do it the other way. One trade. Prices on the site. Everything in your name, tracked so you can see which turn into booked jobs. If we're not the right fit for your shop, I'll tell you."</p>
   <p class="founder-by"><b>Logan</b>, founder · Waco, Texas · <a href="{u('about')}">Why I started it →</a></p></div>
 </div></div></section>
 <section class="section dark"><div class="wrap">
