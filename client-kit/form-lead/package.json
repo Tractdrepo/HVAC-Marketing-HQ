@@ -1,0 +1,8 @@
+{
+  "name": "client-kit-form-lead",
+  "private": true,
+  "description": "Client website form to GoHighLevel (Vercel serverless function). No dependencies; Node 18+.",
+  "scripts": {
+    "test": "node --test test/"
+  }
+}
