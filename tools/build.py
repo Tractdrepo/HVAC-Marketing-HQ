@@ -596,7 +596,7 @@ METHOD = [
         "A reply to every review, in your voice, Growth and up",
         "Win-back texts to past customers each season, Growth and up",
         "Full spring and fall tune-up campaigns and maintenance plan reminders on Dominate",
-        "Your HQ Command Center dashboard and a quarterly re-grade",
+        "Your HQ Command Center dashboard, and a re-grade anytime with the free report card",
     ], "Reviews and repeat customers compound every month."),
 ]
 
@@ -937,7 +937,7 @@ FIRST_90 = [
     ("Day 3", "Access", "We walk you through sharing your domain, Google profile and phone line. No passwords over email."),
     ("Day 14", "Live", "Site launched, Google profile cleaned up, missed-call text-back and review requests running."),
     ("Day 30", "First statement", "Calls, texts, booked jobs and new reviews on one page. We fix what's leaking."),
-    ("Day 60", "Rank", "Town pages and steady reviews start moving you up the map. We show you where."),
+    ("Day 60", "Rank", "By around Day 60 the map-ranking work is in place: town pages are live and review requests go out after every job. We show you where you rank."),
     ("Day 90", "Review", "We go over what's booking, what isn't, and agree the plan for the next 90 days."),
 ]
 
@@ -996,7 +996,7 @@ COMMON_FAQ = [
     ("Do I have to change my phone number?", "No. You forward your existing line through the system, so customers keep calling the number they already know. We walk you through it during setup."),
     ("Does it work with ServiceTitan, Housecall Pro or Jobber?", "Yes. Booking can go straight to your field-service software, or into our calendar if you don't use one. Review requests can trigger when a job is marked done."),
     ("Do I have to manage the software?", "No. You and your office use one inbox app on your phones, and you can check your HQ Command Center dashboard anytime. We build and run everything behind it."),
-    ("Do you run Google Ads or Local Services Ads?", "Yes, as an add-on to any plan: Google Ads, Local Services Ads and Facebook ads. Your ad spend is billed by Google or Meta to your own account and never marked up, and every call from an ad is tracked to a booked job."),
+    ("Do you run Google Ads or Local Services Ads?", "Yes, as an add-on to any plan: Google Ads, Local Services Ads and Facebook ads. Your ad spend is billed by Google or Meta to your own account and never marked up, and calls from ads are tracked so you can see which ones turn into booked jobs."),
     ("How many Google reviews do I need?", "There's no magic number. Steady, recent reviews beat a big pile of old ones, which is why every plan asks every finished job for one."),
     ("Can you get my shop recommended by ChatGPT?", "We build what AI tools read: a complete Google profile, consistent listings, clear service pages and recent reviews. Nobody can honestly guarantee an AI answer, and we won't."),
     ("What if we can't handle more calls yet?", "Tell us on the call. We'd rather wait, or start with text-back only, than send you work your crew can't get to."),
