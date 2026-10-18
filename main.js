@@ -423,3 +423,21 @@
   window.addEventListener("scroll", update, { passive: true });
   update();
 })();
+
+// "Ask a question" buttons open the GHL chat widget. They ship hidden and only appear once the widget has loaded
+// (LC_chatWidgetLoaded), so a blocked or failed widget never leaves a dead button. Documented API only: openWidget().
+(function () {
+  var btns = document.querySelectorAll("[data-open-chat]");
+  if (!btns.length) return;
+  function ready() {
+    var cw = window.leadConnector && window.leadConnector.chatWidget;
+    if (!cw || typeof cw.openWidget !== "function") return;
+    btns.forEach(function (b) {
+      var wrap = b.closest("[data-open-chat-wrap]");
+      if (wrap) wrap.hidden = false;
+      b.hidden = false;
+      b.addEventListener("click", function (e) { e.preventDefault(); cw.openWidget(); });
+    });
+  }
+  window.addEventListener("LC_chatWidgetLoaded", ready, { once: true });
+})();

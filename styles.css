@@ -1389,3 +1389,10 @@ main > .section.dark::before { display: none; }
 .consent-set { border: 0; margin: 4px 0 16px; padding: 0; }
 .consent-set .consent { margin: 0 0 8px; }
 .consent-note { margin: 4px 0 0; font-size: var(--fs-xs); color: var(--muted); line-height: 1.45; }
+
+/* GHL chat widget (Oct 18, 2026): only the two documented color variables, set on the widget's host element; they inherit into its shadow DOM.
+   https://help.gohighlevel.com/support/solutions/articles/48001191051 . Everything else (consent block, layout) stays GHL's. */
+chat-widget { --chat-widget-primary-color: var(--heat-ink); --chat-widget-active-color: var(--heat-ink); }
+/* "Ask a question" buttons stay hidden until the widget loads (main.js); .btn's display would otherwise beat [hidden]. */
+[data-open-chat][hidden], [data-open-chat-wrap][hidden] { display: none !important; }
+.chat-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 18px 0 0; color: var(--muted); font-size: var(--fs-md); }
