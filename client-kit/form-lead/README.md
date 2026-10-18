@@ -14,32 +14,33 @@ A Vercel serverless function for **client** websites: it takes the site's lead f
 | `service` | Mapped to exactly one of `Repair`, `Tune-Up/Maintenance`, `New System Estimate`, `Indoor Air Quality`, `Other`. Anything unknown becomes `Other`. |
 | `message` | Optional, up to 2,000 characters. Saved as a contact **note**. |
 | `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content` | Optional hidden fields, up to 250 characters each (see the snippet below). Each one goes into its UTM custom field only when the value is present and its `GHL_FIELD_UTM_*` env var is set. |
+| `gclid` | Optional hidden field (up to 250 characters). Goes into the **Google Click ID** custom field only when the value is present and `GHL_FIELD_GCLID` is set. |
 | `company_fax` | Honeypot. Hide it with CSS and leave it empty. If it's filled in, the function returns `{ ok: true }` and sends nothing. |
 
 There is **no phone field**. If a phone number is sent anyway it is ignored and never forwarded, so don't add a phone input.
 
 Steps, all on GHL API v2 (`https://services.leadconnectorhq.com`, `Version: 2021-07-28`, Bearer token):
 
-1. `POST /contacts/upsert` with `locationId`, first and last name, email, city and postal code, `source: "Website Form"`, and custom fields by ID: lead source = `Website Form`, service = the mapped option, plus any UTMs. No tags here, because upsert replaces a contact's tags.
+1. `POST /contacts/upsert` with `locationId`, first and last name, email, city and postal code, `source: "Website Form"`, and custom fields by ID: lead source = `Website Form`, service = the mapped option, plus any UTMs and the gclid. No tags here, because upsert replaces a contact's tags.
 2. `POST /contacts/{id}/tags` with `["lead-web-form"]`, **every time**, right after the upsert. This adds the tag and keeps the existing ones. Client workflows trigger on this tag, and a test enforces it.
 3. `POST /contacts/{id}/notes` with the message, if there is one.
 4. `GET /opportunities/search?location_id=…&pipeline_id=…&contact_id=…&status=open`. If the contact has no open opportunity in that pipeline, `POST /opportunities/` creates one at `GHL_STAGE_ID`, named `<name> – <service>`, with status `open`.
 
 It never sets any SMS consent field (`sms_consent`), any DND field, or any consent or SMS tag. A test fails if any outgoing request carries `sms_consent` or `sms-consent`.
 
-**gclid isn't sent.** On Oct 18, 2026 we tested against the HMHQ sub-account. `POST /contacts/upsert` with a top-level `gclid` returned 201 and echoed `gclid` in the response, but `GET /contacts/{id}` and contact search didn't return it afterwards. A second try with `attributionSource: { gclid }` was dropped too. Because it can't be confirmed as stored, the handler ignores any `gclid` it receives. Revisit this if GHL documents it.
+**gclid goes into a custom field, not GHL's built-in one.** On Oct 18, 2026 we tested against the HMHQ sub-account. `POST /contacts/upsert` with the built-in top-level `gclid` returned 201 and echoed it, but `GET /contacts/{id}` and contact search didn't return it afterwards, and `attributionSource.gclid` was dropped too. The built-in field doesn't persist. So the handler puts the gclid only into the "Google Click ID" custom text field (`GHL_FIELD_GCLID`) and never sends a top-level `gclid`. UTMs and gclid go only into the upsert's custom fields: they're kept out of the note, the logs and the response.
 
-### Capturing UTMs on the client page
+### Capturing UTMs and gclid on the client page
 
 Add hidden inputs to the form and fill them from the page URL:
 
 ```html
 <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign">
-<input type="hidden" name="utm_term"><input type="hidden" name="utm_content">
+<input type="hidden" name="utm_term"><input type="hidden" name="utm_content"><input type="hidden" name="gclid">
 <script>
   (function () {
     var q = new URLSearchParams(location.search);
-    ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].forEach(function (k) {
+    ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid"].forEach(function (k) {
       var v = q.get(k) || sessionStorage.getItem(k);
       if (q.get(k)) sessionStorage.setItem(k, v); // keep them if the visitor clicks to another page first
       document.querySelectorAll('input[name="' + k + '"]').forEach(function (el) { if (v) el.value = v; });
@@ -68,8 +69,9 @@ Other guards: CORS only for origins in `ALLOWED_ORIGINS`, which must match exact
    | `GHL_FIELD_UTM_CAMPAIGN` (utm_campaign) | `In40jdfCTpodq0Ln13th` |
    | `GHL_FIELD_UTM_TERM` (utm_term) | `bu2vsSSsTBEHZ0CFpXHM` |
    | `GHL_FIELD_UTM_CONTENT` (utm_content) | `ZWg5GLUdnO8JCnHqoRL4` |
+   | `GHL_FIELD_GCLID` (Google Click ID, `contact.contactgoogle_click_id`) | `61gsANzfN6CcUf7hrYMa` |
 
-   The UTM env vars are optional, and any that aren't set are skipped.
+   The UTM and gclid env vars are optional, and any that aren't set are skipped.
 
    The service field's options must be spelled exactly `Repair`, `Tune-Up/Maintenance`, `New System Estimate`, `Indoor Air Quality` and `Other`.
 3. **Env.** Copy `.env.example` into Vercel (Production and Preview) with the real values, and set `ALLOWED_ORIGINS` to the client's site origins, e.g. `https://www.client.com,https://client.com`.

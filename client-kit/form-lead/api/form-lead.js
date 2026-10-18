@@ -5,7 +5,7 @@
 // opportunity in the pipeline unless the contact already has an open one there.
 // Env vars: GHL_TOKEN, GHL_LOCATION_ID, GHL_FIELD_LEAD_SOURCE, GHL_FIELD_SERVICE, GHL_PIPELINE_ID,
 // GHL_STAGE_ID, ALLOWED_ORIGINS (comma separated). Optional: GHL_FIELD_UTM_SOURCE, GHL_FIELD_UTM_MEDIUM,
-// GHL_FIELD_UTM_CAMPAIGN, GHL_FIELD_UTM_TERM, GHL_FIELD_UTM_CONTENT. See README.md and .env.example.
+// GHL_FIELD_UTM_CAMPAIGN, GHL_FIELD_UTM_TERM, GHL_FIELD_UTM_CONTENT, GHL_FIELD_GCLID. See README.md and .env.example.
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
 const GHL_VERSION = "2021-07-28";
@@ -15,11 +15,12 @@ const LEAD_SOURCE = "Website Form";
 const SERVICES = ["Repair", "Tune-Up/Maintenance", "New System Estimate", "Indoor Air Quality", "Other"];
 const MAX_BODY_BYTES = 16 * 1024;
 const LIMITS = { name: 100, email: 254, townZip: 100, service: 100, message: 2000 };
-// UTM hidden fields → custom field IDs from env. Sent only when the value is present and the env var is set.
-const UTM_FIELDS = { utm_source: "GHL_FIELD_UTM_SOURCE", utm_medium: "GHL_FIELD_UTM_MEDIUM", utm_campaign: "GHL_FIELD_UTM_CAMPAIGN", utm_term: "GHL_FIELD_UTM_TERM", utm_content: "GHL_FIELD_UTM_CONTENT" };
-const UTM_MAX = 250;
-// gclid is not sent: a live test (Oct 18, 2026) showed upsert echoes a top-level gclid but GET /contacts/{id}
-// doesn't return it afterwards, and attributionSource.gclid was dropped. Revisit before adding it.
+// Tracking hidden fields (UTMs and gclid) → custom field IDs from env. Sent only when the value is present and
+// the env var is set. They go only into the upsert's customFields: never into the note, the logs or the response.
+// gclid uses the "Google Click ID" custom field, NEVER the built-in top-level contact gclid: a live test
+// (Oct 18, 2026) showed upsert echoes a top-level gclid but GET /contacts/{id} doesn't return it afterwards.
+const TRACKING_FIELDS = { utm_source: "GHL_FIELD_UTM_SOURCE", utm_medium: "GHL_FIELD_UTM_MEDIUM", utm_campaign: "GHL_FIELD_UTM_CAMPAIGN", utm_term: "GHL_FIELD_UTM_TERM", utm_content: "GHL_FIELD_UTM_CONTENT", gclid: "GHL_FIELD_GCLID" };
+const TRACKING_MAX = 250;
 const HONEYPOT = "company_fax"; // hidden input real people leave empty
 const GENERIC_ERROR = "Sorry, something went wrong sending your request. Please try again, or give us a call.";
 
@@ -64,10 +65,10 @@ function splitTownZip(raw) {
   return { city, postalCode };
 }
 
-function utmFields(body, env) {
-  return Object.entries(UTM_FIELDS)
-    .map(([key, envName]) => ({ id: clean(env[envName], 100), field_value: clean(body[key], UTM_MAX) }))
-    .filter((f) => f.id && f.field_value && !/consent/i.test(f.field_value)); // never let a UTM carry a consent value
+function trackingFields(body, env) {
+  return Object.entries(TRACKING_FIELDS)
+    .map(([key, envName]) => ({ id: clean(env[envName], 100), field_value: clean(body[key], TRACKING_MAX) }))
+    .filter((f) => f.id && f.field_value && !/consent/i.test(f.field_value)); // never let a tracking value carry consent
 }
 
 function splitName(name) {
@@ -164,7 +165,7 @@ module.exports = async function handler(req, res) {
     customFields: [
       { id: env.GHL_FIELD_LEAD_SOURCE, field_value: LEAD_SOURCE },
       { id: env.GHL_FIELD_SERVICE, field_value: lead.service },
-      ...utmFields(body, env),
+      ...trackingFields(body, env),
     ],
   };
   const up = await ghl("POST", "/contacts/upsert", contact);

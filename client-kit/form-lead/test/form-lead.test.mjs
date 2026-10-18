@@ -323,11 +323,43 @@ test('UTMs: a value mentioning consent is dropped', async () => {
   assert.ok(!/consent/i.test(g.calls[0].rawBody));
 });
 
-test('gclid is not forwarded (upsert did not persist it in the live check)', async () => {
+test('gclid: forwarded only to the Google Click ID custom field when GHL_FIELD_GCLID is set', async () => {
+  Object.assign(process.env, UTM_ENV, { GHL_FIELD_GCLID: 'cf_gclid' });
   const g = stubGhl();
   const logs = captureLogs();
-  await call({ ...LEAD, gclid: 'EAIaIQobChMI-test' }).finally(() => { logs.restore(); g.restore(); });
-  for (const c of g.calls) assert.ok(!/gclid|EAIaIQ/i.test(String(c.rawBody || '') + c.url));
+  const res = await call({ ...LEAD, ...UTMS, gclid: 'EAIaIQobChMI-test' }).finally(() => { logs.restore(); g.restore(); });
+  const [up, ...rest] = g.calls;
+  assert.deepEqual(up.body.customFields.at(-1), { id: 'cf_gclid', field_value: 'EAIaIQobChMI-test' });
+  assert.equal(up.body.customFields.filter((f) => f.field_value === 'EAIaIQobChMI-test').length, 1);
+  // Only the upsert's customFields carry it: not the note, tag, search or opportunity, nor the logs or the response.
+  for (const c of rest) assert.ok(!/gclid|EAIaIQ|google|cpc|spring-ac/i.test(String(c.rawBody || '') + c.url), `${c.path} carried tracking data`);
+  assert.ok(!/EAIaIQ|google|cpc|spring-ac/i.test(logs.lines.join('\n')));
+  assert.ok(!/EAIaIQ/.test(JSON.stringify(res.body)));
+});
+
+test('gclid: skipped when GHL_FIELD_GCLID is unset or the value is missing', async () => {
+  for (const [envSet, body] of [[false, { ...LEAD, gclid: 'EAIaIQobChMI-test' }], [true, { ...LEAD, gclid: '  ' }], [true, LEAD]]) {
+    if (envSet) process.env.GHL_FIELD_GCLID = 'cf_gclid'; else delete process.env.GHL_FIELD_GCLID;
+    const g = stubGhl();
+    const logs = captureLogs();
+    await call(body).finally(() => { logs.restore(); g.restore(); });
+    assert.equal(g.calls[0].body.customFields.length, 2);
+    for (const c of g.calls) assert.ok(!/EAIaIQ|cf_gclid/.test(String(c.rawBody || '') + c.url));
+  }
+});
+
+test('gclid: never sent as the built-in top-level contact field', async () => {
+  for (const extra of [{}, { GHL_FIELD_GCLID: 'cf_gclid' }]) {
+    Object.assign(process.env, extra);
+    const g = stubGhl();
+    const logs = captureLogs();
+    await call({ ...LEAD, gclid: 'EAIaIQobChMI-test' }).finally(() => { logs.restore(); g.restore(); });
+    for (const c of g.calls) {
+      assert.equal(c.body ? c.body.gclid : undefined, undefined, `${c.path} has top-level gclid`);
+      assert.equal(c.body ? c.body.attributionSource : undefined, undefined);
+      assert.ok(!/"gclid"/.test(String(c.rawBody || '')), `${c.path} has a gclid key`);
+    }
+  }
 });
 
 test('lead-web-form tag is always added: new, existing, no message, and when later steps fail', async () => {
