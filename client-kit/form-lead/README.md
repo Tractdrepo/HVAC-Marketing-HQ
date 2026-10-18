@@ -49,7 +49,27 @@ Add hidden inputs to the form and fill them from the page URL:
 </script>
 ```
 
-Responses: `{ ok: true, steps }` once the contact is saved. Steps after that (tag, note, opportunity) are logged when they fail, but the visitor still sees success because the lead is already in GHL. If something goes wrong before the contact is saved, the visitor gets `{ ok: false, error }` with a friendly generic message (502/503). Bad input gets a 400 with a short hint. Logs show only step names and HTTP statuses, never the token or the visitor's details.
+Responses: `{ ok: true, steps }` once the contact is saved. If a later step (tag, note or opportunity) still fails after its retries, it's logged and alerted, but the visitor still sees success because the lead is already in GHL. If something goes wrong before the contact is saved, the visitor gets `{ ok: false, error }` with a friendly generic message (502/503), and an alert goes out. Bad input gets a 400 with a short hint. Logs show only step names, HTTP statuses and attempt counts, never the token or the visitor's details.
+
+### Retries
+
+GHL calls are retried on 429, 5xx and network errors or timeouts, about 3 attempts in all, with a 0.5 s then 1 s backoff. `Retry-After` (in seconds or as an HTTP date) is honored but capped at 3 s. All retry waits in one request share an 8 s budget, and each attempt times out after 5 s. Other 4xx responses are never retried.
+- **Upsert by email:** idempotent, so it's retried freely.
+- **Add tag:** adding the same tag twice is harmless.
+- **Notes:** retried too. A 5xx or timeout that GHL actually processed could leave a duplicate note.
+- **Opportunity create:** not idempotent. After a retryable failure, the function first re-searches the pipeline. If an open opportunity now exists, the create went through and nothing more is sent. If the re-search fails, it stops. It never creates a duplicate.
+
+Worst case (GHL hanging on every call), a request takes about 35 s: once the 8 s budget is used up, remaining steps get a single attempt each. On the client project, set `"functions": { "api/form-lead.js": { "maxDuration": 60 } }` in `vercel.json` if its default limit is lower.
+
+### Failure alerts
+
+If `ALERT_WEBHOOK` is set (a Slack incoming webhook, or anything that accepts `{"text": "..."}`), one alert is POSTed per request whenever a step still fails after its retries. That includes the upsert, missing GHL env vars, and the tag, note, opportunity search and opportunity create steps. The alert contains:
+- the site label (`SITE_LABEL`, falling back to `GHL_LOCATION_ID`)
+- each failed step with its status code
+- a timestamp
+- the contact's name and email
+
+It **never** contains the token, the message, town/ZIP, service, UTMs, gclid or GHL error bodies. Names are escaped so they can't trigger Slack mentions. The alert has a 3 s timeout, and any failure is caught and logged without the webhook URL, so it never breaks the request. If `ALERT_WEBHOOK` isn't set, no alert is sent.
 
 Other guards: CORS only for origins in `ALLOWED_ORIGINS`, which must match exactly; anything else gets a 403, including requests with no `Origin`. Bodies are capped at 16 KB. There is also a best-effort rate limit of 5 posts per IP per 10 minutes on each server instance.
 
@@ -74,7 +94,7 @@ Other guards: CORS only for origins in `ALLOWED_ORIGINS`, which must match exact
    The UTM and gclid env vars are optional, and any that aren't set are skipped.
 
    The service field's options must be spelled exactly `Repair`, `Tune-Up/Maintenance`, `New System Estimate`, `Indoor Air Quality` and `Other`.
-3. **Env.** Copy `.env.example` into Vercel (Production and Preview) with the real values, and set `ALLOWED_ORIGINS` to the client's site origins, e.g. `https://www.client.com,https://client.com`.
+3. **Env.** Optionally create a Slack incoming webhook for the team's alerts channel and set it as `ALERT_WEBHOOK`, along with a readable `SITE_LABEL`. Copy `.env.example` into Vercel (Production and Preview) with the real values, and set `ALLOWED_ORIGINS` to the client's site origins, e.g. `https://www.client.com,https://client.com`.
 4. **Deploy.** Copy `api/form-lead.js` into the client site's `api/` folder (on Vercel it serves at `/api/form-lead`). Point the form at it and add the hidden `company_fax` input.
 5. **Test.** Submit a test lead and check that the contact, tag, note and opportunity show up, and that the Vercel function logs show `"ok":true` for every step.
 
