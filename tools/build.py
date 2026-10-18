@@ -20,7 +20,7 @@ TAGLINE = "Rank · Book · Repeat"
 DOMAIN = "hvacmarketinghq.com"
 SITE_HOST = "www." + DOMAIN           # canonical host; the apex 308-redirects here
 EMAIL = "hello@" + DOMAIN
-CALL_LINK = "https://calendar.app.google/bm89Bh3ot8oEk3VA9"  # Google Calendar booking page (Logan, Oct 14)
+CALL_LINK = "https://calendar.app.google/dr7ELTg8SP7y8Z5q7"  # Google Calendar booking page (Logan, Oct 18)
 TURNSTILE_SITEKEY = "0x4AAAAAAFW5gSyWKqCFU_8y"  # Cloudflare Turnstile site key (public); secret is TURNSTILE_SECRET in Vercel
 # Founder video bubble (bottom-left). Logan records a 60-90s face-on intro; see video-script.md.
 FOUNDER_NAME = "Logan"
