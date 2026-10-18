@@ -278,3 +278,82 @@ test('missing env: generic 503, no calls', async () => {
   assert.equal(res.statusCode, 503);
   assert.equal(g.calls.length, 0);
 });
+
+const UTM_ENV = { GHL_FIELD_UTM_SOURCE: 'cf_utm_source', GHL_FIELD_UTM_MEDIUM: 'cf_utm_medium', GHL_FIELD_UTM_CAMPAIGN: 'cf_utm_campaign', GHL_FIELD_UTM_TERM: 'cf_utm_term', GHL_FIELD_UTM_CONTENT: 'cf_utm_content' };
+const UTMS = { utm_source: 'google', utm_medium: 'cpc', utm_campaign: 'spring-ac', utm_term: 'ac repair waco', utm_content: 'ad-a' };
+
+test('UTMs: all five sent as custom fields by env ID when present', async () => {
+  Object.assign(process.env, UTM_ENV);
+  const g = stubGhl();
+  const logs = captureLogs();
+  await call({ ...LEAD, ...UTMS }).finally(() => { logs.restore(); g.restore(); });
+  assert.deepEqual(g.calls[0].body.customFields, [
+    { id: 'cf_lead_source', field_value: 'Website Form' },
+    { id: 'cf_service', field_value: 'Repair' },
+    { id: 'cf_utm_source', field_value: 'google' },
+    { id: 'cf_utm_medium', field_value: 'cpc' },
+    { id: 'cf_utm_campaign', field_value: 'spring-ac' },
+    { id: 'cf_utm_term', field_value: 'ac repair waco' },
+    { id: 'cf_utm_content', field_value: 'ad-a' },
+  ]);
+});
+
+test('UTMs: missing values and unset env vars are skipped', async () => {
+  Object.assign(process.env, UTM_ENV);
+  delete process.env.GHL_FIELD_UTM_TERM;
+  const g = stubGhl();
+  const logs = captureLogs();
+  await call({ ...LEAD, utm_source: 'google', utm_medium: '  ', utm_term: 'ac repair' }).finally(() => { logs.restore(); g.restore(); });
+  assert.deepEqual(g.calls[0].body.customFields.slice(2), [{ id: 'cf_utm_source', field_value: 'google' }]);
+});
+
+test('UTMs: none sent when no UTM env vars are set', async () => {
+  const g = stubGhl();
+  const logs = captureLogs();
+  await call({ ...LEAD, ...UTMS }).finally(() => { logs.restore(); g.restore(); });
+  assert.equal(g.calls[0].body.customFields.length, 2);
+  assert.ok(!/utm|google|cpc/i.test(g.calls[0].rawBody));
+});
+
+test('UTMs: a value mentioning consent is dropped', async () => {
+  Object.assign(process.env, UTM_ENV);
+  const g = stubGhl();
+  const logs = captureLogs();
+  await call({ ...LEAD, utm_source: 'sms-consent', utm_medium: 'sms_consent' }).finally(() => { logs.restore(); g.restore(); });
+  assert.ok(!/consent/i.test(g.calls[0].rawBody));
+});
+
+test('gclid is not forwarded (upsert did not persist it in the live check)', async () => {
+  const g = stubGhl();
+  const logs = captureLogs();
+  await call({ ...LEAD, gclid: 'EAIaIQobChMI-test' }).finally(() => { logs.restore(); g.restore(); });
+  for (const c of g.calls) assert.ok(!/gclid|EAIaIQ/i.test(String(c.rawBody || '') + c.url));
+});
+
+test('lead-web-form tag is always added: new, existing, no message, and when later steps fail', async () => {
+  const scenarios = [
+    [{ isNew: true }, LEAD],
+    [{ isNew: false, open: [{ id: 'op', status: 'open', pipelineId: 'pipe_test', contactId: 'ct_123' }] }, LEAD],
+    [{ isNew: false }, { ...LEAD, message: '' }],
+    [{ fail: { notes: 500, search: 500, create: 500 } }, LEAD],
+    [{}, { ...LEAD, service: '', town_zip: '' }],
+  ];
+  for (const [opts, body] of scenarios) {
+    const g = stubGhl(opts);
+    const logs = captureLogs();
+    const res = await call(body).finally(() => { logs.restore(); g.restore(); });
+    assert.equal(res.statusCode, 200);
+    const tagCalls = g.calls.filter((c) => c.path === '/contacts/ct_123/tags' && c.method === 'POST');
+    assert.equal(tagCalls.length, 1, `tag call missing for ${JSON.stringify(opts)}`);
+    assert.deepEqual(tagCalls[0].body, { tags: ['lead-web-form'] });
+    assert.equal(g.calls[1].path, '/contacts/ct_123/tags', 'tag is added right after the upsert');
+  }
+});
+
+test('tag failure is logged and reported in steps', async () => {
+  const g = stubGhl({ fail: { tags: 500 } });
+  const logs = captureLogs();
+  const res = await call(LEAD).finally(() => { logs.restore(); g.restore(); });
+  assert.equal(res.body.steps.tag, 'failed');
+  assert.match(logs.lines.join('\n'), /"step":"add_tag","ok":false,"status":500/);
+});

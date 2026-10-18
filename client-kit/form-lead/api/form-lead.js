@@ -4,7 +4,8 @@
 // upserts the contact by email, adds the lead-web-form tag, adds the message as a note, and opens an
 // opportunity in the pipeline unless the contact already has an open one there.
 // Env vars: GHL_TOKEN, GHL_LOCATION_ID, GHL_FIELD_LEAD_SOURCE, GHL_FIELD_SERVICE, GHL_PIPELINE_ID,
-// GHL_STAGE_ID, ALLOWED_ORIGINS (comma separated). See README.md and .env.example.
+// GHL_STAGE_ID, ALLOWED_ORIGINS (comma separated). Optional: GHL_FIELD_UTM_SOURCE, GHL_FIELD_UTM_MEDIUM,
+// GHL_FIELD_UTM_CAMPAIGN, GHL_FIELD_UTM_TERM, GHL_FIELD_UTM_CONTENT. See README.md and .env.example.
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
 const GHL_VERSION = "2021-07-28";
@@ -14,6 +15,11 @@ const LEAD_SOURCE = "Website Form";
 const SERVICES = ["Repair", "Tune-Up/Maintenance", "New System Estimate", "Indoor Air Quality", "Other"];
 const MAX_BODY_BYTES = 16 * 1024;
 const LIMITS = { name: 100, email: 254, townZip: 100, service: 100, message: 2000 };
+// UTM hidden fields → custom field IDs from env. Sent only when the value is present and the env var is set.
+const UTM_FIELDS = { utm_source: "GHL_FIELD_UTM_SOURCE", utm_medium: "GHL_FIELD_UTM_MEDIUM", utm_campaign: "GHL_FIELD_UTM_CAMPAIGN", utm_term: "GHL_FIELD_UTM_TERM", utm_content: "GHL_FIELD_UTM_CONTENT" };
+const UTM_MAX = 250;
+// gclid is not sent: a live test (Oct 18, 2026) showed upsert echoes a top-level gclid but GET /contacts/{id}
+// doesn't return it afterwards, and attributionSource.gclid was dropped. Revisit before adding it.
 const HONEYPOT = "company_fax"; // hidden input real people leave empty
 const GENERIC_ERROR = "Sorry, something went wrong sending your request. Please try again, or give us a call.";
 
@@ -56,6 +62,12 @@ function splitTownZip(raw) {
   const postalCode = m ? m[1] : "";
   const city = clean(raw.replace(/\b\d{5}(?:-\d{4})?\b/, "").replace(/[,\s]+$/, "").replace(/^[,\s]+/, ""), 60);
   return { city, postalCode };
+}
+
+function utmFields(body, env) {
+  return Object.entries(UTM_FIELDS)
+    .map(([key, envName]) => ({ id: clean(env[envName], 100), field_value: clean(body[key], UTM_MAX) }))
+    .filter((f) => f.id && f.field_value && !/consent/i.test(f.field_value)); // never let a UTM carry a consent value
 }
 
 function splitName(name) {
@@ -141,8 +153,6 @@ module.exports = async function handler(req, res) {
   }
 
   // 1. Upsert by email. No tags here (upsert replaces them) and no phone, consent, SMS or DND fields.
-  // TODO(utm): UTM fields (utm_source, utm_medium, utm_campaign, ...) are not sent yet. When we add them,
-  // map them to per-client custom field IDs from env, the same way as GHL_FIELD_SERVICE.
   const { city, postalCode } = splitTownZip(lead.townZip);
   const contact = {
     locationId: env.GHL_LOCATION_ID,
@@ -154,6 +164,7 @@ module.exports = async function handler(req, res) {
     customFields: [
       { id: env.GHL_FIELD_LEAD_SOURCE, field_value: LEAD_SOURCE },
       { id: env.GHL_FIELD_SERVICE, field_value: lead.service },
+      ...utmFields(body, env),
     ],
   };
   const up = await ghl("POST", "/contacts/upsert", contact);
@@ -166,7 +177,7 @@ module.exports = async function handler(req, res) {
   const id = encodeURIComponent(contactId);
   const steps = { contact: "ok" };
 
-  // 2. Tag through the add-tags call so existing tags stay.
+  // 2. Tag through the add-tags call so existing tags stay. Always runs: client workflows trigger on lead-web-form.
   const tag = await ghl("POST", `/contacts/${id}/tags`, { tags: [TAG] });
   log("add_tag", tag.ok, { status: tag.status });
   steps.tag = tag.ok ? "ok" : "failed";
