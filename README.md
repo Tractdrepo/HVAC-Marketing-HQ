@@ -2,7 +2,7 @@
 
 Static site for Vercel: HTML pages, one `styles.css`, one `main.js`, `vercel.json`, and a serverless `api/lead.js` for the report card form. Built fresh from the transfer pack (sections 1 and 4) and the agency teardown in `research/agency-teardown.md`. No Zero Vacancy files or design.
 
-**Not live.** Nothing is deployed and no repo exists. Pages carry `noindex` and the `X-Robots-Tag` header until Logan says push.
+**Live** at https://www.hvacmarketinghq.com (the apex domain redirects to `www`). Hosted on Vercel, which auto-deploys from `main` in the GitHub repo `Tractdrepo/HVAC-Marketing-HQ`; pull requests get a Vercel preview. Indexing is on (`NOINDEX = False` in build.py since Oct 15, 2026); setting it back to `True` puts the whole site behind `noindex` and the `X-Robots-Tag` header.
 
 ## Editing
 
@@ -42,7 +42,9 @@ Oct 12, 2026: after crawling websitesforhvac.com and rsgonzales.com (see `resear
 
 ## Form flow
 
-Four steps (website, business name, first name and email, phone with optional SMS consent) post to `/api/lead`, which checks a honeypot, rate-limits per IP, verifies Turnstile and emails the lead via Resend. Automatic report card generation is not built yet; this only delivers the request.
+Three steps (website, business name with main town and state, first name and email) post to `/api/lead`, which checks a honeypot, rate-limits per IP, verifies Turnstile and emails the lead via Resend. Automatic report cards (`api/_grader/`) run only when `REPORT_CARD_AUTO=on` and the API keys are set; otherwise the team gets the request and sends the report by hand.
+
+Forms have no phone field and no SMS consent checkbox. The GHL chat widget (`GHL_CHAT_WIDGET` in build.py) is the site's only text opt-in, as required for A2P. Keep it that way.
 
 ## Launch
 
