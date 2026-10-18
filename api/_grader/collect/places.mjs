@@ -236,8 +236,12 @@ export async function newestReviewDays(placeId, key, { now = Date.now() } = {}) 
     const res = await fetch(u, { signal: AbortSignal.timeout(8000) });
     const j = await res.json();
     if (j.status !== 'OK') return { days: null, error: `${j.status}${j.error_message ? `: ${j.error_message.slice(0, 120)}` : ''}` };
-    const t = Math.max(...(j.result?.reviews || []).map((r) => (r.time || 0) * 1000));
-    return { days: Number.isFinite(t) && t > 0 ? Math.max(0, Math.floor((now - t) / 86400000)) : null };
+    const list = j.result?.reviews || [];
+    // OK with no reviews is an answer, not a failure: there is nothing to date.
+    if (!list.length) return { days: null, noReviews: true };
+    const t = Math.max(...list.map((r) => (r.time || 0) * 1000));
+    if (!(Number.isFinite(t) && t > 0)) return { days: null, error: 'reviews came back without dates' };
+    return { days: Math.max(0, Math.floor((now - t) / 86400000)) };
   } catch (err) {
     return { days: null, error: err.message };
   }

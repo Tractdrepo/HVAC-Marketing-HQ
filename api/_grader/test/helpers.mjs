@@ -29,8 +29,9 @@ export function place({ id, name, website = null, state = 'TX', town = 'Waco', r
 const json = (body, status = 200) => ({ ok: status < 400, status, url: '', json: async () => body, text: async () => JSON.stringify(body) });
 
 // Replace global fetch for one test. places(query) returns the candidates for a Places text search (or
-// throws to simulate a Places error). Returns the list of calls and a restore function.
-export function stubFetch({ places = () => [], home = sampleHome } = {}) {
+// throws to simulate a Places error). details(url) answers the older Place Details endpoint
+// (REQUEST_DENIED by default). Returns the list of calls and a restore function.
+export function stubFetch({ places = () => [], home = sampleHome, details = () => ({ status: 'REQUEST_DENIED' }) } = {}) {
   const real = globalThis.fetch;
   const calls = [];
   globalThis.fetch = async (url, opts = {}) => {
@@ -40,7 +41,7 @@ export function stubFetch({ places = () => [], home = sampleHome } = {}) {
     if (u.startsWith('https://places.googleapis.com/')) {
       try { return json({ places: await places(body.textQuery) }); } catch (err) { return json({ error: err.message }, 500); }
     }
-    if (u.startsWith('https://maps.googleapis.com/')) return json({ status: 'REQUEST_DENIED' });
+    if (u.startsWith('https://maps.googleapis.com/')) return json(await details(u));
     if (u.startsWith('https://www.googleapis.com/pagespeedonline/')) return json({}, 429);
     if (u.startsWith('https://challenges.cloudflare.com/')) return json({ success: true });
     if (u.startsWith('https://api.resend.com/')) return json({ id: 'test' });
