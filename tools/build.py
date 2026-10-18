@@ -361,6 +361,16 @@ def founder_video(has_form=True):
 </div>"""
 
 
+def chat_button(lead="", cls="btn btn-ghost btn-small"):
+    """On-page "Ask a question" button that opens the GHL chat widget (window.leadConnector.chatWidget.openWidget()).
+    Rendered hidden; main.js shows it only after the widget fires LC_chatWidgetLoaded, so it never shows as a dead button.
+    It only opens the widget: no phone field and no opt-in here (the widget stays the site's one text opt-in, A2P 10DLC)."""
+    if PREVIEW or not GHL_CHAT_WIDGET:
+        return ""
+    btn = f'<button type="button" class="{cls}" data-open-chat hidden>Ask a question</button>'
+    return f'<p class="chat-cta" data-open-chat-wrap hidden>{esc(lead)} {btn}</p>' if lead else btn
+
+
 def asset_v(name):
     """Cache-busting query for styles.css and main.js, so a deploy shows up without a hard refresh."""
     import hashlib
@@ -1997,6 +2007,7 @@ def contact_page():
       <li><b>Service area</b>HVAC contractors across the United States, based in Texas</li>
       <li><b>Services</b>HVAC websites, Google Business Profile management, local SEO, missed-call text-back, review requests and Google Ads</li>
     </ul>
+    {chat_button("Quick question? Ask it in the chat window.")}
   </div>
 </div></section>
 <section class="section alt"><div class="wrap">
@@ -2685,7 +2696,7 @@ def report_card_page():
   {rc_how()}
   <div class="split" style="margin-top:80px">
   <div><span class="eyebrow">After the report card</span><h2>You've got the grades. Now what?</h2><p class="lede">Some owners fix it themselves, and the report shows exactly where to start. Others hand it to us. Either way, it's yours to keep.</p></div>
-  <div class="card"><ul class="ticks"><li>Graded only on what anyone can see in public</li><li>The same facts always give the same grade</li><li>Plain English, no jargon</li><li>Re-grade anytime to see what changed</li></ul><a class="more" href="{esc(call_link())}">Rather talk it through? Book a 15-minute call →</a></div>
+  <div class="card"><ul class="ticks"><li>Graded only on what anyone can see in public</li><li>The same facts always give the same grade</li><li>Plain English, no jargon</li><li>Re-grade anytime to see what changed</li></ul><a class="more" href="{esc(call_link())}">Rather talk it through? Book a 15-minute call →</a>{chat_button("Question about the report card?")}</div>
   </div>
 </div></section>
 {report_card()}
@@ -2726,6 +2737,7 @@ def plans_page():
   <div class="section-head"><span class="eyebrow">Questions</span><h2>Pricing questions</h2></div>
   {faq(COMMON_FAQ)}
   <p style="margin-top:24px">Weighing us against another agency? <a class="more" href="{u('compare')}">See how HVAC marketing companies compare →</a></p>
+  {chat_button("Question not covered here?")}
 </div></section>
 {report_card("Not sure which plan? Start with the report card.")}
 """
