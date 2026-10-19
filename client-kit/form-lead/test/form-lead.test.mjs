@@ -640,3 +640,67 @@ test('missing GHL env with ALERT_WEBHOOK set: generic 503 and a config alert', a
   assert.equal(g.calls.length, 0);
   assert.match(g.alerts[0].body.text, /config/);
 });
+
+// 400 on opportunity create: GHL rejected a duplicate while its search still lagged (live run Oct 19, 2026).
+const DUP_400 = { status: 400, body: { statusCode: 400, message: 'Duplicate opportunity for Jane Q Doe (jane@example.com) – Jane Q Doe – Repair, call 254-555-0142, contact ct_123abcdefghijklmn' } };
+
+test('400 on create, re-search finds the deal: reported existing, no alert, no second create', async () => {
+  process.env.ALERT_WEBHOOK = ALERT_URL;
+  const g = stubGhl({ seq: { create: [DUP_400] }, open: (n) => (n <= 2 ? [] : [OPP]) }); // visible on the 2nd re-search
+  const logs = captureLogs();
+  const res = await call(LEAD).finally(() => { logs.restore(); g.restore(); });
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.body.ok, true);
+  assert.equal(res.body.steps.opportunity, 'existing');
+  assert.equal(count(g, '/opportunities/', 'POST'), 1, 'create is never repeated after a 400');
+  assert.equal(count(g, '/opportunities/search'), 3, 'initial search + 2 re-searches');
+  assert.equal(g.alerts.length, 0, 'no alert for a deal that exists');
+  assert.deepEqual(sleeps, [500, 1000]);
+});
+
+test('400 on create, re-search finds nothing: still failed and alerted, create not repeated', async () => {
+  process.env.ALERT_WEBHOOK = ALERT_URL;
+  const g = stubGhl({ seq: { create: [DUP_400] }, open: [] });
+  const logs = captureLogs();
+  const res = await call(LEAD).finally(() => { logs.restore(); g.restore(); });
+  assert.equal(res.body.steps.opportunity, 'failed');
+  assert.equal(count(g, '/opportunities/', 'POST'), 1);
+  assert.equal(count(g, '/opportunities/search'), 4, 'initial search + 3 re-searches');
+  assert.equal(g.alerts.length, 1);
+  assert.match(g.alerts[0].body.text, /opportunity_create, status 400/);
+  assert.doesNotMatch(g.alerts[0].body.text, /Duplicate opportunity/, 'GHL error text never goes in the alert');
+});
+
+test('400 on create: GHL error message is logged without email, name, phone or ids', async () => {
+  const g = stubGhl({ seq: { create: [DUP_400] }, open: (n) => (n === 1 ? [] : [OPP]) });
+  const logs = captureLogs();
+  await call(LEAD).finally(() => { logs.restore(); g.restore(); });
+  const line = logs.lines.find((l) => /"status":400/.test(l) && /ghlMessage/.test(l));
+  assert.ok(line, 'the 400 is logged with GHL\'s message');
+  assert.match(line, /Duplicate opportunity/);
+  for (const bad of ['jane@example.com', 'Jane', 'Doe', '254-555-0142', '2545550142', 'ct_123abcdefghijklmn', 'pit-test-token-not-real']) {
+    assert.ok(!line.toLowerCase().includes(bad.toLowerCase()), `log line leaked ${bad}`);
+  }
+  for (const l of logs.lines) assert.ok(!/jane@example\.com|Jane Q Doe/i.test(l), 'no personal details in any log line');
+});
+
+test('400 on create: re-searches respect the retry budget', async () => {
+  const g = stubGhl({ seq: { create: [DUP_400] }, open: [] });
+  const logs = captureLogs();
+  const realNow = handler.deps.now;
+  let first = true;
+  handler.deps.now = () => (first ? clock : clock + 7800); // budget almost used after the first call
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (...a) => { first = false; return origFetch(...a); };
+  const res = await call(LEAD).finally(() => { logs.restore(); g.restore(); handler.deps.now = realNow; });
+  assert.equal(res.body.steps.opportunity, 'failed');
+  assert.equal(count(g, '/opportunities/search'), 1, 'no re-search once the budget is gone');
+});
+
+test('ghlErrorMessage handles arrays, missing bodies and caps length', () => {
+  const lead = { name: 'Ann Lee', email: 'ann@x.com' };
+  assert.equal(handler.ghlErrorMessage(null, lead), '');
+  assert.equal(handler.ghlErrorMessage({ message: ['bad pipelineStageId', 'Ann Lee exists'] }, lead), 'bad pipelineStageId; [name] exists');
+  assert.ok(handler.ghlErrorMessage({ message: 'x'.repeat(500) }, lead).length <= 200);
+  assert.equal(handler.ghlErrorMessage({ error: 'ann@x.com dup' }, lead), '[email] dup');
+});

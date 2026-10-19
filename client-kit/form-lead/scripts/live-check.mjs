@@ -91,7 +91,8 @@ export async function runLiveCheck({ env = process.env, email, name = 'Practice 
     check('second submit returned ok', second.status === 200 && second.body && second.body.ok === true, `HTTP ${second.status} steps=${JSON.stringify(second.body && second.body.steps)}`);
     // The intended dedupe path is opportunity search -> "existing". GHL's opportunity search lags right after a
     // create (live run Oct 19: search returned 0, create then got 400), so a quick resubmit may end "failed" and only
-    // GHL's own duplicate rejection prevents a 2nd deal. Flag it; the opportunity count check below is the real gate.
+    // GHL's own duplicate rejection prevents a 2nd deal. Since the Oct 19 fix the function re-searches after a 400 and
+    // should report "existing"; anything else is flagged. The opportunity count check below is the real gate.
     const oppStep = second.body && second.body.steps && second.body.steps.opportunity;
     if (oppStep !== 'existing') check('second submit deduped via search (steps.opportunity = existing)', true, `got "${oppStep}"`, 'WARN');
   }

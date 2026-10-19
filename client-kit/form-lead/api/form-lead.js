@@ -190,6 +190,37 @@ async function searchOpen(ctx, env, contactId) {
 
 // Create the opportunity. Creating isn't idempotent, so a failed create is retried only after a re-search shows
 // it really didn't go through; if the re-search finds one (or can't tell), we stop. Never creates duplicates.
+// GHL's error message for the logs, stripped of personal details: no email, no name (the opportunity name contains
+// it), no phone-like digit runs, no ids. One line, capped. Never sent in alerts or responses.
+const DUP_RECHECKS = 3; // searches after a 400 on create (GHL's opportunity search lags right after a create)
+const DUP_RECHECK_MS = [500, 1000, 1500];
+function ghlErrorMessage(data, lead) {
+  let m = data && (data.message ?? data.error ?? data.msg);
+  if (Array.isArray(m)) m = m.join("; ");
+  m = String(m == null ? "" : m);
+  m = m.replace(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+/g, "[email]");
+  for (const part of [lead.name, ...String(lead.name || "").split(/\s+/)].filter((x) => x && x.length > 1)) {
+    m = m.split(part).join("[name]");
+    m = m.replace(new RegExp(part.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi"), "[name]");
+  }
+  m = m.replace(/\+?\d[\d\s().-]{6,}\d/g, "[number]").replace(/[A-Za-z0-9_-]{16,}/g, "[id]");
+  return clean(m, 200);
+}
+
+// After a 400 on create: GHL can reject a duplicate (e.g. the sub-account disallows duplicate opportunities) while
+// its search still can't see the first deal. Re-search a few times with short waits; an open deal means "existing".
+async function recheckAfter400(ctx, env, contactId) {
+  for (let i = 0; i < DUP_RECHECKS; i++) {
+    const wait = DUP_RECHECK_MS[i] || DUP_RECHECK_MS[DUP_RECHECK_MS.length - 1];
+    if (deps.now() + wait > ctx.deadline) break;
+    await deps.sleep(wait);
+    const again = await searchOpen(ctx, env, contactId);
+    log("opportunity_recheck_400", again.ok, { status: again.status, open: again.open.length, attempt: i + 1 });
+    if (again.ok && again.open.length) return true;
+  }
+  return false;
+}
+
 async function createOpportunity(ctx, env, contactId, lead) {
   const payload = {
     locationId: env.GHL_LOCATION_ID,
@@ -203,6 +234,12 @@ async function createOpportunity(ctx, env, contactId, lead) {
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     r = await ghlOnce("POST", "/opportunities/", payload);
     if (r.ok) return { result: "created", status: r.status };
+    if (r.status === 400) {
+      log("opportunity_create", false, { status: 400, ghlMessage: ghlErrorMessage(r.data, lead) });
+      // Reported as "existing" (no alert) only when a re-search really finds the open deal.
+      if (await recheckAfter400(ctx, env, contactId)) return { result: "existing", status: 400 };
+      return { result: "failed", status: 400, step: "opportunity_create" };
+    }
     if (!retryable(r.status) || attempt === MAX_ATTEMPTS) break;
     if (!(await backoff(ctx, attempt, r.retryAfter))) break;
     const again = await searchOpen(ctx, env, contactId);
@@ -319,7 +356,7 @@ module.exports = async function handler(req, res) {
       steps.opportunity = "existing";
     } else {
       const opp = await createOpportunity(ctx, env, contactId, lead);
-      log("opportunity_create", opp.result === "created", { status: opp.status });
+      log("opportunity_create", opp.result !== "failed", { status: opp.status, result: opp.result });
       steps.opportunity = opp.result;
       if (opp.result === "failed") failures.push({ step: opp.step, status: opp.status });
     }
@@ -331,5 +368,6 @@ module.exports = async function handler(req, res) {
 };
 
 module.exports.mapService = mapService;
+module.exports.ghlErrorMessage = ghlErrorMessage;
 module.exports.SERVICES = SERVICES;
 module.exports.deps = deps;

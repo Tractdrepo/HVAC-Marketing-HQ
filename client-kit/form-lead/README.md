@@ -57,6 +57,7 @@ GHL calls are retried on 429, 5xx and network errors or timeouts, about 3 attemp
 - **Upsert by email:** idempotent, so it's retried freely.
 - **Add tag:** adding the same tag twice is harmless.
 - **Notes:** retried too. A 5xx or timeout that GHL actually processed could leave a duplicate note.
+- **Opportunity create, HTTP 400:** never repeated. GHL can reject a duplicate while its search still can't see the first deal, so the function logs GHL's error message (with emails, names, phone-like numbers and long ids replaced by placeholders) and re-searches up to 3 times (0.5 s, 1 s, 1.5 s, within the 8 s budget). If an open deal shows up, the step is reported `existing` and **no alert** is sent; otherwise it's `failed` and alerted as before. Other 4xx answers are not re-searched.
 - **Opportunity create:** not idempotent. After a retryable failure, the function first re-searches the pipeline. If an open opportunity now exists, the create went through and nothing more is sent. If the re-search fails, it stops. It never creates a duplicate.
 
 Worst case (GHL hanging on every call), a request takes about 35 s: once the 8 s budget is used up, remaining steps get a single attempt each. On the client project, set `"functions": { "api/form-lead.js": { "maxDuration": 60 } }` in `vercel.json` if its default limit is lower.
@@ -108,5 +109,5 @@ Runs the real handler in-process against a real sub-account, then reads GHL back
 
 **Learned in the first live run (Oct 19, 2026, HVAC Client Template sub-account):**
 - The form-lead token (contacts + opportunities only) **can't read custom fields** or conversations. All field ids (lead_source, service_needed, the 5 UTMs, Google Click ID, both consent fields) must come from the GHL handoff for each sub-account. The harness WARNs "NOT CHECKED" for messages when the token gets 401.
-- GHL's **opportunity search lags** right after a create. A resubmit seconds later found 0 open deals, the create returned 400, and only GHL's own duplicate rejection kept it to one deal (the step is reported `failed`, which would raise an alert if `ALERT_WEBHOOK` is set). Still exactly one deal, but the function's search-first dedupe isn't the thing that held.
+- GHL's **opportunity search lags** right after a create. A resubmit seconds later found 0 open deals, the create returned 400, and only GHL's own duplicate rejection kept it to one deal (the step is reported `failed`, which would raise an alert if `ALERT_WEBHOOK` is set). Still exactly one deal, but the function's search-first dedupe isn't the thing that held. **Fixed (Oct 19):** a 400 on create now triggers short re-searches and reports `existing` without an alert (see Retries). Not yet re-verified live.
 - GHL adds an **"Opportunity created" activity** to the contact's conversation (direction `outbound`, `TYPE_ACTIVITY_OPPORTUNITY`). It's a timeline entry, not a message; the harness ignores activity types.
