@@ -3,3 +3,9 @@ __pycache__/
 .DS_Store
 .vercel
 node_modules/
+
+# SEO scripts: Google credentials and exports stay on Logan's PC (never commit)
+secrets/
+gsc-key*.json
+*service-account*.json
+gsc-exports/
