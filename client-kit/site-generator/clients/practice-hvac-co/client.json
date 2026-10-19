@@ -1,0 +1,40 @@
+{
+  "_note": "PRACTICE CLIENT. Every detail here is made up. Not a real business. URLs use example.com (reserved for examples).",
+  "slug": "practice-hvac-co",
+  "TEST_SITE": true,
+  "NOINDEX": true,
+  "business_name": "Practice HVAC Co (TEST)",
+  "tagline": "Heating and air conditioning service around Waco, TX (practice site)",
+  "phone": "254-555-0142",
+  "street_address": "",
+  "city": "Waco",
+  "state": "TX",
+  "license": "TACLA00000C (TEST placeholder, not a real license)",
+  "hours": "Mon-Fri 8am-5pm (TEST placeholder hours)",
+  "accent_color": "#1f6feb",
+  "logo": {"src": "logo-test.svg", "alt": "Practice HVAC Co (TEST) logo placeholder"},
+  "photos": [
+    {"src": "photo-test-1.svg", "alt": "TEST placeholder photo", "caption": "TEST placeholder. A real client supplies photos they took or own."}
+  ],
+  "services": [
+    {"name": "AC Repair", "form_value": "Repair", "blurb": "Diagnosis and repair for central air systems that aren't cooling the way they should."},
+    {"name": "Heating Repair", "form_value": "Repair", "blurb": "Furnace and heat pump troubleshooting and repair."},
+    {"name": "Tune-Ups and Maintenance", "form_value": "Tune-Up/Maintenance", "blurb": "Seasonal check-ups for cooling and heating equipment."},
+    {"name": "New System Estimates", "form_value": "New System Estimate", "blurb": "An in-home visit to talk through replacing an older system and the options that fit the house."},
+    {"name": "Indoor Air Quality", "form_value": "Indoor Air Quality", "blurb": "Filters, humidity control and air cleaning options."}
+  ],
+  "service_areas": [
+    {"name": "Waco", "facts": ["TEST fact: placeholder line for the Waco page. A real client supplies real local facts here."]},
+    {"name": "Hewitt", "facts": ["TEST fact: placeholder line for the Hewitt page.", "TEST fact: a second placeholder line, to show how several facts are listed."]},
+    "Woodway",
+    "Robinson",
+    "China Spring"
+  ],
+  "booking_url": "https://example.com/TEST-ghl-calendar-placeholder",
+  "review_url": "https://example.com/TEST-google-review-link-placeholder",
+  "ga4_id": "",
+  "call_tracking_script_url": "",
+  "turnstile_site_key": "1x00000000000000000000AA",
+  "CHAT_WIDGET_ID": "",
+  "FORM_ENDPOINT": "/api/form-lead"
+}

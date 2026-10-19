@@ -26,7 +26,7 @@ Steps, all on GHL API v2 (`https://services.leadconnectorhq.com`, `Version: 2021
 3. `POST /contacts/{id}/notes` with the message, if there is one.
 4. `GET /opportunities/search?location_id=…&pipeline_id=…&contact_id=…&status=open`. If the contact has no open opportunity in that pipeline, `POST /opportunities/` creates one at `GHL_STAGE_ID`, named `<name> – <service>`, with status `open`.
 
-It never sets any SMS consent field (`sms_consent`), any DND field, or any consent or SMS tag. A test fails if any outgoing request carries `sms_consent` or `sms-consent`.
+It never sets either SMS consent field in the template (`contact.sms_consent` or `contact.sms_marketing_consent`; both must stay empty for form leads), any DND field, or any consent or SMS tag. A test fails if any outgoing request carries `sms_consent` or `sms-consent`.
 
 **gclid goes into a custom field, not GHL's built-in one.** On Oct 18, 2026 we tested against the HMHQ sub-account. `POST /contacts/upsert` with the built-in top-level `gclid` returned 201 and echoed it, but `GET /contacts/{id}` and contact search didn't return it afterwards, and `attributionSource.gclid` was dropped too. The built-in field doesn't persist. So the handler puts the gclid only into the "Google Click ID" custom text field (`GHL_FIELD_GCLID`) and never sends a top-level `gclid`. UTMs and gclid go only into the upsert's custom fields: they're kept out of the note, the logs and the response.
 
@@ -57,6 +57,7 @@ GHL calls are retried on 429, 5xx and network errors or timeouts, about 3 attemp
 - **Upsert by email:** idempotent, so it's retried freely.
 - **Add tag:** adding the same tag twice is harmless.
 - **Notes:** retried too. A 5xx or timeout that GHL actually processed could leave a duplicate note.
+- **Opportunity create, HTTP 400:** never repeated. GHL can reject a duplicate while its search still can't see the first deal, so the function logs GHL's error message (with emails, names, phone-like numbers and long ids replaced by placeholders) and re-searches up to 3 times (0.5 s, 1 s, 1.5 s, within the 8 s budget). If an open deal shows up, the step is reported `existing` and **no alert** is sent; otherwise it's `failed` and alerted as before. Other 4xx answers are not re-searched.
 - **Opportunity create:** not idempotent. After a retryable failure, the function first re-searches the pipeline. If an open opportunity now exists, the create went through and nothing more is sent. If the re-search fails, it stops. It never creates a duplicate.
 
 Worst case (GHL hanging on every call), a request takes about 35 s: once the 8 s budget is used up, remaining steps get a single attempt each. On the client project, set `"functions": { "api/form-lead.js": { "maxDuration": 60 } }` in `vercel.json` if its default limit is lower.
@@ -101,3 +102,12 @@ Other guards: CORS only for origins in `ALLOWED_ORIGINS`, which must match exact
 ## Tests
 
 `node --test client-kit/form-lead/test/` from the repo root (it also runs as part of `npm test`). `fetch` is stubbed, so the tests make no GHL calls.
+
+## Live check against GHL (`scripts/live-check.mjs`)
+
+Runs the real handler in-process against a real sub-account, then reads GHL back and checks: contact exists by email, tag `lead-web-form`, lead_source = "Website Form", service_needed = the service sent, an open opportunity in `GHL_PIPELINE_ID` at `GHL_STAGE_ID`, no `sms-consent` tag, and BOTH consent fields empty: SMS Consent (`GHL_FIELD_SMS_CONSENT`) and SMS Marketing Consent (`GHL_FIELD_SMS_MARKETING_CONSENT`), both harness-only and optional (WARN when unset). `--twice` also checks dedupe. It sends `phone` and `sms_consent` in the payload on purpose, to prove they are dropped. Without `--live` it only reports which env vars are missing. Load env from a secret store (`op run ...` or `node --env-file=<file outside the repo>`); never paste the token on the command line. Delete the test contact afterwards with Logan's OK.
+
+**Learned in the first live run (Oct 19, 2026, HVAC Client Template sub-account):**
+- The form-lead token (contacts + opportunities only) **can't read custom fields** or conversations. All field ids (lead_source, service_needed, the 5 UTMs, Google Click ID, both consent fields) must come from the GHL handoff for each sub-account. The harness WARNs "NOT CHECKED" for messages when the token gets 401.
+- GHL's **opportunity search lags** right after a create. A resubmit seconds later found 0 open deals, the create returned 400, and only GHL's own duplicate rejection kept it to one deal (the step is reported `failed`, which would raise an alert if `ALERT_WEBHOOK` is set). Still exactly one deal, but the function's search-first dedupe isn't the thing that held. **Fixed (Oct 19):** a 400 on create now triggers short re-searches and reports `existing` without an alert (see Retries). Not yet re-verified live.
+- GHL adds an **"Opportunity created" activity** to the contact's conversation (direction `outbound`, `TYPE_ACTIVITY_OPPORTUNITY`). It's a timeline entry, not a message; the harness ignores activity types.

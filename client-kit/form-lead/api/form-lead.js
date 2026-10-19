@@ -5,7 +5,8 @@
 // opportunity in the pipeline unless the contact already has an open one there.
 // Env vars: GHL_TOKEN, GHL_LOCATION_ID, GHL_FIELD_LEAD_SOURCE, GHL_FIELD_SERVICE, GHL_PIPELINE_ID,
 // GHL_STAGE_ID, ALLOWED_ORIGINS (comma separated). Optional: GHL_FIELD_UTM_SOURCE, GHL_FIELD_UTM_MEDIUM,
-// GHL_FIELD_UTM_CAMPAIGN, GHL_FIELD_UTM_TERM, GHL_FIELD_UTM_CONTENT, GHL_FIELD_GCLID, ALERT_WEBHOOK, SITE_LABEL.
+// GHL_FIELD_UTM_CAMPAIGN, GHL_FIELD_UTM_TERM, GHL_FIELD_UTM_CONTENT, GHL_FIELD_GCLID, ALERT_WEBHOOK, SITE_LABEL,
+// TURNSTILE_SECRET_KEY (unset = bot check skipped with a logged warning).
 // See README.md and .env.example.
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
@@ -98,10 +99,44 @@ function readBody(req) {
   return { body: body && typeof body === "object" ? body : null };
 }
 
+// Cloudflare Turnstile (free plan). Verified server-side when TURNSTILE_SECRET_KEY is set; skipped with a warning
+// when it isn't (honeypot + rate limit still apply). Docs: https://developers.cloudflare.com/turnstile/get-started/server-side-validation/
+// Test keys (https://developers.cloudflare.com/turnstile/troubleshooting/testing/): secret 1x0000000000000000000000000000000AA
+// always passes, 2x0000000000000000000000000000000AA always fails; test sitekeys give the token XXXX.DUMMY.TOKEN.XXXX.
+const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+const TURNSTILE_TIMEOUT_MS = 5000;
+async function verifyTurnstile(token, ip) {
+  const secret = String(process.env.TURNSTILE_SECRET_KEY || "").trim();
+  if (!secret) {
+    log("turnstile", true, { skipped: true, warning: "TURNSTILE_SECRET_KEY not set; bot check skipped" });
+    return { ok: true, skipped: true };
+  }
+  if (!token) { log("turnstile", false, { reason: "missing-token" }); return { ok: false, status: 400 }; }
+  try {
+    const r = await fetch(TURNSTILE_VERIFY_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ secret, response: token, ...(ip && ip !== "unknown" ? { remoteip: ip } : {}) }),
+      signal: AbortSignal.timeout(TURNSTILE_TIMEOUT_MS),
+    });
+    const d = await r.json().catch(() => null);
+    const ok = Boolean(r.ok && d && d.success === true);
+    // Error codes only (e.g. invalid-input-response, timeout-or-duplicate). Never the secret or the token.
+    log("turnstile", ok, { status: r.status, codes: ((d && d["error-codes"]) || []).slice(0, 5).map((c) => clean(c, 40)) });
+    return { ok, status: ok ? 200 : 403 };
+  } catch {
+    log("turnstile", false, { status: 0, reason: "verify-unreachable" });
+    return { ok: false, status: 503 }; // fail closed: an unverified post never reaches GHL
+  }
+}
+
 // Swappable in tests (fake sleep and clock).
 const deps = {
   sleep: (ms) => new Promise((r) => setTimeout(r, ms)),
   now: () => Date.now(),
+  // TEST HOOK, in-process only (never read from env or the request): pretend the first opportunity search found
+  // nothing, so a live run can force the 400-then-re-search path. Set only by scripts/live-check.mjs --force-400-path.
+  testHideOpenOnFirstSearch: false,
 };
 
 const retryable = (status) => status === 0 || status === 429 || status >= 500;
@@ -190,6 +225,37 @@ async function searchOpen(ctx, env, contactId) {
 
 // Create the opportunity. Creating isn't idempotent, so a failed create is retried only after a re-search shows
 // it really didn't go through; if the re-search finds one (or can't tell), we stop. Never creates duplicates.
+// GHL's error message for the logs, stripped of personal details: no email, no name (the opportunity name contains
+// it), no phone-like digit runs, no ids. One line, capped. Never sent in alerts or responses.
+const DUP_RECHECKS = 3; // searches after a 400 on create (GHL's opportunity search lags right after a create)
+const DUP_RECHECK_MS = [500, 1000, 1500];
+function ghlErrorMessage(data, lead) {
+  let m = data && (data.message ?? data.error ?? data.msg);
+  if (Array.isArray(m)) m = m.join("; ");
+  m = String(m == null ? "" : m);
+  m = m.replace(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+/g, "[email]");
+  for (const part of [lead.name, ...String(lead.name || "").split(/\s+/)].filter((x) => x && x.length > 1)) {
+    m = m.split(part).join("[name]");
+    m = m.replace(new RegExp(part.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi"), "[name]");
+  }
+  m = m.replace(/\+?\d[\d\s().-]{6,}\d/g, "[number]").replace(/[A-Za-z0-9_-]{16,}/g, "[id]");
+  return clean(m, 200);
+}
+
+// After a 400 on create: GHL can reject a duplicate (e.g. the sub-account disallows duplicate opportunities) while
+// its search still can't see the first deal. Re-search a few times with short waits; an open deal means "existing".
+async function recheckAfter400(ctx, env, contactId) {
+  for (let i = 0; i < DUP_RECHECKS; i++) {
+    const wait = DUP_RECHECK_MS[i] || DUP_RECHECK_MS[DUP_RECHECK_MS.length - 1];
+    if (deps.now() + wait > ctx.deadline) break;
+    await deps.sleep(wait);
+    const again = await searchOpen(ctx, env, contactId);
+    log("opportunity_recheck_400", again.ok, { status: again.status, open: again.open.length, attempt: i + 1 });
+    if (again.ok && again.open.length) return true;
+  }
+  return false;
+}
+
 async function createOpportunity(ctx, env, contactId, lead) {
   const payload = {
     locationId: env.GHL_LOCATION_ID,
@@ -203,6 +269,12 @@ async function createOpportunity(ctx, env, contactId, lead) {
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     r = await ghlOnce("POST", "/opportunities/", payload);
     if (r.ok) return { result: "created", status: r.status };
+    if (r.status === 400) {
+      log("opportunity_create", false, { status: 400, ghlMessage: ghlErrorMessage(r.data, lead) });
+      // Reported as "existing" (no alert) only when a re-search really finds the open deal.
+      if (await recheckAfter400(ctx, env, contactId)) return { result: "existing", status: 400 };
+      return { result: "failed", status: 400, step: "opportunity_create" };
+    }
     if (!retryable(r.status) || attempt === MAX_ATTEMPTS) break;
     if (!(await backoff(ctx, attempt, r.retryAfter))) break;
     const again = await searchOpen(ctx, env, contactId);
@@ -253,6 +325,12 @@ module.exports = async function handler(req, res) {
   };
   if (!lead.name) return res.status(400).json({ ok: false, error: "Please add your name." });
   if (!isEmail(lead.email)) return res.status(400).json({ ok: false, error: "Please check your email address." });
+
+  const human = await verifyTurnstile(clean(body["cf-turnstile-response"], 2048), ip);
+  if (!human.ok) {
+    if (human.status === 503) return res.status(503).json({ ok: false, error: GENERIC_ERROR });
+    return res.status(human.status).json({ ok: false, error: "Please complete the quick check above the Send button and try again." });
+  }
 
   const env = process.env;
   if (!env.GHL_TOKEN || !env.GHL_LOCATION_ID || !env.GHL_FIELD_LEAD_SOURCE || !env.GHL_FIELD_SERVICE || !env.GHL_PIPELINE_ID || !env.GHL_STAGE_ID) {
@@ -308,6 +386,10 @@ module.exports = async function handler(req, res) {
 
   // 4. Opportunity: only when this contact has no open one in the pipeline.
   const found = await searchOpen(ctx, env, contactId);
+  if (deps.testHideOpenOnFirstSearch && found.ok && found.open.length) {
+    log("opportunity_search", true, { testHook: "hid open deals from the first search" });
+    found.open = [];
+  }
   if (!found.ok) {
     // Don't create blind: a failed search could mean a duplicate. The contact, tag and note are saved.
     log("opportunity_search", false, { status: found.status });
@@ -319,7 +401,7 @@ module.exports = async function handler(req, res) {
       steps.opportunity = "existing";
     } else {
       const opp = await createOpportunity(ctx, env, contactId, lead);
-      log("opportunity_create", opp.result === "created", { status: opp.status });
+      log("opportunity_create", opp.result !== "failed", { status: opp.status, result: opp.result });
       steps.opportunity = opp.result;
       if (opp.result === "failed") failures.push({ step: opp.step, status: opp.status });
     }
@@ -331,5 +413,6 @@ module.exports = async function handler(req, res) {
 };
 
 module.exports.mapService = mapService;
+module.exports.ghlErrorMessage = ghlErrorMessage;
 module.exports.SERVICES = SERVICES;
 module.exports.deps = deps;

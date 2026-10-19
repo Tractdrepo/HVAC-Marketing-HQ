@@ -204,8 +204,10 @@ test('form-encoded body works the same (and ignores phone)', async () => {
   assert.ok(!g.calls.some((c) => String(c.rawBody || '').includes('5550199')));
 });
 
+// The HVAC Client Template has TWO consent fields, and website-form leads must leave BOTH empty:
+// contact.sms_consent (transactional) and contact.sms_marketing_consent (promotional). Only the chat widget sets them.
 test('no outbound request ever carries SMS consent', async () => {
-  for (const extra of [{}, { sms_consent: 'yes', 'sms-consent': 'on', smsConsent: true, tags: 'sms-consent' }]) {
+  for (const extra of [{}, { sms_consent: 'yes', 'sms-consent': 'on', smsConsent: true, tags: 'sms-consent', sms_marketing_consent: 'yes', smsMarketingConsent: true }]) {
     const g = stubGhl();
     const logs = captureLogs();
     await call({ ...LEAD, ...extra }).finally(() => { logs.restore(); g.restore(); });
@@ -637,4 +639,188 @@ test('missing GHL env with ALERT_WEBHOOK set: generic 503 and a config alert', a
   assert.equal(res.statusCode, 503);
   assert.equal(g.calls.length, 0);
   assert.match(g.alerts[0].body.text, /config/);
+});
+
+// 400 on opportunity create: GHL rejected a duplicate while its search still lagged (live run Oct 19, 2026).
+const DUP_400 = { status: 400, body: { statusCode: 400, message: 'Duplicate opportunity for Jane Q Doe (jane@example.com) – Jane Q Doe – Repair, call 254-555-0142, contact ct_123abcdefghijklmn' } };
+
+test('400 on create, re-search finds the deal: reported existing, no alert, no second create', async () => {
+  process.env.ALERT_WEBHOOK = ALERT_URL;
+  const g = stubGhl({ seq: { create: [DUP_400] }, open: (n) => (n <= 2 ? [] : [OPP]) }); // visible on the 2nd re-search
+  const logs = captureLogs();
+  const res = await call(LEAD).finally(() => { logs.restore(); g.restore(); });
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.body.ok, true);
+  assert.equal(res.body.steps.opportunity, 'existing');
+  assert.equal(count(g, '/opportunities/', 'POST'), 1, 'create is never repeated after a 400');
+  assert.equal(count(g, '/opportunities/search'), 3, 'initial search + 2 re-searches');
+  assert.equal(g.alerts.length, 0, 'no alert for a deal that exists');
+  assert.deepEqual(sleeps, [500, 1000]);
+});
+
+test('400 on create, re-search finds nothing: still failed and alerted, create not repeated', async () => {
+  process.env.ALERT_WEBHOOK = ALERT_URL;
+  const g = stubGhl({ seq: { create: [DUP_400] }, open: [] });
+  const logs = captureLogs();
+  const res = await call(LEAD).finally(() => { logs.restore(); g.restore(); });
+  assert.equal(res.body.steps.opportunity, 'failed');
+  assert.equal(count(g, '/opportunities/', 'POST'), 1);
+  assert.equal(count(g, '/opportunities/search'), 4, 'initial search + 3 re-searches');
+  assert.equal(g.alerts.length, 1);
+  assert.match(g.alerts[0].body.text, /opportunity_create, status 400/);
+  assert.doesNotMatch(g.alerts[0].body.text, /Duplicate opportunity/, 'GHL error text never goes in the alert');
+});
+
+test('400 on create: GHL error message is logged without email, name, phone or ids', async () => {
+  const g = stubGhl({ seq: { create: [DUP_400] }, open: (n) => (n === 1 ? [] : [OPP]) });
+  const logs = captureLogs();
+  await call(LEAD).finally(() => { logs.restore(); g.restore(); });
+  const line = logs.lines.find((l) => /"status":400/.test(l) && /ghlMessage/.test(l));
+  assert.ok(line, 'the 400 is logged with GHL\'s message');
+  assert.match(line, /Duplicate opportunity/);
+  for (const bad of ['jane@example.com', 'Jane', 'Doe', '254-555-0142', '2545550142', 'ct_123abcdefghijklmn', 'pit-test-token-not-real']) {
+    assert.ok(!line.toLowerCase().includes(bad.toLowerCase()), `log line leaked ${bad}`);
+  }
+  for (const l of logs.lines) assert.ok(!/jane@example\.com|Jane Q Doe/i.test(l), 'no personal details in any log line');
+});
+
+test('400 on create: re-searches respect the retry budget', async () => {
+  const g = stubGhl({ seq: { create: [DUP_400] }, open: [] });
+  const logs = captureLogs();
+  const realNow = handler.deps.now;
+  let first = true;
+  handler.deps.now = () => (first ? clock : clock + 7800); // budget almost used after the first call
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (...a) => { first = false; return origFetch(...a); };
+  const res = await call(LEAD).finally(() => { logs.restore(); g.restore(); handler.deps.now = realNow; });
+  assert.equal(res.body.steps.opportunity, 'failed');
+  assert.equal(count(g, '/opportunities/search'), 1, 'no re-search once the budget is gone');
+});
+
+test('ghlErrorMessage handles arrays, missing bodies and caps length', () => {
+  const lead = { name: 'Ann Lee', email: 'ann@x.com' };
+  assert.equal(handler.ghlErrorMessage(null, lead), '');
+  assert.equal(handler.ghlErrorMessage({ message: ['bad pipelineStageId', 'Ann Lee exists'] }, lead), 'bad pipelineStageId; [name] exists');
+  assert.ok(handler.ghlErrorMessage({ message: 'x'.repeat(500) }, lead).length <= 200);
+  assert.equal(handler.ghlErrorMessage({ error: 'ann@x.com dup' }, lead), '[email] dup');
+});
+
+// ---------- Cloudflare Turnstile ----------
+// Dummy keys from https://developers.cloudflare.com/turnstile/troubleshooting/testing/ . Cloudflare's siteverify is
+// stubbed here to behave as that page documents; scripts/turnstile-dummy-check.mjs runs the same keys against the
+// real Cloudflare endpoint (no GHL calls).
+const TS_PASS = '1x0000000000000000000000000000000AA';
+const TS_FAIL = '2x0000000000000000000000000000000AA';
+const TS_SPENT = '3x0000000000000000000000000000000AA';
+const DUMMY_TOKEN = 'XXXX.DUMMY.TOKEN.XXXX';
+function withCloudflare(g, { down = false } = {}) {
+  const inner = globalThis.fetch;
+  const verifies = [];
+  globalThis.fetch = async (url, opts = {}) => {
+    if (String(url) !== 'https://challenges.cloudflare.com/turnstile/v0/siteverify') return inner(url, opts);
+    const p = new URLSearchParams(String(opts.body));
+    verifies.push({ secret: p.get('secret'), response: p.get('response'), remoteip: p.get('remoteip') });
+    if (down) throw new Error('ECONNRESET');
+    const secret = p.get('secret');
+    const body = secret === TS_PASS && p.get('response') === DUMMY_TOKEN ? { success: true, 'error-codes': [] }
+      : secret === TS_SPENT ? { success: false, 'error-codes': ['timeout-or-duplicate'] }
+      : { success: false, 'error-codes': ['invalid-input-response'] };
+    return json(body, 200);
+  };
+  return verifies;
+}
+
+test('turnstile: always-pass dummy secret + dummy token -> lead goes to GHL', async () => {
+  process.env.TURNSTILE_SECRET_KEY = TS_PASS;
+  const g = stubGhl();
+  const v = withCloudflare(g);
+  const logs = captureLogs();
+  const res = await call({ ...LEAD, 'cf-turnstile-response': DUMMY_TOKEN }).finally(() => { logs.restore(); g.restore(); });
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.body.ok, true);
+  assert.equal(v.length, 1);
+  assert.equal(v[0].response, DUMMY_TOKEN);
+  assert.ok(v[0].remoteip, 'remoteip sent');
+  assert.ok(g.calls.some((c) => c.path === '/contacts/upsert'));
+  assert.ok(!logs.lines.join('\n').includes(TS_PASS), 'secret never logged');
+  assert.ok(!logs.lines.join('\n').includes(DUMMY_TOKEN), 'token never logged');
+});
+
+test('turnstile: always-fail dummy secret -> 403, nothing sent to GHL', async () => {
+  process.env.TURNSTILE_SECRET_KEY = TS_FAIL;
+  const g = stubGhl();
+  withCloudflare(g);
+  const logs = captureLogs();
+  const res = await call({ ...LEAD, 'cf-turnstile-response': DUMMY_TOKEN }).finally(() => { logs.restore(); g.restore(); });
+  assert.equal(res.statusCode, 403);
+  assert.equal(res.body.ok, false);
+  assert.equal(g.calls.length, 0);
+  assert.ok(logs.lines.some((l) => /"step":"turnstile".*invalid-input-response/.test(l)));
+});
+
+test('turnstile: token already spent -> 403; missing token -> 400 without calling Cloudflare', async () => {
+  process.env.TURNSTILE_SECRET_KEY = TS_SPENT;
+  let g = stubGhl();
+  withCloudflare(g);
+  let logs = captureLogs();
+  let res = await call({ ...LEAD, 'cf-turnstile-response': DUMMY_TOKEN }).finally(() => { logs.restore(); g.restore(); });
+  assert.equal(res.statusCode, 403);
+  process.env.TURNSTILE_SECRET_KEY = TS_PASS;
+  g = stubGhl();
+  const v = withCloudflare(g);
+  logs = captureLogs();
+  res = await call(LEAD).finally(() => { logs.restore(); g.restore(); });
+  assert.equal(res.statusCode, 400);
+  assert.equal(v.length, 0);
+  assert.equal(g.calls.length, 0);
+});
+
+test('turnstile: Cloudflare unreachable -> fails closed (503), nothing sent to GHL', async () => {
+  process.env.TURNSTILE_SECRET_KEY = TS_PASS;
+  const g = stubGhl();
+  withCloudflare(g, { down: true });
+  const logs = captureLogs();
+  const res = await call({ ...LEAD, 'cf-turnstile-response': DUMMY_TOKEN }).finally(() => { logs.restore(); g.restore(); });
+  assert.equal(res.statusCode, 503);
+  assert.equal(g.calls.length, 0);
+});
+
+test('turnstile: no TURNSTILE_SECRET_KEY -> skipped with a logged warning, lead still accepted', async () => {
+  delete process.env.TURNSTILE_SECRET_KEY;
+  const g = stubGhl();
+  const v = withCloudflare(g);
+  const logs = captureLogs();
+  const res = await call(LEAD).finally(() => { logs.restore(); g.restore(); });
+  assert.equal(res.statusCode, 200);
+  assert.equal(v.length, 0);
+  assert.ok(logs.lines.some((l) => /"step":"turnstile".*"skipped":true.*TURNSTILE_SECRET_KEY not set/.test(l)));
+});
+
+test('turnstile token is not forwarded to GHL', async () => {
+  process.env.TURNSTILE_SECRET_KEY = TS_PASS;
+  const g = stubGhl();
+  withCloudflare(g);
+  const logs = captureLogs();
+  await call({ ...LEAD, 'cf-turnstile-response': DUMMY_TOKEN }).finally(() => { logs.restore(); g.restore(); });
+  for (const c of g.calls) assert.ok(!String(c.rawBody || '').includes('DUMMY'), c.path);
+});
+
+test('test hook: testHideOpenOnFirstSearch forces create -> 400 -> re-search -> existing', async () => {
+  handler.deps.testHideOpenOnFirstSearch = true;
+  const g = stubGhl({ seq: { create: [DUP_400] }, open: [OPP] });
+  const logs = captureLogs();
+  const res = await call(LEAD).finally(() => { logs.restore(); g.restore(); });
+  assert.equal(res.body.steps.opportunity, 'existing');
+  assert.equal(count(g, '/opportunities/', 'POST'), 1);
+  assert.ok(logs.lines.some((l) => /testHook/.test(l)));
+});
+
+test('test hook is off by default and not settable from env or the request', async () => {
+  assert.equal(handler.deps.testHideOpenOnFirstSearch, false);
+  process.env.testHideOpenOnFirstSearch = 'true';
+  const g = stubGhl({ open: [OPP] });
+  const logs = captureLogs();
+  const res = await call({ ...LEAD, testHideOpenOnFirstSearch: true }).finally(() => { logs.restore(); g.restore(); delete process.env.testHideOpenOnFirstSearch; });
+  assert.equal(res.body.steps.opportunity, 'existing');
+  assert.equal(count(g, '/opportunities/', 'POST'), 0, 'normal path: search finds it, no create');
 });
