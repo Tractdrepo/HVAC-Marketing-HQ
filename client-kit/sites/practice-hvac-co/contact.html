@@ -8,11 +8,12 @@
 <meta name="description" content="Request service from Practice HVAC Co (TEST).">
 <link rel="stylesheet" href="/styles.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HVACBusiness", "name": "Practice HVAC Co (TEST)", "telephone": "+12545550142", "areaServed": [{"@type": "City", "name": "Waco, TX"}, {"@type": "City", "name": "Hewitt, TX"}, {"@type": "City", "name": "Woodway, TX"}, {"@type": "City", "name": "Robinson, TX"}, {"@type": "City", "name": "China Spring, TX"}]}</script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 <div class="test-banner" role="note">TEST SITE – not a real business</div>
-<header class="top"><div class="wrap"><a class="brand" href="/">Practice HVAC Co (TEST)</a><nav><a href="/">Home</a><a href="/services">Services</a><a href="/service-areas">Service areas</a><a href="/contact">Contact</a></nav>
-<a class="btn call" href="tel:+12545550142">Call 254-555-0142</a></div></header>
+<header class="top"><div class="wrap"><a class="brand" href="/"><img src="/img/logo-test.svg" alt="Practice HVAC Co (TEST) logo placeholder" height="40"></a><nav><a href="/">Home</a><a href="/services">Services</a><a href="/service-areas">Service areas</a><a href="/contact">Contact</a></nav>
+<span class="cta"><a class="btn ghost" href="https://example.com/TEST-ghl-calendar-placeholder" target="_blank" rel="noopener">Book online</a> <a class="btn call" href="tel:+12545550142">Call 254-555-0142</a></span></div></header>
 <main class="wrap">
 
 <h1>Request service</h1><form id="lead-form" class="lead-form" action="/api/form-lead" method="post" novalidate>
@@ -23,19 +24,23 @@
 <label>Message <textarea name="message" rows="4" maxlength="2000"></textarea></label>
 <div class="hp" aria-hidden="true"><label>Company fax <input name="company_fax" tabindex="-1" autocomplete="off"></label></div>
 <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content"><input type="hidden" name="gclid">
+<div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="light"></div>
 <button class="btn" type="submit">Send</button>
 <p class="form-note">We reply by email. To talk now, call 254-555-0142.</p>
 <p class="form-status" role="status" aria-live="polite"></p>
 </form>
+<p>Prefer to pick a time yourself? <a class="btn" href="https://example.com/TEST-ghl-calendar-placeholder" target="_blank" rel="noopener">Book online</a></p>
+<p>Already a customer? <a class="btn ghost" href="https://example.com/TEST-google-review-link-placeholder" target="_blank" rel="noopener">Leave us a Google review</a></p>
 </main>
 <footer class="foot"><div class="wrap">
 <p>Practice HVAC Co (TEST) · Serving Waco, Hewitt, Woodway, Robinson, China Spring, TX</p>
-<p>Mon-Fri 8am-5pm (placeholder hours)</p>
-<p>License: TACLA00000C (placeholder, not a real license)</p>
-<p><a href="/privacy">Privacy</a></p>
+<p><a href="tel:+12545550142">254-555-0142</a></p>
+<p>Hours: Mon-Fri 8am-5pm (TEST placeholder hours)</p>
+<p>License: TACLA00000C (TEST placeholder, not a real license)</p>
+<p><a class="review-link" href="https://example.com/TEST-google-review-link-placeholder" target="_blank" rel="noopener">Leave us a Google review</a></p>
+<p><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
 <p><strong>TEST SITE – not a real business.</strong> Practice site for internal testing.</p>
 </div></footer>
 <script src="/site.js" defer></script>
-
 </body>
 </html>

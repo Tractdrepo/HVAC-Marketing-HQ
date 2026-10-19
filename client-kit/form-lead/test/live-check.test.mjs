@@ -123,3 +123,13 @@ test('--twice WARNs when the second submit did not dedupe via search', async () 
   assert.equal(r.ok, true);
   assert.ok(lines.some((l) => /^WARN .*deduped via search .*"failed"/.test(l)));
 });
+
+test('--force-400-path sets the hook only for the 2nd submit and always clears it', async () => {
+  const seen = [];
+  const h = async (req, res) => { seen.push(h.deps.testHideOpenOnFirstSearch); return res.status(200).json({ ok: true, steps: { opportunity: 'existing' } }); };
+  h.deps = { testHideOpenOnFirstSearch: false };
+  const r = await runLiveCheck({ env: ENV, email: 'me@example.com', twice: true, forcePath400: true, fetchImpl: fakeGhl(), handler: h, log: quiet });
+  assert.equal(r.ok, true);
+  assert.deepEqual(seen, [false, true]);
+  assert.equal(h.deps.testHideOpenOnFirstSearch, false);
+});

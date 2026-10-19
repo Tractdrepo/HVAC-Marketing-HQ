@@ -73,7 +73,7 @@ const fieldValue = (contact, id) => {
 export const isRealOutbound = (m) => m && m.direction === 'outbound' && !/^TYPE_ACTIVITY/.test(String(m.messageType || '')) && !m.activity && m.messageType !== 'TYPE_INTERNAL_COMMENT';
 const isEmpty = (v) => v === undefined || v === null || v === '' || (Array.isArray(v) && v.length === 0);
 
-export async function runLiveCheck({ env = process.env, email, name = 'Practice Test Lead', service = 'Tune-Up/Maintenance', twice = false, tracking = TEST_TRACKING, settleMs = 0, fetchImpl = globalThis.fetch, handler = require('../api/form-lead.js'), log = console.log } = {}) {
+export async function runLiveCheck({ env = process.env, email, name = 'Practice Test Lead', service = 'Tune-Up/Maintenance', twice = false, tracking = TEST_TRACKING, settleMs = 0, forcePath400 = false, fetchImpl = globalThis.fetch, handler = require('../api/form-lead.js'), log = console.log } = {}) {
   const results = [];
   const check = (label, pass, detail = '', level = pass ? 'PASS' : 'FAIL') => { results.push({ label, pass, level }); log(`${level}  ${label}${detail ? `  (${detail})` : ''}`); };
 
@@ -87,7 +87,11 @@ export async function runLiveCheck({ env = process.env, email, name = 'Practice 
   const first = await invoke(handler, origin, payload);
   check('handler returned ok', first.status === 200 && first.body && first.body.ok === true, `HTTP ${first.status} steps=${JSON.stringify(first.body && first.body.steps)}`);
   if (twice) {
-    const second = await invoke(handler, origin, payload);
+    // --force-400-path: hide the existing deal from the 2nd submit's first search, so the create is attempted and
+    // (if the sub-account rejects duplicate deals) GHL answers 400 -> re-search -> "existing". If the sub-account
+    // ALLOWS duplicates this creates a 2nd deal; the opportunity count check below would then FAIL loudly.
+    if (forcePath400) handler.deps.testHideOpenOnFirstSearch = true;
+    const second = await invoke(handler, origin, payload).finally(() => { if (handler.deps) handler.deps.testHideOpenOnFirstSearch = false; });
     check('second submit returned ok', second.status === 200 && second.body && second.body.ok === true, `HTTP ${second.status} steps=${JSON.stringify(second.body && second.body.steps)}`);
     // The intended dedupe path is opportunity search -> "existing". GHL's opportunity search lags right after a
     // create (live run Oct 19: search returned 0, create then got 400), so a quick resubmit may end "failed" and only
@@ -167,6 +171,7 @@ function parseArgs(argv) {
     const k = argv[i];
     if (k === '--live') a.live = true;
     else if (k === '--twice') a.twice = true;
+    else if (k === '--force-400-path') { a.force400 = true; a.twice = true; }
     else if (k === '--email') a.email = argv[++i];
     else if (k === '--name') a.name = argv[++i];
     else if (k === '--service') a.service = argv[++i];
@@ -182,6 +187,6 @@ if (import.meta.url === pathToFileURL(process.argv[1] || '').href) {
     console.log(missing.length ? `Missing env: ${missing.join(', ')}` : 'All required env vars are present.');
     process.exit(0);
   }
-  const { ok } = await runLiveCheck({ email: a.email, name: a.name, service: a.service, twice: a.twice, settleMs: 15000 });
+  const { ok } = await runLiveCheck({ email: a.email, name: a.name, service: a.service, twice: a.twice, settleMs: 15000, forcePath400: Boolean(a.force400) });
   process.exit(ok ? 0 : 1);
 }
