@@ -86,7 +86,7 @@ POSTS = [
     # ------------------------------------------------------------------ 2. Local Services Ads
     {
         "slug": "google-local-services-ads-hvac",
-        "title": "Google Local Services Ads for HVAC: how they work and how leads are charged",
+        "title": "Google Local Services Ads for HVAC: how they work and how leads are charged", "seo_title": "Google Local Services Ads for HVAC: Costs and How They Work",
         "short": "Local Services Ads",
         "desc": "What Local Services Ads are, what counts as a charged lead, what Google says affects your ranking, and how credits work when a lead isn't real.",
         "read": 5,
@@ -229,7 +229,7 @@ POSTS = [
     # ------------------------------------------------------------------ 4. HVAC SEO
     {
         "slug": "hvac-seo-what-moves-rankings",
-        "title": "How HVAC rankings work: what moves the map pack and organic results",
+        "title": "How HVAC rankings work: what moves the map pack and organic results", "seo_title": "HVAC SEO: What Moves Map Pack and Organic Rankings",
         "short": "HVAC SEO",
         "desc": "The map pack and the regular results rank differently. What Google says matters for each, and what an HVAC company can change this month.",
         "read": 6,
@@ -298,7 +298,7 @@ POSTS = [
     # ------------------------------------------------------------------ 5. Reviews
     {
         "slug": "get-more-google-reviews-hvac",
-        "title": "How to get more HVAC reviews on Google (within Google's rules)",
+        "title": "How to get more HVAC reviews on Google (within Google's rules)", "seo_title": "How to Get More Google Reviews for Your HVAC Company",
         "short": "Getting more reviews",
         "desc": "A simple system for asking every customer for a Google review, what Google and the FTC don't allow, and how to reply so the next homeowner calls you.",
         "read": 5,
@@ -505,7 +505,7 @@ POSTS = [
     # ------------------------------------------------------------------ 8. Facebook ads
     {
         "slug": "facebook-ads-for-hvac",
-        "title": "Facebook ads for HVAC: when they work (seasonal tune-ups, retargeting)",
+        "title": "Facebook ads for HVAC: when they work (seasonal tune-ups, retargeting)", "seo_title": "Facebook Ads for HVAC: When They Actually Work",
         "short": "Facebook ads",
         "desc": "Facebook isn't where homeowners search for a repair. It's where you remind past visitors about tune-ups before the season. When HVAC Facebook ads work.",
         "read": 5,
@@ -571,7 +571,7 @@ POSTS = [
     # ------------------------------------------------------------------ 9. Best agencies listicle
     {
         "slug": "best-hvac-marketing-agencies",
-        "title": "The best HVAC marketing agencies in 2026, compared and priced",
+        "title": "The best HVAC marketing agencies in 2026, compared and priced", "seo_title": "Best HVAC Marketing Agencies in 2026, Compared",
         "short": "Best HVAC marketing agencies",
         "desc": "Eight HVAC marketing agencies compared on published price, contract, website ownership and fit, with sources. We're on the list, and we say so.",
         "read": 11,
@@ -726,7 +726,7 @@ POSTS = [
     },
     # ------------------------------------------------------------------ Oct 15 batch: CRM, ServiceTitan vs HCP, ideas, leads, advertising, Google Verified
     {'slug': 'best-crm-for-hvac',
-     'title': 'The best CRM for HVAC companies in 2026: field software vs a marketing CRM',
+     'title': 'The best CRM for HVAC companies in 2026: field software vs a marketing CRM', 'seo_title': 'Best CRM for HVAC Companies in 2026, Compared',
      'short': 'Best CRM for HVAC',
      'desc': 'ServiceTitan, Housecall Pro, Jobber, FieldEdge and HighLevel compared for HVAC: what each does, published prices, and why many shops run two.',
      'read': 8,
@@ -865,7 +865,7 @@ POSTS = [
                  ('HighLevel: Reputation management', 'https://www.gohighlevel.com/online-reputation-management-software')],
      'related': ['servicetitan-vs-housecall-pro', 'missed-call-text-back-hvac', 'hvac-lead-generation-bought-vs-owned', 'get-more-google-reviews-hvac']},
     {'slug': 'servicetitan-vs-housecall-pro',
-     'title': 'ServiceTitan vs Housecall Pro for HVAC: pricing, fit and features compared',
+     'title': 'ServiceTitan vs Housecall Pro for HVAC: pricing, fit and features compared', 'seo_title': 'ServiceTitan vs Housecall Pro for HVAC: Pricing and Fit',
      'short': 'ServiceTitan vs Housecall Pro',
      'desc': 'ServiceTitan vs Housecall Pro for HVAC shops: how each prices, which size of shop each fits, and how booking, marketing and reviews compare.',
      'read': 7,
@@ -1393,7 +1393,7 @@ POSTS = [
                  ('Google Analytics Help: URL builders, collect campaign data with custom URLs', 'https://support.google.com/analytics/answer/10917952')],
      'related': ['how-much-to-spend-on-google-ads-hvac', 'google-ads-vs-local-services-ads-hvac', 'facebook-ads-for-hvac', 'hvac-marketing-cost']},
     {'slug': 'google-guaranteed-hvac',
-     'title': 'Google Guaranteed for HVAC companies: what changed and how to get the Google Verified badge',
+     'title': 'Google Guaranteed for HVAC companies: what changed and how to get the Google Verified badge', 'seo_title': 'Google Guaranteed for HVAC: Getting the Verified Badge',
      'short': 'Google Guaranteed',
      'desc': 'Google retired the Google Guaranteed badge and its money back guarantee. What the Google Verified badge means for HVAC shops, and the checks to get it.',
      'read': 6,

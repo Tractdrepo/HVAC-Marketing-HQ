@@ -1525,7 +1525,7 @@ def guide_page(g):
     art = ld({"@context": "https://schema.org", "@type": "Article", "headline": g["title"], "description": g["desc"],
               "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{SITE_HOST}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": f"https://{SITE_HOST}/apple-touch-icon-180.png"}}, "image": f"https://{SITE_HOST}/og-image.png",
               "datePublished": g.get("date", GUIDES_UPDATED_ISO), "dateModified": g.get("date", GUIDES_UPDATED_ISO), "mainEntityOfPage": f"https://{SITE_HOST}/{route(guide_path(g['slug']))}"})
-    return page(guide_path(g["slug"]), g["title"], g["desc"], body, extra_head=art + faq_ld(g["faq"]), has_form=False)
+    return page(guide_path(g["slug"]), g.get("seo_title", g["title"]), g["desc"], body, extra_head=art + faq_ld(g["faq"]), has_form=False)
 
 
 def niche_page(n):
@@ -1563,12 +1563,15 @@ SERVICE_POSTS = {
     "google-ads": ["how-much-to-spend-on-google-ads-hvac", "google-ads-vs-local-services-ads-hvac", "hvac-advertising"],
     "local-services-ads": ["google-local-services-ads-hvac", "google-ads-vs-local-services-ads-hvac", "google-guaranteed-hvac"],
     "facebook-ads": ["facebook-ads-for-hvac"],
-    "local-seo": ["hvac-seo-what-moves-rankings"],
-    "google-business-profile": ["hvac-seo-what-moves-rankings"],
+    "local-seo": ["hvac-seo-what-moves-rankings", "get-more-google-reviews-hvac"],
+    "google-business-profile": ["hvac-seo-what-moves-rankings", "get-more-google-reviews-hvac", "google-guaranteed-hvac"],
     "review-requests": ["get-more-google-reviews-hvac", "hvac-marketing-ideas"],
-    "hvac-website-redesign": ["hvac-website-design"],
-    "hvac-lead-generation": ["hvac-lead-generation-bought-vs-owned", "how-to-get-more-hvac-leads"],
-    "missed-call-text-back": ["hvac-lead-generation-bought-vs-owned"],
+    "hvac-website-redesign": ["hvac-website-design", "how-to-get-more-hvac-leads"],
+    "hvac-lead-generation": ["hvac-lead-generation-bought-vs-owned", "how-to-get-more-hvac-leads", "hvac-advertising", "hvac-marketing-ideas"],
+    "missed-call-text-back": ["hvac-lead-generation-bought-vs-owned", "how-to-get-more-hvac-leads"],
+    "seasonal-campaigns": ["facebook-ads-for-hvac", "hvac-marketing-ideas"],
+    "ai-web-chat": ["how-to-get-more-hvac-leads"],
+    "ai-phone-answering": ["how-to-get-more-hvac-leads"],
     "estimate-follow-up": ["hvac-lead-generation-bought-vs-owned"],
 }
 

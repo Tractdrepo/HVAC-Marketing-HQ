@@ -141,7 +141,7 @@ GUIDES = [
     },
     {
         "slug": "missed-call-text-back-hvac",
-        "title": "Missed-call text-back for HVAC: how it works and how to do it legally",
+        "title": "Missed-call text-back for HVAC: how it works and how to do it legally", "seo_title": "Missed-Call Text-Back for HVAC: How It Works, Legally",
         "short": "Missed-call text-back",
         "desc": "What missed-call text-back is, why it matters most on the hottest days, the carrier registration it needs, and the Texas texting rules to know.",
         "read": 7,
@@ -198,7 +198,7 @@ GUIDES = [
     },
     {
         "slug": "hvac-website-checklist",
-        "title": "The HVAC website checklist: 20 things that decide if the phone rings",
+        "title": "The HVAC website checklist: 20 things that decide if the phone rings", "seo_title": "HVAC Website Checklist: 20 Things That Make the Phone Ring",
         "short": "Website checklist",
         "desc": "A free, 20-point checklist for HVAC company websites: speed, calls, service pages, trust and tracking. No email required.",
         "read": 9,
@@ -326,7 +326,7 @@ GUIDES = [
     },
     {
         "slug": "scorpion-alternative-hvac",
-        "title": "Scorpion alternatives for HVAC companies: what to compare before you sign",
+        "title": "Scorpion alternatives for HVAC companies: what to compare before you sign", "seo_title": "Scorpion Alternatives for HVAC Companies: What to Compare",
         "short": "Scorpion alternatives",
         "desc": "What Scorpion's own FAQ says about contracts, website ownership and leaving, and the questions to ask any HVAC marketing agency before you sign.",
         "read": 7,
