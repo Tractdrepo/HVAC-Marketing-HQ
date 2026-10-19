@@ -6,6 +6,9 @@
 //   3. lead_source = "Website Form" and service_needed     5. SMS consent is NOT set: no sms-consent tag, and BOTH
 //      = the service sent                                     consent fields (sms_consent, sms_marketing_consent) empty
 // Optional --twice submits again and checks there is still exactly one open opportunity (dedupe).
+// Also sends TEST_TRACKING (UTMs + fake gclid) and checks each mapped field; reads conversations (if the token can)
+// to prove nothing was sent. Field ids must come from the GHL handoff: the form-lead token has no
+// locations/customFields.readonly scope, so it can't look them up itself.
 //
 // Secrets: NEVER put the token in this file, the repo, chat or a shell history line. Load env from a secret store:
 //   op run --env-file=practice.op.env -- node client-kit/form-lead/scripts/live-check.mjs --live --email you@example.com
@@ -23,6 +26,9 @@ import { pathToFileURL } from 'node:url';
 
 const require = createRequire(import.meta.url);
 const GHL = 'https://services.leadconnectorhq.com';
+// Realistic test UTMs + a fake gclid, so the tracking field mapping is exercised.
+export const TEST_TRACKING = { utm_source: 'practice-test', utm_medium: 'cpc', utm_campaign: 'practice-run-oct26', utm_term: 'ac repair waco', utm_content: 'harness', gclid: 'TEST-GCLID-practice' };
+const TRACKING_ENV = { utm_source: 'GHL_FIELD_UTM_SOURCE', utm_medium: 'GHL_FIELD_UTM_MEDIUM', utm_campaign: 'GHL_FIELD_UTM_CAMPAIGN', utm_term: 'GHL_FIELD_UTM_TERM', utm_content: 'GHL_FIELD_UTM_CONTENT', gclid: 'GHL_FIELD_GCLID' };
 const CONSENT_FIELDS = [['GHL_FIELD_SMS_CONSENT', 'SMS Consent (contact.sms_consent)'], ['GHL_FIELD_SMS_MARKETING_CONSENT', 'SMS Marketing Consent (contact.sms_marketing_consent)']];
 const REQUIRED = ['GHL_TOKEN', 'GHL_LOCATION_ID', 'GHL_FIELD_LEAD_SOURCE', 'GHL_FIELD_SERVICE', 'GHL_PIPELINE_ID', 'GHL_STAGE_ID', 'ALLOWED_ORIGINS'];
 
@@ -62,9 +68,12 @@ const fieldValue = (contact, id) => {
   if (!f) return undefined;
   return f.value ?? f.field_value ?? f.fieldValue;
 };
+// GHL logs activity entries (e.g. "Opportunity created", messageType TYPE_ACTIVITY_OPPORTUNITY, direction "outbound")
+// in the conversation. They are internal timeline items, not messages to the lead, so they don't count.
+export const isRealOutbound = (m) => m && m.direction === 'outbound' && !/^TYPE_ACTIVITY/.test(String(m.messageType || '')) && !m.activity && m.messageType !== 'TYPE_INTERNAL_COMMENT';
 const isEmpty = (v) => v === undefined || v === null || v === '' || (Array.isArray(v) && v.length === 0);
 
-export async function runLiveCheck({ env = process.env, email, name = 'Practice Test Lead', service = 'Tune-Up/Maintenance', twice = false, fetchImpl = globalThis.fetch, handler = require('../api/form-lead.js'), log = console.log } = {}) {
+export async function runLiveCheck({ env = process.env, email, name = 'Practice Test Lead', service = 'Tune-Up/Maintenance', twice = false, tracking = TEST_TRACKING, settleMs = 0, fetchImpl = globalThis.fetch, handler = require('../api/form-lead.js'), log = console.log } = {}) {
   const results = [];
   const check = (label, pass, detail = '', level = pass ? 'PASS' : 'FAIL') => { results.push({ label, pass, level }); log(`${level}  ${label}${detail ? `  (${detail})` : ''}`); };
 
@@ -72,13 +81,19 @@ export async function runLiveCheck({ env = process.env, email, name = 'Practice 
   if (missing.length) { check('env present', false, `missing: ${missing.join(', ')}`); return { ok: false, results }; }
   if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { check('test email given', false, 'pass --email <your own address>'); return { ok: false, results }; }
   const origin = env.ALLOWED_ORIGINS.split(',')[0].trim().replace(/\/+$/, '');
-  const payload = { name, email, service, town_zip: 'Hewitt 76643', message: 'Practice run test lead (TEST). Safe to delete.', phone: '2545550142', sms_consent: 'yes', sms_marketing_consent: 'yes' };
+  // No phone anywhere (forms are email-only). Consent keys ARE sent, to prove the function drops them.
+  const payload = { name, email, service, town_zip: 'Hewitt 76643', message: 'Practice run test lead (TEST). Safe to delete.', sms_consent: 'yes', sms_marketing_consent: 'yes', ...tracking };
 
   const first = await invoke(handler, origin, payload);
   check('handler returned ok', first.status === 200 && first.body && first.body.ok === true, `HTTP ${first.status} steps=${JSON.stringify(first.body && first.body.steps)}`);
   if (twice) {
     const second = await invoke(handler, origin, payload);
     check('second submit returned ok', second.status === 200 && second.body && second.body.ok === true, `HTTP ${second.status} steps=${JSON.stringify(second.body && second.body.steps)}`);
+    // The intended dedupe path is opportunity search -> "existing". GHL's opportunity search lags right after a
+    // create (live run Oct 19: search returned 0, create then got 400), so a quick resubmit may end "failed" and only
+    // GHL's own duplicate rejection prevents a 2nd deal. Flag it; the opportunity count check below is the real gate.
+    const oppStep = second.body && second.body.steps && second.body.steps.opportunity;
+    if (oppStep !== 'existing') check('second submit deduped via search (steps.opportunity = existing)', true, `got "${oppStep}"`, 'WARN');
   }
 
   const q = new URLSearchParams({ locationId: env.GHL_LOCATION_ID, email });
@@ -104,7 +119,13 @@ export async function runLiveCheck({ env = process.env, email, name = 'Practice 
       check(`${label} field NOT set`, true, `${envName} not given, field not checked`, 'WARN');
     }
   }
-  check('no phone stored from the form', !c.phone, c.phone ? 'contact has a phone (was it already on the contact?)' : '');
+  check('no phone on the contact', !c.phone, c.phone ? 'contact has a phone (was it already on the contact?)' : '');
+  for (const [key, envName] of Object.entries(TRACKING_ENV)) {
+    if (!tracking[key]) continue;
+    if (!env[envName]) { check(`${key} field populated`, true, `${envName} not given, not checked`, 'WARN'); continue; }
+    const v = fieldValue(c, env[envName]);
+    check(`${key} field populated`, v === tracking[key], `value=${JSON.stringify(v)}`);
+  }
 
   const oq = new URLSearchParams({ location_id: env.GHL_LOCATION_ID, pipeline_id: env.GHL_PIPELINE_ID, contact_id: contactId, status: 'open', limit: '20' });
   const opp = await ghlGet(fetchImpl, env, `/opportunities/search?${oq}`);
@@ -112,6 +133,27 @@ export async function runLiveCheck({ env = process.env, email, name = 'Practice 
   const atStage = open.filter((o) => o.pipelineStageId === env.GHL_STAGE_ID);
   check('open opportunity in HVAC Jobs at New Lead', atStage.length >= 1, `HTTP ${opp.status} open=${open.length} atNewLead=${atStage.length}${atStage[0] ? ` id=${atStage[0].id}` : ''}`);
   if (twice) check('still exactly one open opportunity after 2 submits', open.length === 1, `open=${open.length}`);
+
+  // Outbound messages: needs conversations.readonly, which the minimum form-lead token does NOT have. If the read is
+  // refused, the check WARNs ("can't check with these scopes"); check it another way (GHL UI or a read-only connector).
+  if (settleMs) await new Promise((r) => setTimeout(r, settleMs)); // give any (wrongly) live workflow time to fire
+  const cq = new URLSearchParams({ locationId: env.GHL_LOCATION_ID, contactId });
+  const conv = await ghlGet(fetchImpl, env, `/conversations/search?${cq}`);
+  if (conv.status === 401 || conv.status === 403) {
+    check('no outbound messages', true, `HTTP ${conv.status}: token can't read conversations, NOT CHECKED`, 'WARN');
+  } else if (!conv.ok) {
+    check('no outbound messages', false, `HTTP ${conv.status} reading conversations`);
+  } else {
+    let outbound = 0;
+    let readFail = 0;
+    for (const cv of (conv.data && conv.data.conversations) || []) {
+      const m = await ghlGet(fetchImpl, env, `/conversations/${encodeURIComponent(cv.id)}/messages`);
+      if (!m.ok) { readFail++; continue; }
+      const list = (m.data && m.data.messages && m.data.messages.messages) || (m.data && m.data.messages) || [];
+      outbound += (Array.isArray(list) ? list : []).filter(isRealOutbound).length;
+    }
+    check('no outbound messages', outbound === 0 && readFail === 0, `conversations=${((conv.data && conv.data.conversations) || []).length} outbound=${outbound}${readFail ? ` unreadable=${readFail}` : ''}`);
+  }
 
   const ok = results.every((r) => r.pass);
   log(ok ? '\nALL CHECKS PASSED. Delete the test contact/opportunity in GHL afterwards (with Logan\'s OK).' : '\nSOME CHECKS FAILED.');
@@ -139,6 +181,6 @@ if (import.meta.url === pathToFileURL(process.argv[1] || '').href) {
     console.log(missing.length ? `Missing env: ${missing.join(', ')}` : 'All required env vars are present.');
     process.exit(0);
   }
-  const { ok } = await runLiveCheck({ email: a.email, name: a.name, service: a.service, twice: a.twice });
+  const { ok } = await runLiveCheck({ email: a.email, name: a.name, service: a.service, twice: a.twice, settleMs: 15000 });
   process.exit(ok ? 0 : 1);
 }
