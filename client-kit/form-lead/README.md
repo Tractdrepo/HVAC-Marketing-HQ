@@ -58,6 +58,7 @@ GHL calls are retried on 429, 5xx and network errors or timeouts, about 3 attemp
 - **Add tag:** adding the same tag twice is harmless.
 - **Notes:** retried too. A 5xx or timeout that GHL actually processed could leave a duplicate note.
 - **Opportunity create, HTTP 400:** never repeated. GHL can reject a duplicate while its search still can't see the first deal, so the function logs GHL's error message (with emails, names, phone-like numbers and long ids replaced by placeholders) and re-searches up to 3 times (0.5 s, 1 s, 1.5 s, within the 8 s budget). If an open deal shows up, the step is reported `existing` and **no alert** is sent; otherwise it's `failed` and alerted as before. Other 4xx answers are not re-searched.
+- **Test hook:** `deps.testHideOpenOnFirstSearch` (in-process only, never from env or the request) hides open deals from the first search so a live run can force the 400 path: `live-check.mjs --live --force-400-path`. Use it only on a sub-account that **rejects** duplicate opportunities; otherwise it creates a 2nd deal, and the harness's count check fails.
 - **Opportunity create:** not idempotent. After a retryable failure, the function first re-searches the pipeline. If an open opportunity now exists, the create went through and nothing more is sent. If the re-search fails, it stops. It never creates a duplicate.
 
 Worst case (GHL hanging on every call), a request takes about 35 s: once the 8 s budget is used up, remaining steps get a single attempt each. On the client project, set `"functions": { "api/form-lead.js": { "maxDuration": 60 } }` in `vercel.json` if its default limit is lower.
@@ -71,6 +72,8 @@ If `ALERT_WEBHOOK` is set (a Slack incoming webhook, or anything that accepts `{
 - the contact's name and email
 
 It **never** contains the token, the message, town/ZIP, service, UTMs, gclid or GHL error bodies. Names are escaped so they can't trigger Slack mentions. The alert has a 3 s timeout, and any failure is caught and logged without the webhook URL, so it never breaks the request. If `ALERT_WEBHOOK` isn't set, no alert is sent.
+
+**Turnstile (bot check, free):** when `TURNSTILE_SECRET_KEY` is set, the `cf-turnstile-response` token from the form is checked with Cloudflare's siteverify (with the visitor IP) before anything goes to GHL. A missing token gets a 400 and a failed check a 403. If Cloudflare is unreachable it fails closed (503). When the key is unset, the check is skipped and a warning is logged (`"step":"turnstile","skipped":true`). The secret and the token are never logged or forwarded. Test keys: see `client-kit/docs/turnstile-setup.md`; `node client-kit/form-lead/scripts/turnstile-dummy-check.mjs` runs them against the real endpoint with GHL stubbed.
 
 Other guards: CORS only for origins in `ALLOWED_ORIGINS`, which must match exactly; anything else gets a 403, including requests with no `Origin`. Bodies are capped at 16 KB. There is also a best-effort rate limit of 5 posts per IP per 10 minutes on each server instance.
 
