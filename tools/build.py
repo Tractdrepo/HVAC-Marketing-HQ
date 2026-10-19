@@ -33,7 +33,11 @@ MAIL_ADDRESS = "3801 N Capital of Texas Hwy, Ste E240-3928, Austin, TX 78746"
 SMS_PROGRAM = "HVAC Marketing HQ Texts"
 GHL_CHAT_WIDGET = "6ad452bad3ae3b035c14772f"     # GHL chat widget id (public); its text opt-in is part of A2P. None hides it
 DEMO_PHONE = None                     # demo line for missed-call text-back, e.g. "+12545550123"; block hidden until set
-SAME_AS = []                          # public profiles for schema, e.g. LinkedIn and Facebook URLs; add when Logan shares them
+# Public profiles for the Organization/LocalBusiness schema "sameAs". One URL per line; sameAs is left out while this is empty.
+SAME_AS = [
+    # "https://www.linkedin.com/company/YOUR-PAGE",
+    # "https://www.facebook.com/YOUR-PAGE",
+]
 FOUNDING_SPOTS = 25                   # founding rate: annual price on monthly billing, locked while they stay
 FOUNDING_LEFT = 25                    # lower this as shops sign; the strip hides at 0
 SHOW_FOUNDING = False                 # Logan, Oct 15: hide the founding strip on the site (reads as a new company); offer it on calls instead
@@ -2069,7 +2073,8 @@ def about_page():
 """
     ld_ = ld({"@context": "https://schema.org", "@type": "AboutPage", "name": f"About {BRAND}", "url": f"https://{SITE_HOST}/about",
               "mainEntity": {"@type": "Organization", "name": BRAND, "url": f"https://{SITE_HOST}/", "email": EMAIL, "address": {"@type": "PostalAddress", "addressLocality": "Waco", "addressRegion": "TX", "addressCountry": "US"},
-                             "founder": {"@type": "Person", "name": "Logan", "jobTitle": "Founder", "image": f"https://{SITE_HOST}/img/logan-320.jpg"}}})
+                             "founder": {"@type": "Person", "name": "Logan", "jobTitle": "Founder", "image": f"https://{SITE_HOST}/img/logan-320.jpg"},
+                             **({"sameAs": SAME_AS} if SAME_AS else {})}})
     return page("about", f"About {BRAND}", f"About {BRAND}: an HVAC-only marketing company based in Waco, Texas. Meet the founder and how we work.", body, extra_head=ld_)
 
 
