@@ -3,8 +3,8 @@
 // It runs the real handler in-process with a fake req/res, then reads GHL back and checks:
 //   1. the contact exists (looked up by email)            4. an open opportunity exists in GHL_PIPELINE_ID
 //   2. it has the lead-web-form tag                          at GHL_STAGE_ID (HVAC Jobs / New Lead)
-//   3. lead_source = "Website Form" and service_needed     5. SMS consent is NOT set (no sms-consent tag, and the
-//      = the service sent                                     GHL_FIELD_SMS_CONSENT custom field is empty)
+//   3. lead_source = "Website Form" and service_needed     5. SMS consent is NOT set: no sms-consent tag, and BOTH
+//      = the service sent                                     consent fields (sms_consent, sms_marketing_consent) empty
 // Optional --twice submits again and checks there is still exactly one open opportunity (dedupe).
 //
 // Secrets: NEVER put the token in this file, the repo, chat or a shell history line. Load env from a secret store:
@@ -14,12 +14,16 @@
 //
 // Env (same as the function):  GHL_TOKEN GHL_LOCATION_ID GHL_FIELD_LEAD_SOURCE GHL_FIELD_SERVICE GHL_PIPELINE_ID
 //   GHL_STAGE_ID ALLOWED_ORIGINS   (+ optional GHL_FIELD_UTM_* GHL_FIELD_GCLID ALERT_WEBHOOK SITE_LABEL)
-// Harness only: GHL_FIELD_SMS_CONSENT (id of the contact.sms_consent field; without it check 5 is tag-only and WARNs).
+// Harness only (optional, but set both for a real test): the template has TWO consent fields that must BOTH stay empty:
+//   GHL_FIELD_SMS_CONSENT           = id of contact.sms_consent
+//   GHL_FIELD_SMS_MARKETING_CONSENT = id of contact.sms_marketing_consent
+// Without an id, that field's check is skipped with a WARN (the sms-consent tag check still runs).
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 
 const require = createRequire(import.meta.url);
 const GHL = 'https://services.leadconnectorhq.com';
+const CONSENT_FIELDS = [['GHL_FIELD_SMS_CONSENT', 'SMS Consent (contact.sms_consent)'], ['GHL_FIELD_SMS_MARKETING_CONSENT', 'SMS Marketing Consent (contact.sms_marketing_consent)']];
 const REQUIRED = ['GHL_TOKEN', 'GHL_LOCATION_ID', 'GHL_FIELD_LEAD_SOURCE', 'GHL_FIELD_SERVICE', 'GHL_PIPELINE_ID', 'GHL_STAGE_ID', 'ALLOWED_ORIGINS'];
 
 export function missingEnv(env) {
@@ -68,7 +72,7 @@ export async function runLiveCheck({ env = process.env, email, name = 'Practice 
   if (missing.length) { check('env present', false, `missing: ${missing.join(', ')}`); return { ok: false, results }; }
   if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { check('test email given', false, 'pass --email <your own address>'); return { ok: false, results }; }
   const origin = env.ALLOWED_ORIGINS.split(',')[0].trim().replace(/\/+$/, '');
-  const payload = { name, email, service, town_zip: 'Hewitt 76643', message: 'Practice run test lead (TEST). Safe to delete.', phone: '2545550142', sms_consent: 'yes' };
+  const payload = { name, email, service, town_zip: 'Hewitt 76643', message: 'Practice run test lead (TEST). Safe to delete.', phone: '2545550142', sms_consent: 'yes', sms_marketing_consent: 'yes' };
 
   const first = await invoke(handler, origin, payload);
   check('handler returned ok', first.status === 200 && first.body && first.body.ok === true, `HTTP ${first.status} steps=${JSON.stringify(first.body && first.body.steps)}`);
@@ -90,11 +94,15 @@ export async function runLiveCheck({ env = process.env, email, name = 'Practice 
   check('lead_source = "Website Form"', fieldValue(c, env.GHL_FIELD_LEAD_SOURCE) === 'Website Form', `value=${JSON.stringify(fieldValue(c, env.GHL_FIELD_LEAD_SOURCE))}`);
   check(`service_needed = "${service}"`, fieldValue(c, env.GHL_FIELD_SERVICE) === service, `value=${JSON.stringify(fieldValue(c, env.GHL_FIELD_SERVICE))}`);
   check('no sms-consent tag', !tags.some((t) => /sms[-_ ]?consent/.test(t)));
-  if (env.GHL_FIELD_SMS_CONSENT) {
-    const v = fieldValue(c, env.GHL_FIELD_SMS_CONSENT);
-    check('SMS Consent field NOT set', isEmpty(v), `value=${JSON.stringify(v)}`);
-  } else {
-    check('SMS Consent field NOT set', true, 'GHL_FIELD_SMS_CONSENT not given, field not checked', 'WARN');
+  // The HVAC Client Template has TWO consent fields. Both must stay empty for a website-form lead:
+  // contact.sms_consent (transactional) and contact.sms_marketing_consent (promotional).
+  for (const [envName, label] of CONSENT_FIELDS) {
+    if (env[envName]) {
+      const v = fieldValue(c, env[envName]);
+      check(`${label} field NOT set`, isEmpty(v), `value=${JSON.stringify(v)}`);
+    } else {
+      check(`${label} field NOT set`, true, `${envName} not given, field not checked`, 'WARN');
+    }
   }
   check('no phone stored from the form', !c.phone, c.phone ? 'contact has a phone (was it already on the contact?)' : '');
 

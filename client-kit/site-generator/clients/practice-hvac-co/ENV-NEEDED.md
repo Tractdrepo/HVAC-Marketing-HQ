@@ -1,6 +1,6 @@
 # Practice HVAC Co (TEST): env vars for api/form-lead.js
 
-Set these ONLY in the practice client's own Vercel project (Settings > Environment Variables, Preview + Production) or a secret manager. Never in chat, code, commits or this file. Status: **none set yet**, waiting on the GHL Specialist.
+Set these ONLY in the practice client's own Vercel project (Settings > Environment Variables, Preview + Production) or a secret manager. Never in chat, code, commits or this file. Status: **none set yet**. The practice GHL sub-account can't be created yet: the Starter trial allows 3 sub-accounts and all 3 are used (blocked on Logan's plan tier). Vercel project `practice-hvac-co-test` exists (no env).
 
 ## Required by the function (it returns 503 if any are missing)
 | Var | Comes from | Status |
@@ -17,7 +17,7 @@ Set these ONLY in the practice client's own Vercel project (Settings > Environme
 `GHL_FIELD_UTM_SOURCE`, `GHL_FIELD_UTM_MEDIUM`, `GHL_FIELD_UTM_CAMPAIGN`, `GHL_FIELD_UTM_TERM`, `GHL_FIELD_UTM_CONTENT`, `GHL_FIELD_GCLID`, `ALERT_WEBHOOK` (secret), `SITE_LABEL` (e.g. `Practice HVAC Co (TEST)`).
 
 ## Harness only (scripts/live-check.mjs; not used by the function)
-`GHL_FIELD_SMS_CONSENT`: field id of `contact.sms_consent`, so the harness can prove it stays empty.
+`GHL_FIELD_SMS_CONSENT` (id of `contact.sms_consent`) and `GHL_FIELD_SMS_MARKETING_CONSENT` (id of `contact.sms_marketing_consent`), so the harness can prove BOTH stay empty.
 
 ## Running the live check once the env exists
 ```

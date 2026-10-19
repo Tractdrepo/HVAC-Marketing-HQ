@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { runLiveCheck, missingEnv } from '../scripts/live-check.mjs';
 
-const ENV = { GHL_TOKEN: 'pit-fake', GHL_LOCATION_ID: 'loc', GHL_FIELD_LEAD_SOURCE: 'cf_ls', GHL_FIELD_SERVICE: 'cf_svc', GHL_PIPELINE_ID: 'pipe', GHL_STAGE_ID: 'stage_new', ALLOWED_ORIGINS: 'https://practice.test', GHL_FIELD_SMS_CONSENT: 'cf_sms' };
+const ENV = { GHL_TOKEN: 'pit-fake', GHL_LOCATION_ID: 'loc', GHL_FIELD_LEAD_SOURCE: 'cf_ls', GHL_FIELD_SERVICE: 'cf_svc', GHL_PIPELINE_ID: 'pipe', GHL_STAGE_ID: 'stage_new', ALLOWED_ORIGINS: 'https://practice.test', GHL_FIELD_SMS_CONSENT: 'cf_sms', GHL_FIELD_SMS_MARKETING_CONSENT: 'cf_sms_mkt' };
 const okHandler = async (req, res) => res.status(200).json({ ok: true, steps: { contact: 'ok' } });
 const resp = (data, status = 200) => ({ ok: status < 400, status, json: async () => data });
 function fakeGhl({ tags = ['lead-web-form'], fields = [{ id: 'cf_ls', value: 'Website Form' }, { id: 'cf_svc', value: 'Tune-Up/Maintenance' }], opps = [{ id: 'o1', status: 'open', pipelineId: 'pipe', pipelineStageId: 'stage_new', contactId: 'c1' }] } = {}) {
@@ -58,4 +58,23 @@ test('refuses to run without env or email', async () => {
   const f = fakeGhl();
   assert.equal((await runLiveCheck({ env: ENV, email: '', fetchImpl: f, handler: okHandler, log: quiet })).ok, false);
   assert.equal(f.seen.length, 0);
+});
+
+// The template has two consent fields: contact.sms_consent and contact.sms_marketing_consent. Both must stay empty.
+test('fails when SMS Marketing Consent field is set', async () => {
+  const base = [{ id: 'cf_ls', value: 'Website Form' }, { id: 'cf_svc', value: 'Tune-Up/Maintenance' }];
+  const r = await runLiveCheck({ env: ENV, email: 'me@example.com', fetchImpl: fakeGhl({ fields: [...base, { id: 'cf_sms_mkt', value: ['Yes'] }] }), handler: okHandler, log: quiet });
+  assert.equal(r.ok, false);
+  assert.ok(r.results.some((x) => /Marketing Consent/.test(x.label) && !x.pass));
+});
+
+test('both consent checks run, and WARN (not fail) when their ids are not given', async () => {
+  const lines = [];
+  const { GHL_FIELD_SMS_CONSENT, GHL_FIELD_SMS_MARKETING_CONSENT, ...noIds } = ENV;
+  const r = await runLiveCheck({ env: noIds, email: 'me@example.com', fetchImpl: fakeGhl(), handler: okHandler, log: (l) => lines.push(l) });
+  assert.equal(r.ok, true);
+  assert.equal(lines.filter((l) => /^WARN .*Consent/.test(l)).length, 2);
+  const all = await runLiveCheck({ env: ENV, email: 'me@example.com', fetchImpl: fakeGhl(), handler: okHandler, log: quiet });
+  assert.ok(all.results.some((x) => /sms_consent\)/.test(x.label) && x.pass && x.level === 'PASS'));
+  assert.ok(all.results.some((x) => /sms_marketing_consent/.test(x.label) && x.pass && x.level === 'PASS'));
 });

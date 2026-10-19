@@ -204,8 +204,10 @@ test('form-encoded body works the same (and ignores phone)', async () => {
   assert.ok(!g.calls.some((c) => String(c.rawBody || '').includes('5550199')));
 });
 
+// The HVAC Client Template has TWO consent fields, and website-form leads must leave BOTH empty:
+// contact.sms_consent (transactional) and contact.sms_marketing_consent (promotional). Only the chat widget sets them.
 test('no outbound request ever carries SMS consent', async () => {
-  for (const extra of [{}, { sms_consent: 'yes', 'sms-consent': 'on', smsConsent: true, tags: 'sms-consent' }]) {
+  for (const extra of [{}, { sms_consent: 'yes', 'sms-consent': 'on', smsConsent: true, tags: 'sms-consent', sms_marketing_consent: 'yes', smsMarketingConsent: true }]) {
     const g = stubGhl();
     const logs = captureLogs();
     await call({ ...LEAD, ...extra }).finally(() => { logs.restore(); g.restore(); });
