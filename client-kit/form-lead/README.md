@@ -101,3 +101,7 @@ Other guards: CORS only for origins in `ALLOWED_ORIGINS`, which must match exact
 ## Tests
 
 `node --test client-kit/form-lead/test/` from the repo root (it also runs as part of `npm test`). `fetch` is stubbed, so the tests make no GHL calls.
+
+## Live check against GHL (`scripts/live-check.mjs`)
+
+Runs the real handler in-process against a real sub-account, then reads GHL back and checks: contact exists by email, tag `lead-web-form`, lead_source = "Website Form", service_needed = the service sent, an open opportunity in `GHL_PIPELINE_ID` at `GHL_STAGE_ID`, no `sms-consent` tag and an empty SMS Consent field (`GHL_FIELD_SMS_CONSENT`, harness-only). `--twice` also checks dedupe. It sends `phone` and `sms_consent` in the payload on purpose, to prove they are dropped. Without `--live` it only reports which env vars are missing. Load env from a secret store (`op run ...` or `node --env-file=<file outside the repo>`); never paste the token on the command line. Delete the test contact afterwards with Logan's OK.

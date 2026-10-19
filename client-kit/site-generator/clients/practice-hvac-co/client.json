@@ -1,0 +1,27 @@
+{
+  "_note": "PRACTICE CLIENT. Every detail here is made up. Not a real business.",
+  "slug": "practice-hvac-co",
+  "TEST_SITE": true,
+  "NOINDEX": true,
+  "business_name": "Practice HVAC Co (TEST)",
+  "tagline": "Heating and air conditioning service around Waco, TX (practice site)",
+  "phone": "254-555-0142",
+  "email_note": "Use the form below. We reply by email.",
+  "street_address": "",
+  "city": "Waco",
+  "state": "TX",
+  "license": "TACLA00000C (placeholder, not a real license)",
+  "hours": "Mon-Fri 8am-5pm (placeholder hours)",
+  "accent_color": "#1f6feb",
+  "services": [
+    {"name": "AC Repair", "form_value": "Repair", "blurb": "Diagnosis and repair for central air systems that aren't cooling the way they should."},
+    {"name": "Heating Repair", "form_value": "Repair", "blurb": "Furnace and heat pump troubleshooting and repair."},
+    {"name": "Tune-Ups and Maintenance", "form_value": "Tune-Up/Maintenance", "blurb": "Seasonal check-ups for cooling and heating equipment."},
+    {"name": "New System Estimates", "form_value": "New System Estimate", "blurb": "An in-home visit to talk through replacing an older system and the options that fit the house."},
+    {"name": "Indoor Air Quality", "form_value": "Indoor Air Quality", "blurb": "Filters, humidity control and air cleaning options."}
+  ],
+  "service_areas": ["Waco", "Hewitt", "Woodway", "Robinson", "China Spring"],
+  "CHAT_WIDGET_ID": "",
+  "FORM_ENDPOINT": "/api/form-lead",
+  "review_link": ""
+}

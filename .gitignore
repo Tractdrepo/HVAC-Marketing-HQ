@@ -3,3 +3,8 @@ __pycache__/
 .DS_Store
 .vercel
 node_modules/
+
+# local secret env files (never commit)
+*.env
+.env.*
+!.env.example

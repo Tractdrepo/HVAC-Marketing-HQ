@@ -3,7 +3,7 @@
   "private": true,
   "description": "Static site plus two serverless functions (api/). Dependencies are for the report card grader.",
   "scripts": {
-    "test": "node --test api/_grader/test/ client-kit/form-lead/test/"
+    "test": "node --test api/_grader/test/ client-kit/form-lead/test/ client-kit/site-generator/test/"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "0.132.1",
