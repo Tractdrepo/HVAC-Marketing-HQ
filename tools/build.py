@@ -456,7 +456,7 @@ def page(path, title, desc, body, extra_head="", has_form=True):
     body = rhythm(body)
     held = (HOLD_LOCATIONS and route(path).startswith("locations/")) or path == "404" or path in THIN_PAGES
     robots = '<meta name="robots" content="noindex, nofollow">' if NOINDEX else ('<meta name="robots" content="noindex, follow">' if held else "")
-    turnstile = "" if PREVIEW or not TURNSTILE_SITEKEY else '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>'
+    turnstile = "" if PREVIEW or not TURNSTILE_SITEKEY else '<script type="text/plain" data-later data-src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>'
     if len(desc) > 160:  # keep descriptions inside what search results show
         cut = desc[:158]
         desc = cut[:cut.rfind(". ") + 1] if cut.rfind(". ") > 90 else cut[:cut.rfind(" ")].rstrip(",;:") + "..."
@@ -497,7 +497,7 @@ def page(path, title, desc, body, extra_head="", has_form=True):
 {footer(has_form, legal=path in LEGAL_FOOTER_PAGES)}
 {founder_video(has_form)}
 {rc_modal() if "data-url-form" in body else ""}
-<script src="{asset_v('main.js')}" defer></script>{"" if PREVIEW else chr(10) + '<script src="/_vercel/insights/script.js" defer></script>'}{"" if PREVIEW or not GHL_CHAT_WIDGET else chr(10) + f'<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="{GHL_CHAT_WIDGET}" data-source="WEB_USER" defer></script>'}
+<script src="{asset_v('main.js')}" defer></script>{"" if PREVIEW else chr(10) + '<script src="/_vercel/insights/script.js" defer></script>'}{"" if PREVIEW or not GHL_CHAT_WIDGET else chr(10) + f'<script type="text/plain" data-later data-src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="{GHL_CHAT_WIDGET}" data-source="WEB_USER"></script>'}
 {turnstile}
 </body>
 </html>

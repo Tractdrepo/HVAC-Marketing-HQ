@@ -69,12 +69,12 @@
     var steps = demo.querySelectorAll(".demo-steps button");
     var ms = 3800, i = 0, timer = null;
     demo.style.setProperty("--scene-ms", ms + "ms");
-    var show = function (n) {
+    var show = function (n, first) {
       i = n;
       scenes.forEach(function (s, k) { s.classList.toggle("on", k === n); });
+      steps.forEach(function (b) { b.classList.remove("active", "done"); });
+      if (!first) void demo.offsetWidth; // restart the progress fill (one layout, and none while the page loads)
       steps.forEach(function (b, k) {
-        b.classList.remove("active", "done");
-        void b.offsetWidth; // restart the progress fill
         if (k < n) b.classList.add("done");
         if (k === n) b.classList.add(reduceMotion ? "done" : "active");
       });
@@ -85,7 +85,7 @@
       timer = setTimeout(function () { show((i + 1) % scenes.length); run(); }, ms);
     };
     steps.forEach(function (b, k) { b.addEventListener("click", function () { show(k); run(); }); });
-    show(0); run();
+    show(0, true); run();
   }
 
   // The loop: light each stop in turn
@@ -440,4 +440,40 @@
     });
   }
   window.addEventListener("LC_chatWidgetLoaded", ready, { once: true });
+})();
+
+// Turnstile and the GHL chat widget load on the first scroll, tap, key or mouse move (or after 10 seconds),
+// so they don't hold up the first paint on phones. The build writes them as inert <script type="text/plain"
+// data-later data-src=...> tags; each becomes a real script with the same data-* attributes.
+(function () {
+  var tags = document.querySelectorAll("script[data-later]");
+  if (!tags.length) return;
+  var evs = ["scroll", "pointerdown", "keydown", "mousemove", "touchstart", "focusin"];
+  var done = false;
+  function load() {
+    if (done) return;
+    done = true;
+    evs.forEach(function (e) { window.removeEventListener(e, load, { capture: true, passive: true }); });
+    tags.forEach(function (t) {
+      var s = document.createElement("script");
+      Array.prototype.forEach.call(t.attributes, function (a) {
+        if (/^data-/.test(a.name) && a.name !== "data-later" && a.name !== "data-src") s.setAttribute(a.name, a.value);
+      });
+      s.src = t.getAttribute("data-src");
+      s.async = true;
+      // Turnstile loads with render=explicit: render the on-page boxes now, and the pop-up's box too if it's
+      // already open (otherwise it renders when the pop-up opens).
+      if (/turnstile/.test(s.src)) s.addEventListener("load", function () {
+        if (!window.turnstile) return;
+        document.querySelectorAll(".cf-turnstile, .rc-modal[open] .cf-turnstile-lazy").forEach(function (el) {
+          if (el.dataset.done) return;
+          el.dataset.done = "1";
+          window.turnstile.render(el);
+        });
+      });
+      t.parentNode.insertBefore(s, t.nextSibling);
+    });
+  }
+  evs.forEach(function (e) { window.addEventListener(e, load, { capture: true, passive: true, once: true }); });
+  setTimeout(load, 10000);
 })();
