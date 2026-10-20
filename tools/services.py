@@ -119,7 +119,7 @@ SERVICES = [
         "h1": "HVAC SEO that puts your shop in the map pack and the top results.",
         "desc": "HVAC SEO services: service pages, real town pages, clean listings and monthly articles, so your shop shows up in the map pack and search results.",
         "lede": "Homeowners search \"AC repair\" plus their town. If your site has one services page and one city, you're invisible everywhere else you work. We build a page for each service and each town you really take calls in, and keep adding to it.",
-        "plan": "Starter: 5 pages in total, including 1 city page, no blog. Growth: 12 pages, 3 city pages and 1 new article a month. Dominate: 25 pages, 10 city pages, 2 new articles a month and directory listings managed.",
+        "plan": "Starter: 5 pages in total, including 1 city page, no blog. Growth: 12 pages, 3 city pages and 1 new article a month. Dominate: 40 pages, up to 15 city pages, 2 new articles a month and directory listings managed.",
         "pains": [
             ("One page for everything", "A single \"Services\" page can't rank for AC repair, furnace repair and replacements all at once."),
             ("Only your home town", "Google favors shops close to the searcher. Without town pages, you disappear past your own zip code."),

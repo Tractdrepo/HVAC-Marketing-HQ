@@ -62,9 +62,9 @@ PLANS = [
         "items": ["Everything in Starter", "12 pages, including 3 city pages", "Google profile managed, posting the job photos you text us", "Estimate follow-up until booked or lost", "Review replies and AI web chat", "Win-back texts to past customers each season", "1 new article a month", "Quarterly strategy call"],
     },
     {
-        "name": "Dominate", "monthly": 1299, "build": 2995, "scope": "25 pages · 10 cities", "stage": "8+ trucks or a wide area",
+        "name": "Dominate", "monthly": 1299, "build": 2995, "scope": "40 pages · up to 15 cities", "stage": "8+ trucks or a wide area",
         "for": "For shops covering a wide area that want the map in every town they serve.",
-        "items": ["Everything in Growth", "25 pages, including 10 city pages", "2 new articles a month", "Full spring and fall tune-up campaigns, text and email", "ServiceTitan, Housecall Pro or Jobber hookup", "Competitor and map spam watch", "Directory listings managed"],
+        "items": ["Everything in Growth", "40 pages, including up to 15 city pages", "2 new articles a month", "Full spring and fall tune-up campaigns, text and email", "ServiceTitan, Housecall Pro or Jobber hookup", "Competitor and map spam watch", "Directory listings managed"],
     },
     {
         "name": "Multi-location", "monthly": 2499, "build": 4500, "scope": "Up to 10 locations", "stage": "several branches or brands",
