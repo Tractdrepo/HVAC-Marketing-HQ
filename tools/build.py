@@ -52,9 +52,9 @@ ANNUAL_DISCOUNT = 0.20
 PLAN_PRICE_FOR_CALC = 799            # break-even calculator default, editable by the visitor
 PLANS = [
     {
-        "name": "Starter", "monthly": 499, "build": 1995, "scope": "5 pages · 1 city", "stage": "1 to 2 trucks",
+        "name": "Starter", "monthly": 499, "build": 1995, "scope": "5 pages total · 1 city", "stage": "1 to 2 trucks",
         "for": "A fast site and a complete Google profile, with every missed call texted back.",
-        "items": ["Custom 5-page website", "Missed-call text-back in 60 seconds", "Review requests after every job", "Google profile setup", "HQ Command Center CRM and app", "Unlimited logins for your whole team", "Monthly recap, strategy call twice a year"],
+        "items": ["Custom 5-page website, including 1 city page", "Missed-call text-back in 60 seconds", "Review requests after every job", "Google profile setup", "HQ Command Center CRM and app", "Unlimited logins for your whole team", "Monthly recap, strategy call twice a year"],
     },
     {
         "name": "Growth", "monthly": 799, "build": 2495, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
@@ -64,7 +64,7 @@ PLANS = [
     {
         "name": "Dominate", "monthly": 1299, "build": 2995, "scope": "25 pages · 10 cities", "stage": "8+ trucks or a wide area",
         "for": "For shops covering a wide area that want the map in every town they serve.",
-        "items": ["Everything in Growth", "25 pages, including 10 city pages", "Full spring and fall tune-up campaigns, text and email", "ServiceTitan, Housecall Pro or Jobber hookup", "Competitor and map spam watch", "Directory listings managed"],
+        "items": ["Everything in Growth", "25 pages, including 10 city pages", "2 new articles a month", "Full spring and fall tune-up campaigns, text and email", "ServiceTitan, Housecall Pro or Jobber hookup", "Competitor and map spam watch", "Directory listings managed"],
     },
     {
         "name": "Multi-location", "monthly": 2499, "build": 4500, "scope": "Up to 10 locations", "stage": "several branches or brands",
@@ -1016,6 +1016,7 @@ COMMON_FAQ = [
     ("What if we can't handle more calls yet?", "Tell us on the call. We'd rather wait, or start with text-back only, than send you work your crew can't get to."),
     ("Can I get missed-call text-back on its own?", "Yes. Missed-call text-back is available on its own for $97 a month."),
     ("Who will I talk to?", "A team that works only with HVAC companies. You get a direct line, not a ticket queue."),
+    ("What counts as a page?", "Page counts are the pages we write for you: your home page, service pages, about page and city pages. Starter is 5 pages in total, including 1 city page. Privacy, Terms, Accessibility and thank-you pages come with every site and don't count toward the total."),
     ("What's the build fee for?", "Building your site, setting up your Google profile, forwarding your line through the text-back system and importing your past customers. Monthly billing starts when you go live, not when you sign."),
 ]
 
@@ -2722,7 +2723,7 @@ def plans_page():
 <section class="section after-head"><div class="wrap">
   {terms_strip()}
   {plans_cards()}
-  <p class="muted" style="margin-top:18px;font-size:.9rem">Normal texting, calling and AI use is included; large campaigns beyond your plan are billed at cost.</p>
+  <p class="muted" style="margin-top:18px;font-size:.9rem">Page counts are the pages we write for you, city pages included. Privacy, Terms, Accessibility and thank-you pages are extra and don't count. Normal texting, calling and AI use is included; large campaigns beyond your plan are billed at cost.</p>
   {addons()}
 </div></section>
 <section class="section alt"><div class="wrap">{replaces()}</div></section>
