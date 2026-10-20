@@ -901,7 +901,7 @@ def addons():
 
 def promise():
     return f"""<div class="promise">
-  <div class="card reveal"><span class="big">60 seconds</span><p>Every missed call gets a text back within 60 seconds.</p></div>
+  <div class="card reveal"><span class="big">60 seconds</span><p>Every missed call gets a text back within 60 seconds, once the carriers approve your texting.</p></div>
   <div class="card reveal"><span class="big">14 days</span><p>Your new site is live within 14 days of getting your content.</p></div>
   <div class="card reveal"><span class="big">1 day</span><p>Every change you send us is done, or answered with a date, within one business day.</p></div>
 </div>
@@ -948,8 +948,8 @@ def rc_how():
 
 FIRST_90 = [
     ("Day 1", "Kickoff", "A 30-minute call on your services, towns, busy season and the jobs you want more of."),
-    ("Day 3", "Access", "We walk you through sharing your domain, Google profile and phone line. No passwords over email."),
-    ("Day 14", "Live", "Site launched, Google profile cleaned up, missed-call text-back and review requests running."),
+    ("Day 3", "Access", "We walk you through sharing your domain, Google profile and phone line, and file your texting registration with the carriers. No passwords over email."),
+    ("Day 14", "Live", "Site launched and Google profile cleaned up. Missed-call text-back and review requests turn on as soon as the carriers approve your texting, usually 1 to 3 weeks after kickoff."),
     ("Day 30", "First statement", "Calls, texts, booked jobs and new reviews on one page. We fix what's leaking."),
     ("Day 60", "Rank", "By around Day 60 the map-ranking work is in place: town pages are live and review requests go out after every job. We show you where you rank."),
     ("Day 90", "Review", "We go over what's booking, what isn't, and agree the plan for the next 90 days."),
@@ -1000,7 +1000,7 @@ def faq(items):
 
 COMMON_FAQ = [
     ("I got burned by an agency before. Why is this different?", "Because you can check it. Prices are on this page, you own your site, domain and reviews, and you can open your dashboard anytime to see calls, texts and booked jobs. If it isn't working, you'll see it before we tell you."),
-    ("How soon will I see more calls?", "Missed-call text-back works the day your line is connected, so you see texted-back calls in week one. Google rankings and reviews take longer: months, not weeks. That's why the first term is six months, and why your HQ Command Center shows what's moving along the way."),
+    ("How soon will I see more calls?", "Missed-call text-back starts as soon as the phone carriers approve your texting registration. We file it at kickoff, and approval usually takes 1 to 3 weeks. Google rankings and reviews take longer: months, not weeks. That's why the first term is six months, and why your HQ Command Center shows what's moving along the way."),
     ("What do I have to do?", "One kickoff call, sharing access to your domain, Google profile and phone line, approving your site before it goes live, and answering the texts. We do the rest."),
     ("Do I own my website?", "Yes. Your domain, Google profile, reviews and site content are yours. If you leave, we hand over the site files and help move your number. It's written into the agreement."),
     ("How often do we meet?", "Not often, on purpose. You're running jobs, not sitting in meetings. Every month you get a short recap and your statement to read when it suits you. We get on a strategy call twice a year on Starter and every quarter on Growth and up. In between, text or email us anytime and we answer in the shared inbox."),
