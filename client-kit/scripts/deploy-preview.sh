@@ -1,24 +1,29 @@
 #!/usr/bin/env bash
 # Deploy a client site folder as a PROTECTED Vercel PREVIEW, with no Git link, and verify nothing is public.
-# Free (Hobby) features only. Never deploys --prod, never adds a domain, never touches other projects.
+# Free (Hobby) features only. Never adds a domain, never touches other projects.
 #
 #   client-kit/scripts/deploy-preview.sh <site-dir> <project-name> [--scope <team-slug>] [--create]
 #   e.g. client-kit/scripts/deploy-preview.sh client-kit/sites/practice-hvac-co practice-hvac-co-test
 #
 # Needs: the Vercel CLI logged in on this machine (npx vercel@latest whoami), python3, curl.
+# Why the blank page: a project with no production deployment sends the next CLI deploy to production (even with
+# --target/--environment preview; seen Oct 18 and Oct 21, 2026), and the production *.vercel.app alias is public
+# under Standard Protection. So production only ever holds a deliberate blank noindex page.
 # Steps:
 #  1. Look up the project (or create it with --create). Refuse if it has a Git repo connected or a custom domain.
-#  2. Vercel Authentication must be ON before anything is deployed. A project this run just created gets Standard
-#     Protection (free) turned on first; an existing project with protection off makes the script ABORT.
-#  3. Deploy with `vercel deploy --target preview` (always an explicit preview target; never --prod, never no
-#     target) using VERCEL_ORG_ID/VERCEL_PROJECT_ID (no `vercel link`, no .vercel folder, no Git auto-connect).
-#     The deployment URL (https://<project>-<hash>-<team>.vercel.app) is parsed from the CLI's stdout, never the
-#     production alias.
-#  4. Check the deployment's target through the API, and that the production aliases (<project>.vercel.app and
-#     <project>-<team>.vercel.app) answer 404 or 401 logged out. If the target is production or an alias answers
-#     anything else (e.g. 200), the new deployment is removed at once and the script stops (no retry).
-#  5. Logged-out curl of the preview URL must be 401 or a 302 to the Vercel login, else the deployment is removed
-#     and the script stops. It also reports the project's production deployment count (should be 0 pre-launch).
+#  a. Vercel Authentication must be ON. A project this run just created gets Standard Protection turned on first;
+#     otherwise protection off = ABORT, nothing deployed.
+#  b. If the project has no production deployment, deploy a BLANK placeholder as production first: one index.html
+#     ("Nothing here", robots noindex meta), robots.txt Disallow: /, X-Robots-Tag noindex in vercel.json, tagged
+#     with deployment meta hmhq_blank=1. No client or sample content.
+#  c. Deploy the real build with --environment preview (meta hmhq_kind=preview). No `vercel link`: uses
+#     VERCEL_ORG_ID/VERCEL_PROJECT_ID, so no .vercel folder and no Git auto-connect.
+#  d. URLs are read from the CLI's stdout AND stderr; the preview URL is https://<project>-<hash>-<team>.vercel.app.
+#  e. The new deployment's target must be preview; the production aliases must point at the blank deployment and
+#     serve only the blank page (no title or text from the site, no PLACEHOLDER/TEST SITE); the preview URL must
+#     answer 401 or a 302 to the Vercel login when logged out.
+#  f. On ANY failure: remove every production deployment that isn't the blank placeholder, remove the new preview
+#     if it isn't protected, and exit non-zero. No retries.
 # The CLI keeps its own token; this script never reads, prints or passes one.
 set -euo pipefail
 
@@ -30,7 +35,7 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --scope) SCOPE="$2"; shift 2 ;;
     --create) CREATE=1; shift ;;
-    -h|--help) sed -n '2,22p' "$0"; exit 0 ;;
+    -h|--help) sed -n '2,29p' "$0"; exit 0 ;;
     *) POS+=("$1"); shift ;;
   esac
 done
@@ -64,6 +69,32 @@ probe() {
   else echo "$code other"; fi
 }
 
+
+# --- failure handling (f) ---
+PREVIEW_ID=""; PREVIEW_OK=0; DONE=0
+is_blank() { [[ "$(api "/v13/deployments/$1" | jget meta.hmhq_blank)" == "1" ]]; }
+prod_ids() {
+  [[ -n "${PID:-}" ]] || return 0
+  api "/v6/deployments?projectId=$PID&target=production&limit=100" | python3 -c "import json,sys
+try: print(' '.join(d['uid'] for d in json.load(sys.stdin).get('deployments',[])))
+except Exception: pass"
+}
+cleanup() {
+  local rc=$? id
+  [[ $DONE == 1 ]] && return
+  [[ $rc -ne 0 ]] || return
+  log "FAILURE (exit $rc): cleaning up"
+  for id in $(prod_ids); do
+    if is_blank "$id"; then log "keeping blank placeholder $id"
+    else "${VC[@]}" rm "$id" --yes --scope "$SCOPE" >/dev/null 2>&1 && log "removed non-blank production deployment $id" || log "COULD NOT remove production deployment $id: remove it by hand NOW"; fi
+  done
+  if [[ -n "$PREVIEW_ID" && $PREVIEW_OK == 0 ]]; then "${VC[@]}" rm "$PREVIEW_ID" --yes --scope "$SCOPE" >/dev/null 2>&1 && log "removed unverified preview $PREVIEW_ID" || true; fi
+  for a in "${ALIASES[@]:-}"; do [[ -n "$a" ]] && log "after cleanup: logged-out $a -> $(probe "$a/")"; done
+}
+ALIASES=()
+trap cleanup EXIT
+die() { echo "STOP: $*" >&2; exit "${2:-70}"; }
+
 # 1. Project
 log "whoami: $("${VC[@]}" whoami 2>/dev/null | tail -1)  scope: $SCOPE"
 PJ="$(api "/v9/projects/$PROJECT")"
@@ -83,7 +114,7 @@ d=json.load(sys.stdin); print(' '.join(x['name'] for x in d.get('domains',[]) if
 [[ -z "$CUSTOM" ]] || { echo "$PROJECT has custom domain(s): $CUSTOM. Pre-launch projects must not." >&2; exit 66; }
 log "project $PROJECT ($PID), no Git link, no custom domain"
 
-# 2. Protection must be on before anything is deployed
+# a. Protection must be on before anything is deployed
 SSO="$(printf '%s' "$PJ" | jget ssoProtection.deploymentType)"
 if [[ -z "$SSO" && $CREATED == 1 ]]; then
   log "new project: turning on Vercel Authentication (Standard Protection, free) before the first deploy"
@@ -91,64 +122,71 @@ if [[ -z "$SSO" && $CREATED == 1 ]]; then
   api "/v9/projects/$PID" -X PATCH --input "$TMP" >/dev/null; rm -f "$TMP"
   SSO="$(api "/v9/projects/$PID" | jget ssoProtection.deploymentType)"
 fi
-[[ -n "$SSO" ]] || { echo "ABORT: Vercel Authentication is OFF on $PROJECT. Turn it on (Settings > Deployment Protection) and rerun; nothing was deployed." >&2; exit 67; }
+[[ -n "$SSO" ]] || die "Vercel Authentication is OFF on $PROJECT. Turn it on and rerun; nothing was deployed." 67
 log "Vercel Authentication: ON ($SSO)"
-
-DEPLOY_LOG="$(mktemp)"
-deploy_preview() {  # prints the deployment URL parsed from the CLI's stdout
-  local out url
-  out="$(cd "$SITE_DIR" && VERCEL_ORG_ID="$ORG" VERCEL_PROJECT_ID="$PID" "${VC[@]}" deploy --target preview --yes 2>>"$DEPLOY_LOG")" || true
-  url="$(printf '%s\n' "$out" | grep -oE "https://$PROJECT-[a-z0-9]+-$SCOPE\.vercel\.app" | tail -1 || true)"
-  [[ -n "$url" ]] || url="$(printf '%s\n' "$out" | grep -oE "https://$PROJECT-[a-z0-9]{7,}-[a-z0-9-]+\.vercel\.app" | tail -1 || true)"
-  echo "$url"
-}
-remove_deployment() {  # $1 = deployment id or host
-  "${VC[@]}" rm "$1" --yes --scope "$SCOPE" >/dev/null 2>&1 && log "removed deployment $1" || log "COULD NOT remove deployment $1: remove it by hand now"
-}
-prod_count() {
-  api "/v6/deployments?projectId=$PID&target=production&limit=50" | python3 -c "import json,sys
-try: print(len(json.load(sys.stdin).get('deployments',[])))
-except Exception: print('?')"
-}
 ALIASES=("https://$PROJECT.vercel.app" "https://$PROJECT-$SCOPE.vercel.app")
 
-# 3. Deploy (one attempt, explicit preview target)
-URL="$(deploy_preview)"
-[[ -n "$URL" ]] || { echo "deploy failed: no deployment URL on stdout (CLI messages in $DEPLOY_LOG)" >&2; exit 68; }
-for a in "${ALIASES[@]}"; do [[ "$URL" != "$a" ]] || { echo "parsed URL is a production alias ($URL); stopping" >&2; exit 68; }; done
-DJ="$(api "/v13/deployments/${URL#https://}")"
-DID="$(printf '%s' "$DJ" | jget id)"
-TARGET="$(printf '%s' "$DJ" | jget target)"
-log "deployed $URL (id ${DID:-?}, target: ${TARGET:-preview})"
-[[ -n "$DID" ]] || { echo "could not look up the new deployment; check the project by hand" >&2; exit 68; }
+# Runs vercel deploy in $1 with extra args; prints the CLI's stdout+stderr (no secrets in it).
+vdeploy() { local dir="$1"; shift; (cd "$dir" && VERCEL_ORG_ID="$ORG" VERCEL_PROJECT_ID="$PID" "${VC[@]}" deploy --yes "$@" 2>&1) || true; }
+dpl_url() { grep -oE "https://$PROJECT-[a-z0-9]{7,}(-$SCOPE)?\.vercel\.app" | head -1 || true; }
 
-# 4. Target and production aliases
-FAIL=""
-[[ "$TARGET" != "production" ]] || FAIL="deployment target is production"
-for a in "${ALIASES[@]}"; do
-  r="$(probe "$a/")"; log "logged-out $a -> $r"
-  c="${r%% *}"; [[ "$c" == 404 || "$c" == 401 ]] || FAIL="${FAIL:+$FAIL; }$a answered $r logged out"
+# b. Production holds only a blank placeholder
+BLANK_ID=""
+for id in $(prod_ids); do
+  if is_blank "$id"; then BLANK_ID="$id"; else die "production deployment $id is not the blank placeholder (pre-launch projects must not have one)" 71; fi
 done
-if [[ -n "$FAIL" ]]; then
-  log "UNSAFE: $FAIL. Removing the new deployment now."
-  remove_deployment "$DID"
-  [[ "$TARGET" == "production" ]] && for a in "${ALIASES[@]}"; do "${VC[@]}" alias rm "${a#https://}" --yes --scope "$SCOPE" >/dev/null 2>&1 || true; done
-  for a in "${ALIASES[@]}"; do log "after cleanup: logged-out $a -> $(probe "$a/")"; done
-  echo "STOPPED: $FAIL. Nothing was retried; check the project by hand." >&2
-  exit 69
+if [[ -z "$BLANK_ID" ]]; then
+  BLANK_DIR="$(mktemp -d)"
+  cat > "$BLANK_DIR/index.html" <<'HTML'
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>Nothing here</title></head><body><p>Nothing here</p><!-- hmhq-blank-placeholder --></body></html>
+HTML
+  printf 'User-agent: *\nDisallow: /\n' > "$BLANK_DIR/robots.txt"
+  echo '{"headers":[{"source":"/(.*)","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow"}]}]}' > "$BLANK_DIR/vercel.json"
+  log "no production deployment: deploying the blank noindex placeholder to production"
+  OUT="$(vdeploy "$BLANK_DIR" --environment production --meta hmhq_blank=1)"
+  rm -rf "$BLANK_DIR"
+  BURL="$(printf '%s\n' "$OUT" | dpl_url)"
+  [[ -n "$BURL" ]] || die "blank placeholder deploy gave no URL" 68
+  BLANK_ID="$(api "/v13/deployments/${BURL#https://}" | jget id)"
+  [[ -n "$BLANK_ID" ]] && is_blank "$BLANK_ID" || die "could not confirm the blank placeholder deployment" 68
+  log "blank placeholder: $BLANK_ID"
 fi
+SITE_TITLE="$(python3 -c "import re,sys,html;t=re.search(r'<title>(.*?)</title>',open(sys.argv[1]).read(),re.S);print(html.unescape(t.group(1)).split(' | ')[-1].strip() if t else '')" "$SITE_DIR/index.html")"
+check_prod_aliases() {
+  local a body code dep
+  for a in "${ALIASES[@]}"; do
+    body="$(curl -s --max-time 20 -w '\n%{http_code}' "$a/" || true)"; code="${body##*$'\n'}"; body="${body%$'\n'*}"
+    if [[ "$code" == 404 || "$code" == 401 ]]; then log "logged-out $a -> $code (no content)"; continue; fi
+    [[ "$code" == 200 ]] || die "$a answered $code logged out (expected the blank page or 404)" 69
+    [[ "$body" == *hmhq-blank-placeholder* && "$body" == *'content="noindex,nofollow"'* ]] || die "$a serves something other than the blank placeholder" 69
+    [[ -z "$SITE_TITLE" || "$body" != *"$SITE_TITLE"* ]] && [[ "$body" != *PLACEHOLDER* && "$body" != *"TEST SITE"* ]] || die "$a shows site content" 69
+    curl -s -o /dev/null -D - --max-time 20 "$a/" | tr -d '\r' | grep -qi '^x-robots-tag: noindex' || die "$a has no X-Robots-Tag noindex" 69
+    dep="$(api "/v4/aliases/${a#https://}" | jget deploymentId)"
+    [[ -z "$dep" || "$dep" == "$BLANK_ID" ]] || die "$a points at $dep, not the blank placeholder" 69
+    log "logged-out $a -> 200 blank noindex placeholder only"
+  done
+}
+check_prod_aliases
 
-# 5. Preview must be blocked logged out (401 or 302 to the Vercel login)
+# c-d. Real build as a preview
+OUT="$(vdeploy "$SITE_DIR" --environment preview --meta hmhq_kind=preview)"
+URL="$(printf '%s\n' "$OUT" | dpl_url)"
+[[ -n "$URL" ]] || { printf '%s\n' "$OUT" | grep -iE "error|warn" | head -5 >&2; die "preview deploy gave no deployment URL" 68; }
+DJ="$(api "/v13/deployments/${URL#https://}")"
+PREVIEW_ID="$(printf '%s' "$DJ" | jget id)"; TARGET="$(printf '%s' "$DJ" | jget target)"
+log "deployed $URL (id ${PREVIEW_ID:-?}, target: ${TARGET:-preview})"
+[[ -n "$PREVIEW_ID" ]] || die "could not look up the new deployment" 68
+# e. Target, production aliases, preview protection
+[[ "$TARGET" != "production" ]] || die "the build landed on production" 69
+check_prod_aliases
 R="$(probe "$URL/")"; log "logged-out $URL/ -> $R"
 c="${R%% *}"; k="${R##* }"
-if ! [[ "$c" == 401 || ( "$c" == 302 && "$k" == login ) ]]; then
-  remove_deployment "$DID"
-  echo "PREVIEW IS NOT PROTECTED: $URL answered $R; deployment removed" >&2
-  exit 70
-fi
-for p in /contact /api/form-lead; do log "logged-out $URL$p -> $(probe "$URL$p")"; done
-log "production deployments on $PROJECT: $(prod_count)"
+[[ "$c" == 401 || ( "$c" == 302 && "$k" == login ) ]] || die "PREVIEW IS NOT PROTECTED: $URL answered $R" 70
+PREVIEW_OK=1
+for p in /contact /services /api/form-lead; do log "logged-out $URL$p -> $(probe "$URL$p")"; done
+for id in $(prod_ids); do is_blank "$id" || die "non-blank production deployment $id appeared" 69; done
+log "production deployments: $(prod_ids | wc -w) (blank placeholder only)"
 [[ ! -d "$SITE_DIR/.vercel" ]] || log "note: $SITE_DIR/.vercel exists (it's gitignored)"
-rm -f "$DEPLOY_LOG"
-log "OK: preview is protected, target is preview, and no production alias serves content."
+DONE=1
+log "OK: preview is protected, target is preview, production serves only the blank noindex page."
 echo "PREVIEW_URL=$URL"
