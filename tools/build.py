@@ -137,11 +137,9 @@ ICON = {
     "list": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h1M3 12h1M3 18h1" stroke="currentColor" stroke-width="2"/></svg>',
 }
 
-MARK = ('<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">'
-        '<defs><linearGradient id="mk" x1="0" x2="1"><stop offset="0" stop-color="#47b8ff"/><stop offset="1" stop-color="#ff6a2b"/></linearGradient></defs>'
-        '<rect width="32" height="32" rx="9" fill="#101826" stroke="rgba(255,255,255,.14)"/>'
-        '<path d="M8 21l8-11 8 11" fill="none" stroke="url(#mk)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'
-        '<circle cx="16" cy="23" r="2" fill="#eef2f7"/></svg>')
+# Brand mark: the fan with cool-to-hot air (brand kit v2, Oct 21, 2026). Navy fan for light headers, white fan on dark.
+MARK = '<img class="brand-mark" src="/logo-mark.svg" alt="" width="40" height="40">'
+MARK_DARK = '<img class="brand-mark" src="/logo-mark-on-dark.svg" alt="" width="40" height="40">'
 
 ALL_TRADES = [("hvac", "HVAC", "Heating and air"), ("plumbing", "Plumbing", "Plumbers and drain"), ("roofing", "Roofing", "Roofers and storm work")]
 # Trades shown in the nav and on the home page. Roofing is built but parked (see research/trade-choice.md).
@@ -233,7 +231,7 @@ def footer(has_form=True, legal=False):
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="{u('')}">{MARK}<span>{esc(BRAND)}<small>{esc(TAGLINE)}</small></span></a>
+        <a class="brand" href="{u('')}">{MARK_DARK}<span>{esc(BRAND)}<small>{esc(TAGLINE)}</small></span></a>
         <p style="margin-top:16px;max-width:36ch">Websites, Google profiles and lead systems for HVAC companies.</p>
       </div>
       <div><h2 class="foot-h">How it works</h2><ul><li><a href="{u('method')}">The method</a></li><li><a href="{u('plans')}">Pricing</a></li><li><a href="{u('getting-started')}">Getting started</a></li><li><a href="{u('')}#tech">The tech</a></li><li><a href="{u('guides')}">Guides</a></li>{f'<li><a href="{u("blog")}">Blog</a></li>' if POSTS else ''}<li><a href="{u('tools')}">Free tools</a></li><li><a href="{u('guide-hvac-website-checklist')}">Website checklist</a></li>{f'<li><a href="{u("post-best-hvac-marketing-agencies")}">Best HVAC agencies</a></li>' if "best-hvac-marketing-agencies" in POST_SLUGS else ''}</ul></div>
@@ -3087,7 +3085,7 @@ def your_report_page():
 <link rel="icon" href="{a('favicon.svg')}" type="image/svg+xml">
 </head>
 <body class="yr-page">
-<header class="yr-top"><div class="wrap"><span class="brand">{MARK}<span>{esc(BRAND_SHORT)}<small>{esc(TAGLINE)}</small></span></span><a class="btn btn-primary btn-small" href="{esc(call_link())}">Book a call</a></div></header>
+<header class="yr-top"><div class="wrap"><span class="brand">{MARK_DARK}<span>{esc(BRAND_SHORT)}<small>{esc(TAGLINE)}</small></span></span><a class="btn btn-primary btn-small" href="{esc(call_link())}">Book a call</a></div></header>
 <main id="yr" data-book="{esc(call_link())}"><noscript><div class="wrap" style="padding:60px 0"><h1>Your report card</h1><p>Turn on JavaScript to see your report, or <a href="{esc(call_link())}">book a 15-minute call</a> and we'll walk you through it.</p></div></noscript></main>
 <footer class="yr-foot"><div class="wrap">© 2026 {esc(BRAND)}. This report is for you; anyone with the link can open it.</div></footer>
 <script src="{asset_v('your-report.js')}" defer></script>
@@ -3166,7 +3164,7 @@ if __name__ == "__main__":
         PREVIEW = True
         out = sys.argv[2]
         names = build(out)
-        for asset in ("styles.css", "main.js", "gcalc.js", "your-report.js", "favicon.svg", "favicon.ico", "apple-touch-icon-180.png", "og-image.png"):
+        for asset in ("styles.css", "main.js", "gcalc.js", "your-report.js", "favicon.svg", "favicon.ico", "apple-touch-icon-180.png", "og-image.png", "logo-mark.svg", "logo-mark-on-dark.svg"):
             shutil.copy(os.path.join(site, asset), os.path.join(out, asset))
         shutil.copytree(os.path.join(site, "fonts"), os.path.join(out, "fonts"), dirs_exist_ok=True)
         shutil.copytree(os.path.join(site, "img"), os.path.join(out, "img"), dirs_exist_ok=True)
