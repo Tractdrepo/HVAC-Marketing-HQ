@@ -73,8 +73,8 @@ PLANS = [
     },
 ]
 # Lighthouse scores measured on this site's own home page (mobile). Update after each measurement.
-LIGHTHOUSE = {"scores": [("Performance", 99), ("Accessibility", 100), ("Best practices", 96), ("SEO", 100)],
-              "note": "This site, measured with Google Lighthouse on a simulated 4G phone, Oct 11, 2026. Main content shows in 2.0 seconds on that phone and 0.4 seconds on desktop."}
+LIGHTHOUSE = {"scores": [("Performance", 98), ("Accessibility", 100), ("Best practices", 96), ("SEO", 100)],
+              "note": "This site, measured with Google Lighthouse on a simulated 4G phone, Oct 21, 2026. Main content shows in 2.3 seconds on that phone."}
 
 LIGHTHOUSE_LCP_DESKTOP = "0.4s"
 
@@ -2056,7 +2056,7 @@ def about_page():
   <h2>Why I started {esc(BRAND)}.</h2>
   <div class="about-note">
     <p>Most HVAC owners I talk to are great at the work and stuck with marketing that doesn't add up. They're paying for a site they don't own, leads they share with three other shops, or a report full of clicks that never turned into a job.</p>
-    <p>I started {esc(BRAND)} to do it the other way. One trade. Prices on the site. A fast website, a Google profile that's actually run, every missed call texted back, and reviews coming in after every job, all in your name, all tracked so you can see which ones turn into booked jobs.</p>
+    <p>I started {esc(BRAND)} to do it the other way. HVAC shops only. Prices on the site. A fast website, a Google profile that's actually run, every missed call texted back, and reviews coming in after every job, all in your name, all tracked so you can see which ones turn into booked jobs.</p>
     <p>If we're not the right fit for your shop, I'll tell you. If we are, you'll always know exactly what you're paying for and what it's bringing in.</p>
     <p class="about-sign">Logan<br><span>Founder, {esc(BRAND)}</span></p>
   </div>
@@ -2369,9 +2369,9 @@ def home():
   <li class="reveal"><span class="num">04</span><h3>Every month</h3><p>A short recap of calls, booked jobs and reviews.</p></li>
 </ol>
 <div class="speed reveal" id="tech">
-  <div class="speed-score"><b>0</b><span>plugins</span></div>
-  <div><h3>Built fast, on purpose. No WordPress.</h3><p>Your site is custom-coded like this one: no page builder and no plugins to patch or slow it down, served from a global network close to every visitor. A slow site loses the homeowner before the page loads.</p></div>
-  <ul class="speed-pills"><li>Custom-coded</li><li>No page builder</li><li>Mobile first</li></ul>
+  <div class="speed-score"><b>{LIGHTHOUSE["scores"][0][1]}</b><span>/100</span></div>
+  <div><h3>Built fast, on purpose. No WordPress.</h3><p>This site scores {LIGHTHOUSE["scores"][0][1]} on Google's phone speed test, and yours is built the same way: custom-coded, no page builder, no plugins to patch or slow it down. A slow site loses the homeowner before the page loads.</p></div>
+  <ul class="speed-pills">{"".join(f"<li><b>{v}</b>{k}</li>" for k, v in LIGHTHOUSE["scores"][1:])}</ul>
 </div>"""
     faqs = [(q, a.replace("Prices are on this page", "Prices are on our website")) for q, a in COMMON_FAQ[:6]]
     faqs.insert(2, ("What does it cost?", f"A one-time build fee and a monthly plan, from ${starter['monthly']} a month, listed by shop size on our pricing page, with 20% off if you pay yearly. You don't need a sales call to get a number."))
