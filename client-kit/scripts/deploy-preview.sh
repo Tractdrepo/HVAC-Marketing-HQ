@@ -21,7 +21,8 @@
 #  d. URLs are read from the CLI's stdout AND stderr; the preview URL is https://<project>-<hash>-<team>.vercel.app.
 #  e. The new deployment's target must be preview; the production aliases must point at the blank deployment and
 #     serve only the blank page (no title or text from the site, no PLACEHOLDER/TEST SITE); the preview URL must
-#     answer 401 or a 302 to the Vercel login when logged out.
+#     answer 401 or a 302 to the Vercel login when logged out. A 302 only counts when its Location is vercel.com/login,
+#     vercel.com/sso*, vercel.com/sso-api or the host's /_vercel/sso flow; any other redirect fails.
 #  f. On ANY failure: remove every production deployment that isn't the blank placeholder, remove the new preview
 #     if it isn't protected, and exit non-zero. No retries.
 # The CLI keeps its own token; this script never reads, prints or passes one.
@@ -65,7 +66,8 @@ probe() {
   code="$(printf '%s' "$h" | awk 'toupper($1) ~ /^HTTP/ {c=$2} END {print c+0}')"
   loc="$(printf '%s' "$h" | tr -d '\r' | awk 'tolower($1)=="location:" {print $2}' | tail -1)"
   if [[ -z "$loc" ]]; then echo "$code -"
-  elif [[ "$loc" =~ ^https://vercel\.com/(sso-api|login) ]]; then echo "$code login"
+  # Only Vercel's own login/SSO counts: vercel.com/login, vercel.com/sso*, vercel.com/sso-api, or this host's /_vercel/sso
+  elif [[ "$loc" =~ ^https://vercel\.com/(login|sso-api|sso)([/?#]|$) || "$loc" =~ ^(https://[a-z0-9.-]+\.vercel\.app)?/_vercel/sso([/?#]|$) ]]; then echo "$code login"
   else echo "$code other"; fi
 }
 
@@ -157,6 +159,10 @@ check_prod_aliases() {
   for a in "${ALIASES[@]}"; do
     body="$(curl -s --max-time 20 -w '\n%{http_code}' "$a/" || true)"; code="${body##*$'\n'}"; body="${body%$'\n'*}"
     if [[ "$code" == 404 || "$code" == 401 ]]; then log "logged-out $a -> $code (no content)"; continue; fi
+    if [[ "$code" == 302 || "$code" == 307 ]]; then
+      [[ "$(probe "$a/")" == *" login" ]] || die "$a redirects somewhere other than the Vercel login/SSO" 69
+      log "logged-out $a -> $code to the Vercel login/SSO (protected, no content)"; continue
+    fi
     [[ "$code" == 200 ]] || die "$a answered $code logged out (expected the blank page or 404)" 69
     [[ "$body" == *hmhq-blank-placeholder* && "$body" == *'content="noindex,nofollow"'* ]] || die "$a serves something other than the blank placeholder" 69
     [[ -z "$SITE_TITLE" || "$body" != *"$SITE_TITLE"* ]] && [[ "$body" != *PLACEHOLDER* && "$body" != *"TEST SITE"* ]] || die "$a shows site content" 69
