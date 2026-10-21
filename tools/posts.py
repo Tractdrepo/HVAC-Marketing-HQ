@@ -611,7 +611,7 @@ POSTS = [
             ("1. HVAC Marketing HQ (that's us)", [
                 ("p", "<b>Best for:</b> owner-run HVAC shops, from one truck to several locations, that want their website, Google profile, SEO and lead follow-up run by one HVAC-only team."),
                 ("ul", [
-                    "<b>Price:</b> Starter $499, Growth $799, Dominate $1,299 and Multi-location $2,499 a month, 20% off billed annually. One-time build fee of $1,995 to $4,500. Google Ads, Local Services Ads and Facebook ads are $299 a month each, with ad spend billed to you and never marked up. See <a href=\"{u:plans}\">plans</a>.",
+                    "<b>Price:</b> Starter $499, Growth $999, Dominate $1,499 and Multi-location $2,499 a month, 20% off billed annually. One-time build fee of $1,995 to $4,500. Google Ads, Local Services Ads and Facebook ads are $299 a month each, with ad spend billed to you and never marked up. See <a href=\"{u:plans}\">plans</a>.",
                     "<b>Contract:</b> 6-month first term, then month to month. First month refunded if you're not happy within 30 days of launch.",
                     "<b>Ownership:</b> your site, domain, Google profile and reviews are yours.",
                     "<b>Built in:</b> missed-call text-back within 10 seconds and review requests on every plan, plus <a href=\"{u:hq-command-center}\">HQ Command Center</a>, a CRM with unlimited logins for your team.",

@@ -47,24 +47,24 @@ NOINDEX = False                      # Logan said index it, Oct 15 2026. True pu
 HOLD_LOCATIONS = False
 AREA = "Texas"                        # launch market; copy says "starting in Texas"
 
-# Plans: four tiers with a monthly/annual toggle (annual = 20% off). Prices confirmed by Logan Oct 12, 2026.
+# Plans: four tiers with a monthly/annual toggle (annual = 20% off). Prices confirmed by Logan Oct 12, 2026; Growth and Dominate raised Oct 21.
 ANNUAL_DISCOUNT = 0.20
-PLAN_PRICE_FOR_CALC = 799            # break-even calculator default, editable by the visitor
+PLAN_PRICE_FOR_CALC = 999            # break-even calculator default, editable by the visitor
 PLANS = [
     {
         "name": "Starter", "monthly": 499, "build": 1995, "scope": "5 pages total · 1 city", "stage": "1 to 2 trucks",
         "for": "A fast site and a complete Google profile, with every missed call texted back.",
-        "items": ["Custom 5-page website, including 1 city page", "Missed-call text-back in 10 seconds", "Review requests after every job", "Google profile setup", "HQ Command Center CRM and app", "Unlimited logins for your whole team", "Monthly recap, strategy call twice a year"],
+        "items": ["Custom 5-page website, including 1 city page", "Missed-call text-back in 10 seconds", "Review requests after every job", "Google profile setup", "HQ Command Center CRM and app", "Unlimited logins for your whole team", "Monthly recap"],
     },
     {
-        "name": "Growth", "monthly": 799, "build": 2495, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
+        "name": "Growth", "monthly": 999, "build": 2495, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
         "for": "The full Rank, Book, Repeat system for an owner-run shop.",
-        "items": ["Everything in Starter", "12 pages, including 3 city pages", "Google profile managed, posting the job photos you text us", "Estimate follow-up until booked or lost", "Review replies and AI web chat", "Win-back texts to past customers each season", "1 new article a month", "Quarterly strategy call"],
+        "items": ["Everything in Starter", "12 pages, including 3 city pages", "Google profile managed, posting the job photos you text us", "Estimate follow-up until booked or lost", "Review replies and AI web chat", "Win-back texts to past customers each season", "1 new article a month", "Strategy call twice a year"],
     },
     {
-        "name": "Dominate", "monthly": 1299, "build": 2995, "scope": "40 pages · up to 15 cities", "stage": "8+ trucks or a wide area",
+        "name": "Dominate", "monthly": 1499, "build": 2995, "scope": "40 pages · up to 15 cities", "stage": "8+ trucks or a wide area",
         "for": "For shops covering a wide area that want the map in every town they serve.",
-        "items": ["Everything in Growth", "40 pages, including up to 15 city pages", "2 new articles a month", "Full spring and fall tune-up campaigns, text and email", "ServiceTitan, Housecall Pro or Jobber hookup", "Competitor and map spam watch", "Directory listings managed"],
+        "items": ["Everything in Growth", "40 pages, including up to 15 city pages", "2 new articles a month", "Full spring and fall tune-up campaigns, text and email", "ServiceTitan, Housecall Pro or Jobber hookup", "Competitor and map spam watch", "Directory listings managed", "Quarterly strategy call"],
     },
     {
         "name": "Multi-location", "monthly": 2499, "build": 4500, "scope": "Up to 10 locations", "stage": "several branches or brands",
@@ -1003,7 +1003,7 @@ COMMON_FAQ = [
     ("How soon will I see more calls?", "Missed-call text-back starts as soon as the phone carriers approve your texting registration. We file it at kickoff, and approval usually takes 1 to 3 weeks. Google rankings and reviews take longer: months, not weeks. That's why the first term is six months, and why your HQ Command Center shows what's moving along the way."),
     ("What do I have to do?", "One kickoff call, sharing access to your domain, Google profile and phone line, approving your site before it goes live, and answering the texts. We do the rest."),
     ("Do I own my website?", "Yes. Your domain, Google profile, reviews and site content are yours. If you leave, we hand over the site files and help move your number. It's written into the agreement."),
-    ("How often do we meet?", "Not often, on purpose. You're running jobs, not sitting in meetings. Every month you get a short recap and your statement to read when it suits you. We get on a strategy call twice a year on Starter and every quarter on Growth and up. In between, text or email us anytime and we answer in the shared inbox."),
+    ("How often do we meet?", "Not often, on purpose. You're running jobs, not sitting in meetings. Every month you get a short recap and your statement to read when it suits you. We get on a strategy call twice a year on Growth and every quarter on Dominate and up. In between, text or email us anytime and we answer in the shared inbox."),
     ("How long is the contract?", "Six months to start, then month to month. Six months gives the Google profile and reviews time to move. After that you stay because it's working. And if you're not happy in the first 30 days after launch, we refund your first month."),
     ("What if I already have a website I like?", "Keep it. We can add the booking form and lead system to your current site, and the build fee is lower or waived."),
     ("Is there a money-back guarantee?", "Yes. If you're not happy in your first 30 days after launch, tell us and we refund your first month. You keep your domain, Google profile and reviews either way."),
