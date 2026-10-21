@@ -244,8 +244,7 @@ def footer(has_form=True, legal=False):
     </div>
     <p class="foot-word" aria-hidden="true">{esc(BRAND)}</p>
     <div class="foot-base">
-      <span>© <span data-year>2026</span> {esc(legal_entity() if legal else BRAND)}. {esc(MAIL_ADDRESS)}.{f' <a href="tel:{BUSINESS_PHONE}">{fmt_phone(BUSINESS_PHONE)}</a> ·' if BUSINESS_PHONE else ''} <a href="mailto:{EMAIL}">{EMAIL}</a></span>
-      <span><a href="{u('privacy')}">Privacy Policy</a> · <a href="{u('terms')}">Terms of Service</a></span>
+      <span>© <span data-year>2026</span> {esc(legal_entity() if legal else BRAND)}</span><span>{esc(MAIL_ADDRESS)}</span>{f'<a href="tel:{BUSINESS_PHONE}">{fmt_phone(BUSINESS_PHONE)}</a>' if BUSINESS_PHONE else ''}<a href="{u('privacy')}">Privacy Policy</a><a href="{u('terms')}">Terms of Service</a>
     </div>
   </div>
 </footer>
@@ -2037,7 +2036,7 @@ def contact_page():
 
 def about_page():
     beliefs = [
-        ("HVAC only", "One trade means we know the jobs, the seasons and the searches. Every page, script and campaign is built for heating and cooling work."),
+        ("HVAC only", "We work only with HVAC contractors, so we know the jobs, the seasons and the searches. Every page, script and campaign is built for heating and cooling work."),
         ("You own everything", "Your domain, site content, Google profile, reviews, ad accounts and customer list are in your name. If you ever leave, you take it all."),
         ("Prices on the site", "Plan prices are published on the site. The call is about your shop, not a quote."),
         ("Booked jobs, not clicks", "We judge our work by calls answered and jobs booked, on a dashboard you can check yourself."),
@@ -2258,63 +2257,180 @@ def sitemap_xml(paths):
 
 
 # ---- Pages -----------------------------------------------------------------------
+def gpin(x, y, label, you=False):
+    s = 1.25 if you else 1.0
+    c, d = ("#ea4335", "#b31412")
+    lab = (f'<text x="{x + 12*s:.0f}" y="{y - 13*s:.0f}" class="gm-lab{" you" if you else ""}">{label}</text>' if label else "")
+    return (f'<g transform="translate({x},{y}) scale({s})"><path d="M0 0C-3-6-10-11-10-18a10 10 0 1 1 20 0C10-11 3-6 0 0z" fill="{c}" stroke="{d}" stroke-width="1"/>'
+            f'<circle cy="-18" r="3.6" fill="#fff"/></g>{lab}')
+
+
+def mock_map():
+    svg = f"""<svg class="gm" viewBox="0 0 360 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <rect width="360" height="200" fill="#f1f3f4"/>
+  <g fill="#e6e8eb">
+    <rect x="6" y="6" width="58" height="40" rx="3"/><rect x="74" y="6" width="74" height="40" rx="3"/><rect x="158" y="6" width="50" height="40" rx="3"/>
+    <rect x="6" y="56" width="58" height="52" rx="3"/><rect x="74" y="56" width="74" height="52" rx="3"/><rect x="292" y="6" width="62" height="40" rx="3"/>
+    <rect x="6" y="118" width="58" height="76" rx="3"/><rect x="74" y="118" width="74" height="40" rx="3"/><rect x="292" y="56" width="62" height="52" rx="3"/>
+    <rect x="218" y="118" width="64" height="76" rx="3"/><rect x="292" y="118" width="62" height="76" rx="3"/>
+  </g>
+  <rect x="158" y="56" width="124" height="52" rx="4" fill="#c9e8cf"/>
+  <text x="220" y="86" class="gm-park">City Park</text>
+  <path d="M-10 172 C 40 160, 90 186, 150 172 S 230 150, 370 160" fill="none" stroke="#a8d4f5" stroke-width="12"/>
+  <g stroke="#fff" stroke-width="7" fill="none"><path d="M0 51H360M0 113H360M69 0V200M153 0V200M287 0V200"/></g>
+  <g stroke="#fff" stroke-width="3.5" fill="none"><path d="M213 0V56M213 108V200M0 163H150"/></g>
+  <path d="M-10 196 L 370 4" stroke="#f2b632" stroke-width="11"/><path d="M-10 196 L 370 4" stroke="#fde293" stroke-width="8"/>
+  <text x="40" y="48" class="gm-st">Main St</text><text x="300" y="110" class="gm-st">Oak Ave</text>
+  {gpin(56, 104, "Another AC Company")}{gpin(306, 166, "Big Franchise Air")}{gpin(258, 46, "")}
+  {gpin(118, 82, "Your Shop Heating &amp; Air", True)}
+</svg>"""
+    return f"""<div class="gmock">
+  <div class="gm-search">{ICON["search"]}<span>ac repair near me</span></div>
+  <div class="gm-chips"><span>Open now</span><span>Top rated</span><span>Hours</span></div>
+  <div class="gm-map">{svg}</div>
+  <div class="gm-list">
+    {lp_item("Your Shop Heating &amp; Air", 4.9, 312, "Open 24 hours", True, True)}
+    {lp_item("Another AC Company", 4.6, 128, "Closes 5 PM")}
+    {lp_item("Big Franchise Air", 4.2, 86, "Closed · Opens 8 AM", False)}
+  </div>
+</div>"""
+
+
+def mock_text():
+    return """<div class="phone-mock">
+  <div class="pm-head"><span class="pm-av">YS</span><div><b>Your Shop Heating &amp; Air</b><small>Text message · Today</small></div></div>
+  <div class="pm-body">
+    <div class="pm-sys">Missed call · 4:52 PM</div>
+    <div class="msg bot">Hi, this is Your Shop Heating &amp; Air. Sorry we missed your call. What's going on with your system?</div>
+    <div class="pm-time">Sent automatically · 0:08</div>
+    <div class="msg user">AC is blowing warm air. House is 84.</div>
+    <div class="msg bot">We can get a tech out tomorrow, 8 to 10 AM. Want it?</div>
+    <div class="msg user">Yes please</div>
+    <div class="pm-booked"><b>Service call booked</b><span>Tue · 8 to 10 AM · AC not cooling</span></div>
+  </div>
+</div>"""
+
+
+def mock_review():
+    return """<div class="phone-mock">
+  <div class="pm-head"><span class="pm-av">YS</span><div><b>Your Shop Heating &amp; Air</b><small>Job marked done · 2:14 PM</small></div></div>
+  <div class="pm-body">
+    <div class="msg bot">Thanks for choosing us today! Would you leave a quick review? It helps a lot. g.page/yourshop/review</div>
+    <div class="pm-time">Sent automatically after the job</div>
+    <div class="rv-card">
+      <div class="rv-top"><span class="rv-av">M</span><div><b>New Google review</b><small>just now</small></div><span class="stars">★★★★★</span></div>
+      <p>Texted me back in seconds and had it fixed by 10. Great tech.</p>
+      <div class="rv-reply"><b>Owner reply</b> Thank you! Glad we got you cool again.</div>
+    </div>
+    <div class="rv-stat"><span>Rating</span><b>4.9 ★</b><span>Reviews</span><b>312 → 313</b></div>
+  </div>
+</div>"""
+
+
 def home():
+    starter, growth, dominate = PLANS[0], PLANS[1], PLANS[2]
+    pains = [
+        ("Rank", "You're not in the top three on the map", "Homeowners tap one of the three shops Google shows first. If you're not one of them, you're not in the running."),
+        ("Book", "Calls go to voicemail. Quotes go cold.", "Your techs are in an attic and the office is on another line. The homeowner calls the next shop, and the $9,000 replacement quote goes to whoever called back."),
+        ("Repeat", "Customers never hear from you again", "No review request, no tune-up reminder. Next summer they search again and call whoever's on top."),
+    ]
+    pain_cards = "".join(f'<div class="pain reveal"><div class="x">✕</div><span class="tag3">{t}</span><h3>{esc(h)}</h3><p>{esc(p)}</p></div>' for t, h, p in pains)
+    gu = '<small>(Growth and up)</small>'
+    rbr = f"""<div class="rbr">
+  <div class="tile reveal"><span class="rbr-n">01</span><div><span class="tile-label">Rank</span><h3>Show up when they search.</h3></div>
+    <ul class="ticks"><li>A page for each service and each town you really serve, written from real local detail</li><li>Your Google profile set up right, then kept active with the job photos you text us {gu}</li><li>Your name, address and phone matched across the big directories <small>(Dominate)</small></li><li>A steady stream of new reviews, from Repeat</li></ul>
+    <div class="mock"><span class="ex-tag">Example</span>{mock_map()}</div></div>
+  <div class="tile reveal"><span class="rbr-n">02</span><div><span class="tile-label">Book</span><h3>Turn every call into a job.</h3></div>
+    <ul class="ticks"><li>Every missed call gets a text from your number within 10 seconds</li><li>Chat on your site answers questions and books after hours {gu}</li><li>Every call, text and chat in one inbox your whole team can answer</li><li>Quotes followed up until they book or say no {gu}</li></ul>
+    <div class="mock"><span class="ex-tag">Example</span>{mock_text()}</div></div>
+  <div class="tile reveal"><span class="rbr-n">03</span><div><span class="tile-label">Repeat</span><h3>Turn every job into the next one.</h3></div>
+    <ul class="ticks"><li>A review request after every finished job, and a reply to every review <small>(replies on Growth and up)</small></li><li>Win-back texts to past customers each season {gu}</li><li>Spring and fall tune-up and maintenance plan reminders <small>(Dominate)</small></li></ul>
+    <div class="mock"><span class="ex-tag">Example</span>{mock_review()}</div></div>
+</div>
+<p class="loop-line">{ICON["loop"]} Every new review helps you rank for the next search. That's the repeat.</p>"""
+    def pc(p, line, feat=False):
+        return f'<div class="pc{" feat" if feat else ""}">{'<span class="rec">Recommended</span>' if feat else ''}<b>{p["name"]}</b><span class="tr">{esc(p["stage"])}</span><p>{esc(line)}</p></div>'
+    offer = f"""<div class="offer">
+  <div class="card reveal"><h3>Every plan includes</h3><ul class="ticks">
+    <li>A custom website on fast hosting, in your name</li><li>Missed-call text-back</li><li>Review requests after every job</li><li>Google profile setup</li><li>HQ Command Center, with logins for your whole team</li><li>A monthly recap</li></ul>
+    <div class="from"><span class="p">from ${starter["monthly"]}<small>/mo</small></span><span class="muted" style="font-size:var(--fs-sm)">plus a one-time build fee · 20% off paid yearly</span></div>
+  </div>
+  <div class="plan3 reveal">
+    {pc(starter, "A fast 5-page site and a complete Google profile, with every missed call texted back.")}
+    {pc(growth, "The full Rank, Book, Repeat system.", True)}
+    {pc(dominate, "The map in every town you serve, plugged into ServiceTitan, Housecall Pro or Jobber.")}
+    <p style="margin:6px 0 0"><a class="btn btn-ghost" href="{u('plans')}">See plans and pricing <span class="arrow">→</span></a></p>
+  </div>
+</div>
+<ol class="start">
+  <li class="reveal"><span class="num">01</span><h3>One kickoff call</h3><p>You share access to your domain, Google profile and phone line.</p></li>
+  <li class="reveal"><span class="num">02</span><h3>Live in 14 days</h3><p>Your site is live within 14 days of getting your content. Monthly billing starts at launch.</p></li>
+  <li class="reveal"><span class="num">03</span><h3>Text-back switches on</h3><p>Once carriers approve your texting, usually 1 to 3 weeks. We file it at kickoff.</p></li>
+  <li class="reveal"><span class="num">04</span><h3>Every month</h3><p>A short recap of calls, booked jobs and reviews.</p></li>
+</ol>
+<div class="speed reveal" id="tech">
+  <div class="speed-score"><b>0</b><span>plugins</span></div>
+  <div><h3>Built fast, on purpose. No WordPress.</h3><p>Your site is custom-coded like this one: no page builder and no plugins to patch or slow it down, served from a global network close to every visitor. A slow site loses the homeowner before the page loads.</p></div>
+  <ul class="speed-pills"><li>Custom-coded</li><li>No page builder</li><li>Mobile first</li></ul>
+</div>"""
+    faqs = [(q, a.replace("Prices are on this page", "Prices are on our website")) for q, a in COMMON_FAQ[:6]]
+    faqs.insert(2, ("What does it cost?", f"A one-time build fee and a monthly plan, from ${starter['monthly']} a month, listed by shop size on our pricing page, with 20% off if you pay yearly. You don't need a sales call to get a number."))
     body = f"""<section class="hero hero-home"><div class="hero-grid-bg" aria-hidden="true"></div><div class="wrap hero-grid">
   <div>
     <span class="chip-top"><i>❄</i>HVAC marketing agency · HVAC only</span>
     <h1 class="hero-h1"><span>Rank higher.</span> <span class="grad nowrap">Book every call.</span></h1>
-    <p class="lede"><span class="lede-long">An HVAC marketing agency that builds your website, runs your Google profile and SEO, and texts back every missed call in 10 seconds, guaranteed. Start with a free report card on how you stack up locally.</span><span class="lede-short">Your website, Google profile and SEO, run for you. Every missed call texted back in 10 seconds, guaranteed.</span></p>
-    {url_form()}
+    <p class="lede"><span class="lede-long">We put your shop on the map, make sure every call turns into a booked job, and turn every finished job into a review and a repeat customer. One HVAC-only team runs it all, and you watch it work in your own dashboard.</span><span class="lede-short">We put you on the map, book the calls you miss, and turn every job into the next one.</span></p>
+    {url_form(btn="Grade my shop")}
     <p class="hero-alt">Rather talk first? <a href="{esc(call_link())}">Book a 15-minute call</a></p>
   </div>
   {hero_visual()}
 </div>
-<div class="wrap terms-wrap">{terms_strip()}</div></section>
+<div class="wrap terms-wrap">{terms_strip().replace("Billing starts at launch", "Monthly billing starts at launch")}</div></section>
 
 <section class="section dark"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">Sounds familiar?</span><h2>The phone rings when you can't answer it.</h2><p class="lede">Most shops don't lose jobs to a better competitor. They lose them to voicemail, slow follow-up and a Google profile nobody runs.</p></div>
-  {pains_grid()}
+  <div class="section-head reveal"><span class="eyebrow">Where jobs leak</span><h2>You're losing jobs in three places.</h2><p class="lede">Not to a better shop. To the map, the voicemail and the customer nobody called back.</p></div>
+  <div class="pains grid3">{pain_cards}</div>
 </div></section>
 
-{homeowner_path().replace('<section class="section"', '<section class="section hide-m"', 1)}
+<section class="section" id="method"><div class="wrap">
+  <div class="section-head center reveal"><span class="eyebrow">The method</span><h2>Rank. Book. Repeat. Three jobs, one system.</h2><p class="lede">Most agencies sell you one piece. We run the three jobs that fill an HVAC schedule, and each one feeds the next.</p></div>
+  {rbr}
+  <p style="text-align:center;margin-top:12px" class="muted">Watch all of it in your HQ Command Center: every call, text, booked job and review. <a class="more" href="{u('method')}">See the full method →</a></p>
+  <div class="mid-cta reveal"><p><b>Your free report card grades all three:</b> your Google profile and listings, your website, and your reviews, against the top shops near you.</p><a class="btn btn-primary" href="#report-card">Grade my shop <span class="arrow">→</span></a></div>
+</div></section>
 
 <section class="section dark"><div class="wrap">
-  <div class="section-head center reveal"><span class="eyebrow">What runs behind it</span><h2>One system. Every piece working.</h2><p class="lede">Your site, your Google profile and your lead system, built once and run for you. Your office just answers the texts.</p></div>
-  {bento()}
-  <p style="margin-top:30px;text-align:center"><a class="btn btn-ghost" href="{u('services')}">See all {SERVICE_COUNT_WORD} services <span class="arrow">→</span></a></p>
+  <div class="section-head reveal"><span class="eyebrow">What you get</span><h2>One monthly plan. All of it, run for you.</h2><p class="lede">A custom website and the whole system behind it, set up and run by us. Your office answers the texts.</p></div>
+  {offer}
 </div></section>
 
-<section class="section" id="tech"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">The tech</span><h2>Built fast, on purpose.</h2><p class="lede">A slow site loses the homeowner before the page loads. Here's this site's own score from Google's test.</p></div>
-  {tech()}
-</div></section>
-
-<section class="section founder-sec"><div class="wrap"><div class="founder reveal">
-  <img src="{a('img/logan-320.webp')}" width="96" height="96" alt="Logan, founder of {esc(BRAND)}" loading="lazy">
-  <div><p class="founder-q">"I started {esc(BRAND)} to do it the other way. One trade. Prices on the site. Everything in your name, tracked so you can see which turn into booked jobs. If we're not the right fit for your shop, I'll tell you."</p>
-  <p class="founder-by"><b>Logan</b>, founder · Waco, Texas · <a href="{u('about')}">Why I started it →</a></p></div>
-</div></div></section>
-<section class="section dark"><div class="wrap">
+<section class="section"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Guarantees</span><h2>We guarantee what we control.</h2></div>
-  {promise()}
+  {promise().replace('<p class="promise-note">We guarantee what we control. ', '<p class="promise-note">')}
   <div style="margin-top:28px">{ownership()}</div>
 </div></section>
 
-
-<section class="section"><div class="wrap">{magnet_box(heading="Score your own shop in 10 minutes")}</div></section>
+<section class="section dark founder-band"><div class="wrap">
+  <figure class="fb reveal">
+    <img src="{a('img/logan-320.webp')}" width="120" height="120" alt="Logan, founder of {esc(BRAND)}">
+    <div><span class="eyebrow">From the founder</span>
+    <blockquote>"You run the jobs. We run everything that brings them in. {esc(BRAND)} is a done-for-you system built only for HVAC contractors: your website, your Google profile, every missed call and every review. Your name on all of it, prices on the site, and a straight answer if we're not the right fit."</blockquote>
+    <figcaption><b>Logan</b>, founder · Waco, Texas · <a href="{u('about')}">Why I started it →</a></figcaption></div>
+  </figure>
+</div></section>
 
 <section class="section alt"><div class="wrap" style="max-width:900px">
   <div class="section-head reveal"><span class="eyebrow">Questions</span><h2>Straight answers.</h2></div>
-  {faq(COMMON_FAQ[:6])}
-  <p style="margin-top:22px"><a class="more" href="{u('plans')}#faq">All pricing and contract questions →</a> · <a class="more" href="{u('getting-started')}">What happens after you sign up →</a> · <a class="more" href="{u('guides')}">Guides, with sources →</a></p>
+  {faq(faqs)}
+  <p style="margin-top:22px"><a class="more" href="{u('plans')}#faq">All pricing and contract questions →</a> · <a class="more" href="{u('getting-started')}">What happens after you sign up →</a></p>
 </div></section>
 
 {locations_band().replace('<section class="section">', '<section class="section tight">', 1)}
 
-{report_card("See where you stand before you spend a dollar.")}
+{report_card("See your Rank, Book, Repeat grade before you spend a dollar.")}
 """
     return page("", f"HVAC Marketing Agency for Owner-Run Shops | {BRAND}",
-                "HVAC marketing agency for owner-run shops: websites, SEO, Google profiles and ads, plus every missed call texted back in 10 seconds, guaranteed.", body,
+                "HVAC marketing agency for owner-run shops: websites, SEO and Google profiles, plus every missed call texted back in 10 seconds.", body,
                 extra_head=org_ld() + faq_ld(COMMON_FAQ[:6]))
 
 
