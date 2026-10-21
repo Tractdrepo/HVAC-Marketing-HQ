@@ -54,7 +54,7 @@ PLANS = [
     {
         "name": "Starter", "monthly": 499, "build": 1995, "scope": "5 pages total · 1 city", "stage": "1 to 2 trucks",
         "for": "A fast site and a complete Google profile, with every missed call texted back.",
-        "items": ["Custom 5-page website, including 1 city page", "Missed-call text-back in 60 seconds", "Review requests after every job", "Google profile setup", "HQ Command Center CRM and app", "Unlimited logins for your whole team", "Monthly recap, strategy call twice a year"],
+        "items": ["Custom 5-page website, including 1 city page", "Missed-call text-back in 10 seconds", "Review requests after every job", "Google profile setup", "HQ Command Center CRM and app", "Unlimited logins for your whole team", "Monthly recap, strategy call twice a year"],
     },
     {
         "name": "Growth", "monthly": 799, "build": 2495, "featured": True, "scope": "12 pages · 3 cities", "stage": "3 to 8 trucks",
@@ -599,7 +599,7 @@ METHOD = [
         "Competitor and map spam watch on Dominate",
     ], "More of the right homeowners find you, not a franchise."),
     ("Book", "Every call answered and booked, even when you can't pick up.", [
-        "Missed-call text-back in 60 seconds, guaranteed",
+        "Missed-call text-back in 10 seconds, guaranteed",
         "One shared inbox for calls, texts, chats and forms",
         "AI web chat that captures the lead after hours, Growth and up",
         "Estimate follow-up until the job is booked or lost, Growth and up",
@@ -702,7 +702,7 @@ def pillars():
     return f"""<div class="pillars">
   <div class="pillar reveal"><div class="vis"><div class="speed-bar"><i></i></div><span class="big" style="margin-top:22px">{LIGHTHOUSE_LCP_DESKTOP}</span><small>this site, desktop load</small></div><h3>Fast</h3><p>Pages that open almost instantly on a phone, so nobody bounces to the next shop.</p></div>
   <div class="pillar reveal"><div class="vis"><div class="rank-pin"><div class="you"><b>1</b> Your Shop Heating &amp; Air</div><div><b>2</b> Another AC Company</div><div><b>3</b> Big Franchise Air</div></div></div><h3>Found</h3><p>Service pages, town pages and a Google profile that's complete, active and full of fresh reviews.</p></div>
-  <div class="pillar reveal"><div class="vis"><div class="cal-vis">{cal}</div></div><h3>Booked</h3><p>Every missed call texted back in 60 seconds, every estimate followed up, every finished job asked for a review.</p></div>
+  <div class="pillar reveal"><div class="vis"><div class="cal-vis">{cal}</div></div><h3>Booked</h3><p>Every missed call texted back in 10 seconds, every estimate followed up, every finished job asked for a review.</p></div>
 </div>"""
 
 
@@ -854,7 +854,7 @@ def compare():
         ("Price", "Often $2,500+ a month, quoted after a sales call", "Software fees plus your own evenings", "$499 to $2,499 a month, on this site"),
         ("Contract", "Often 12 months", "Monthly software subscriptions", "6 months, then month to month"),
         ("Who owns the website", "Sometimes the agency, or you rebuild when you leave", "You", "You, always"),
-        ("Missed-call text-back", "Add-on, if offered", "If you set it up yourself", "In every plan, 60 seconds guaranteed"),
+        ("Missed-call text-back", "Add-on, if offered", "If you set it up yourself", "In every plan, 10 seconds guaranteed"),
         ("Reporting", "A monthly PDF", "Whatever you have time to check", "HQ Command Center, live anytime"),
         ("Time to launch", "Varies, often months", "Whenever you get to it", "14 days, guaranteed"),
         ("If it's not working", "Locked in until the term ends", "Cancel the tools", "First month back within 30 days"),
@@ -901,7 +901,7 @@ def addons():
 
 def promise():
     return f"""<div class="promise">
-  <div class="card reveal"><span class="big">60 seconds</span><p>Every missed call gets a text back within 60 seconds, once the carriers approve your texting.</p></div>
+  <div class="card reveal"><span class="big">10 seconds</span><p>Every missed call gets a text back within 10 seconds, once the carriers approve your texting.</p></div>
   <div class="card reveal"><span class="big">14 days</span><p>Your new site is live within 14 days of getting your content.</p></div>
   <div class="card reveal"><span class="big">1 day</span><p>Every change you send us is done, or answered with a date, within one business day.</p></div>
 </div>
@@ -1276,7 +1276,7 @@ def city_page(c):
   <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('locations')}">Locations</a> / {"" if st["abbr"] == "DC" else f'<a href="{u(state_key(st))}">{esc(st["name"])}</a> / '}{esc(c['name'])}</div>
   <span class="eyebrow">{esc(c['county'])} · {esc(c['metro'])}</span>
   <h1 style="max-width:20ch">HVAC marketing in {esc(place(c).rstrip('.'))}.</h1>
-  <p class="lede">{city_hook(c)} We make sure that's you: a fast site, a Google profile that's actually run, and every missed call texted back in 60 seconds.</p>
+  <p class="lede">{city_hook(c)} We make sure that's you: a fast site, a Google profile that's actually run, and every missed call texted back in 10 seconds.</p>
   {url_form()}
 </div></section>
 <section class="section after-head"><div class="wrap">
@@ -1668,7 +1668,7 @@ def service_page(sv):
 GETTING_STARTED_FAQ = [
     ("Why do you cost less than Scorpion or the big agencies?", "We only do HVAC, ads are an add-on you only pay for if you want them, and we don't do photo or video shoots. Your site and system are built for your shop, on a process we've already worked out for HVAC, so you don't pay for us to figure it out. That keeps our costs, and your price, down."),
     ("What happens if I leave?", "Your website, domain, Google profile, reviews and phone number are yours. We hand over the site and your data, and your number is ported back to you."),
-    ("Will I actually get more calls?", "We can't promise a number, and nobody honest can. We guarantee what we control: missed calls texted back in 60 seconds, review requests after every job, and launch in 14 days. Your HQ Command Center shows what's working."),
+    ("Will I actually get more calls?", "We can't promise a number, and nobody honest can. We guarantee what we control: missed calls texted back in 10 seconds, review requests after every job, and launch in 14 days. Your HQ Command Center shows what's working."),
     ("How much of my time does it take?", "One kickoff call, sharing access, and a review of your site before launch. After that, answering the texts and booking the work, which you're doing already."),
     ("Is there a sales call?", "Only if you want one. Prices and plans are on the site. The report card is free and nobody calls you."),
 ]
@@ -1859,7 +1859,7 @@ TOOLS = [
      "desc": "Free calculator: see what missed calls cost your HVAC company each week, month and year. Put in your own numbers. No email needed.",
      "lede": "Put in how many calls you miss, what a new customer's job is usually worth and how many of them you'd normally book. The math runs in your browser and nothing is sent anywhere.",
      "formula": ["Weekly cost = calls missed a week x average job value x the share you'd book", "Monthly = weekly x 52 / 12", "Yearly = weekly x 52"],
-     "improve": [("Text back every missed call", "A text in about a minute keeps the caller talking to you instead of the next shop."), ("Share the inbox", "Calls, texts and chats in one app, so whoever's free can reply."), ("Cover after hours", "AI web chat takes the address and the problem at night, so you can call back first thing.")],
+     "improve": [("Text back every missed call", "A text within 10 seconds keeps the caller talking to you instead of the next shop."), ("Share the inbox", "Calls, texts and chats in one app, so whoever's free can reply."), ("Cover after hours", "AI web chat takes the address and the problem at night, so you can call back first thing.")],
      "service": "missed-call-text-back", "guide": "missed-call-text-back-hvac"},
     {"slug": "hvac-marketing-break-even-calculator", "name": "Marketing break-even calculator", "line": "How many jobs pay for a marketing plan",
      "title": "HVAC marketing break-even calculator",
@@ -2083,7 +2083,7 @@ PATH_STEPS = [
     ("search", "Rank", "Searches on Google", "A homeowner with a hot house types \"ac repair near me\" on their phone."),
     ("pin", "Rank", "Picks from the map", "Three shops show up. Stars, reviews, photos and hours decide who gets the call."),
     ("phone", "Book", "Calls or chats", "They tap call. After hours, they ask your site's chat instead."),
-    ("chat", "Book", "Gets a text if you miss it", "Busy on a job? A text from your number goes out within 60 seconds."),
+    ("chat", "Book", "Gets a text if you miss it", "Busy on a job? A text from your number goes out within 10 seconds."),
     ("cal", "Book", "Books the job", "Whoever's free replies from the shared inbox and gets it on the schedule."),
     ("star", "Repeat", "Leaves a review", "A text after the job asks for a review, and that review helps win the next search."),
 ]
@@ -2263,7 +2263,7 @@ def home():
   <div>
     <span class="chip-top"><i>❄</i>HVAC marketing agency · HVAC only</span>
     <h1 class="hero-h1"><span>Rank higher.</span> <span class="grad nowrap">Book every call.</span></h1>
-    <p class="lede"><span class="lede-long">An HVAC marketing agency that builds your website, runs your Google profile and SEO, and texts back every missed call in 60 seconds, guaranteed. Start with a free report card on how you stack up locally.</span><span class="lede-short">Your website, Google profile and SEO, run for you. Every missed call texted back in 60 seconds, guaranteed.</span></p>
+    <p class="lede"><span class="lede-long">An HVAC marketing agency that builds your website, runs your Google profile and SEO, and texts back every missed call in 10 seconds, guaranteed. Start with a free report card on how you stack up locally.</span><span class="lede-short">Your website, Google profile and SEO, run for you. Every missed call texted back in 10 seconds, guaranteed.</span></p>
     {url_form()}
     <p class="hero-alt">Rather talk first? <a href="{esc(call_link())}">Book a 15-minute call</a></p>
   </div>
@@ -2314,7 +2314,7 @@ def home():
 {report_card("See where you stand before you spend a dollar.")}
 """
     return page("", f"HVAC Marketing Agency for Owner-Run Shops | {BRAND}",
-                "HVAC marketing agency for owner-run shops: websites, SEO, Google profiles and ads, plus every missed call texted back in 60 seconds, guaranteed.", body,
+                "HVAC marketing agency for owner-run shops: websites, SEO, Google profiles and ads, plus every missed call texted back in 10 seconds, guaranteed.", body,
                 extra_head=org_ld() + faq_ld(COMMON_FAQ[:6]))
 
 
@@ -2531,7 +2531,7 @@ OFFER_DEEP = {
             ("No idea what's working", "Without tracking, you can't tell which calls came from Google and which from the truck wrap."),
         ]),
         "auto": ("Always on, even when you're not", [
-            ("Missed call", "Text back in under 60 seconds"),
+            ("Missed call", "Text back in under 10 seconds"),
             ("New web lead", "Instant reply and a link to book"),
             ("Appointment booked", "Reminder the day before, on-the-way text"),
             ("Job marked done", "Review request and thank-you"),
@@ -2810,7 +2810,7 @@ def legal_page(key):
 <ul>
 <li><b>Ownership:</b> your domain is registered in your name, and your website content, Google Business Profile, reviews, customer list and leads are yours. If you leave, we hand over the site files and help move your phone number.</li>
 <li><b>Money-back guarantee:</b> if you're not happy in the first 30 days after launch, tell us and we refund your first month's fee.</li>
-<li><b>Text-back:</b> every missed call to your forwarded line gets a text back within 60 seconds while the service is active.</li>
+<li><b>Text-back:</b> every missed call to your forwarded line gets a text back within 10 seconds while the service is active.</li>
 <li><b>Launch:</b> your new site goes live within 14 days of receiving your content.</li>
 <li><b>Term:</b> a 6-month first term, then month to month.</li>
 <li><b>Billing:</b> monthly billing starts when you go live, not when you sign.</li>
@@ -2864,7 +2864,7 @@ def llms_txt():
 - Who it serves: residential and light commercial HVAC contractors
 - Main offer: a free report card that grades an HVAC company's Google profile, reviews, website and listings against nearby competitors
 - Contract: 6-month first term, then month to month
-- Guarantees: every missed call texted back within 60 seconds; new site live within 14 days of receiving content; first month refunded if the client is unhappy in the first 30 days after launch
+- Guarantees: every missed call texted back within 10 seconds; new site live within 14 days of receiving content; first month refunded if the client is unhappy in the first 30 days after launch
 - Paid ads: Google Ads, Local Services Ads and Facebook/Instagram ads managed as add-ons to any plan at $299/month each (AI phone answering also $299/month); ad spend billed by the platform to the client, never marked up
 - Does not promise: #1 rankings, a set number of jobs, a fixed cost per lead, or AI assistant recommendations
 - Ownership: the client owns their domain, website content, Google profile and reviews

@@ -49,7 +49,7 @@
     },
     website: {
       h: "How we fix your website",
-      p: "We build a fast site on our HVAC build: a page for each service and the towns you serve, tap-to-call and a book-service button on every page, a helpful article every month, and every missed call texted back in 60 seconds. You own the site and the domain.",
+      p: "We build a fast site on our HVAC build: a page for each service and the towns you serve, tap-to-call and a book-service button on every page, a helpful article every month, and every missed call texted back in 10 seconds. You own the site and the domain.",
     },
     listings: {
       h: "How we fix your listings",
@@ -130,7 +130,7 @@
       "Ranking gets you the call. A homeowner with a broken AC books whoever answers first or lets them book right away, so every page needs an easy way to book and every missed call needs an answer.",
       bookSaw, [
         tile("Book-service button and form", "Every site we build has a book-service button and a short form on every page, landing in your inbox app.", "Every plan"),
-        tile("Missed calls texted back", "Every missed call gets a text in 60 seconds, so the caller books with you instead of the next shop.", "Every plan"),
+        tile("Missed calls texted back", "Every missed call gets a text in 10 seconds, so the caller books with you instead of the next shop.", "Every plan"),
         tile("AI web chat", "Answers questions on your site and books jobs after hours, when your office is closed.", "Growth and up"),
         tile("AI phone answering", "An AI receptionist picks up when you can't, during the rush or after hours.", "Add-on"),
         tile("One inbox", "Calls, texts and web leads land in one inbox app your office and techs can all see.", "Every plan"),

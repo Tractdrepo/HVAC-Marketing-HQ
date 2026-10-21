@@ -195,7 +195,7 @@ export function bookLines(data) {
     : `On your site we found ${b.k === 'online' ? 'online booking' : b.k === 'form' ? 'a contact form, but no online booking' : 'no way to book or request service'}, ${b.c ? 'a chat tool' : 'no chat'} and ${b.t ? 'a tap-to-call number' : 'no tap-to-call number'}.`;
   return [
     `<b>What we saw:</b> ${esc(saw)}`,
-    '<b>How we fix it:</b> every missed call gets a text back in 60 seconds, every site we build has a book-service button and a short form, and calls, texts and web leads land in one inbox your office can see. On Growth and up, AI web chat answers and books after hours; AI phone answering is an add-on for the rush.',
+    '<b>How we fix it:</b> every missed call gets a text back in 10 seconds, every site we build has a book-service button and a short form, and calls, texts and web leads land in one inbox your office can see. On Growth and up, AI web chat answers and books after hours; AI phone answering is an add-on for the rush.',
   ];
 }
 

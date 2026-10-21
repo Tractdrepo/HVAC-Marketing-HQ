@@ -8,14 +8,14 @@
 - Who it serves: residential and light commercial HVAC contractors
 - Main offer: a free report card that grades an HVAC company's Google profile, reviews, website and listings against nearby competitors
 - Contract: 6-month first term, then month to month
-- Guarantees: every missed call texted back within 60 seconds; new site live within 14 days of receiving content; first month refunded if the client is unhappy in the first 30 days after launch
+- Guarantees: every missed call texted back within 10 seconds; new site live within 14 days of receiving content; first month refunded if the client is unhappy in the first 30 days after launch
 - Paid ads: Google Ads, Local Services Ads and Facebook/Instagram ads managed as add-ons to any plan at $299/month each (AI phone answering also $299/month); ad spend billed by the platform to the client, never marked up
 - Does not promise: #1 rankings, a set number of jobs, a fixed cost per lead, or AI assistant recommendations
 - Ownership: the client owns their domain, website content, Google profile and reviews
 
 ## Method: Rank, Book, Repeat
 - Rank: Show up first when someone searches. A fast site built around the jobs you want; A page for each service and each town you really serve; Google profile set up and complete, then posting the job photos you send, Growth and up; Directory listings managed on Dominate, or a $49/mo sync add-on; Competitor and map spam watch on Dominate.
-- Book: Every call answered and booked, even when you can't pick up. Missed-call text-back in 60 seconds, guaranteed; One shared inbox for calls, texts, chats and forms; AI web chat that captures the lead after hours, Growth and up; Estimate follow-up until the job is booked or lost, Growth and up; Optional AI phone answering during the rush.
+- Book: Every call answered and booked, even when you can't pick up. Missed-call text-back in 10 seconds, guaranteed; One shared inbox for calls, texts, chats and forms; AI web chat that captures the lead after hours, Growth and up; Estimate follow-up until the job is booked or lost, Growth and up; Optional AI phone answering during the rush.
 - Repeat: Turn every job into the next one. Review request after every finished job; A reply to every review, in your voice, Growth and up; Win-back texts to past customers each season, Growth and up; Full spring and fall tune-up campaigns and maintenance plan reminders on Dominate; Your HQ Command Center dashboard, and a re-grade anytime with the free report card.
 
 ## Plans
@@ -51,7 +51,7 @@ Shops that can't take on more work, want ads with nobody answering the calls, or
 - [Google Business Profile](https://www.hvacmarketinghq.com/services/google-business-profile): Show up in the map pack
 - [AI search](https://www.hvacmarketinghq.com/services/ai-search): Get found in ChatGPT and AI answers
 - [HVAC lead generation](https://www.hvacmarketinghq.com/hvac-lead-generation): Leads you own, not rented from lead sites
-- [Missed-call text-back](https://www.hvacmarketinghq.com/services/missed-call-text-back): Every missed call texted in 60 seconds
+- [Missed-call text-back](https://www.hvacmarketinghq.com/services/missed-call-text-back): Every missed call texted in 10 seconds
 - [AI phone answering](https://www.hvacmarketinghq.com/services/ai-phone-answering): An AI receptionist that answers when you can't
 - [Estimate follow-up](https://www.hvacmarketinghq.com/services/estimate-follow-up): Texts on open quotes until booked or lost
 - [Lead system](https://www.hvacmarketinghq.com/services/lead-system): Text-back, inbox and follow-up in one app

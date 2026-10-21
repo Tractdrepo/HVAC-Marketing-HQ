@@ -5,11 +5,11 @@ SERVICES = [
     {
         "slug": "missed-call-text-back",
         "name": "Missed-call text-back",
-        "nav": "Every missed call texted in 60 seconds",
+        "nav": "Every missed call texted in 10 seconds",
         "title": "Missed-call text-back for HVAC companies",
-        "h1": "Every missed call gets a text back in 60 seconds.",
-        "desc": "Missed-call text-back for HVAC contractors: when you can't pick up, the caller gets a text from your shop within a minute, so the job stays yours.",
-        "lede": "You're under a house or on a roof when the phone rings. The homeowner doesn't leave a voicemail. They call the next shop. Text-back sends them a text from your number within a minute, so the conversation stays with you.",
+        "h1": "Every missed call gets a text back in 10 seconds.",
+        "desc": "Missed-call text-back for HVAC contractors: when you can't pick up, the caller gets a text from your shop within 10 seconds, so the job stays yours.",
+        "lede": "You're under a house or on a roof when the phone rings. The homeowner doesn't leave a voicemail. They call the next shop. Text-back sends them a text from your number within 10 seconds, so the conversation stays with you.",
         "plan": "In every plan, starting with Starter.",
         "pains": [
             ("Nobody leaves voicemails", "Most callers who reach voicemail hang up and try someone else."),
@@ -19,7 +19,7 @@ SERVICES = [
         ],
         "steps": [
             ("A call goes unanswered", "Your line forwards through the system, so it sees every call you miss. Your number doesn't change."),
-            ("A text goes out in about a minute", "From your business number, in your voice: \"Sorry we missed you, this is your shop. What's going on with your system?\""),
+            ("A text goes out within 10 seconds", "From your business number, in your voice: \"Sorry we missed you, this is your shop. What's going on with your system?\""),
             ("They reply, you see it", "The reply lands in the shared inbox app, on your phone and on everyone else's on your team."),
             ("You book the job", "Reply when you're free, or send your booking link. Every conversation is logged."),
         ],

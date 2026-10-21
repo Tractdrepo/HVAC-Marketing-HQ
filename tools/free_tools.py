@@ -170,7 +170,7 @@ NEW_TOOLS = [
      "desc": "Free calculator: see what missed after-hours calls on nights and weekends could cost your HVAC company in a year. Your numbers, no email needed.",
      "lede": "No heat at 9pm doesn't wait for Monday. Put in your after-hours calls a week, how many go unanswered, your average ticket and how many you'd book to see the yearly cost.",
      "formula": ["Missed calls a week = after-hours calls x share missed", "Lost jobs a week = missed calls x booking rate", "Lost revenue a year = lost jobs a week x average ticket x 52"],
-     "improve": [("Text back every missed call", "A reply in about a minute tells the caller someone will help."), ("Put chat on your site", "AI web chat takes the address and the problem at night, so you can call back first thing."), ("Say your hours plainly", "Tell callers when you'll call back so they don't keep dialing other shops.")],
+     "improve": [("Text back every missed call", "A reply within 10 seconds tells the caller someone will help."), ("Put chat on your site", "AI web chat takes the address and the problem at night, so you can call back first thing."), ("Say your hours plainly", "Tell callers when you'll call back so they don't keep dialing other shops.")],
      "service": "ai-web-chat", "guide": "missed-call-text-back-hvac",
      "fields": [
          {"id": "calls", "label": "After-hours calls a week", "default": "15", "hint": YOURS},

@@ -614,7 +614,7 @@ POSTS = [
                     "<b>Price:</b> Starter $499, Growth $799, Dominate $1,299 and Multi-location $2,499 a month, 20% off billed annually. One-time build fee of $1,995 to $4,500. Google Ads, Local Services Ads and Facebook ads are $299 a month each, with ad spend billed to you and never marked up. See <a href=\"{u:plans}\">plans</a>.",
                     "<b>Contract:</b> 6-month first term, then month to month. First month refunded if you're not happy within 30 days of launch.",
                     "<b>Ownership:</b> your site, domain, Google profile and reviews are yours.",
-                    "<b>Built in:</b> missed-call text-back within 60 seconds and review requests on every plan, plus <a href=\"{u:hq-command-center}\">HQ Command Center</a>, a CRM with unlimited logins for your team.",
+                    "<b>Built in:</b> missed-call text-back within 10 seconds and review requests on every plan, plus <a href=\"{u:hq-command-center}\">HQ Command Center</a>, a CRM with unlimited logins for your team.",
                 ]),
                 ("p", "<b>Not the right fit if:</b> you want photo and video shoots, you need a big in-house team on weekly calls, or you can't take on more work right now. We're also new, so we can't show you years of case studies yet. Start with the <a href=\"{u:report-card}\">free report card</a> and judge the work yourself."),
             ]),
@@ -1034,7 +1034,7 @@ POSTS = [
                       "<b>8. Ask every caller how they found you.</b> Write it on the job. After a month you'll know which channel books jobs and which just rings."])]),
                   ('Low cost ideas (cost: a tool or a small spend)',
                    [('ul',
-                     ["<b>9. Text back missed calls automatically.</b> When you can't pick up, the caller gets a text in about a minute and can reply with the problem. They called "
+                     ["<b>9. Text back missed calls automatically.</b> When you can't pick up, the caller gets a text within 10 seconds and can reply with the problem. They called "
                       'you first, so you\'re answering them, not cold texting. See <a href="{u:missed-call-text-back}">missed-call text-back</a>.',
                       '<b>10. Send a review request after every job.</b> Automate the ask so it goes out to every customer, every time, right after the work is done. See <a '
                       'href="{u:review-requests}">review requests</a>.',
