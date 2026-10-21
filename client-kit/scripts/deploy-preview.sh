@@ -8,25 +8,29 @@
 # Needs: the Vercel CLI logged in on this machine (npx vercel@latest whoami), python3, curl.
 # Steps:
 #  1. Look up the project (or create it with --create). Refuse if it has a Git repo connected or a custom domain.
-#  2. Make sure Vercel Authentication (Standard Protection, free) is on; turn it on if it's off.
-#  3. Deploy a preview from <site-dir> using VERCEL_ORG_ID/VERCEL_PROJECT_ID (no `vercel link`, so no .vercel
-#     folder and no Git auto-connect).
-#  4. Logged-out curl of <project>.vercel.app and <project>-<team>.vercel.app right after. Anything but
-#     404 / 401 / 403 / 302-to-Vercel-login counts as PUBLIC: remove that alias, delete the deployment it pointed
-#     to, and redeploy as a preview (once). (A new project's FIRST CLI deploy can land as production and get the
-#     public <project>.vercel.app alias; seen Oct 18, 2026.)
-#  5. Logged-out curl of the preview URL must be 401/403/302-to-login, or the script exits non-zero.
+#  2. Vercel Authentication must be ON before anything is deployed. A project this run just created gets Standard
+#     Protection (free) turned on first; an existing project with protection off makes the script ABORT.
+#  3. Deploy with `vercel deploy --target preview` (always an explicit preview target; never --prod, never no
+#     target) using VERCEL_ORG_ID/VERCEL_PROJECT_ID (no `vercel link`, no .vercel folder, no Git auto-connect).
+#     The deployment URL (https://<project>-<hash>-<team>.vercel.app) is parsed from the CLI's stdout, never the
+#     production alias.
+#  4. Check the deployment's target through the API, and that the production aliases (<project>.vercel.app and
+#     <project>-<team>.vercel.app) answer 404 or 401 logged out. If the target is production or an alias answers
+#     anything else (e.g. 200), the new deployment is removed at once and the script stops (no retry).
+#  5. Logged-out curl of the preview URL must be 401 or a 302 to the Vercel login, else the deployment is removed
+#     and the script stops. It also reports the project's production deployment count (should be 0 pre-launch).
 # The CLI keeps its own token; this script never reads, prints or passes one.
 set -euo pipefail
 
 SCOPE="williamtaylor1204-2866s-projects"
 CREATE=0
+CREATED=0
 POS=()
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --scope) SCOPE="$2"; shift 2 ;;
     --create) CREATE=1; shift ;;
-    -h|--help) sed -n '2,20p' "$0"; exit 0 ;;
+    -h|--help) sed -n '2,22p' "$0"; exit 0 ;;
     *) POS+=("$1"); shift ;;
   esac
 done
@@ -38,7 +42,8 @@ PROJECT="${POS[1]}"
 [[ "$PROJECT" != "hvac-marketing-hq" ]] || { echo "refusing to touch the HMHQ project" >&2; exit 64; }
 
 VC=(npx --yes vercel@latest)
-api() { "${VC[@]}" api "$@" --scope "$SCOPE" --raw 2>/dev/null; }
+# vercel api exits non-zero on 404 (e.g. a project that does not exist yet); under set -e that killed --create.
+api() { "${VC[@]}" api "$@" --scope "$SCOPE" --raw 2>/dev/null || true; }
 jget() { python3 -c "import json,sys
 try: d=json.load(sys.stdin)
 except Exception: d={}
@@ -58,8 +63,6 @@ probe() {
   elif [[ "$loc" =~ ^https://vercel\.com/(sso-api|login) ]]; then echo "$code login"
   else echo "$code other"; fi
 }
-is_blocked() { local c="${1%% *}" k="${1##* }"; [[ "$c" == 401 || "$c" == 403 || ( "$c" == 302 && "$k" == login ) ]]; }
-is_safe_alias() { local c="${1%% *}"; [[ "$c" == 404 ]] || is_blocked "$1"; }
 
 # 1. Project
 log "whoami: $("${VC[@]}" whoami 2>/dev/null | tail -1)  scope: $SCOPE"
@@ -68,6 +71,7 @@ PID="$(printf '%s' "$PJ" | jget id)"
 if [[ -z "$PID" ]]; then
   [[ $CREATE == 1 ]] || { echo "project $PROJECT not found in $SCOPE (pass --create to make it)" >&2; exit 65; }
   log "creating project $PROJECT"
+  CREATED=1
   "${VC[@]}" project add "$PROJECT" --scope "$SCOPE" >/dev/null 2>&1
   PJ="$(api "/v9/projects/$PROJECT")"; PID="$(printf '%s' "$PJ" | jget id)"
   [[ -n "$PID" ]] || { echo "project create failed" >&2; exit 65; }
@@ -79,59 +83,72 @@ d=json.load(sys.stdin); print(' '.join(x['name'] for x in d.get('domains',[]) if
 [[ -z "$CUSTOM" ]] || { echo "$PROJECT has custom domain(s): $CUSTOM. Pre-launch projects must not." >&2; exit 66; }
 log "project $PROJECT ($PID), no Git link, no custom domain"
 
-# 2. Protection
+# 2. Protection must be on before anything is deployed
 SSO="$(printf '%s' "$PJ" | jget ssoProtection.deploymentType)"
-if [[ -z "$SSO" ]]; then
-  log "Vercel Authentication is OFF; turning on Standard Protection (free)"
+if [[ -z "$SSO" && $CREATED == 1 ]]; then
+  log "new project: turning on Vercel Authentication (Standard Protection, free) before the first deploy"
   TMP="$(mktemp)"; echo '{"ssoProtection":{"deploymentType":"all_except_custom_domains"}}' > "$TMP"
   api "/v9/projects/$PID" -X PATCH --input "$TMP" >/dev/null; rm -f "$TMP"
   SSO="$(api "/v9/projects/$PID" | jget ssoProtection.deploymentType)"
 fi
-[[ -n "$SSO" ]] || { echo "could not turn on Vercel Authentication" >&2; exit 67; }
+[[ -n "$SSO" ]] || { echo "ABORT: Vercel Authentication is OFF on $PROJECT. Turn it on (Settings > Deployment Protection) and rerun; nothing was deployed." >&2; exit 67; }
 log "Vercel Authentication: ON ($SSO)"
 
-deploy() {
+DEPLOY_LOG="$(mktemp)"
+deploy_preview() {  # prints the deployment URL parsed from the CLI's stdout
   local out url
-  out="$(cd "$SITE_DIR" && VERCEL_ORG_ID="$ORG" VERCEL_PROJECT_ID="$PID" "${VC[@]}" deploy --yes 2>/dev/null)"
-  url="$(printf '%s\n' "$out" | grep -oE 'https://[a-z0-9-]+\.vercel\.app' | tail -1)"
-  [[ -n "$url" ]] || { echo "deploy failed (no URL)" >&2; exit 68; }
+  out="$(cd "$SITE_DIR" && VERCEL_ORG_ID="$ORG" VERCEL_PROJECT_ID="$PID" "${VC[@]}" deploy --target preview --yes 2>>"$DEPLOY_LOG")" || true
+  url="$(printf '%s\n' "$out" | grep -oE "https://$PROJECT-[a-z0-9]+-$SCOPE\.vercel\.app" | tail -1 || true)"
+  [[ -n "$url" ]] || url="$(printf '%s\n' "$out" | grep -oE "https://$PROJECT-[a-z0-9]{7,}-[a-z0-9-]+\.vercel\.app" | tail -1 || true)"
   echo "$url"
 }
-
-ALIASES=("https://$PROJECT.vercel.app" "https://$PROJECT-$SCOPE.vercel.app")
-check_aliases() {  # prints the first public alias, or nothing
-  local a r
-  for a in "${ALIASES[@]}"; do
-    r="$(probe "$a/")"; log "logged-out $a -> $r" >&2
-    is_safe_alias "$r" || { echo "$a"; return; }
-  done
+remove_deployment() {  # $1 = deployment id or host
+  "${VC[@]}" rm "$1" --yes --scope "$SCOPE" >/dev/null 2>&1 && log "removed deployment $1" || log "COULD NOT remove deployment $1: remove it by hand now"
 }
+prod_count() {
+  api "/v6/deployments?projectId=$PID&target=production&limit=50" | python3 -c "import json,sys
+try: print(len(json.load(sys.stdin).get('deployments',[])))
+except Exception: print('?')"
+}
+ALIASES=("https://$PROJECT.vercel.app" "https://$PROJECT-$SCOPE.vercel.app")
 
-# 3-4. Deploy, then check the production-style aliases right away
-for round in 1 2; do
-  URL="$(deploy)"; [[ -n "$URL" ]] || exit 68
-  TARGET="$(api "/v13/deployments/${URL#https://}" | jget target)"
-  log "deployed $URL (target: ${TARGET:-preview})"
-  PUBLIC="$(check_aliases)"
-  [[ -z "$PUBLIC" ]] && break
-  log "PUBLIC: $PUBLIC answers logged out. Removing it."
-  HOST="${PUBLIC#https://}"
-  DID="$(api "/v13/deployments/$HOST" | jget id)"
-  "${VC[@]}" alias rm "$HOST" --yes --scope "$SCOPE" >/dev/null 2>&1 || true
-  [[ -n "$DID" ]] && "${VC[@]}" rm "$DID" --yes --scope "$SCOPE" >/dev/null 2>&1 && log "removed alias $HOST and deployment $DID"
-  if [[ "$(api "/v13/deployments/${URL#https://}" | jget readyState)" == "" ]]; then
-    log "the new deployment was the public one and is deleted; redeploying as a preview"
-  fi
-  [[ $round == 2 ]] && { echo "still public after cleanup; stop and check the project by hand" >&2; exit 69; }
+# 3. Deploy (one attempt, explicit preview target)
+URL="$(deploy_preview)"
+[[ -n "$URL" ]] || { echo "deploy failed: no deployment URL on stdout (CLI messages in $DEPLOY_LOG)" >&2; exit 68; }
+for a in "${ALIASES[@]}"; do [[ "$URL" != "$a" ]] || { echo "parsed URL is a production alias ($URL); stopping" >&2; exit 68; }; done
+DJ="$(api "/v13/deployments/${URL#https://}")"
+DID="$(printf '%s' "$DJ" | jget id)"
+TARGET="$(printf '%s' "$DJ" | jget target)"
+log "deployed $URL (id ${DID:-?}, target: ${TARGET:-preview})"
+[[ -n "$DID" ]] || { echo "could not look up the new deployment; check the project by hand" >&2; exit 68; }
+
+# 4. Target and production aliases
+FAIL=""
+[[ "$TARGET" != "production" ]] || FAIL="deployment target is production"
+for a in "${ALIASES[@]}"; do
+  r="$(probe "$a/")"; log "logged-out $a -> $r"
+  c="${r%% *}"; [[ "$c" == 404 || "$c" == 401 ]] || FAIL="${FAIL:+$FAIL; }$a answered $r logged out"
 done
+if [[ -n "$FAIL" ]]; then
+  log "UNSAFE: $FAIL. Removing the new deployment now."
+  remove_deployment "$DID"
+  [[ "$TARGET" == "production" ]] && for a in "${ALIASES[@]}"; do "${VC[@]}" alias rm "${a#https://}" --yes --scope "$SCOPE" >/dev/null 2>&1 || true; done
+  for a in "${ALIASES[@]}"; do log "after cleanup: logged-out $a -> $(probe "$a/")"; done
+  echo "STOPPED: $FAIL. Nothing was retried; check the project by hand." >&2
+  exit 69
+fi
 
-# make sure the final URL still exists (it may have been the deleted one)
-if [[ -z "$(api "/v13/deployments/${URL#https://}" | jget id)" ]]; then URL="$(deploy)"; [[ -n "$URL" ]] || exit 68; log "redeployed $URL"; fi
-
-# 5. Preview must be blocked logged out
+# 5. Preview must be blocked logged out (401 or 302 to the Vercel login)
 R="$(probe "$URL/")"; log "logged-out $URL/ -> $R"
-is_blocked "$R" || { echo "PREVIEW IS NOT PROTECTED: $URL answered $R" >&2; exit 70; }
+c="${R%% *}"; k="${R##* }"
+if ! [[ "$c" == 401 || ( "$c" == 302 && "$k" == login ) ]]; then
+  remove_deployment "$DID"
+  echo "PREVIEW IS NOT PROTECTED: $URL answered $R; deployment removed" >&2
+  exit 70
+fi
 for p in /contact /api/form-lead; do log "logged-out $URL$p -> $(probe "$URL$p")"; done
+log "production deployments on $PROJECT: $(prod_count)"
 [[ ! -d "$SITE_DIR/.vercel" ]] || log "note: $SITE_DIR/.vercel exists (it's gitignored)"
-log "OK: preview is protected and no public alias answers."
+rm -f "$DEPLOY_LOG"
+log "OK: preview is protected, target is preview, and no production alias serves content."
 echo "PREVIEW_URL=$URL"
