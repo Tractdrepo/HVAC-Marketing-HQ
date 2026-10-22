@@ -37,6 +37,10 @@
     return;
   }
 
+  // Texting waits on carrier (A2P) approval. While false, text-back is sold as going live soon, never as
+  // live. Keep in step with TEXTING_LIVE in api/_grader/report.mjs.
+  var TEXTING_LIVE = false;
+  var SOON = TEXTING_LIVE ? "" : " Goes live in the next couple of weeks.";
   var NAMES = { profile: "Google profile", reviews: "Reviews", website: "Website", listings: "Listings" };
   var HOW = {
     profile: {
@@ -45,11 +49,11 @@
     },
     reviews: {
       h: "How we fix your reviews",
-      p: "Every finished job gets a review request by text, sent for you, in every plan. Happy customers get a one-tap link to Google. On Growth and up we also reply to every review, so the next customer sees an owner who answers.",
+      p: "Every finished job gets a review request, sent for you, in every plan. Happy customers get a one-tap link to Google. On Growth and up we also reply to every review, so the next customer sees an owner who answers.",
     },
     website: {
       h: "How we fix your website",
-      p: "We build a fast site on our HVAC build: a page for each service and the towns you serve, tap-to-call and a book-service button on every page, a helpful article every month, and every missed call texted back in 10 seconds. You own the site and the domain.",
+      p: "We build a fast site on our HVAC build: a page for each service and the towns you serve, tap-to-call and a book-service button on every page, a helpful article every month, and every missed call texted back within 10 seconds" + (TEXTING_LIVE ? "" : " (going live in the next couple of weeks)") + ". You own the site and the domain.",
     },
     listings: {
       h: "How we fix your listings",
@@ -130,7 +134,7 @@
       "Ranking gets you the call. A homeowner with a broken AC books whoever answers first or lets them book right away, so every page needs an easy way to book and every missed call needs an answer.",
       bookSaw, [
         tile("Book-service button and form", "Every site we build has a book-service button and a short form on every page, landing in your inbox app.", "Every plan"),
-        tile("Missed calls texted back", "Every missed call gets a text in 10 seconds, so the caller books with you instead of the next shop.", "Every plan"),
+        tile("Missed calls texted back", "Every missed call gets a text within 10 seconds, so the caller books with you instead of the next shop." + SOON, "Every plan"),
         tile("AI web chat", "Answers questions on your site and books jobs after hours, when your office is closed.", "Growth and up"),
         tile("AI phone answering", "An AI receptionist picks up when you can't, during the rush or after hours.", "Add-on"),
         tile("One inbox", "Calls, texts and web leads land in one inbox app your office and techs can all see.", "Every plan"),
@@ -139,10 +143,10 @@
     '<div id="yr-repeat">' + section("3", "Repeat", "Customers who come back, and send others.",
       "The shops that stay on top don't win one job at a time. They ask every customer for a review, answer every review, and stay in touch so last summer's repair becomes this fall's tune-up.",
       repeatSaw, [
-        tile("Review requests", "A text after every finished job with a one-tap link to Google.", "Every plan"),
+        tile("Review requests", "A request after every finished job with a one-tap link to Google.", "Every plan"),
         tile("Review replies", "We write and post a reply to every review, good and bad.", "Growth and up"),
-        tile("Quote follow-up", "Open estimates get texts until they are booked or lost.", "Growth and up"),
-        tile("Tune-up and win-back texts", "Past customers hear from you each season, so slow months fill up.", "Growth and up"),
+        tile("Quote follow-up", "Open estimates get followed up until they are booked or lost.", "Growth and up"),
+        tile("Tune-up and win-back reminders", "Past customers hear from you each season, so slow months fill up.", "Growth and up"),
         tile("HQ Command Center", "Calls, jobs and reviews in one live dashboard you can open anytime.", "Every plan"),
         tile("Fresh content", "A new article every month keeps your site growing in search.", "Growth and up"),
       ], "yr-ops") + "</div>" +

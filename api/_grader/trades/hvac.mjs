@@ -3,7 +3,7 @@ export default {
   id: 'hvac',
   label: 'HVAC',
   noun: 'HVAC company',
-  criteriaVersion: 'hvac-1 (11 Oct 2026)',
+  criteriaVersion: 'hvac-2 (22 Oct 2026)',
 
   // Local search. Each query is scored and the scores averaged.
   // The first query also supplies the competitors for the reviews comparison.

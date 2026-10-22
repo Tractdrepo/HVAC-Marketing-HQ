@@ -129,7 +129,7 @@ test('handler: a partial run sends the shop the "sending by hand" email and the 
   const toShop = emails.filter((e) => e.to[0] === 'shop1@example.com');
   assert.equal(toShop.length, 1);
   assert.match(toShop[0].text, /couldn't finish this one, so I'll put it together myself/);
-  assert.ok(!toShop.some((e) => / gets /.test(e.subject)), 'no graded report to the shop');
+  assert.ok(!toShop.some((e) => /^Your (report card: .+ gets an? [A-F]|HVAC report card for .+ is ready)/.test(e.subject)), 'no graded report to the shop');
   const team = emails.find((e) => /^NEEDS YOU/.test(e.subject));
   assert.ok(team, 'team was told');
   assert.match(team.text, /No Google profile found for this name and website/);
@@ -140,7 +140,7 @@ test('handler: a complete run still emails the graded report to the shop', async
   const { emails } = await submit({ website: 'dwsnv.com', business: 'Desert West', town: 'Las Vegas, NV', email: 'shop2@example.com' }, () => [desert]);
   const toShop = emails.filter((e) => e.to[0] === 'shop2@example.com');
   assert.equal(toShop.length, 1);
-  assert.match(toShop[0].subject, /^Your report card: Desert West Air Conditioning gets an? /);
+  assert.match(toShop[0].subject, /^Your (report card: Desert West Air Conditioning gets an? |HVAC report card for Desert West Air Conditioning is ready)/);
   assert.ok(emails.some((e) => /^Sent: /.test(e.subject)));
   assert.ok(!emails.some((e) => /^NEEDS YOU/.test(e.subject)));
 });

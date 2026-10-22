@@ -155,14 +155,15 @@ function sendEmail(msg) {
 
 // The shop was told to expect an email, so when the automatic report can't go out they hear that a
 // person will send it, instead of nothing.
-function tellShop(lead) {
+async function tellShop(lead) {
+  const { greetName } = await import("./_grader/report.mjs");
   const from = process.env.REPORT_FROM || `Logan at HVAC Marketing HQ <${(process.env.LEAD_FROM.match(/<([^>]+)>/) || [, process.env.LEAD_FROM])[1].trim()}>`;
   return sendEmail({
     from,
     to: [lead.email],
     reply_to: process.env.LEAD_TO,
     subject: `Your report card: ${lead.business}`,
-    text: `Hi ${lead.first_name},\n\nThanks for asking for a report card for ${lead.business}. Our automatic check couldn't finish this one, so I'll put it together myself and send it within one business day.\n\nIf you have a question in the meantime, just reply to this email.\n\nLogan\nHVAC Marketing HQ`,
+    text: `Hi ${greetName(lead.first_name) || "there"},\n\nThanks for asking for a report card for ${lead.business}. Our automatic check couldn't finish this one, so I'll put it together myself and send it within one business day.\n\nIf you have a question in the meantime, just reply to this email.\n\nLogan\nHVAC Marketing HQ`,
   }).catch((err) => console.error("shop notice failed", err));
 }
 

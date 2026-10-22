@@ -73,18 +73,22 @@ export function scoreProfile(p, trade) {
   }
 
   const cat = p.primaryCategory;
-  const catPts = !known(p.primaryCategory) ? 0 : categoryMatches(cat, trade) ? 10 : 3;
+  // categoryHidden: Google's data shows only a broad type, so the real category can't be seen.
+  const catPts = p.categoryHidden ? null : !known(p.primaryCategory) ? 0 : categoryMatches(cat, trade) ? 10 : 3;
 
+  // Accessibility is null for a service-area shop (no storefront), so payment carries the whole line.
   let detailPts = null;
-  if (known(p.paymentListed) || known(p.accessibilityListed)) {
+  if (known(p.paymentListed) && !known(p.accessibilityListed)) detailPts = p.paymentListed ? 10 : 0;
+  else if (known(p.paymentListed) || known(p.accessibilityListed)) {
     detailPts = (p.paymentListed ? 6 : 0) + (p.accessibilityListed ? 4 : 0);
   }
+  const photoCount = p.photos ? (p.photos.capped ? 'at least 10' : String(p.photos.count ?? 0)) : null;
 
   const lines = [
     line('search', 'Local search position', 40, searchPts,
-      worst && searches.length ? `Move up in "${worst.query}" results; today you are ${rankText(worst.rank)}.` : null),
+      worst && searches.length ? `Move up in "${worst.query}" results; today you are ${rankText(worst.rank, worst.marketSize)}.` : null),
     line('photos', 'Photos', 15, photoPts,
-      p.photos ? `Add your own photos to Google (jobs, trucks, team). Google shows ${p.photos.count ?? 0} now${known(p.photos.byBusiness) ? `, ${p.photos.byBusiness} of them yours` : ''}.` : null),
+      p.photos ? `Add your own photos to Google (jobs, trucks, team). Your profile has ${photoCount} now${known(p.photos.byBusiness) ? `, and ${p.photos.byBusiness} of the first ${Math.min(p.photos.count ?? 0, 10)} Google shows are yours` : ''}.` : null),
     line('website', 'Links to your website', 10, known(p.linksToSite) ? (p.linksToSite ? 10 : 0) : null,
       'Point your Google profile\'s website link at your own site.'),
     line('category', 'Right category', 10, catPts,
@@ -92,7 +96,7 @@ export function scoreProfile(p, trade) {
     line('hours', 'Hours listed', 10, known(p.hasHours) ? (p.hasHours ? 10 : 0) : null,
       'Add your business hours to Google.'),
     line('details', 'Details filled in', 10, detailPts,
-      'Fill in payment options and accessibility on your Google profile.'),
+      known(p.accessibilityListed) ? 'Fill in payment options and accessibility on your Google profile.' : 'Fill in the payment options you take on your Google profile.'),
     line('phone', 'Phone listed', 5, known(p.hasPhone) ? (p.hasPhone ? 5 : 0) : null,
       'Add your phone number to Google.'),
   ];
@@ -131,7 +135,9 @@ export function scoreReviews(r, trade) {
   let countPts = tier(r.count, t.countTiers);
   if (comp && known(comp.avgCount) && comp.avgCount > 0) {
     const ratio = r.count / comp.avgCount;
-    countPts += ratio >= 1 ? 3 : ratio >= 0.6 ? 0 : ratio >= 0.3 ? -2 : ratio >= 0.1 ? -4 : -5;
+    // Softer below: the shops at the top of a city search are often its biggest, and a shop shouldn't lose
+    // most of its count points for not being one of them.
+    countPts += ratio >= 1 ? 3 : ratio >= 0.6 ? 0 : ratio >= 0.3 ? -1 : ratio >= 0.1 ? -2 : -3;
   }
 
   const recentPts = known(r.newestDays) ? tierUpTo(r.newestDays, t.recencyTiers) : null;
@@ -271,8 +277,8 @@ export function scoreAll(facts, trade) {
   return { trade: trade.id, criteriaVersion: trade.criteriaVersion, overall, grade: letter(overall), weakest, areas };
 }
 
-function rankText(rank) {
-  if (!rank) return 'not in the first 20';
+function rankText(rank, seen = 20) {
+  if (!rank) return `not in the first ${seen || 20}`;
   const v = rank % 100;
   const sfx = ['th', 'st', 'nd', 'rd'];
   return rank + (sfx[(v - 20) % 10] || sfx[v] || sfx[0]);

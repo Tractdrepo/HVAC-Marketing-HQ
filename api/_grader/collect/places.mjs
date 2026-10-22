@@ -8,21 +8,52 @@ const DETAIL_FIELDS = ['id', 'displayName', 'primaryType', 'primaryTypeDisplayNa
   'reviews', 'photos', 'regularOpeningHours', 'nationalPhoneNumber', 'websiteUri', 'businessStatus',
   'paymentOptions', 'accessibilityOptions', 'addressComponents', 'formattedAddress', 'shortFormattedAddress',
   'types', 'pureServiceAreaBusiness', 'location'];
-const RANK_FIELDS = ['id', 'displayName', 'rating', 'userRatingCount', 'websiteUri', 'primaryType'];
+const RANK_FIELDS = ['id', 'displayName', 'rating', 'userRatingCount', 'websiteUri', 'primaryType', 'location'];
+// Rank searches read up to three pages (60 results), so a shop past 20th gets its real position.
+const RANK_PAGES = 3;
 
-async function searchText(textQuery, fields, key, extra = {}) {
+async function searchPage(textQuery, fields, key, extra = {}) {
   const res = await fetch(ENDPOINT, {
     method: 'POST',
     signal: AbortSignal.timeout(10000),
     headers: {
       'content-type': 'application/json',
       'X-Goog-Api-Key': key,
-      'X-Goog-FieldMask': fields.map((f) => `places.${f}`).join(','),
+      'X-Goog-FieldMask': [...fields.map((f) => `places.${f}`), 'nextPageToken'].join(','),
     },
     body: JSON.stringify({ textQuery, pageSize: 20, languageCode: 'en', regionCode: 'US', includePureServiceAreaBusinesses: true, ...extra }),
   });
   if (!res.ok) throw new Error(`Places ${res.status}: ${(await res.text()).slice(0, 200)}`);
-  return (await res.json()).places || [];
+  const j = await res.json();
+  return { places: j.places || [], next: j.nextPageToken || null };
+}
+
+async function searchText(textQuery, fields, key, extra = {}) {
+  return (await searchPage(textQuery, fields, key, extra)).places;
+}
+
+const samePlace = (place) => (p) => p.id === place.id || (place.websiteUri && host(p.websiteUri) === host(place.websiteUri));
+
+// A rank search: pages on until the shop turns up or the pages run out. Google needs a moment before
+// a page token works, so later pages wait briefly. Returns the first page too, for the competitors.
+export async function rankSearch(query, place, key, extra = {}, { page = searchPage, pages = RANK_PAGES, waitMs = 1500 } = {}) {
+  const all = [];
+  let first = null;
+  let token = null;
+  for (let i = 0; i < pages; i++) {
+    if (i) await new Promise((r) => setTimeout(r, waitMs));
+    let got;
+    try { got = await page(query, RANK_FIELDS, key, token ? { ...extra, pageToken: token } : extra); } catch (err) {
+      if (!i) throw err;
+      break; // a later page failing still leaves a real "not in the first N"
+    }
+    first ??= got.places;
+    all.push(...got.places);
+    if (got.places.some(samePlace(place)) || !got.next) break;
+    token = got.next;
+  }
+  const idx = all.findIndex(samePlace(place));
+  return { query, rank: idx + 1, marketSize: all.length, results: first || [] };
 }
 
 export const host = (u) => { if (!u) return null; try { return new URL(/^https?:/i.test(u) ? u : `https://${u}`).hostname.replace(/^www\./, '').toLowerCase() || null; } catch { return null; } };
@@ -247,31 +278,37 @@ export async function newestReviewDays(placeId, key, { now = Date.now() } = {}) 
   }
 }
 
-// Rank among every HVAC shop within about 20 miles of the shop itself. Small-town shops serve the towns
-// around them, and "HVAC near [tiny town]" makes almost anyone first.
-export async function areaRank(query, place, key, radiusM = 32000) {
-  if (!place.location) return null;
-  const results = await searchText(query, RANK_FIELDS, key, {
-    locationBias: { circle: { center: { latitude: place.location.latitude, longitude: place.location.longitude }, radius: radiusM } },
-  });
-  const idx = results.findIndex((p) => p.id === place.id || (place.websiteUri && host(p.websiteUri) === host(place.websiteUri)));
-  return { query, rank: idx + 1, marketSize: results.length, results, area: true };
+// Rank among every HVAC shop within the area radius of the shop itself. Small-town shops serve the towns
+// around them, and "HVAC near [tiny town]" makes almost anyone first. Service-area shops hide their
+// location, so center is the fallback: the middle of the shops in their own town search.
+export async function areaRank(query, place, key, radiusM = 32000, center = null, opts = {}) {
+  const c = place.location || center;
+  if (!c) return null;
+  const r = await rankSearch(query, place, key, {
+    locationBias: { circle: { center: { latitude: c.latitude, longitude: c.longitude }, radius: radiusM } },
+  }, opts);
+  return { ...r, area: true };
 }
 
-// Rank of the place in a local search. Searches once more if missing (Google's order shifts).
-export async function localRank(query, place, key) {
-  let results;
-  let idx = -1;
-  for (let attempt = 0; attempt < 2 && idx < 0; attempt++) {
-    results = await searchText(query, RANK_FIELDS, key);
-    idx = results.findIndex((p) => p.id === place.id || (place.websiteUri && host(p.websiteUri) === host(place.websiteUri)));
-  }
-  return { query, rank: idx + 1, marketSize: results.length, results };
+// The middle of a set of search results, for centering the area search on a service-area shop's town.
+export function centerOf(results) {
+  const pts = (results || []).map((p) => p.location).filter((l) => Number.isFinite(l?.latitude) && Number.isFinite(l?.longitude));
+  if (!pts.length) return null;
+  return { latitude: pts.reduce((s, l) => s + l.latitude, 0) / pts.length, longitude: pts.reduce((s, l) => s + l.longitude, 0) / pts.length };
 }
+
+// Rank of the place in a local search, reading up to 60 results.
+export async function localRank(query, place, key, opts = {}) {
+  return rankSearch(query, place, key, {}, opts);
+}
+
+// Types Google's data gives a trade shop whatever its profile shows. They say nothing about the category.
+const BROAD_TYPES = new Set(['general_contractor', 'service', 'establishment', 'point_of_interest', 'store']);
 
 // Turn the Places record and local searches into profile and review facts.
 export function placeFacts(place, searches, trade, { now = Date.now(), website } = {}) {
   const businessName = norm(place.displayName?.text);
+  // Google's data hands over at most ten photos, so ten means "ten or more".
   const photos = place.photos || [];
   const shownFirst = photos.slice(0, 10);
   const byBusiness = shownFirst.filter((ph) => (ph.authorAttributions || []).some((a) => norm(a.displayName) === businessName)).length;
@@ -294,14 +331,18 @@ export function placeFacts(place, searches, trade, { now = Date.now(), website }
       found: true,
       name: place.displayName?.text,
       searches: searches.map(({ query, rank, marketSize }) => ({ query, rank, marketSize })),
-      photos: { count: photos.length, byBusiness },
+      photos: { count: photos.length, byBusiness, capped: photos.length >= 10 },
       linksToSite: website ? host(place.websiteUri) === host(website) : Boolean(place.websiteUri),
-      primaryCategory: place.primaryType || place.primaryTypeDisplayName
+      // Google's data files most trade shops under a broad type ("General contractor") even when the profile
+      // shows "HVAC contractor", so a broad type means we can't see the real category: left out, not graded.
+      categoryHidden: BROAD_TYPES.has(place.primaryType),
+      primaryCategory: (place.primaryType || place.primaryTypeDisplayName) && !BROAD_TYPES.has(place.primaryType)
         ? { id: place.primaryType || null, name: place.primaryTypeDisplayName?.text || place.primaryType } : null,
       categoryOk: categoryMatches({ id: place.primaryType, name: place.primaryTypeDisplayName?.text }, trade),
       hasHours: Boolean(place.regularOpeningHours?.weekdayDescriptions?.length || place.regularOpeningHours?.periods?.length),
       paymentListed: place.paymentOptions ? Object.keys(place.paymentOptions).length > 0 : false,
-      accessibilityListed: place.accessibilityOptions ? Object.keys(place.accessibilityOptions).length > 0 : false,
+      // A service-area shop has no storefront to describe, so accessibility doesn't apply.
+      accessibilityListed: place.pureServiceAreaBusiness ? null : place.accessibilityOptions ? Object.keys(place.accessibilityOptions).length > 0 : false,
       hasPhone: Boolean(place.nationalPhoneNumber),
       operational: place.businessStatus ? place.businessStatus === 'OPERATIONAL' : null,
       phone: place.nationalPhoneNumber || null,

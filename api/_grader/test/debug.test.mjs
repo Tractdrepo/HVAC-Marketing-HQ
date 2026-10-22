@@ -133,7 +133,7 @@ test('handler: a matched profile sends no debug anywhere', async () => {
   // Another website: the daily one-per-site cap already counted haddixheatandair.com above.
   const shop = place({ name: 'Haddix Heating & Air', website: 'https://haddixhvac-waco.com' });
   const { emails } = await submit({ website: 'haddixhvac-waco.com', business: 'Haddix', town: 'Waco, TX', email: 'shop10@example.com' }, () => [shop]);
-  assert.ok(emails.some((e) => /^Your report card: /.test(e.subject)), 'the graded report went out');
+  assert.ok(emails.some((e) => /^Your (report card: .+ gets an? [A-F]|HVAC report card for .+ is ready)/.test(e.subject)), 'the graded report went out');
   assert.ok(emails.some((e) => /^Sent: /.test(e.subject)));
   for (const e of emails) assert.ok(!/lookup debug/.test(JSON.stringify(e)));
 });
