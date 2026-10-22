@@ -63,7 +63,8 @@ export function sawLine(key, facts, area) {
     if (!p || p.found === false) return 'We could not find a Google profile for this business name and website.';
     const bits = [];
     for (const s of (p.searches || []).filter((x) => known(x.rank))) {
-      bits.push(s.rank ? `${ordinal(s.rank)} in a search for "${s.query}"` : `not in the first ${s.marketSize} in a search for "${s.query}"`);
+      const where = s.area ? `among ${s.query}` : `in a search for "${s.query}"`;
+      bits.push(s.rank ? `${ordinal(s.rank)} ${where}` : `not in the first ${s.marketSize} ${where}`);
     }
     if (p.photos) {
       const n = p.photos.capped ? 'at least 10 photos' : `${p.photos.count} photo${p.photos.count === 1 ? '' : 's'}`;

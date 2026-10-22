@@ -330,7 +330,7 @@ export function placeFacts(place, searches, trade, { now = Date.now(), website }
     profile: {
       found: true,
       name: place.displayName?.text,
-      searches: searches.map(({ query, rank, marketSize }) => ({ query, rank, marketSize })),
+      searches: searches.map(({ query, rank, marketSize, area }) => ({ query, rank, marketSize, ...(area ? { area: true } : {}) })),
       photos: { count: photos.length, byBusiness, capped: photos.length >= 10 },
       linksToSite: website ? host(place.websiteUri) === host(website) : Boolean(place.websiteUri),
       // Google's data files most trade shops under a broad type ("General contractor") even when the profile
@@ -340,7 +340,9 @@ export function placeFacts(place, searches, trade, { now = Date.now(), website }
         ? { id: place.primaryType || null, name: place.primaryTypeDisplayName?.text || place.primaryType } : null,
       categoryOk: categoryMatches({ id: place.primaryType, name: place.primaryTypeDisplayName?.text }, trade),
       hasHours: Boolean(place.regularOpeningHours?.weekdayDescriptions?.length || place.regularOpeningHours?.periods?.length),
-      paymentListed: place.paymentOptions ? Object.keys(place.paymentOptions).length > 0 : false,
+      // Google's data leaves payment options out for many complete profiles (both Waco service-area shops we
+      // checked), so a missing field is "couldn't see", not "not filled in".
+      paymentListed: place.paymentOptions ? Object.keys(place.paymentOptions).length > 0 : null,
       // A service-area shop has no storefront to describe, so accessibility doesn't apply.
       accessibilityListed: place.pureServiceAreaBusiness ? null : place.accessibilityOptions ? Object.keys(place.accessibilityOptions).length > 0 : false,
       hasPhone: Boolean(place.nationalPhoneNumber),

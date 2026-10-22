@@ -98,9 +98,15 @@
 
   // Book and Repeat speak to what we saw when the link carries it (b, rv), else stay general.
   var b = data.b, rv = data.rv;
-  var bookSaw = !b ? "" : "On your site we found " +
-    (b.k === "online" ? "online booking" : b.k === "form" ? "a contact form, but no online booking" : "no way to book or request service") +
-    ", " + (b.c ? "a chat tool" : "no chat") + " and " + (b.t ? "a tap-to-call number" : "no tap-to-call number") + ".";
+  // Same wording as bookLines in api/_grader/report.mjs: what we found, then what we didn't.
+  var listOf = function (a, last) { return a.length <= 1 ? a.join("") : a.slice(0, -1).join(", ") + " " + last + " " + a[a.length - 1]; };
+  var bookSaw = "";
+  if (b) {
+    var found = [b.k === "online" && "online booking", b.k === "form" && "a contact form", b.c && "a chat tool", b.t && "a tap-to-call number"].filter(Boolean);
+    var missing = [b.k !== "online" && (b.k === "form" ? "online booking" : "booking form"), !b.c && "chat", !b.t && "tap-to-call number"].filter(Boolean);
+    bookSaw = found.length ? "On your site we found " + listOf(found, "and") + (missing.length ? ", but no " + listOf(missing, "or") : "") + "."
+      : "On your site we found no " + listOf(missing, "or") + ".";
+  }
   var repeatSaw = !rv ? "" : rv.n + " Google reviews" + (rv.d != null ? ", the newest " + (rv.d === 0 ? "today" : rv.d + " days ago") : "") + ".";
   var tile = function (h, p, tag) { return '<div><h4>' + esc(h) + (tag ? ' <small class="yr-tag">' + esc(tag) + "</small>" : "") + "</h4><p>" + esc(p) + "</p></div>"; };
   var section = function (n, word, title, lede, saw, tiles, cls) {

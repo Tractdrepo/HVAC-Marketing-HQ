@@ -86,9 +86,9 @@ export function scoreProfile(p, trade) {
 
   const lines = [
     line('search', 'Local search position', 40, searchPts,
-      worst && searches.length ? `Move up in "${worst.query}" results; today you are ${rankText(worst.rank, worst.marketSize)}.` : null),
+      worst && searches.length ? worst.area ? `Move up among ${worst.query}; today you are ${rankText(worst.rank, worst.marketSize)}.` : `Move up in "${worst.query}" results; today you are ${rankText(worst.rank, worst.marketSize)}.` : null),
     line('photos', 'Photos', 15, photoPts,
-      p.photos ? `Add your own photos to Google (jobs, trucks, team). Your profile has ${photoCount} now${known(p.photos.byBusiness) ? `, and ${p.photos.byBusiness} of the first ${Math.min(p.photos.count ?? 0, 10)} Google shows are yours` : ''}.` : null),
+      p.photos ? `Add your own photos to Google (jobs, trucks, team). Google shows ${photoCount} on your profile${known(p.photos.byBusiness) ? `, ${p.photos.byBusiness} of them posted by you` : ''}.` : null),
     line('website', 'Links to your website', 10, known(p.linksToSite) ? (p.linksToSite ? 10 : 0) : null,
       'Point your Google profile\'s website link at your own site.'),
     line('category', 'Right category', 10, catPts,
