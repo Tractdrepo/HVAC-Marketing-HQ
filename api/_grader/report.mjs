@@ -96,7 +96,7 @@ export function sawLine(key, facts, area) {
     bits.push(w.bookingKind === 'online' ? 'online booking found' : w.booking ? 'contact form found' : 'no way to book or request service found');
     if ((w.areaPages || []).length) bits.push(`${w.areaPages.length} town page${w.areaPages.length === 1 ? '' : 's'}`);
     if (w.blog) bits.push(!w.blog.found ? 'no blog' : known(w.blog.newestDays) ? `newest blog post ${w.blog.newestDays} days ago` : 'blog found');
-    bits.push(w.chat ? 'chat found' : 'no chat found');
+    bits.push(w.chat ? 'chat widget found' : 'no chat widget found');
     return `${bits.join(', ')}.`;
   }
   if (key === 'listings') {
@@ -142,7 +142,7 @@ export const HOW = {
     lighthouse: BUILD, title: BUILD, mobile: BUILD, call: BUILD,
     emergency: 'We put it on every page of the site we build.', financing: 'We put it on every page of the site we build.',
     license: 'We put it in the footer of every page we build.',
-    chat: 'AI web chat (Growth and up) answers questions and books jobs after hours.',
+    chat: 'Our AI chat widget (Growth and up) answers questions and books jobs after hours.',
     schema: 'Every site we build includes business details code for Google and AI search.',
     reviewsOnSite: 'Every site we build shows your Google reviews, updated as new ones come in.',
     faq: 'We write answers to the questions your customers ask, the kind AI search quotes.',
@@ -218,14 +218,14 @@ export function bookLines(data) {
   const b = data.b;
   let saw = 'We could not load your site, so we could not check how customers reach you.';
   if (b) {
-    const found = [b.k === 'online' && 'online booking', b.k === 'form' && 'a contact form', b.c && 'a chat tool', b.t && 'a tap-to-call number'].filter(Boolean);
-    const missing = [b.k !== 'online' && (b.k === 'form' ? 'online booking' : 'booking form'), !b.c && 'chat', !b.t && 'tap-to-call number'].filter(Boolean);
+    const found = [b.k === 'online' && 'online booking', b.k === 'form' && 'a contact form', b.c && 'a chat widget', b.t && 'a tap-to-call number'].filter(Boolean);
+    const missing = [b.k !== 'online' && (b.k === 'form' ? 'online booking' : 'booking form'), !b.c && 'chat widget', !b.t && 'tap-to-call number'].filter(Boolean);
     const none = list(missing).replace(/ and ([^ ]+[^,]*)$/, ' or $1');
     saw = found.length ? `On your site we found ${list(found)}${missing.length ? `, but no ${none}` : ''}.` : `On your site we found no ${none}.`;
   }
   return [
     `<b>What we saw:</b> ${esc(saw)}`,
-    `<b>How we fix it:</b> every site we build has a book-service button and a short form, and calls, texts and web leads land in one inbox your office can see. ${TEXT_BACK[0].toUpperCase()}${TEXT_BACK.slice(1)}. On Growth and up, AI web chat answers and books after hours; AI phone answering is an add-on for the rush.`,
+    `<b>How we fix it:</b> every site we build has a book-service button and a short form, and calls, texts and web leads land in one inbox your office can see. ${TEXT_BACK[0].toUpperCase()}${TEXT_BACK.slice(1)}. On Growth and up, an AI chat widget answers and books after hours; AI phone answering is an add-on for the rush.`,
   ];
 }
 

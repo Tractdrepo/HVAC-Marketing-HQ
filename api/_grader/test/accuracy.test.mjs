@@ -69,7 +69,7 @@ test('greeting keeps short names like LT and fixes case', () => {
 
 test('book box reads cleanly and does not sell text-back as live before texting is approved', () => {
   const [saw, how] = bookLines({ b: { k: 'form', c: false, t: true } });
-  assert.match(saw, /found a contact form and a tap-to-call number, but no online booking or chat\./);
+  assert.match(saw, /found a contact form and a tap-to-call number, but no online booking or chat widget\./);
   if (!TEXTING_LIVE) {
     assert.match(how, /goes live in the next couple of weeks/);
     assert.doesNotMatch(how, /every missed call gets a text/i);

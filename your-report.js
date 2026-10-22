@@ -102,8 +102,8 @@
   var listOf = function (a, last) { return a.length <= 1 ? a.join("") : a.slice(0, -1).join(", ") + " " + last + " " + a[a.length - 1]; };
   var bookSaw = "";
   if (b) {
-    var found = [b.k === "online" && "online booking", b.k === "form" && "a contact form", b.c && "a chat tool", b.t && "a tap-to-call number"].filter(Boolean);
-    var missing = [b.k !== "online" && (b.k === "form" ? "online booking" : "booking form"), !b.c && "chat", !b.t && "tap-to-call number"].filter(Boolean);
+    var found = [b.k === "online" && "online booking", b.k === "form" && "a contact form", b.c && "a chat widget", b.t && "a tap-to-call number"].filter(Boolean);
+    var missing = [b.k !== "online" && (b.k === "form" ? "online booking" : "booking form"), !b.c && "chat widget", !b.t && "tap-to-call number"].filter(Boolean);
     bookSaw = found.length ? "On your site we found " + listOf(found, "and") + (missing.length ? ", but no " + listOf(missing, "or") : "") + "."
       : "On your site we found no " + listOf(missing, "or") + ".";
   }
@@ -141,7 +141,7 @@
       bookSaw, [
         tile("Book-service button and form", "Every site we build has a book-service button and a short form on every page, landing in your inbox app.", "Every plan"),
         tile("Missed calls texted back", "Every missed call gets a text within 10 seconds, so the caller books with you instead of the next shop." + SOON, "Every plan"),
-        tile("AI web chat", "Answers questions on your site and books jobs after hours, when your office is closed.", "Growth and up"),
+        tile("AI chat widget", "Answers questions on your site and books jobs after hours, when your office is closed.", "Growth and up"),
         tile("AI phone answering", "An AI receptionist picks up when you can't, during the rush or after hours.", "Add-on"),
         tile("One inbox", "Calls, texts and web leads land in one inbox app your office and techs can all see.", "Every plan"),
         tile("Booking hookup", "New jobs go straight into ServiceTitan, Housecall Pro or Jobber.", "Dominate"),
