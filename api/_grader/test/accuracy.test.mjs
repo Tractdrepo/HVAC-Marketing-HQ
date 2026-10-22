@@ -59,8 +59,9 @@ test('rank search pages past 20 and reports the real position', async () => {
   assert.ok(Math.abs(c.latitude - 31.5) < 1e-9 && Math.abs(c.longitude + 97.1) < 1e-9);
 });
 
-test('greeting skips initials and fixes case', () => {
-  assert.equal(greetName('LT'), '');
+test('greeting keeps short names like LT and fixes case', () => {
+  assert.equal(greetName('LT'), 'LT');
+  assert.equal(greetName('J'), '');
   assert.equal(greetName('logan'), 'Logan');
   assert.equal(greetName('Mary Jo'), 'Mary Jo');
   assert.equal(greetName('a@b.com'), '');
