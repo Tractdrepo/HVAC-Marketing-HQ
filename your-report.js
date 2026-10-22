@@ -110,7 +110,7 @@
       '<div class="yr-ops-grid">' + tiles.join("") + "</div></div></section>";
   };
   var bookLine = !b ? "Make it easy to book from any page." : b.k === "online" ? "Keep online booking, and catch the calls you miss." : b.k === "form" ? "Add online booking next to your form, and text back every missed call." : "Add a book-service button and text back every missed call.";
-  var repeatLine = !rv ? "Ask for a review after every job." : rv.n < 100 ? "Ask for a review after every job until you pass the top shops near you." : "Keep reviews coming every week and reply to every one.";
+  var repeatLine = !rv ? "Ask for a review after every job." : rv.n < 100 ? "Ask for a review after every job to close the gap on the top shops near you." : "Keep reviews coming every week and reply to every one.";
 
   root.innerHTML =
     '<section class="yr-hero"><div class="wrap yr-hero-in">' +
