@@ -49,6 +49,9 @@ AREA = "Texas"                        # launch market; copy says "starting in Te
 
 # Plans: four tiers with a monthly/annual toggle (annual = 20% off). Prices confirmed by Logan Oct 12, 2026; Growth and Dominate raised Oct 21.
 ANNUAL_DISCOUNT = 0.20
+# TEMPORARY (Logan, Oct 22, 2026): build fees struck through and marked waived while we are in pilot stage. Set to False to restore.
+PILOT_BUILD_WAIVED = True
+PILOT_WAIVED_LABEL = "Waived during our pilot"
 PLAN_PRICE_FOR_CALC = 999            # break-even calculator default, editable by the visitor
 PLANS = [
     {
@@ -814,7 +817,7 @@ def plans_teaser():
         f'<a class="pt-card reveal{" featured" if pl.get("featured") else ""}" href="{u("plans")}"><span class="pt-name">{pl["name"]}</span>'
         f'<span class="pt-price">${round(pl["monthly"] * (1 - ANNUAL_DISCOUNT)):,}<small>/mo</small></span><span class="pt-stage">Best for {esc(pl["stage"])}</span></a>'
         for pl in PLANS)
-    return f'<div class="pt-grid">{cards}</div><p class="pt-note">Annual prices shown, billed yearly. Monthly billing is on the pricing page. One-time build from ${PLANS[0]["build"]:,}. Billing starts at launch.</p>'
+    return f'<div class="pt-grid">{cards}</div><p class="pt-note">Annual prices shown, billed yearly. Monthly billing is on the pricing page. {"One-time build fee waived during our pilot." if PILOT_BUILD_WAIVED else f"One-time build from ${PLANS[0]['build']:,}."} Billing starts at launch.</p>'
 
 
 def plans_cards():
@@ -835,7 +838,7 @@ def plans_cards():
   <p class="billing"><span data-monthly="Billed monthly, 6-month first term" data-annual="Billed yearly">Billed yearly</span><span class="when-annual"> · <b>{save}</b></span></p>
   <p class="for">{esc(p['for'])}</p>
   <ul class="ticks">{items}</ul>
-  <div class="build">One-time build: {money(p['build'])}</div>
+  <div class="build">One-time build: {f'<s>{money(p["build"])}</s> <b class="waived">{PILOT_WAIVED_LABEL}</b>' if PILOT_BUILD_WAIVED else money(p['build'])}</div>
   <a class="btn {'btn-primary' if feat else 'btn-ghost'}" href="{esc(call_link())}">Book a call</a>
 </div>""")
     toggle = f"""<div class="bill-toggle" role="group" aria-label="Billing">
@@ -901,7 +904,7 @@ def promise():
   <div class="card reveal"><span class="big">14 days</span><p>Your new site is live within 14 days of getting your content.</p></div>
   <div class="card reveal"><span class="big">1 day</span><p>Every change you send us is done, or answered with a date, within one business day.</p></div>
 </div>
-<div class="moneyback reveal"><span class="big">30 days</span><div><h3>Money-back guarantee</h3><p>Not happy in your first 30 days after launch? Tell us and we refund your first month. No form to fill out, no argument.</p><p style="margin-top:8px">The build fee is due at signing. Work starts once it's paid, and we can split it into 2 payments if needed.</p></div></div>
+<div class="moneyback reveal"><span class="big">30 days</span><div><h3>Money-back guarantee</h3><p>Not happy in your first 30 days after launch? Tell us and we refund your first month. No form to fill out, no argument.</p>{'' if PILOT_BUILD_WAIVED else '<p style="margin-top:8px">The build fee is due at signing. Work starts once it\'s paid, and we can split it into 2 payments if needed.</p>'}</div></div>
 {demo_line()}
 <p class="promise-note">We guarantee what we control. Nobody honest can promise a #1 ranking or a set number of calls, so we don't.</p>"""
 
@@ -2350,7 +2353,7 @@ def home():
     offer = f"""<div class="offer">
   <div class="card reveal"><h3>Every plan includes</h3><ul class="ticks">
     <li>A custom website on fast hosting, in your name</li><li>Missed-call text-back</li><li>Review requests after every job</li><li>Google profile setup</li><li>HQ Command Center, with logins for your whole team</li><li>A monthly recap</li></ul>
-    <div class="from"><span class="p">from ${starter["monthly"]}<small>/mo</small></span><span class="muted" style="font-size:var(--fs-sm)">plus a one-time build fee · 20% off paid yearly</span></div>
+    <div class="from"><span class="p">from ${starter["monthly"]}<small>/mo</small></span><span class="muted" style="font-size:var(--fs-sm)">{"build fee waived during our pilot" if PILOT_BUILD_WAIVED else "plus a one-time build fee"} · 20% off paid yearly</span></div>
   </div>
   <div class="plan3 reveal">
     {pc(starter, "A fast 5-page site and a complete Google profile, with every missed call texted back.")}
