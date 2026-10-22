@@ -55,7 +55,6 @@ export default {
     { name: 'Angi', domain: 'angi.com' },
     { name: 'Nextdoor', domain: 'nextdoor.com' },
     { name: 'Thumbtack', domain: 'thumbtack.com' },
-    { name: 'HomeAdvisor', domain: 'homeadvisor.com' },
   ],
 
   // Title check wording for the AI and for the fallback rule.

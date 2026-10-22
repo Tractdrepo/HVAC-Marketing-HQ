@@ -76,3 +76,12 @@ test('book box reads cleanly and does not sell text-back as live before texting 
     assert.doesNotMatch(repeatLines({ rv: { n: 80, d: null } })[1], /\btexts?\b/);
   }
 });
+
+test('missing payment options are "couldn\'t see", and the area search reads as a ranking, not a typed search', () => {
+  const { profile } = placeFacts(sab(), [{ query: 'HVAC businesses within 30 miles of Waco', rank: 12, marketSize: 20, area: true }], hvac);
+  assert.equal(profile.paymentListed, null);
+  const area = scoreProfile(profile, hvac);
+  assert.equal(area.lines.find((l) => l.id === 'details').measured, false);
+  assert.match(sawLine('profile', { profile }, area), /12th among HVAC businesses within 30 miles of Waco/);
+  assert.match(area.topFix, /^Move up among HVAC businesses within 30 miles of Waco; today you are 12th\.$/);
+});

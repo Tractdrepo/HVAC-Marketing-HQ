@@ -54,7 +54,7 @@ export async function collectFacts(input, env = process.env, deps = {}) {
           (async () => {
             const own = town ? await localRank(trade.searchQueries[0].replace('{town}', town).replace(', {state}', state ? `, ${state}` : ''), place, google, deps.rankOpts) : null;
             const wide = await areaRank(trade.areaQuery, place, google, Math.round(trade.areaMiles * 1609), centerOf(own?.results), deps.rankOpts)
-              .then((r) => r && { ...r, query: `${trade.areaQuery} within ${trade.areaMiles} miles of ${town || 'you'}` })
+              .then((r) => r && { ...r, query: `${trade.label} businesses within ${trade.areaMiles} miles of ${town || 'you'}` })
               .catch((err) => { fail(`Google area search failed: ${err.message}`); return null; });
             return [own, wide].filter(Boolean);
           })(),
