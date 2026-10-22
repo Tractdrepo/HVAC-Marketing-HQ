@@ -21,6 +21,11 @@ DOMAIN = "hvacmarketinghq.com"
 SITE_HOST = "www." + DOMAIN           # canonical host; the apex 308-redirects here
 EMAIL = "hello@" + DOMAIN
 CALL_LINK = "https://calendar.app.google/dr7ELTg8SP7y8Z5q7"  # Google Calendar booking page (Logan, Oct 18)
+# Where each calendar.app.google short link lands (checked Oct 22, 2026). /book points straight there to skip a hop.
+# A new CALL_LINK that is not in this map makes /book use the short link, so a calendar swap can't leave /book stale.
+CALL_LINK_FINAL = {
+    "https://calendar.app.google/dr7ELTg8SP7y8Z5q7": "https://calendar.google.com/appointments/schedules/AcZssZ2Q6Y0kT9oF5KwcFdCgZrQcTsfc7rQZxrhqBexN7pYWgpWzXjGIrKfLRvp5apXV6jmP3z9NlGQu",
+}
 TURNSTILE_SITEKEY = "0x4AAAAAAFW5gSyWKqCFU_8y"  # Cloudflare Turnstile site key (public); secret is TURNSTILE_SECRET in Vercel
 # Founder video bubble (bottom-left). Logan records a 60-90s face-on intro; see video-script.md.
 FOUNDER_NAME = "Logan"
@@ -3048,6 +3053,26 @@ def build_routes():
     ROUTES.update(ROOT_URL)
 
 
+def flatten_redirects(reds):
+    """Point every redirect at its final page, so an old URL is one hop and never a chain or a loop.
+
+    Vercel's apex-to-www 308 runs before these rules, so a relative destination is already one hop on www;
+    an absolute www destination would not save a hop."""
+    by_src = {r["source"]: r for r in reds}
+    if len(by_src) != len(reds):
+        raise SystemExit("vercel.json: duplicate redirect source")
+    out = []
+    for r in reds:
+        dest, seen = r["destination"], {r["source"]}
+        while dest in by_src:
+            if dest in seen:
+                raise SystemExit(f"vercel.json: redirect loop through {dest}")
+            seen.add(dest)
+            dest = by_src[dest]["destination"]
+        out.append({**r, "destination": dest})
+    return out
+
+
 def write_redirects(site_dir):
     """Old flat URLs point to the folder URLs, so links shared before Oct 13 keep working."""
     p_ = os.path.join(site_dir, "vercel.json")
@@ -3057,9 +3082,10 @@ def write_redirects(site_dir):
     reds += [{"source": "/" + old, "destination": "/" + route(new), "permanent": True} for old, new in OLD_REDIRECTS.items()]
     moved = {"services/" + OFFER_URL.get(k, k): k for k in ROOT_URL if k in OFFER_URL or any(sv["slug"] == k for sv in SERVICES)}
     reds += [{"source": "/" + old, "destination": "/" + route(k), "permanent": True} for old, k in moved.items() if old != route(k)]
-    # One short link on our own domain for the report email; the calendar can change without touching the email.
-    reds.append({"source": "/book", "destination": call_link(), "permanent": False})
-    cfg["redirects"] = reds
+    # One short link on our own domain for the report email (api/lead.js sends ${SITE_URL}/book); the calendar can
+    # change without touching the email. It goes straight to the page the short link lands on, so it is one hop, not two.
+    reds.append({"source": "/book", "destination": CALL_LINK_FINAL.get(call_link(), call_link()), "permanent": False})
+    cfg["redirects"] = flatten_redirects(reds)
     # The site-wide noindex header follows NOINDEX, so "index it" is one switch, not two.
     for rule in cfg.get("headers", []):
         if rule.get("source") == "/(.*)":
