@@ -16,6 +16,24 @@ const pct = (v) => (known(v) ? Math.round(v * 100) : null);
 const lc = (n) => n.replace(/^(Reviews|Website|Listings)$/, (m) => m.toLowerCase());
 const list = (a) => (a.length <= 1 ? a.join('') : `${a.slice(0, -1).join(', ')} and ${a[a.length - 1]}`);
 
+// Texting (missed-call text-back, review and follow-up texts) waits on carrier (A2P) approval. While it's
+// false the report sells text-back as switching on soon, never as live. Flip with TEXTING_LIVE in your-report.js.
+export const TEXTING_LIVE = false;
+const TEXT_BACK = TEXTING_LIVE
+  ? 'every missed call gets a text back within 10 seconds'
+  : 'missed-call text-back (a text to every caller you miss, within 10 seconds) is in every plan and goes live in the next couple of weeks';
+
+// The name to greet. Initials ("LT"), a single letter or anything that isn't a name gets "there";
+// all-caps or all-lowercase names are put in normal case.
+export function greetName(raw) {
+  const words = String(raw || '').trim().split(/\s+/).filter(Boolean);
+  if (!words.length || words.length > 2 || !words.every((w) => /^[A-Za-z][A-Za-z'.-]+$/.test(w)) || /^[A-Z.]{2,3}$/.test(words[0])) return '';
+  return words.map((w) => (w === w.toUpperCase() || w === w.toLowerCase() ? w[0].toUpperCase() + w.slice(1).toLowerCase() : w)).join(' ');
+}
+
+// "Prompt, honest service" reads mid-sentence as "prompt, honest service". Leaves "AC" and names alone.
+const midSentence = (t) => (/^[A-Z][a-z]/.test(t || '') ? t[0].toLowerCase() + t.slice(1) : t);
+
 // Refuse anything that is not a plain public hostname, so the fetcher can't be pointed
 // at internal addresses.
 export function isPublicSite(raw) {
@@ -44,9 +62,15 @@ export function sawLine(key, facts, area) {
   if (key === 'profile') {
     if (!p || p.found === false) return 'We could not find a Google profile for this business name and website.';
     const bits = [];
-    const s = (p.searches || []).filter((x) => known(x.rank)).sort((a, b) => (b.rank || 99) - (a.rank || 99))[0];
-    if (s) bits.push(s.rank ? `${ordinal(s.rank)} of ${s.marketSize} in a search for "${s.query}"` : `not in the first ${s.marketSize} in a search for "${s.query}"`);
-    if (p.photos) bits.push(`${p.photos.count} photos${known(p.photos.byBusiness) ? ` (${p.photos.byBusiness} yours)` : ''}`);
+    for (const s of (p.searches || []).filter((x) => known(x.rank))) {
+      bits.push(s.rank ? `${ordinal(s.rank)} in a search for "${s.query}"` : `not in the first ${s.marketSize} in a search for "${s.query}"`);
+    }
+    if (p.photos) {
+      const n = p.photos.capped ? 'at least 10 photos' : `${p.photos.count} photo${p.photos.count === 1 ? '' : 's'}`;
+      const shown = Math.min(p.photos.count, 10);
+      const own = p.photos.byBusiness;
+      bits.push(!known(own) || !shown ? n : own === shown ? `${n}, all posted by you` : `${n}, ${own} of the first ${shown} posted by you`);
+    }
     bits.push(p.hasHours ? 'hours listed' : 'no hours listed');
     if (p.primaryCategory) bits.push(`category "${String(p.primaryCategory.name || p.primaryCategory.id).replace(/_/g, ' ')}"`);
     return `${p.name}: ${bits.join(', ')}.`;
@@ -59,7 +83,7 @@ export function sawLine(key, facts, area) {
     if (c) t += `; ${c.n === 1 ? 'the top shop in your search has' : `the ${c.n} shops near the top of your search average`} ${c.avgRating?.toFixed(1)} from ${Math.round(c.avgCount)}`;
     if (known(r.newestDays)) t += `; newest review ${r.newestDays === 0 ? 'today' : `${r.newestDays} days ago`}`;
     t += '.';
-    if (r.themes?.praise) t += ` Customers praise ${r.themes.praise}${r.themes.complaint ? `; the complaint that comes up is ${r.themes.complaint}` : ''}.`;
+    if (r.themes?.praise) t += ` Customers praise ${midSentence(r.themes.praise)}${r.themes.complaint ? `; the complaint that comes up is ${midSentence(r.themes.complaint)}` : ''}.`;
     return t;
   }
   if (key === 'website') {
@@ -104,8 +128,8 @@ export const HOW = {
     posts: 'On Growth and up we post to your profile every week, using the job photos you text us.',
   },
   reviews: {
-    rating: 'Every plan texts a review request after each finished job, with a one-tap link to Google.',
-    count: 'Every plan texts a review request after each finished job, with a one-tap link to Google.',
+    rating: 'Every plan sends a review request after each finished job, with a one-tap link to Google.',
+    count: 'Every plan sends a review request after each finished job, with a one-tap link to Google.',
     recent: 'Every plan sends a review request after each job, so new reviews keep coming every week.',
     low: 'On Growth and up we reply to every review, so the next customer sees an owner who answers.',
     replies: 'On Growth and up we write and post a reply to every review for you.',
@@ -165,7 +189,7 @@ export function payload(result, firstName) {
     v: 1,
     n: facts.businessName,
     w: [facts.town, facts.state].filter(Boolean).join(', '),
-    f: firstName || '',
+    f: greetName(firstName),
     o: report.overall,
     g: report.grade,
     lo: report.weakest,
@@ -191,11 +215,16 @@ export const AREA_MILES = 30;
 // Book: what we saw about how a visitor reaches them, then what our plans add. HTML, already escaped.
 export function bookLines(data) {
   const b = data.b;
-  const saw = !b ? 'We could not load your site, so we could not check how customers reach you.'
-    : `On your site we found ${b.k === 'online' ? 'online booking' : b.k === 'form' ? 'a contact form, but no online booking' : 'no way to book or request service'}, ${b.c ? 'a chat tool' : 'no chat'} and ${b.t ? 'a tap-to-call number' : 'no tap-to-call number'}.`;
+  let saw = 'We could not load your site, so we could not check how customers reach you.';
+  if (b) {
+    const found = [b.k === 'online' && 'online booking', b.k === 'form' && 'a contact form', b.c && 'a chat tool', b.t && 'a tap-to-call number'].filter(Boolean);
+    const missing = [b.k !== 'online' && (b.k === 'form' ? 'online booking' : 'booking form'), !b.c && 'chat', !b.t && 'tap-to-call number'].filter(Boolean);
+    const none = list(missing).replace(/ and ([^ ]+[^,]*)$/, ' or $1');
+    saw = found.length ? `On your site we found ${list(found)}${missing.length ? `, but no ${none}` : ''}.` : `On your site we found no ${none}.`;
+  }
   return [
     `<b>What we saw:</b> ${esc(saw)}`,
-    '<b>How we fix it:</b> every missed call gets a text back in 10 seconds, every site we build has a book-service button and a short form, and calls, texts and web leads land in one inbox your office can see. On Growth and up, AI web chat answers and books after hours; AI phone answering is an add-on for the rush.',
+    `<b>How we fix it:</b> every site we build has a book-service button and a short form, and calls, texts and web leads land in one inbox your office can see. ${TEXT_BACK[0].toUpperCase()}${TEXT_BACK.slice(1)}. On Growth and up, AI web chat answers and books after hours; AI phone answering is an add-on for the rush.`,
   ];
 }
 
@@ -206,7 +235,7 @@ export function repeatLines(data) {
     : `${r.n} Google reviews${known(r.d) ? `, the newest ${r.d === 0 ? 'today' : `${r.d} days ago`}` : ''}. The shops that stay on top ask after every job and reply to every review.`;
   return [
     `<b>What we saw:</b> ${esc(saw)}`,
-    '<b>How we fix it:</b> every plan texts a review request after each finished job. On Growth and up we reply to every review, follow up on open quotes until they are booked or lost, and text past customers each season for tune-ups. You see it all in your HQ Command Center dashboard.',
+    '<b>How we fix it:</b> every plan sends a review request after each finished job. On Growth and up we reply to every review, follow up on open quotes until they are booked or lost, and reach out to past customers each season for tune-ups. You see it all in your HQ Command Center dashboard.',
   ];
 }
 
@@ -259,7 +288,10 @@ ${weakName ? `Your lowest grade is <b>your ${esc(weakName)}</b>. ` : ''}Book 15 
     ...data.a.flatMap((a) => [`${names[a.k]}: ${a.g || 'N/A'}${known(a.s) ? ` (${a.s} / 100)` : ''}`, `  ${a.saw}`, ...(a.fx[0] ? [`  Top fix: ${a.fx[0][0]}`, ...(a.fx[0][1] ? [`  How we fix it: ${a.fx[0][1]}`] : [])] : []), '']),
     `Full report and how to fix it: ${link}`, `Grab 15 minutes on my calendar: ${bookingUrl}`, '', 'Logan', 'HVAC Marketing HQ'].join('\n');
   const article = (g) => (/^[AEF]/.test(g) ? 'an' : 'a');
-  return { subject: `Your report card: ${data.n} gets ${data.g ? `${article(data.g)} ${data.g}` : 'graded'}`, html, text, link, data };
+  // The grade goes in the subject only when it's a B or better; a low letter in the inbox reads as an insult
+  // before they've seen why, so those get a neutral subject and the grade inside.
+  const subject = /^[AB]/.test(data.g || '') ? `Your report card: ${data.n} gets ${article(data.g)} ${data.g}` : `Your HVAC report card for ${data.n} is ready`;
+  return { subject, html, text, link, data };
 }
 
 // A short internal note for the team: what ran and what didn't.

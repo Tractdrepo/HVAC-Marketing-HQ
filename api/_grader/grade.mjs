@@ -3,7 +3,7 @@ import { getTrade } from './trades/index.mjs';
 import { scoreAll } from './score.mjs';
 import { fetchHomepage, ruleTitleVerdict, townPages } from './collect/homepage.mjs';
 import { blogFreshness } from './collect/blog.mjs';
-import { findBusiness, townOf, stateOf, localRank, areaRank, newestReviewDays, placeFacts, host } from './collect/places.mjs';
+import { findBusiness, townOf, stateOf, localRank, areaRank, centerOf, newestReviewDays, placeFacts, host } from './collect/places.mjs';
 import { splitTown } from './trades/region.mjs';
 import { pagespeed } from './collect/pagespeed.mjs';
 
@@ -48,12 +48,12 @@ export async function collectFacts(input, env = process.env, deps = {}) {
       if (place) {
         town = townOf(place) || town;
         state = stateOf(place) || state;
-        // One search in their own town, one across everything within about 20 miles (the towns they serve).
         // One search in their own town, one across every HVAC business within 30 miles (the report says so).
+        // A service-area shop hides its location, so its area search centers on the shops in its town search.
         const [searches, newest] = await Promise.all([
           (async () => {
-            const own = town ? await localRank(trade.searchQueries[0].replace('{town}', town).replace(', {state}', state ? `, ${state}` : ''), place, google) : null;
-            const wide = await areaRank(trade.areaQuery, place, google, Math.round(trade.areaMiles * 1609))
+            const own = town ? await localRank(trade.searchQueries[0].replace('{town}', town).replace(', {state}', state ? `, ${state}` : ''), place, google, deps.rankOpts) : null;
+            const wide = await areaRank(trade.areaQuery, place, google, Math.round(trade.areaMiles * 1609), centerOf(own?.results), deps.rankOpts)
               .then((r) => r && { ...r, query: `${trade.areaQuery} within ${trade.areaMiles} miles of ${town || 'you'}` })
               .catch((err) => { fail(`Google area search failed: ${err.message}`); return null; });
             return [own, wide].filter(Boolean);

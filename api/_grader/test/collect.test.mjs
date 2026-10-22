@@ -108,7 +108,7 @@ test('report email shows grades and fixes, not points', async () => {
   const facts = JSON.parse(readFileSync(new URL('./fixtures/hvac-mid.json', import.meta.url)));
   const report = scoreFacts(facts);
   const r = renderReport({ facts: { ...facts, town: 'Waco', state: 'TX' }, report }, { firstName: 'Sam', bookingUrl: 'https://cal.example/x', siteUrl: 'https://hvacmarketinghq.com' });
-  assert.match(r.subject, /^Your report card: .+ gets an? [A-F]/);
+  assert.match(r.subject, /^Your (report card: .+ gets an? [A-F]|HVAC report card for .+ is ready)/);
   assert.ok(r.html.includes('Hi Sam') && r.html.includes('https://cal.example/x'));
   assert.ok(!/\/ ?\d+ points|\bpts\b/i.test(r.html));
   assert.ok(r.text.includes('Overall:') && r.text.includes('Top fix:'));

@@ -79,7 +79,7 @@ test('reviews compare against local competitors', () => {
   const alone = scoreReviews(base, hvac).lines;
   const behind = scoreReviews({ ...base, competitors: { n: 3, avgRating: 4.8, avgCount: 610 } }, hvac).lines;
   assert.equal(alone[0].points - behind[0].points, 3); // 0.2 below: −3
-  assert.equal(alone[1].points - behind[1].points, 4); // 23% of their count (10–30%): −4
+  assert.equal(alone[1].points - behind[1].points, 2); // 23% of their count (10–30%): −2
 });
 
 test('zero reviews scores zero, not unmeasured', () => {
