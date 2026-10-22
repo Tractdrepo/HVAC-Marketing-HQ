@@ -46,12 +46,13 @@ export function positionPoints(rank, marketSize) {
   if (known(marketSize) && marketSize < 6) {
     return rank === 1 ? 40 : rank === 2 ? 30 : rank === 3 ? 20 : 10;
   }
-  if (rank === 0 || rank > 20) return 0;
+  if (rank === 0 || rank > 40) return 0;
   if (rank === 1) return 40;
-  if (rank <= 3) return 34;
-  if (rank <= 5) return 24;
-  if (rank <= 10) return 12;
-  return 5;
+  if (rank <= 3) return 36;
+  if (rank <= 5) return 30;
+  if (rank <= 10) return 22;
+  if (rank <= 20) return 12;
+  return 4;
 }
 
 // ---------- 1. Google profile ----------
