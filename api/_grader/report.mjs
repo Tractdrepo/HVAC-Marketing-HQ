@@ -23,12 +23,12 @@ const TEXT_BACK = TEXTING_LIVE
   ? 'every missed call gets a text back within 10 seconds'
   : 'missed-call text-back (a text to every caller you miss, within 10 seconds) is in every plan and goes live in the next couple of weeks';
 
-// The name to greet. Initials ("LT"), a single letter or anything that isn't a name gets "there";
-// all-caps or all-lowercase names are put in normal case.
+// The name to greet, as typed: short names like "LT" or "TJ" stay as they are. A single letter or anything
+// that isn't a name gets "there"; longer all-caps or all-lowercase names are put in normal case.
 export function greetName(raw) {
   const words = String(raw || '').trim().split(/\s+/).filter(Boolean);
-  if (!words.length || words.length > 2 || !words.every((w) => /^[A-Za-z][A-Za-z'.-]+$/.test(w)) || /^[A-Z.]{2,3}$/.test(words[0])) return '';
-  return words.map((w) => (w === w.toUpperCase() || w === w.toLowerCase() ? w[0].toUpperCase() + w.slice(1).toLowerCase() : w)).join(' ');
+  if (!words.length || words.length > 2 || !words.every((w) => /^[A-Za-z][A-Za-z'.-]+$/.test(w))) return '';
+  return words.map((w) => (/^[A-Z.]{2,3}$/.test(w) ? w : w === w.toUpperCase() || w === w.toLowerCase() ? w[0].toUpperCase() + w.slice(1).toLowerCase() : w)).join(' ');
 }
 
 // "Prompt, honest service" reads mid-sentence as "prompt, honest service". Leaves "AC" and names alone.
