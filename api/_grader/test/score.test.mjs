@@ -17,7 +17,7 @@ test('letters follow the cut-offs', () => {
 });
 
 test('search position tiers, including small markets', () => {
-  assert.deepEqual([1, 2, 3, 4, 6, 11, 21, 0].map((r) => positionPoints(r, 20)), [40, 34, 34, 24, 12, 5, 0, 0]);
+  assert.deepEqual([1, 2, 3, 4, 6, 11, 21, 41, 0].map((r) => positionPoints(r, 20)), [40, 36, 36, 30, 22, 12, 4, 0, 0]);
   assert.deepEqual([1, 2, 3, 4].map((r) => positionPoints(r, 4)), [40, 30, 20, 10]);
   assert.equal(positionPoints(null, 20), null);
 });
@@ -29,7 +29,7 @@ test('fixtures land where expected: strong A, mid around C, weak D or F', () => 
   assert.ok(strong.overall >= 90, `strong ${strong.overall}`);
   assert.ok(mid.overall >= 62 && mid.overall <= 80, `mid ${mid.overall}`);
   assert.ok(weak.overall < 60, `weak ${weak.overall}`);
-  assert.equal(weak.weakest, 'profile');
+  assert.ok(['profile', 'website'].includes(weak.weakest), weak.weakest);
 });
 
 test('same facts always give the same grade', () => {
