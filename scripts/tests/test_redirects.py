@@ -153,5 +153,72 @@ class CrawlSignals(unittest.TestCase):
         self.assertIn(f"Sitemap: {WWW}/sitemap.xml", robots)
 
 
+def page_meta():
+    """(url path, canonical, noindex) for every built page."""
+    out = []
+    for rel, html in built_html():
+        path = "/" + rel[:-5]
+        path = "/" if path == "/index" else path
+        m = re.search(r'<link rel="canonical" href="([^"]+)"', html)
+        rb = re.search(r'<meta name="robots" content="([^"]+)"', html)
+        out.append((path, m.group(1) if m else None, bool(rb and "noindex" in rb.group(1))))
+    return out
+
+
+class SitemapClean(unittest.TestCase):
+    """Every sitemap URL is a 200 page (a built file, not a redirect), indexable, and its own canonical."""
+
+    def setUp(self):
+        sm = read("sitemap.xml")
+        self.entries = re.findall(r"<url><loc>([^<]+)</loc>(?:<lastmod>([^<]+)</lastmod>)?</url>", sm)
+        self.urls = {loc[len(WWW):] or "/" for loc, _ in self.entries}
+        self.meta = {p: (c, n) for p, c, n in page_meta()}
+        self.sources = {norm(r["source"]) for r in load_redirects()}
+
+    def test_sitemap_urls_are_live_indexable_self_canonical(self):
+        bad = []
+        for path in self.urls:
+            if path in self.sources:
+                bad.append(f"{path}: redirects")
+            elif path not in self.meta:
+                bad.append(f"{path}: no page (404)")
+            else:
+                canon, noindex = self.meta[path]
+                if noindex:
+                    bad.append(f"{path}: noindex")
+                if canon != WWW + path:
+                    bad.append(f"{path}: canonical {canon}")
+        self.assertEqual(bad, [])
+
+    def test_every_indexable_page_is_in_the_sitemap_and_self_canonical(self):
+        bad = []
+        for path, (canon, noindex) in self.meta.items():
+            if canon and canon != WWW + path:
+                bad.append(f"{path}: canonical {canon}")
+            if canon and not noindex and path not in self.urls:
+                bad.append(f"{path}: indexable but not in sitemap")
+        self.assertEqual(bad, [])
+
+    def test_location_urls_have_real_lastmod(self):
+        missing = [loc for loc, lm in self.entries if "/locations" in loc and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", lm or "")]
+        self.assertEqual(missing, [])
+
+    def test_no_site_wide_noindex_header(self):
+        for rule in json.loads(read("vercel.json")).get("headers", []):
+            for h in rule["headers"]:
+                self.assertNotEqual(h["key"].lower(), "x-robots-tag", rule["source"])
+
+    def test_internal_links_resolve(self):
+        sources, bad = self.sources | {"/book"}, set()
+        for rel, html in built_html():
+            for h in re.findall(r'href="(/[^"]*)"', html):
+                p_ = norm(h)
+                if p_ in sources or p_.startswith(("/_vercel", "/api/")) or "." in p_.rsplit("/", 1)[-1]:
+                    continue
+                if not page_exists(p_):
+                    bad.add(f"{rel}: {h}")
+        self.assertEqual(sorted(bad), [])
+
+
 if __name__ == "__main__":
     unittest.main()
