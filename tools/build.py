@@ -21,6 +21,11 @@ DOMAIN = "hvacmarketinghq.com"
 SITE_HOST = "www." + DOMAIN           # canonical host; the apex 308-redirects here
 EMAIL = "hello@" + DOMAIN
 CALL_LINK = "https://calendar.app.google/dr7ELTg8SP7y8Z5q7"  # Google Calendar booking page (Logan, Oct 18)
+# Where each calendar.app.google short link lands (checked Oct 22, 2026). /book points straight there to skip a hop.
+# A new CALL_LINK that is not in this map makes /book use the short link, so a calendar swap can't leave /book stale.
+CALL_LINK_FINAL = {
+    "https://calendar.app.google/dr7ELTg8SP7y8Z5q7": "https://calendar.google.com/appointments/schedules/AcZssZ2Q6Y0kT9oF5KwcFdCgZrQcTsfc7rQZxrhqBexN7pYWgpWzXjGIrKfLRvp5apXV6jmP3z9NlGQu",
+}
 TURNSTILE_SITEKEY = "0x4AAAAAAFW5gSyWKqCFU_8y"  # Cloudflare Turnstile site key (public); secret is TURNSTILE_SECRET in Vercel
 # Founder video bubble (bottom-left). Logan records a 60-90s face-on intro; see video-script.md.
 FOUNDER_NAME = "Logan"
@@ -1050,6 +1055,37 @@ ALL_CITIES = [c for st in STATES for c in st["cities"]]
 TDLR_COUNTY = {"McLennan County": 156, "Bell County": 161}
 
 
+# Location pages were rewritten on this date (state comparison tables, fewer repeated blocks). The sitemap
+# lastmod for a location page is the later of this and the newest data pull (Google map, search, Census) behind it.
+LOCATION_PAGES_REVISED = "2026-10-23"
+
+
+def city_refreshed(c):
+    dates = [d.get("pulled") for d in (places_data(c), search_data(c), census_data(c)) if d and d.get("pulled")]
+    return max(dates + [LOCATION_PAGES_REVISED])
+
+
+def state_refreshed(st):
+    return max(city_refreshed(c) for c in st["cities"])
+
+
+def single_city_state(st):
+    """A state with one market page has nothing of its own to say beyond that city's page. Its page stays up for
+    old links but is noindexed, left out of the sitemap, and not linked: the city page is the one to index."""
+    return len(st["cities"]) == 1
+
+
+def state_link(st, text=None):
+    text = esc(text or st["name"])
+    return text if single_city_state(st) else f'<a href="{u(state_key(st))}">{text}</a>'
+
+
+def climate_twins(c, n=4):
+    """Markets in other states with the closest July highs and January lows: same season, same marketing calendar."""
+    others = [o for o in ALL_CITIES if o["_st"] is not c["_st"]]
+    return sorted(others, key=lambda o: ((o["july_high_f"] - c["july_high_f"]) ** 2 + (o["jan_low_f"] - c["jan_low_f"]) ** 2, o["slug"]))[:n]
+
+
 def city_path(c):
     return f"hvac-marketing-{c['slug']}-{c['_st']['abbr'].lower()}"
 
@@ -1088,13 +1124,13 @@ def city_insights(c):
         out.append(("A real heating season", f"January lows average {deg(cold)}. Furnace and heat pump pages earn their keep here, and fall tune-up campaigns fill the schedule before the first cold snap."))
     else:
         out.append(("Mild winters, steady heat pump work", f"January lows average {deg(cold)}. Heat pump repair and installs carry the cooler months, with fewer emergency heating calls."))
-    if "cfa" in k or "humid" in k or "tropical" in k:
+    if "cfa" in k or "subtropical" in k or "tropical" in k:
         out.append(("Humidity sells comfort", "Humid air makes homes feel warmer than the thermostat says. Pages for dehumidifiers, indoor air quality and duct work bring higher-value jobs."))
     elif "bs" in k or "bw" in k or "arid" in k or "desert" in k:
         out.append(("Dry air and dust", "Dust works filters and outdoor units hard. Maintenance plan pages and filter reminders keep customers coming back between breakdowns."))
     if c["population_2020"] and c["population_2020"] >= 500000:
         out.append(("A crowded map", f"With {fnum(c['population_2020'])} people in the city alone, you won't win every search from one address. A page for each part of town you serve helps you show up beyond your shop's neighborhood."))
-    else:
+    elif not (places_data(c) or {}).get("count"):  # the map block already shows the real review gap
         out.append(("Reviews decide it", "In a market this size, homeowners often pick between a handful of shops by star rating and how recent the reviews are. Steady review requests after every job are the fastest lever."))
     return out
 
@@ -1179,7 +1215,7 @@ def search_block(c):
   <div class="cfacts reveal">{st_html}</div>
   <h3 class="mtable-h">HVAC searches that name {esc(c['name'])}</h3>
   {table}
-  <p class="csrc">Google Ads search data via DataForSEO, pulled {esc(d.get("pulled", ""))}. Monthly averages over the last 12 months. Google groups close variants, so two searches can show the same number; don't add them together. Ad click is Google's estimated cost per click for that search.</p>
+  <p class="csrc">Google Ads search data via DataForSEO, pulled {esc(d.get("pulled", ""))}: 12-month averages. Close variants can share one number, so don't add them up.</p>
 </div></section>"""
 
 
@@ -1265,14 +1301,17 @@ def city_page(c):
     lic_html = f'<p class="clic"><b>{lic}</b> businesses hold an active Texas A/C contractor license in {esc(c["county"])} (TDLR records, Oct 2026). That\'s who you\'re up against on the map.</p>' if lic else ""
     others = [o for o in st["cities"] if o["slug"] != c["slug"]]
     near = "".join(f'<a href="{u(city_path(o))}">{esc(o["name"])}</a>' for o in others)
-    other_html = f"""<div class="more-row"><h3>Other {esc(st['name'])} markets</h3><div class="city-links">{near}</div></div>""" if others else ""
+    all_st = f'<a class="all" href="{u(state_key(st))}">{esc(st["name"])}: all {len(st["cities"])} markets compared →</a>' if not single_city_state(st) else ""
+    other_html = f"""<div class="more-row"><h3>Other {esc(st['name'])} markets</h3><div class="city-links">{near}{all_st}</div></div>""" if others else ""
+    twins = "".join(f'<a href="{u(city_path(o))}">{esc(o["name"])}, {esc(o["_st"]["abbr"])}</a>' for o in climate_twins(c))
+    other_html += f"""<div class="more-row"><h3>Markets with similar July highs and January lows</h3><div class="city-links">{twins}</div></div>"""
     mk = market_block(c)
     sk = search_block(c)
     hk = housing_block(c)
     if not mk and not sk and not hk:
         THIN_PAGES.add(city_path(c))  # no local Google data yet: keep it out of the index
     body = f"""<section class="page-head city-head"><div class="wrap">
-  <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('locations')}">Locations</a> / {"" if st["abbr"] == "DC" else f'<a href="{u(state_key(st))}">{esc(st["name"])}</a> / '}{esc(c['name'])}</div>
+  <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('locations')}">Locations</a> / {"" if st["abbr"] == "DC" else state_link(st) + ' / '}{esc(c['name'])}</div>
   <span class="eyebrow">{esc(c['county'])} · {esc(c['metro'])}</span>
   <h1 style="max-width:20ch">HVAC marketing in {esc(place(c).rstrip('.'))}.</h1>
   <p class="lede">{city_hook(c)} We make sure that's you: a fast site, a Google profile that's actually run, and every missed call texted back in 10 seconds.</p>
@@ -1291,19 +1330,26 @@ def city_page(c):
   {lic_html}
 </div></section>
 <section class="section"><div class="wrap split">
-  <div><span class="eyebrow">Service areas</span><h2>A page for every town you really serve.</h2><p class="lede">Google shows the shops closest to the person searching. Real town pages, with your work and reviews from that town, stretch your reach past your own zip code.</p></div>
-  <div class="card"><h3>Around {esc(c['name'])}</h3><ul class="ticks town-list">{towns}</ul><p class="muted" style="font-size:.9rem">We only build pages for towns you actually take calls in.</p></div>
+  <div><span class="eyebrow">Service areas</span><h2>Towns around {esc(c['name'])}.</h2><p class="lede">If you take calls in these towns, each one can get its own service-area page. We only build them for towns you really serve.</p></div>
+  <div class="card"><ul class="ticks town-list">{towns}</ul></div>
 </div></section>
-{local_links(c['name'], other_html)}
+{local_links(c['name'], other_html, c)}
 {report_card(f"How does your shop stack up in {c['name']}?")}"""
     return page(city_path(c), f"HVAC marketing in {c['name']}, {st['abbr']}", f"HVAC marketing in {c['name']}, {st['abbr']}: a fast website, a Google profile that wins the map and every missed call texted back. July highs average {deg(c['july_high_f'])}.", body)
 
 
-def local_links(where, more=""):
+def local_links(where, more="", c=None):
     svc = ["website", "local-seo", "google-business-profile", "missed-call-text-back", "google-ads", "local-services-ads", "hvac-lead-generation"]
     svc_h = "".join(f'<a href="{u(k)}">{esc(svc_info(k)[0])}</a>' for k in svc)
-    reads = [(guide_path("google-map-pack-hvac"), "How HVAC shops get into the map pack"), ("local-seo", "HVAC SEO: what we do and what it costs"), ("hvac-marketing", "HVAC marketing: the complete guide"),
-             (guide_path("best-hvac-marketing-agencies"), "The best HVAC marketing agencies, compared"), ("tools/missed-call-cost-calculator", "Missed call cost calculator"), ("tools/lsa-cost-calculator", "Local Services Ads cost calculator"), ("plans", "Plans and pricing")]
+    reads = [("hvac-marketing", "Marketing for HVAC companies: the complete guide"), (guide_path("google-map-pack-hvac"), "How HVAC shops get into the map pack")]
+    if c is not None:
+        top = ((search_data(c) or {}).get("top_keyword") or "").lower()
+        heat = "furnace" in top or "heat" in top or (c["jan_low_f"] <= 25 and c["july_high_f"] < 88)
+        reads.append(("hvac-marketing-heating", "Marketing for heating and furnace work") if heat else ("hvac-marketing-ac-repair", "Marketing for AC repair"))
+        reads.append(("tools/missed-call-cost-calculator", "Missed call cost calculator"))
+    else:
+        reads += [("local-seo", "HVAC SEO: what we do and what it costs"), ("tools/missed-call-cost-calculator", "Missed call cost calculator")]
+    reads += [(guide_path("best-hvac-marketing-agencies"), "The best HVAC marketing companies, compared"), ("plans", "Plans and pricing")]
     rd = "".join(f'<li><a href="{u(k)}">{esc(t)}</a></li>' for k, t in reads if k in ROUTES or k in ("plans", "hvac-marketing"))
     return f"""<section class="section alt"><div class="wrap"><div class="split">
   <div><span class="eyebrow">For {esc(where)} shops</span><h2>What we run for you.</h2><p class="lede">One system: Rank, Book, Repeat. <a class="more" href="{u('method')}">How it works →</a></p><div class="city-links" style="margin-top:18px">{svc_h}</div></div>
@@ -1313,6 +1359,86 @@ def local_links(where, more=""):
 
 def city_cards(cities):
     return "".join(f'<a class="city-card" href="{u(city_path(c))}"><b>{esc(c["name"])}</b><span>{deg(c["july_high_f"])} July high<i aria-hidden="true"> · </i><br class="m-br">Pop. {fnum(c["population_2020"])}</span></a>' for c in cities)
+
+
+def and_list(xs):
+    xs = list(xs)
+    return xs[0] if len(xs) == 1 else ", ".join(xs[:-1]) + " and " + xs[-1]
+
+
+def state_rows(st):
+    """One row per market with the numbers the city pages are built on. Map numbers only when Google returned a full list."""
+    rows = []
+    for c in sorted(st["cities"], key=lambda c: -(c["population_2020"] or 0)):
+        pl, se, ce = places_data(c) or {}, search_data(c) or {}, census_data(c) or {}
+        full = (pl.get("count") or 0) >= 20
+        rows.append({"c": c, "shops": pl.get("count") if full else None, "med_reviews": pl.get("median_reviews") if full else None,
+                     "top": se.get("top_keyword"), "top_n": se.get("top_monthly_searches"), "cpc": se.get("max_cpc_usd"),
+                     "pre2000": ce.get("share_built_before_2000"), "built": ce.get("median_year_built"),
+                     "gas": (ce.get("heating_fuel_share") or {}).get("utility_gas"), "elec": (ce.get("heating_fuel_share") or {}).get("electricity")})
+    return rows
+
+
+def state_compare(st):
+    rows = state_rows(st)
+    pct = lambda v: f"{round(v * 100)}%" if v is not None else "–"
+    shops = lambda v: f"{v}+" if (v or 0) >= 60 else fnum(v)
+    top = lambda r: f'"{esc(r["top"])}" ({fnum(r["top_n"])}/mo)' if r["top"] else "–"
+    tr = "".join(f'<tr><td><a href="{u(city_path(r["c"]))}">{esc(r["c"]["name"])}</a></td><td>{fnum(r["c"]["population_2020"])}</td><td>{deg(r["c"]["july_high_f"])}</td><td>{deg(r["c"]["jan_low_f"])}</td>'
+                 f'<td>{shops(r["shops"])}</td><td>{fnum(r["med_reviews"])}</td><td>{top(r)}</td><td>{pct(r["pre2000"])}</td><td>{pct(r["gas"])}</td></tr>' for r in rows)
+    pulled = sorted({d.get("pulled") for c in st["cities"] for d in (places_data(c), search_data(c)) if d and d.get("pulled")})
+    when = f"{pulled[0]} to {pulled[-1]}" if len(pulled) > 1 else (pulled[0] if pulled else "")
+    return f"""<section class="section"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">{esc(st['name'])} side by side</span><h2>Every {esc(st['name'])} market, compared.</h2></div>
+  <div class="table-wrap"><table class="mtable state-table"><thead><tr><th>Market</th><th>Population</th><th>July high</th><th>Jan low</th><th>Shops on Google</th><th>Median reviews</th><th>Top search</th><th>Homes built before 2000</th><th>Heat with gas</th></tr></thead><tbody>{tr}</tbody></table></div>
+  <p class="csrc">Sources and dates are on each city page (Census, Google, DataForSEO; pulled {esc(when)}). A dash means Google returned too few shops to count.</p>
+</div></section>"""
+
+
+def state_cards(st):
+    """Observations that only hold for this state, each worked out from the table. A card is left out when the data can't back it."""
+    rows, n = state_rows(st), st["name"]
+    cards = []
+    cs = st["cities"]
+    hottest = max(cs, key=lambda c: c["july_high_f"] or 0)
+    coldest = min(cs, key=lambda c: c["jan_low_f"] if c["jan_low_f"] is not None else 99)
+    if hottest is not coldest:
+        cards.append(("Different weather, city to city", f"July highs average {deg(hottest['july_high_f'])} in {hottest['name']}, while January lows average {deg(coldest['jan_low_f'])} in {coldest['name']}. A shop's site and its seasonal campaigns should follow its own city's calendar, not the state's."))
+    rv = [r for r in rows if r["med_reviews"] is not None]
+    if len(rv) >= 2:
+        hi, lo = max(rv, key=lambda r: r["med_reviews"]), min(rv, key=lambda r: r["med_reviews"])
+        if hi is not lo and hi["med_reviews"] != lo["med_reviews"]:
+            cards.append(("Review counts vary by market", f"The median HVAC shop Google shows has {fnum(hi['med_reviews'])} reviews in {hi['c']['name']} and {fnum(lo['med_reviews'])} in {lo['c']['name']}. The bar for looking established on the map isn't the same everywhere in {n}."))
+    tops = [r for r in rows if r["top"]]
+    heat = [r for r in tops if "furnace" in r["top"].lower() or "heat" in r["top"].lower()]
+    cool = [r for r in tops if r not in heat]
+    if tops:
+        if heat and cool:
+            cards.append(("What people search first", f"The top HVAC search that names the city is about heating in {and_list(r['c']['name'] for r in heat)}, and about cooling or general HVAC in {and_list(r['c']['name'] for r in cool)}. Lead with the service people actually search for."))
+        else:
+            kind = "heating" if heat else "AC or general HVAC"
+            cards.append(("What people search first", f"In every {n} market here, the top HVAC search that names the city is for {kind} (for example \"{tops[0]['top']}\", about {fnum(tops[0]['top_n'])} searches a month)."))
+    cp = [r for r in rows if r["cpc"]]
+    if cp:
+        r = max(cp, key=lambda r: r["cpc"])
+        cards.append(("What a click costs", f"Google's estimate for the priciest HVAC search here is ${r['cpc']:,.2f} a click, in {r['c']['name']}. That's the math to run before paying for ads; your map listing and site don't charge per click."))
+    old = [r for r in rows if r["built"]]
+    if old:
+        r = min(old, key=lambda r: r["built"])
+        fuel = [x for x in rows if x["gas"] is not None and x["elec"] is not None]
+        gas_m = [x["c"]["name"] for x in fuel if x["gas"] > x["elec"]]
+        el_m = [x["c"]["name"] for x in fuel if x["gas"] <= x["elec"]]
+        mix = f" Most homes heat with gas in {and_list(gas_m)}" if gas_m else ""
+        mix += (f"{', and' if gas_m else ' Most homes heat'} with electricity in {and_list(el_m)}" if el_m else "")
+        cards.append(("The homes behind the calls", f"{r['c']['name']} has the oldest housing of these markets (median home built {r['built'] if r['built'] > 1939 else '1939 or earlier'}).{mix + '.' if mix else ''}"))
+    return "".join(f'<div class="card reveal"><h3>{esc(h)}</h3><p>{esc(t)}</p></div>' for h, t in cards[:6])
+
+
+def state_links(title="HVAC marketing by state", lede=None):
+    """Every indexable state page, for hub and topic pages that are about local marketing."""
+    chips = "".join(f'<a href="{u(state_key(st))}">{esc(st["name"])}</a>' for st in sorted(STATES, key=lambda x: x["name"]) if not single_city_state(st))
+    lede_h = f'<p class="muted">{esc(lede)}</p>' if lede else ""
+    return f'<div class="more-row"><h3>{esc(title)}</h3>{lede_h}<div class="city-links">{chips}<a class="all" href="{u("locations")}">All locations →</a></div></div>'
 
 
 def texas_page():
@@ -1333,9 +1459,10 @@ def texas_page():
     <div class="card reveal"><h3>Built for Texas rules</h3><p>Texting customers is set up the right way: carrier registration and opt-outs on every message. And we never cold text or cold call, in line with Texas law.</p></div>
   </div>
 </div></section>
-<section class="section"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">Texas markets</span><h2>Pick your city.</h2><p class="lede">Each page shows that market's weather and what it means for your marketing.</p></div>
-  <div class="city-grid">{city_cards(CITIES)}</div>
+{state_compare(STATES[0])}
+<section class="section dark"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Read the table</span><h2>What the Texas numbers say.</h2></div>
+  <div class="grid three">{state_cards(STATES[0])}</div>
 </div></section>
 {local_links("Texas")}
 {report_card("See how your shop stacks up in your Texas town.")}
@@ -1345,42 +1472,31 @@ def texas_page():
 
 def state_page(st):
     cs = st["cities"]
-    hottest = max(cs, key=lambda c: c["july_high_f"] or 0)
-    coldest = min(cs, key=lambda c: c["jan_low_f"] if c["jan_low_f"] is not None else 99)
-    big = max(cs, key=lambda c: c["population_2020"] or 0)
     n = st["name"]
-    if len(cs) > 1:
-        weather_card = f'<div class="card reveal"><h3>Different weather, city to city</h3><p>July highs average {deg(hottest["july_high_f"])} in {esc(hottest["name"])}, while January lows average {deg(coldest["jan_low_f"])} in {esc(coldest["name"])}. Your site should talk about the weather your customers actually live with.</p></div>'
-    else:
-        weather_card = f'<div class="card reveal"><h3>Weather that drives the calls</h3><p>July highs average {deg(big["july_high_f"])} and January lows {deg(big["jan_low_f"])} in {esc(big["name"])}. Your site should talk about the weather your customers actually live with.</p></div>'
+    names = [c["name"] for c in sorted(cs, key=lambda c: -(c["population_2020"] or 0))]
+    listed = ", ".join(names[:-1]) + f" and {names[-1]}" if len(names) > 1 else names[0]
+    if single_city_state(st):
+        THIN_PAGES.add(state_key(st))
     body = f"""<section class="page-head"><div class="wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / <a href="{u('locations')}">Locations</a> / {esc(n)}</div>
-  <span class="eyebrow">{esc(n)} · {len(cs)} markets</span>
+  <span class="eyebrow">{esc(n)} · {len(cs)} market{'' if len(cs) == 1 else 's'}</span>
   <h1 style="max-width:20ch">HVAC marketing for {esc(n)} contractors.</h1>
-  <p class="lede">{fnum(st['population_2020'])} people live in {esc(n)}, and each market has its own weather and its own map to win. We build the same system for every shop here: a fast site, a Google profile that's actually run, and every missed call texted back.</p>
+  <p class="lede">{fnum(st['population_2020'])} people live in {esc(n)}. We have market pages for {esc(listed)}, each built on that city's weather, Google map, searches and homes. Here they are side by side.</p>
   {url_form()}
 </div></section>
+{state_compare(st)}
 <section class="section dark"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">{esc(n)} up close</span><h2>What {esc(n)} means for your marketing.</h2></div>
-  <div class="grid three">
-    {weather_card}
-    <div class="card reveal"><h3>Big markets, crowded maps</h3><p>{esc(big['name'])} alone has {fnum(big['population_2020'])} people. In a market that size, a page for each part of town you serve helps you show up past your own neighborhood.</p></div>
-    <div class="card reveal"><h3>Texting done right</h3><p>Every text we send for you is set up the right way: carrier registration and an opt-out on every message. We never cold text or cold call homeowners.</p></div>
-  </div>
-</div></section>
-<section class="section"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">{esc(n)} markets</span><h2>Pick your city.</h2><p class="lede">Each page shows that market's weather and what it means for your marketing.</p></div>
-  <div class="city-grid">{city_cards(cs)}</div>
+  <div class="section-head reveal"><span class="eyebrow">{esc(n)} up close</span><h2>What the {esc(n)} numbers say.</h2></div>
+  <div class="grid three">{state_cards(st)}</div>
 </div></section>
 {local_links(n)}
 {report_card(f"See how your shop stacks up in your {n} town.")}
 """
-    names = [c["name"] for c in sorted(cs, key=lambda c: -(c["population_2020"] or 0))]
-    return page(state_key(st), f"HVAC marketing in {n}", f"HVAC marketing for {n} contractors in " + (f"{', '.join(names[:3])} and more" if len(names) > 3 else (f"{', '.join(names[:-1])} and {names[-1]}" if len(names) > 1 else names[0])) + ": websites, Google profiles, SEO and missed-call text-back.", body)
+    return page(state_key(st), f"HVAC marketing in {n}", f"HVAC marketing for {n} contractors in " + (f"{', '.join(names[:3])} and more" if len(names) > 3 else (f"{', '.join(names[:-1])} and {names[-1]}" if len(names) > 1 else names[0])) + ": weather, Google map, searches and homes compared by city.", body)
 
 
 def locations_page():
-    blocks = "".join(f"""<div class="group loc-state" id="{esc(st['slug'])}"><div class="group-head"><h2><a href="{u(state_key(st))}">{esc(st['name'])}</a></h2><span class="muted">{len(st['cities'])} market{'' if len(st['cities']) == 1 else 's'} · {fnum(st['population_2020'])} people</span><a class="group-more" href="{u(state_key(st))}">{esc(st['name'])} overview →</a></div>
+    blocks = "".join(f"""<div class="group loc-state" id="{esc(st['slug'])}"><div class="group-head"><h2>{state_link(st)}</h2><span class="muted">{len(st['cities'])} market{'' if len(st['cities']) == 1 else 's'} · {fnum(st['population_2020'])} people</span>{"" if single_city_state(st) else f'<a class="group-more" href="{u(state_key(st))}">{esc(st["name"])} compared →</a>'}</div>
   <div class="city-grid">{city_cards(st['cities'])}</div></div>
   """ for st in STATES)
     jump = "".join(f'<a href="#{esc(st["slug"])}">{esc(st["name"])}</a>' for st in sorted(STATES, key=lambda x: x["name"]))
@@ -1508,7 +1624,7 @@ def guide_page(g):
   <span class="eyebrow">{'Blog' if is_post else 'Guide'} · {g['read']} min read</span>
   <h1>{esc(g['title'])}</h1>
   <p class="lede">{esc(g['desc'])}</p>
-  {byline(__import__("datetime").date.fromisoformat(g["date"]).strftime("%b %-d, %Y") if is_post and g.get("date") else (POSTS_UPDATED if is_post else None))}
+  {byline(__import__("datetime").date.fromisoformat(g.get("updated") or g["date"]).strftime("%b %-d, %Y") if is_post and g.get("date") else (POSTS_UPDATED if is_post else None))}
 </div></section>
 <section class="section after-head plain"><div class="wrap g-wrap">
   <div class="g-take"><h2>Key takeaways</h2><ul class="ticks">{take}</ul></div>
@@ -1523,12 +1639,12 @@ def guide_page(g):
 <section class="section alt"><div class="wrap"><div class="keep">
   <div><span class="eyebrow">Keep reading</span><h2>Related reading</h2>{rel_html}</div>
   {guide_links(g["slug"])}
-</div></div></section>
+</div>{state_links("Local market data by state", "Weather, Google map, searches and homes for each market we cover.") if g["slug"] in LOCAL_TOPIC_PAGES else ""}</div></section>
 {next_step()}
 """
     art = ld({"@context": "https://schema.org", "@type": "Article", "headline": g["title"], "description": g["desc"],
               "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{SITE_HOST}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": f"https://{SITE_HOST}/apple-touch-icon-180.png"}}, "image": f"https://{SITE_HOST}/og-image.png",
-              "datePublished": g.get("date", GUIDES_UPDATED_ISO), "dateModified": g.get("date", GUIDES_UPDATED_ISO), "mainEntityOfPage": f"https://{SITE_HOST}/{route(guide_path(g['slug']))}"})
+              "datePublished": g.get("date", GUIDES_UPDATED_ISO), "dateModified": g.get("updated") or g.get("date", GUIDES_UPDATED_ISO), "mainEntityOfPage": f"https://{SITE_HOST}/{route(guide_path(g['slug']))}"})
     return page(guide_path(g["slug"]), g.get("seo_title", g["title"]), g["desc"], body, extra_head=art + faq_ld(g["faq"]), has_form=False)
 
 
@@ -1616,6 +1732,9 @@ def hq_features():
 </div></section>"""
 
 
+LOCAL_TOPIC_PAGES = {"local-seo", "google-business-profile", "local-services-ads", "google-map-pack-hvac", "hvac-seo-what-moves-rankings", "get-more-google-reviews-hvac", "google-reviews-hvac"}
+
+
 def service_page(sv):
     pains = deep_problem(sv.get("pains_h", "Where the calls leak."), sv["pains"])
     steps = "".join(f'<li class="tl-step reveal"><span class="n">{n+1}</span><h3>{esc(a_)}</h3><p>{esc(b)}</p></li>' for n, (a_, b) in enumerate(sv["steps"]))
@@ -1628,7 +1747,7 @@ def service_page(sv):
     extra += [("tools/" + t["slug"], t["title"]) for t in TOOLS if t["service"] == sv["slug"]]
     if g:
         extra.insert(0, (guide_path(g["slug"]), g["title"]))
-    extra.append(("hvac-marketing", "HVAC marketing: the complete guide"))
+    extra.append(("hvac-marketing", "Marketing for HVAC companies: the complete guide"))
     guide = ('<div class="card related"><h3>Read before you decide</h3><ul>' + "".join(f'<li><a href="{u(k)}">{esc(t)}</a></li>' for k, t in extra) + "</ul></div>") if extra else ""
     calc = f"""<section class="section alt"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">The math</span><h2>What missed calls cost you.</h2><p class="lede">Put in your own numbers.</p></div>
@@ -1656,6 +1775,7 @@ def service_page(sv):
   <div class="section-head"><span class="eyebrow">Questions</span><h2>Common questions</h2></div>
   {faq(sv['faq'])}
   <div class="more-row"><h3>The rest of the system</h3><div class="city-links">{others}<a class="all" href="{u('services')}">All services →</a></div></div>
+  {state_links("Local market data by state", "Weather, Google map, searches and homes for each market we cover.") if sv["slug"] in LOCAL_TOPIC_PAGES else ""}
 </div></section>
 {report_card()}
 """
@@ -1848,7 +1968,7 @@ def guide_links(slug):
     cards = "".join(f'<li><a href="{u(k)}"><b>{esc(svc_info(k)[0])}</b><span>{esc(svc_info(k)[1])}</span></a></li>' for k in keys)
     tools_ = [t for t in TOOLS if t.get("guide") == slug] + [t for t in TOOLS if t["service"] in keys and t.get("guide") != slug]
     more = "".join(f'<a href="{u("tools/" + t["slug"])}">{esc(t["name"])}</a>' for t in tools_[:2])
-    more += f'<a href="{u("hvac-marketing")}">The complete HVAC marketing guide</a>' if slug != "hvac-marketing" else ""
+    more += f'<a href="{u("hvac-marketing")}">Marketing for HVAC companies: the complete guide</a>' if slug != "hvac-marketing" else ""
     return f"""<div><span class="eyebrow">Put it to work</span><h2>We can run this for you</h2><ul class="link-list">{cards}</ul><div class="city-links" style="margin-top:16px">{more}</div></div>"""
 
 
@@ -2097,7 +2217,11 @@ def homeowner_path():
 </div></section>"""
 
 
+PILLAR_UPDATED = "2026-10-23"
+PILLAR_TITLE = "Marketing for HVAC companies: how owner-run shops get found and booked"
 PILLAR_FAQ = [
+    ("What marketing does an HVAC company need first?", "For most owner-run shops: a complete, active Google Business Profile, a steady flow of new reviews, and a fast website with a page for each main service and town. Then make sure every call and form gets answered or texted back. Ads come after those, because they send people to the same profile, site and phone."),
+    ("How do I choose an HVAC marketing company?", "Start with your all-in budget for 12 months, then read each company's terms, not just its sales page: contract length, how to cancel, and whether you keep your website, domain and Google profile if you leave. Ask what they'll report; booked jobs and answered calls tell you more than clicks. Our comparison of HVAC marketing companies uses only their published prices and terms."),
     ("What is HVAC marketing?", "Everything that gets a homeowner or business to call your shop instead of the next one: showing up on Google and the map, a website that turns visits into calls, answering and following up fast, and turning finished jobs into reviews and repeat work."),
     ("What's the best marketing for an HVAC company?", "For most owner-run shops, a complete Google Business Profile, steady reviews and a fast site with a page per service and town come first, because that's where homeowners pick a shop. Answering every call matters just as much, since a lead you don't answer is wasted."),
     ("How long does HVAC SEO take to work?", "It depends on your town, your competition and where you start, so nobody can honestly promise a date. Profile fixes and review growth can show up within weeks; new pages ranking usually takes months. Be wary of anyone who guarantees page one."),
@@ -2117,24 +2241,34 @@ def pillar_page():
     svc = lambda keys: "".join(f'<li><a href="{u(k)}"><b>{esc(svc_info(k)[0])}</b></a> {esc(svc_info(k)[1])}</li>' for k in keys)
     gd = lambda slugs: "".join(f'<li><a href="{u(guide_path(x["slug"]))}">{esc(x["title"])}</a></li>' for x in GUIDES if x["slug"] in slugs)
     spec = "".join(f'<a class="card guide-card" href="{u(n["slug"])}"><span class="eyebrow">For HVAC</span><h3>{esc(n["name"])}</h3><p>{esc(n["nav"])}</p></a>' for n in niches_sorted())
-    cities = "".join(f'<p><b><a href="{u(state_key(st))}">{esc(st["name"])}</a>:</b> ' + " · ".join(f'<a href="{u(city_path(c))}">{esc(c["name"])}</a>' for c in st["cities"]) + "</p>" for st in STATES)
+    cities = "".join(f'<p><b>{state_link(st)}:</b> ' + " · ".join(f'<a href="{u(city_path(c))}">{esc(c["name"])}</a>' for c in st["cities"]) + "</p>" for st in STATES)
     tools_ = "".join(f'<li><a href="{u("tools/" + t["slug"])}">{esc(t["name"])}</a>: {esc(t["line"])}</li>' for t in TOOLS)
-    toc = [("s-what", "What HVAC marketing is"), ("s-rank", "Rank: get found first"), ("s-book", "Book: answer and follow up"), ("s-repeat", "Repeat: reviews and past customers"),
-           ("s-cost", "What it costs"), ("s-spec", "By specialty"), ("s-loc", "By location"), ("s-faq", "Questions")]
+    toc = [("s-what", "What marketing for HVAC companies covers"), ("s-start", "Where to start"), ("s-rank", "Rank: get found first"), ("s-book", "Book: answer and follow up"), ("s-repeat", "Repeat: reviews and past customers"),
+           ("s-cost", "What it costs"), ("s-hire", "Do it yourself or hire a company"), ("s-spec", "By specialty"), ("s-loc", "By location"), ("s-faq", "Questions")]
     toc_html = "".join(f'<li><a href="#{a_}">{esc(b)}</a></li>' for a_, b in toc)
     body = f"""<section class="page-head"><div class="wrap g-wrap">
   <div class="crumbs"><a href="{u('')}">Home</a> / HVAC marketing</div>
   <span class="eyebrow">The complete guide</span>
-  <h1>HVAC marketing: how owner-run shops get found and booked</h1>
-  <p class="lede">Everything that decides whether a homeowner calls your shop or the next one, in plain words, with a link to the detail on each part.</p>
-  {byline()}
+  <h1>{esc(PILLAR_TITLE)}</h1>
+  <p class="lede">Everything that decides whether a homeowner calls your HVAC company or the next one, in plain words: what to do first, what it costs, and how to pick a marketing company if you hire one.</p>
+  {byline(__import__("datetime").date.fromisoformat(PILLAR_UPDATED).strftime("%b %-d, %Y"))}
 </div></section>
 <section class="section after-head plain"><div class="wrap g-wrap">
   <div class="g-take"><h2>The short version</h2><ul class="ticks"><li>Homeowners pick from the map, so your Google profile and reviews matter most.</li><li>A lead you don't answer is wasted, so answering and following up are marketing too.</li><li>Past customers are the cheapest jobs you'll ever book. Remind them before each season.</li><li>Own everything: your site, domain, profile, reviews and customer list.</li></ul></div>
   <nav class="g-toc" aria-label="In this guide"><b>In this guide</b><ol>{toc_html}</ol></nav>
   <article class="g-body">
-    <h2 id="s-what">What HVAC marketing is</h2>
-    <p>HVAC marketing is three jobs that feed each other. <b>Rank</b>: show up first when someone nearby searches. <b>Book</b>: answer every call, text and chat, and follow up until the job is on the schedule. <b>Repeat</b>: turn every finished job into a review and the next visit. Most agencies sell one of the three. A shop needs all of them working together.</p>
+    <h2 id="s-what">What marketing for HVAC companies covers</h2>
+    <p>Marketing for an HVAC company is three jobs that feed each other. <b>Rank</b>: show up first when someone nearby searches. <b>Book</b>: answer every call, text and chat, and follow up until the job is on the schedule. <b>Repeat</b>: turn every finished job into a review and the next visit. Most agencies sell one of the three. A shop needs all of them working together.</p>
+    <h2 id="s-start">Where to start: an order that works for most shops</h2>
+    <p>You don't need everything at once. This order puts money first where homeowners actually choose, and saves paid ads for when the basics can catch the calls they bring.</p>
+    <ol>
+      <li><b>Google Business Profile.</b> Complete it, pick the right categories, add real job photos and post regularly. It's free and it's what shows on the map. <a href="{u('google-business-profile')}">How we run it</a>.</li>
+      <li><b>Reviews.</b> Ask after every finished job, by text, while the customer is happy. Recent reviews matter to homeowners, not just the total. <a href="{u(guide_path('google-reviews-hvac'))}">Guide to getting more reviews</a>.</li>
+      <li><b>A fast website with a page per service and town.</b> One page for AC repair, one for furnace work, one for each town you really serve. <a href="{u(guide_path('hvac-website-checklist'))}">Website checklist</a>.</li>
+      <li><b>Answer every lead.</b> Text back missed calls, answer web chat, and follow up on open estimates. <a href="{u(guide_path('missed-call-text-back-hvac'))}">Why missed-call text-back matters</a>.</li>
+      <li><b>Bring past customers back.</b> Tune-up and maintenance reminders before each season.</li>
+      <li><b>Then paid ads, if the math works.</b> Google Ads and Local Services Ads send people to the same profile, site and phone, so they work better once the steps above are in place. <a href="{u('tools/hvac-marketing-budget-calculator')}">Budget calculator</a>.</li>
+    </ol>
     <h2 id="s-rank">Rank: get found first</h2>
     <p>When the AC quits, a lot of homeowners search on their phone and pick from the shops on the map. Google ranks those on distance, relevance and prominence. You can't move your shop, but you control the other two.</p>
     <ul class="ticks">{svc(["google-business-profile", "local-seo", "website", "ai-search"])}</ul>
@@ -2152,6 +2286,16 @@ def pillar_page():
     <ul>{tools_}</ul>
     <p>Read more:</p><ul>{gd(["hvac-marketing-cost", "questions-to-ask-hvac-marketing-agency", "scorpion-alternative-hvac"])}</ul>
     <p>Our own prices are on the <a href="{u('plans')}">plans page</a>.</p>
+    <h2 id="s-hire">Do it yourself or hire an HVAC marketing company?</h2>
+    <p>A lot of this you can do yourself: your Google profile, asking for reviews and posting job photos take time more than money. Hiring makes sense when you'd rather spend that time running jobs, or when the site, SEO, ads and follow-up need to work as one system.</p>
+    <p>If you hire, compare more than the monthly fee:</p>
+    <ul class="ticks">
+      <li><b>Published prices and terms.</b> Can you see the cost and the contract before a sales call?</li>
+      <li><b>Ownership.</b> Do you keep your website, domain, Google profile and reviews if you leave? Check the terms, not the sales page.</li>
+      <li><b>HVAC focus.</b> A team that only does HVAC already knows your services and seasons.</li>
+      <li><b>Reporting.</b> Booked jobs and answered calls, not just clicks and impressions.</li>
+    </ul>
+    <p>We compared eight companies on exactly these points, from their own websites: <a href="{u(guide_path('best-hvac-marketing-agencies'))}">the best HVAC marketing companies, compared</a>. Before any call, use <a href="{u(guide_path('questions-to-ask-hvac-marketing-agency'))}">these questions to ask an HVAC marketing agency</a>.</p>
   </article>
 </div></section>
 <section class="section alt" id="s-spec"><div class="wrap">
@@ -2169,10 +2313,10 @@ def pillar_page():
 </div></section>
 {report_card()}
 """
-    art = ld({"@context": "https://schema.org", "@type": "Article", "headline": "HVAC marketing: how owner-run shops get found and booked",
-              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{SITE_HOST}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": f"https://{SITE_HOST}/apple-touch-icon-180.png"}}, "image": f"https://{SITE_HOST}/og-image.png", "datePublished": GUIDES_UPDATED_ISO, "dateModified": GUIDES_UPDATED_ISO,
+    art = ld({"@context": "https://schema.org", "@type": "Article", "headline": PILLAR_TITLE,
+              "author": {"@type": "Person", "name": GUIDES_AUTHOR.split(",")[0], "jobTitle": "Founder", "image": f"https://{SITE_HOST}/img/logan-320.jpg", "worksFor": {"@type": "Organization", "name": BRAND}}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": f"https://{SITE_HOST}/apple-touch-icon-180.png"}}, "image": f"https://{SITE_HOST}/og-image.png", "datePublished": GUIDES_UPDATED_ISO, "dateModified": PILLAR_UPDATED,
               "mainEntityOfPage": f"https://{SITE_HOST}/{route('hvac-marketing')}"})
-    return page("hvac-marketing", "HVAC Marketing: The Complete Guide for Owner-Run Shops", "HVAC marketing explained: how to get found on Google and the map, answer and book every call, and turn jobs into reviews and repeat work. With costs, tools and FAQs.", body, extra_head=art + faq_ld(PILLAR_FAQ))
+    return page("hvac-marketing", "Marketing for HVAC Companies: The Complete Guide", "Marketing for HVAC companies, in plain words: what to do first, how to get found on Google, answer every call, earn reviews, what it costs and how to pick an agency.", body, extra_head=art + faq_ld(PILLAR_FAQ))
 
 
 def guides_page():
@@ -2251,7 +2395,13 @@ def write_grader_towns(dest):
 
 
 def sitemap_xml(paths):
-    dated = {route(guide_path(g["slug"])): g.get("date", GUIDES_UPDATED_ISO) for g in GUIDES + POSTS}
+    dated = {route(guide_path(g["slug"])): g.get("updated") or g.get("date", GUIDES_UPDATED_ISO) for g in GUIDES + POSTS}
+    dated[route("hvac-marketing")] = PILLAR_UPDATED
+    for st in STATES:
+        dated[route(state_key(st))] = state_refreshed(st)
+        for c in st["cities"]:
+            dated[route(city_path(c))] = city_refreshed(c)
+    dated["locations"] = max(state_refreshed(st) for st in STATES)
     urls = "".join(f"<url><loc>https://{SITE_HOST}/{p_}</loc>" + (f"<lastmod>{dated[p_]}</lastmod>" if dated.get(p_) else "") + "</url>" for p_ in paths)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n'
 
@@ -3048,6 +3198,26 @@ def build_routes():
     ROUTES.update(ROOT_URL)
 
 
+def flatten_redirects(reds):
+    """Point every redirect at its final page, so an old URL is one hop and never a chain or a loop.
+
+    Vercel's apex-to-www 308 runs before these rules, so a relative destination is already one hop on www;
+    an absolute www destination would not save a hop."""
+    by_src = {r["source"]: r for r in reds}
+    if len(by_src) != len(reds):
+        raise SystemExit("vercel.json: duplicate redirect source")
+    out = []
+    for r in reds:
+        dest, seen = r["destination"], {r["source"]}
+        while dest in by_src:
+            if dest in seen:
+                raise SystemExit(f"vercel.json: redirect loop through {dest}")
+            seen.add(dest)
+            dest = by_src[dest]["destination"]
+        out.append({**r, "destination": dest})
+    return out
+
+
 def write_redirects(site_dir):
     """Old flat URLs point to the folder URLs, so links shared before Oct 13 keep working."""
     p_ = os.path.join(site_dir, "vercel.json")
@@ -3057,9 +3227,10 @@ def write_redirects(site_dir):
     reds += [{"source": "/" + old, "destination": "/" + route(new), "permanent": True} for old, new in OLD_REDIRECTS.items()]
     moved = {"services/" + OFFER_URL.get(k, k): k for k in ROOT_URL if k in OFFER_URL or any(sv["slug"] == k for sv in SERVICES)}
     reds += [{"source": "/" + old, "destination": "/" + route(k), "permanent": True} for old, k in moved.items() if old != route(k)]
-    # One short link on our own domain for the report email; the calendar can change without touching the email.
-    reds.append({"source": "/book", "destination": call_link(), "permanent": False})
-    cfg["redirects"] = reds
+    # One short link on our own domain for the report email (api/lead.js sends ${SITE_URL}/book); the calendar can
+    # change without touching the email. It goes straight to the page the short link lands on, so it is one hop, not two.
+    reds.append({"source": "/book", "destination": CALL_LINK_FINAL.get(call_link(), call_link()), "permanent": False})
+    cfg["redirects"] = flatten_redirects(reds)
     # The site-wide noindex header follows NOINDEX, so "index it" is one switch, not two.
     for rule in cfg.get("headers", []):
         if rule.get("source") == "/(.*)":

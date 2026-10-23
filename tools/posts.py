@@ -571,11 +571,12 @@ POSTS = [
     # ------------------------------------------------------------------ 9. Best agencies listicle
     {
         "slug": "best-hvac-marketing-agencies",
-        "title": "The best HVAC marketing agencies in 2026, compared and priced", "seo_title": "Best HVAC Marketing Agencies in 2026, Compared",
-        "short": "Best HVAC marketing agencies",
-        "desc": "Eight HVAC marketing agencies compared on published price, contract, website ownership and fit, with sources. We're on the list, and we say so.",
-        "read": 11,
+        "title": "The best HVAC marketing companies in 2026, compared and priced", "seo_title": "Best HVAC Marketing Companies in 2026: 8 Agencies Compared",
+        "short": "Best HVAC marketing companies",
+        "desc": "Eight HVAC marketing companies compared on published price, contract, website ownership and fit, with sources. We're on the list, and we say so.",
+        "read": 12,
         "date": "2026-10-15",
+        "updated": "2026-10-23",
         "takeaways": [
             "Only three of the eight agencies here publish real prices: us, Websites for HVAC and Footbridge Media. RS Gonzales and Hook Agency publish starting prices.",
             "The big home-service agencies (Scorpion, Blue Corona and RYNO, Valve+Meter) don't publish prices and mostly serve larger shops.",
@@ -593,6 +594,15 @@ POSTS = [
                     "<b>Website ownership.</b> Do you keep a working site if you leave, and is that in the terms?",
                     "<b>Follow-up built in.</b> Are missed-call text-back and review requests part of the plan, or extras?",
                     "<b>Fit for owner-run shops.</b> Does the agency take shops under $1M a year?",
+                ]),
+            ]),
+            ("What to look for in an HVAC marketing company", [
+                ("p", "\"Best\" depends on your shop. A company that's right for a $5M operation with a big ad budget can be wrong for a three-truck shop, and the other way around. These are the questions that separate them, and the ones we used below."),
+                ("ul", [
+                    "<b>Can you see the price and the contract before a sales call?</b> Three companies on this list publish full prices, two publish starting prices, and three don't publish prices.",
+                    "<b>Do you keep your website if you leave?</b> Answers range from \"yours outright\" to \"the site goes offline\". The terms page is where to check.",
+                    "<b>Is the plan built for your size?</b> Some companies say on their own site that they work best with larger shops or bigger ad budgets. That's useful to know before you call.",
+                    "<b>Is follow-up included?</b> Missed-call text-back and review requests are in some plans and extras in others.",
                 ]),
             ]),
             ("Quick picks", [
@@ -696,11 +706,12 @@ POSTS = [
                     "<b>Ask what they'll report.</b> Booked jobs and answered calls beat clicks and impressions. See our <a href=\"{u:guide-questions-to-ask-hvac-marketing-agency}\">seven questions to ask any agency</a>.",
                     "<b>Check your own numbers first.</b> The <a href=\"{u:report-card}\">free report card</a> shows where you stand before anyone pitches you.",
                 ]),
-                ("p", "Want everything side by side? See <a href=\"{u:compare}\">how HVAC marketing companies compare</a>, or read the <a href=\"{u:hvac-marketing}\">complete HVAC marketing guide</a>."),
+                ("p", "Want everything side by side? See <a href=\"{u:compare}\">how HVAC marketing companies compare</a>, or read our guide to <a href=\"{u:hvac-marketing}\">marketing for HVAC companies</a>."),
                 ("cta",),
             ]),
         ],
         "faq": [
+            ("What is the best HVAC marketing company?", "There isn't one best for every shop. From what each company publishes: Footbridge Media has the lowest published monthly price, RS Gonzales and Hook Agency set higher minimums or revenue fits, and Scorpion, Blue Corona/RYNO and Valve+Meter don't publish prices and mostly serve larger shops. We built HVAC Marketing HQ for owner-run shops that want the whole system at a published flat price. Pick by your budget, the contract and what you keep if you leave."),
             ("How much does an HVAC marketing agency cost?", "Of the agencies here that publish prices, monthly fees run from $249 (Footbridge Media) to $5,000 (RS Gonzales) before ad spend. The larger agencies don't publish prices; one says its clients typically invest $5,000 or more a month."),
             ("Why do you rank yourselves first?", "Because we built what we think an owner-run HVAC shop needs, at a price it can see up front. We say so at the top, and every other agency's facts come from its own site so you can check them."),
             ("Should I pick an HVAC-only agency?", "It helps. An HVAC-only team already knows your services, seasons and customers, so you spend less time explaining your business."),
@@ -1081,7 +1092,7 @@ POSTS = [
                       'Then add one paid channel and track booked jobs from it (ideas 17 or 18).']),
                     ('p',
                      'Want to see how your shop stacks up first? Get a free <a href="{u:report-card}">report card</a>, check what a plan costs on our <a href="{u:plans}">plans '
-                     'page</a>, or read the full <a href="{u:hvac-marketing}">HVAC marketing guide</a>.'),
+                     'page</a>, or read the full guide to <a href="{u:hvac-marketing}">marketing for HVAC companies</a>.'),
                     ('cta',)])],
      'faq': [("What's the cheapest HVAC marketing that works?",
               "Your Google Business Profile, reviews and past customers. They cost time, not ad money, and Google says you can't pay for a better map ranking anyway."),
