@@ -112,6 +112,11 @@
       "permanent": true
     },
     {
+      "source": "/direct-mail",
+      "destination": "/services/direct-mail",
+      "permanent": true
+    },
+    {
       "source": "/hq-command-center",
       "destination": "/services/hq-command-center",
       "permanent": true
