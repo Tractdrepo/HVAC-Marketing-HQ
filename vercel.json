@@ -312,6 +312,11 @@
       "permanent": true
     },
     {
+      "source": "/post-hvac-direct-mail",
+      "destination": "/blog/hvac-direct-mail",
+      "permanent": true
+    },
+    {
       "source": "/hvac-marketing-texas",
       "destination": "/locations/texas",
       "permanent": true
