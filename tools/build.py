@@ -86,6 +86,7 @@ ADDONS = [
     ("Local Services Ads management", "$299/mo"),
     ("Facebook and Instagram ads", "$299/mo"),
     ("AI phone answering, after hours and during the rush", "$299/mo"),
+    ("Direct mail campaigns: handwritten letters and postcards, tracked to the job", "Ask on your walkthrough"),
     ("Extra page", "$150 one time"),
     ("Directory listings sync", "$49/mo"),
     ("Extra tracked phone number", "$15/mo"),
@@ -152,7 +153,7 @@ OFFERINGS = [("website", "HVAC websites", "Fast sites built to book service call
 SERVICE_GROUPS = [
     ("Your website", "web", ["website", "hvac-website-redesign", "ai-web-chat"]),
     ("Get found online", "pin", ["local-seo", "google-business-profile", "ai-search"]),
-    ("Get more calls", "chat", ["hvac-lead-generation", "missed-call-text-back", "ai-phone-answering", "estimate-follow-up", "app"]),
+    ("Get more calls", "chat", ["hvac-lead-generation", "missed-call-text-back", "ai-phone-answering", "estimate-follow-up", "direct-mail", "app"]),
     ("Paid ads", "search", ["google-ads", "local-services-ads", "facebook-ads"]),
     ("Keep customers coming", "star", ["review-requests", "seasonal-campaigns", "hq-command-center"]),
 ]
@@ -1600,6 +1601,38 @@ HQ_FEATURES = [
 ]
 
 
+DM_CAMPAIGNS = [
+    ("Install neighbors", "After every install, the nearest homes hear who just did the work on their street."),
+    ("Tune-up season", "Past customers get a reminder before the first hot week and the first cold snap."),
+    ("Aging systems", "Neighborhoods where most homes were built in the same years, so the original systems are coming due."),
+    ("New homeowners", "New owners near you hear from you before they've picked an HVAC company."),
+    ("Heat wave and cold snap", "Mail goes out ahead of the forecast, while your schedule still has room."),
+    ("Estimate follow-up", "A handwritten note when a replacement quote has gone quiet for a week."),
+    ("Win-back", "Customers you haven't seen in 18 months or more get a reason to book again."),
+    ("Thank-you and referral", "After the job, a note that thanks them and asks them to pass your name along."),
+]
+DM_TRACKING = [
+    ("A tracked web address", "Every campaign gets its own short web address, so each visit is counted against the mailing that sent it."),
+    ("QR code and page analytics", "Scans land on a page built for your offer. You see visits, scans and who asked to book."),
+    ("Discount claims", "Each piece carries a claim code tied to the home it was mailed to, so a claimed offer names the house."),
+    ("Jobs tracking", "At 60, 90 and 180 days we match the mailed addresses against your booked jobs and show what the campaign sold."),
+]
+
+
+def dm_sections():
+    camps = "".join(f'<div class="card feat reveal"><h3>{esc(a_)}</h3><p>{esc(b)}</p></div>' for a_, b in DM_CAMPAIGNS)
+    track = "".join(f'<div class="team-pt reveal"><h3>{esc(a_)}</h3><p>{esc(b)}</p></div>' for a_, b in DM_TRACKING)
+    return f"""<section class="section alt"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Campaigns</span><h2>Eight ways mail books HVAC jobs.</h2><p class="lede">Each campaign has its own trigger, list and offer. Run one, or run them all through the year.</p></div>
+  <div class="grid four">{camps}</div>
+  <div class="section-head reveal" style="margin-top:56px"><span class="eyebrow">Why handwritten</span><h2>Homeowners are buried in ads. A handwritten note gets read.</h2><p class="lede">In a world of constant advertising, homeowners are overwhelmed. A direct, personal note is exactly what cuts through, and it's another important step in staying top of mind with your customers. Handwritten notes have an open rate of 99% or more.</p></div>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="section-head reveal"><span class="eyebrow">Tracking</span><h2>See what every mailing brought in.</h2><p class="lede">Most shops never find out if their mail worked. Every piece we send carries the proof with it.</p></div>
+  <div class="team-grid">{track}</div>
+</div></section>"""
+
+
 def team_band():
     items = "".join(f'<div class="team-pt reveal"><h3>{esc(a_)}</h3><p>{esc(b)}</p></div>' for a_, b in TEAM_POINTS)
     return f"""<section class="section dark"><div class="wrap">
@@ -1647,6 +1680,7 @@ def service_page(sv):
   <ol class="timeline-steps" style="--n:{len(sv["steps"])}">{steps}</ol>
 </div></section>
 {hq_features() if sv["slug"] == "hq-command-center" else ""}
+{dm_sections() if sv["slug"] == "direct-mail" else ""}
 {team_band() if sv["slug"] in GHL_SLUGS else ""}
 {calc}
 <section class="section{"" if sv["slug"] in GHL_SLUGS else " dark"}"><div class="wrap">
