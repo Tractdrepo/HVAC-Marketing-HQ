@@ -54,7 +54,7 @@ Shops that can't take on more work, want ads with nobody answering the calls, or
 - [Missed-call text-back](https://www.hvacmarketinghq.com/services/missed-call-text-back): Every missed call texted in 10 seconds
 - [AI phone answering](https://www.hvacmarketinghq.com/services/ai-phone-answering): An AI receptionist that answers when you can't
 - [Estimate follow-up](https://www.hvacmarketinghq.com/services/estimate-follow-up): Texts on open quotes until booked or lost
-- [Direct mail](https://www.hvacmarketinghq.com/services/direct-mail): Pen-written letters and postcards you can track
+- [Direct mail](https://www.hvacmarketinghq.com/services/direct-mail): Handwritten letters and postcards you can track
 - [Lead system](https://www.hvacmarketinghq.com/services/lead-system): Text-back, inbox and follow-up in one app
 - [Google Ads](https://www.hvacmarketinghq.com/hvac-google-ads): Search ads that ring your phone, managed for you
 - [Local Services Ads](https://www.hvacmarketinghq.com/services/local-services-ads): Pay per lead, with the Google Verified badge

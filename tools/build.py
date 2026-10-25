@@ -86,7 +86,7 @@ ADDONS = [
     ("Local Services Ads management", "$299/mo"),
     ("Facebook and Instagram ads", "$299/mo"),
     ("AI phone answering, after hours and during the rush", "$299/mo"),
-    ("Direct mail campaigns: pen-written letters and postcards, tracked to the job", "Ask on your walkthrough"),
+    ("Direct mail campaigns: handwritten letters and postcards, tracked to the job", "Ask on your walkthrough"),
     ("Extra page", "$150 one time"),
     ("Directory listings sync", "$49/mo"),
     ("Extra tracked phone number", "$15/mo"),
@@ -1607,7 +1607,7 @@ DM_CAMPAIGNS = [
     ("Aging systems", "Neighborhoods where most homes were built in the same years, so the original systems are coming due."),
     ("New homeowners", "New owners near you hear from you before they've picked an HVAC company."),
     ("Heat wave and cold snap", "Mail goes out ahead of the forecast, while your schedule still has room."),
-    ("Estimate follow-up", "A pen-written note when a replacement quote has gone quiet for a week."),
+    ("Estimate follow-up", "A handwritten note when a replacement quote has gone quiet for a week."),
     ("Win-back", "Customers you haven't seen in 18 months or more get a reason to book again."),
     ("Thank-you and referral", "After the job, a note that thanks them and asks them to pass your name along."),
 ]
@@ -1623,8 +1623,9 @@ def dm_sections():
     camps = "".join(f'<div class="card feat reveal"><h3>{esc(a_)}</h3><p>{esc(b)}</p></div>' for a_, b in DM_CAMPAIGNS)
     track = "".join(f'<div class="team-pt reveal"><h3>{esc(a_)}</h3><p>{esc(b)}</p></div>' for a_, b in DM_TRACKING)
     return f"""<section class="section alt"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">Campaigns</span><h2>Eight ways mail books HVAC jobs.</h2><p class="lede">Each campaign has its own trigger, list and offer. Run one, or run them all through the year. Pen-written envelopes look like personal mail, so they get opened instead of tossed.</p></div>
+  <div class="section-head reveal"><span class="eyebrow">Campaigns</span><h2>Eight ways mail books HVAC jobs.</h2><p class="lede">Each campaign has its own trigger, list and offer. Run one, or run them all through the year.</p></div>
   <div class="grid four">{camps}</div>
+  <div class="section-head reveal" style="margin-top:56px"><span class="eyebrow">Why handwritten</span><h2>Homeowners are buried in ads. A handwritten note gets read.</h2><p class="lede">In a world of constant advertising, homeowners are overwhelmed. A direct, personal note is exactly what cuts through, and it's another important step in staying top of mind with your customers. Handwritten notes have an open rate of 99% or more.</p></div>
 </div></section>
 <section class="section"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Tracking</span><h2>See what every mailing brought in.</h2><p class="lede">Most shops never find out if their mail worked. Every piece we send carries the proof with it.</p></div>

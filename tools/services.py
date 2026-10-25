@@ -336,11 +336,11 @@ SERVICES = [
         "pains_h": "Why most mail money disappears.",
         "steps_h": "How a campaign runs.",
         "name": "Direct mail",
-        "nav": "Pen-written letters and postcards you can track",
+        "nav": "Handwritten letters and postcards you can track",
         "title": "Direct mail for HVAC companies, tracked to the job",
         "h1": "Direct mail you can actually track.",
-        "desc": "Direct mail for HVAC contractors: pen-written letters and postcards to the right homes, a homeowner offer built with you, and every visit, scan, claim and booked job tracked.",
-        "lede": "Pen-written letters and postcards to the homes most likely to need you: next door to your installs, past customers before the season turns, neighborhoods full of aging systems. We help you build an offer homeowners act on, run the campaign, and show you every visit, scan, claim and job it brings in.",
+        "desc": "Direct mail for HVAC contractors: handwritten letters and postcards to the right homes, a homeowner offer built with you, and every visit, scan, claim and booked job tracked.",
+        "lede": "Handwritten letters and postcards to the homes most likely to need you: next door to your installs, past customers before the season turns, neighborhoods full of aging systems. We help you build an offer homeowners act on, run the campaign, and show you every visit, scan, claim and job it brings in.",
         "plan": "An add-on to any plan. Price depends on the campaigns and how much you mail, so ask on your walkthrough.",
         "pains": [
             ("Mailing the wrong homes", "Renters, homes outside your area and people who just replaced their system. Most of the stamps are wasted before the mail goes out."),
@@ -357,7 +357,7 @@ SERVICES = [
         "includes": [
             "Campaign planning and a homeowner offer built with you",
             "Lists of owner-occupied homes in your service area",
-            "Pen-written letters or printed postcards, written in your voice",
+            "Handwritten letters or printed postcards, written in your voice",
             "A tracked web address and QR code on every piece",
             "An offer page with visit and scan analytics",
             "Discount claims logged by the home they were mailed to",
