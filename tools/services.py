@@ -366,11 +366,8 @@ SERVICES = [
         ],
         "faq": [
             ("How much does it cost?", "It depends on which campaigns you run and how many homes you mail. Ask on your walkthrough and we'll price it for your area. Postage is included in what we quote."),
-            ("Which campaign should I start with?", "Most shops start with install neighbors and tune-up season. One runs every time you finish a job and the other fills the slow weeks. We'll look at your area and recommend."),
             ("Do I have to come up with the offer?", "No. We bring the playbook: what tends to work for each campaign, how to give homeowners a reason to call now, and how to set a deadline that's real. You pick the offer and fund it."),
             ("How do you know which jobs came from the mail?", "Every piece has its own tracked link, QR code and claim code tied to the address it went to. At 60, 90 and 180 days we also match the mailed addresses against your booked jobs, so people who just called your main line still count."),
-            ("Who gets the mail?", "Owner-occupied homes in your service area, picked from public property records and your own customer list. We skip anyone who asks not to be mailed."),
-            ("Do you call or text the people you mail?", "No. Mail only. If they want you, they call, scan or visit the page."),
         ],
     },
     {
