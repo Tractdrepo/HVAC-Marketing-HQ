@@ -32,7 +32,7 @@ BUSINESS_PHONE = "+12543827303"                 # the GHL 254 number, e.g. "+125
 MAIL_ADDRESS = "3801 N Capital of Texas Hwy, Ste E240-3928, Austin, TX 78746"
 SMS_PROGRAM = "HVAC Marketing HQ Texts"
 GHL_CHAT_WIDGET = "6ad452bad3ae3b035c14772f"     # GHL chat widget id (public); its text opt-in is part of A2P. None hides it
-DEMO_PHONE = "+12543827303"                     # demo line for missed-call text-back, e.g. "+12545550123"; block hidden until set
+DEMO_PHONE = ""                     # demo line for missed-call text-back, e.g. "+12545550123"; block hidden until set
 # Public profiles for the Organization/LocalBusiness schema "sameAs". One URL per line; sameAs is left out while this is empty.
 SAME_AS = [
     # "https://www.linkedin.com/company/YOUR-PAGE",
