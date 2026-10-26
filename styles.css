@@ -449,8 +449,6 @@ input:focus, select:focus { border-color: var(--cool); outline: none; }
 .promise .card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--grad); }
 .promise .big { font: 800 var(--fs-4xl)/1 var(--head); font-stretch: 115%; margin-bottom: 12px; display: block; }
 .promise-note { margin-top: 20px; font-size: var(--fs-sm); color: var(--muted); }
-.demo-line { margin-top: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; background: var(--panel); border: 1px dashed var(--line-2); border-radius: var(--radius); padding: 20px 24px; }
-.demo-line > div { flex: 1 1 280px; }
 
 /* Generic cards and grids */
 .grid { display: grid; gap: 20px; }
@@ -1495,3 +1493,7 @@ chat-widget { --chat-widget-primary-color: var(--heat-ink); --chat-widget-active
 /* TEMPORARY pilot: waived build fee (PILOT_BUILD_WAIVED in tools/build.py) */
 .plan .build s { color: var(--muted); }
 .plan .build .waived { display: block; margin-top: 2px; color: var(--go); font-weight: 600; }
+#report-card { scroll-margin-top: 80px; }
+.rc h1 { font-size: clamp(2rem, 3.4vw, 2.9rem); }
+.site-head-min .head-row { justify-content: space-between; }
+@media (max-width: 560px) { .site-head-min .brand small { display: none; } .site-head-min .brand { font-size: 1rem; } }

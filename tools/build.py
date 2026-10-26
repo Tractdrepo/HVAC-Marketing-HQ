@@ -32,7 +32,6 @@ BUSINESS_PHONE = "+12543827303"                 # the GHL 254 number, e.g. "+125
 MAIL_ADDRESS = "3801 N Capital of Texas Hwy, Ste E240-3928, Austin, TX 78746"
 SMS_PROGRAM = "HVAC Marketing HQ Texts"
 GHL_CHAT_WIDGET = "6ad452bad3ae3b035c14772f"     # GHL chat widget id (public); its text opt-in is part of A2P. None hides it
-DEMO_PHONE = "+12543827303"                     # demo line for missed-call text-back, e.g. "+12545550123"; block hidden until set
 # Public profiles for the Organization/LocalBusiness schema "sameAs". One URL per line; sameAs is left out while this is empty.
 SAME_AS = [
     # "https://www.linkedin.com/company/YOUR-PAGE",
@@ -222,6 +221,27 @@ def header(has_form=True):
 </header>"""
 
 
+def header_min():
+    """Stripped header for the /report-card entry page: brand and one quiet link, no menus, no hook bar."""
+    return f"""<a class="skip" href="#main">Skip to content</a>
+<header class="site-head site-head-min">
+  <div class="wrap head-row">
+    <a class="brand" href="{u('')}">{MARK}<span>{esc(BRAND_SHORT)}<small>{esc(TAGLINE)}</small></span></a>
+    <a class="btn btn-ghost btn-small" href="{esc(call_link())}">Book a 15-minute call</a>
+  </div>
+</header>"""
+
+
+def footer_min():
+    return f"""<footer class="site-foot site-foot-min">
+  <div class="wrap">
+    <div class="foot-base">
+      <span>© <span data-year>2026</span> {esc(BRAND)}</span><a href="{u('')}">Home</a><a href="{u('privacy')}">Privacy Policy</a><a href="{u('terms')}">Terms of Service</a><a href="mailto:{EMAIL}">{EMAIL}</a>
+    </div>
+  </div>
+</footer>"""
+
+
 # Pages whose footer names the legal entity (Logan, Oct 16: keep the LLC off the site-wide footer).
 LEGAL_FOOTER_PAGES = {"contact", "privacy", "terms"}
 
@@ -318,14 +338,14 @@ def rc_modal():
 </dialog>"""
 
 
-def report_card(title="Get your free report card", sub=None, trade="HVAC"):
+def report_card(title="Get your free report card", sub=None, trade="HVAC", h="h2"):
     sub = sub or (f"We grade your Google profile, reviews, website and listings against the {trade if trade.isupper() else trade.lower()} companies "
                   "people find near you. It lands in your inbox in about five minutes. Nobody will call you.")
     return f"""<section class="section" id="report-card">
   <div class="wrap"><div class="rc-wrap reveal"><div class="rc">
     <div>
       <span class="eyebrow">Free report card</span>
-      <h2>{esc(title)}</h2>
+      <{h}>{esc(title)}</{h}>
       <p class="lede">{esc(sub)}</p>
       <div class="grades" aria-hidden="true">
         <div class="grade blur"><span>Google profile</span><b class="g-b">B</b></div>
@@ -338,13 +358,6 @@ def report_card(title="Get your free report card", sub=None, trade="HVAC"):
     {rc_form(trade)}
   </div></div></div>
 </section>"""
-
-
-def demo_line():
-    if not DEMO_PHONE:
-        return ""
-    d = DEMO_PHONE[-10:]
-    return f'<div class="demo-line"><div><b>Try it yourself.</b> Call our demo line, let it ring out and hang up. Watch for the text.</div><a class="btn btn-ghost btn-small" href="tel:{DEMO_PHONE}">({d[:3]}) {d[3:6]}-{d[6:]}</a></div>'
 
 
 def founder_video(has_form=True):
@@ -456,7 +469,7 @@ def rhythm(body):
 THIN_PAGES = set()
 
 
-def page(path, title, desc, body, extra_head="", has_form=True):
+def page(path, title, desc, body, extra_head="", has_form=True, minimal=False):
     body = rhythm(body)
     held = (HOLD_LOCATIONS and route(path).startswith("locations/")) or path == "404" or path in THIN_PAGES
     robots = '<meta name="robots" content="noindex, nofollow">' if NOINDEX else ('<meta name="robots" content="noindex, follow">' if held else "")
@@ -494,12 +507,12 @@ def page(path, title, desc, body, extra_head="", has_form=True):
 {extra_head}
 </head>
 <body>
-{header(has_form)}
+{header_min() if minimal else header(has_form)}
 <main id="main">
 {body}
 </main>
-{footer(has_form, legal=path in LEGAL_FOOTER_PAGES)}
-{founder_video(has_form)}
+{footer_min() if minimal else footer(has_form, legal=path in LEGAL_FOOTER_PAGES)}
+{"" if minimal else founder_video(has_form)}
 {rc_modal() if "data-url-form" in body else ""}
 <script src="{asset_v('main.js')}" defer></script>{"" if PREVIEW else chr(10) + '<script src="/_vercel/insights/script.js" defer></script>'}{"" if PREVIEW or not GHL_CHAT_WIDGET else chr(10) + f'<script type="text/plain" data-later data-src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="{GHL_CHAT_WIDGET}" data-source="WEB_USER"></script>'}
 {turnstile}
@@ -906,7 +919,6 @@ def promise():
   <div class="card reveal"><span class="big">1 day</span><p>Every change you send us is done, or answered with a date, within one business day.</p></div>
 </div>
 <div class="moneyback reveal"><span class="big">30 days</span><div><h3>Money-back guarantee</h3><p>Not happy in your first 30 days after launch? Tell us and we refund your first month. No form to fill out, no argument.</p>{'' if PILOT_BUILD_WAIVED else '<p style="margin-top:8px">The build fee is due at signing. Work starts once it\'s paid, and we can split it into 2 payments if needed.</p>'}</div></div>
-{demo_line()}
 <p class="promise-note">We guarantee what we control. Nobody honest can promise a #1 ranking or a set number of calls, so we don't.</p>"""
 
 
@@ -2797,9 +2809,9 @@ def offer_page(key):
     return page(key, o.get("seo_title", f"{_strip(o['title'])} for HVAC companies"), o["lede"], body, extra_head=svc + (faq_ld(items) if items else ""))
 
 
-def rc_samples():
+def rc_samples(only_overall=False):
     # Mirrors what the grader really reports (grader/hvac-rubric.md). Sample numbers, labeled.
-    return """<div class="rcs">
+    html = """<div class="rcs">
   <div class="rcs-card rcs-wide reveal">
     <div class="rcs-top"><span>Overall</span><span class="sample-tag" style="position:static">Sample</span></div>
     <div class="rcs-grade"><div class="overall">C</div><div><b>Your Shop Heating &amp; Air · Dallas, TX</b><p>Your reviews are strong, but your website is holding you back. Start by adding pages for AC repair and installs so Google has something to rank.</p></div></div>
@@ -2833,35 +2845,20 @@ def rc_samples():
     <p class="rcs-fix"><b>Fix first:</b> claim your BBB and Nextdoor listings.</p>
   </div>
 </div>"""
+    if only_overall:
+        return html.split('\n  <div class="rcs-card reveal">')[0] + "\n</div>"
+    return html
 
 
 def report_card_page():
-    body = f"""<section class="page-head"><div class="wrap">
-  <div class="crumbs"><a href="{u('')}">Home</a> / Free report card</div>
-  <span class="eyebrow">Free report card</span>
-  <h1 style="max-width:20ch">Find out why the phone isn't ringing.</h1>
-  <p class="lede">We grade your Google profile, reviews, website and listings against the HVAC shops people find near you. Free, in your inbox in about five minutes, and nobody will call you.</p>
-  <p style="margin-top:26px"><a class="btn btn-primary" href="#report-card">Get my report card <span class="arrow">→</span></a> <a class="btn btn-ghost" href="#sample">See a sample</a></p>
-</div></section>
-<section class="section after-head"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">What you'll learn</span><h2>Four grades. One list of what to fix first.</h2></div>
-  {rc_learn()}
-</div></section>
+    """Short entry page for ads, email and texts: the form first, one sample for context, nothing else."""
+    body = f"""{report_card("See your Rank, Book, Repeat grade before you spend a dollar.", h="h1")}
 <section class="section alt" id="sample"><div class="wrap">
   <div class="section-head reveal"><span class="eyebrow">Sample</span><h2>Here's what lands in your inbox.</h2><p class="lede">A real report uses your shop, your town and your competitors. This one is made up so you can see the layout.</p></div>
-  {rc_samples()}
+  {rc_samples(only_overall=True)}
 </div></section>
-<section class="section"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">How it works</span><h2>Under a minute for you.</h2></div>
-  {rc_how()}
-  <div class="split" style="margin-top:80px">
-  <div><span class="eyebrow">After the report card</span><h2>You've got the grades. Now what?</h2><p class="lede">Some owners fix it themselves, and the report shows exactly where to start. Others hand it to us. Either way, it's yours to keep.</p></div>
-  <div class="card"><ul class="ticks"><li>Graded only on what anyone can see in public</li><li>The same facts always give the same grade</li><li>Plain English, no jargon</li><li>Re-grade anytime to see what changed</li></ul><a class="more" href="{esc(call_link())}">Rather talk it through? Book a 15-minute call →</a>{chat_button("Question about the report card?")}</div>
-  </div>
-</div></section>
-{report_card()}
 """
-    return page("report-card", "Free HVAC marketing report card", "A free report card grading your HVAC company's Google profile, reviews, website and listings against the shops near you.", body)
+    return page("report-card", "Free HVAC marketing report card", "A free report card grading your HVAC company's Google profile, reviews, website and listings against the shops near you.", body, minimal=True)
 
 
 def plans_page():
