@@ -1495,3 +1495,4 @@ chat-widget { --chat-widget-primary-color: var(--heat-ink); --chat-widget-active
 /* TEMPORARY pilot: waived build fee (PILOT_BUILD_WAIVED in tools/build.py) */
 .plan .build s { color: var(--muted); }
 .plan .build .waived { display: block; margin-top: 2px; color: var(--go); font-weight: 600; }
+#report-card { scroll-margin-top: 80px; }

@@ -32,7 +32,7 @@ BUSINESS_PHONE = "+12543827303"                 # the GHL 254 number, e.g. "+125
 MAIL_ADDRESS = "3801 N Capital of Texas Hwy, Ste E240-3928, Austin, TX 78746"
 SMS_PROGRAM = "HVAC Marketing HQ Texts"
 GHL_CHAT_WIDGET = "6ad452bad3ae3b035c14772f"     # GHL chat widget id (public); its text opt-in is part of A2P. None hides it
-DEMO_PHONE = "+12543827303"                     # demo line for missed-call text-back, e.g. "+12545550123"; block hidden until set
+DEMO_PHONE = "+12543827303"                     # main company line, shown in the "try it yourself" text-back block, e.g. "+12545550123"; block hidden until set
 # Public profiles for the Organization/LocalBusiness schema "sameAs". One URL per line; sameAs is left out while this is empty.
 SAME_AS = [
     # "https://www.linkedin.com/company/YOUR-PAGE",
@@ -344,7 +344,7 @@ def demo_line():
     if not DEMO_PHONE:
         return ""
     d = DEMO_PHONE[-10:]
-    return f'<div class="demo-line"><div><b>Try it yourself.</b> Call our demo line, let it ring out and hang up. Watch for the text.</div><a class="btn btn-ghost btn-small" href="tel:{DEMO_PHONE}">({d[:3]}) {d[3:6]}-{d[6:]}</a></div>'
+    return f'<div class="demo-line"><div><b>Try it yourself.</b> Call our company line, let it ring out and hang up. Watch for the text.</div><a class="btn btn-ghost btn-small" href="tel:{DEMO_PHONE}">({d[:3]}) {d[3:6]}-{d[6:]}</a></div>'
 
 
 def founder_video(has_form=True):
